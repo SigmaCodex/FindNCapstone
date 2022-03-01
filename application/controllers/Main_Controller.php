@@ -8,6 +8,10 @@ class Main_Controller extends CI_Controller {
 	{
         $this->load->view('index');
     }
+	public function viewLogin()
+	{
+        $this->load->view('login');
+    }
 
  
 }
