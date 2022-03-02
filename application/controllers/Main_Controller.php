@@ -13,7 +13,7 @@ class Main_Controller extends CI_Controller {
         $this->load->view('login');
     }
 	//super admin show pages
-	public function super_dashboard(){
+	public function admin_dashboard(){
 		$this->load->view('admin/header');
 		$this->load->view('admin/dashboard');
 		$this->load->view('admin/footer');
