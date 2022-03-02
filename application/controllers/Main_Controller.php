@@ -16,9 +16,9 @@ class Main_Controller extends CI_Controller {
 	{
         $this->load->view('registerP');
     }
-	public function addComputer()
+	public function addComputershop()
 	{
-        $this->load->view('addcomputer');
+        $this->load->view('superadmin/addcomputershop');
     }
 	//super admin show pages
 	public function admin_dashboard(){
