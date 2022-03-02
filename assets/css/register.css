@@ -7,7 +7,7 @@
 body {
   font-family: 'Poppins', sans-serif;
   font-size: 16px;
-  color: #2c2c2c;
+  color: #ef7f4d !important;
 }
 body a {
   color: inherit;
@@ -312,8 +312,8 @@ a:hover {
   }
   .button a {
       padding: 7.5px 15px;
-      background: #ef7f4d;
-      border: 1px white solid;
+      background: #ddd;
+      border: 1px gray solid;
       border-radius:50em;
   }
   .button.secondary a {
@@ -353,7 +353,7 @@ a:hover {
   }
   .menu li {
       padding: 15px 10px;
-      color: white;
+      color: #ef7f4d;
   }
   .menu li.button {
       padding-right: 0;
