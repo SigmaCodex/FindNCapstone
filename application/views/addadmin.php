@@ -1,20 +1,49 @@
 <!DOCTYPE html>
 <html lang="en" >
 <head>
-  <meta charset="UTF-8">
+    <meta charset="UTF-8">  
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Add computer</title>
   <link href="https://fonts.googleapis.com/css?family=Poppins:400,600&display=swap" rel="stylesheet">
   <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css'>
   <link rel="stylesheet" href="assets/css/register.css">
+  <script
+    src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+    integrity="sha256-pasqAKBDmFT4eHoN2ndd6lN370kFiGUFyTiUHWhU7k8="
+    crossorigin="anonymous"></script>
+    <script>
+    $(function() {
+    $(".toggle").on("click", function() {
+        if ($(".item").hasClass("active")) {
+            $(".item").removeClass("active");
+        } else {
+            $(".item").addClass("active");
+        }
+    });
+});
+</script>
+
 </head>
 <body>
 <!--PEN HEADER-->
-<!-- <header class="header">
-  <h1 class="header__title">Multi Steps Form with animations</h1>
-  <div class="header__btns btns"><a class="header__btn btn" href="https://github.com/nat-davydova/multisteps-form" title="Check on Github" target="_blank">Check on Github</a></div>
-</header> -->
+  <!-- <header class="header">
+    
+  </header> -->
 <!--PEN CONTENT     -->
 <div class="content">
+    <nav>
+        <ul class="menu">
+            <li class="logo"><a href="#">FindN</a></li>
+            <li class="item"><a href="#">Home</a></li>
+            <li class="item"><a href="#">About</a></li>
+            <li class="item"><a href="#">Services</a></li>
+            </li>
+            <li class="item button"><a href="#">Log In</a></li>
+            <li class="item button secondary"><a href="#">Sign Up</a></li>
+            <li class="toggle"><span class="bars"></span></li>
+        </ul>
+    </nav>
   <br>
   <br>
   <br>
@@ -59,7 +88,7 @@
             <form class="multisteps-form__form">
               <!--single form panel-->
               <div class="multisteps-form__panel shadow p-4 rounded bg-white js-active" data-animation="scaleIn">
-                <h3 class="multisteps-form__title"><center>Add Computer Shop</center></h3>
+                <h3 class="multisteps-form__title"><center>Add Admin</center></h3>
                 <div class="multisteps-form__content">
                   
                   <div class="form-row mt-4">
@@ -88,7 +117,7 @@
                   </div>
                   <div class="button-row d-flex mt-4">
                     <button class="btn btn-primary js-btn-prev" type="button" title="Prev">Cancel</button>
-                    <button class="btn btn-primary ml-auto js-btn-next" type="button" title="Next">Create</button>
+                    <button class="btn btn-primary ml-auto js-btn-next" type="button" title="Next">Add</button>
                   </div>
                 </div>
               </div>
