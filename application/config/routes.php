@@ -1,14 +1,14 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-//superadmin 
+//admin
 $route['admin-dashboard'] = 'main_controller/admin_dashboard';
 
 $route['register'] = 'main_controller/viewRegister';
 $route['loginpage'] = 'main_controller/viewLogin';
 
+//superadmin 
 $route['add-admin'] = 'main_controller/addAdmin';
-
 $route['add-computershop'] = 'main_controller/addComputershop';
 
 $route['index'] = 'main_controller/index';
