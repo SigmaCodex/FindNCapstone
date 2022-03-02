@@ -16,6 +16,10 @@ class Main_Controller extends CI_Controller {
 	{
         $this->load->view('registerP');
     }
+	public function addComputer()
+	{
+        $this->load->view('addcomputer');
+    }
 	//super admin show pages
 	public function admin_dashboard(){
 		$this->load->view('admin/header');
