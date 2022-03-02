@@ -20,6 +20,10 @@ class Main_Controller extends CI_Controller {
 	{
         $this->load->view('superadmin/addcomputershop');
     }
+	public function addAdmin()
+	{
+        $this->load->view('addadmin');
+    }
 	//super admin show pages
 	public function admin_dashboard(){
 		$this->load->view('admin/header');
