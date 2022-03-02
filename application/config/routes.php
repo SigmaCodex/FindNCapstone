@@ -2,7 +2,7 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 //superadmin 
-$route['superadmin-dashboard'] = 'main_controller/admin_dashboard';
+$route['admin-dashboard'] = 'main_controller/admin_dashboard';
 
 
 $route['loginpage'] = 'main_controller/viewLogin';
