@@ -22,7 +22,7 @@ class Main_Controller extends CI_Controller {
     }
 	public function addAdmin()
 	{
-        $this->load->view('addadmin');
+        $this->load->view('superadmin/addadmin');
     }
 	//super admin show pages
 	public function admin_dashboard(){
