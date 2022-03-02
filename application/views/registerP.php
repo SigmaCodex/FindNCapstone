@@ -64,21 +64,23 @@
             </label>
           </div>
         </div>
+
         <div class="gender-details">
-          <input type="radio" name="vacstatus" id="dot-1">
-          <input type="radio" name="vacstatus" id="dot-2">
+          <input type="radio" name="vacstatus" id="vdot-1">
+          <input type="radio" name="vacstatus" id="vdot-2">
           <span class="gender-title">Vaccination Status</span>
           <div class="category">
-            <label for="dot-1">
-            <span class="dot one"></span>
+            <label for="vdot-1">
+            <span class="dot vone"></span>
             <span class="gender">1st Dose</span>
           </label>
-          <label for="dot-2">
-            <span class="dot two"></span>
+          <label for="vdot-2">
+            <span class="dot vtwo"></span>
             <span class="gender">2nd Dose</span>
           </label>
           </div>
         </div>
+
 <div class="imagebody">
     <div class="container1">
     <span class="gender-title">Vaccination Card</span>

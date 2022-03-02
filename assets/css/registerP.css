@@ -96,6 +96,11 @@ form .input-box span.details{
    background: #9b59b6;
    border-color: #d9d9d9;
  }
+ #vdot-1:checked ~ .category label .vone,
+ #vdot-2:checked ~ .category label .vtwo{
+   background: #9b59b6;
+   border-color: #d9d9d9;
+ }
  form input[type="radio"]{
    display: none;
  }
