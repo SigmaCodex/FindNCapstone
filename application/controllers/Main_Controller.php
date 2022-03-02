@@ -12,6 +12,10 @@ class Main_Controller extends CI_Controller {
 	{
         $this->load->view('login');
     }
+	public function viewRegister()
+	{
+        $this->load->view('registerP');
+    }
 	//super admin show pages
 	public function admin_dashboard(){
 		$this->load->view('admin/header');
