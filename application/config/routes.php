@@ -2,7 +2,7 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 //admin
-$route['admin-dashboard'] = 'main_controller/admin_dashboard';
+$route['shopadmin-dashboard'] = 'main_controller/admin_dashboard';
 
 $route['register'] = 'main_controller/viewRegister';
 $route['loginpage'] = 'main_controller/viewLogin';
