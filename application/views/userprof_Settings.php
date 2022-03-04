@@ -19,31 +19,25 @@
                     <h4 class="text-right">Profile Settings</h4>
                 </div>
                 <div class="row mt-2">
-                    <div class="col-md-6"><label class="labels">Name</label><input type="text" class="form-control" placeholder="first name" value=""></div>
-                    <div class="col-md-6"><label class="labels">Surname</label><input type="text" class="form-control" value="" placeholder="surname"></div>
+                    <div class="col-md-6"><label class="labels">First Name</label><input type="text" class="form-control" placeholder="First Name" value=""></div>
+                    <div class="col-md-6"><label class="labels">Last Name</label><input type="text" class="form-control" value="" placeholder="Last Name"></div>
                 </div>
                 <div class="row mt-3">
-                    <div class="col-md-12"><label class="labels">Mobile Number</label><input type="text" class="form-control" placeholder="enter phone number" value=""></div>
-                    <div class="col-md-12"><label class="labels">Address Line 1</label><input type="text" class="form-control" placeholder="enter address line 1" value=""></div>
-                    <div class="col-md-12"><label class="labels">Address Line 2</label><input type="text" class="form-control" placeholder="enter address line 2" value=""></div>
-                    <div class="col-md-12"><label class="labels">Postcode</label><input type="text" class="form-control" placeholder="enter address line 2" value=""></div>
-                    <div class="col-md-12"><label class="labels">State</label><input type="text" class="form-control" placeholder="enter address line 2" value=""></div>
-                    <div class="col-md-12"><label class="labels">Area</label><input type="text" class="form-control" placeholder="enter address line 2" value=""></div>
-                    <div class="col-md-12"><label class="labels">Email ID</label><input type="text" class="form-control" placeholder="enter email id" value=""></div>
-                    <div class="col-md-12"><label class="labels">Education</label><input type="text" class="form-control" placeholder="education" value=""></div>
-                </div>
-                <div class="row mt-3">
-                    <div class="col-md-6"><label class="labels">Country</label><input type="text" class="form-control" placeholder="country" value=""></div>
-                    <div class="col-md-6"><label class="labels">State/Region</label><input type="text" class="form-control" value="" placeholder="state"></div>
+                    <div class="col-md-12"><label class="labels">Username</label><input type="text" class="form-control" placeholder="Username" value=""></div>
+                    <div class="col-md-12"><label class="labels">Phone Number</label><input type="text" class="form-control" placeholder="Phone Number" value=""></div>
+                    <div class="col-md-12"><label class="labels">Birthday</label><input type="text" class="form-control" placeholder="Birthday" value=""></div>
+                    <div class="col-md-12"><label class="labels">Email</label><input type="text" class="form-control" placeholder="Email" value=""></div>
+                    <div class="col-md-12"><label class="labels">Password</label><input type="text" class="form-control" placeholder="Password" value=""></div>
+                    <div class="col-md-12"><label class="labels">Gender</label><input type="text" class="form-control" placeholder="Gender" value=""></div>
                 </div>
                 <div class="mt-5 text-center"><button class="btn btn-primary profile-button" type="button">Save Profile</button></div>
             </div>
         </div>
         <div class="col-md-4">
             <div class="p-3 py-5">
-                <div class="d-flex justify-content-between align-items-center experience"><span>Edit Experience</span><span class="border px-3 p-1 add-experience"><i class="fa fa-plus"></i>&nbsp;Experience</span></div><br>
-                <div class="col-md-12"><label class="labels">Experience in Designing</label><input type="text" class="form-control" placeholder="experience" value=""></div> <br>
-                <div class="col-md-12"><label class="labels">Additional Details</label><input type="text" class="form-control" placeholder="additional details" value=""></div>
+                <div class="d-flex justify-content-between align-items-center experience"><span>Vaccination Status</span><span class="border px-3 p-1 add-experience"><i class="fa fa-plus"></i>&nbsp;Add Image</span></div><br>
+                <div class="col-md-12"><label class="labels">Vaccination Dose #1</label><input type="text" class="form-control" placeholder="Vaccination #1" value=""></div> <br>
+                <div class="col-md-12"><label class="labels">Vaccination Dose #2</label><input type="text" class="form-control" placeholder="Vaccination #2" value=""></div>
             </div>
         </div>
     </div>
