@@ -20,7 +20,7 @@
         <div class="row">
             <div class="col-md-12 jumbotron">
                 <div class="row">
-                    <div class="col-md-6">   <video id="preview"  style="width:100%; border: 2px dashed #bbb; transform: rotateY(180deg);"></video>
+                    <div class="col-md-6">   <video id="preview"  style="width:100%; border: 4px dashed #bbb; transform: rotateY(180deg);"></video>
                         <div class="btn-group btn-group-toggle mb-5" data-toggle="buttons">
                         <label class="btn btn-secondary active">
                             <input type="radio" name="options" value="2" autocomplete="off"> ResetCamera 
