@@ -2,8 +2,8 @@
 <style>
 .qr-box {
     padding: 200px;
-    width: 90%;
-    height: 80%;
+    width: 80%;
+    height: 70%;
     position: relative;
     background: white;
     border: 2px dashed #bbb;
