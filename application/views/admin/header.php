@@ -102,7 +102,7 @@
 
             <!-- Nav Item -->
             <li class="nav-item">
-                <a class="nav-link" href="charts.html">
+                <a class="nav-link" href="shopadmin-scanqr">
                     <i class="fas fa-fw fa-solid fa-qrcode"></i>
                     <span>Scan Ticket</span></a>
             </li>

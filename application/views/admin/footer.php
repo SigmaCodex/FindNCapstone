@@ -44,6 +44,26 @@
     <script src="assets/admin/vendor/jquery/jquery.min.js"></script>
     <script src="assets/admin/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
+    <script>
+        
+    </script>
+
+    
+    <!-- Core plugin JavaScript-->
+    <script src="assets/admin/vendor/jquery-easing/jquery.easing.min.js"></script>
+
+    <!-- Custom scripts for all pages-->
+    <script src="assets/admin/js/sb-admin-2.min.js"></script>
+
+    <!-- Page level plugins -->
+    <script src="assets/admin/vendor/chart.js/Chart.min.js"></script>
+
+    <!-- Page level custom scripts -->
+    <script src="assets/admin/js/demo/chart-area-demo.js"></script>
+    <script src="assets/admin/js/demo/chart-pie-demo.js"></script>
+
+    <script src="assets/js/clock.js"></script>
+
     <!-- Insta Scanner for QrCode-->
     <script src="https://rawgit.com/schmich/instascan-builds/master/instascan.min.js"></script>
     <script type="text/javascript">
@@ -51,13 +71,12 @@
 					scanner.addListener('scan',function(content){
 						  alert(content);
 						//  $("#data").text(content);
-						// var res = content.split(",");
-
-					      $("#name").text(res[0]);
-					      $("#email").text(res[1]);
-					      $("#p_number").text(res[2]);
-					      $("#status").text(res[3]);
-					      $("#arrival").text(res[4]);
+						 var res = content.split(",");
+					      $("#name").val(res[0]);
+					      $("#email").val(res[1]);
+					      $("#p_number").val(res[2]);
+					      $("#status").val(res[3]);
+					    //   $("#arrival").val(res[4]);
 					    //  $("#total").text(res[5]);
 					
 
@@ -91,20 +110,6 @@
 					});
 				</script>
 
-    <!-- Core plugin JavaScript-->
-    <script src="assets/admin/vendor/jquery-easing/jquery.easing.min.js"></script>
-
-    <!-- Custom scripts for all pages-->
-    <script src="assets/admin/js/sb-admin-2.min.js"></script>
-
-    <!-- Page level plugins -->
-    <script src="assets/admin/vendor/chart.js/Chart.min.js"></script>
-
-    <!-- Page level custom scripts -->
-    <script src="assets/admin/js/demo/chart-area-demo.js"></script>
-    <script src="assets/admin/js/demo/chart-pie-demo.js"></script>
-
-    <script src="assets/js/clock.js"></script>
 
 </body>
 

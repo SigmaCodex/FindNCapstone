@@ -31,7 +31,6 @@
                          <h2>Booking Information</h2>  
                          <br>
                          <div class="row justify-content-center mb-2"> 
-                             <div class="col-md-1"></div>
                              <h1 class="col-md-3 " style="color:green">ON TIME </h1>
                              <h1 class="col-md-3 " style="color:red"> LATE</h1>
                          </div>
@@ -41,7 +40,7 @@
                                 <h5>Arrival Time</h5><br>
                                 <h5 id="arrival">00:00 AM/PM</h5>
                             </div>
-                            <div class="col-md-2">
+                            <div class="col-md-3">
                                 <h5>Time left</h5><br>
                                 <h5>00:00</h5>
                             </div>
@@ -69,7 +68,7 @@
                                     <div class="form-group row">
                                         <label class="col-lg-3 col-form-label form-control-label">Name</label>
                                         <div class="col-lg-9">
-                                        <input class="form-control" id="name" type="text" value="Junky Dublin">
+                                        <input class="form-control" id="name" type="text" value="Junky">
                                         </div>
                                     </div>
                                     <div class="form-group row">
