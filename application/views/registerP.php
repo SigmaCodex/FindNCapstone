@@ -6,7 +6,7 @@
      <meta name="viewport" content="width=device-width, initial-scale=1.0">
    </head>
 <body>
-<img class="wave" src="assets/images/wavy.png">
+<!-- <img class="wave" src="assets/images/wavy.png"> -->
   <div class="container">
     <div class="title">Registration</div>
     <div class="content">
