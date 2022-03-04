@@ -5,6 +5,13 @@
   box-sizing: border-box;
   font-family: 'Poppins',sans-serif;
 }
+.wave{
+	position: fixed;
+	bottom: 0;
+	left: 0;
+	height: 75%;
+	z-index: -1;
+}
 body{
   height: 100%;
   display: flex;
@@ -64,7 +71,7 @@ form .input-box span.details{
 }
 .user-details .input-box input:focus,
 .user-details .input-box input:valid{
-  border-color: #9b59b6;
+  border-color: #000;
 }
  form .gender-details .gender-title{
   font-size: 20px;
