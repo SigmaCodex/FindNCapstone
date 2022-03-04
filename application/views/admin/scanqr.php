@@ -1,13 +1,12 @@
 
 <style>
-.qr-box {
-    padding: 200px;
+/* .qr-box {
     width: 80%;
-    height: 70%;
+    height: auto;
     position: relative;
     background: white;
     border: 2px dashed #bbb;
-}
+} */
 
 </style>
 
@@ -21,9 +20,12 @@
         <div class="row">
             <div class="col-md-12 jumbotron">
                 <div class="row">
-         
-                    <div class="col-md-6">
-                        <div class="qr-box"></div>
+                    <div class="col-md-6">   <video id="preview"  style="width:100%; border: 2px dashed #bbb;"></video>
+                        <div class="btn-group btn-group-toggle mb-5" data-toggle="buttons">
+                        <label class="btn btn-secondary active">
+                            <input type="radio" name="options" value="2" autocomplete="off"> ResetCamera 
+                        </label>
+                        </div>
                     </div>
                     <div class="col-md-6">
                          <h2>Booking Information</h2>  
@@ -37,7 +39,7 @@
                          <div class="row justify-content-center">
                             <div class="col-md-3">
                                 <h5>Arrival Time</h5><br>
-                                <h5>00:00 AM/PM</h5>
+                                <h5 id="arrival">00:00 AM/PM</h5>
                             </div>
                             <div class="col-md-2">
                                 <h5>Time left</h5><br>
@@ -67,7 +69,7 @@
                                     <div class="form-group row">
                                         <label class="col-lg-3 col-form-label form-control-label">Name</label>
                                         <div class="col-lg-9">
-                                        <input class="form-control" type="text" value="Junky Dublin">
+                                        <input class="form-control" id="name" type="text" value="Junky Dublin">
                                         </div>
                                     </div>
                                     <div class="form-group row">
@@ -79,13 +81,19 @@
                                     <div class="form-group row">
                                         <label class="col-lg-3 col-form-label form-control-label">Vac Status</label>
                                         <div class="col-lg-9">
-                                        <input class="form-control" type="text" value="2nd Dose">
+                                        <input class="form-control" id="status" type="text" value="2nd Dose">
                                         </div>
                                     </div>
                                     <div class="form-group row">
                                         <label class="col-lg-3 col-form-label form-control-label">Phone Number</label>
                                         <div class="col-lg-9">
-                                        <input class="form-control" type="text" value="092234753221">
+                                        <input class="form-control" id="p_number" type="text" value="092234753221">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-lg-3 col-form-label form-control-label">Email</label>
+                                        <div class="col-lg-9">
+                                        <input class="form-control" id="email" type="text" value="Hackmetry@gmail.com">
                                         </div>
                                     </div>
                                     </form>
