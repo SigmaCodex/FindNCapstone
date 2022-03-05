@@ -22,6 +22,7 @@ class Main_Controller extends CI_Controller {
 	{
         $this->load->view('registerP');
     }
+	//super admin
 	public function addComputershop()
 	{
         $this->load->view('superadmin/addcomputershop');
@@ -30,6 +31,9 @@ class Main_Controller extends CI_Controller {
 	{
         $this->load->view('superadmin/addadmin');
     }
+	public function listofcomputershop(){
+		$this->load->view('superadmin/listofcomputershop');
+	}
 
 	//shop admin show pages
 	public function admin_dashboard(){
@@ -43,11 +47,6 @@ class Main_Controller extends CI_Controller {
 		$this->load->view('admin/footer');
 	}
 
-	public function firstlogic()
-	{
-		$this->load->model('MainModel');
-		$this->MainModel->user_validate();
-    }
  
 }
     
