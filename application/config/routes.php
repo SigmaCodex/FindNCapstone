@@ -4,7 +4,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 //admin
 $route['shopadmin-dashboard'] = 'main_controller/admin_dashboard';
 $route['shopadmin-scanqr']    = 'main_controller/admin_scanqr';
-
+$route['shopadmin-bookings']  = 'main_controller/admin_bookings';
 
 $route['register'] = 'main_controller/viewRegister';
 $route['loginpage'] = 'main_controller/viewLogin';

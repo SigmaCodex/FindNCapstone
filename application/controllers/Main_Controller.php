@@ -46,6 +46,11 @@ class Main_Controller extends CI_Controller {
 		$this->load->view('admin/scanqr');
 		$this->load->view('admin/footer');
 	}
+	public function admin_bookings(){
+		$this->load->view('admin/header');
+		$this->load->view('admin/Bookings');
+		$this->load->view('admin/footer');
+	}
 
  
 }

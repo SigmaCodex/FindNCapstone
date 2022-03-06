@@ -52,6 +52,8 @@
     <!-- Core plugin JavaScript-->
     <script src="assets/admin/vendor/jquery-easing/jquery.easing.min.js"></script>
 
+    <!-- <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script> -->
     <!-- Custom scripts for all pages-->
     <script src="assets/admin/js/sb-admin-2.min.js"></script>
 
@@ -62,6 +64,24 @@
     <script src="assets/admin/js/demo/chart-area-demo.js"></script>
     <script src="assets/admin/js/demo/chart-pie-demo.js"></script>
 
+    <!-- Booking plugins -->
+    <script src="assets/admin/vendor/datatables/jquery.dataTables.min.js"></script>
+    <script src="assets/admin/vendor/datatables/dataTables.bootstrap4.min.js"></script>
+        
+    <script>
+    $(document).ready(function() {
+        $('#dataTable').DataTable({
+            "pageLength": 10,
+            "paging": true,
+            "lengthChange": false,
+            "searching": false,
+            "ordering": true,
+            "info": true,
+            "autoWidth": false
+            });
+        });
+    </script>
+        
     <script src="assets/js/clock.js"></script>
 
     <!-- Insta Scanner for QrCode-->
@@ -109,7 +129,6 @@
 						alert(e);
 					});
 				</script>
-
 
 </body>
 
