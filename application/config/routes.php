@@ -9,8 +9,9 @@ $route['shopadmin-bookings']  = 'main_controller/admin_bookings';
 $route['register'] = 'main_controller/viewRegister';
 $route['loginpage'] = 'main_controller/viewLogin';
 
+//finders
 $route['userprof_Settings'] = 'main_controller/viewUser_Settings';
-
+$route['paymentexercise']   = 'main_controller/payment_exercise';
 
 //superadmin 
 $route['add-admin'] = 'main_controller/addAdmin';

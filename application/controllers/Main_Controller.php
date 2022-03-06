@@ -12,7 +12,7 @@ class Main_Controller extends CI_Controller {
 	{
         $this->load->view('login');
     }
-
+	//finders
 	public function viewUser_Settings()
 	{
 		$this->load->view('userprof_Settings');
@@ -22,6 +22,9 @@ class Main_Controller extends CI_Controller {
 	{
         $this->load->view('registerP');
     }
+	public function payment_exercise(){
+		$this->load->view('payment');
+	}
 	//super admin
 	public function addComputershop()
 	{
