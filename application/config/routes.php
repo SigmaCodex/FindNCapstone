@@ -11,6 +11,7 @@ $route['loginpage'] = 'main_controller/viewLogin';
 
 //finders
 $route['userprof_Settings'] = 'main_controller/viewUser_Settings';
+$route['computerbform'] = 'main_controller/viewcompbookForm';
 $route['paymentexercise']   = 'main_controller/payment_exercise';
 
 //superadmin 
