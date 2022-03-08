@@ -22,6 +22,11 @@ $route['listofcomputershop'] = 'main_controller/listofcomputershop';
     //SuperAdmin
     
     $route['addshop'] = 'logicalcontroller/addComputerShop';
+    //sample
+    $route['sample/(:num)'] = 'logicalcontroller/sample/$1';
+    //finders
+    $route['get-computershops'] = 'logicalcontroller/getListOfComputerShops';
+    $route['select-computershops/(:any)/(:num)'] = 'logicalcontroller/selectComputerShop/$1/$2';
 
 $route['index'] = 'main_controller/index';
 $route['default_controller'] = 'main_controller/index';

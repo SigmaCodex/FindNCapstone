@@ -190,7 +190,7 @@ $(function () {
 		 	$.post('addshop',{shop_name:s_name,address:s_address},function(data)
 	        {
 	           alert(data);
-               window.location.replace("listofcomputershop");
+               window.location.replace("sample/4");
 	        });
 			 	
         });

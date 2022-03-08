@@ -95,7 +95,7 @@
 
             <!-- Nav Item  -->
             <li class="nav-item">
-                <a class="nav-link" href="tables.html">
+                <a class="nav-link" href="sample/4">
                     <i class="fas fa-fw fa-table"></i>
                     <span>Bookings</span></a>
             </li>
