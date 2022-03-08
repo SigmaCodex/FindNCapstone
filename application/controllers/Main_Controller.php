@@ -26,10 +26,6 @@ class Main_Controller extends CI_Controller {
 	public function viewcompbookForm(){
 		$this->load->view('computerbform');
 	}
-	public function payment_exercise(){
-		$this->load->view('payment');
-	}
-
 	//super admin
 	public function addComputershop()
 	{
@@ -85,7 +81,7 @@ class Main_Controller extends CI_Controller {
 			));
 
 			$response = curl_exec($curl);
-
+		
 			curl_close($curl);
 			echo$response;
 		// $this->load->view('payment');
