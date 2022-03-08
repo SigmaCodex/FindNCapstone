@@ -77,6 +77,7 @@
 </div> 
 <!--container end.//-->
 
+<a data-amount="1" data-fee="0" data-expiry="6" data-customer="johndave" data-description="Payment for services rendered"  data-href="https://getpaid.gcash.com/paynow" data-public-key="pk_865748980ca7d809750906e8a7db5129" onclick="this.href = this.getAttribute('data-href')+'?public_key='+this.getAttribute('data-public-key')+'&amp;amount='+this.getAttribute('data-amount')+'&amp;fee='+this.getAttribute('data-fee')+'&amp;expiry='+this.getAttribute('data-expiry')+'&amp;description='+this.getAttribute('data-description')+'customername=johndavedelgado'+this.getAttribute('data-customer');" href="https://getpaid.gcash.com/paynow?public_key=pk_865748980ca7d809750906e8a7db5129&amp;amount=100&amp;fee=0&amp;expiry=6&amp;description=Payment for TNC;cutomername=johndavedelgado" target="_blank" class="x-getpaid-button"><img src="https://getpaid.gcash.com/assets/img/paynow.png"></a>	
 
 
 

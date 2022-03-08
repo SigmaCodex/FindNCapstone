@@ -11,7 +11,7 @@ $route['loginpage'] = 'main_controller/viewLogin';
 
 //finders
 $route['userprof_Settings'] = 'main_controller/viewUser_Settings';
-$route['paymentexercise']   = 'main_controller/payment_exercise';
+$route['paymentexercise']  = 'main_controller/payment_exercise';
 
 //superadmin 
 $route['add-admin'] = 'main_controller/addAdmin';
@@ -27,6 +27,9 @@ $route['listofcomputershop'] = 'main_controller/listofcomputershop';
     //finders
     $route['get-computershops'] = 'logicalcontroller/getListOfComputerShops';
     $route['select-computershops/(:any)/(:num)'] = 'logicalcontroller/selectComputerShop/$1/$2';
+
+    //api 
+    $route['gcashsuccess']          = 'logicalcontroller/gcashsuccess';
 
 $route['index'] = 'main_controller/index';
 $route['default_controller'] = 'main_controller/index';
