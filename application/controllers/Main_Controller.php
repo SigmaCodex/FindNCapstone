@@ -22,6 +22,10 @@ class Main_Controller extends CI_Controller {
 	{
         $this->load->view('registerP');
     }
+
+	public function viewMap(){
+		$this->load->view('viewmap');
+	}
 	//added types of booking form (printing/computer)
 	public function viewcompbookForm(){
 		$this->load->view('computerbform');
