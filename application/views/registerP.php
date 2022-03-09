@@ -22,34 +22,34 @@
           </div>
           <div class="input-box">
             <span class="details">Phone Number</span>
-            <input type="text" id="p_numberform" placeholder="Enter your email" >
+            <input type="text" id="p_numberform" placeholder="Enter your number" >
             <h5 id="error"></h5>
           </div>
           <div class="input-box">
             <span class="details">Birthday</span>
-            <input type="date" required>
+            <input type="date" id="date" required>
           </div>
           <div class="input-box">
             <span class="details">Username</span>
-            <input type="text" placeholder="Enter your password">
+            <input type="text" id="username" placeholder="Enter your password">
           </div>
           <div class="input-box">
             <span class="details">Email</span>
-            <input type="text" placeholder="Enter your Email" >
+            <input type="text" id="email" placeholder="Enter your Email" >
           </div>
           <div class="input-box">
             <span class="details">Password</span>
-            <input type="password" placeholder="Enter your password" >
+            <input type="password" id="pass" placeholder="Enter your password" >
           </div>
           <div class="input-box">
             <span class="details">Confirm Password</span>
-            <input type="password" placeholder="Confirm your password" >
+            <input type="password" id="conpass" placeholder="Confirm your password" >
           </div>
         </div>
         <div class="gender-details">
-          <input type="radio" name="gender" id="dot-1">
-          <input type="radio" name="gender" id="dot-2">
-          <input type="radio" name="gender" id="dot-3">
+          <input type="radio" name="gender" value="Male" id="dot-1">
+          <input type="radio" name="gender" value="Female"id="dot-2">
+          <input type="radio" name="gender" value="Not to say"id="dot-3">
           <span class="gender-title">Gender</span>
           <div class="category">
             <label for="dot-1">
@@ -66,10 +66,9 @@
             </label>
           </div>
         </div>
-
         <div class="gender-details">
-          <input type="radio" name="vacstatus" id="vdot-1">
-          <input type="radio" name="vacstatus" id="vdot-2">
+          <input type="radio" name="vacstatus" value="1st Dose" id="vdot-1">
+          <input type="radio" name="vacstatus" value="2nd Dose" id="vdot-2">
           <span class="gender-title">Vaccination Status</span>
           <div class="category">
             <label for="vdot-1">
@@ -82,36 +81,37 @@
           </label>
           </div>
         </div>
-
-<div class="imagebody">
-    <div class="container1">
-    <span class="gender-title">Vaccination Card</span>
-        <div class="wrapper">
-            <div class="image">
-                <img src=" " alt="">
+      </form>
+      <form>
+        <div class="imagebody">
+          <div class="container1">
+            <span class="gender-title">Vaccination Card</span>
+            <div class="wrapper">
+                <div class="image">
+                  <img src=" " alt="">
+                </div>
+                <div class="content1">
+                  <div class="icon"><i class="fas fa-cloud-upload-alt"></i></div>
+                  <div class="icon">No image yet</i></div>
+                </div>
+                <div id="cancel-btn"><i class="fas fa-times"></i></div>
+                  <div class="file-name">File name here</div>
+                </div>
+                <div class="button">
+                  <input id="default-btn" type="file" hidden>
+                  <button onclick="uploadImage()" id="custom-btn">Choose a file</button>
+                </div>   
+                <div class="button">
+                <input type="submit" value="Register" id="registration_btn">
             </div>
-            <div class="content1">
-                <div class="icon"><i class="fas fa-cloud-upload-alt"></i></div>
-                <div class="icon">No image yet</i></div>
-            </div>
-            <div id="cancel-btn"><i class="fas fa-times"></i></div>
-            <div class="file-name">File name here</div>
+          </div>
         </div>
-        <div class="button">
-            <input id="default-btn" type="file" hidden>
-            <button onclick="uploadImage()" id="custom-btn">Choose a file</button>
-        </div>   
-        <div class="button">
-          <input type="submit" value="Register" id="registration_btn">
-        </div>
-    </div>
-</div>
       </form>
     </div>
   </div>
 </body>
 <script src="assets/js/jquery/jquery.min.js"></script>
-<script>
+<!-- <script>
 const fileName = document.querySelector(".file-name");
 const defaultBtn = document.querySelector("#default-btn");
 const wrapper = document.querySelector(".wrapper");
@@ -138,39 +138,57 @@ defaultBtn.addEventListener("change",function(){
       fileName.textContent = valueStore;
   }
 });
-</script>
+</script> -->
 
 <script>
     $(document).on('click','#registration_btn',function(){  
         var name  = $("#firstname").val();
         var lname = $("#lastname").val();
+        var uname = $("#username").val();
+        var phonenum = $("#p_numberform").val();
+
+        var bdate = new Date($('#date').val());
+        var day = bdate.getDate();
+        var month = bdate.getMonth() + 1;
+        var year = bdate.getFullYear();
+        
+        var actbdate = [day, month, year].join('/');
+
+        var email = $("#email").val();
+        var pass = $("#pass").val();
+        var conpass = $("#conpass").val();
+
+        var gender = $('input[name="gender"]:checked').val();
+        var vacstatus = $('input[name="vacstatus"]:checked').val();
 
 
       //communication within the server nani ivan
-        $.ajax({
-          url: "registerfinder",
-          type: "POST",
-          data:{firstname:name,lastname:lname},
-          // contentType: false,
-          //       cache: false,
-          // processData:false,
-          beforeSend : function()
-          {
-            //$("#preview").fadeOut();
-            // $("#err").fadeOut();
-            alert("processing");
-          },
-          success: function(data)
-          {
-            alert(data);
-          }
+         $.ajax({
+           url: "registerfinder",
+           type: "POST",
+           data:{firstname:name,lastname:lname,pnum:phonenum,birthdate:actbdate,username:uname,email:email,pass:pass,conpass:conpass,gender:gender,vacstatus:vacstatus},
+           // contentType: false,
+           //       cache: false,
+           // processData:false,
+           beforeSend : function()
+           {
+             //$("#preview").fadeOut();
+             // $("#err").fadeOut();
+           alert("processing");
+           },
+           success: function(data)
+           {
+             alert(data);
+           }
         
-        });
+         });
 
-
-
+          // alert(actbdate);
+          
 
     });
+
+    
     // simple validation for phonenumber
     $(document).on('keypress','#p_numberform',function(){  
 

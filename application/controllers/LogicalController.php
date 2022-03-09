@@ -15,11 +15,18 @@ class LogicalController extends CI_Controller {
     //FINDERS
     public function registerFinder(){
         $data = array(
-            'firstname'   =>  $this->input->post('firstname'),
+            'firstname' =>    $this->input->post('firstname'),
             'lastname'  => 	  $this->input->post('lastname'),
+            'username'  => 	  $this->input->post('username'),
+            'pnum'      => 	  $this->input->post('pnum'),
+            'birthdate' => 	  $this->input->post('birthdate'),
+            'email'     => 	  $this->input->post('email'),
+            'pass'      => 	  $this->input->post('pass'),
+            'conpass'   => 	  $this->input->post('conpass'),
+            'gender'    => 	  $this->input->post('gender'),
+            'vacstatus' =>    $this->input->post('vacstatus'),
         );
-
-        echo json_encode($data);
+         echo json_encode($data);
     }
     public function getListOfComputerShops(){
         $this->load->model('MainModel');
