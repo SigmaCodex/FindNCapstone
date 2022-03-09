@@ -10,19 +10,20 @@
   <div class="container">
     <div class="title">Registration</div>
     <div class="content">
-      <form action="#" id="resgistrationform">
+      <form id="resgistrationform">
         <div class="user-details">
           <div class="input-box">
             <span class="details">First Name</span>
-            <input type="text" placeholder="Enter your first name" required>
+            <input type="text" name="firstname" id="firstname" placeholder="Enter your first name" >
           </div>
           <div class="input-box">
             <span class="details">Last Name</span>
-            <input type="text" placeholder="Enter your last name" required>
+            <input type="text" name="lastname" id="lastname" placeholder="Enter your last name" >
           </div>
           <div class="input-box">
             <span class="details">Phone Number</span>
-            <input type="text" placeholder="Enter your email" required>
+            <input type="text" id="p_numberform" placeholder="Enter your email" >
+            <h5 id="error"></h5>
           </div>
           <div class="input-box">
             <span class="details">Birthday</span>
@@ -30,19 +31,19 @@
           </div>
           <div class="input-box">
             <span class="details">Username</span>
-            <input type="text" placeholder="Enter your password" required>
+            <input type="text" placeholder="Enter your password">
           </div>
           <div class="input-box">
             <span class="details">Email</span>
-            <input type="text" placeholder="Enter your Email" required>
+            <input type="text" placeholder="Enter your Email" >
           </div>
           <div class="input-box">
             <span class="details">Password</span>
-            <input type="password" placeholder="Enter your password" required>
+            <input type="password" placeholder="Enter your password" >
           </div>
           <div class="input-box">
             <span class="details">Confirm Password</span>
-            <input type="password" placeholder="Confirm your password" required>
+            <input type="password" placeholder="Confirm your password" >
           </div>
         </div>
         <div class="gender-details">
@@ -96,10 +97,12 @@
             <div id="cancel-btn"><i class="fas fa-times"></i></div>
             <div class="file-name">File name here</div>
         </div>
+        <div class="button">
             <input id="default-btn" type="file" hidden>
             <button onclick="uploadImage()" id="custom-btn">Choose a file</button>
+        </div>   
         <div class="button">
-          <input type="submit" value="Register">
+          <input type="submit" value="Register" id="registration_btn">
         </div>
     </div>
 </div>
@@ -138,15 +141,19 @@ defaultBtn.addEventListener("change",function(){
 </script>
 
 <script>
-    $(document).on('submit','resgistrationform',function(){  
-        
+    $(document).on('click','#registration_btn',function(){  
+        var name  = $("#firstname").val();
+        var lname = $("#lastname").val();
+
+
+      //communication within the server nani ivan
         $.ajax({
           url: "registerfinder",
           type: "POST",
-          data:  new FormData(this),
-          contentType: false,
-                cache: false,
-          processData:false,
+          data:{firstname:name,lastname:lname},
+          // contentType: false,
+          //       cache: false,
+          // processData:false,
           beforeSend : function()
           {
             //$("#preview").fadeOut();
@@ -161,7 +168,25 @@ defaultBtn.addEventListener("change",function(){
         });
 
 
-        
+
+
+    });
+    // simple validation for phonenumber
+    $(document).on('keypress','#p_numberform',function(){  
+
+      var phone = $('#p_numberform').val();
+         var phoneNum = /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/;
+        if(phone == ""){
+            $("#p_numberform").css("border-color","red");
+          
+        }else if(!phone.match(phoneNum) || phone.length != 10){
+            $("#p_numberform").css("border-color","red");
+            $("#error").text("dli match").css("color","red");
+        }else{
+            $("#p_numberform").css("border-color","green");
+            $("#error").text("goodsna").css("color","green");
+        }
+
     });
 </script>
 </script>
