@@ -75,10 +75,10 @@ class Main_Controller extends CI_Controller {
 			CURLOPT_POSTFIELDS => array(
 				'x-public-key' => 'pk_865748980ca7d809750906e8a7db5129',
 				'amount' => '1',
-				'description' => 'FindBookingService For Gamecity',
+				'description' => 'FindNBookingService For TNC',
 				'customername' => 'John Dave Delgado',
 				'customermobile' => '09262247240',
-				'merchantlogourl' => 'http://localhost:8080/FindNCapstone/assets/images/findn.png',
+				'merchantlogourl' => 'http://localhost:8080/FindNCapstone/assets/images/findnslogan.png',
 				'customeremail' => 'johndave@gmail.com',
 				// 'redirectsuccessurl' => 'http://localhost:8080/FindNCapstone/gcashsuccess',	
 			),
@@ -87,7 +87,18 @@ class Main_Controller extends CI_Controller {
 			$response = curl_exec($curl);
 		
 			curl_close($curl);
-			echo$response;
+			// echo$response;
+			// var_dump($response);
+			 $decoded = json_decode($response, true);
+			//  $data = $decoded ['response']['data'][0];
+			//  echo $data;
+			// echo  $decoded;
+			//  var_dump($decoded);
+
+			// echo $decoded['data']['checkouturl'];
+
+			redirect($decoded['data']['checkouturl']);
+			// echo
 		// $this->load->view('payment');
 	}
 
