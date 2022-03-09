@@ -80,6 +80,7 @@ class Main_Controller extends CI_Controller {
 				'customermobile' => '09262247240',
 				'merchantlogourl' => 'http://localhost:8080/FindNCapstone/assets/images/findnslogan.png',
 				'customeremail' => 'johndave@gmail.com',
+				
 				// 'redirectsuccessurl' => 'http://localhost:8080/FindNCapstone/gcashsuccess',	
 			),
 			));
@@ -87,9 +88,9 @@ class Main_Controller extends CI_Controller {
 			$response = curl_exec($curl);
 		
 			curl_close($curl);
-			// echo$response;
+			 echo$response;
 			// var_dump($response);
-			 $decoded = json_decode($response, true);
+			 //$decoded = json_decode($response, true);
 			//  $data = $decoded ['response']['data'][0];
 			//  echo $data;
 			// echo  $decoded;
@@ -97,7 +98,8 @@ class Main_Controller extends CI_Controller {
 
 			// echo $decoded['data']['checkouturl'];
 
-			redirect($decoded['data']['checkouturl']);
+			//redirect($decoded['data']['checkouturl']);
+			
 			// echo
 		// $this->load->view('payment');
 	}
