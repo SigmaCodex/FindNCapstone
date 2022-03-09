@@ -12,7 +12,10 @@ class LogicalController extends CI_Controller {
     public function sample($num){
         echo $num;
     }
-
+    //FINDERS
+    public function registerFinder(){
+        echo "hello";
+    }
     public function getListOfComputerShops(){
         $this->load->model('MainModel');
         $result = $this->MainModel->getListOfComputerShops();

@@ -10,7 +10,7 @@
   <div class="container">
     <div class="title">Registration</div>
     <div class="content">
-      <form action="#">
+      <form action="#" id="resgistrationform">
         <div class="user-details">
           <div class="input-box">
             <span class="details">First Name</span>
@@ -106,7 +106,8 @@
       </form>
     </div>
   </div>
-
+</body>
+<script src="assets/js/jquery/jquery.min.js"></script>
 <script>
 const fileName = document.querySelector(".file-name");
 const defaultBtn = document.querySelector("#default-btn");
@@ -135,5 +136,38 @@ defaultBtn.addEventListener("change",function(){
   }
 });
 </script>
-</body>
+
+<script>
+    $(document).on('submit','resgistrationform',function(){  
+        
+        $.ajax({
+          url: "registerfinder",
+          type: "POST",
+          data:  new FormData(this),
+          contentType: false,
+                cache: false,
+          processData:false,
+          beforeSend : function()
+          {
+            //$("#preview").fadeOut();
+            // $("#err").fadeOut();
+            alert("processing");
+          },
+          success: function(data)
+          {
+            alert(data);
+          }
+        
+        });
+
+
+        
+    });
+</script>
+</script>
+
+
+
+
+
 </html>
