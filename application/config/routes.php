@@ -27,12 +27,14 @@ $route['listofcomputershop'] = 'main_controller/listofcomputershop';
     //sample
     $route['sample/(:num)'] = 'logicalcontroller/sample/$1';
     //finders
+    $route['registerfinder'] = 'logicalcontroller/registerFinder';
+
     $route['get-computershops'] = 'logicalcontroller/getListOfComputerShops';
     $route['select-computershops/(:any)/(:num)'] = 'logicalcontroller/selectComputerShop/$1/$2';
 
     //api 
     $route['gcashsuccess']          = 'logicalcontroller/gcashsuccess';
-    $route['paymentexercise']   = 'main_controller/payment_exercise';
+    $route['paymentexercise']       = 'main_controller/payment_exercise';
 
 $route['index'] = 'main_controller/index';
 $route['default_controller'] = 'main_controller/index';
