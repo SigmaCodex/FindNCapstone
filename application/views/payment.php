@@ -53,13 +53,16 @@
             </div>
 			<div class="p-2 d-flex contact-display">
                 <div class="col-5">ContactNumber:</div>
-					<div class="ms-auto">09225847075</div>
+					<div class="ms-auto show-number">09225847075</div>
 					<i class="col-3 fa fa-edit icon edit-icon"></i>
             </div>
 
 				<div class="p-2 d-flex">
-					<input type="text" class="ms-auto form-control  edit-contact-form" Value="09225847075" style="display:none">
-					<i class="col-2 fa fa-close icon edit-contact-form" id="close-edit"style="display:none"></i>
+					<input type="number" class="ms-auto form-control  edit-contact-form" id="contact-input" style="display:none">
+					<div class="col-2 row">
+					<i class="col-6 fa fa-close icon edit-contact-form" id="close-edit"style="display:none"></i>
+					<i class="col-6 fa fa-check icon" id="update-contact"style="display:none"></i>
+					</div>
 				</div>
 
             <hr/>
@@ -79,7 +82,7 @@
 						<div class="d-flex justify-content-between">
 						    <img src="https://getpaid.gcash.com/assets/img/paynow.png">
 							<!-- <span>Gcash</span> -->
-							<span>09262247240</span>
+							<span class="show-number">09262247240</span>
 						</div>
 						</label>
 
@@ -162,7 +165,27 @@
 	$(document).on('click','#close-edit',function(){  
 		$(".edit-contact-form").css("display","none");
     });
+	$(document).on('keydown','#contact-input',function(){  
+		var phone = $(this).val();
+        var phoneNum = /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/;
+        if(phone == ""){
+            $(this).css("border-color","red");
+			$("#update-contact").css("display","none");;
+        }else if(!phone.match(phoneNum) || phone.length != 10){
+            $(this).css("border-color","red");
+			$("#update-contact").css("display","none");;
+        }else{
+            $(this).css("border-color","green");
+			$("#update-contact").show();
+        }
+    });
 
+	$(document).on('click','#update-contact',function(){ 
+		var phone = $("#contact-input").val();
+		$(".edit-contact-form").css("display","none");
+		$("#update-contact").css("display","none");;
+        $(".show-number").text(phone);
+    });
 
 	  
 
