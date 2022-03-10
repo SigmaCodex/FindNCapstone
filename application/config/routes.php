@@ -27,6 +27,7 @@ $route['listofcomputershop'] = 'main_controller/listofcomputershop';
     $route['sample/(:num)'] = 'logicalcontroller/sample/$1';
     //finders
     $route['registerfinder'] = 'logicalcontroller/registerFinder';
+    $route['generatePrimarykey'] = 'logicalcontroller/generatePrimarykey';
 
     $route['get-computershops'] = 'logicalcontroller/getListOfComputerShops';
     $route['select-computershops/(:any)/(:num)'] = 'logicalcontroller/selectComputerShop/$1/$2';

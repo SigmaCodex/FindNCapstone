@@ -20,12 +20,35 @@ class MainModel extends CI_Model{
     }
 
     //finders
+    public function registerFinder(){
+        $Primarycode = $this->generatePrimarykey();
+        //check if the primary key is taken;
+        $this->db->where('user_id',$Primarycode);
+        $query = $this->db->get('user');
+        if(!empty($query->result_array()))
+		{ 
+            echo "duplicate primarycode";
+		}
+		else
+		{
+            echo"wlay sulod Pwedi naka mo add sa imoha mga data diri";
+		}
+    }
+    public function generatePrimarykey(){
+        $first = date('ymd');
+        $second = rand (1, 100);
+        $third = rand (1, 200);
+ 
+        return $first."".$second."".$third;
+     }
+
     public function getListOfComputerShops(){
         $this->db->select('*');
         $this->db->from('computershop');
         $query = $this->db->get();
         return $query->result();
     }
+
 
     public function selectComputerShop($name,$id){
 		$this->db->select('*');

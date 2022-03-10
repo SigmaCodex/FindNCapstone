@@ -14,12 +14,14 @@ class LogicalController extends CI_Controller {
     }
     //FINDERS
     public function registerFinder(){
-        $data = array(
-            'firstname'   =>  $this->input->post('firstname'),
-            'lastname'  => 	  $this->input->post('lastname'),
-        );
-        echo json_encode($data);
+        $this->load->model('MainModel');
+        $this->MainModel->registerFinder();
     }
+    public function generatePrimarykey(){
+        $this->load->model('MainModel');
+        $this->MainModel->generatePrimarykey();
+    }
+
     public function getListOfComputerShops(){
         $this->load->model('MainModel');
         $result = $this->MainModel->getListOfComputerShops();
