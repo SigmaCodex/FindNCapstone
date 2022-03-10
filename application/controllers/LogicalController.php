@@ -19,7 +19,8 @@ class LogicalController extends CI_Controller {
     }
     public function generatePrimarykey(){
         $this->load->model('MainModel');
-        $this->MainModel->generatePrimarykey();
+        $result = $this->MainModel->generatePrimarykey();
+        echo $result;
     }
 
     public function getListOfComputerShops(){
