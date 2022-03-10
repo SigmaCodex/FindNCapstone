@@ -100,12 +100,12 @@ form .input-box span.details{
  #dot-1:checked ~ .category label .one,
  #dot-2:checked ~ .category label .two,
  #dot-3:checked ~ .category label .three{
-   background: #9b59b6;
+   background: #ef7f4d;
    border-color: #d9d9d9;
  }
  #vdot-1:checked ~ .category label .vone,
  #vdot-2:checked ~ .category label .vtwo{
-   background: #9b59b6;
+   background: #ef7f4d;
    border-color: #d9d9d9;
  }
  form input[type="radio"]{
@@ -246,3 +246,9 @@ form .user-details .input-box{
     cursor: pointer;
     background:#ef7f4d;
 }
+label.error{
+  font-weight:700;
+  display:block;
+  color: #f00;
+  font-size:12px;
+  }
