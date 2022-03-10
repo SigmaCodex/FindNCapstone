@@ -25,11 +25,11 @@
               <span class="ps-2">Payment Overview</span>
             </div>
             <!-- <h4 class="text-success">$85.00</h4> -->
-            <h4>Tnc Pro Cebu</h4>
+            <h4 id="shop">Tnc Pro Cebu</h4>
             <div class="d-flex pt-2">
               <div>
                 <p>
-                  <b>Computer Booking</b>
+                  <b id="service-type">Computer Booking</b>
                 </p>
               </div>
             </div>
@@ -45,15 +45,15 @@
 			<br>
 			<div class="p-2 d-flex">
                 <div class="col-3">Name:</div>
-                <div class="ms-auto">John Dave Delgado</div>
+                <div class="ms-auto" id="b_name">John Dave Delgado</div>
             </div>
 			<div class="p-2 d-flex">
                 <div class="col-3">Email:</div>
-                <div class="ms-auto">Hackmetry01@gmail.com</div>
+                <div class="ms-auto" id="b_email">Hackmetry01@gmail.com</div>
             </div>
 			<div class="p-2 d-flex contact-display">
                 <div class="col-5">ContactNumber:</div>
-					<div class="ms-auto show-number">09225847075</div>
+					<div class="ms-auto show-number" id="b_contactnum">09225847075</div>
 					<i class="col-3 fa fa-edit icon edit-icon"></i>
             </div>
 
@@ -139,7 +139,7 @@
               <div class="border-top px-2 mx-2"></div>
               <div class="p-2 d-flex pt-3">
                 <div class="col-8"><b>Total</b></div>
-                <div class="ms-auto"><b class="text-success">₱2.00</b></div>
+                <div class="ms-auto"><div class="text-success">₱<b id="amount">2.00</b></div></div>
               </div>
             </div>
 			
@@ -155,8 +155,28 @@
 <script src='https://cdn.jsdelivr.net/npm/popper.js@1.14.3/dist/umd/popper.min.js'></script>
 <script src='assets/js/jquery/jquery.min.js'></script>
 <script>
-    $(document).on('click','#btngcash',function(){  
-         alert("hellow");
+    $(document).on('click','#btngcash',function(){ 
+      var s_shop = $("#shop").text();
+      var service_type = $("#service-type").text();
+      var name = $("#b_name").text();
+      var email = $("#b_email").text();
+      var contact_num = $("#b_contactnum").text();
+      var amount = $('#amount').text();
+     
+      $.ajax({
+          url: "goto-gcash",
+          type: "POST",
+          data:{shop:s_shop,s_type:service_type,b_name:name,b_email:email,b_contactnum:contact_num,total_amount:amount},
+          beforeSend : function()
+          {
+            alert("processing");
+          },
+          success: function(data)
+          {
+            //open new tab
+            window.open(data);
+          }
+        });
     });
 
 	$(document).on('click','.edit-icon',function(){  

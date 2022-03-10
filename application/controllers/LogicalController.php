@@ -31,11 +31,19 @@ class LogicalController extends CI_Controller {
         echo json_encode($result);
     }
     // api 
-    public function gcashsuccess(){
+    public function GotoGcash(){
+        $shop = $this->input->post('shop');
+        $servicetype = $this->input->post('s_type');
+        $name= $this->input->post('b_name');
+        $email = $this->input->post('b_email');
+        $contact_num = $this->input->post('b_contactnum');
+        $total_amount = $this->input->post('total_amount');
+    
+     
 		$curl = curl_init();
 
 			curl_setopt_array($curl, array(
-			CURLOPT_URL => 'https://getpaid.gcash.com/paymentsuccess?hash=8f7515632cfa2346da5bcaac028d58b4',
+			CURLOPT_URL => 'https://g.payx.ph/payment_request',
 			CURLOPT_RETURNTRANSFER => true,
 			CURLOPT_ENCODING => '',
 			CURLOPT_MAXREDIRS => 10,
@@ -43,13 +51,33 @@ class LogicalController extends CI_Controller {
 			CURLOPT_FOLLOWLOCATION => true,
 			CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
 			CURLOPT_CUSTOMREQUEST => 'POST',
-
+			CURLOPT_POSTFIELDS => array(
+				'x-public-key' => 'pk_865748980ca7d809750906e8a7db5129',
+				'amount' =>  $total_amount ,
+				'description' => $servicetype."for". $shop,
+				'customername' =>  $name,
+				'customermobile' => $contact_num ,
+				'merchantlogourl' => 'http://localhost:8080/FindNCapstone/assets/images/findnslogan.png',
+				'customeremail' => $email,
+				// 'redirectsuccessurl' => 'http://localhost:8080/FindNCapstone/gcashsuccess',	
+			),
 			));
 
 			$response = curl_exec($curl);
 		
 			curl_close($curl);
-			echo$response;
+            $decoded = json_decode($response, true);
+            echo $decoded['data']['checkouturl'];
+			//  echo$response;
+			// var_dump($response);
+		
+			//  $data = $decoded ['response']['data'][0];
+			//  echo $data;
+			// echo  $decoded;
+			//  var_dump($decoded);
+			//redirect($decoded['data']['checkouturl']);
+			
+			
     }
 }
     

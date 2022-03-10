@@ -32,7 +32,7 @@ $route['listofcomputershop'] = 'main_controller/listofcomputershop';
     $route['select-computershops/(:any)/(:num)'] = 'logicalcontroller/selectComputerShop/$1/$2';
 
     //api 
-    $route['gcashsuccess']          = 'logicalcontroller/gcashsuccess';
+    $route['goto-gcash']          = 'logicalcontroller/GotoGcash';
     $route['paymentexercise']       = 'main_controller/payment_exercise';
 
 $route['index'] = 'main_controller/index';
