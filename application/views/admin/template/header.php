@@ -2,7 +2,6 @@
 <html lang="en">
 
 <head>
-
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -34,7 +33,7 @@
             <!-- Sidebar - Brand -->
             <a class="sidebar-brand d-flex align-items-center justify-content-center" href="shopadmin-dashboard">
                 <div class="sidebar-brand-icon ">
-                <img src="assets/images/findn.png" alt="findN" style="height:100px; padding:30%;">
+                <img src="./assets/images/Official_Logo.png" alt="findN" style="height:100px; padding:30%;">
                 </div>
                 <div class="sidebar-brand-text mx-3"></div>
             </a>
@@ -95,7 +94,7 @@
 
             <!-- Nav Item  -->
             <li class="nav-item">
-                <a class="nav-link" href="sample/4">
+                <a class="nav-link" href="tables.html">
                     <i class="fas fa-fw fa-table"></i>
                     <span>Bookings</span></a>
             </li>
