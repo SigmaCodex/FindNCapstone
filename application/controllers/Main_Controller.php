@@ -30,6 +30,9 @@ class Main_Controller extends CI_Controller {
 	{
 		$this->load->view('findersHomePage');
 	}
+	public function view_ticket(){
+		$this->load->view('viewticket');
+	}
 	//added types of booking form (printing/computer)
 	public function viewcompbookForm(){
 		$this->load->view('computerbform');

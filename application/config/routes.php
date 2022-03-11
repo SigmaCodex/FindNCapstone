@@ -15,6 +15,7 @@ $route['userprof_Settings'] = 'main_controller/viewUser_Settings';
 $route['computerbform'] = 'main_controller/viewcompbookForm';
 $route['viewMap']       = 'main_controller/viewMap';
 $route['findershomepage'] = 'main_controller/viewFinders_HomePage';
+$route['view-ticket']     = 'main_controller/view_ticket';
 
 //superadmin 
 $route['add-admin'] = 'main_controller/addAdmin';
