@@ -1,0 +1,249 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins');
+@import url('http://fonts.cdnfonts.com/css/uni-neue');
+@import url('//db.onlinewebfonts.com/c/80241b4ef777109d2625c9195e7ca852?family=NordiquePro-Bold');
+                
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins',sans-serif;
+    
+}
+.content-holder{
+    z-index: -5;
+    height: 90%;
+    overflow-y: auto;
+}
+/*NAVBAR PRACTICE START*/
+header{
+    position: fixed;
+    background: #db6c2b;
+    padding: 20px;
+    width: 100%;
+    height: 60px;
+    z-index: 5;
+    top: 0;
+}
+.logo{
+    width: 50px;
+    height: 50px;
+    margin-right: -10px;
+}
+.logo_holder{
+    margin-top: -25px;
+    color: white;
+}
+.center_area{
+    text-align: center;
+    font-family: 'NordiquePro-Bold', sans-serif;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.side_bar{
+    z-index: 999;
+    background: #db6c2b;
+    margin-top: 60.2px;
+    padding-top: 20px;
+    position: fixed;
+    left: 0;
+    width: 250px;
+    height: 100%;
+    transition: 0.5s;
+    transition-property: left;
+    top: 0;
+    overflow: auto;
+}
+.side_bar .profile_image{
+    width: 100px;
+    height: 100px;
+    border-radius: 100px;
+    margin-bottom: 10px;
+}
+.centerA{
+    text-align: center;
+}
+.side_bar h4{
+    color: rgb(249, 255, 253);
+    margin-top: 0;
+    margin-bottom: 20px;
+    font-family: 'Source Sans Pro', sans-serif;
+    font-weight: 400;
+}
+.side_bar a{
+    color: #fff;
+    display:block;
+    width: 100%;
+    line-height: 60px;
+    text-decoration: none;
+    padding-left: 40px;
+    box-sizing: border-box;
+    transition: 0.5s;
+    transition-property: background-color;
+    display: flex;
+    /* flex-direction: row; */
+    justify-content: left;
+    align-items: center;
+    /* text-align: left;  */
+}
+.side_bar a:hover{
+    background-color: #fae3ce;
+    color: rgb(66, 64, 64);
+}
+/* .side_bar i{
+    padding-right: 20px;
+} */
+.side_bar span {
+    margin-left: 10px;
+}
+label #side_bar_btn{
+    z-index: 1;
+    color: #fff;
+    position: fixed;
+    cursor: pointer;
+    left: 15px;
+    font-size: 20px;    
+    margin: 5px 0;
+    top: 15px;
+    transition: 0.5s;
+    transition-property: color;
+}
+label #side_bar_btn:hover{
+    color: #ffffff;
+}
+/* #check:checked ~ .side_bar{
+    left: -300px;
+} */
+ /* #check:checked ~ .side_bar a span{
+ 
+}  */
+#check:checked ~ .side_bar a{
+    font-size: 16px;
+    margin-left: 170px;
+    width: 80px;
+}
+#check{
+    display: none;
+}
+/*NAVBAR PRACTICE END*/
+
+img{
+    max-width: 100%;
+    height: auto;
+}
+
+.fa-star, .fa-star-half{
+    color: #ffe135;
+    padding: 3% 0%;
+}
+.card-body .card-title {
+    font-weight: 800;
+}
+.btn {
+    background: #fc6e1d;
+    border-color: #fc6e1d;
+    font-family: 'Poppins', sans-serif;
+}
+span{
+    text-align: left;
+}
+.fa-clock{
+    color: green;
+}
+
+.fa-regular {
+    color: white;
+}
+.event{
+    display:flex;
+    font-size: 14px;
+    margin-bottom: 20px;
+}
+.left-event{
+    border-radius: 10px;
+    height: 65px;
+    width: 65px;
+    margin-right: 15px;
+    padding-top: 10px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+.event p{
+    font-size: 12px;
+}
+.event a{
+    font-size: 12px;
+    text-decoration: none;
+    color: #fc6e1d;
+}
+.left-event span{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: #fc6e1d;
+    color: #fff;
+    font-size: 10px;
+    padding: 4px 0;
+}
+.right-sidebar{
+    flex-basis: 25%;
+    position: sticky;
+    top: 18px;
+    align-self: flex-start;
+    background: rgb(255, 253, 253);
+    padding: 20px;
+    border-radius: 4px;
+    color: #626262;
+    box-sizing: border-box;
+}
+.sidebar-title{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+.sidebar-title h4{
+    font-weight:600;
+    font-size: 16px;
+    font-family: 'Poppins',sans-serif;
+}
+.left-event h2{
+    font-weight:600;
+    font-size: 25px;
+}
+.left-event span{
+    font-weight:600;
+    font-size: 10px;
+    text-align: center;
+}
+.sidebar-title a{
+    text-decoration: none;
+    color: #1876f2;
+    font-size: 12px;
+}
+.sidebar-ads{
+    width: 100%;
+    margin-bottom: 20px;
+    border-radius: 4px;
+    border: solid 1px;
+}
+.right-event h4{
+    font-weight:550;
+    font-size: 17px;
+}
+.right-event a{
+    font-size: 12px;
+    text-decoration: none;
+    color: #fc6e1d;
+}
+.wave{
+	position: fixed;
+	bottom: 0;
+	left: 0;
+	height: 100%;
+	z-index: -1;
+}
