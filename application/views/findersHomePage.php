@@ -10,23 +10,23 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
     <!-- Bootstrap CDN -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-    
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="assets/css/findershomepage.css">
 
 </head>
 <body>
 
-    <!--Navigation Bar-->
-    <input type="checkbox" id="check">
+
+  <!--Navigation Bar-->
+<input type="checkbox" id="check">
 <!--Start header-->
 <header class="p-2">
     <label for="check">
         <i class="fa-solid fa-bars" id="side_bar_btn" onclick = "btn();"></i>
     </label>
     <div class="logo_holder d-flex justify-content-center align-items-center align-self-center" >
-        <img class="logo" src="assets/images/logo.png"> 
-        <p class="fs-4 pt-2 m-0 fw-bolder">FindN</p>
+        <img class="logo" src="assets/Images/logo.png"> 
+        <p class="fs-4 pt-1 my--1 mb-4 fw-bolder" style="font-family: 'NordiquePro-Bold', sans-serif; font-size: 35px;">FindN</p>
     </div>
    
 </header>
