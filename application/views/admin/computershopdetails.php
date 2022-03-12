@@ -12,14 +12,14 @@
                                 <div class="card-body">
                                     <form autocomplete="off" class="form" role="form">
                                     <div class="form-group row">
-                                        <label class="col-lg-4 col-form-label form-control-label">Computershop:</label>
+                                        <label class="col-lg-4 col-form-label form-control-label">Computershop Name:</label>
                                         <div class="col-lg-4"> </div>
                                         <div class="col-lg-4">
                                              <input class="form-control" type="text" value="Tnc">
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                        <label class="col-lg-4 col-form-label form-control-label">ComputerService:</label>
+                                        <label class="col-lg-4 col-form-label form-control-label">Address:</label>
                                         <div class="col-lg-4"> </div>
                                         <div class="col-lg-4">
                                              <input class="form-control" type="text" value="ComputerBooking">
@@ -27,38 +27,38 @@
                                     </div>
                                     <hr class="mb-4">
                                     <div class="form-group row">
-                                        <label class="col-lg-4 col-form-label form-control-label">Time Arrival:</label>
+                                        <label class="col-lg-4 col-form-label form-control-label">OperatingHours:</label>
                                         <div class="col-lg-4"></div>
                                         <div class="col-lg-4">
-                                             <input class="form-control" type="text" value="4:00 PM">
+                                             <input class="form-control" type="text" value="">
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                        <label class="col-lg-4 col-form-label form-control-label">Date:</label>
+                                        <label class="col-lg-4 col-form-label form-control-label">Net Speed (Mbs):</label>
                                         <div class="col-lg-4"> </div>
                                         <div class="col-lg-4">
-                                             <input class="form-control" type="text" value="3/25/2022">
+                                             <input class="form-control" type="text" value="">
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                        <label class="col-lg-4 col-form-label form-control-label">Computer Type:</label>
+                                        <label class="col-lg-4 col-form-label form-control-label">contact number:</label>
                                         <div class="col-lg-4"> </div>
                                         <div class="col-lg-4">
-                                             <input class="form-control" type="text" value="VIP">
+                                             <input class="form-control" type="text" value="">
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                        <label class="col-lg-4 col-form-label form-control-label">Computer Rate:</label>
-                                        <div class="col-lg-5"> </div>
-                                        <div class="col-lg-3">
-                                             <input class="form-control" type="text" value="20 PHP">
+                                        <label class="col-lg-4 col-form-label form-control-label">email address:</label>
+                                        <div class="col-lg-4"> </div>
+                                        <div class="col-lg-4">
+                                             <input class="form-control" type="text" value="">
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                        <label class="col-lg-4 col-form-label form-control-label">#Person:</label>
-                                        <div class="col-lg-5"> </div>
-                                        <div class="col-lg-3">
-                                             <input class="form-control" type="text" value="2">
+                                        <label class="col-lg-4 col-form-label form-control-label">Description:</label>
+                                        <div class="col-lg-3"> </div>
+                                        <div class="col-lg-5">
+                                          <textarea class="form-control" name="w3review" rows="4" cols="50"> </textarea>
                                         </div>
                                     </div>
   
