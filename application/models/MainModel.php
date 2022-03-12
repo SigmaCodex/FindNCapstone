@@ -35,5 +35,6 @@ class MainModel extends CI_Model{
         $query = $this->db->get();
         return $query->result();
     }
+
 	
 }

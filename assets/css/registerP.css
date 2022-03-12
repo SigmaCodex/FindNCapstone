@@ -127,6 +127,7 @@ form .input-box span.details{
    cursor: pointer;
    transition: all 0.3s ease;
    background: #ef7f4d;
+   text-align: center;
  }
  form .button input:hover{
   /* transform: scale(0.99); */
@@ -251,4 +252,28 @@ label.error{
   display:block;
   color: #f00;
   font-size:12px;
+  }
+
+  .example button {
+    float: left;
+    background-color: #4E3E55;
+    color: white;
+    border: none;
+    box-shadow: none;
+    font-size: 17px;
+    font-weight: 500;
+    font-weight: 600;
+    border-radius: 3px;
+    padding: 15px 35px;
+    margin: 26px 5px 0 5px;
+    cursor: pointer; 
+  }
+  .example button:focus{
+    outline: none; 
+  }
+  .example button:hover{
+    background-color: #33DE23; 
+  }
+  .example button:active{
+    background-color: #81ccee; 
   }
