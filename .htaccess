@@ -1,7 +1,4 @@
 RewriteEngine on
-RewriteCond $1 !^(index\.php|images|robots\.txt|asset)
-RewriteRule ^(.*)$ index.php?/$1 [L]
-<IfModule mod_speling.c>
-   CheckCaseOnly On
-   CheckSpelling On
-</IfModule>
+RewriteCond %{REQUEST_FILENAME} !-f 
+RewriteCond %{REQUEST_FILENAME} !-d 
+RewriteRule ^(.*)$ index.php/$1 [L]
