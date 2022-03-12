@@ -148,30 +148,34 @@ $(document).ready(function(){
                 var vacstatus = $('input[name="vacstatus"]:checked').val();
 
 
-       //communication within the server nani ivan
-           $.ajax({
-             url: "registerfinder",
-             type: "POST",
-             data:{firstname:name,lastname:lname,pnum:phonenum,birthdate:actbdate,username:uname,email:email,pass:pass,conpass:conpass,gender:gender,vacstatus:vacstatus},
-             // contentType: false,
-             //       cache: false,
-             // processData:false,
-             beforeSend : function()
-             {
-               //$("#preview").fadeOut();
-               // $("#err").fadeOut();
-             alert("processing");
-             },
-             success: function(data)
-             {
-                swal("Good job!", "You clicked the button!", "success");
-                alert(data);
-             }
-        
-           });
+                      //communication within the server nani ivan
+                    $.ajax({
+                      url: "registerfinder",
+                      type: "POST",
+                      data:{firstname:name,lastname:lname,pnum:phonenum,birthdate:actbdate,username:uname,email:email,pass:pass,conpass:conpass,gender:gender,vacstatus:vacstatus},
+                      // contentType: false,
+                      //       cache: false,
+                      // processData:false,
+                      // beforeSend : function()
+                      // {
+                      // //$("#preview").fadeOut();
+                      // // $("#err").fadeOut();
+                      // alert("processing");
+                      // },
+                      success: function(data)
+                      {
+                        swal({
+                          title: "Good job!",
+                          text: "You have been registered!",
+                          icon: "success",
+                          button: "Continue",
+                        }).then((value) => {
+                          window.location = "loginpage";
+                        });
+                      }
+                    });
                     
             }else {
-                document.getElementById('registration_btn').onclick = function(){
                     swal({
                         title: "Are you sure?",
                         text: "You will not be able to recover this imaginary file!",
@@ -185,7 +189,6 @@ $(document).ready(function(){
                     function(){
                         swal("Deleted!", "Your imaginary file has been deleted!", "success");
                     });
-                };
          
 
           // alert(actbdate);

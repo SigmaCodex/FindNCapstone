@@ -45,6 +45,7 @@ class MainModel extends CI_Model{
             // $this->db->where('user_id',$Primarycode);
             // $query2 = $this->db->get('user');
             // $resultquery = $query2->row_array();
+            
             $datafinder = array(
                 'user_id'    =>      $Primarycode,
                 'lastname'   => 	 $this->input->post('lastname'),
