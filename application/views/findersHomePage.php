@@ -312,4 +312,12 @@
             }
         }
     </script>
+    <script>
+        setInterval(function(){
+            // alert("hello world");
+            console.log("hello");
+            //ajax;
+
+        },5000);
+    </script>
 </html>
