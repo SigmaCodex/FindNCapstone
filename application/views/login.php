@@ -7,10 +7,12 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <body>
+
+
 	<img class="wave" src="assets/images/wavy.png">
 	<div class="container">
 		<div class="img">
-			<img src="assets/images/findn.png">
+			<img src="assets/images/Logo1.png">
 		</div>
 		<div class="login-content">
 			<form action="index.html">
