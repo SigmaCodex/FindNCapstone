@@ -3,18 +3,28 @@
 @import url('http://fonts.cdnfonts.com/css/uni-neue');
 @import url('//db.onlinewebfonts.com/c/80241b4ef777109d2625c9195e7ca852?family=NordiquePro-Bold');
                 
+/* Background */
+/* .custom-shape-divider-top-1647103383 {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    overflow: hidden;
+    line-height: 0;
+    z-index: -1;
+}
 
-body {
-    margin: 0;
-    padding: 0;
-    font-family: 'Poppins',sans-serif;
-    
+.custom-shape-divider-top-1647103383 svg {
+    position: relative;
+    display: block;
+    width: calc(102% + 1.3px);
+    height: 365px;
 }
-.content-holder{
-    z-index: -5;
-    height: 90%;
-    overflow-y: auto;
-}
+
+.custom-shape-divider-top-1647103383 .shape-fill {
+    fill: #f78133;
+} */
+
 /*NAVBAR PRACTICE START*/
 header{
     position: fixed;
@@ -126,122 +136,147 @@ label #side_bar_btn:hover{
 }
 /*NAVBAR PRACTICE END*/
 
-img{
-    max-width: 100%;
-    height: auto;
-}
 
-.fa-star, .fa-star-half{
-    color: #ffe135;
-    padding: 3% 0%;
-}
-.card-body .card-title {
-    font-weight: 800;
-}
-.btn {
-    background: #fc6e1d;
-    border-color: #fc6e1d;
-    font-family: 'Poppins', sans-serif;
-}
-span{
-    text-align: left;
-}
-.fa-clock{
-    color: green;
-}
-
-.fa-regular {
-    color: white;
-}
-.event{
-    display:flex;
-    font-size: 14px;
-    margin-bottom: 20px;
-}
-.left-event{
-    border-radius: 10px;
-    height: 65px;
-    width: 65px;
-    margin-right: 15px;
-    padding-top: 10px;
-    text-align: center;
-    position: relative;
-    overflow: hidden;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
-.event p{
-    font-size: 12px;
-}
-.event a{
-    font-size: 12px;
-    text-decoration: none;
-    color: #fc6e1d;
-}
-.left-event span{
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    background: #fc6e1d;
-    color: #fff;
-    font-size: 10px;
-    padding: 4px 0;
-}
-.right-sidebar{
-    flex-basis: 25%;
-    position: sticky;
-    top: 18px;
-    align-self: flex-start;
-    background: rgb(255, 253, 253);
-    padding: 20px;
-    border-radius: 4px;
-    color: #626262;
+* {
+    margin: 0;
+    padding: 0;
     box-sizing: border-box;
 }
-.sidebar-title{
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: rgb(243, 228, 210) !important;
+}
+
+.wrapper {
+    padding: 30px 50px;
+    border: 1px solid #ddd;
+    border-radius: 15px;
+    margin: 10px auto;
+    max-width: 600px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+.container{
+    padding-top: 50px;
+    padding-bottom: 30px;
+}
+.logo p{
+    font-family: 'NordiquePro-Bold', sans-serif;
+}
+h4 {
+    letter-spacing: -1px;
+    font-weight: 400;
+    
+}
+.tit {
+    font-family: 'Poppins', sans-serif;
+}
+.pp{
+    font-family: 'Poppins', sans-serif;
+}
+.img {
+    width: 70px;
+    height: 70px;
+    border-radius: 6px;
+    object-fit: cover;
+}
+
+#img-section p,
+#change p {
+    font-size: 12px;
+    color: #777;
     margin-bottom: 10px;
+    text-align: justify;
 }
-.sidebar-title h4{
-    font-weight:600;
-    font-size: 16px;
-    font-family: 'Poppins',sans-serif;
+
+#img-section b,
+#img-section button,
+#change b {
+    font-size: 14px;
+    right: 0;
 }
-.left-event h2{
-    font-weight:600;
-    font-size: 25px;
-}
-.left-event span{
-    font-weight:600;
-    font-size: 10px;
-    text-align: center;
-}
-.sidebar-title a{
-    text-decoration: none;
-    color: #1876f2;
+
+label {
+    margin-bottom: 0;
     font-size: 12px;
+    font-weight: 500;
+    color: #777;
+    padding-left: 3px;
+    font-family: 'Poppins', sans-serif;
 }
-.sidebar-ads{
+.title-info{
+    font-family: 'Poppins', sans-serif;
+    font-weight: 900;
+    color: #fc4a1a;
+}
+.form-control {
+    border-radius: 10px;
+}
+
+input[placeholder] {
+    font-weight: 500;
+}
+
+.form-control:focus {
+    box-shadow: none;
+    border: 1.5px solid #db6c2b;
+}
+
+select {
+    display: block;
     width: 100%;
-    margin-bottom: 20px;
-    border-radius: 4px;
-    border: solid 1px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    height: 40px;
+    padding: 5px 10px;
 }
-.right-event h4{
-    font-weight:550;
-    font-size: 17px;
+
+select:focus {
+    outline: none;
 }
-.right-event a{
-    font-size: 12px;
-    text-decoration: none;
-    color: #fc6e1d;
+
+.button {
+    background-color: #fff;
+    color: #0779e4;
+    font-family: 'Poppins', sans-serif;
 }
-.wave{
-	position: fixed;
-	bottom: 0;
-	left: 0;
-	height: 100%;
-	z-index: -1;
+
+.button:hover {
+    background-color: #0779e4;
+    color: #fff;
 }
+
+.btn-primary {
+    background-color: #db6c2b;
+}
+
+.danger {
+    background-color: #fff;
+    color: #e20404;
+    border: 1px solid #ddd;
+    margin-left: 18px;
+}
+.ver {
+    text-align: center;
+    outline: none;
+}
+
+.danger:hover {
+    background-color: #e20404;
+    color: #fff;
+}
+
+@media(max-width:576px) {
+    .wrapper {
+        padding: 25px 20px;
+    }
+
+    #deactivate {
+        line-height: 18px;
+    }
+}
+
+.fa-check-circle{
+    color: green;
+}
+/* radio button */

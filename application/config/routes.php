@@ -11,7 +11,7 @@ $route['register'] = 'main_controller/viewRegister';
 $route['loginpage'] = 'main_controller/viewLogin';
 
 //finders
-$route['userprof_Settings'] = 'main_controller/viewUser_Settings';
+$route['accountSettings'] = 'main_controller/viewAccountSettings';
 $route['computerbform'] = 'main_controller/viewcompbookForm';
 $route['viewMap']       = 'main_controller/viewMap';
 $route['findershomepage'] = 'main_controller/viewFinders_HomePage';
