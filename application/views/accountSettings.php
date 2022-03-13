@@ -21,8 +21,67 @@
         <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z" class="shape-fill"></path>
     </svg>
 </div> -->
-
-
+<!-- img upload css -->
+<style>
+    .avatar-upload {
+  position: relative;
+  max-width: 205px;
+  margin: 50px auto;
+}
+.avatar-upload .avatar-edit {
+  position: absolute;
+  right: 12px;
+  z-index: 1;
+  top: 10px;
+}
+.avatar-upload .avatar-edit input {
+  display: none;
+}
+.avatar-upload .avatar-edit input + label {
+  display: inline-block;
+  width: 34px;
+  height: 34px;
+  margin-bottom: 0;
+  border-radius: 100%;
+  background: #FFFFFF;
+  border: 1px solid transparent;
+  box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.12);
+  cursor: pointer;
+  font-weight: normal;
+  transition: all 0.2s ease-in-out;
+}
+.avatar-upload .avatar-edit input + label:hover {
+  background: #f1f1f1;
+  border-color: #d6d6d6;
+}
+.avatar-upload .avatar-edit input + label:after {
+  content: "\f040";
+  font-family: 'FontAwesome';
+  color: #757575;
+  position: absolute;
+  top: 10px;
+  left: 0;
+  right: 0;
+  text-align: center;
+  margin: auto;
+}
+.avatar-upload .avatar-preview {
+  width: 192px;
+  height: 192px;
+  position: relative;
+  border-radius: 100%;
+  border: 6px solid #F8F8F8;
+  box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.1);
+}
+.avatar-upload .avatar-preview > div {
+  width: 100%;
+  height: 100%;
+  border-radius: 100%;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+</style>
 
 <!--Navigation Bar-->
 <input type="checkbox" id="check">
@@ -59,10 +118,26 @@
 <div class="container my-2 ">
     <div class="wrapper bg-white mt-sm-5">
         <h4 class="tit pb-4 border-bottom">Account Settings</h4>
-        <div class="d-flex align-items-start py-3 border-bottom"> <img src="assets/Images/Prof.png" class="img" alt="">
+        <div class="d-flex align-items-start py-3 border-bottom"> 
+            <!-- img Upload Update -->
+            <!-- <img src="assets/Images/Prof.png" class="img" alt=""> -->
+
+            <div class="avatar-upload">
+                <div class="avatar-edit">
+                    <input type='file' id="imageUpload" accept=".png, .jpg, .jpeg" />
+                    <label for="imageUpload"></label>
+                </div>
+                <div class="avatar-preview">
+                    <div id="imagePreview" style="background-image: url(assets/Images/Prof.png);">
+                    </div>
+                </div>
+            </div>
             <div class="pp pl-sm-4 pl-2" id="img-section"> <b>Profile Photo</b>
                 <p>Accepted file type (.png). Less than 5MB</p> <button class="btn button border"><b>Upload</b></button>
             </div>
+
+
+            <!-- end of img upload -->
         </div>
         <div class="py-2">
             <div class="title-info"> <b>USER INFORMATION</b>
@@ -129,6 +204,24 @@
             }
         }
     </script>
+    <!-- imgUpload and preview -->
+    <script>
+        function readURL(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+                reader.onload = function(e) {
+                    $('#imagePreview').css('background-image', 'url('+e.target.result +')');
+                    $('#imagePreview').hide();
+                    $('#imagePreview').fadeIn(650);
+                }
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+        $("#imageUpload").change(function() {
+            readURL(this);
+        });
+    </script>
+
 </html>
 
 
