@@ -39,7 +39,7 @@ class LogicalController extends CI_Controller {
     public function updateFinderAccount(){
         $this->load->helper(array('form', 'url')); 
         // $img = $this->input->post('profilepic');
-        $config['upload_path']          = './assets/upload';
+        $config['upload_path']          = './assets/upload/finder';
                 $config['allowed_types']        = 'gif|jpg|png';
                 $config['max_size']             = 1000;
                 $config['max_width']            = 1024;
