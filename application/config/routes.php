@@ -11,7 +11,7 @@ $route['register'] = 'main_controller/viewRegister';
 $route['loginpage'] = 'main_controller/viewLogin';
 
 //finders
-$route['userprof_Settings'] = 'main_controller/viewUser_Settings';
+$route['accountSettings'] = 'main_controller/viewAccountSettings';
 $route['computerbform'] = 'main_controller/viewcompbookForm';
 $route['viewMap']       = 'main_controller/viewMap';
 $route['findershomepage'] = 'main_controller/viewFinders_HomePage';
@@ -37,7 +37,9 @@ $route['listofcomputershop'] = 'main_controller/listofcomputershop';
     $route['updateComputerDetails/(:num)'] = 'logicalcontroller/updateComputerDetails/$1';
     //api 
     $route['goto-gcash']          = 'logicalcontroller/GotoGcash';
-    $route['paymentexercise']       = 'main_controller/payment_exercise';
+    $route['paymentexercise']     = 'main_controller/payment_exercise';
+
+$route['user-login']               = 'logicalcontroller/login_user';
 
 $route['index'] = 'main_controller/index';
 $route['default_controller'] = 'main_controller/index';

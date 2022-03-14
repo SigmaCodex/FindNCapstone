@@ -13,9 +13,9 @@ class Main_Controller extends CI_Controller {
         $this->load->view('login');
     }
 	//finders
-	public function viewUser_Settings()
+	public function viewAccountSettings()
 	{
-		$this->load->view('userprof_Settings');
+		$this->load->view('accountSettings');
 	}
 
 	public function viewRegister()
@@ -33,6 +33,7 @@ class Main_Controller extends CI_Controller {
 	public function view_ticket(){
 		$this->load->view('viewticket');
 	}
+	
 	//added types of booking form (printing/computer)
 	public function viewcompbookForm(){
 		$this->load->view('computerbform');

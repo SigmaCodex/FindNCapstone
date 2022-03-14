@@ -14,7 +14,7 @@
                                 <div class="card-body">
                                     <form autocomplete="off" class="form" role="form">
                                     <div class="form-group row">
-                                        <label class="col-lg-4 col-form-label form-control-label">Computershop:</label>
+                                        <label class="col-lg-4 col-form-label form-control-label">Computershop Name:</label>
                                         <div class="col-lg-4"> </div>
                                         <div class="col-lg-4">
                                              <input id="cshopname" class="form-control" type="text" value="">
@@ -29,6 +29,7 @@
                                     </div>
                                     <hr class="mb-4">
                                     <div class="form-group row">
+
                                         <label class="col-lg-4 col-form-label form-control-label">Coordinates:</label>
                                         <div class="col-lg-4"></div>
                                         <div class="col-lg-4">
@@ -61,6 +62,40 @@
                                         <div class="col-lg-5"> </div>
                                         <div class="col-lg-3">
                                              <input id="contact_num" class="form-control" type="text" value="">
+
+                                        <label class="col-lg-4 col-form-label form-control-label">OperatingHours:</label>
+                                        <div class="col-lg-4"></div>
+                                        <div class="col-lg-4">
+                                             <input class="form-control" type="text" value="">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-lg-4 col-form-label form-control-label">Net Speed (Mbs):</label>
+                                        <div class="col-lg-4"> </div>
+                                        <div class="col-lg-4">
+                                             <input class="form-control" type="text" value="">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-lg-4 col-form-label form-control-label">contact number:</label>
+                                        <div class="col-lg-4"> </div>
+                                        <div class="col-lg-4">
+                                             <input class="form-control" type="text" value="">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-lg-4 col-form-label form-control-label">email address:</label>
+                                        <div class="col-lg-4"> </div>
+                                        <div class="col-lg-4">
+                                             <input class="form-control" type="text" value="">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-lg-4 col-form-label form-control-label">Description:</label>
+                                        <div class="col-lg-3"> </div>
+                                        <div class="col-lg-5">
+                                          <textarea class="form-control" name="w3review" rows="4" cols="50"> </textarea>
+
                                         </div>
                                     </div>
                                     <div class="form-group row">
