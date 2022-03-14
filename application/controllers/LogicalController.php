@@ -3,6 +3,17 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class LogicalController extends CI_Controller {
 
+    public function login_user(){
+        $this->load->model('MainModel');
+        $result = $this->MainModel->login_user();
+        if(!$result){
+            echo "no-user";
+        }else{
+           $user_type = $this->session->userdata('user_type');
+            echo $user_type;
+        }
+    }
+
     //superAdmin
     public function addComputerShop(){
         $this->load->model('MainModel');

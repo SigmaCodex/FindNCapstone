@@ -43,8 +43,8 @@ body{
 	width: 350px;
 }
 
-form{
-	width: 360px;
+.form{
+	width: 460px;
 }
 
 .login-content img{
@@ -189,7 +189,7 @@ a:hover{
 }
 
 @media screen and (max-width: 1000px){
-	form{
+	.form{
 		width: 290px;
 	}
 

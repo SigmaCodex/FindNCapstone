@@ -37,7 +37,9 @@ $route['listofcomputershop'] = 'main_controller/listofcomputershop';
 
     //api 
     $route['goto-gcash']          = 'logicalcontroller/GotoGcash';
-    $route['paymentexercise']       = 'main_controller/payment_exercise';
+    $route['paymentexercise']     = 'main_controller/payment_exercise';
+
+$route['user-login']               = 'logicalcontroller/login_user';
 
 $route['index'] = 'main_controller/index';
 $route['default_controller'] = 'main_controller/index';

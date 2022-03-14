@@ -3,10 +3,32 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 
 class MainModel extends CI_Model{
+    // user login 
+    public function login_user(){
+      $user = $this->input->post('username');
+      $pass = $this->input->post('password');
 
-    public function user_validate(){
-        echo "hello world";
+      $this->db->where('username',$user);
+      $this->db->where('password',$pass);
+      $query = $this->db->get('user');
+      if(!empty($query->result_array()))
+      {
+
+          $row = $query->row();
+          $datasession  = array(
+              'user_id' => $row->user_id,
+              'username'  => $row->username,
+              'user_type' => $row->user_type
+
+          );
+          $this->session->set_userdata($datasession);
+          return true;
+      }else{
+        return false;
+      }
+
     }
+
     //superAdmin
     public function addComputerShop(){
 
