@@ -31,10 +31,10 @@ $route['listofcomputershop'] = 'main_controller/listofcomputershop';
     //finders
     $route['registerfinder'] = 'logicalcontroller/registerFinder';
     $route['generatePrimarykey'] = 'logicalcontroller/generatePrimarykey';
-
     $route['get-computershops'] = 'logicalcontroller/getListOfComputerShops';
     $route['select-computershops/(:any)/(:num)'] = 'logicalcontroller/selectComputerShop/$1/$2';
-
+    //admin
+    $route['updateComputerDetails/(:num)'] = 'logicalcontroller/updateComputerDetails/$1';
     //api 
     $route['goto-gcash']          = 'logicalcontroller/GotoGcash';
     $route['paymentexercise']     = 'main_controller/payment_exercise';

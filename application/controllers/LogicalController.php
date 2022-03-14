@@ -23,6 +23,12 @@ class LogicalController extends CI_Controller {
     public function sample($num){
         echo $num;
     }
+    //ADMIN
+    public function updateComputerDetails($id){
+        $this->load->model('MainModel');
+        $this->MainModel->updateComputerDetails($id);
+
+    }
     //FINDERS
     public function registerFinder(){
 
