@@ -10,7 +10,7 @@ class LogicalController extends CI_Controller {
             echo "no-user";
         }else{
            $user_type = $this->session->userdata('user_type');
-            echo $user_type;
+           echo $user_type;
         }
     }
 
@@ -47,6 +47,13 @@ class LogicalController extends CI_Controller {
         $result = $this->MainModel->selectComputerShop($name,$id);
         echo json_encode($result);
     }
+
+    //ADMIN
+    public function updateComputerDetails($id){
+        $this->load->model('MainModel');
+        $this->MainModel->updateComputerDetails($id);
+    }
+    
     // api 
     public function GotoGcash(){
         $shop = $this->input->post('shop');
