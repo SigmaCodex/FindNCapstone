@@ -115,6 +115,7 @@
 </div>
 
 <!-- Content Inside -->
+<form method="post" id="upload_form" enctype="multipart/form-data"> 
 <div class="container my-2 ">
     <div class="wrapper bg-white mt-sm-5">
         <h4 class="tit pb-4 border-bottom">Account Settings</h4>
@@ -124,7 +125,7 @@
 
             <div class="avatar-upload">
                 <div class="avatar-edit">
-                    <input type='file' id="imageUpload" accept=".png, .jpg, .jpeg" />
+                    <input type='file' id="imageUpload" name="imageUpload" accept=".png, .jpg, .jpeg" />
                     <label for="imageUpload"></label>
                 </div>
                 <div class="avatar-preview">
@@ -183,13 +184,13 @@
                 <div class="ml-auto mx-3" > <button class="btn danger">Change</button> </div>
             </div>
             <br>
-            <br>
-            <div class="py-2 pb-4 mx-3 "> <button class="btn btn-primary mr-3">Save Changes</button> <button class="btn border button">Cancel</button> </div>
+            <!-- <br><button type="submit" class="btn btn-primary mr-3" id="btn-update" valu>Save Changes</button> -->
+            <div class="py-2 pb-4 mx-3 "><input type="submit" type="submit" class="btn btn-primary mr-3" id="btn-update" >  <button class="btn border button">Cancel</button> </div>
         </div>
     </div>
     
 </div>
-
+</form>
 
 </body>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -222,6 +223,28 @@
         });
     </script>
 
+  
+<script>  
+ $(document).ready(function(){  
+      $('#upload_form').on('submit', function(e){  
+           e.preventDefault();  
+            alert("processing");
+                $.ajax({  
+                     url:"updateFinderAccount",   
+                     method:"POST",  
+                     data:new FormData(this),  
+                     contentType: false,  
+                     cache: false,  
+                     processData:false,  
+                     success:function(data)  
+                     {  
+                         alert(data);
+                     }  
+                });  
+             
+      });  
+ });  
+ </script>  
 </html>
 
 

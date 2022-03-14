@@ -36,6 +36,23 @@ class LogicalController extends CI_Controller {
         echo $result;
 
     }
+    public function updateFinderAccount(){
+        $this->load->helper(array('form', 'url')); 
+        // $img = $this->input->post('profilepic');
+        $config['upload_path']          = './assets/upload';
+                $config['allowed_types']        = 'gif|jpg|png';
+                $config['max_size']             = 1000;
+                $config['max_width']            = 1024;
+                $config['max_height']           = 768;
+        $this->load->library('upload', $config);
+        $this->upload->initialize($config);
+        if ( ! $this->upload->do_upload('imageUpload'))
+        {
+            echo $this->upload->display_errors();
+        }else{
+            echo "naka upload na imong image";
+        }
+    }
 
     public function getListOfComputerShops(){
         $this->load->model('MainModel');
@@ -53,7 +70,7 @@ class LogicalController extends CI_Controller {
         $this->load->model('MainModel');
         $this->MainModel->updateComputerDetails($id);
     }
-    
+
     // api 
     public function GotoGcash(){
         $shop = $this->input->post('shop');
