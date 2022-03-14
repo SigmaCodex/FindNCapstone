@@ -21,6 +21,7 @@ $route['view-ticket']     = 'main_controller/view_ticket';
 $route['add-admin'] = 'main_controller/addAdmin';
 $route['add-computershop'] = 'main_controller/addComputershop';
 $route['listofcomputershop'] = 'main_controller/listofcomputershop';
+$route['admin-list'] = 'main_controller/adminlist';
 
 //Logics
     //SuperAdmin
