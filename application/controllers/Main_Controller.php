@@ -70,7 +70,7 @@ class Main_Controller extends CI_Controller {
 	public function shopadmin_computerdetails(){
 		$this->load->view('admin/template/header');
 		$this->load->view('admin/computershopdetails');
-		$this->load->view('admin/template/footer');
+		//$this->load->view('admin/template/footer');
 	}
 	
 	public function payment_exercise(){

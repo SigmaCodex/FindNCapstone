@@ -83,6 +83,22 @@ class MainModel extends CI_Model{
         $query = $this->db->get();
         return $query->result();
     }
+    //admin
+    public function updateComputerDetails($id){
+        $datafinder = array(
+            'shop_name'   => 	 $this->input->post('cshop'),
+            'address'   => 	 $this->input->post('cshop_address'),
+            'coordinates'   => 	 $this->input->post('cshop_coordi'),
+            'operating_hours'   => 	 $this->input->post('cshop_ophours'),
+            'net_speed'   => 	 $this->input->post('cshop_netspeed'),
+            'description'   => 	 $this->input->post('cshop_description'),
+            'contact_number'   => 	 $this->input->post('cshop_contact'),
+            'email_address'   => 	 $this->input->post('cshop_emailadd')
+        );
+        $this->db->where('shop_id',$id);
+        $this->db->update('computershop',$datafinder);
+        echo json_encode($datafinder);
+    }
 
 	
 }
