@@ -6062,7 +6062,7 @@ a.badge-dark.focus {
 	line-height: 1;
 	color: #000;
 	text-shadow: 0 1px 0 #fff;
-	opacity: 0.5;
+	/* opacity: 0.5; */
 }
 .close:hover {
 	color: #000;
