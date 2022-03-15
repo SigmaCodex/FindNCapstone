@@ -12,6 +12,10 @@ class Main_Controller extends CI_Controller {
 	{
         $this->load->view('login');
     }
+	public function viewFindNLogin()
+	{
+        $this->load->view('findnlogin');
+    }
 	//finders
 	public function viewAccountSettings()
 	{
