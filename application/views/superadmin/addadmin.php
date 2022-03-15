@@ -39,11 +39,10 @@
             <li class="item"><a href="#">About</a></li>
             <li class="item"><a href="#">Services</a></li>
             </li>
-            <li class="item button"><a href="#">Log In</a></li>
-            <li class="item button secondary"><a href="#">Sign Up</a></li>
+            <li class="item button secondary"><a href="#">Log out</a></li>
             <li class="toggle"><span class="bars"></span></li>
         </ul>
-    </nav>
+    	</nav>
   <br>
   <br>
   <br>

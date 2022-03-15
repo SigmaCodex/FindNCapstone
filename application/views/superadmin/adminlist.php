@@ -16,10 +16,22 @@
   	<script src="assets/js/adminlist.js"></script>
   	<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script> 
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.js"></script>
+	<link rel="stylesheet" href="assets/css/register.css">
 
 	</head>
 	<body>
 	<section class="ftco-section">
+		<nav>
+        <ul class="menu">
+            <li class="logo"><a href="#">FindN</a></li>
+            <li class="item"><a href="#">Home</a></li>
+            <li class="item"><a href="#">About</a></li>
+            <li class="item"><a href="#">Services</a></li>
+            </li>
+            <li class="item button secondary"><a href="#">Log out</a></li>
+            <li class="toggle"><span class="bars"></span></li>
+        </ul>
+    	</nav>
 		<div class="container">
 			<div class="row justify-content-center">
 				<div class="col-md-9 text-left mb-6">

@@ -1,198 +1,203 @@
-<!DOCTYPE html>
-<html lang="en" >
-<head>
-    <meta charset="UTF-8">  
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>ListOfComputerShop</title>
-  <link href="https://fonts.googleapis.com/css?family=Poppins:400,600&display=swap" rel="stylesheet">
-  <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css'>
-  <link rel="stylesheet" href="assets/css/register.css">
-  <!-- <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"integrity="sha256-pasqAKBDmFT4eHoN2ndd6lN370kFiGUFyTiUHWhU7k8="crossorigin="anonymous"></script> -->
-  <!-- css MDB layout Framework -->
-  <!-- https://mdbootstrap.com/docs/standard/components -->
+<!doctype html>
+<html lang="en">
+  <head>
+  	<title>Admin Table</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+	<link rel="stylesheet" href="assets/css/style.css">
+	<link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900" rel="stylesheet">
+ 	<link rel="stylesheet" href="assets/css/ionicons.min.css">
 
-</head>
-<body>
+	 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+	<script src="assets/admin/vendor/jquery/jquery.min.js"></script>
+  	<script src="assets/admin/vendor/bootstrap/js/bootstrap.min.js"></script>
+  	<script src="assets/js/adminlist.js"></script>
+  	<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script> 
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.js"></script>
+	<link rel="stylesheet" href="assets/css/register.css">
 
+	</head>
+	<body>
+	<section class="ftco-section">
+		<nav>
+        <ul class="menu">
+            <li class="logo"><a href="#">FindN</a></li>
+            <li class="item"><a href="#">Home</a></li>
+            <li class="item"><a href="#">About</a></li>
+            <li class="item"><a href="#">Services</a></li>
+            </li>
+            <li class="item button secondary"><a href="#">Log out</a></li>
+            <li class="toggle"><span class="bars"></span></li>
+        </ul>
+    	</nav>
+		<div class="container">
+			<div class="row justify-content-center">
+				<div class="col-md-9 text-left mb-6">
+					<h2 class="heading-section">Computer Shop list</h2>
+				</div>
+        		<div class="col-md-3 text-right mb-4">
+        			<button type="button" class="btn mb-2 mb-md-0 btn-primary btn-block" data-target="#exampleModalCenter" data-toggle="modal">Add Computer shop</button>
+				</div>
+			</div>
+      		<br>
+			<div class="row">
+				<div class="col-md-12 col-xs-1">
+					<h3 class="h5 mb-4 text-center"></h3>
+					<div class="table-wrap">
+						<table class="table" style="margin:0;" !important>
+						  <thead class="thead-primary">
+						    <tr>
+						      <th>&nbsp;</th>
+						      <th>No.</th>
+						      <th>Name</th>
+						      <th>Status</th>
+						      <th>Action</th>
+						    </tr>
+						  </thead>
+						  <tbody>
+						    <tr class="alert" role="alert">
+						    	<td>
+						    		<label class="checkbox-wrap checkbox-primary">
+										<input type="checkbox">
+									  	<span span class="checkmark"></span>
+									</label>
+						    	</td>
+						    	<td>
+						    		<!-- <div class="img" style="background-image: url(images/product-1.png);"></div> -->
+						    	</td>
+						    	<td>
+						      		<div class="email">
+						      			<span>Sneakers Shoes 2020 For Men </span>
+						      		</div>
+						      	</td>
+						      	<td>Inactive</td>
+						      	<td>
+						      		<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+				            			<span aria-hidden="true"><i class="fa fa-close"></i></span>
+				          			</button>
+				        		</td>
+						    	</tr>
+						    	<tr class="alert" role="alert">
+						    		<td>
+						    			<label class="checkbox-wrap checkbox-primary">
+											<input type="checkbox">
+										  	<span pan class="checkmark"></span>
+										</label>
+						    	</td>
+						    	<td>
+						    		<!-- <div class="img" style="background-image: url(images/product-2.png);"></div> -->
+						    	</td>
+						      	<td>
+						      	<div class="email">
+						      		<span>Sneakers Shoes 2020 For Men </span>
+						      	</div>
+						      	</td>
+						      	<td>Inactive</td>
+						      	<td>
+						      		<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+				            			<span aria-hidden="true"><i class="fa fa-close"></i></span>
+				          			</button>
+				        		</td>
+						    	</tr>
+							    <tr class="alert" role="alert">
+							    	<td>
+							    		<label class="checkbox-wrap checkbox-primary">
+											  <input type="checkbox">
+											  <span class="checkmark"></span>
+										</label>
+							    	</td>
+							    	<td>
+						    		<!-- <div class="img" style="background-image: url(images/product-3.png);"></div> -->
+						    		</td>
+						      		<td>
+						      			<div class="email">
+						      				<span>Sneakers Shoes 2020 For Men </span>
+						      			</div>
+						      		</td>
+						      		<td>Inactive</td>
+						      		<td>
+						      			<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+				            				<span aria-hidden="true"><i class="fa fa-close"></i></span>
+				          				</button>
+				        			</td>
+						    		</tr>
 
-<br>
-<div class="container jumbotron mb-4">
-    <div class="row">
-        <div class="col-md-9"></div>
-        <div class="col-md-3">
-        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
- Add ComputerShop
-</button>
-        </div>
-    </div>
-    <br>
-    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-        <thead>
-            <tr>
-                <th>Name</th>
-                <th>Position</th>
-                <th>Office</th>
-                <th>Age</th>
-                <th>Salary</th>
-            </tr>
-        </thead>
-        <tfoot>
-            <tr>
-                <th>Name</th>
-                <th>Position</th>
-                <th>Office</th>
-                <th>Age</th>
-                <th>Salary</th>
-            </tr>
-        </tfoot>
-        <tbody>
-            <tr>
-                <td>Tiger Nixon</td>
-                <td>System Architect</td>
-                <td>Edinburgh</td>
-                <td>61</td>
-                <td>320,800</td>
-            </tr>
-            <tr>
-                <td>Garrett Winters</td>
-                <td>Accountant</td>
-                <td>Tokyo</td>
-                <td>63</td>
-                <td>170,750</td>
-            </tr>
-            <tr>
-                <td>Ashton Cox</td>
-                <td>Junior Technical Author</td>
-                <td>San Francisco</td>
-                <td>66</td>
-                <td>86,000</td>
-            </tr>
-            <tr>
-                <td>Cedric Kelly</td>
-                <td>Senior Javascript Developer</td>
-                <td>Edinburgh</td>
-                <td>22</td>
-                <td>433,060</td>
-            </tr>
-            <tr>
-                <td>Airi Satou</td>
-                <td>Accountant</td>
-                <td>Tokyo</td>
-                <td>33</td>
-                <td>162,700</td>
-            </tr>
-            <tr>
-                <td>Brielle Williamson</td>
-                <td>Integration Specialist</td>
-                <td>New York</td>
-                <td>61</td>
-                <td>372,000</td>
-            </tr>
-            <tr>
-                <td>Herrod Chandler</td>
-                <td>Sales Assistant</td>
-                <td>San Francisco</td>
-                <td>59</td>
-                <td>137,500</td>
-            </tr>
-            <tr>
-                <td>Rhona Davidson</td>
-                <td>Integration Specialist</td>
-                <td>Tokyo</td>
-                <td>55</td>
-                <td>327,900</td>
-            </tr>
-        </tbody>
-    </table>
-</div>
+						    		<tr class="alert" role="alert">
+						    			<td>
+						    				<label class="checkbox-wrap checkbox-primary">
+										  		<input type="checkbox">
+										  		<span class="checkmark"></span>
+											</label>
+						    			</td>
+						    			<td>
+						    				<!-- <div class="img" style="background-image: url(images/product-4.png);"></div> -->
+						    			</td>
+						      			<td>
+						      				<div class="email">
+						      				<span>Sneakers Shoes 2020 For Men </span>
+						      			</div>
+						      </td>
+						      <td>Inactive</td>
+						      <td>
+						      	<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+				            	<span aria-hidden="true"><i class="fa fa-close"></i></span>
+				          	</button>
+				        	</td>
+						    </tr>
 
-
-<!-- modals -->
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div>
-        <!-- start modal -->
-             <!--form panels-->
-             <div class="row modal-content" style="background-color: #fff0; border: none;">
-          <div class="col-12 col-lg-8 m-auto">
-            <form class="multisteps-form__form">
-              <!--single form panel-->
-              <div class="multisteps-form__panel shadow p-4 rounded bg-white js-active" data-animation="scaleIn">
-                <h3 class="multisteps-form__title"><center>Add Computer Shop</center></h3>
-                <div class="multisteps-form__content">
-                  
-                  <div class="form-row mt-4">
-                    <div class="col">
-                      <input class="multisteps-form__input form-control" type="text" id="s_name" placeholder="Computer Shop Name"/>
-                    </div>
-                  </div>
-                  <div class="form-row mt-4">
-                    <div class="col">
-                      <input class="multisteps-form__input form-control" type="text" id="s_address" placeholder="Address Brgy/City/Cntry"/>
-                    </div>
-                  </div>
-                  <div class="form-row mt-4">
-                    <div class="col">
-                      <input class="multisteps-form__input form-control" type="text" placeholder="Owner Name"/>
-                    </div>
-                  </div>
-                  <div class="button-row d-flex mt-4">
-                    <button class="btn btn-primary js-btn-prev" type="button" title="Prev"  class="close" data-dismiss="modal">Cancel</button>
-                    <button class="btn btn-primary ml-auto js-btn-next" type="button" id="addShopBtn" title="Next">Add</button>
-                  </div>
-                </div>
-              </div>
-              <!--single form panel-->
-
-            </form>
-          </div>
-        </div>   
-
-      <!-- <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
-      </div> -->
-    </div>
-  </div>
-</div> 
-<!-- Button trigger modal
-
-
-
-<!- end of body -->
-</body>
-<script src="assets/admin/vendor/jquery/jquery.min.js"></script>
-<script src="assets/admin/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-<script src="https://cdn.datatables.net/1.10.18/js/jquery.dataTables.min.js"></script>
-<script src="https://cdn.datatables.net/1.10.18/js/dataTables.bootstrap4.min.js"></script>
-<script>
-$(function () {
-    $('#dataTable').DataTable({
-      "pageLength": 3,
-      "paging": true,
-      "lengthChange": false,
-      "searching": false,
-      "ordering": true,
-      "info": true,
-      "autoWidth": false
-      });
-  });
-</script> 
-
-<!-- ajax script -->
-<script>
-    	$(document).on('click','#addShopBtn',function(){
-		    var s_name  = $("#s_name").val();
-		    var s_address = $("#s_address").val();
-
-		 	$.post('addshop',{shop_name:s_name,address:s_address},function(data)
-	        {
-	           alert(data);
-               window.location.replace("sample/4");
-	        });
-			 	
-        });
-</script>
+						    <tr class="alert" role="alert">
+						    	<td class="border-bottom-0">
+						    		<label class="checkbox-wrap checkbox-primary">
+										  <input type="checkbox">
+										  <span class="checkmark"></span>
+										</label>
+						    	</td>
+						    	<td class="border-bottom-0">
+						    		<!-- <div class="img" style="background-image: url(images/product-1.png);"></div> -->
+						    	</td>
+						      <td class="border-bottom-0">
+						      	<div class="email">
+						      		<span>Sneakers Shoes 2020 For Men </span>
+						      	</div>
+						      </td>
+						      <td class="border-bottom-0">Inactive</td>
+						      <td class="border-bottom-0">
+						      	<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+				            	<span aria-hidden="true"><i class="fa fa-close"></i></span>
+				          	</button>
+				        	</td>
+						    </tr>
+						  </tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+<!-- <form id="addadminform" class="form" name="addadminform"> -->
+  <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+		  <div class="modal-dialog modal-dialog-centered" role="document">
+		    <div class="modal-content">
+		      <!-- <div class="modal-header">
+		        <button type="button" class="close d-flex align-items-center justify-content-center" data-dismiss="modal" aria-label="Close">
+		          <span aria-hidden="true" class="ion-ios-close"></span>
+		        </button>
+		      </div> -->
+		      <div class="modal-body p-4 py-5 p-md-5">
+		      	<h3 class="text-center mb-3">Add Computer Shop</h3>
+		      	<form id="addadminform" class="" name="addadminform">
+	            <!-- <div class="form-group d-md-flex">
+								<div class="w-100 text-center">
+									<a href="#" class="forgot">I'm already a member</a>
+								</div>
+	            </div> -->
+	          </form>
+		      </div>
+		    </div>
+		  </div>
+		</div>
+	</body>
 </html>
+
