@@ -46,11 +46,21 @@ class LogicalController extends CI_Controller {
                 $config['max_height']           = 768;
         $this->load->library('upload', $config);
         $this->upload->initialize($config);
-        if ( ! $this->upload->do_upload('imageUpload'))
+        if(! $this->upload->do_upload('imageUpload'))
         {
             echo $this->upload->display_errors();
         }else{
-            echo "naka upload na imong image";
+            $data= array(
+                'f_name'  => 	  $this->input->post('f_name'),
+                'l_name'  =>    $this->input->post('l_name'),
+                'b_date'  =>    $this->input->post('b_date'),
+                'username'  =>    $this->input->post('username'),
+                'b_date'  =>    $this->input->post('b_date'),
+                'email'  =>    $this->input->post('email'),
+                'p_number'  =>    $this->input->post('p_number'),
+                'vac_status'  =>    $this->input->post('vac_status'),
+            );
+            echo json_encode($data);
         }
     }
 

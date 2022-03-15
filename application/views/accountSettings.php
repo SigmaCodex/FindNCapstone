@@ -144,11 +144,11 @@
             <div class="title-info"> <b>USER INFORMATION</b>
             </div>
             <div class="row py-2">
-                <div class="col-md-6"> <label for="firstname">First Name</label> <input type="text" class="bg-light form-control"> </div>
-                <div class="col-md-6 pt-md-0 pt-3"> <label for="lastname">Last Name</label> <input type="text" class="bg-light form-control"> </div>
-                <div class="col-md-6 pt-md-0 pt-3"> <label for="lastname">Birthday</label> <input type="date" class="bg-light form-control"> </div>
+                <div class="col-md-6"> <label for="firstname">First Name</label> <input type="text" name="f_name" class="bg-light form-control"> </div>
+                <div class="col-md-6 pt-md-0 pt-3"> <label for="lastname">Last Name</label> <input type="text" name="l_name" class="bg-light form-control"> </div>
+                <div class="col-md-6 pt-md-0 pt-3"> <label for="lastname">Birthday</label> <input type="date" name="b_date" class="bg-light form-control"> </div>
                 <div class="col-md-6 pt-md-0 pt-3"> <label for="gender">Gender</label>  
-                <select name="country" id="country" class="bg-light">
+                <select name="gender" id="gender" class="bg-light">
                     <option value="select" selected>(Select)</option>
                     <option value="male">Male</option>
                     <option value="female">Female</option>
@@ -158,14 +158,14 @@
             <br>
             <div class="title-info"> <b>ACCOUNT INFORMATION</b>
              <div class="row py-2">
-                <div class="col-md-6"> <label for="username">Username</label> <input type="text" class="bg-light form-control"> </div>
+                <div class="col-md-6"> <label for="username">Username</label> <input name="username" type="text" class="bg-light form-control"> </div>
                 <div class="col-md-6 pt-md-0 pt-3"> <label for="email">Email</label> <input type="email" class="bg-light form-control"> </div>
-                <div class="col-md-6"> <label for="phone">Phone Number</label> <input type="text" class="bg-light form-control" placeholder="+63"> </div>
+                <div class="col-md-6"> <label for="phone">Phone Number</label> <input  name="p_number" type="text" class="bg-light form-control" placeholder="+63"> </div>
             </div>
             <div class="title-info"> <b>VACCINATION STATUS</b></div>
             <div class="row py-2">
                 <div class="col-md-6"> <label for="vaccine">Vaccination Form Status</label> 
-                    <select id="vaccine" class="bg-light">
+                    <select id="vaccine" name="vac_status" class="bg-light">
                         <option value="select" selected>(Select)</option>
                         <option value="1stvac">Vaccinated 1st Dose</option>
                         <option value="2ndvac">Vaccinated 2nd Dose</option>
