@@ -86,7 +86,8 @@
           <h5 id="errorvac"></h5>
         </div>
         <div class="button" >
-          <input type="" value="Register" id="registration_btn">        </div>
+          <input type="" value="Register" id="registration_btn" disabled="disabled">        
+        </div>
       </form>
 
       <form>

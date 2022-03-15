@@ -1,20 +1,21 @@
 <!doctype html>
 <html lang="en">
   <head>
-  	<title>Table 06</title>
+  	<title>Admin Table</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-	
-	<link rel="stylesheet" href="assets/adminlist/css/style.css">
+	<link rel="stylesheet" href="assets/css/style.css">
+	<link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900" rel="stylesheet">
+ 	<link rel="stylesheet" href="assets/css/ionicons.min.css">
 
-  <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900" rel="stylesheet">
- 
-
-  <link rel="stylesheet" href="assets/adminlist/css/ionicons.min.css">
+	 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+	<script src="assets/admin/vendor/jquery/jquery.min.js"></script>
+  	<script src="assets/admin/vendor/bootstrap/js/bootstrap.min.js"></script>
+  	<script src="assets/js/adminlist.js"></script>
+  	<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script> 
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.js"></script>
 
 	</head>
 	<body>
@@ -24,41 +25,37 @@
 				<div class="col-md-9 text-left mb-6">
 					<h2 class="heading-section">Computer shop admin list</h2>
 				</div>
-        <div class="col-md-3 text-right mb-4">
-        <button type="button" class="btn mb-2 mb-md-0 btn-primary btn-block" data-target="#exampleModalCenter" data-toggle="modal">Add Admin</button>
+        		<div class="col-md-3 text-right mb-4">
+        			<button type="button" class="btn mb-2 mb-md-0 btn-primary btn-block" data-target="#exampleModalCenter" data-toggle="modal">Add Admin</button>
 				</div>
 			</div>
-      <br>
+      		<br>
 			<div class="row">
-      
-      <div class="col-md-3 cold-xs-1">
-        <h3 class="h5 mb-4 text-center"></h3>
-        <div class="card" style="width: 18rem;">
-          <!-- <img src="..." class="card-img-top" alt="..."> -->
-          
-          <div class="card-body">
-            <h5 class="card-title">Internetan pangalan</h5>
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-          </div>
-          <ul class="list-group list-group-flush">
-            <li class="list-group-item">Owner: <p>OTENOTENOTEN</p></li>
-              
-            <li class="list-group-item">Adress: <p>AHAHAHAH TNC</p></li>
-          </ul>
-          <div class="card-body">
-            <a href="#" class="card-link">Edit Details</a>
-          </div>
-        </div>
-      </div>
+      			<div class="col-md-3 cold-xs-1">
+        			<h3 class="h5 mb-4 text-center"></h3>
+        			<div class="card" style="width: 18rem;">
+          				<div class="card-body">
+            				<h5 class="card-title">TNC Pro Cebu</h5>
+            				<p class="card-text"  id="CompShopPK">1</p>
+          				</div>
+          				<ul class="list-group list-group-flush">
+            				<li class="list-group-item">Owner: <p>Ignatius Deodatus</p></li>
+              				<li class="list-group-item">Adress: <p>Santiangko</p></li>
+						</ul>
+          				<div class="card-body">
+            				<a href="#" class="card-link">Edit Details</a>
+          				</div>
+        			</div>
+      			</div>
 				<div class="col-md-9 col-xs-1">
 					<h3 class="h5 mb-4 text-center"></h3>
 					<div class="table-wrap">
 						<table class="table">
 						  <thead class="thead-primary">
 						    <tr>
-						    	<th>&nbsp;</th>
-						    	<th>No.</th>
-						    	<th>Name</th>
+						      <th>&nbsp;</th>
+						      <th>No.</th>
+						      <th>Name</th>
 						      <th>Status</th>
 						      <th>Action</th>
 						    </tr>
@@ -67,85 +64,84 @@
 						    <tr class="alert" role="alert">
 						    	<td>
 						    		<label class="checkbox-wrap checkbox-primary">
-										  <input type="checkbox">
-										  <span class="checkmark"></span>
-										</label>
+										<input type="checkbox">
+									  	<span span class="checkmark"></span>
+									</label>
 						    	</td>
 						    	<td>
 						    		<!-- <div class="img" style="background-image: url(images/product-1.png);"></div> -->
 						    	</td>
-						      <td>
-						      	<div class="email">
-						      		<span>Sneakers Shoes 2020 For Men </span>
-						      	</div>
-						      </td>
-						      <td>Inactive</td>
-						      <td>
-						      	<button type="button" class="close" data-dismiss="alert" aria-label="Close">
-				            	<span aria-hidden="true"><i class="fa fa-close"></i></span>
-				          	</button>
-				        	</td>
-						    </tr>
-						    <tr class="alert" role="alert">
 						    	<td>
-						    		<label class="checkbox-wrap checkbox-primary">
-										  <input type="checkbox">
-										  <span class="checkmark"></span>
+						      		<div class="email">
+						      			<span>Sneakers Shoes 2020 For Men </span>
+						      		</div>
+						      	</td>
+						      	<td>Inactive</td>
+						      	<td>
+						      		<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+				            			<span aria-hidden="true"><i class="fa fa-close"></i></span>
+				          			</button>
+				        		</td>
+						    	</tr>
+						    	<tr class="alert" role="alert">
+						    		<td>
+						    			<label class="checkbox-wrap checkbox-primary">
+											<input type="checkbox">
+										  	<span pan class="checkmark"></span>
 										</label>
 						    	</td>
 						    	<td>
 						    		<!-- <div class="img" style="background-image: url(images/product-2.png);"></div> -->
 						    	</td>
-						      <td>
+						      	<td>
 						      	<div class="email">
 						      		<span>Sneakers Shoes 2020 For Men </span>
 						      	</div>
-						      </td>
-						      <td>Inactive</td>
-						      <td>
-						      	<button type="button" class="close" data-dismiss="alert" aria-label="Close">
-				            	<span aria-hidden="true"><i class="fa fa-close"></i></span>
-				          	</button>
-				        	</td>
-						    </tr>
-
-						    <tr class="alert" role="alert">
-						    	<td>
-						    		<label class="checkbox-wrap checkbox-primary">
-										  <input type="checkbox">
-										  <span class="checkmark"></span>
+						      	</td>
+						      	<td>Inactive</td>
+						      	<td>
+						      		<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+				            			<span aria-hidden="true"><i class="fa fa-close"></i></span>
+				          			</button>
+				        		</td>
+						    	</tr>
+							    <tr class="alert" role="alert">
+							    	<td>
+							    		<label class="checkbox-wrap checkbox-primary">
+											  <input type="checkbox">
+											  <span class="checkmark"></span>
 										</label>
-						    	</td>
-						    	<td>
+							    	</td>
+							    	<td>
 						    		<!-- <div class="img" style="background-image: url(images/product-3.png);"></div> -->
-						    	</td>
-						      <td>
-						      	<div class="email">
-						      		<span>Sneakers Shoes 2020 For Men </span>
-						      	</div>
-						      </td>
-						      <td>Inactive</td>
-						      <td>
-						      	<button type="button" class="close" data-dismiss="alert" aria-label="Close">
-				            	<span aria-hidden="true"><i class="fa fa-close"></i></span>
-				          	</button>
-				        	</td>
-						    </tr>
+						    		</td>
+						      		<td>
+						      			<div class="email">
+						      				<span>Sneakers Shoes 2020 For Men </span>
+						      			</div>
+						      		</td>
+						      		<td>Inactive</td>
+						      		<td>
+						      			<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+				            				<span aria-hidden="true"><i class="fa fa-close"></i></span>
+				          				</button>
+				        			</td>
+						    		</tr>
 
-						    <tr class="alert" role="alert">
-						    	<td>
-						    		<label class="checkbox-wrap checkbox-primary">
-										  <input type="checkbox">
-										  <span class="checkmark"></span>
-										</label>
-						    	</td>
-						    	<td>
-						    		<!-- <div class="img" style="background-image: url(images/product-4.png);"></div> -->
-						    	</td>
-						      <td>
-						      	<div class="email">
-						      		<span>Sneakers Shoes 2020 For Men </span>
-						      	</div>
+						    		<tr class="alert" role="alert">
+						    			<td>
+						    				<label class="checkbox-wrap checkbox-primary">
+										  		<input type="checkbox">
+										  		<span class="checkmark"></span>
+											</label>
+						    			</td>
+						    			<td>
+						    				<!-- <div class="img" style="background-image: url(images/product-4.png);"></div> -->
+						    			</td>
+						      			<td>
+						      				<div class="email">
+						      				<span>Sneakers Shoes 2020 For Men </span>
+						      			</div>
 						      </td>
 						      <td>Inactive</td>
 						      <td>
@@ -196,7 +192,7 @@
 		      </div> -->
 		      <div class="modal-body p-4 py-5 p-md-5">
 		      	<h3 class="text-center mb-3">Add admin</h3>
-		      	<form id="addadminform" class="signup-form" name="addadminform">
+		      	<form id="addadminform" class="" name="addadminform">
 		      		<div class="form-group mb-2">
 		      			<label for="name">Username</label>
 		      			<input name="username" id="username" type="text" class="form-control">
@@ -259,7 +255,8 @@
 	            	  <button  class="close-btn form-control btn btn-primary rounded px-3">Cancel</button>
 	              </div>
                 <div class="form-group mb-2">
-	            	  <button id="addadminbtn" class="form-control btn btn-primary rounded submit px-3">Add</button>
+	            	  <!-- <button input="" id="addadminbtn" class="form-control btn btn-primary rounded submit px-3">Add</button> -->
+					  <input value="Add" class="form-control btn btn-primary rounded submit px-3" id="addadminbtn" readonly="readonly">
 	              </div>
               </div>
 	            
@@ -273,14 +270,6 @@
 		    </div>
 		  </div>
 		</div>
-
-
-	<script src="assets/adminlist/js/jquery.min.js"></script>
-  <script src="assets/adminlist/js/popper.js"></script>
-  <script src="assets/adminlist/js/bootstrap.min.js"></script>
-  <script src="assets/adminlist/js/main.js"></script>
-  <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script> 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.js"></script>
 	</body>
 </html>
 

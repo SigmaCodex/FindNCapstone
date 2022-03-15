@@ -34,8 +34,8 @@ class MainModel extends CI_Model{
                 'user_id'   =>    $Primarycode,
                 'username'  => 	  $this->input->post('username'),
                 'password'  =>    $this->input->post('conpass'),
-                'user_type' =>    "admin",
-                'status'    =>    $this->input->post('status')
+                'user_type' =>    "Admin",
+                'status'    =>    "Active"
             );
                 $this->db->insert('user',$datauser);
 
@@ -45,16 +45,16 @@ class MainModel extends CI_Model{
             // $resultquery = $query2->row_array();
             
             $datafinder = array(
-                'user_id'    =>      $Primarycode,
-                'lastname'   => 	 $this->input->post('lastname'),
-                'firstname'  =>      $this->input->post('firstname'),
-                'birthdate'  => 	 $this->input->post('birthdate'),
-                'gender'     => 	 $this->input->post('gender'),
-                'email'      =>      $this->input->post('email'),
-                'phone_num'  =>      $this->input->post('pnum'),
-                'vac_status' =>      $this->input->post('vacstatus')
+                'user_id'         =>     $Primarycode,
+                'shop_id_fk'      =>     $this->input->post('shop_id'),
+                'lastname'        => 	 $this->input->post('lastname'),
+                'firstname'       =>     $this->input->post('firstname'),
+                'birthdate'       => 	 $this->input->post('birthdate'),
+                'gender'          => 	 $this->input->post('gender'),
+                'email'           =>     $this->input->post('email'),
+                'contactaddress'  =>     $this->input->post('pnum'),
             );
-                $this->db->insert('finders',$datafinder);
+                $this->db->insert('compmanager',$datafinder);
 
 		}
     }
@@ -76,8 +76,8 @@ class MainModel extends CI_Model{
                 'user_id'   =>    $Primarycode,
                 'username'  => 	  $this->input->post('username'),
                 'password'  =>    $this->input->post('conpass'),
-                'user_type' =>    "finder",
-                'status'    =>    "active"
+                'user_type' =>    "Finder",
+                'status'    =>    "Active"
             );
                 $this->db->insert('user',$datauser);
 

@@ -9,7 +9,6 @@ class LogicalController extends CI_Controller {
         $this->MainModel->addComputerShop();
     }
     public function registerAdmin(){
-
         $this->load->model('MainModel');
         $this->MainModel->registerAdmin();
     }
