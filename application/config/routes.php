@@ -9,6 +9,7 @@ $route['shopadmin-computerdetails'] = 'main_controller/shopadmin_computerdetails
 
 $route['register'] = 'main_controller/viewRegister';
 $route['loginpage'] = 'main_controller/viewLogin';
+$route['findnlogin'] = 'main_controller/viewFindNLogin';
 
 //finders
 $route['accountSettings'] = 'main_controller/viewAccountSettings';
