@@ -134,7 +134,7 @@
                 </div>
             </div>
             <div class="pp pl-sm-4 pl-2" id="img-section"> <b>Profile Photo</b>
-                <p>Accepted file type (.png). Less than 5MB</p> <button class="btn button border"><b>Upload</b></button>
+                <p>Accepted file type (.png). Less than 5MB</p>
             </div>
 
 
