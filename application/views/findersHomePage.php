@@ -44,7 +44,7 @@
     <a href="#" class="m-0 w-100"><i class="fa-solid fa-tasks"></i><span>Pending Booking</span></a>
     <a href="#" class="m-0 w-100"><i class="fa-solid fa-share-alt"></i><span>Settings</span></a>
     <a href="#" class="m-0 w-100"><i class="fa-solid fa-question-circle"></i><span>About</span></a>
-    <a href="#" class="m-0 w-100"><i class="fa-solid fa-door-open"></i><span>Logout</span></a>
+    <a href="user-logout" class="m-0 w-100"><i class="fa-solid fa-door-open"></i><span>Logout</span></a>
     
 </div>
 <!--Content Inside-->

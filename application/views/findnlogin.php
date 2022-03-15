@@ -8,7 +8,8 @@
       crossorigin="anonymous"
     ></script>
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js">
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"> -->
+    <!-- <script scr="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     
     <link rel="stylesheet" href="assets/css/findnlogin.css" />
@@ -67,15 +68,15 @@
 
             <div class="input-field">
                 <i class="fas fa-user"></i>
-                <input type="text" placeholder="Username" />
+                <input type="text" id="user" placeholder="Username" />
             </div>
 
             <div class="input-field">
                 <i class="fas fa-lock margin-left:220px;"></i> 
-              <input type="password" placeholder="Password" />
+              <input type="password" id="pass" placeholder="Password" />
             </div>
            
-            <input type="submit" value="Login" class="loginButton" />
+            <input type="submit" value="Login" id="btn-login" class="loginButton" />
             
             <p class="social-text ">Don't have an account yet? <br>Register below!</p>
             <div class="social-media">
@@ -183,6 +184,50 @@
       </div>
     </div>
 
-    <script type="text/javascript" src="assets/js/login.js"></script>
   </body>
+  
+  <script type="text/javascript" src="assets/js/login.js"></script>
+  <script type="text/javascript" src="assets/js/main.js"></script>
+	<script type="text/javascript" src="assets/js/jquery/jquery.min.js"></script>
+	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+  <script type="text/javascript">
+	  $(document).on('click','#btn-login',function(){  
+        var user  = $("#user").val();
+        var pass = $("#pass").val();
+
+		if(user =='' || pass ==''){
+			swal(
+				'Fill Up',
+				'Please Check Your Username and Password',
+				'warning'
+			)
+		}else{
+
+			// //Login Ajax
+			$.ajax({
+				url: "user-login",
+				type: "POST",
+				data:{username:user,password:pass},
+				success: function(data){
+					//redirect to pages
+					if(data == "finder"){
+						window.location = "findershomepage";
+					}else if(data == "superadmin"){
+						alert("superadmin");
+					}
+					else{
+						swal(
+							'User Not Found',
+							'Please Check Your Username and Password',
+							'error'
+						)
+					}
+		
+				}
+			});
+			
+		}
+		
+    	});
+	</script>
 </html>

@@ -14,6 +14,13 @@ class LogicalController extends CI_Controller {
         }
     }
 
+    public function logout_user(){
+        $this->session->sess_destroy();
+        // redirect("http://localhost:8080/FindNCapstone/findnlogin");
+        // redirect(base_url().'findnlogin',refresh);
+        redirect(findnlogin);
+    }
+
     //superAdmin
     public function addComputerShop(){
         $this->load->model('MainModel');

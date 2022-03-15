@@ -26,7 +26,6 @@ $route['add-coordinates']    = 'main_controller/addcoordinates';
 
 //Logics
     //SuperAdmin
-    
     $route['addshop'] = 'logicalcontroller/addComputerShop';
     //sample
     $route['sample/(:num)'] = 'logicalcontroller/sample/$1';
@@ -43,7 +42,7 @@ $route['add-coordinates']    = 'main_controller/addcoordinates';
     $route['paymentexercise']     = 'main_controller/payment_exercise';
 
 $route['user-login']               = 'logicalcontroller/login_user';
-
+$route['user-logout']              = 'logicalcontroller/logout_user';
 $route['index'] = 'main_controller/index';
 $route['default_controller'] = 'main_controller/index';
 $route['404_override'] = '';
