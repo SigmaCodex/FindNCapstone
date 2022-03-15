@@ -3,10 +3,33 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 
 class MainModel extends CI_Model{
+    // user login 
+    public function login_user(){
+      $user = $this->input->post('username');
+      $pass = $this->input->post('password');
 
-    public function user_validate(){
-        echo "hello world";
+      $this->db->where('username',$user);
+      $this->db->where('password',$pass);
+      $query = $this->db->get('user');
+      if(!empty($query->result_array()))
+      {
+
+          $row = $query->row();
+          $datasession  = array(
+              'user_id' => $row->user_id,
+              'username'  => $row->username,
+              'user_type' => $row->user_type
+
+          );
+          $this->session->set_userdata($datasession);
+          return true;
+          
+      }else{
+        return false;
+      }
+
     }
+
     //superAdmin
     public function addComputerShop(){
 
@@ -59,6 +82,8 @@ class MainModel extends CI_Model{
 		}
     }
 
+
+    
     //finders
     public function registerFinder(){
         $Primarycode = 0;
@@ -123,6 +148,22 @@ class MainModel extends CI_Model{
         $this->db->where('shop_name',$name);
         $query = $this->db->get();
         return $query->result();
+    }
+    //admin
+    public function updateComputerDetails($id){
+        $datafinder = array(
+            'shop_name'   => 	 $this->input->post('cshop'),
+            'address'   => 	 $this->input->post('cshop_address'),
+            'coordinates'   => 	 $this->input->post('cshop_coordi'),
+            'operating_hours'   => 	 $this->input->post('cshop_ophours'),
+            'net_speed'   => 	 $this->input->post('cshop_netspeed'),
+            'description'   => 	 $this->input->post('cshop_description'),
+            'contact_number'   => 	 $this->input->post('cshop_contact'),
+            'email_address'   => 	 $this->input->post('cshop_emailadd')
+        );
+        $this->db->where('shop_id',$id);
+        $this->db->update('computershop',$datafinder);
+        echo json_encode($datafinder);
     }
 
 	

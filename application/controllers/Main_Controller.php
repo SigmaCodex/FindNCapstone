@@ -12,10 +12,14 @@ class Main_Controller extends CI_Controller {
 	{
         $this->load->view('login');
     }
-	//finders
-	public function viewUser_Settings()
+	public function viewFindNLogin()
 	{
-		$this->load->view('userprof_Settings');
+        $this->load->view('findnlogin');
+    }
+	//finders
+	public function viewAccountSettings()
+	{
+		$this->load->view('accountSettings');
 	}
 
 	public function viewRegister()
@@ -33,6 +37,7 @@ class Main_Controller extends CI_Controller {
 	public function view_ticket(){
 		$this->load->view('viewticket');
 	}
+	
 	//added types of booking form (printing/computer)
 	public function viewcompbookForm(){
 		$this->load->view('computerbform');
@@ -49,8 +54,13 @@ class Main_Controller extends CI_Controller {
 	public function listofcomputershop(){
 		$this->load->view('superadmin/listofcomputershop');
 	}
+
 	public function adminList(){
 		$this->load->view('superadmin/adminlist');
+
+	public function addcoordinates(){
+		$this->load->view('superadmin/addcoordinates');
+
 	}
 
 	//shop admin show pages
@@ -73,7 +83,7 @@ class Main_Controller extends CI_Controller {
 	public function shopadmin_computerdetails(){
 		$this->load->view('admin/template/header');
 		$this->load->view('admin/computershopdetails');
-		$this->load->view('admin/template/footer');
+		//$this->load->view('admin/template/footer');
 	}
 	
 	public function payment_exercise(){
