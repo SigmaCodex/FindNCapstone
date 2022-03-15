@@ -26,6 +26,10 @@ class Main_Controller extends CI_Controller {
 	{
         $this->load->view('registerP');
     }
+	public function viewFindnRegister()
+	{
+        $this->load->view('findnRegister');
+    }
 
 	public function viewMap(){
 		$this->load->view('viewmap');
