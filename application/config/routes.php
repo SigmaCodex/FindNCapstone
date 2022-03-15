@@ -25,7 +25,7 @@ $route['admin-list'] = 'main_controller/adminlist';
 
 //Logics
     //SuperAdmin
-    
+    $route['registeradmin'] = 'logicalcontroller/registerAdmin';
     $route['addshop'] = 'logicalcontroller/addComputerShop';
     //sample
     $route['sample/(:num)'] = 'logicalcontroller/sample/$1';

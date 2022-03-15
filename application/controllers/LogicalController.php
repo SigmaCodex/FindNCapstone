@@ -8,6 +8,11 @@ class LogicalController extends CI_Controller {
         $this->load->model('MainModel');
         $this->MainModel->addComputerShop();
     }
+    public function registerAdmin(){
+
+        $this->load->model('MainModel');
+        $this->MainModel->registerAdmin();
+    }
     //sample ROUTING with data
     public function sample($num){
         echo $num;

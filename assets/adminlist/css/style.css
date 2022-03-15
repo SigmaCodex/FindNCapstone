@@ -8333,3 +8333,27 @@ h1, h2, h3, h4, h5,
       justify-content: space-between; 
       border-top: 0 !important;
     }
+
+    label.error{
+      font-weight:700;
+      display:block;
+      color: #f00;
+      font-size:12px;
+      }
+      .swal-button {
+        padding: 7px 19px;
+        border-radius: 2px;
+        background-color: #ef7f4d;
+        font-size: 12px;
+        border: 1px solid white;
+        text-shadow: 0px -1px 0px rgba(0, 0, 0, 0.3);
+      }
+    
+      .swal-button:not([disabled]):hover  {
+        padding: 7px 19px;
+        border-radius: 2px;
+        background-color: #dd5415;
+        font-size: 12px;
+        border: 1px solid white; 
+        text-shadow: 0px -1px 0px rgba(0, 0, 0, 0.3);
+      }

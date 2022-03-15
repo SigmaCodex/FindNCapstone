@@ -5,15 +5,14 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-	<link href='https://fonts.googleapis.com/css?family=Roboto:400,100,300,700' rel='stylesheet' type='text/css'>
+	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 	
 	<link rel="stylesheet" href="assets/adminlist/css/style.css">
 
   <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900" rel="stylesheet">
-
-  <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script> 
+ 
 
   <link rel="stylesheet" href="assets/adminlist/css/ionicons.min.css">
 
@@ -186,7 +185,7 @@
 			</div>
 		</div>
 	</section>
-
+<!-- <form id="addadminform" class="form" name="addadminform"> -->
   <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
 		  <div class="modal-dialog modal-dialog-centered" role="document">
 		    <div class="modal-content">
@@ -197,80 +196,70 @@
 		      </div> -->
 		      <div class="modal-body p-4 py-5 p-md-5">
 		      	<h3 class="text-center mb-3">Add admin</h3>
-		      	<form action="#" class="signup-form">
+		      	<form id="addadminform" class="signup-form" name="addadminform">
 		      		<div class="form-group mb-2">
 		      			<label for="name">Username</label>
-		      			<input type="text" class="form-control">
+		      			<input name="username" id="username" type="text" class="form-control">
 		      		</div>
 					  <div class="form-group mb-2">
 		      			<label for="name">Last Name</label>
-		      			<input type="text" class="form-control">
+		      			<input name="last" id="last" type="text" class="form-control">
 		      		</div>
 					<div class="form-group mb-2">
 		      			<label for="name">First Name</label>
-		      			<input type="text" class="form-control">
+		      			<input name="first" id="first" type="text" class="form-control">
 		      		</div>
 					  <div class="form-group mb-2">
 		      			<label for="name">Email</label>
-		      			<input type="email" class="form-control">
+		      			<input name="email" id="email" type="email" class="form-control">
 		      		</div>
 					  <div class="form-group mb-2">
 		      			<label for="name">Phone number</label>
-		      			<input type="number" class="form-control">
+		      			<input name="pnum" id="pnum" type="text" class="form-control">
 		      		</div>
 					  <div class="form-group mb-2">
 		      			<label for="name">Birthdate</label>
-		      			<input type="date" class="form-control">
+		      			<input name="date" id="date" type="date" class="form-control">
 		      		</div>
 				<div class="form-group mb-2">
-                <label for="user_type">Vacination Status</label>
-	              <select class="form-control mb-2 form-select-lg mb-3 form-select" aria-label="Default select example">
-                  <option selected>1st Dose</option>
-                  <option option value="1">2nd Dose</option>
+                <label for="vacstatus">Vacination Status</label>
+	              <select name="vacstatus" class="form-control mb-2 form-select-lg mb-3 form-select" aria-label="Default select example">
+                  <option value="">Pick...</option>
+				  <option value="1st Dose">1st Dose</option>
+                  <option value="2nd Dose">2nd Dose</option>
                   </select>
               	</div>	  
 				<div class="form-group mb-2">
-                <label for="user_type">Gender</label>
-	              <select class="form-control mb-2 form-select-lg mb-3 form-select" aria-label="Default select example">
-                  <option selected>Male</option>
-                  <option option value="1">Female</option>
+                <label for="gender">Gender</label>
+	              <select name="gender" class="form-control mb-2 form-select-lg mb-3 form-select" aria-label="Default select example">
+				  <option value="">Choose. . .</option>
+                  <option value="Male">Male</option>
+                  <option value="Female">Female</option>
                   </select>
               	</div>
-				  <div class="form-group mb-2">
-                <label for="user_type">Civil Status</label>
-	              <select class="form-control mb-2 form-select-lg mb-3 form-select" aria-label="Default select example">
-                  <option selected>Single</option>
-                  <option option value="1">Married</option>
-                  </select>
-              	</div>
-		    	<div class="form-group mb-2">
-                <label for="user_type">User type</label>
-	              <select class="form-control mb-2 form-select-lg mb-3 form-select" aria-label="Default select example">
-                  <option selected>Finder</option>
-                  <option option value="1">Admin</option>
-                  </select>
-              	</div>
+				<div class="form-group mb-2">
               <div class="form-group mb-2">
                 <label for="status">Status</label>
-	              <select class="form-control mb-2 form-select-lg mb-3 form-select" aria-label="Default select example">
-                  <option selected>Inactive</option>
-                  <option option value="1">Active</option>
+	              <select name="status" class="form-control mb-2 form-select-lg mb-3 form-select" aria-label="Default select example">
+				  <option value="">Select. . .</option>
+                  <option value="Inactive">Inactive</option>
+                  <option value="Active">Active</option>
                 </select>
               </div>
 			  <div class="form-group mb-2">
 		      		<label for="name">Password</label>
-		      		<input type="password" class="form-control">
+		      		<input name="pass" id="pass" type="password" class="form-control">
 		      	</div>
 				  <div class="form-group mb-2">
 		      		<label for="name">Repeat Password</label>
-		      		<input type="password" class="form-control">
+		      		<input name="conpass" id="conpass" type="password" class="form-control">
 		      	</div>
               <div class="modal-footer">
                 <div class="form-group mb-2">
-	            	  <button type="submit" class="close-btn form-control btn btn-primary rounded px-3">Cancel</button>
+	            	  <button  class="close-btn form-control btn btn-primary rounded px-3">Cancel</button>
 	              </div>
                 <div class="form-group mb-2">
-	            	  <button type="submit" class="form-control btn btn-primary rounded submit px-3">Add</button>
+	            	  <button id="addadminbtn" class="form-control btn btn-primary rounded submit px-3">Add</button>
 	              </div>
               </div>
 	            
@@ -285,19 +274,13 @@
 		  </div>
 		</div>
 
+
 	<script src="assets/adminlist/js/jquery.min.js"></script>
   <script src="assets/adminlist/js/popper.js"></script>
   <script src="assets/adminlist/js/bootstrap.min.js"></script>
   <script src="assets/adminlist/js/main.js"></script>
-
-  <script>
-    $(document).ready(function(){
-        // Close modal on button click
-        $(".close-btn").click(function(){
-            $("#exampleModalCenter").modal('hide');
-        });
-    });
-  </script>
+  <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script> 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.js"></script>
 	</body>
 </html>
 
