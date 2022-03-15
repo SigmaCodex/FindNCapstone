@@ -110,7 +110,6 @@ $(document).on("click", "#addadminbtn", function () {
 		//select tag
 		var gender = $('select[name="gender"]').val();
 		var vacstatus = $('select[name="vacstatus"]').val();
-		var status = $('select[name="status"]').val();
 
 		$.ajax({
 			url: "registeradmin",
@@ -127,7 +126,6 @@ $(document).on("click", "#addadminbtn", function () {
 				conpass: conpass,
 				gender: gender,
 				vacstatus: vacstatus,
-				status: status,
 			},
 			// 	// contentType: false,
 			// 	//       cache: false,
@@ -144,9 +142,25 @@ $(document).on("click", "#addadminbtn", function () {
 					text: "Admin has been registered!",
 					icon: "success",
 					button: "Continue",
+				}).then((value) => {
+					$("#closebtn").trigger("click");
 				});
 			},
 		});
+
+		$("#CompShopPK").text("");
+		$("#first").val("");
+		$("#last").val("");
+		$("#username").val("");
+		$("#pnum").val("");
+		$("#email").val("");
+		$("#pass").val("");
+		$("#conpass").val("");
+		$("#date").val("");
+
+		//select tag
+		$('select[name="gender"]').val("");
+		$('select[name="vacstatus"]').val("");
 	} else {
 		swal(
 			{
@@ -164,10 +178,4 @@ $(document).on("click", "#addadminbtn", function () {
 			}
 		);
 	}
-});
-$(document).ready(function () {
-	// Close modal on button click
-	$(".close-btn").click(function () {
-		$("#exampleModalCenter").modal("hide");
-	});
 });

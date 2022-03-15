@@ -246,14 +246,6 @@
                   </select>
               	</div>
 				<div class="form-group mb-2">
-              <div class="form-group mb-2">
-                <label for="status">Status</label>
-	              <select name="status" class="form-control mb-2 form-select-lg mb-3 form-select" aria-label="Default select example">
-				  <option value="">Select. . .</option>
-                  <option value="Inactive">Inactive</option>
-                  <option value="Active">Active</option>
-                </select>
-              </div>
 			  <div class="form-group mb-2">
 		      		<label for="name">Password</label>
 		      		<input name="pass" id="pass" type="password" class="form-control">
@@ -264,7 +256,11 @@
 		      	</div>
               <div class="modal-footer">
                 <div class="form-group mb-2">
-	            	  <button  class="close-btn form-control btn btn-primary rounded px-3">Cancel</button>
+	            	  <!-- <button  class="close-btn form-control btn btn-primary rounded px-3">Cancel</button> -->
+					  <!-- <input value="Cancel" class="form-control btn btn-primary rounded px-3" id="close-btn" readonly="readonly"> -->
+					 	<button type="button" id="closebtn" class="close d-flex align-items-center justify-content-center" data-dismiss="modal">
+						 <input value="Cancel" class="form-control btn btn-primary rounded px-3" id="close-btn" readonly="readonly">
+		        		</button>
 	              </div>
                 <div class="form-group mb-2">
 	            	  <!-- <button input="" id="addadminbtn" class="form-control btn btn-primary rounded submit px-3">Add</button> -->
