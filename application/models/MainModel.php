@@ -41,6 +41,46 @@ class MainModel extends CI_Model{
 
         echo("added");
     }
+    public function registerAdmin(){
+        $Primarycode = 0;
+        $Primarycode = $this->generatePrimarykey();
+        //check if the primary key is taken;
+        $this->db->where('user_id',$Primarycode);
+        $query = $this->db->get('user');
+        if(!empty($query->result_array()))
+		{ 
+            $this->registerAdmin();
+		}
+		else
+		{
+            $datauser = array(
+                'user_id'   =>    $Primarycode,
+                'username'  => 	  $this->input->post('username'),
+                'password'  =>    $this->input->post('conpass'),
+                'user_type' =>    "Admin",
+                'status'    =>    "Active"
+            );
+                $this->db->insert('user',$datauser);
+
+            // $this->db->select('user_id');
+            // $this->db->where('user_id',$Primarycode);
+            // $query2 = $this->db->get('user');
+            // $resultquery = $query2->row_array();
+            
+            $datafinder = array(
+                'user_id'         =>     $Primarycode,
+                'shop_id_fk'      =>     $this->input->post('shop_id'),
+                'lastname'        => 	 $this->input->post('lastname'),
+                'firstname'       =>     $this->input->post('firstname'),
+                'birthdate'       => 	 $this->input->post('birthdate'),
+                'gender'          => 	 $this->input->post('gender'),
+                'email'           =>     $this->input->post('email'),
+                'contactaddress'  =>     $this->input->post('pnum'),
+            );
+                $this->db->insert('compmanager',$datafinder);
+
+		}
+    }
 
 
     
@@ -53,7 +93,7 @@ class MainModel extends CI_Model{
         $query = $this->db->get('user');
         if(!empty($query->result_array()))
 		{ 
-            $this->registerFind();
+            $this->registerFinder();
 		}
 		else
 		{
@@ -61,8 +101,8 @@ class MainModel extends CI_Model{
                 'user_id'   =>    $Primarycode,
                 'username'  => 	  $this->input->post('username'),
                 'password'  =>    $this->input->post('conpass'),
-                'user_type' =>    "finder",
-                'status'    =>    "active"
+                'user_type' =>    "Finder",
+                'status'    =>    "Active"
             );
                 $this->db->insert('user',$datauser);
 

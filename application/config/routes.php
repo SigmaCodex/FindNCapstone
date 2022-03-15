@@ -22,7 +22,12 @@ $route['view-ticket']     = 'main_controller/view_ticket';
 $route['add-admin'] = 'main_controller/addAdmin';
 $route['add-computershop'] = 'main_controller/addComputershop';
 $route['listofcomputershop'] = 'main_controller/listofcomputershop';
-$route['add-coordinates']    = 'main_controller/addcoordinates';
+$route['admin-list'] = 'main_controller/adminlist';
+
+//Logics
+    //SuperAdmin
+    $route['registeradmin'] = 'logicalcontroller/registerAdmin';
+    $route['add-coordinates']    = 'main_controller/addcoordinates';
 
 //Logics
     //SuperAdmin

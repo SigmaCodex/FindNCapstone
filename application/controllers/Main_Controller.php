@@ -54,8 +54,13 @@ class Main_Controller extends CI_Controller {
 	public function listofcomputershop(){
 		$this->load->view('superadmin/listofcomputershop');
 	}
+
+	public function adminList(){
+		$this->load->view('superadmin/adminlist');
+
 	public function addcoordinates(){
 		$this->load->view('superadmin/addcoordinates');
+
 	}
 
 	//shop admin show pages
