@@ -23,6 +23,7 @@ class MainModel extends CI_Model{
           );
           $this->session->set_userdata($datasession);
           return true;
+          
       }else{
         return false;
       }
@@ -41,6 +42,8 @@ class MainModel extends CI_Model{
         echo("added");
     }
 
+
+    
     //finders
     public function registerFinder(){
         $Primarycode = 0;
