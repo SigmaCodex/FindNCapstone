@@ -135,4 +135,8 @@ class MainModel extends CI_Model{
         echo $id;
         echo json_encode($datafinder);
     }
+    public function deleteComputerType($id){
+        $this->db->where('Ctype_id',$id);
+        $this->db->delete('computer_type');
+    }
 }

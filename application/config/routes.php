@@ -38,6 +38,7 @@ $route['listofcomputershop'] = 'main_controller/listofcomputershop';
     //admin
     $route['addComputerType/(:num)'] = 'logicalcontroller/addComputerType/$1';
     $route['updateComputerDetails/(:num)'] = 'logicalcontroller/updateComputerDetails/$1';
+    $route['deleteComputerType/(:num)'] = 'logicalcontroller/deleteComputerType/$1';
     //api 
     $route['goto-gcash']          = 'logicalcontroller/GotoGcash';
     $route['paymentexercise']     = 'main_controller/payment_exercise';
