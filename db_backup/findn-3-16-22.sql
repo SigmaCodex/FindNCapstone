@@ -2,10 +2,10 @@
 -- version 5.0.2
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Mar 16, 2022 at 10:06 AM
--- Server version: 10.4.13-MariaDB
--- PHP Version: 7.3.20
+-- Host: 
+-- Generation Time: Mar 16, 2022 at 04:03 PM
+-- Server version: 10.4.14-MariaDB
+-- PHP Version: 7.3.22
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -117,7 +117,9 @@ CREATE TABLE `computer_type` (
   `name` varchar(66) NOT NULL,
   `total_units` int(66) NOT NULL,
   `rate` int(66) NOT NULL,
-  `specs` varchar(66) NOT NULL
+  `specs` varchar(66) NOT NULL,
+  `comp_type_img` varchar(99) NOT NULL,
+  `status` varchar(99) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -330,7 +332,8 @@ ALTER TABLE `computer_ratings`
 -- Indexes for table `computer_type`
 --
 ALTER TABLE `computer_type`
-  ADD PRIMARY KEY (`Ctype_id`);
+  ADD PRIMARY KEY (`Ctype_id`),
+  ADD KEY `shop_id_fk` (`shop_id_fk`);
 
 --
 -- Indexes for table `comp_booking`
@@ -417,7 +420,7 @@ ALTER TABLE `computershop`
 -- AUTO_INCREMENT for table `computer_type`
 --
 ALTER TABLE `computer_type`
-  MODIFY `Ctype_id` int(55) NOT NULL AUTO_INCREMENT;
+  MODIFY `Ctype_id` int(55) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `notifications`
@@ -473,6 +476,12 @@ ALTER TABLE `compmanager`
 ALTER TABLE `computer_ratings`
   ADD CONSTRAINT `computer_ratings_ibfk_1` FOREIGN KEY (`shop_id`) REFERENCES `computershop` (`shop_id`),
   ADD CONSTRAINT `computer_ratings_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `user` (`user_id`);
+
+--
+-- Constraints for table `computer_type`
+--
+ALTER TABLE `computer_type`
+  ADD CONSTRAINT `computer_type_ibfk_1` FOREIGN KEY (`shop_id_fk`) REFERENCES `computershop` (`shop_id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
 -- Constraints for table `finders`
