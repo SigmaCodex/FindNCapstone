@@ -7,12 +7,12 @@
       <link rel="stylesheet" href="assets/css/findnRegister.css">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
-   
+
     </head>
    <body>
 
     </div>
-      <div class="container mt-5 col-sm-5 col-md-6">
+      <div class="container mt-3 mb-4 col-sm-5 col-md-6">
 
         <!-- background -->
         <div class="custom-shape-divider-top-1647366218" id="back">
@@ -108,7 +108,7 @@
                      <div class="label">
                         Phone Number
                      </div>
-                     <input type="Number" placeholder="+63">
+                     <input type="Number" placeholder="+63 | ">
                   </div>
                   <div class="field btns">
                      <button class="prev-1 prev">Previous</button>
@@ -123,7 +123,7 @@
                      <div class="label">
                         Date
                      </div>
-                     <input type="text">
+                     <input type="date">
                   </div>
                   <div class="field">
                      <div class="label">
@@ -142,24 +142,24 @@
                </div>
                <div class="page">
                   <div class="title">
-                     Vaccine Information
+                     Vaccine Information:
                   </div>
                   <div class="field">
                      <div class="label">
                         Vaccine Status
                      </div>
                      <select>
-                     <option>Vaccinated 1st Dose</option>
+                        <option>Unvaccinated</option>
                         <option>Vaccinated 1st Dose</option>
                         <option>Vaccinated 2nd Dose</option>
-                        <option>Unvaccinated</option>
+                        
                      </select>
                   </div>
                   <div class="field1">
                     <div class="label1">
-                        Upload Vaccination Card
                     </div>
-                     <input type="file" id="file" ></input>
+                     <h6 style="">*If you were able to book for a specific shop make sure to present it to the attendant of the said computer cafe.</h6>
+                     <br>
                   </div>
                   <div class="field btns">
                      <button class="prev-3 prev">Previous</button>
@@ -179,6 +179,12 @@
                   <div class="field">
                      <div class="label">
                         Password
+                     </div>
+                     <input type="password">
+                  </div>
+                  <div class="field">
+                     <div class="label">
+                        Confirm Password
                      </div>
                      <input type="password">
                   </div>
