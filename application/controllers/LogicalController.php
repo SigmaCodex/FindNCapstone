@@ -91,6 +91,17 @@ class LogicalController extends CI_Controller {
         $this->load->model('MainModel');
         $this->MainModel->updateComputerDetails($id);
     }
+    public function addComputerType($id){
+
+        $this->load->model('MainModel');
+        $this->MainModel->addComputerType($id);
+    }
+    public function deleteComputerType($id){
+
+        $this->load->model('MainModel');
+        $this->MainModel->deleteComputerType($id);
+    }
+    
 
     // api 
     public function GotoGcash(){
@@ -130,7 +141,7 @@ class LogicalController extends CI_Controller {
 			curl_close($curl);
             $decoded = json_decode($response, true);
             echo $decoded['data']['checkouturl'];
-			//  echo$response;
+			// echo$response;
 			// var_dump($response);
 		
 			//  $data = $decoded ['response']['data'][0];

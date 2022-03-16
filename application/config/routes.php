@@ -6,6 +6,7 @@ $route['shopadmin-dashboard'] = 'main_controller/admin_dashboard';
 $route['shopadmin-scanqr']    = 'main_controller/admin_scanqr';
 $route['shopadmin-bookings']  = 'main_controller/admin_bookings';
 $route['shopadmin-computerdetails'] = 'main_controller/shopadmin_computerdetails';
+$route['shopadmin-computertype'] = 'main_controller/shopadmin_addComputerType';
 
 $route['register'] = 'main_controller/viewRegister';
 $route['loginpage'] = 'main_controller/viewLogin';
@@ -41,7 +42,9 @@ $route['admin-list'] = 'main_controller/adminlist';
     $route['updateFinderAccount'] = 'logicalcontroller/updateFinderAccount';
     $route['select-computershops/(:any)/(:num)'] = 'logicalcontroller/selectComputerShop/$1/$2';
     //admin
+    $route['addComputerType/(:num)'] = 'logicalcontroller/addComputerType/$1';
     $route['updateComputerDetails/(:num)'] = 'logicalcontroller/updateComputerDetails/$1';
+    $route['deleteComputerType/(:num)'] = 'logicalcontroller/deleteComputerType/$1';
     //api 
     $route['goto-gcash']          = 'logicalcontroller/GotoGcash';
     $route['paymentexercise']     = 'main_controller/payment_exercise';

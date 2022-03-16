@@ -168,6 +168,21 @@ class MainModel extends CI_Model{
         $this->db->update('computershop',$datafinder);
         echo json_encode($datafinder);
     }
-
-	
+    public function addComputerType($id){
+        $datafinder = array(
+            'shop_id_fk'  =>    $id,
+            'name'   => 	 $this->input->post('comp_name'),
+            'total_units'   => 	 $this->input->post('comp_total'),
+            'rate'   => 	 $this->input->post('comp_rate'),
+            'specs'   => 	 $this->input->post('comp_specs'),
+            'comp_type_img' =>  $this->input->post('comp_img')
+        );
+        $this->db->insert('computer_type',$datafinder);
+        echo $id;
+        echo json_encode($datafinder);
+    }
+    public function deleteComputerType($id){
+        $this->db->where('Ctype_id',$id);
+        $this->db->delete('computer_type');
+    }
 }
