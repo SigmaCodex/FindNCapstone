@@ -53,8 +53,8 @@ $(document).ready(function () {
 			},
 			username: {
 				required: true,
-				minlength: 4,
-				maxlength: 8,
+				minlength: 8,
+				maxlength: 16,
 			},
 			pass: {
 				required: true,
