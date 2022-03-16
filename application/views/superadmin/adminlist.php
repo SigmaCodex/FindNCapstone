@@ -6,17 +6,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-	<link rel="stylesheet" href="assets/css/style.css">
+	<link rel="stylesheet" href="../assets/css/style.css">
 	<link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900" rel="stylesheet">
- 	<link rel="stylesheet" href="assets/css/ionicons.min.css">
+ 	<link rel="stylesheet" href="../assets/css/ionicons.min.css">
 
 	 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-	<script src="assets/admin/vendor/jquery/jquery.min.js"></script>
-  	<script src="assets/admin/vendor/bootstrap/js/bootstrap.min.js"></script>
-  	<script src="assets/js/adminlist.js"></script>
+	<script src="../assets/admin/vendor/jquery/jquery.min.js"></script>
+  	<script src="../assets/admin/vendor/bootstrap/js/bootstrap.min.js"></script>
+  	<script src="../assets/js/adminlist.js"></script>
   	<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script> 
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.js"></script>
-	<link rel="stylesheet" href="assets/css/register.css">
+	<link rel="stylesheet" href="../assets/css/register.css">
 
 	</head>
 	<body>
@@ -47,8 +47,10 @@
         			<h3 class="h5 mb-4 text-center"></h3>
         			<div class="card" style="width: 18rem;">
           				<div class="card-body">
-            				<h5 class="card-title">TNC Pro Cebu</h5>
-            				<p class="card-text"  id="CompShopPK">1</p>
+						  <?php foreach ($details as $s) {?>  
+            				<h5 class="card-title" ><?php echo $s->shop_name;?></h5>
+            				<p class="card-text" id="CompShopPK"><?php echo $s->shop_id;?></p>
+							<?php } ?>
           				</div>
           				<ul class="list-group list-group-flush">
             				<li class="list-group-item">Owner: <p>Ignatius Deodatus</p></li>
