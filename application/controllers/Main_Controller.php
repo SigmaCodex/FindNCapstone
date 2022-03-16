@@ -73,6 +73,9 @@ class Main_Controller extends CI_Controller {
 		$this->load->view('admin/computershopdetails');
 		//$this->load->view('admin/template/footer');
 	}
+	public function shopadmin_addComputerType(){
+		$this->load->view('admin/computertype');
+	}
 	
 	public function payment_exercise(){
 		 $this->load->view('payment');

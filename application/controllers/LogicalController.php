@@ -80,6 +80,11 @@ class LogicalController extends CI_Controller {
         $this->load->model('MainModel');
         $this->MainModel->updateComputerDetails($id);
     }
+    public function addComputerType($id){
+
+        $this->load->model('MainModel');
+        $this->MainModel->addComputerType($id);
+    }
 
     // api 
     public function GotoGcash(){
