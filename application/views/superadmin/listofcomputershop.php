@@ -67,6 +67,7 @@
 						    </tr>
 						  </thead>
 						  <tbody>
+							<!-- php -->
 						  <?php foreach ($details as $s) {?>  
 						    <tr class="alert" role="alert">
 						    	<td class="primary-key">
@@ -288,7 +289,7 @@
 		$(document).on("click",".view-shop",function(){
 			var id = $(this).attr("data");
 
-			alert(id);
+			window.location = "admin-list/" + id;
 		
 		});
 	</script>

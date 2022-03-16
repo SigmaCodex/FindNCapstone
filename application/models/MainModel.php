@@ -144,11 +144,10 @@ class MainModel extends CI_Model{
     }
 
 
-    public function selectComputerShop($name,$id){
+    public function selectComputerShop($id){
 		$this->db->select('*');
         $this->db->from('computershop');
         $this->db->where('shop_id',$id);
-        $this->db->where('shop_name',$name);
         $query = $this->db->get();
         return $query->result();
     }

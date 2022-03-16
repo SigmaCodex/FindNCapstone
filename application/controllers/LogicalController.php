@@ -80,9 +80,9 @@ class LogicalController extends CI_Controller {
         $result = $this->MainModel->getListOfComputerShops();
         echo json_encode($result);
     }
-    public function selectComputerShop($name,$id){
+    public function selectComputerShop($id){
         $this->load->model('MainModel');
-        $result = $this->MainModel->selectComputerShop($name,$id);
+        $result = $this->MainModel->selectComputerShop($id);
         echo json_encode($result);
     }
 
