@@ -36,10 +36,13 @@ class MainModel extends CI_Model{
         $data = array(
             'shop_name'   =>  $this->input->post('shop_name'),
             'address'  => 	  $this->input->post('address'),
+            'contact_number'  => 	  $this->input->post('number'),
+            'email_address'  => 	  $this->input->post('email_add'),
+            'coordinates'  => 	   $this->input->post('coor'),
             );
-         $this->db->insert('computershop',$data);
 
-        echo("added");
+        $this->db->insert('computershop',$data);
+        // echo json_encode($data);
     }
     public function registerAdmin(){
         $Primarycode = 0;

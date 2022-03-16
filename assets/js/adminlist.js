@@ -130,12 +130,12 @@ $(document).on("click", "#addadminbtn", function () {
 			// 	// contentType: false,
 			// 	//       cache: false,
 			// 	// processData:false,
-			// 	// beforeSend : function()
-			// 	// {
-			// 	// //$("#preview").fadeOut();
-			// 	// // $("#err").fadeOut();
-			// 	// alert("processing");
-			// 	// },
+				// beforeSend : function()
+				// {
+				// //$("#preview").fadeOut();
+				// // $("#err").fadeOut();
+				// alert("processing");
+				// },
 			success: function (data) {
 				swal({
 					title: "Good job!",

@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en">
   <head>
-  	<title>Admin Table</title>
+  	<title>Super Admin List Of Computer</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
@@ -16,6 +16,7 @@
   	<!-- <script src="assets/js/adminlist.js"></script> -->
   	<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script> 
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.js"></script>
+	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 	<link rel="stylesheet" href="assets/css/register.css">
 
 	<style>
@@ -58,126 +59,40 @@
 						<table class="table" style="margin:0;" !important>
 						  <thead class="thead-primary">
 						    <tr>
-						      <th>&nbsp;</th>
 						      <th>No.</th>
 						      <th>Name</th>
-						      <th>Status</th>
+						      <th>Email Address</th>
+						      <th>Contact number</th>
 						      <th>Action</th>
 						    </tr>
 						  </thead>
 						  <tbody>
+						  <?php foreach ($details as $s) {?>  
 						    <tr class="alert" role="alert">
-						    	<td>
-						    		<label class="checkbox-wrap checkbox-primary">
-										<input type="checkbox">
-									  	<span span class="checkmark"></span>
-									</label>
+						    	<td class="primary-key">
+										<?php echo $s->shop_id;?>	
 						    	</td>
-						    	<td>
-						    		<!-- <div class="img" style="background-image: url(images/product-1.png);"></div> -->
+						    	<td class="shop-name">
+						    			<?php echo $s->shop_name;?>	
 						    	</td>
-						    	<td>
-						      		<div class="email">
-						      			<span>Sneakers Shoes 2020 For Men </span>
-						      		</div>
+						    	<td class="shop-email">
+						      	
+										<?php echo $s->email_address;?>	
+						      	
 						      	</td>
-						      	<td>Inactive</td>
+						      	<td class="shop-contactnum"><?php echo $s->contact_number;?></td>
 						      	<td>
-						      		<button type="button" class="close" data-dismiss="alert" aria-label="Close">
-				            			<span aria-hidden="true"><i class="fa fa-close"></i></span>
-				          			</button>
+									<div style="display:flex;justify-content:space-around;align-items:center;">
+										<button type="button" class="view-shop" data="<?php echo $s->shop_id;?>" style="padding: 0;background-color: transparent;border: 0;appearance: none;">
+												<span aria-hidden="true"><i class="fa fa-eye"></i></span>
+										</button>
+										<button type="button" class="remove-shop" data="<?php echo $s->shop_id;?>" style="padding: 0;background-color: transparent;border: 0;appearance: none;">
+												<span aria-hidden="true"><i class="fa fa-close"></i></span>
+										</button>
+								   </div>
 				        		</td>
-						    	</tr>
-						    	<tr class="alert" role="alert">
-						    		<td>
-						    			<label class="checkbox-wrap checkbox-primary">
-											<input type="checkbox">
-										  	<span pan class="checkmark"></span>
-										</label>
-						    	</td>
-						    	<td>
-						    		<!-- <div class="img" style="background-image: url(images/product-2.png);"></div> -->
-						    	</td>
-						      	<td>
-						      	<div class="email">
-						      		<span>Sneakers Shoes 2020 For Men </span>
-						      	</div>
-						      	</td>
-						      	<td>Inactive</td>
-						      	<td>
-						      		<button type="button" class="close" data-dismiss="alert" aria-label="Close">
-				            			<span aria-hidden="true"><i class="fa fa-close"></i></span>
-				          			</button>
-				        		</td>
-						    	</tr>
-							    <tr class="alert" role="alert">
-							    	<td>
-							    		<label class="checkbox-wrap checkbox-primary">
-											  <input type="checkbox">
-											  <span class="checkmark"></span>
-										</label>
-							    	</td>
-							    	<td>
-						    		<!-- <div class="img" style="background-image: url(images/product-3.png);"></div> -->
-						    		</td>
-						      		<td>
-						      			<div class="email">
-						      				<span>Sneakers Shoes 2020 For Men </span>
-						      			</div>
-						      		</td>
-						      		<td>Inactive</td>
-						      		<td>
-						      			<button type="button" class="close" data-dismiss="alert" aria-label="Close">
-				            				<span aria-hidden="true"><i class="fa fa-close"></i></span>
-				          				</button>
-				        			</td>
-						    		</tr>
-
-						    		<tr class="alert" role="alert">
-						    			<td>
-						    				<label class="checkbox-wrap checkbox-primary">
-										  		<input type="checkbox">
-										  		<span class="checkmark"></span>
-											</label>
-						    			</td>
-						    			<td>
-						    				<!-- <div class="img" style="background-image: url(images/product-4.png);"></div> -->
-						    			</td>
-						      			<td>
-						      				<div class="email">
-						      				<span>Sneakers Shoes 2020 For Men </span>
-						      			</div>
-						      </td>
-						      <td>Inactive</td>
-						      <td>
-						      	<button type="button" class="close" data-dismiss="alert" aria-label="Close">
-				            	<span aria-hidden="true"><i class="fa fa-close"></i></span>
-				          	</button>
-				        	</td>
 						    </tr>
-
-						    <tr class="alert" role="alert">
-						    	<td class="border-bottom-0">
-						    		<label class="checkbox-wrap checkbox-primary">
-										  <input type="checkbox">
-										  <span class="checkmark"></span>
-										</label>
-						    	</td>
-						    	<td class="border-bottom-0">
-						    		<!-- <div class="img" style="background-image: url(images/product-1.png);"></div> -->
-						    	</td>
-						      <td class="border-bottom-0">
-						      	<div class="email">
-						      		<span>Sneakers Shoes 2020 For Men </span>
-						      	</div>
-						      </td>
-						      <td class="border-bottom-0">Inactive</td>
-						      <td class="border-bottom-0">
-						      	<button type="button" class="close" data-dismiss="alert" aria-label="Close">
-				            	<span aria-hidden="true"><i class="fa fa-close"></i></span>
-				          	</button>
-				        	</td>
-						    </tr>
+						    <?php }?>  	
 						  </tbody>
 						</table>
 					</div>
@@ -202,15 +117,15 @@
 		      		</div>
 					<div class="form-group mb-2">
 		      			<label for="name">Contact Number</label>
-		      			<input name="username" id="username" type="text" class="form-control">
+		      			<input name="username" id="c_number" type="text" class="form-control">
 		      		</div> 
 					<div class="form-group mb-2">
 		      			<label for="name">Email Address</label>
-		      			<input name="username" id="username" type="text" class="form-control">
+		      			<input name="username" id="email" type="text" class="form-control">
 		      		</div>
 					<div class="form-group mb-2">
 		      			<label for="name">Address</label>
-		      			<input name="username" id="username" type="text" class="form-control">
+		      			<input name="username" id="Address" type="text" class="form-control">
 		      		</div>
 					<div class="form-group mb-2">
 		      			<label for="name">Latitude</label>
@@ -222,11 +137,21 @@
 		      		</div>
 					<div>		
 		      </div>
-			  <div class="geocoder">
-							<div id="geocoder" ></div>
-						</div>
-						<div id="map"></div>
-					</div>
+			    <div class="geocoder"><div id="geocoder" ></div></div>
+				<div id="map"></div>
+				<div class="modal-footer">
+                	<div class="form-group mb-2">
+	            	  <!-- <button  class="close-btn form-control btn btn-primary rounded px-3">Cancel</button> -->
+					  <!-- <input value="Cancel" class="form-control btn btn-primary rounded px-3" id="close-btn" readonly="readonly"> -->
+					 	<button type="button" id="closebtn" class="close d-flex align-items-center justify-content-center" data-dismiss="modal">
+						 <input value="Cancel" class="form-control btn btn-primary rounded px-3" id="close-btn" readonly="readonly">
+		        		</button>
+	              </div>
+                <div class="form-group mb-2">
+	            	  <!-- <button input="" id="addadminbtn" class="form-control btn btn-primary rounded submit px-3">Add</button> -->
+					  <input value="Add" class="form-control btn btn-primary rounded submit px-3" id="addcomputershopbtn">
+	              </div>
+              </div>
 		    </div>
 		  </div>
 		</div>
@@ -236,9 +161,8 @@
 
 </html>
 
-
+<!-- script for mapping  -->
 <script>
-   
          var user_location = [123.89702509681695, 10.297418655907592];
         mapboxgl.accessToken = 'pk.eyJ1IjoiZG5rbzEzIiwiYSI6ImNrbWZxNWl5eDM3amcyeGp4cHRvN3pxdGgifQ.HM7QZISQcECRgm9aKAZysg';
         var map = new mapboxgl.Map({
@@ -327,7 +251,58 @@
         //         }
         //     });
         // });
-
         document.getElementById('geocoder').appendChild(geocoder.onAdd(map));
-
     </script>
+	<!-- add computer shop ajax logic -->
+	<script>
+		$(document).on("click","#addcomputershopbtn",function(){
+			var s_name = $('#shopName').val();
+			var c_number = $('#c_number').val();
+			var email = $('#email').val();
+			var add = $('#Address').val();
+			var lat = $('#lat').val();
+            var lng = $('#lng').val();
+			var coordinate = lat + ',' + lng;
+
+			$.ajax({
+                url: "addshop",
+                method: 'POST',
+                data:{shop_name:s_name,number:c_number,email_add:email,address:add,coor:coordinate},
+                success: function(data){
+                    // window.location = "listofcomputershop";
+					swal({
+						title: "Good job!",
+						text: "ComputerShop has been registered!",
+						icon: "success",
+						button: "Continue",
+					}).then((value) => {
+						window.location = "listofcomputershop";
+					});					
+                }
+            });
+
+		});
+	</script>
+	<!-- script for viewing the shop -->
+	<script>
+		$(document).on("click",".view-shop",function(){
+			var id = $(this).attr("data");
+
+			alert(id);
+		
+		});
+	</script>
+
+	<!-- script for removing shop -->
+	<script>
+		$(document).on("click",".remove-shop",function(){
+			var id = $(this).attr("data");
+
+			alert(id);
+			swal("Are you sure?", {
+				dangerMode: true,
+				buttons: true,
+				});
+
+		});
+	</script>

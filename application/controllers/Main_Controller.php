@@ -56,14 +56,14 @@ class Main_Controller extends CI_Controller {
         $this->load->view('superadmin/addadmin');
     }
 	public function listofcomputershop(){
-		$this->load->view('superadmin/listofcomputershop');
+		
+		$this->load->model('MainModel');
+		$val['details'] = $this->MainModel->getListOfComputerShops();
+		$this->load->view('superadmin/listofcomputershop',$val);
 	}
 
 	public function adminList(){
 		$this->load->view('superadmin/adminlist');
-	}
-	public function addcoordinates(){
-		$this->load->view('superadmin/addcoordinates');
 	}
 
 	//shop admin show pages

@@ -10,7 +10,7 @@ $route['shopadmin-computerdetails'] = 'main_controller/shopadmin_computerdetails
 $route['register'] = 'main_controller/viewRegister';
 $route['loginpage'] = 'main_controller/viewLogin';
 
-// dublin update
+
 $route['findnRegister'] = 'main_controller/viewFindnRegister';
 $route['findnlogin'] = 'main_controller/viewFindNLogin';
 
@@ -30,11 +30,8 @@ $route['admin-list'] = 'main_controller/adminlist';
 //Logics
     //SuperAdmin
     $route['registeradmin'] = 'logicalcontroller/registerAdmin';
-    $route['add-coordinates']    = 'main_controller/addcoordinates';
-
-//Logics
-    //SuperAdmin
     $route['addshop'] = 'logicalcontroller/addComputerShop';
+    
     //sample
     $route['sample/(:num)'] = 'logicalcontroller/sample/$1';
     //finders
