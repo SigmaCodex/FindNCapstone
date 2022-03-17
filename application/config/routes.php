@@ -21,6 +21,7 @@ $route['computerbform'] = 'main_controller/viewcompbookForm';
 $route['viewMap']       = 'main_controller/viewMap';
 $route['findershomepage'] = 'main_controller/viewFinders_HomePage';
 $route['view-ticket']     = 'main_controller/view_ticket';
+$route['generate-QR']     = 'main_controller/generateQrCode';
 
 //superadmin 
 $route['add-admin'] = 'main_controller/addAdmin';

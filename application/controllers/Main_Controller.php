@@ -41,6 +41,23 @@ class Main_Controller extends CI_Controller {
 	public function view_ticket(){
 		$this->load->view('viewticket');
 	}
+	public function generateQrCode(){
+		$this->load->library('bb_qrcode');
+
+		$data = "John KEn DUblinGwapo,
+				2ndDose, 
+				Arrival Time:4:30 pm";
+
+		$qr_image = 'qrCode-'.date('m-d-y-h-i-s').'.png';
+		$params['data'] = $data;
+		$params['level'] = 'M';
+		$params['size'] = 6;
+		$params['savename'] = FCPATH.'assets/QrCodes/'.$qr_image;
+		$this->bb_qrcode->generate($params);
+
+		$details['qr_image'] = $qr_image;
+		$this->load->view('generateQRcode',$details);
+	}
 	
 	//added types of booking form (printing/computer)
 	public function viewcompbookForm(){
