@@ -21,7 +21,7 @@
         <div class="signin-signup">
 
           <!-- SIGN form -->
-          <form action="#" class="sign-in-form">
+          <form  class="sign-in-form">
             <div class="log-in-animation">
               <!-- SVG LOG IN START -->
               <svg width="250" 
