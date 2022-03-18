@@ -44,7 +44,7 @@
         			<h3 class="h5 mb-4 text-center"></h3>
         			<div class="card" style="width: 18rem;">
           				<div class="card-body">
-						  <?php foreach ($details as $s) {?>  
+						  <?php foreach ($compDetails as $s) {?>  
             				<h5 class="card-title" ><?php echo $s->shop_name;?></h5>
             				<p class="card-text" id="CompShopPK"><?php echo $s->shop_id;?></p>
 					
@@ -73,118 +73,33 @@
 						    </tr>
 						  </thead>
 						  <tbody>
-						    <tr class="alert" role="alert">
-						    	<td>
-						    		<label class="checkbox-wrap checkbox-primary">
-										<input type="checkbox">
-									  	<span span class="checkmark"></span>
-									</label>
-						    	</td>
-						    	<td>
-						    		<!-- <div class="img" style="background-image: url(images/product-1.png);"></div> -->
-						    	</td>
-						    	<td>
-						      		<div class="email">
-						      			<span>Sneakers Shoes 2020 For Men </span>
+						  <?php foreach($adminDetails as $aD){ ?>
+							<tr class="alert" role="alert">
+							<td>
+								<label class="checkbox-wrap checkbox-primary">
+									<input type="checkbox">
+									  <span span class="checkmark"></span>
+								</label>
+							</td>
+							<td><?php echo $aD->user_id ?></td>
+							<td>
+								  <div class="email">
+									  <span><?php echo $aD->firstname?> <?php echo $aD->lastname?></span>
 						      		</div>
 						      	</td>
-						      	<td>Inactive</td>
+						      	<td><?php echo $aD->email ?></td>
 						      	<td>
-						      		<button type="button" class="close" data-dismiss="alert" aria-label="Close">
-				            			<span aria-hidden="true"><i class="fa fa-close"></i></span>
-				          			</button>
+								  <div style="display:flex;justify-content:space-around;align-items:center;">
+										<button type="button" class="view-shop" data="<?php echo $s->shop_id;?>" style="padding: 0;background-color: transparent;border: 0;appearance: none;">
+												<span aria-hidden="true"><i class="fa fa-eye"></i></span>
+										</button>
+										<button type="button" class="remove-shop" data="<?php echo $s->shop_id;?>" style="padding: 0;background-color: transparent;border: 0;appearance: none;">
+												<span aria-hidden="true"><i class="fa fa-close"></i></span>
+										</button>
+								   </div>
 				        		</td>
-						    	</tr>
-						    	<tr class="alert" role="alert">
-						    		<td>
-						    			<label class="checkbox-wrap checkbox-primary">
-											<input type="checkbox">
-										  	<span pan class="checkmark"></span>
-										</label>
-						    	</td>
-						    	<td>
-						    		<!-- <div class="img" style="background-image: url(images/product-2.png);"></div> -->
-						    	</td>
-						      	<td>
-						      	<div class="email">
-						      		<span>Sneakers Shoes 2020 For Men </span>
-						      	</div>
-						      	</td>
-						      	<td>Inactive</td>
-						      	<td>
-						      		<button type="button" class="close" data-dismiss="alert" aria-label="Close">
-				            			<span aria-hidden="true"><i class="fa fa-close"></i></span>
-				          			</button>
-				        		</td>
-						    	</tr>
-							    <tr class="alert" role="alert">
-							    	<td>
-							    		<label class="checkbox-wrap checkbox-primary">
-											  <input type="checkbox">
-											  <span class="checkmark"></span>
-										</label>
-							    	</td>
-							    	<td>
-						    		<!-- <div class="img" style="background-image: url(images/product-3.png);"></div> -->
-						    		</td>
-						      		<td>
-						      			<div class="email">
-						      				<span>Sneakers Shoes 2020 For Men </span>
-						      			</div>
-						      		</td>
-						      		<td>Inactive</td>
-						      		<td>
-						      			<button type="button" class="close" data-dismiss="alert" aria-label="Close">
-				            				<span aria-hidden="true"><i class="fa fa-close"></i></span>
-				          				</button>
-				        			</td>
-						    		</tr>
-
-						    		<tr class="alert" role="alert">
-						    			<td>
-						    				<label class="checkbox-wrap checkbox-primary">
-										  		<input type="checkbox">
-										  		<span class="checkmark"></span>
-											</label>
-						    			</td>
-						    			<td>
-						    				<!-- <div class="img" style="background-image: url(images/product-4.png);"></div> -->
-						    			</td>
-						      			<td>
-						      				<div class="email">
-						      				<span>Sneakers Shoes 2020 For Men </span>
-						      			</div>
-						      </td>
-						      <td>Inactive</td>
-						      <td>
-						      	<button type="button" class="close" data-dismiss="alert" aria-label="Close">
-				            	<span aria-hidden="true"><i class="fa fa-close"></i></span>
-				          	</button>
-				        	</td>
 						    </tr>
-
-						    <tr class="alert" role="alert">
-						    	<td class="border-bottom-0">
-						    		<label class="checkbox-wrap checkbox-primary">
-										  <input type="checkbox">
-										  <span class="checkmark"></span>
-										</label>
-						    	</td>
-						    	<td class="border-bottom-0">
-						    		<!-- <div class="img" style="background-image: url(images/product-1.png);"></div> -->
-						    	</td>
-						      <td class="border-bottom-0">
-						      	<div class="email">
-						      		<span>Sneakers Shoes 2020 For Men </span>
-						      	</div>
-						      </td>
-						      <td class="border-bottom-0">Inactive</td>
-						      <td class="border-bottom-0">
-						      	<button type="button" class="close" data-dismiss="alert" aria-label="Close">
-				            	<span aria-hidden="true"><i class="fa fa-close"></i></span>
-				          	</button>
-				        	</td>
-						    </tr>
+						<?php } ?>  
 						  </tbody>
 						</table>
 					</div>

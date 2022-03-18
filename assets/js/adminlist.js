@@ -112,7 +112,7 @@ $(document).on("click", "#addadminbtn", function () {
 		var vacstatus = $('select[name="vacstatus"]').val();
 
 		$.ajax({
-			url: "registeradmin",
+			url: "http://localhost/FindNCapstone/registeradmin",
 			type: "POST",
 			data: {
 				shop_id: CSPK,
@@ -130,12 +130,12 @@ $(document).on("click", "#addadminbtn", function () {
 			// 	// contentType: false,
 			// 	//       cache: false,
 			// 	// processData:false,
-				// beforeSend : function()
-				// {
-				// //$("#preview").fadeOut();
-				// // $("#err").fadeOut();
-				// alert("processing");
-				// },
+			// beforeSend : function()
+			// {
+			// //$("#preview").fadeOut();
+			// // $("#err").fadeOut();
+			// alert("processing");
+			// },
 			success: function (data) {
 				swal({
 					title: "Good job!",
@@ -143,20 +143,21 @@ $(document).on("click", "#addadminbtn", function () {
 					icon: "success",
 					button: "Continue",
 				}).then((value) => {
-					$("#closebtn").trigger("click");
+					// $("#closebtn").trigger("click");
+					window.location = "http://localhost/FindNCapstone/admin-list/" + CSPK;
 				});
 			},
 		});
 
-		$("#CompShopPK").text("");
-		$("#first").val("");
-		$("#last").val("");
-		$("#username").val("");
-		$("#pnum").val("");
-		$("#email").val("");
-		$("#pass").val("");
-		$("#conpass").val("");
-		$("#date").val("");
+		// $("#CompShopPK").text("");
+		// $("#first").val("");
+		// $("#last").val("");
+		// $("#username").val("");
+		// $("#pnum").val("");
+		// $("#email").val("");
+		// $("#pass").val("");
+		// $("#conpass").val("");
+		// $("#date").val("");
 
 		//select tag
 		$('select[name="gender"]').val("");
