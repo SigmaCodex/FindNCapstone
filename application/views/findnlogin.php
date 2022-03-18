@@ -21,7 +21,7 @@
         <div class="signin-signup">
 
           <!-- SIGN form -->
-          <form  class="sign-in-form">
+          <form class="sign-in-form">
             <div class="log-in-animation">
               <!-- SVG LOG IN START -->
               <svg width="250" 
@@ -76,7 +76,7 @@
               <input type="password" id="pass" placeholder="Password" />
             </div>
            
-            <input type="submit" value="Login" id="btn-login" class="loginButton" />
+            <input value="Login" id="btn-login" class="loginButton" style="text-align:center;"/>
             
             <p class="social-text ">Don't have an account yet? <br>Register below!</p>
             <div class="social-media">
