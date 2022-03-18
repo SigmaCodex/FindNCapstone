@@ -143,6 +143,13 @@ class MainModel extends CI_Model{
         return $query->result();
     }
 
+    public function getListOfAdmins($id){
+		$this->db->select('*');
+        $this->db->from('compmanager');
+        $this->db->where('shop_id_fk',$id);
+        $query = $this->db->get();
+        return $query->result();
+    }
 
     public function selectComputerShop($id){
 		$this->db->select('*');

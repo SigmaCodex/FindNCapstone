@@ -28,6 +28,7 @@ $route['add-admin'] = 'main_controller/addAdmin';
 $route['add-computershop'] = 'main_controller/addComputershop';
 $route['listofcomputershop'] = 'main_controller/listofcomputershop';
 $route['admin-list/(:num)'] = 'main_controller/adminlist/$1';
+$route['getadmin-list/(:num)'] = 'logicalcontroller/getListOfAdmins/$1';
 
 //Logics
     //SuperAdmin

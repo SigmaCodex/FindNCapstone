@@ -81,7 +81,8 @@ class Main_Controller extends CI_Controller {
 
 	public function adminList($id){
 		$this->load->model('MainModel');
-		$val['details'] = $this->MainModel->selectComputerShop($id);
+		$val['compDetails'] = $this->MainModel->selectComputerShop($id);
+		$val['adminDetails'] = $this->MainModel->getListOfAdmins($id);
 		$this->load->view('superadmin/adminlist',$val);
 	}
 
