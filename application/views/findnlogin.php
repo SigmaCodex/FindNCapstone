@@ -213,7 +213,7 @@
 					if(data == "finder"){
 						window.location = "findershomepage";
 					}else if(data == "superadmin"){
-						alert("superadmin");
+            window.location = "listofcomputershop";
 					}
 					else{
 						swal(

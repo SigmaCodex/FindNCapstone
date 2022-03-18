@@ -24,9 +24,6 @@
 		<nav>
         <ul class="menu">
             <li class="logo"><a href="#">FindN</a></li>
-            <li class="item"><a href="#">Home</a></li>
-            <li class="item"><a href="#">About</a></li>
-            <li class="item"><a href="#">Services</a></li>
             </li>
             <li class="item button secondary"><a href="#">Log out</a></li>
             <li class="toggle"><span class="bars"></span></li>
@@ -50,15 +47,16 @@
 						  <?php foreach ($details as $s) {?>  
             				<h5 class="card-title" ><?php echo $s->shop_name;?></h5>
             				<p class="card-text" id="CompShopPK"><?php echo $s->shop_id;?></p>
-							<?php } ?>
+					
           				</div>
           				<ul class="list-group list-group-flush">
-            				<li class="list-group-item">Owner: <p>Ignatius Deodatus</p></li>
-              				<li class="list-group-item">Adress: <p>Santiangko</p></li>
+            				<li class="list-group-item">ContactNumber: <p><?php echo $s->contact_number;?></p></li>
+              				<li class="list-group-item">Adress: <p><?php echo $s->address;?></p></li>
 						</ul>
           				<div class="card-body">
             				<a href="#" class="card-link">Edit Details</a>
           				</div>
+						  <?php } ?>
         			</div>
       			</div>
 				<div class="col-md-9 col-xs-1">

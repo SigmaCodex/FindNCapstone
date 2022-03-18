@@ -39,7 +39,10 @@
 	<section class="ftco-section">
 		<nav>
         <ul class="menu">
+            <li class="logo"><a href="#">FindN</a></li>
+            </li>
             <li class="item button secondary"><a href="#">Log out</a></li>
+            <li class="toggle"><span class="bars"></span></li>
         </ul>
     	</nav>
 		<div class="container">
