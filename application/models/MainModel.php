@@ -39,6 +39,7 @@ class MainModel extends CI_Model{
             'contact_number'  => 	  $this->input->post('number'),
             'email_address'  => 	  $this->input->post('email_add'),
             'coordinates'  => 	   $this->input->post('coor'),
+            'Comp_Status'   => "Active"
             );
 
         $this->db->insert('computershop',$data);
@@ -139,6 +140,7 @@ class MainModel extends CI_Model{
     public function getListOfComputerShops(){
         $this->db->select('*');
         $this->db->from('computershop');
+        $this->db->where('Shop_Status','Active');
         $query = $this->db->get();
         return $query->result();
     }
