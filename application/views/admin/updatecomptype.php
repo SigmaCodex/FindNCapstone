@@ -10,12 +10,12 @@
     <div class="df-content">
 
         <section class="container df-main">
-            <a href="#" id="df-contact" class="df-contact">Add Computer Type</a>
+            <a href="#" id="df-contact" class="df-contact">Edit Computer Type</a>
             <div class="df-modal">
                 <div class="df-modal-overlay"></div>
                 <div class="df-modal-content">
-                    <h2>Add Computer Type</h2>
-                    <input id="compshop_id" value="1" type="text">
+                    <h2>Edit Computer Type Form</h2>
+                    <input id="type_ID" value="1" type="text"></input>
                     <form class="df-form">
                         <div class="df-input-box">
                             <input id="comp_name" type="sujet" name="sujet" placeholder="Computer Type Name" required>
@@ -40,7 +40,7 @@
                             <input id="comp_img" type="file" accept="image/*" />
                             <label for="sujet"></label>
                         </div>
-                        <input id="idbtn" value="ADD TYPE" />
+                        <input id="idbtn" value="SAVE" />
                     </form>
                 </div>
             </div>
@@ -52,14 +52,14 @@
 <script src="assets/js/ctype.js"></script>
 <script>
   $(document).on("click", '#idbtn', function() {
-    var shopID = $('#compshop_id').val();
+    var type_ID = $('#type_ID').val();
     var name = $('#comp_name').val();
     var total = $('#comp_total').val();
     var rate = $('#comp_rate').val();
     var specs = $('#comp_specs').val();
     var cimage = $('#comp_img').val();
     $.ajax({
-          url: "addcomtype/"+shopID,
+          url: "updateCompType/"+type_ID,
           type: "POST",
           data:{comp_name:name,comp_total:total,comp_rate:rate,comp_specs:specs,comp_img:cimage},
           beforeSend : function()

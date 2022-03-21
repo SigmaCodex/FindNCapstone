@@ -80,6 +80,11 @@ class LogicalController extends CI_Controller {
         $result = $this->MainModel->getListOfComputerShops();
         echo json_encode($result);
     }
+    public function getListOfComputerTypes(){
+        $this->load->model('MainModel');
+        $result = $this->MainModel->getListOfComputerTypes();
+        echo json_encode($result);
+    }
 
     public function getListOfAdmins($id){
         $this->load->model('MainModel');
@@ -94,6 +99,7 @@ class LogicalController extends CI_Controller {
     }
 
     //ADMIN
+    //Computer Type
     public function updateComputerDetails($id){
         $this->load->model('MainModel');
         $this->MainModel->updateComputerDetails($id);
@@ -108,7 +114,10 @@ class LogicalController extends CI_Controller {
         $this->load->model('MainModel');
         $this->MainModel->deleteComputerType($id);
     }
-    
+    public function updateComputerType($id){
+        $this->load->model('MainModel');
+        $this->MainModel->updateComputerType($id);
+    }
 
     // api 
     public function GotoGcash(){

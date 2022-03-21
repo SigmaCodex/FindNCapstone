@@ -108,14 +108,20 @@ class Main_Controller extends CI_Controller {
 		$this->load->view('admin/computershopdetails');
 		//$this->load->view('admin/template/footer');
 	}
+	public function shopadmin_computertypeList(){
+		$this->load->model('MainModel');
+		$val['details'] = $this->MainModel->getListOfComputerTypes();
+		$this->load->view('admin/computertypelist',$val);
+	}
+	public function shopadmin_updatecompType(){
+		$this->load->view('admin/updatecomptype');
+	}
+
 	public function shopadmin_addComputerType(){
 		$this->load->view('admin/computertype');
 	}
-	
 	public function payment_exercise(){
 		 $this->load->view('payment');
 	}
-
- 
 }
     
