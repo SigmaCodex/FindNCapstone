@@ -211,4 +211,24 @@ class MainModel extends CI_Model{
         $this->db->update('computer_type',$datafinder);
         echo json_encode($datafinder);
     }
+    //shop images
+    public function uploadshopimages($shop_id){
+        $date = date('d-m-y');
+        $image_data = $this->upload->data();
+        $data = array(
+            'shop_id'  =>  $shop_id,
+            'img_file'  =>  $image_data['file_name'],
+            'date'  =>  $date,
+        );
+
+        echo json_encode($data);
+        $this->db->insert('shop_image', $data);
+    }
+    public function listshopimages($shop_id){
+        $this->db->select('*');
+        $this->db->from('shop_image');
+        $this->db->where('shop_id',$shop_id);
+        $query = $this->db->get();
+        return $query->result();
+    }
 }

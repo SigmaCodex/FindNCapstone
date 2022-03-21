@@ -64,14 +64,6 @@ class Main_Controller extends CI_Controller {
 		$this->load->view('computerbform');
 	}
 	//super admin
-	public function addComputershop()
-	{
-        $this->load->view('superadmin/addcomputershop');
-    }
-	public function addAdmin()
-	{
-        $this->load->view('superadmin/addadmin');
-    }
 	public function listofcomputershop(){
 		$session = $this->session->userdata('username');
 		if(!$session){
@@ -131,6 +123,12 @@ class Main_Controller extends CI_Controller {
 	}
 	public function payment_exercise(){
 		 $this->load->view('payment');
+	}
+	public function shopimages($shop_id){
+		$this->load->model('MainModel');
+		$val['details'] = $this->MainModel->listshopimages($shop_id);
+		$this->load->view('admin/shopimages',$val);
+		
 	}
 }
     

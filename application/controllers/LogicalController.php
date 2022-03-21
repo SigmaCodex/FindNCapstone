@@ -104,7 +104,7 @@ class LogicalController extends CI_Controller {
     }
 
     //ADMIN
-    //Computer Type
+        //Computer Type
     public function updateComputerDetails($id){
         $this->load->model('MainModel');
         $this->MainModel->updateComputerDetails($id);
@@ -123,7 +123,28 @@ class LogicalController extends CI_Controller {
         $this->load->model('MainModel');
         $this->MainModel->updateComputerType($id);
     }
+        //Shop Computer Details
+    public function uploadshopimages($shop_id){
+            $this->load->helper(array('form', 'url')); 
 
+            $config['upload_path']          = './assets/upload/shop';
+            $config['allowed_types']        = 'gif|jpg|png|jpeg';
+            $config['max_size']             = 5000;
+            $config['max_width']            = 5024;
+            $config['max_height']           = 5268;
+            $this->load->library('upload', $config);
+            $this->upload->initialize($config);
+            if(! $this->upload->do_upload('imageUpload'))
+            {
+                echo $this->upload->display_errors();
+                echo "error";
+            }else{
+
+                $this->load->model('MainModel');
+                $this->MainModel->uploadshopimages($shop_id);
+            
+            }
+    }
     // api 
     public function GotoGcash(){
         $shop = $this->input->post('shop');
