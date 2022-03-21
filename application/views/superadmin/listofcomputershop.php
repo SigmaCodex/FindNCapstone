@@ -39,9 +39,9 @@
 	<section class="ftco-section">
 		<nav>
         <ul class="menu">
+			<!-- <li class="logo"><a href="" id="Back">Back</a></li> -->
             <li class="logo"><a href="#">FindN</a></li>
-            </li>
-            <li class="item button secondary"><a href="user-logout">Log out</a></li>
+			      <li class="item button secondary"><a href="user-logout">Log out</a></li>
             <li class="toggle"><span class="bars"></span></li>
         </ul>
     	</nav>
@@ -114,22 +114,22 @@
 		      </div> -->
 		      <div class="modal-body p-4 py-5 p-md-5">
 		    		<h3 class="text-center mb-3">Add Computer Shop</h3>
-					
+					<form id="addcompform" class="" name="addcompform">
 					<div class="form-group mb-2">
 		      			<label for="name">ComputerShop Name</label>
-		      			<input name="username" id="shopName" type="text" class="form-control">
+		      			<input name="compname" id="shopName" type="text" class="form-control">
 		      		</div>
 					<div class="form-group mb-2">
 		      			<label for="name">Contact Number</label>
-		      			<input name="username" id="c_number" type="text" class="form-control">
+		      			<input name="number" id="c_number" type="text" class="form-control">
 		      		</div> 
 					<div class="form-group mb-2">
 		      			<label for="name">Email Address</label>
-		      			<input name="username" id="email" type="text" class="form-control">
+		      			<input name="email" id="email" type="text" class="form-control">
 		      		</div>
 					<div class="form-group mb-2">
 		      			<label for="name">Address</label>
-		      			<input name="username" id="Address" type="text" class="form-control">
+		      			<input name="address" id="Address" type="text" class="form-control">
 		      		</div>
 					<div class="form-group mb-2">
 		      			<label for="name">Latitude</label>
@@ -153,9 +153,10 @@
 	              </div>
                 <div class="form-group mb-2">
 	            	  <!-- <button input="" id="addadminbtn" class="form-control btn btn-primary rounded submit px-3">Add</button> -->
-					  <input value="Add" class="form-control btn btn-primary rounded submit px-3" id="addcomputershopbtn">
+					  <input value="Add" class="form-control btn btn-primary rounded submit px-3" id="addcomputershopbtn" readonly="readonly">
 	              </div>
               </div>
+						  </form>
 		    </div>
 		  </div>
 		</div>
@@ -259,7 +260,52 @@
     </script>
 	<!-- add computer shop ajax logic -->
 	<script>
+		$(document).ready(function () {
+	$("#addcompform").validate({
+		rules: {
+			compname: {
+				required: true,
+			},
+			address: {
+				required: true,
+			},
+			number: {
+				required: true,
+				number: true,
+				minlength: 11,
+				maxlength: 11,
+			},
+			email: {
+				required: true,
+				email: true,
+			},
+			lat: {
+				required: true,
+			},
+			lng: {
+				required: true,
+			},
+		},
+		messages: {
+			compname: {
+				required: "Please enter computer shop name",
+			},
+			address: {
+				required: "Please enter address",
+			},
+			number: {
+				required: "Please enter phone number",
+				number: "Please enter numbers only",
+			},
+			email: {
+				required: "Please enter your email",
+			},
+		},
+	});
+});
 		$(document).on("click","#addcomputershopbtn",function(){
+			var validator = $("#addcompform").validate();
+			if ($("#addcompform").valid()) {
 			var s_name = $('#shopName').val();
 			var c_number = $('#c_number').val();
 			var email = $('#email').val();
@@ -284,7 +330,23 @@
 					});					
                 }
             });
-
+			} else {
+		swal(
+			{
+				title: "Are you sure?",
+				text: "You will not be able to recover this imaginary file!",
+				type: "warning",
+				showCancelButton: true,
+				confirmButtonColor: "#DD6B55",
+				confirmButtonText: "Yes, delete it!",
+				closeOnConfirm: false,
+				//closeOnCancel: false
+			},
+			function () {
+				swal("Deleted!", "Your imaginary file has been deleted!", "success");
+			}
+		);
+	}
 		});
 	</script>
 	<!-- script for viewing the shop -->
@@ -302,11 +364,19 @@
 		$(document).on("click",".remove-shop",function(){
 			var id = $(this).attr("data");
 
-			alert(id);
-			swal("Are you sure?", {
-				dangerMode: true,
-				buttons: true,
-				});
+			swal({
+  title: "Are you sure to delete this computer shop?",
+  icon: "warning",
+  buttons: true,
+  dangerMode: true,
+})
+.then((willDelete) => {
+  if (willDelete) {
+    swal("Computer Shop has been deleted!", {
+      icon: "success",
+    });
+  }
+});
 
 		});
 	</script>

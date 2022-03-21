@@ -86,6 +86,12 @@ $(document).ready(function () {
 		},
 	});
 });
+
+//backbutton
+function BackPage(el) {
+	window.location = "http://localhost/FindNCapstone/listofcomputershop";
+}
+
 //inserting data with AJAX
 
 $(document).on("click", "#addadminbtn", function () {
