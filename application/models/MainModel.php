@@ -135,6 +135,12 @@ class MainModel extends CI_Model{
  
         return $first."".$second."".$third;
      }
+     public function getListOfComputerTypes(){
+        $this->db->select('*');
+        $this->db->from('computer_type');
+        $query = $this->db->get();
+        return $query->result();
+    }
 
     public function getListOfComputerShops(){
         $this->db->select('*');
@@ -190,5 +196,17 @@ class MainModel extends CI_Model{
     public function deleteComputerType($id){
         $this->db->where('Ctype_id',$id);
         $this->db->delete('computer_type');
+    }
+    public function updateComputerType($id){
+        $datafinder = array(
+            'name'   => 	 $this->input->post('comp_name'),
+            'total_units'   => 	 $this->input->post('comp_total'),
+            'rate'   => 	 $this->input->post('comp_rate'),
+            'specs'   => 	 $this->input->post('comp_specs'),
+            'comp_type_img' =>  $this->input->post('comp_img')
+        );
+        $this->db->where('Ctype_id',$id);
+        $this->db->update('computer_type',$datafinder);
+        echo json_encode($datafinder);
     }
 }
