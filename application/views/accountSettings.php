@@ -174,7 +174,7 @@
            e.preventDefault();  
             alert("processing");
                 $.ajax({  
-                     url:"updateFinderAccount",   
+                     url:"updateFinderAccount/1",   
                      method:"POST",  
                      data:new FormData(this),  
                      contentType: false,  
