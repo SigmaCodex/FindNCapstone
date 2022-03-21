@@ -47,21 +47,26 @@ class LogicalController extends CI_Controller {
         echo $result;
 
     }
-    public function updateFinderAccount(){
+    public function updateFinderAccount($user_id){
         $this->load->helper(array('form', 'url')); 
-        // $img = $this->input->post('profilepic');
-        $config['upload_path']          = './assets/upload/finder';
-                $config['allowed_types']        = 'gif|jpg|png';
-                $config['max_size']             = 1000;
-                $config['max_width']            = 1024;
-                $config['max_height']           = 768;
+
+            $date = date('dy');
+            $config['file_name']            = $user_id."-". $date;
+            $config['upload_path']          = './assets/upload/finder';
+            $config['allowed_types']        = 'gif|jpg|png';
+            $config['max_size']             = 2000;
+            $config['max_width']            = 2024;
+            $config['max_height']           = 2268;
         $this->load->library('upload', $config);
         $this->upload->initialize($config);
         if(! $this->upload->do_upload('imageUpload'))
         {
             echo $this->upload->display_errors();
         }else{
+            $image_data = $this->upload->data();
             $data= array(
+                'primary_id'  =>  $user_id,
+                'imagename'  =>  $image_data['file_name'],
                 'f_name'  => 	  $this->input->post('f_name'),
                 'l_name'  =>    $this->input->post('l_name'),
                 'b_date'  =>    $this->input->post('b_date'),

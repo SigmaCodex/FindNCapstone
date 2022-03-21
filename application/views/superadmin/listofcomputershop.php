@@ -41,7 +41,7 @@
         <ul class="menu">
 			<!-- <li class="logo"><a href="" id="Back">Back</a></li> -->
             <li class="logo"><a href="#">FindN</a></li>
-			<li class="item button secondary"><a href="#">Log out</a></li>
+			      <li class="item button secondary"><a href="user-logout">Log out</a></li>
             <li class="toggle"><span class="bars"></span></li>
         </ul>
     	</nav>

@@ -73,17 +73,26 @@ class Main_Controller extends CI_Controller {
         $this->load->view('superadmin/addadmin');
     }
 	public function listofcomputershop(){
-		
-		$this->load->model('MainModel');
-		$val['details'] = $this->MainModel->getListOfComputerShops();
-		$this->load->view('superadmin/listofcomputershop',$val);
+		$session = $this->session->userdata('username');
+		if(!$session){
+			redirect(findnlogin);
+		}else{
+			$this->load->model('MainModel');
+			$val['details'] = $this->MainModel->getListOfComputerShops();
+			$this->load->view('superadmin/listofcomputershop',$val);
+		}
 	}
 
 	public function adminList($id){
-		$this->load->model('MainModel');
-		$val['compDetails'] = $this->MainModel->selectComputerShop($id);
-		$val['adminDetails'] = $this->MainModel->getListOfAdmins($id);
-		$this->load->view('superadmin/adminlist',$val);
+		$session = $this->session->userdata('username');
+		if(!$session){
+			redirect(findnlogin);
+		}else{	
+			$this->load->model('MainModel');
+			$val['compDetails'] = $this->MainModel->selectComputerShop($id);
+			$val['adminDetails'] = $this->MainModel->getListOfAdmins($id);
+			$this->load->view('superadmin/adminlist',$val);
+		}
 	}
 
 	//shop admin show pages
