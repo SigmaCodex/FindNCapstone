@@ -39,7 +39,7 @@ class MainModel extends CI_Model{
             'contact_number'  => 	  $this->input->post('number'),
             'email_address'  => 	  $this->input->post('email_add'),
             'coordinates'  => 	   $this->input->post('coor'),
-            'Comp_Status'   => "Active"
+            'Shop_Status'   => "Active",
             );
 
         $this->db->insert('computershop',$data);

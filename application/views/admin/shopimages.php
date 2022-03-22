@@ -127,6 +127,8 @@
 </style>
 <body>
 
+<h5 id="shop_id"><?php if(isset($id)){ echo 
+                    $id;}?></h5>
 <form method="post" id="upload_form" enctype="multipart/form-data"> 
 
     <div class="row file-upload">
@@ -156,7 +158,7 @@
         <div class="card col-md-4" style="width:400px">
             <img class="card-img-top" src="../assets/upload/shop/<?php echo $s->img_file;?>" alt="Card image" style="width:100%">
             <div class="card-body">      
-            <a href="#" class="btn btn-primary">See Profile</a>
+            <a href="#" class="btn btn-danger">remove</a>
             </div>
         </div> 
       <?php }?>         
@@ -176,11 +178,12 @@
 <script>  
  $(document).ready(function(){  
       $('#upload_form').on('submit', function(e){  
+        var shop_id = $("#shop_id").text();
         var BASE_URL = "<?php echo base_url();?>";
            e.preventDefault();  
             alert("processing");
                 $.ajax({  
-                     url: BASE_URL+"uploadshopimages/1",   
+                     url: BASE_URL+"uploadshopimages/"+shop_id,   
                      method:"POST",  
                      data:new FormData(this),  
                      contentType: false,  

@@ -194,7 +194,7 @@
             // Listen for the `result` event from the MapboxGeocoder that is triggered when a user
             // makes a selection and add a symbol that matches the result.
             geocoder.on('result', function(ev) {
-                alert("aaaaa");
+                alert("Locating");
                 console.log(ev.result.center);
 
             });

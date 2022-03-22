@@ -126,6 +126,7 @@ class Main_Controller extends CI_Controller {
 	}
 	public function shopimages($shop_id){
 		$this->load->model('MainModel');
+		$val['id'] = $shop_id;
 		$val['details'] = $this->MainModel->listshopimages($shop_id);
 		$this->load->view('admin/shopimages',$val);
 		
