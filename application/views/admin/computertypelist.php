@@ -163,7 +163,7 @@
     var specs = $('#comp_specs').val();
     var cimage = $('#comp_img').val();
     $.ajax({
-          url: "addcomtype/1",
+          url: "addcomtype/7",
           type: "POST",
           data:{comp_name:name,comp_total:total,comp_rate:rate,comp_specs:specs,comp_img:cimage},
           beforeSend : function()

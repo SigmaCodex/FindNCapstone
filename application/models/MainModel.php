@@ -211,6 +211,14 @@ class MainModel extends CI_Model{
         $this->db->update('computer_type',$datafinder);
         echo json_encode($datafinder);
     }
+    //kani na api gamita for selecting computer type using shop id
+    public function getListOfShop_ComputerTypes($shopid){
+        $this->db->select('*');
+        $this->db->from('computer_type');
+        $this->db->where('shop_id_fk',$shopid);
+        $query = $this->db->get();
+        return $query->result();
+    }
     //shop images
     public function uploadshopimages($shop_id){
         $date = date('d-m-y');

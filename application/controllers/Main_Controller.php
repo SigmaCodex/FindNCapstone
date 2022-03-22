@@ -17,6 +17,15 @@ class Main_Controller extends CI_Controller {
         $this->load->view('findnlogin');
     }
 	//finders
+	public function finder_BookingRequest($shopid){
+		$this->load->model('MainModel');
+		$val['username']      = $this->session->userdata('username');
+		$val['shop_id']       = $shopid;
+		$val['computer_type'] = $this->MainModel->getListOfShop_ComputerTypes($shopid);
+		
+		 $this->load->view('ComputerbookingRequest',$val);
+	}
+
 	public function viewAccountSettings()
 	{
 		$this->load->view('accountSettings');

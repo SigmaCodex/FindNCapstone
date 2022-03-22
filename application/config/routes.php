@@ -19,6 +19,8 @@ $route['findnRegister'] = 'main_controller/viewFindnRegister';
 $route['findnlogin'] = 'main_controller/viewFindNLogin';
 
 //finders
+$route['finder-Compbookingrequest/(:num)'] = 'main_controller/finder_BookingRequest/$1';
+
 $route['accountSettings'] = 'main_controller/viewAccountSettings';
 $route['computerbform'] = 'main_controller/viewcompbookForm';
 $route['viewMap']       = 'main_controller/viewMap';
