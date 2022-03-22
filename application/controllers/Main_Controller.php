@@ -21,7 +21,10 @@ class Main_Controller extends CI_Controller {
 	{
 		$this->load->view('accountSettings');
 	}
-
+	public function viewViewShop()
+	{
+		$this->load->view('viewShop');
+	}
 	public function viewRegister()
 	{
         $this->load->view('registerP');
