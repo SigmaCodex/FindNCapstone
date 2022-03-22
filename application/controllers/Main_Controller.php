@@ -17,11 +17,23 @@ class Main_Controller extends CI_Controller {
         $this->load->view('findnlogin');
     }
 	//finders
+	public function finder_BookingRequest($shopid){
+		$this->load->model('MainModel');
+		$val['username']      = $this->session->userdata('username');
+		$val['shop_id']       = $shopid;
+		$val['computer_type'] = $this->MainModel->getListOfShop_ComputerTypes($shopid);
+		
+		 $this->load->view('ComputerbookingRequest',$val);
+	}
+
 	public function viewAccountSettings()
 	{
 		$this->load->view('accountSettings');
 	}
-
+	public function viewViewShop()
+	{
+		$this->load->view('viewShop');
+	}
 	public function viewRegister()
 	{
         $this->load->view('registerP');
@@ -64,25 +76,26 @@ class Main_Controller extends CI_Controller {
 		$this->load->view('computerbform');
 	}
 	//super admin
-	public function addComputershop()
-	{
-        $this->load->view('superadmin/addcomputershop');
-    }
-	public function addAdmin()
-	{
-        $this->load->view('superadmin/addadmin');
-    }
 	public function listofcomputershop(){
-		
-		$this->load->model('MainModel');
-		$val['details'] = $this->MainModel->getListOfComputerShops();
-		$this->load->view('superadmin/listofcomputershop',$val);
+		$session = $this->session->userdata('username');
+		if(!$session){
+			redirect(findnlogin);
+		}else{
+			$this->load->model('MainModel');
+			$val['details'] = $this->MainModel->getListOfComputerShops();
+			$this->load->view('superadmin/listofcomputershop',$val);
+		}
 	}
 	public function adminList($id){
-		$this->load->model('MainModel');
-		$val['compDetails'] = $this->MainModel->selectComputerShop($id);
-		$val['adminDetails'] = $this->MainModel->getListOfAdmins($id);
-		$this->load->view('superadmin/adminlist',$val);
+		$session = $this->session->userdata('username');
+		if(!$session){
+			redirect(findnlogin);
+		}else{	
+			$this->load->model('MainModel');
+			$val['compDetails'] = $this->MainModel->selectComputerShop($id);
+			$val['adminDetails'] = $this->MainModel->getListOfAdmins($id);
+			$this->load->view('superadmin/adminlist',$val);
+		}
 	}
 	//shop admin show pages
 	public function admin_dashboard(){
@@ -106,14 +119,27 @@ class Main_Controller extends CI_Controller {
 		$this->load->view('admin/computershopdetails');
 		//$this->load->view('admin/template/footer');
 	}
+	public function shopadmin_computertypeList(){
+		$this->load->model('MainModel');
+		$val['details'] = $this->MainModel->getListOfComputerTypes();
+		$this->load->view('admin/computertypelist',$val);
+	}
+	public function shopadmin_updatecompType(){
+		$this->load->view('admin/updatecomptype');
+	}
+
 	public function shopadmin_addComputerType(){
 		$this->load->view('admin/computertype');
 	}
-	
 	public function payment_exercise(){
 		 $this->load->view('payment');
 	}
-
- 
+	public function shopimages($shop_id){
+		$this->load->model('MainModel');
+		$val['id'] = $shop_id;
+		$val['details'] = $this->MainModel->listshopimages($shop_id);
+		$this->load->view('admin/shopimages',$val);
+		
+	}
 }
     

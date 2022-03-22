@@ -39,7 +39,7 @@ class MainModel extends CI_Model{
             'contact_number'  => 	  $this->input->post('number'),
             'email_address'  => 	  $this->input->post('email_add'),
             'coordinates'  => 	   $this->input->post('coor'),
-            'Shop_Status'   => "Active"
+            'Shop_Status'   => "Active",
             );
 
         $this->db->insert('computershop',$data);
@@ -136,6 +136,12 @@ class MainModel extends CI_Model{
  
         return $first."".$second."".$third;
      }
+     public function getListOfComputerTypes(){
+        $this->db->select('*');
+        $this->db->from('computer_type');
+        $query = $this->db->get();
+        return $query->result();
+    }
 
     public function getListOfComputerShops(){
         $this->db->select('*');
@@ -222,5 +228,45 @@ class MainModel extends CI_Model{
     public function deleteComputerType($id){
         $this->db->where('Ctype_id',$id);
         $this->db->delete('computer_type');
+    }
+    public function updateComputerType($id){
+        $datafinder = array(
+            'name'   => 	 $this->input->post('comp_name'),
+            'total_units'   => 	 $this->input->post('comp_total'),
+            'rate'   => 	 $this->input->post('comp_rate'),
+            'specs'   => 	 $this->input->post('comp_specs'),
+            'comp_type_img' =>  $this->input->post('comp_img')
+        );
+        $this->db->where('Ctype_id',$id);
+        $this->db->update('computer_type',$datafinder);
+        echo json_encode($datafinder);
+    }
+    //kani na api gamita for selecting computer type using shop id
+    public function getListOfShop_ComputerTypes($shopid){
+        $this->db->select('*');
+        $this->db->from('computer_type');
+        $this->db->where('shop_id_fk',$shopid);
+        $query = $this->db->get();
+        return $query->result();
+    }
+    //shop images
+    public function uploadshopimages($shop_id){
+        $date = date('d-m-y');
+        $image_data = $this->upload->data();
+        $data = array(
+            'shop_id'  =>  $shop_id,
+            'img_file'  =>  $image_data['file_name'],
+            'date'  =>  $date,
+        );
+
+        echo json_encode($data);
+        $this->db->insert('shop_image', $data);
+    }
+    public function listshopimages($shop_id){
+        $this->db->select('*');
+        $this->db->from('shop_image');
+        $this->db->where('shop_id',$shop_id);
+        $query = $this->db->get();
+        return $query->result();
     }
 }

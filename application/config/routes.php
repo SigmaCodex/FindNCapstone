@@ -7,6 +7,9 @@ $route['shopadmin-scanqr']    = 'main_controller/admin_scanqr';
 $route['shopadmin-bookings']  = 'main_controller/admin_bookings';
 $route['shopadmin-computerdetails'] = 'main_controller/shopadmin_computerdetails';
 $route['shopadmin-computertype'] = 'main_controller/shopadmin_addComputerType';
+$route['shopadmin-computertypelist'] = 'main_controller/shopadmin_computertypeList';
+$route['shopadmin-updatecomputertype'] = 'main_controller/shopadmin_updatecompType';
+$route['shopadmin-shopimages/(:num)'] = 'main_controller/shopimages/$1';
 
 $route['register'] = 'main_controller/viewRegister';
 $route['loginpage'] = 'main_controller/viewLogin';
@@ -14,8 +17,11 @@ $route['loginpage'] = 'main_controller/viewLogin';
 
 $route['findnRegister'] = 'main_controller/viewFindnRegister';
 $route['findnlogin'] = 'main_controller/viewFindNLogin';
+$route['viewShop']     = 'main_controller/viewViewShop';
 
 //finders
+$route['finder-Compbookingrequest/(:num)'] = 'main_controller/finder_BookingRequest/$1';
+
 $route['accountSettings'] = 'main_controller/viewAccountSettings';
 $route['computerbform'] = 'main_controller/viewcompbookForm';
 $route['viewMap']       = 'main_controller/viewMap';
@@ -44,12 +50,14 @@ $route['updateshopdetails/(:num)'] = 'logicalcontroller/updateShopDetails/$1';
     $route['registerfinder'] = 'logicalcontroller/registerFinder';
     $route['generatePrimarykey'] = 'logicalcontroller/generatePrimarykey';
     $route['get-computershops'] = 'logicalcontroller/getListOfComputerShops';
-    $route['updateFinderAccount'] = 'logicalcontroller/updateFinderAccount';
+    $route['updateFinderAccount/(:num)'] = 'logicalcontroller/updateFinderAccount/$1';
     $route['select-computershops/(:any)/(:num)'] = 'logicalcontroller/selectComputerShop/$1/$2';
     //admin
-    $route['addComputerType/(:num)'] = 'logicalcontroller/addComputerType/$1';
     $route['updateComputerDetails/(:num)'] = 'logicalcontroller/updateComputerDetails/$1';
+    $route['addcomtype/(:num)'] = 'logicalcontroller/addComputerType/$1';
     $route['deleteComputerType/(:num)'] = 'logicalcontroller/deleteComputerType/$1';
+    $route['updateCompType/(:num)'] = 'logicalcontroller/updateComputerType/$1';
+    $route['uploadshopimages/(:num)'] = 'logicalcontroller/uploadshopimages/$1';
     //api 
     $route['goto-gcash']          = 'logicalcontroller/GotoGcash';
     $route['paymentexercise']     = 'main_controller/payment_exercise';

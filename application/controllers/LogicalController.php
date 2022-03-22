@@ -47,21 +47,26 @@ class LogicalController extends CI_Controller {
         echo $result;
 
     }
-    public function updateFinderAccount(){
+    public function updateFinderAccount($user_id){
         $this->load->helper(array('form', 'url')); 
-        // $img = $this->input->post('profilepic');
-        $config['upload_path']          = './assets/upload/finder';
-                $config['allowed_types']        = 'gif|jpg|png';
-                $config['max_size']             = 1000;
-                $config['max_width']            = 1024;
-                $config['max_height']           = 768;
+
+            $date = date('dy');
+            $config['file_name']            = $user_id."-". $date;
+            $config['upload_path']          = './assets/upload/finder';
+            $config['allowed_types']        = 'gif|jpg|png';
+            $config['max_size']             = 2000;
+            $config['max_width']            = 2024;
+            $config['max_height']           = 2268;
         $this->load->library('upload', $config);
         $this->upload->initialize($config);
         if(! $this->upload->do_upload('imageUpload'))
         {
             echo $this->upload->display_errors();
         }else{
+            $image_data = $this->upload->data();
             $data= array(
+                'primary_id'  =>  $user_id,
+                'imagename'  =>  $image_data['file_name'],
                 'f_name'  => 	  $this->input->post('f_name'),
                 'l_name'  =>    $this->input->post('l_name'),
                 'b_date'  =>    $this->input->post('b_date'),
@@ -78,6 +83,11 @@ class LogicalController extends CI_Controller {
     public function getListOfComputerShops(){
         $this->load->model('MainModel');
         $result = $this->MainModel->getListOfComputerShops();
+        echo json_encode($result);
+    }
+    public function getListOfComputerTypes(){
+        $this->load->model('MainModel');
+        $result = $this->MainModel->getListOfComputerTypes();
         echo json_encode($result);
     }
 
@@ -104,6 +114,7 @@ class LogicalController extends CI_Controller {
     }
 
     //ADMIN
+        //Computer Type
     public function updateComputerDetails($id){
         $this->load->model('MainModel');
         $this->MainModel->updateComputerDetails($id);
@@ -122,8 +133,32 @@ class LogicalController extends CI_Controller {
         $this->load->model('MainModel');
         $this->MainModel->deleteComputerType($id);
     }
-    
+    public function updateComputerType($id){
+        $this->load->model('MainModel');
+        $this->MainModel->updateComputerType($id);
+    }
+        //Shop Computer Details
+    public function uploadshopimages($shop_id){
+            $this->load->helper(array('form', 'url')); 
 
+            $config['upload_path']          = './assets/upload/shop';
+            $config['allowed_types']        = 'gif|jpg|png|jpeg';
+            $config['max_size']             = 5000;
+            $config['max_width']            = 5024;
+            $config['max_height']           = 5268;
+            $this->load->library('upload', $config);
+            $this->upload->initialize($config);
+            if(! $this->upload->do_upload('imageUpload'))
+            {
+                echo $this->upload->display_errors();
+                echo "error";
+            }else{
+
+                $this->load->model('MainModel');
+                $this->MainModel->uploadshopimages($shop_id);
+            
+            }
+    }
     // api 
     public function GotoGcash(){
         $shop = $this->input->post('shop');

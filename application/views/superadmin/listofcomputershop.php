@@ -39,9 +39,9 @@
 	<section class="ftco-section">
 		<nav>
         <ul class="menu">
+			<!-- <li class="logo"><a href="" id="Back">Back</a></li> -->
             <li class="logo"><a href="#">FindN</a></li>
-            </li>
-            <li class="item button secondary"><a href="#">Log out</a></li>
+			      <li class="item button secondary"><a href="user-logout">Log out</a></li>
             <li class="toggle"><span class="bars"></span></li>
         </ul>
     	</nav>
@@ -184,7 +184,7 @@
             // Listen for the `result` event from the MapboxGeocoder that is triggered when a user
             // makes a selection and add a symbol that matches the result.
             geocoder.on('result', function(ev) {
-                alert("aaaaa");
+                alert("Locating");
                 console.log(ev.result.center);
 
             });
