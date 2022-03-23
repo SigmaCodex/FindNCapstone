@@ -7,8 +7,8 @@ $route['shopadmin-scanqr']    = 'main_controller/admin_scanqr';
 $route['shopadmin-bookings']  = 'main_controller/admin_bookings';
 $route['shopadmin-computerdetails'] = 'main_controller/shopadmin_computerdetails';
 $route['shopadmin-computertype'] = 'main_controller/shopadmin_addComputerType';
-$route['shopadmin-computertypelist'] = 'main_controller/shopadmin_computertypeList';
-$route['shopadmin-updatecomputertype'] = 'main_controller/shopadmin_updatecompType';
+$route['shopadmin-computertypelist/(:num)'] = 'main_controller/shopadmin_computertypeList/$1';
+$route['shopadmin-comptypeinfo/(:num)'] = 'main_controller/shopadmin_comptypeInfo/$1';
 
 $route['register'] = 'main_controller/viewRegister';
 $route['loginpage'] = 'main_controller/viewLogin';
@@ -50,6 +50,7 @@ $route['getadmin-list/(:num)'] = 'logicalcontroller/getListOfAdmins/$1';
     $route['addcomtype/(:num)'] = 'logicalcontroller/addComputerType/$1';
     $route['deleteComputerType/(:num)'] = 'logicalcontroller/deleteComputerType/$1';
     $route['updateCompType/(:num)'] = 'logicalcontroller/updateComputerType/$1';
+    $route['updateCompTypeStat/(:num)'] = 'logicalcontroller/updateComputerTypeStatus/$1';
     //api 
     $route['goto-gcash']          = 'logicalcontroller/GotoGcash';
     $route['paymentexercise']     = 'main_controller/payment_exercise';

@@ -47,26 +47,21 @@ class LogicalController extends CI_Controller {
         echo $result;
 
     }
-    public function updateFinderAccount($user_id){
+    public function updateFinderAccount(){
         $this->load->helper(array('form', 'url')); 
-
-            $date = date('dy');
-            $config['file_name']            = $user_id."-". $date;
-            $config['upload_path']          = './assets/upload/finder';
-            $config['allowed_types']        = 'gif|jpg|png';
-            $config['max_size']             = 2000;
-            $config['max_width']            = 2024;
-            $config['max_height']           = 2268;
+        // $img = $this->input->post('profilepic');
+        $config['upload_path']          = './assets/upload/finder';
+                $config['allowed_types']        = 'gif|jpg|png';
+                $config['max_size']             = 1000;
+                $config['max_width']            = 1024;
+                $config['max_height']           = 768;
         $this->load->library('upload', $config);
         $this->upload->initialize($config);
         if(! $this->upload->do_upload('imageUpload'))
         {
             echo $this->upload->display_errors();
         }else{
-            $image_data = $this->upload->data();
             $data= array(
-                'primary_id'  =>  $user_id,
-                'imagename'  =>  $image_data['file_name'],
                 'f_name'  => 	  $this->input->post('f_name'),
                 'l_name'  =>    $this->input->post('l_name'),
                 'b_date'  =>    $this->input->post('b_date'),
@@ -85,9 +80,14 @@ class LogicalController extends CI_Controller {
         $result = $this->MainModel->getListOfComputerShops();
         echo json_encode($result);
     }
-    public function getListOfComputerTypes(){
+    public function getComputerTypeInfo($id){
         $this->load->model('MainModel');
-        $result = $this->MainModel->getListOfComputerTypes();
+        $result = $this->MainModel->getComputerTypeInfo($id);
+        echo json_encode($result);
+    }
+    public function getListOfComputerTypes($id){
+        $this->load->model('MainModel');
+        $result = $this->MainModel->getListOfComputerTypes($id);
         echo json_encode($result);
     }
 
@@ -96,7 +96,6 @@ class LogicalController extends CI_Controller {
         $result = $this->MainModel->getListOfAdmins($id);
         echo json_encode($result);
     }
-
     public function selectComputerShop($id){
         $this->load->model('MainModel');
         $result = $this->MainModel->selectComputerShop($id);
@@ -104,11 +103,11 @@ class LogicalController extends CI_Controller {
     }
 
     //ADMIN
-    //Computer Type
     public function updateComputerDetails($id){
         $this->load->model('MainModel');
         $this->MainModel->updateComputerDetails($id);
     }
+        //Computer Type
     public function addComputerType($id){
 
         $this->load->model('MainModel');
@@ -122,6 +121,10 @@ class LogicalController extends CI_Controller {
     public function updateComputerType($id){
         $this->load->model('MainModel');
         $this->MainModel->updateComputerType($id);
+    }
+    public function updateComputerTypeStatus($id){
+        $this->load->model('MainModel');
+        $this->MainModel->updateComputerTypeStatus($id);
     }
 
     // api 

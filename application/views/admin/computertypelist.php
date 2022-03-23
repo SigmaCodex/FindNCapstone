@@ -6,31 +6,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-	<link rel="stylesheet" href="assets/css/style.css">
+	<link rel="stylesheet" href="../assets/css/style.css">
 	<link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900" rel="stylesheet">
- 	<link rel="stylesheet" href="assets/css/ionicons.min.css">
+ 	<link rel="stylesheet" href="../assets/css/ionicons.min.css">
 
 	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-	<script src="assets/admin/vendor/jquery/jquery.min.js"></script>
-  	<script src="assets/admin/vendor/bootstrap/js/bootstrap.min.js"></script>
+	<script src="../assets/admin/vendor/jquery/jquery.min.js"></script>
+  	<script src="../assets/admin/vendor/bootstrap/js/bootstrap.min.js"></script>
   	<!-- <script src="assets/js/adminlist.js"></script> -->
   	<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script> 
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.js"></script>
 	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-	<link rel="stylesheet" href="assets/css/register.css">
+	<link rel="stylesheet" href="../assets/css/register.css">
+    <link rel="stylesheet" type="text/css" href="../assets/css/typetoggle.css">
 
-	<style>
-		#map {
-        height: 100%;
-		}
-		#map { position:absolute;left: 550px; top:350px; bottom:0px;height:450px ;width:580px; }
-        .geocoder {
-            position:absolute;left: 550px; top:290px;
-        }
-	</style>
 
 	</head>
 	<body>
+		<h1 id="compshop_id">
+		<?php if(isset($shopid)){ echo 
+                    $shopid;}?>
+		</h1>
 	<section class="ftco-section">
 		<nav>
         <ul class="menu">
@@ -61,6 +57,7 @@
 						      <th>Name</th>
 						      <th>Total Units</th>
 						      <th>Rate</th>
+							  <th>Status</th>
                               <th>Action</th>
 						    </tr>
 						  </thead>
@@ -71,17 +68,26 @@
 						    	<td class="primary-key">
 										<?php echo $s->Ctype_id;?>	
 						    	</td>
-						    	<td class="shop-name">
+						    	<td class="type-name">
 						    			<?php echo $s->name;?>	
 						    	</td>
-						    	<td class="shop-email">
-						      	
+						    	<td class="type-total">
 										<?php echo $s->total_units;?>	
-						      	
 						      	</td>
-						      	<td class="shop-contactnum">
+						      	<td class="type-rate">
                                       <?php echo $s->rate;?>
                                 </td>
+								<td class="type-status">
+								<div class="toggle-button-cover">
+								<div class="button-cover">
+									<div class="button b2" id="button-16">
+									<input ctypeid="<?php echo $s->Ctype_id;?>" type="checkbox" class="checkbox"<?php if($s->status == "Unavailable"){echo "checked";}?>/>
+									<div class="knobs"></div>
+									<div class="layer"></div>
+									</div>
+								</div>
+								</div>
+                                </td>							
 						      	<td>
 									<div style="display:flex;justify-content:space-around;align-items:center;">
 										<button type="button" class="view-shop" data="<?php echo $s->Ctype_id;?>" style="padding: 0;background-color: transparent;border: 0;appearance: none;">
@@ -104,11 +110,11 @@
   <div class="modal fade" id="addComputerModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
 		  <div class="modal-dialog modal-dialog-centered" role="document">
 		    <div class="modal-content">
-		      <!-- <div class="modal-header">
+		      <div class="modal-header">
 		        <button type="button" class="close d-flex align-items-center justify-content-center" data-dismiss="modal" aria-label="Close">
 		          <span aria-hidden="true" class="ion-ios-close"></span>
 		        </button>
-		      </div> -->
+		      </div>
 		      <div class="modal-body p-4 py-5 p-md-5">
 		    		<h3 class="text-center mb-3">Add Computer Shop</h3>
 					
@@ -132,6 +138,7 @@
 		      			<label for="name">Image Upload</label>
 		      			<input type="text" id="comp_img" name="lat" placeholder="Your lat.." class="form-control">
 		      		</div>
+					  
 					<div>		
 		      </div>
 				<div class="modal-footer">
@@ -150,32 +157,53 @@
 		    </div>
 		  </div>
 		</div>
-
 	</body>
 <!-- script for inserting computer types  -->
-<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script> 
 <script>
   $(document).on("click", '#addcomputertypeBtn', function() {
-    var shopID = $('#compshop_id').val();
+	var Base_URL = "<?php echo base_url();?>";
+    var shopID = $('#compshop_id').text();
     var name = $('#comp_name').val();
     var total = $('#comp_total').val();
     var rate = $('#comp_rate').val();
     var specs = $('#comp_specs').val();
     var cimage = $('#comp_img').val();
     $.ajax({
-          url: "addcomtype/1",
+          url: Base_URL+"addcomtype/"+shopID,
           type: "POST",
           data:{comp_name:name,comp_total:total,comp_rate:rate,comp_specs:specs,comp_img:cimage},
-          beforeSend : function()
-          {
-          alert("processing");
-          },
           success: function(data)
           {
-             alert(data);   
+            location.reload(); 
           }
          });
  });
+</script>
+<script>
+	$(document).on("change", '.checkbox', function() {
+		var Base_URL = "<?php echo base_url();?>";
+		var type_id = $(this).attr("ctypeid"); 
+		var switchStatus = false;
+		var stat = "";
+    if ($(this).is(':checked')) {
+		stat="Unavailable";
+		// alert(status);// To verify
+    	}
+    else {
+	   stat="Available";
+    //    alert(status);// To verify
+    }
+	$.ajax({
+          url: Base_URL+"updateCompTypeStat/"+type_id,
+          type: "POST",
+          data:{status:stat},
+          success: function(data)
+          {
+             alert("Status Updated!");   
+          }
+         });
+});
+
 </script>
 
 </html>
