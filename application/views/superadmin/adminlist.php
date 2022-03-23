@@ -89,26 +89,20 @@
 						<table class="table">
 						  <thead class="thead-primary">
 						    <tr>
-						      <th>&nbsp;</th>
 						      <th>No.</th>
 						      <th>Name</th>
-						      <th>Status</th>
+						      <th>Email</th>
 						      <th>Action</th>
+							  <!-- <th>&nbsp;</th> -->
 						    </tr>
 						  </thead>
 						  <tbody>
 						  <?php foreach($adminDetails as $aD){ ?>
 							<tr class="alert" role="alert">
-							<td>
-								<label class="checkbox-wrap checkbox-primary">
-									<input type="checkbox">
-									  <span span class="checkmark"></span>
-								</label>
-							</td>
 							<td><?php echo $aD->user_id ?></td>
 							<td>
 								  <div class="email">
-									  <span><?php echo $aD->firstname?> <?php echo $aD->lastname?></span>
+									  <?php echo $aD->firstname?> <?php echo $aD->lastname?>
 						      		</div>
 						      	</td>
 						      	<td><?php echo $aD->email ?></td>
@@ -118,7 +112,7 @@
 												<span aria-hidden="true"><i class="fa fa-eye"></i></span>
 										</button>
 										<button type="button" class="remove-admin" data="<?php echo $s->shop_id;?>" style="padding: 0;background-color: transparent;border: 0;appearance: none;">
-												<span aria-hidden="true"><i class="fa-pencil-square-o"></i></span>
+										<span aria-hidden="true"><i class="fa fa-close"></i></span>
 										</button>
 								   </div>
 				        		</td>
