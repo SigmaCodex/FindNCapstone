@@ -120,15 +120,18 @@ class Main_Controller extends CI_Controller {
 		$this->load->view('admin/computershopdetails');
 		//$this->load->view('admin/template/footer');
 	}
-	public function shopadmin_computertypeList(){
+	public function shopadmin_computertypeList($shopid){
 		$this->load->model('MainModel');
-		$val['details'] = $this->MainModel->getListOfComputerTypes();
+		$val['shopid'] = $shopid;
+		$val['details'] = $this->MainModel->getListOfComputerTypes($shopid);
 		$this->load->view('admin/computertypelist',$val);
 	}
-	public function shopadmin_updatecompType(){
-		$this->load->view('admin/updatecomptype');
+	public function shopadmin_comptypeInfo($ctypeid){
+		$this->load->model('MainModel');
+		$val['Ctype_id'] = $ctypeid;
+		$val['details'] = $this->MainModel->getComputerTypeInfo($ctypeid);
+		$this->load->view('admin/updatecomptype',$val);
 	}
-
 	public function shopadmin_addComputerType(){
 		$this->load->view('admin/computertype');
 	}
