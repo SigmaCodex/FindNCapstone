@@ -107,12 +107,28 @@ OS: Windows 10 Pro 64-bit</p> </label>
 <script>
     $(document).on('click','#submit-booking',function(){ 
          shop_id       = $('#shop_id').text();
-         numperson    = $('#num-person').val();
+         numperson     = $('#num-person').val();
          date_arrival  = $('#date-arrival').val();
          time_arrival  = $('#time-arrival').val();
          message       = $('#message').val();
-        computer_type = $('#computer_type').val();
+         computer_type = $('#computer_type').val();
 
-        alert(message);
+         var BASE_URL = "<?php echo base_url();?>";
+         //ajax for submiting CompBooking Request
+         $.ajax({
+          url: BASE_URL+"submit-CompBooking-Request",
+          type: "POST",
+          data:{s_id:shop_id,num_person:numperson,arrival_date:date_arrival,arrival_time:time_arrival,addtional_message:message,comp_type:computer_type},
+          beforeSend : function()
+          {
+            alert("processing");
+          },
+          success: function(data)
+          {
+            alert(data);
+          }
+        });
+
+
     });
 </script>

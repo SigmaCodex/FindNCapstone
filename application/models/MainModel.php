@@ -133,9 +133,41 @@ class MainModel extends CI_Model{
         $first = date('dy');
         $second = rand (1, 100);
         $third = rand (1, 10);
- 
         return $first."".$second."".$third;
-     }
+    }
+
+    public function generatePrimarykeyForTransaction($shop_id){
+        $first  = date('dy');
+        $second = $shop_id;
+        $third  = rand (1, 100);
+        return $first."".$second."".$third."";
+    }
+    //Finder Submit Booking Request
+    public function FindersCompBookingRequest(){
+
+        $transaction_id = $this->generatePrimarykeyForTransaction($this->input->post('s_id'));
+        $user_id_fk = $this->session->userdata('user_id');
+        $date_issued = date('m/d/y');
+        $transaction = array(
+            'transaction_id'    =>  $transaction_id,
+            'user_id_fk'        =>  $user_id_fk,
+            'shop_id'           =>  $this->input->post('s_id'),
+            'servicetype'       =>  "ComputerBooking",
+            'computer_type'     =>  $this->input->post('comp_type'),
+            'numperson'         => 	$this->input->post('num_person'),
+            'arrival_date'      => 	$this->input->post('arrival_date'),
+            'arrival_time'      => 	$this->input->post('arrival_time'),
+            'instruction'       => 	$this->input->post('addtional_message'),
+            'date_issued'              => 	$date_issued,
+            'transaction_status'       => 	"pending",
+            'service_fee'              => 	"2",
+            'payment_status	'          => 	"not_paid",
+            'payment_type'             => 	"not_selected",
+            'qr_code'                  => 	"not_issued",
+            );
+        echo json_encode($transaction);
+    }
+
      public function getListOfComputerTypes($id){
         $this->db->select('*');
         $this->db->from('computer_type');

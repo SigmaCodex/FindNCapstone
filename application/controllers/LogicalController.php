@@ -36,8 +36,12 @@ class LogicalController extends CI_Controller {
         $this->MainModel->getAdminDetails($id);
     }
     //FINDERS
-    public function registerFinder(){
+    public function FindersCompBookingRequest(){
+        $this->load->model('MainModel');
+        $this->MainModel->FindersCompBookingRequest();
+    }
 
+    public function registerFinder(){
         $this->load->model('MainModel');
         $this->MainModel->registerFinder();
     }
