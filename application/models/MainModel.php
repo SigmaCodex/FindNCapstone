@@ -175,7 +175,13 @@ class MainModel extends CI_Model{
         $query = $this->db->get();
         return $query->result();
     }
-
+    public function deleteComputerShop($id){
+        $datafinder = array(
+            'shop_status' => 'Inactive',
+        );
+        $this->db->where('shop_id',$id);
+        $this->db->update('computershop',$datafinder);
+    }
     public function updateShopDetails($id){
         $datafinder = array(
             'shop_name'         => 	 $this->input->post('shop_name'),
