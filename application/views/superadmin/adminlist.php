@@ -387,7 +387,7 @@ $(document).ready(function () {
 			},
 			username: {
 				required: true,
-				minlength: 8,
+				minlength: 4,
 				maxlength: 16,
 			},
 			pass: {
