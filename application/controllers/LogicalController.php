@@ -30,9 +30,10 @@ class LogicalController extends CI_Controller {
         $this->load->model('MainModel');
         $this->MainModel->registerAdmin();
     }
-    //sample ROUTING with data
-    public function sample($num){
-        echo $num;
+        
+    public function getAdminDetails($id){
+        $this->load->model('MainModel');
+        $this->MainModel->getAdminDetails($id);
     }
     //FINDERS
     public function registerFinder(){
@@ -96,9 +97,26 @@ class LogicalController extends CI_Controller {
         $result = $this->MainModel->getListOfAdmins($id);
         echo json_encode($result);
     }
+
+    public function getShopDetails($id){
+        $this->load->model('MainModel');
+        $result = $this->MainModel->getShopDetails($id);
+        // $query2->result_array($result);
+        echo json_encode($result);
+    }
+    public function updateShopDetails($id){
+        $this->load->model('MainModel');
+        $this->MainModel->updateShopDetails($id);
+    }
+
     public function selectComputerShop($id){
         $this->load->model('MainModel');
         $result = $this->MainModel->selectComputerShop($id);
+        echo json_encode($result);
+    }
+    public function deleteComputerShop($id){
+        $this->load->model('MainModel');
+        $result = $this->MainModel->deleteComputerShop($id);
         echo json_encode($result);
     }
 
@@ -107,9 +125,8 @@ class LogicalController extends CI_Controller {
         $this->load->model('MainModel');
         $this->MainModel->updateComputerDetails($id);
     }
-        //Computer Type
+      //Computer Type
     public function addComputerType($id){
-
         $this->load->model('MainModel');
         $this->MainModel->addComputerType($id);
     }
@@ -125,6 +142,30 @@ class LogicalController extends CI_Controller {
     public function updateComputerTypeStatus($id){
         $this->load->model('MainModel');
         $this->MainModel->updateComputerTypeStatus($id);
+    }
+
+
+        //Shop Computer Details
+    public function uploadshopimages($shop_id){
+            $this->load->helper(array('form', 'url')); 
+
+            $config['upload_path']          = './assets/upload/shop';
+            $config['allowed_types']        = 'gif|jpg|png|jpeg';
+            $config['max_size']             = 5000;
+            $config['max_width']            = 5024;
+            $config['max_height']           = 5268;
+            $this->load->library('upload', $config);
+            $this->upload->initialize($config);
+            if(! $this->upload->do_upload('imageUpload'))
+            {
+                echo $this->upload->display_errors();
+                echo "error";
+            }else{
+
+                $this->load->model('MainModel');
+                $this->MainModel->uploadshopimages($shop_id);
+            
+            }
     }
 
     // api 

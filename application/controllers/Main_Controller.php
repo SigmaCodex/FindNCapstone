@@ -17,11 +17,24 @@ class Main_Controller extends CI_Controller {
         $this->load->view('findnlogin');
     }
 	//finders
+	public function finder_BookingRequest($shopid){
+		$this->load->model('MainModel');
+		$val['username']      = $this->session->userdata('username');
+		$val['shop_id']       = $shopid;
+		$val['shopdetails']		  = $this->MainModel->selectComputerShop($shopid);
+		$val['computer_type'] = $this->MainModel->getListOfShop_ComputerTypes($shopid);
+		
+		 $this->load->view('ComputerbookingRequest',$val);
+	}
+
 	public function viewAccountSettings()
 	{
 		$this->load->view('accountSettings');
 	}
-
+	public function viewViewShop()
+	{
+		$this->load->view('viewShop');
+	}
 	public function viewRegister()
 	{
         $this->load->view('registerP');
@@ -64,14 +77,6 @@ class Main_Controller extends CI_Controller {
 		$this->load->view('computerbform');
 	}
 	//super admin
-	public function addComputershop()
-	{
-        $this->load->view('superadmin/addcomputershop');
-    }
-	public function addAdmin()
-	{
-        $this->load->view('superadmin/addadmin');
-    }
 	public function listofcomputershop(){
 		$session = $this->session->userdata('username');
 		if(!$session){
@@ -82,7 +87,6 @@ class Main_Controller extends CI_Controller {
 			$this->load->view('superadmin/listofcomputershop',$val);
 		}
 	}
-
 	public function adminList($id){
 		$session = $this->session->userdata('username');
 		if(!$session){
@@ -94,7 +98,6 @@ class Main_Controller extends CI_Controller {
 			$this->load->view('superadmin/adminlist',$val);
 		}
 	}
-
 	//shop admin show pages
 	public function admin_dashboard(){
 		$this->load->view('admin/template/header');
@@ -134,6 +137,13 @@ class Main_Controller extends CI_Controller {
 	}
 	public function payment_exercise(){
 		 $this->load->view('payment');
+	}
+	public function shopimages($shop_id){
+		$this->load->model('MainModel');
+		$val['id'] = $shop_id;
+		$val['details'] = $this->MainModel->listshopimages($shop_id);
+		$this->load->view('admin/shopimages',$val);
+		
 	}
 }
     

@@ -39,7 +39,7 @@ class MainModel extends CI_Model{
             'contact_number'  => 	  $this->input->post('number'),
             'email_address'  => 	  $this->input->post('email_add'),
             'coordinates'  => 	   $this->input->post('coor'),
-            'Comp_Status'   => "Active"
+            'Shop_Status'   => "Active",
             );
 
         $this->db->insert('computershop',$data);
@@ -159,12 +159,48 @@ class MainModel extends CI_Model{
         return $query->result();
     }
 
+    public function getAdminDetails($id){
+		$this->db->select('*');
+        $this->db->from('computershop');
+        $this->db->where('shop_id',$id);
+        $query = $this->db->get();
+        return $query->result();
+    }
+
+    public function getShopDetails($id){
+		$this->db->select('*');
+        $this->db->from('computershop');
+        $this->db->where('shop_id',$id);
+        $query = $this->db->get();
+        $resultquery = $query->row_array();
+        return $resultquery;
+    }
+
     public function getListOfAdmins($id){
 		$this->db->select('*');
         $this->db->from('compmanager');
         $this->db->where('shop_id_fk',$id);
         $query = $this->db->get();
         return $query->result();
+    }
+    public function deleteComputerShop($id){
+        $datafinder = array(
+            'shop_status' => 'Inactive',
+        );
+        $this->db->where('shop_id',$id);
+        $this->db->update('computershop',$datafinder);
+    }
+    public function updateShopDetails($id){
+        $datafinder = array(
+            'shop_name'         => 	 $this->input->post('shop_name'),
+            'coordinates'       => 	 $this->input->post('coor'),
+            'address'           => 	 $this->input->post('address'),
+            'contact_number'    => 	 $this->input->post('number'),
+            'email_address'     => 	 $this->input->post('email_add')
+        );
+        $this->db->where('shop_id',$id);
+        $this->db->update('computershop',$datafinder);
+        echo json_encode($datafinder);
     }
 
     public function selectComputerShop($id){
@@ -226,5 +262,33 @@ class MainModel extends CI_Model{
         $this->db->where('Ctype_id',$id);
         $this->db->update('computer_type',$datafinder);
         echo json_encode($datafinder);
+    }
+    //kani na api gamita for selecting computer type using shop id
+    public function getListOfShop_ComputerTypes($shopid){
+        $this->db->select('*');
+        $this->db->from('computer_type');
+        $this->db->where('shop_id_fk',$shopid);
+        $query = $this->db->get();
+        return $query->result();
+    }
+    //shop images
+    public function uploadshopimages($shop_id){
+        $date = date('d-m-y');
+        $image_data = $this->upload->data();
+        $data = array(
+            'shop_id'  =>  $shop_id,
+            'img_file'  =>  $image_data['file_name'],
+            'date'  =>  $date,
+        );
+
+        echo json_encode($data);
+        $this->db->insert('shop_image', $data);
+    }
+    public function listshopimages($shop_id){
+        $this->db->select('*');
+        $this->db->from('shop_image');
+        $this->db->where('shop_id',$shop_id);
+        $query = $this->db->get();
+        return $query->result();
     }
 }

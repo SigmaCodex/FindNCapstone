@@ -72,7 +72,7 @@ $(document).ready(function () {
 			},
 			username: {
 				required: "Please enter your username",
-				minlength: "Username should be atleast 4 characters",
+				minlength: "Username should be atleast 8 characters",
 				maxlength: "Username should not be long than 8 characters",
 			},
 			pass: {
@@ -86,12 +86,6 @@ $(document).ready(function () {
 		},
 	});
 });
-
-//backbutton
-function BackPage(el) {
-	window.location = "http://localhost/FindNCapstone/listofcomputershop";
-}
-
 //inserting data with AJAX
 
 $(document).on("click", "#addadminbtn", function () {
@@ -168,6 +162,86 @@ $(document).on("click", "#addadminbtn", function () {
 		//select tag
 		$('select[name="gender"]').val("");
 		$('select[name="vacstatus"]').val("");
+	} else {
+		swal(
+			{
+				title: "Are you sure?",
+				text: "You will not be able to recover this imaginary file!",
+				type: "warning",
+				showCancelButton: true,
+				confirmButtonColor: "#DD6B55",
+				confirmButtonText: "Yes, delete it!",
+				closeOnConfirm: false,
+				//closeOnCancel: false
+			},
+			function () {
+				swal("Deleted!", "Your imaginary file has been deleted!", "success");
+			}
+		);
+	}
+});
+
+$(document).on("click", "#editbtn", function () {
+	var CSPK = $("#CompShopPK").text();
+	alert(CSPK);
+	$.ajax({
+		url: "http://localhost/FindNCapstone/getshopdetails/" + CSPK,
+		method: "POST",
+		data: { shop_id: CSPK },
+		dataType: "json",
+		success: function (data) {
+			$("#shopName").val(data.shop_name);
+			$("#c_number").val(data.contact_number);
+			$("#emailadd").val(data.email_address);
+			$("#Address").val(data.address);
+
+			let text = data.coordinates;
+			const myArray = text.split(",");
+
+			var lat = myArray[0];
+			var lng = myArray[1];
+
+			$("#lat").val(lat);
+			$("#lng").val(lng);
+
+			$("#updateComputerModal").modal("show");
+		},
+	});
+});
+$(document).on("click", "#updatecomputershopbtn", function () {
+	var validator = $("#updatecompform").validate();
+	if ($("#updatecompform").valid()) {
+		var id = $(this).attr("data");
+		var s_name = $("#shopName").val();
+		var c_number = $("#c_number").val();
+		var email = $("#email").val();
+		var add = $("#Address").val();
+		var lat = $("#lat").val();
+		var lng = $("#lng").val();
+		var coordinate = lat + "," + lng;
+
+		$.ajax({
+			url: "updateshopdetails/" + id,
+			method: "POST",
+			data: {
+				shop_name: s_name,
+				number: c_number,
+				email_add: email,
+				address: add,
+				coor: coordinate,
+			},
+			success: function (data) {
+				// window.location = "listofcomputershop";
+				swal({
+					title: "Good job!",
+					text: "ComputerShop has been registered!",
+					icon: "success",
+					button: "Continue",
+				}).then((value) => {
+					window.location = "listofcomputershop";
+				});
+			},
+		});
 	} else {
 		swal(
 			{
