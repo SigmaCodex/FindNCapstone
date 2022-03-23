@@ -181,7 +181,7 @@ $(document).on("click", "#addadminbtn", function () {
 	}
 });
 
-$(document).on("click", ".editbtn", function () {
+$(document).on("click", "#editbtn", function () {
 	var CSPK = $("#CompShopPK").text();
 	alert(CSPK);
 	$.ajax({
@@ -204,7 +204,7 @@ $(document).on("click", ".editbtn", function () {
 			$("#lat").val(lat);
 			$("#lng").val(lng);
 
-			$("#updateComputerModal").modal("toggle");
+			$("#updateComputerModal").modal("show");
 		},
 	});
 });
@@ -259,8 +259,4 @@ $(document).on("click", "#updatecomputershopbtn", function () {
 			}
 		);
 	}
-});
-
-$(document).on("click", "a[name='lnkViews']", function (e) {
-	alert("Calling function");
 });

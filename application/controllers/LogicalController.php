@@ -100,7 +100,7 @@ class LogicalController extends CI_Controller {
     public function getShopDetails($id){
         $this->load->model('MainModel');
         $result = $this->MainModel->getShopDetails($id);
-        // $query->result_array($result);
+        // $query2->result_array($result);
         echo json_encode($result);
     }
     public function updateShopDetails($id){

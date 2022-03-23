@@ -7,19 +7,25 @@
 
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 	<link rel="stylesheet" href="../assets/css/style.css">
+	<link rel="stylesheet" href="../assets/css/register.css">
+	<link rel="stylesheet" href="../assets/js/adminlist.js">
+
 	<link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900" rel="stylesheet">
  	<link rel="stylesheet" href="../assets/css/ionicons.min.css">
 
 	 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 	<script src="../assets/admin/vendor/jquery/jquery.min.js"></script>
+	<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script> 
   	<script src="../assets/admin/vendor/bootstrap/js/bootstrap.min.js"></script>
-  	<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script> 
+  
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.js"></script>
+
+	
 	<script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.48.0/mapbox-gl.js'></script>
     <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.48.0/mapbox-gl.css' rel='stylesheet' />
     <script src='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v2.3.0/mapbox-gl-geocoder.min.js'></script>
     <link rel='stylesheet' href='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v2.3.0/mapbox-gl-geocoder.css' type='text/css' />
-	<link rel="stylesheet" href="../assets/css/register.css">
+
 
 	<style>
 		#map {
@@ -53,6 +59,8 @@
 				</div>
 			</div>
       		<br>
+			
+
 			<div class="row">
       			<div class="col-md-3 cold-xs-1">
         			<h3 class="h5 mb-4 text-center"></h3>
@@ -61,15 +69,15 @@
 						  <?php foreach ($compDetails as $s) {?>  
             				<h5 class="card-title" ><?php echo $s->shop_name;?></h5>
             				<p class="card-text" id="CompShopPK"><?php echo $s->shop_id;?></p>
-					
           				</div>
           				<ul class="list-group list-group-flush">
             				<li class="list-group-item">ContactNumber: <p><?php echo $s->contact_number;?></p></li>
-              				<li class="list-group-item">Adress: <p><?php echo $s->address;?></p></li>
+							<li class="list-group-item">Email Address: <p><?php echo $s->email_address;?></p></li>
+              				<li class="list-group-item">Address: <p><?php echo $s->address;?></p></li>
 						</ul>
           				<div class="card-body">
 						  <div class="form-group mb-2">
-						  <button type="button" class="editbtn btn mb-2 mb-md-0 btn-primary btn-block" data-target="#updateComputerModal" data-toggle="modal">Edit Details</button>
+						  <button type="button" data-target="updateComputerModal" data-toggle="modal" class="editbtn btn mb-2 mb-md-0 btn-primary btn-block">Edit Details</button>
 	              		  </div>
           				</div>
         			</div>
@@ -147,7 +155,7 @@
 		      		</div>
 					<div class="form-group mb-2">
 		      			<label for="name">Address</label>
-		      			<input name="address" id="Address" type="text" class="form-control">
+		      			<input name="address" id="AddressIN" type="text" class="form-control">
 		      		</div>
 					<div class="form-group mb-2">
 		      			<label for="name">Latitude</label>
@@ -353,15 +361,6 @@
 
 
 <script>
-
-// 	(function ($) {
-// 	"use strict";
-
-// 	$('[data-toggle="tooltip"]').tooltip();
-// })(jQuery);
-
-//input validation
-
 $(document).ready(function () {
 	$("#addadminform").validate({
 		rules: {
@@ -540,6 +539,86 @@ $(document).on("click", "#addadminbtn", function () {
 		// 		swal("Deleted!", "Your imaginary file has been deleted!", "success");
 		// 	}
 		// );
+	}
+});
+$(document).on("click", ".editbtn", function () {
+	var CSPK = $("#CompShopPK").text();
+	alert(CSPK);
+	$.ajax({
+		url: "http://localhost/FindNCapstone/getshopdetails/" + CSPK,
+		method: "POST",
+		data: { shop_id: CSPK },
+		dataType: "json",
+		success: function (data) {
+			alert(data);
+			$("#shopName").val(data.shop_name);
+			$("#c_number").val(data.contact_number);
+			$("#emailadd").val(data.email_address);
+			$("#AddressIN").val(data.address);
+
+			let text = data.coordinates;
+			const myArray = text.split(",");
+
+			var lat = myArray[0];
+			var lng = myArray[1];
+
+			$("#lat").val(lat);
+			$("#lng").val(lng);
+
+			$("#updateComputerModal").modal('show');
+		},
+	});
+});
+$(document).on("click", "#updatecomputershopbtn", function () {
+	var validator = $("#updatecompform").validate();
+	if ($("#updatecompform").valid()) {
+		var CSPK = $("#CompShopPK").text();
+		var s_name = $("#shopName").val();
+		var c_number = $("#c_number").val();
+		var email = $("#emailadd").val();
+		var add = $("#AddressIN").val();
+		var lat = $("#lat").val();
+		var lng = $("#lng").val();
+		var coordinate = lat + "," + lng;
+
+		$.ajax({
+			url: "http://localhost/FindNCapstone/updateshopdetails/" + CSPK,
+			method: "POST",
+			data: {
+				shop_name: s_name,
+				number: c_number,
+				email_add: email,
+				address: add,
+				coor: coordinate,
+			},
+			success: function (data) {
+				// window.location = "listofcomputershop";
+				swal({
+					title: "Good job!",
+					text: "ComputerShop has been registered!",
+					icon: "success",
+					button: "Continue",
+				}).then((value) => {
+					window.location = "http://localhost/FindNCapstone/admin-list/"+CSPK;
+				});
+			},
+		});
+	} else {
+		swal(
+			{
+				title: "Are you sure?",
+				text: "You will not be able to recover this imaginary file!",
+				type: "warning",
+				showCancelButton: true,
+				confirmButtonColor: "#DD6B55",
+				confirmButtonText: "Yes, delete it!",
+				closeOnConfirm: false,
+				//closeOnCancel: false
+			},
+			function () {
+				swal("Deleted!", "Your imaginary file has been deleted!", "success");
+			}
+		);
 	}
 });
 

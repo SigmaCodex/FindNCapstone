@@ -23,7 +23,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | a PHP script and you can easily do that on your own.
 |
 */
-$config['base_url'] = 'http://localhost:8080/FindNCapstone/'; // kang dave na base URL
+$config['base_url'] = 'http://localhost/FindNCapstone/'; // kang dave na base URL
 // $config['base_url'] = 'http://localhost/FindNCapstone/'; //Mao ni inyung base url
 /*
 |--------------------------------------------------------------------------
