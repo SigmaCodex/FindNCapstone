@@ -86,7 +86,6 @@ class Main_Controller extends CI_Controller {
 			$this->load->view('superadmin/listofcomputershop',$val);
 		}
 	}
-
 	public function adminList($id){
 		$session = $this->session->userdata('username');
 		if(!$session){
@@ -98,7 +97,6 @@ class Main_Controller extends CI_Controller {
 			$this->load->view('superadmin/adminlist',$val);
 		}
 	}
-
 	//shop admin show pages
 	public function admin_dashboard(){
 		$this->load->view('admin/template/header');

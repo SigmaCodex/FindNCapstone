@@ -35,11 +35,14 @@ $route['add-computershop'] = 'main_controller/addComputershop';
 $route['listofcomputershop'] = 'main_controller/listofcomputershop';
 $route['admin-list/(:num)'] = 'main_controller/adminlist/$1';
 $route['getadmin-list/(:num)'] = 'logicalcontroller/getListOfAdmins/$1';
+$route['getshopdetails/(:num)'] = 'logicalcontroller/getShopDetails/$1';
+$route['updateshopdetails/(:num)'] = 'logicalcontroller/updateShopDetails/$1';
 
 //Logics
     //SuperAdmin
     $route['registeradmin'] = 'logicalcontroller/registerAdmin';
     $route['addshop'] = 'logicalcontroller/addComputerShop';
+    $route['admindetails'] = 'logicalcontroller/getAdminDetails';
     
     //sample
     $route['sample/(:num)'] = 'logicalcontroller/sample/$1';
