@@ -117,6 +117,10 @@ class LogicalController extends CI_Controller {
         $result = $this->MainModel->deleteComputerShop($id);
         echo json_encode($result);
     }
+    public function addReview($shop_id,$user_id){
+        $this->load->model('MainModel');
+        $this->MainModel->addReview($shop_id,$user_id);
+    }
 
     //ADMIN
         //Computer Type
