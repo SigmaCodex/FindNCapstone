@@ -151,12 +151,48 @@ class MainModel extends CI_Model{
         return $query->result();
     }
 
+    public function getAdminDetails($id){
+		$this->db->select('*');
+        $this->db->from('computershop');
+        $this->db->where('shop_id',$id);
+        $query = $this->db->get();
+        return $query->result();
+    }
+
+    public function getShopDetails($id){
+		$this->db->select('*');
+        $this->db->from('computershop');
+        $this->db->where('shop_id',$id);
+        $query = $this->db->get();
+        $resultquery = $query->row_array();
+        return $resultquery;
+    }
+
     public function getListOfAdmins($id){
 		$this->db->select('*');
         $this->db->from('compmanager');
         $this->db->where('shop_id_fk',$id);
         $query = $this->db->get();
         return $query->result();
+    }
+    public function deleteComputerShop($id){
+        $datafinder = array(
+            'shop_status' => 'Inactive',
+        );
+        $this->db->where('shop_id',$id);
+        $this->db->update('computershop',$datafinder);
+    }
+    public function updateShopDetails($id){
+        $datafinder = array(
+            'shop_name'         => 	 $this->input->post('shop_name'),
+            'coordinates'       => 	 $this->input->post('coor'),
+            'address'           => 	 $this->input->post('address'),
+            'contact_number'    => 	 $this->input->post('number'),
+            'email_address'     => 	 $this->input->post('email_add')
+        );
+        $this->db->where('shop_id',$id);
+        $this->db->update('computershop',$datafinder);
+        echo json_encode($datafinder);
     }
 
     public function selectComputerShop($id){

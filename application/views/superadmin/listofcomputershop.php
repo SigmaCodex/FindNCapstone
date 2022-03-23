@@ -14,11 +14,15 @@
 	<script src="assets/admin/vendor/jquery/jquery.min.js"></script>
   	<script src="assets/admin/vendor/bootstrap/js/bootstrap.min.js"></script>
   	<!-- <script src="assets/js/adminlist.js"></script> -->
-  	<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script> 
+  	<!-- <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>  -->
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.js"></script>
 	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 	<link rel="stylesheet" href="assets/css/register.css">
+	<script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.48.0/mapbox-gl.js'></script>
+    <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.48.0/mapbox-gl.css' rel='stylesheet' />
 
+    <script src='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v2.3.0/mapbox-gl-geocoder.min.js'></script>
+    <link rel='stylesheet' href='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v2.3.0/mapbox-gl-geocoder.css' type='text/css' />
 	<style>
 		#map {
         height: 100%;
@@ -28,11 +32,7 @@
             position:absolute;left: 550px; top:290px;
         }
 	</style>
-    <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.48.0/mapbox-gl.js'></script>
-    <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.48.0/mapbox-gl.css' rel='stylesheet' />
 
-    <script src='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v2.3.0/mapbox-gl-geocoder.min.js'></script>
-    <link rel='stylesheet' href='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v2.3.0/mapbox-gl-geocoder.css' type='text/css' />
 
 	</head>
 	<body>
@@ -51,7 +51,7 @@
 					<h2 class="heading-section">Computer Shop list</h2>
 				</div>
         		<div class="col-md-3 text-right mb-4">
-        			<button type="button" class="btn mb-2 mb-md-0 btn-primary btn-block" data-target="#addComputerModal" data-toggle="modal">Add Computer shop</button>
+        			<button type="button" class="addcomp btn mb-2 mb-md-0 btn-primary btn-block" data-target="#addComputerModal" data-toggle="modal">Add Computer shop</button>
 				</div>
 			</div>
       		<br>
@@ -72,19 +72,12 @@
 						  <tbody>
 							<!-- php -->
 						  <?php foreach ($details as $s) {?>  
-						    <tr class="alert" role="alert">
-						    	<td class="primary-key">
-										<?php echo $s->shop_id;?>	
-						    	</td>
-						    	<td class="shop-name">
-						    			<?php echo $s->shop_name;?>	
-						    	</td>
-						    	<td class="shop-email">
-						      	
-										<?php echo $s->email_address;?>	
-						      	
-						      	</td>
-						      	<td class="shop-contactnum"><?php echo $s->contact_number;?></td>
+						    <tr id="<?php echo $s->shop_id;?>" class="alert" role="alert">
+						    	<td data-taget="shopid" ><?php echo $s->shop_id;?></td>
+						    	<td data="shop_name" ><?php echo $s->shop_name;?>	</td>
+						    	<td data-taget="email" ><?php echo $s->email_address;?>	</td>
+								<td data-taget="coordinates"  hidden><?php echo $s->coordinates;?></td>
+						      	<td data-taget="number"	><?php echo $s->contact_number;?></td>
 						      	<td>
 									<div style="display:flex;justify-content:space-around;align-items:center;">
 										<button type="button" class="view-shop" data="<?php echo $s->shop_id;?>" style="padding: 0;background-color: transparent;border: 0;appearance: none;">
@@ -104,24 +97,24 @@
 			</div>
 		</div>
 	</section>
-  <div class="modal fade" id="addComputerModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-		  <div class="modal-dialog modal-dialog-centered" role="document">
-		    <div class="modal-content">
-		      <!-- <div class="modal-header">
-		        <button type="button" class="close d-flex align-items-center justify-content-center" data-dismiss="modal" aria-label="Close">
-		          <span aria-hidden="true" class="ion-ios-close"></span>
-		        </button>
-		      </div> -->
-		      <div class="modal-body p-4 py-5 p-md-5">
-		    		<h3 class="text-center mb-3">Add Computer Shop</h3>
-					<form id="addcompform" class="" name="addcompform">
+
+<div id="addComputerModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+	  <h3 class="text-center mb-3">Add Computer Shop</h3>
+      </div>
+      <div class="modal-body">
+	  	<form id="addcompform" class="" name="addcompform">
 					<div class="form-group mb-2">
 		      			<label for="name">ComputerShop Name</label>
 		      			<input name="compname" id="shopName" type="text" class="form-control">
 		      		</div>
 					<div class="form-group mb-2">
 		      			<label for="name">Contact Number</label>
-		      			<input name="number" id="c_number" type="text" class="form-control">
+		      			<input  name="number" id="c_number" type="text" class="form-control">
 		      		</div> 
 					<div class="form-group mb-2">
 		      			<label for="name">Email Address</label>
@@ -133,7 +126,7 @@
 		      		</div>
 					<div class="form-group mb-2">
 		      			<label for="name">Latitude</label>
-		      			<input type="text" id="lat" name="lat" placeholder="Your lat.." class="form-control">
+		      			<input  type="text" id="lat" name="lat" placeholder="Your lat.." class="form-control">
 		      		</div>
 					<div class="form-group mb-2">
 		      			<label for="name">Longtitude</label>
@@ -145,22 +138,19 @@
 				<div id="map"></div>
 				<div class="modal-footer">
                 	<div class="form-group mb-2">
-	            	  <!-- <button  class="close-btn form-control btn btn-primary rounded px-3">Cancel</button> -->
-					  <!-- <input value="Cancel" class="form-control btn btn-primary rounded px-3" id="close-btn" readonly="readonly"> -->
-					 	<button type="button" id="closebtn" class="close d-flex align-items-center justify-content-center" data-dismiss="modal">
+					 	<button type="button" data-target id="closebtn" class="close d-flex align-items-center justify-content-center" data-dismiss="modal">
 						 <input value="Cancel" class="form-control btn btn-primary rounded px-3" id="close-btn" readonly="readonly">
 		        		</button>
-	              </div>
-                <div class="form-group mb-2">
-	            	  <!-- <button input="" id="addadminbtn" class="form-control btn btn-primary rounded submit px-3">Add</button> -->
+	              	</div>
+                	<div class="form-group mb-2">
 					  <input value="Add" class="form-control btn btn-primary rounded submit px-3" id="addcomputershopbtn" readonly="readonly">
-	              </div>
-              </div>
-						  </form>
-		    </div>
-		  </div>
-		</div>
-
+	              	</div>
+              	</div>
+			  </form>
+      		</div>
+    	</div>
+	</div>
+</div>
 	</body>
 
 
@@ -326,7 +316,7 @@
 						icon: "success",
 						button: "Continue",
 					}).then((value) => {
-						window.location = "listofcomputershop";
+						window.location = "http://localhost/FindNCapstone/listofcomputershop";
 					});					
                 }
             });
@@ -362,21 +352,91 @@
 	<!-- script for removing shop -->
 	<script>
 		$(document).on("click",".remove-shop",function(){
-			var id = $(this).attr("data");
+			var CSPK = $(this).attr("data");
 
 			swal({
-  title: "Are you sure to delete this computer shop?",
-  icon: "warning",
-  buttons: true,
-  dangerMode: true,
-})
-.then((willDelete) => {
-  if (willDelete) {
-    swal("Computer Shop has been deleted!", {
-      icon: "success",
-    });
-  }
-});
+  				title: "Are you sure to delete this computer shop?",
+  				icon: "warning",
+  				buttons: true,
+  				dangerMode: true,
+			}).then((willDelete) => {
+  				if (willDelete) {
+					$.ajax({
+						url: "http://localhost/FindNCapstone/deleteCompShop/" + CSPK,
+						method: "POST",
+						data: { shop_id: CSPK },
+						success: function (data) {
+							swal("Computer Shop has been deleted!", {
+    					  		icon: "success",
+    						}).then((value) => {
+						  		window.location = "http://localhost/FindNCapstone/listofcomputershop";
+							});
 
+						},
+					});	
+  				}
+			});
 		});
 	</script>
+
+<!-- <script>
+
+			$(document).on("click",".edit-shop",function(){
+			var id = $(this).attr("data");
+			var shopname = $('.'+id).children('td[data-target=connum]').text();
+			var connum = $('#'+id).children('td[data-target=connum]').text();
+			var email = $('#'+id).children('td[data-target=email]').text();
+			var address = $('#'+id).children('td[data-target=address]').text();
+
+			let text = $('#'+id).children('td[data-target=coordinates]').text();
+			const myArray = text.split(",");
+
+			var lat = myArray[0];
+			var lng = myArray[1];
+
+				alert(id);
+				alert(shopname);
+
+			$("#shopName").text(shopname);
+			$("#c_number").val(connum);
+			$("#email").val(email);
+			$("#Address").val(address);
+			$("#lat").val(lat);
+			$("#lng").val(lng);
+
+			var validator = $("#addcompform").validate();
+			if ($("#addcompform").valid()) {
+			var s_name = $('#shopName').val();
+			var c_number = $('#c_number').val();
+			var email = $('#email').val();
+			var add = $('#Address').val();
+			var lat = $('#lat').val();
+            var lng = $('#lng').val();
+			var coordinate = lat + ',' + lng;
+
+			$.ajax({
+                url: "getshopdetails/" + id,
+                method: 'POST',
+                data:{shop_name:s_name,number:c_number,email_add:email,address:add,coor:coordinate},
+            });
+			} else {
+		swal(
+			{
+				title: "Are you sure?",
+				text: "You will not be able to recover this imaginary file!",
+				type: "warning",
+				showCancelButton: true,
+				confirmButtonColor: "#DD6B55",
+				confirmButtonText: "Yes, delete it!",
+				closeOnConfirm: false,
+				//closeOnCancel: false
+			},
+			function () {
+				swal("Deleted!", "Your imaginary file has been deleted!", "success");
+			}
+		);
+	}
+		});
+
+
+</script> -->

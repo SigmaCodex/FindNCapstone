@@ -97,9 +97,24 @@ class LogicalController extends CI_Controller {
         echo json_encode($result);
     }
 
+    public function getShopDetails($id){
+        $this->load->model('MainModel');
+        $result = $this->MainModel->getShopDetails($id);
+        // $query2->result_array($result);
+        echo json_encode($result);
+    }
+    public function updateShopDetails($id){
+        $this->load->model('MainModel');
+        $this->MainModel->updateShopDetails($id);
+    }
     public function selectComputerShop($id){
         $this->load->model('MainModel');
         $result = $this->MainModel->selectComputerShop($id);
+        echo json_encode($result);
+    }
+    public function deleteComputerShop($id){
+        $this->load->model('MainModel');
+        $result = $this->MainModel->deleteComputerShop($id);
         echo json_encode($result);
     }
 
@@ -108,6 +123,10 @@ class LogicalController extends CI_Controller {
     public function updateComputerDetails($id){
         $this->load->model('MainModel');
         $this->MainModel->updateComputerDetails($id);
+    }
+    public function getAdminDetails($id){
+        $this->load->model('MainModel');
+        $this->MainModel->getAdminDetails($id);
     }
     public function addComputerType($id){
 
