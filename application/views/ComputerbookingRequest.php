@@ -20,9 +20,15 @@
                         <form id="contact-form" role="form">
                             <div class="controls">
                             <div class="row"><h5 id="shop_id"><?php if(isset($shop_id)){ echo $shop_id;}?></h5></div>
-                            <div class="row"><h3>TNC</h3></div>
                             <div class="row">
-                               <h5>Computer Service: Computer Booking</h5>
+                                <?php foreach ($shopdetails as $w) {?> 
+                                    <h3><?php
+                                            echo $w->shop_name; 
+                                        ?></h3>
+                                <?php }?> 
+                            </div>
+                            <div class="row">
+                              
                             </div>
                             <hr class="mb-2">
                             <br>
@@ -32,7 +38,7 @@
                                     <div class="col-md-9">
                                         <div class="form-group">
                                             <label for="form_lastname">ComputerType</label>
-                                            <select class="form-control" aria-label="Default select example">
+                                            <select class="form-control" id="computer_type" aria-label="Default select example">
                                                <option selected disabled>--Select Computer Type--</option>
 
                                                <?php foreach ($computer_type as $s) {?> 
@@ -97,3 +103,14 @@ OS: Windows 10 Pro 64-bit</p> </label>
 </body>
 </html>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<!-- computertype populate if selected -->
+<script>
+ $(document).ready(function(){ 
+
+      $('#computer_type').on('change', function(){  
+            comptype = $(this).val();
+            alert(comptype);
+      });  
+
+ });  
+</script>

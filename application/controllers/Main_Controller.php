@@ -21,6 +21,7 @@ class Main_Controller extends CI_Controller {
 		$this->load->model('MainModel');
 		$val['username']      = $this->session->userdata('username');
 		$val['shop_id']       = $shopid;
+		$val['shopdetails']		  = $this->MainModel->selectComputerShop($shopid);
 		$val['computer_type'] = $this->MainModel->getListOfShop_ComputerTypes($shopid);
 		
 		 $this->load->view('ComputerbookingRequest',$val);
