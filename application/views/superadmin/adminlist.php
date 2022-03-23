@@ -538,8 +538,9 @@ $(document).on("click", "#addadminbtn", function () {
 $(document).on("click", ".editbtn", function () {
 	var CSPK = $("#CompShopPK").text();
 	alert(CSPK);
+	var BASE_URL = "<?php echo base_url();?>";
 	$.ajax({
-		url: "http://localhost/FindNCapstone/getshopdetails/" + CSPK,
+		url: BASE_URL+"getshopdetails/" + CSPK,
 		method: "POST",
 		data: { shop_id: CSPK },
 		dataType: "json",
@@ -565,6 +566,7 @@ $(document).on("click", ".editbtn", function () {
 });
 $(document).on("click", "#updatecomputershopbtn", function () {
 	var validator = $("#updatecompform").validate();
+	var BASE_URL = "<?php echo base_url();?>";
 	if ($("#updatecompform").valid()) {
 		var CSPK = $("#CompShopPK").text();
 		var s_name = $("#shopName").val();
@@ -576,7 +578,7 @@ $(document).on("click", "#updatecomputershopbtn", function () {
 		var coordinate = lat + "," + lng;
 
 		$.ajax({
-			url: "http://localhost/FindNCapstone/updateshopdetails/" + CSPK,
+			url: BASE_URL+"updateshopdetails/" + CSPK,
 			method: "POST",
 			data: {
 				shop_name: s_name,
@@ -593,7 +595,7 @@ $(document).on("click", "#updatecomputershopbtn", function () {
 					icon: "success",
 					button: "Continue",
 				}).then((value) => {
-					window.location = "http://localhost/FindNCapstone/admin-list/"+CSPK;
+					window.location = BASE_URL +"admin-list/"+CSPK;
 				});
 			},
 		});
