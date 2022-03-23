@@ -23,7 +23,7 @@
 
 	</head>
 	<body>
-		<h1 id="compshop_id">
+		<h1 id="compshop_id" style= "display:none">
 		<?php if(isset($shopid)){ echo 
                     $shopid;}?>
 		</h1>
