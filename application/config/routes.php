@@ -19,17 +19,17 @@ $route['register'] = 'main_controller/viewRegister';
 $route['loginpage'] = 'main_controller/viewLogin';
 
 
+//finders
 $route['findnRegister'] = 'main_controller/viewFindnRegister';
 $route['findnlogin'] = 'main_controller/viewFindNLogin';
 $route['viewShop']     = 'main_controller/viewViewShop';
-
-//finders
-$route['finder-Compbookingrequest/(:num)'] = 'main_controller/finder_BookingRequest/$1';
-
+$route['requestBook']     = 'main_controller/viewRequestBook';
+$route['findershomepage'] = 'main_controller/viewFinders_HomePage';
 $route['accountSettings'] = 'main_controller/viewAccountSettings';
+
+$route['finder-Compbookingrequest/(:num)'] = 'main_controller/finder_BookingRequest/$1';
 $route['computerbform'] = 'main_controller/viewcompbookForm';
 $route['viewMap']       = 'main_controller/viewMap';
-$route['findershomepage'] = 'main_controller/viewFinders_HomePage';
 $route['view-ticket']     = 'main_controller/view_ticket';
 $route['generate-QR']     = 'main_controller/generateQrCode';
 
@@ -58,6 +58,8 @@ $route['deleteCompShop/(:num)'] = 'logicalcontroller/deleteComputerShop/$1';
     $route['updateFinderAccount/(:num)'] = 'logicalcontroller/updateFinderAccount/$1';
     $route['select-computershops/(:any)/(:num)'] = 'logicalcontroller/selectComputerShop/$1/$2';
 
+    $route['addRate/(:num)/(:num)'] = 'logicalcontroller/addRate/$1/$2';
+    $route['updateRate/(:num)/(:num)/(:num)'] = 'logicalcontroller/updateRate/$1/$2/$3';
 
     //admin
     $route['updateComputerDetails/(:num)'] = 'logicalcontroller/updateComputerDetails/$1';

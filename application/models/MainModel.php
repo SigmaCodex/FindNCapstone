@@ -18,8 +18,7 @@ class MainModel extends CI_Model{
           $datasession  = array(
               'user_id' => $row->user_id,
               'username'  => $row->username,
-              'user_type' => $row->user_type
-
+              'user_type' => $row->user_type                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    
           );
           $this->session->set_userdata($datasession);
           return true;
@@ -44,6 +43,63 @@ class MainModel extends CI_Model{
 
         $this->db->insert('computershop',$data);
         // echo json_encode($data);
+    }
+    public function getAdminDetails($id){
+		$this->db->select('*');
+        $this->db->from('computershop');
+        $this->db->where('shop_id',$id);
+        $query = $this->db->get();
+        return $query->result();
+    }
+
+    public function getShopDetails($id){
+		$this->db->select('*');
+        $this->db->from('computershop');
+        $this->db->where('shop_id',$id);
+        $query = $this->db->get();
+        $resultquery = $query->row_array();
+        return $resultquery;
+    }
+
+    public function getListOfAdmins($id){
+		$this->db->select('*');
+        $this->db->from('compmanager');
+        $this->db->where('shop_id_fk',$id);
+        $query = $this->db->get();
+        return $query->result();
+    }
+    public function deleteComputerShop($id){
+        $datafinder = array(
+            'shop_status' => 'Inactive',
+        );
+        $this->db->where('shop_id',$id);
+        $this->db->update('computershop',$datafinder);
+    }
+    public function updateShopDetails($id){
+        $datafinder = array(
+            'shop_name'         => 	 $this->input->post('shop_name'),
+            'coordinates'       => 	 $this->input->post('coor'),
+            'address'           => 	 $this->input->post('address'),
+            'contact_number'    => 	 $this->input->post('number'),
+            'email_address'     => 	 $this->input->post('email_add')
+        );
+        $this->db->where('shop_id',$id);
+        $this->db->update('computershop',$datafinder);
+        echo json_encode($datafinder);
+    }
+    public function getListOfComputerShops(){
+        $this->db->select('*');
+        $this->db->from('computershop');
+        $this->db->where('Shop_Status','Active');
+        $query = $this->db->get();
+        return $query->result();
+    }
+    public function selectComputerShop($id){
+		$this->db->select('*');
+        $this->db->from('computershop');
+        $this->db->where('shop_id',$id);
+        $query = $this->db->get();
+        return $query->result();
     }
     public function registerAdmin(){
         $Primarycode = 0;
@@ -191,65 +247,43 @@ class MainModel extends CI_Model{
         return $query->result();
     }
 
-    public function getListOfComputerShops(){
-        $this->db->select('*');
-        $this->db->from('computershop');
-        $this->db->where('Shop_Status','Active');
-        $query = $this->db->get();
-        return $query->result();
-    }
-
-    public function getAdminDetails($id){
-		$this->db->select('*');
-        $this->db->from('computershop');
-        $this->db->where('shop_id',$id);
-        $query = $this->db->get();
-        return $query->result();
-    }
-
-    public function getShopDetails($id){
-		$this->db->select('*');
-        $this->db->from('computershop');
-        $this->db->where('shop_id',$id);
-        $query = $this->db->get();
-        $resultquery = $query->row_array();
-        return $resultquery;
-    }
-
-    public function getListOfAdmins($id){
-		$this->db->select('*');
-        $this->db->from('compmanager');
-        $this->db->where('shop_id_fk',$id);
-        $query = $this->db->get();
-        return $query->result();
-    }
-    public function deleteComputerShop($id){
+    public function addRate($shop_id, $user_id){
         $datafinder = array(
-            'shop_status' => 'Inactive',
+            'shop_id_fk'           => 	 $shop_id,
+            'user_id_fk'           => 	$user_id,
+            'computer_rate'     => 	 "4",
+            'date'              =>   "8/28/1999"
         );
-        $this->db->where('shop_id',$id);
-        $this->db->update('computershop',$datafinder);
-    }
-    public function updateShopDetails($id){
-        $datafinder = array(
-            'shop_name'         => 	 $this->input->post('shop_name'),
-            'coordinates'       => 	 $this->input->post('coor'),
-            'address'           => 	 $this->input->post('address'),
-            'contact_number'    => 	 $this->input->post('number'),
-            'email_address'     => 	 $this->input->post('email_add')
-        );
-        $this->db->where('shop_id',$id);
-        $this->db->update('computershop',$datafinder);
+        $this->db->insert('computer_ratings',$datafinder);
         echo json_encode($datafinder);
     }
-
-    public function selectComputerShop($id){
-		$this->db->select('*');
-        $this->db->from('computershop');
-        $this->db->where('shop_id',$id);
-        $query = $this->db->get();
-        return $query->result();
+    public function updateRate($shop_id, $user_id, $rate_id){
+        $datafinder = array(
+            'computer_rate'     => 	 "3",
+        );
+        $this->db->where('shop_id_fk',$shop_id);
+        $this->db->where('user_id_fk',$user_id);
+        $this->db->where('rating_id',$rate_id);
+        $this->db->update('computer_ratings',$datafinder);
+        echo json_encode($datafinder);
     }
+    public function viewRate($shop_id, $user_id, $rate_id){
+        $datafinder = array(
+            'computer_rate'     => 	 "3",
+        );
+        $this->db->where('shop_id_fk',$shop_id);
+        $this->db->where('user_id_fk',$user_id);
+        $this->db->where('rating_id',$rate_id);
+        $this->db->update('computer_ratings',$datafinder);
+        echo json_encode($datafinder);
+    }
+    public function getRate($shop_id, $user_id){
+        $this->db->where('shop_id_fk',$shop_id);
+        $this->db->where('user_id_fk',$user_id);
+        $query = $this->db->get('computer_ratings');
+        return $query->result();
+    }    
+
     //admin
     public function updateComputerDetails($id){
         $datafinder = array(

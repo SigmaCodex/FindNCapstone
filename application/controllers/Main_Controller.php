@@ -35,6 +35,10 @@ class Main_Controller extends CI_Controller {
 	{
 		$this->load->view('viewShop');
 	}
+	public function viewRequestBook()
+	{
+		$this->load->view('requestBook');
+	}
 	public function viewRegister()
 	{
         $this->load->view('registerP');
