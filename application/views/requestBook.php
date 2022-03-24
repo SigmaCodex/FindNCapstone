@@ -104,8 +104,8 @@
                         <!-- Regular -->
                         <div class="col-12 col-md-6 mt-2">
                           <div class="card shadow-sm">
-                            <div class="card-body">
-                              <h5 class="card-title"><b>REGULAR</b></h5>
+                            <div class="card-body" name_comptype = "Regular">
+                              <h5 class="card-title" ><b>REGULAR</b></h5>
                               <hr>
                               <div class="list">
                                 <ul class="list">
@@ -136,7 +136,7 @@
                         <!-- VIP -->
                         <div class="col-12 col-md-6 mt-2">
                           <div class="card shadow-sm">
-                            <div class="card-body">
+                            <div class="card-body" name_comptype = "vip">
                               <h5 class="card-title"><b>VIP</b></h5>
                               <HR></HR>
                               <div class="list">
@@ -173,9 +173,9 @@
                           <h6 class="select">Select preferred access type:</h6>     
                         </div>
                         <div class="col-md-6 pt-md-0 pt-3">
-                          <select name="gender" class="multisteps-form__input form-control" id="gender" placeholder="">
+                          <select name="" class="multisteps-form__input form-control" id="comp_typeSelect" placeholder="">
                             <option value="vip">VIP</option>
-                            <option value="regular">REGULAR</option>
+                            <option value="Regular">REGULAR</option>
                           </select>
                         </div>
                       </div>    
@@ -249,8 +249,16 @@
 <script  src="assets/js/requestBook.js"></script>
 
 <script>$('#date').dateDropper();</script>
-<script>$$('#time').timeDropper();</script>
+<!-- <script>$$('#time').timeDropper();</script> -->
 
+<script>
+  	$(document).on('click','.card-body',function(){ 
+        var name_comptype = $(this).attr("name_comptype");
+        // alert(name_comptype);
+
+        $('#comp_typeSelect').val(name_comptype);
+    });
+</script>
 
 
 
