@@ -117,9 +117,13 @@ class LogicalController extends CI_Controller {
         $result = $this->MainModel->deleteComputerShop($id);
         echo json_encode($result);
     }
-    public function addReview($shop_id,$user_id){
+    public function addRate($shop_id,$user_id){
         $this->load->model('MainModel');
-        $this->MainModel->addReview($shop_id,$user_id);
+        $this->MainModel->addRate($shop_id,$user_id);
+    }
+    public function updateRate($shop_id, $user_id, $rate_id){
+        $this->load->model('MainModel');
+        $this->MainModel->updateRate($shop_id, $user_id, $rate_id);
     }
 
     //ADMIN

@@ -199,7 +199,7 @@ class MainModel extends CI_Model{
         return $query->result();
     }
 
-    public function addReview($shop_id, $user_id){
+    public function addRate($shop_id, $user_id){
         $datafinder = array(
             'shop_id_fk'           => 	 $shop_id,
             'user_id_fk'           => 	$user_id,
@@ -209,9 +209,33 @@ class MainModel extends CI_Model{
         $this->db->insert('computer_ratings',$datafinder);
         echo json_encode($datafinder);
     }
-    
+    public function updateRate($shop_id, $user_id, $rate_id){
+        $datafinder = array(
+            'computer_rate'     => 	 "3",
+        );
+        $this->db->where('shop_id_fk',$shop_id);
+        $this->db->where('user_id_fk',$user_id);
+        $this->db->where('rating_id',$rate_id);
+        $this->db->update('computer_ratings',$datafinder);
+        echo json_encode($datafinder);
+    }
+    public function viewRate($shop_id, $user_id, $rate_id){
+        $datafinder = array(
+            'computer_rate'     => 	 "3",
+        );
+        $this->db->where('shop_id_fk',$shop_id);
+        $this->db->where('user_id_fk',$user_id);
+        $this->db->where('rating_id',$rate_id);
+        $this->db->update('computer_ratings',$datafinder);
+        echo json_encode($datafinder);
+    }
+    public function getRate($shop_id, $user_id){
+        $this->db->where('shop_id_fk',$shop_id);
+        $this->db->where('user_id_fk',$user_id);
+        $query = $this->db->get('computer_ratings');
+        return $query->result();
+    }    
 
-    
     //admin
     public function updateComputerDetails($id){
         $datafinder = array(
