@@ -189,12 +189,52 @@ class MainModel extends CI_Model{
         $first = date('dy');
         $second = rand (1, 100);
         $third = rand (1, 10);
- 
         return $first."".$second."".$third;
-     }
-     public function getListOfComputerTypes(){
+    }
+
+    public function generatePrimarykeyForTransaction($shop_id){
+        $first  = date('dy');
+        $second = $shop_id;
+        $third  = rand (1, 100);
+        return $first."".$second."".$third."";
+    }
+    //Finder Submit Booking Request
+    public function FindersCompBookingRequest(){
+
+        $transaction_id = $this->generatePrimarykeyForTransaction($this->input->post('s_id'));
+        $user_id_fk = $this->session->userdata('user_id');
+        $date_issued = date('m/d/y');
+        $transaction = array(
+            'transaction_id'    =>  $transaction_id,
+            'user_id_fk'        =>  $user_id_fk,
+            'shop_id'           =>  $this->input->post('s_id'),
+            'servicetype'       =>  "ComputerBooking",
+            'computer_type'     =>  $this->input->post('comp_type'),
+            'numperson'         => 	$this->input->post('num_person'),
+            'arrival_date'      => 	$this->input->post('arrival_date'),
+            'arrival_time'      => 	$this->input->post('arrival_time'),
+            'instruction'       => 	$this->input->post('addtional_message'),
+            'date_issued'              => 	$date_issued,
+            'transaction_status'       => 	"pending",
+            'service_fee'              => 	"2",
+            'payment_status	'          => 	"not_paid",
+            'payment_type'             => 	"not_selected",
+            'qr_code'                  => 	"not_issued",
+            );
+        echo json_encode($transaction);
+    }
+
+     public function getListOfComputerTypes($id){
         $this->db->select('*');
         $this->db->from('computer_type');
+        $this->db->where('shop_id_fk',$id);
+        $query = $this->db->get();
+        return $query->result();
+    }
+    public function getComputerTypeInfo($id){
+        $this->db->select('*');
+        $this->db->from('computer_type');
+        $this->db->where('Ctype_id',$id);
         $query = $this->db->get();
         return $query->result();
     }
@@ -275,7 +315,15 @@ class MainModel extends CI_Model{
             'total_units'   => 	 $this->input->post('comp_total'),
             'rate'   => 	 $this->input->post('comp_rate'),
             'specs'   => 	 $this->input->post('comp_specs'),
-            'comp_type_img' =>  $this->input->post('comp_img')
+            'comp_type_img' =>  $this->input->post('comp_img'),
+        );
+        $this->db->where('Ctype_id',$id);
+        $this->db->update('computer_type',$datafinder);
+        echo json_encode($datafinder);
+    }
+    public function updateComputerTypeStatus($id){
+        $datafinder = array(
+            'status' => $this->input->post('status'),
         );
         $this->db->where('Ctype_id',$id);
         $this->db->update('computer_type',$datafinder);

@@ -13,7 +13,9 @@ body a {
 	color: inherit;
 	text-decoration: none;
 }
-
+h1{
+	display:none;
+}
 /* .btn-primary, .btn-primary:hover, .btn-primary:active, .btn-primary:visited {
   background-color: #ef7f4d !important;
   border-color: #ef7f4d !important;

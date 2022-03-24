@@ -17,12 +17,18 @@
             <div class="card mt-2 mx-auto p-4 bg-light">
                 <div class="card-body bg-light">
                     <div class="container">
-                        <form id="contact-form" role="form">
+                        <form>
                             <div class="controls">
                             <div class="row"><h5 id="shop_id"><?php if(isset($shop_id)){ echo $shop_id;}?></h5></div>
-                            <div class="row"><h3>TNC</h3></div>
                             <div class="row">
-                               <h5>Computer Service: Computer Booking</h5>
+                                <?php foreach ($shopdetails as $w) {?> 
+                                    <h3><?php
+                                            echo $w->shop_name; 
+                                        ?></h3>
+                                <?php }?> 
+                            </div>
+                            <div class="row">
+                              
                             </div>
                             <hr class="mb-2">
                             <br>
@@ -32,7 +38,7 @@
                                     <div class="col-md-9">
                                         <div class="form-group">
                                             <label for="form_lastname">ComputerType</label>
-                                            <select class="form-control" aria-label="Default select example">
+                                            <select class="form-control" id="computer_type" aria-label="Default select example">
                                                <option selected disabled>--Select Computer Type--</option>
 
                                                <?php foreach ($computer_type as $s) {?> 
@@ -57,7 +63,7 @@ OS: Windows 10 Pro 64-bit</p> </label>
                                     <div class="col-md-6">
                                         <div class="form-group"> 
                                             <label >Number person</label> 
-                                            <input type="number" name="num-person" class="form-control" required="required" data-error="Valid email is required."> 
+                                            <input type="number" id="num-person" name="num-person" class="form-control" required="required" data-error="Valid email is required."> 
                                         </div>
                                     </div>
                                     <div class="col-md-6">
@@ -67,21 +73,21 @@ OS: Windows 10 Pro 64-bit</p> </label>
                                     <div class="col-md-6">
                                         <div class="form-group"> 
                                             <label >Date of arrival</label> 
-                                            <input type="date" name="" class="form-control" required="required" data-error="Valid email is required."> 
+                                            <input type="date" id="date-arrival" name="" class="form-control" required="required" data-error="Valid email is required."> 
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group"> 
                                             <label >Time of arrival</label> 
-                                            <input type="time" name="" class="form-control" required="required" data-error="Valid email is required."> 
+                                            <input type="time" id="time-arrival" name="" class="form-control" required="required" data-error="Valid email is required."> 
                                         </div>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-md-12">
-                                        <div class="form-group"> <label for="form_message">Additional Message</label> <textarea id="form_message" name="message" class="form-control" placeholder="Write your message here." rows="4" required="required" data-error="Please, leave us a message."></textarea> </div>
+                                        <div class="form-group"> <label for="form_message">Additional Message</label> <textarea id="message" name="message" class="form-control" placeholder="Write your message here." rows="4" required="required" data-error="Please, leave us a message."></textarea> </div>
                                     </div>
-                                    <div class="col-md-12"> <input type="submit" class="btn btn-success btn-send pt-2 btn-block " value="Send Message"> </div>
+                                    <div class="col-md-12"> <input id="submit-booking" class="btn btn-success btn-send pt-2 btn-block " value="Submit"> </div>
                                 </div>
                             </div>
                         </form>
@@ -97,3 +103,32 @@ OS: Windows 10 Pro 64-bit</p> </label>
 </body>
 </html>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<!-- computertype populate if selected -->
+<script>
+    $(document).on('click','#submit-booking',function(){ 
+         shop_id       = $('#shop_id').text();
+         numperson     = $('#num-person').val();
+         date_arrival  = $('#date-arrival').val();
+         time_arrival  = $('#time-arrival').val();
+         message       = $('#message').val();
+         computer_type = $('#computer_type').val();
+
+         var BASE_URL = "<?php echo base_url();?>";
+         //ajax for submiting CompBooking Request
+         $.ajax({
+          url: BASE_URL+"submit-CompBooking-Request",
+          type: "POST",
+          data:{s_id:shop_id,num_person:numperson,arrival_date:date_arrival,arrival_time:time_arrival,addtional_message:message,comp_type:computer_type},
+          beforeSend : function()
+          {
+            alert("processing");
+          },
+          success: function(data)
+          {
+            alert(data);
+          }
+        });
+
+
+    });
+</script>
