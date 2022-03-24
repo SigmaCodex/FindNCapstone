@@ -137,7 +137,7 @@ class MainModel extends CI_Model{
     }
 
     public function generatePrimarykeyForTransaction($shop_id){
-        $first  = date('dy');
+        $first  = date('dm');
         $second = $shop_id;
         $third  = rand (1, 100);
         return $first."".$second."".$third."";
@@ -151,21 +151,29 @@ class MainModel extends CI_Model{
         $transaction = array(
             'transaction_id'    =>  $transaction_id,
             'user_id_fk'        =>  $user_id_fk,
-            'shop_id'           =>  $this->input->post('s_id'),
+            'shop_id_fk'           =>  7,
             'servicetype'       =>  "ComputerBooking",
-            'computer_type'     =>  $this->input->post('comp_type'),
-            'numperson'         => 	$this->input->post('num_person'),
             'arrival_date'      => 	$this->input->post('arrival_date'),
             'arrival_time'      => 	$this->input->post('arrival_time'),
             'instruction'       => 	$this->input->post('addtional_message'),
             'date_issued'              => 	$date_issued,
             'transaction_status'       => 	"pending",
-            'service_fee'              => 	"2",
+            'service_fee'              => 	"5",
             'payment_status	'          => 	"not_paid",
             'payment_type'             => 	"not_selected",
             'qr_code'                  => 	"not_issued",
             );
-        echo json_encode($transaction);
+
+            
+            
+            $comp_booking = array(
+                'transaction_id'    =>  $transaction_id,
+                'comp_type_id'     =>  $this->input->post('comp_type'),
+                'num_ticket'         => 	$this->input->post('num_person'),
+            );  
+            echo json_encode($transaction);
+             $this->db->insert('transaction',$transaction);
+             $this->db->insert('comp_booking', $comp_booking);
     }
 
      public function getListOfComputerTypes($id){

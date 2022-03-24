@@ -103,6 +103,7 @@ OS: Windows 10 Pro 64-bit</p> </label>
 </body>
 </html>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <!-- computertype populate if selected -->
 <script>
     $(document).on('click','#submit-booking',function(){ 
@@ -125,7 +126,14 @@ OS: Windows 10 Pro 64-bit</p> </label>
           },
           success: function(data)
           {
-            alert(data);
+            swal({
+					title: "Your Booking Request is send!",
+					text: "Wait for the Respond",
+					icon: "success",
+					button: "Continue",
+				}).then((value) => {
+					    location.reload();
+				});           
           }
         });
 
