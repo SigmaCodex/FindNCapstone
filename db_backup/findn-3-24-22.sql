@@ -2,10 +2,10 @@
 -- version 5.0.2
 -- https://www.phpmyadmin.net/
 --
--- Host: 
--- Generation Time: Mar 14, 2022 at 05:32 PM
--- Server version: 10.4.14-MariaDB
--- PHP Version: 7.3.22
+-- Host: 127.0.0.1
+-- Generation Time: Mar 24, 2022 at 10:27 AM
+-- Server version: 10.4.13-MariaDB
+-- PHP Version: 7.3.20
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -43,16 +43,39 @@ CREATE TABLE `comments` (
 --
 
 CREATE TABLE `compmanager` (
-  `user_id` int(45) NOT NULL,
-  `shop_id_fk` int(45) NOT NULL,
-  `firstname` varchar(99) NOT NULL,
-  `lastname` varchar(99) NOT NULL,
-  `gender` varchar(99) NOT NULL,
-  `birthdate` varchar(99) NOT NULL,
+  `user_id` int(13) NOT NULL,
+  `shop_id_fk` int(13) NOT NULL,
+  `firstname` varchar(66) NOT NULL,
+  `lastname` varchar(66) NOT NULL,
+  `gender` varchar(66) NOT NULL,
+  `birthdate` varchar(66) NOT NULL,
   `profilepic` varchar(99) NOT NULL,
-  `email` varchar(99) NOT NULL,
-  `contactaddress` varchar(99) NOT NULL,
-  `valid_id_image` varchar(99) NOT NULL
+  `email` varchar(66) NOT NULL,
+  `contactaddress` varchar(66) NOT NULL,
+  `valid_id_image` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `compmanager`
+--
+
+INSERT INTO `compmanager` (`user_id`, `shop_id_fk`, `firstname`, `lastname`, `gender`, `birthdate`, `profilepic`, `email`, `contactaddress`, `valid_id_image`) VALUES
+(232242, 7, 'CD', 'Tanggol', 'Male', '25/3/2022', '', 'CD@Gmail.com', '09233455433', ''),
+(2222855, 7, 'John Dave', 'Delgado', 'Male', '24/3/2022', '', 'JohnDave@gmail.com', '09262247240', '');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `compshop_notification`
+--
+
+CREATE TABLE `compshop_notification` (
+  `cp_noti_id` int(11) NOT NULL,
+  `to_shop_id` int(11) NOT NULL,
+  `noti_title` varchar(70) NOT NULL,
+  `noti_body` longtext NOT NULL,
+  `noti_created` varchar(20) NOT NULL,
+  `status` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -70,16 +93,16 @@ CREATE TABLE `computershop` (
   `net_speed` varchar(66) NOT NULL,
   `description` varchar(66) NOT NULL,
   `contact_number` varchar(66) NOT NULL,
-  `email_address` varchar(66) NOT NULL
+  `email_address` varchar(66) NOT NULL,
+  `Shop_Status` varchar(66) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `computershop`
 --
 
-INSERT INTO `computershop` (`shop_id`, `shop_name`, `address`, `coordinates`, `operating_hours`, `net_speed`, `description`, `contact_number`, `email_address`) VALUES
-(1, 'tnc', '12312', '123', '1232', '454', '124124', '123123', 'asdsd'),
-(2, 'TNC', 'Sanciangko', '1231232', '24/7', '400mbps', '1adadasdasda', '2312313', 'tnc@gmail.com');
+INSERT INTO `computershop` (`shop_id`, `shop_name`, `address`, `coordinates`, `operating_hours`, `net_speed`, `description`, `contact_number`, `email_address`, `Shop_Status`) VALUES
+(7, 'TNC', 'Palaez street, Cebu City', '10.298068533932295,123.89853783241296', '', '', '', '09632394707', 'tnccebuhq@gmail.com', 'Active');
 
 -- --------------------------------------------------------
 
@@ -92,7 +115,7 @@ CREATE TABLE `computer_ratings` (
   `shop_id` int(33) NOT NULL,
   `user_id` int(33) NOT NULL,
   `computer_rate` int(6) NOT NULL,
-  `date` date NOT NULL
+  `date` varchar(66) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -107,10 +130,18 @@ CREATE TABLE `computer_type` (
   `name` varchar(66) NOT NULL,
   `total_units` int(66) NOT NULL,
   `rate` int(66) NOT NULL,
-  `specs` varchar(66) NOT NULL,
-  `comp_type_img` varchar(99) DEFAULT NULL,
+  `specs` varchar(200) NOT NULL,
+  `comp_type_img` varchar(99) NOT NULL,
   `status` varchar(99) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `computer_type`
+--
+
+INSERT INTO `computer_type` (`Ctype_id`, `shop_id_fk`, `name`, `total_units`, `rate`, `specs`, `comp_type_img`, `status`) VALUES
+(4, 7, 'VIP', 10, 25, 'VIP Specs: CPU: Intel Core i5 - 8400 @ 2.80GHz (6 CPU\'s), ~2.8 GHz', '', 'Available'),
+(5, 7, 'Regular', 204, 16, 'Regular Specs: Cpu Intel Core i3 @3.60GHz(4 CPUs), ~ 3.6GHz GPU: N', '', 'Unavailable');
 
 -- --------------------------------------------------------
 
@@ -136,7 +167,6 @@ CREATE TABLE `finders` (
   `firstname` varchar(66) NOT NULL,
   `birthdate` varchar(66) NOT NULL,
   `gender` varchar(66) NOT NULL,
-  `civil_status` varchar(66) NOT NULL,
   `address` varchar(66) NOT NULL,
   `email` varchar(66) NOT NULL,
   `phone_num` int(12) NOT NULL,
@@ -149,23 +179,22 @@ CREATE TABLE `finders` (
 -- Dumping data for table `finders`
 --
 
-INSERT INTO `finders` (`user_id`, `lastname`, `firstname`, `birthdate`, `gender`, `civil_status`, `address`, `email`, `phone_num`, `profile_pic`, `vac_card_img`, `vac_status`) VALUES
-(142251, 'Tanggol', 'Chris', '13/3/2022', 'Male', '', '', 'cdtanggol@gmail.com', 2147483647, '', '', '2nd Dose');
+INSERT INTO `finders` (`user_id`, `lastname`, `firstname`, `birthdate`, `gender`, `address`, `email`, `phone_num`, `profile_pic`, `vac_card_img`, `vac_status`) VALUES
+(1222510, 'Delgado', 'john Dave', '19/3/2022', 'Male', '', 'hackmetry01@gmail.com', 2147483647, '', '', '2nd Dose');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `notifications`
+-- Table structure for table `finder_notification`
 --
 
-CREATE TABLE `notifications` (
-  `notify_id` int(33) NOT NULL,
-  `user_id` int(33) NOT NULL,
-  `notification_type` varchar(99) NOT NULL,
-  `notif_title` varchar(99) NOT NULL,
-  `notif_body` varchar(99) NOT NULL,
-  `notif_created` date NOT NULL,
-  `status` varchar(99) NOT NULL
+CREATE TABLE `finder_notification` (
+  `finder_notif_id` int(12) NOT NULL,
+  `to_user_id` int(12) NOT NULL,
+  `noti_title` varchar(70) NOT NULL,
+  `noti_body` longtext NOT NULL,
+  `noti_created` varchar(20) NOT NULL,
+  `status` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -228,14 +257,22 @@ CREATE TABLE `reports` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `shop_images`
+-- Table structure for table `shop_image`
 --
 
-CREATE TABLE `shop_images` (
-  `shop_id` int(33) NOT NULL,
+CREATE TABLE `shop_image` (
+  `image_id` int(11) NOT NULL,
+  `shop_id` int(11) NOT NULL,
   `img_file` varchar(99) NOT NULL,
-  `date` date NOT NULL
+  `date` varchar(99) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `shop_image`
+--
+
+INSERT INTO `shop_image` (`image_id`, `shop_id`, `img_file`, `date`) VALUES
+(9, 7, 'IMG_7345.JPEG', '22-03-22');
 
 -- --------------------------------------------------------
 
@@ -244,17 +281,19 @@ CREATE TABLE `shop_images` (
 --
 
 CREATE TABLE `transaction` (
-  `transaction_id` int(99) NOT NULL,
-  `user_id_fk` int(66) NOT NULL,
-  `shop_id_fk` int(66) NOT NULL,
+  `transaction_id` int(12) NOT NULL,
+  `user_id_fk` int(12) NOT NULL,
+  `shop_id_fk` int(12) NOT NULL,
   `servicetype` varchar(66) NOT NULL,
   `arrival_time` varchar(66) NOT NULL,
   `arrival_date` varchar(66) NOT NULL,
+  `instruction` varchar(99) NOT NULL,
   `date_issued` varchar(66) NOT NULL,
   `transaction_status` varchar(66) NOT NULL,
-  `service_fee` int(66) NOT NULL,
+  `service_fee` int(12) NOT NULL,
   `payment_status` varchar(66) NOT NULL,
-  `payment_type` varchar(66) NOT NULL
+  `payment_type` varchar(66) NOT NULL,
+  `qr_code` varchar(99) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -276,7 +315,15 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`user_id`, `username`, `password`, `user_type`, `status`) VALUES
-(142251, 'grendel', 'Notsobadsk1*', 'finder', 'active');
+(1, 'sample', 'sample', 'finder', 'active'),
+(101010, 'superadmin', 'superadmin', 'superadmin', 'active'),
+(142251, 'grendel', 'Notsobadsk1*', 'finder', 'active'),
+(162267, 'dnko12', '12345678', 'Admin', 'Active'),
+(232242, 'tangol123', '12345678', 'Admin', 'Active'),
+(1222510, 'dnko12', '12345678', 'finder', 'active'),
+(1422377, 'Dnko12', 'arimakouseisubaru', 'finder', 'active'),
+(2222855, 'tncadmin123', '12345678', 'Admin', 'Active'),
+(15228310, 'dnko13', 'johnstar', 'Admin', 'Active');
 
 --
 -- Indexes for dumped tables
@@ -294,8 +341,14 @@ ALTER TABLE `comments`
 -- Indexes for table `compmanager`
 --
 ALTER TABLE `compmanager`
-  ADD KEY `user_id` (`user_id`),
+  ADD PRIMARY KEY (`user_id`),
   ADD KEY `shop_id_fk` (`shop_id_fk`);
+
+--
+-- Indexes for table `compshop_notification`
+--
+ALTER TABLE `compshop_notification`
+  ADD PRIMARY KEY (`cp_noti_id`);
 
 --
 -- Indexes for table `computershop`
@@ -322,6 +375,7 @@ ALTER TABLE `computer_type`
 -- Indexes for table `comp_booking`
 --
 ALTER TABLE `comp_booking`
+  ADD PRIMARY KEY (`transaction_id`),
   ADD KEY `transaction_id` (`transaction_id`);
 
 --
@@ -331,11 +385,10 @@ ALTER TABLE `finders`
   ADD PRIMARY KEY (`user_id`);
 
 --
--- Indexes for table `notifications`
+-- Indexes for table `finder_notification`
 --
-ALTER TABLE `notifications`
-  ADD PRIMARY KEY (`notify_id`),
-  ADD KEY `user_id` (`user_id`);
+ALTER TABLE `finder_notification`
+  ADD PRIMARY KEY (`finder_notif_id`);
 
 --
 -- Indexes for table `post_events`
@@ -364,10 +417,11 @@ ALTER TABLE `reports`
   ADD KEY `shop_id` (`shop_id`);
 
 --
--- Indexes for table `shop_images`
+-- Indexes for table `shop_image`
 --
-ALTER TABLE `shop_images`
-  ADD KEY `shop_id` (`shop_id`);
+ALTER TABLE `shop_image`
+  ADD PRIMARY KEY (`image_id`),
+  ADD KEY `shop_image_ibfk_1` (`shop_id`);
 
 --
 -- Indexes for table `transaction`
@@ -394,22 +448,40 @@ ALTER TABLE `comments`
   MODIFY `comment_id` int(33) NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT for table `compshop_notification`
+--
+ALTER TABLE `compshop_notification`
+  MODIFY `cp_noti_id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT for table `computershop`
 --
 ALTER TABLE `computershop`
-  MODIFY `shop_id` int(33) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `shop_id` int(33) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
+--
+-- AUTO_INCREMENT for table `computer_ratings`
+--
+ALTER TABLE `computer_ratings`
+  MODIFY `rating_id` int(33) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `computer_type`
 --
 ALTER TABLE `computer_type`
-  MODIFY `Ctype_id` int(55) NOT NULL AUTO_INCREMENT;
+  MODIFY `Ctype_id` int(55) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
--- AUTO_INCREMENT for table `notifications`
+-- AUTO_INCREMENT for table `comp_booking`
 --
-ALTER TABLE `notifications`
-  MODIFY `notify_id` int(33) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `comp_booking`
+  MODIFY `transaction_id` int(33) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `finder_notification`
+--
+ALTER TABLE `finder_notification`
+  MODIFY `finder_notif_id` int(12) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `post_events`
@@ -424,16 +496,22 @@ ALTER TABLE `reports`
   MODIFY `report_id` int(33) NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT for table `shop_image`
+--
+ALTER TABLE `shop_image`
+  MODIFY `image_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+
+--
 -- AUTO_INCREMENT for table `transaction`
 --
 ALTER TABLE `transaction`
-  MODIFY `transaction_id` int(99) NOT NULL AUTO_INCREMENT;
+  MODIFY `transaction_id` int(12) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `user_id` int(40) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=142252;
+  MODIFY `user_id` int(40) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15228311;
 
 --
 -- Constraints for dumped tables
@@ -450,27 +528,21 @@ ALTER TABLE `comments`
 -- Constraints for table `compmanager`
 --
 ALTER TABLE `compmanager`
-  ADD CONSTRAINT `compmanager_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `user` (`user_id`),
-  ADD CONSTRAINT `compmanager_ibfk_2` FOREIGN KEY (`shop_id_fk`) REFERENCES `computershop` (`shop_id`);
+  ADD CONSTRAINT `compmanager_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `user` (`user_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `compmanager_ibfk_2` FOREIGN KEY (`shop_id_fk`) REFERENCES `computershop` (`shop_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `computer_ratings`
 --
 ALTER TABLE `computer_ratings`
-  ADD CONSTRAINT `computer_ratings_ibfk_1` FOREIGN KEY (`shop_id`) REFERENCES `computershop` (`shop_id`),
-  ADD CONSTRAINT `computer_ratings_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `user` (`user_id`);
+  ADD CONSTRAINT `computer_ratings_ibfk_1` FOREIGN KEY (`shop_id`) REFERENCES `computershop` (`shop_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `computer_ratings_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `user` (`user_id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
 -- Constraints for table `computer_type`
 --
 ALTER TABLE `computer_type`
-  ADD CONSTRAINT `computer_type_ibfk_1` FOREIGN KEY (`shop_id_fk`) REFERENCES `computershop` (`shop_id`);
-
---
--- Constraints for table `comp_booking`
---
-ALTER TABLE `comp_booking`
-  ADD CONSTRAINT `comp_booking_ibfk_1` FOREIGN KEY (`transaction_id`) REFERENCES `transaction` (`transaction_id`);
+  ADD CONSTRAINT `computer_type_ibfk_1` FOREIGN KEY (`shop_id_fk`) REFERENCES `computershop` (`shop_id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
 -- Constraints for table `finders`
@@ -479,47 +551,17 @@ ALTER TABLE `finders`
   ADD CONSTRAINT `finders_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `user` (`user_id`);
 
 --
--- Constraints for table `notifications`
+-- Constraints for table `shop_image`
 --
-ALTER TABLE `notifications`
-  ADD CONSTRAINT `notifications_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `user` (`user_id`);
-
---
--- Constraints for table `post_events`
---
-ALTER TABLE `post_events`
-  ADD CONSTRAINT `post_events_ibfk_1` FOREIGN KEY (`shop_id`) REFERENCES `computershop` (`shop_id`);
-
---
--- Constraints for table `printing`
---
-ALTER TABLE `printing`
-  ADD CONSTRAINT `printing_ibfk_1` FOREIGN KEY (`transaction_id`) REFERENCES `transaction` (`transaction_id`);
-
---
--- Constraints for table `printing_rate`
---
-ALTER TABLE `printing_rate`
-  ADD CONSTRAINT `printing_rate_ibfk_1` FOREIGN KEY (`shop_id`) REFERENCES `computershop` (`shop_id`);
-
---
--- Constraints for table `reports`
---
-ALTER TABLE `reports`
-  ADD CONSTRAINT `reports_ibfk_1` FOREIGN KEY (`shop_id`) REFERENCES `computershop` (`shop_id`);
-
---
--- Constraints for table `shop_images`
---
-ALTER TABLE `shop_images`
-  ADD CONSTRAINT `shop_images_ibfk_1` FOREIGN KEY (`shop_id`) REFERENCES `computershop` (`shop_id`);
+ALTER TABLE `shop_image`
+  ADD CONSTRAINT `shop_image_ibfk_1` FOREIGN KEY (`shop_id`) REFERENCES `computershop` (`shop_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `transaction`
 --
 ALTER TABLE `transaction`
-  ADD CONSTRAINT `transaction_ibfk_1` FOREIGN KEY (`user_id_fk`) REFERENCES `finders` (`user_id`),
-  ADD CONSTRAINT `transaction_ibfk_2` FOREIGN KEY (`shop_id_fk`) REFERENCES `computershop` (`shop_id`);
+  ADD CONSTRAINT `transaction_ibfk_1` FOREIGN KEY (`user_id_fk`) REFERENCES `finders` (`user_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `transaction_ibfk_2` FOREIGN KEY (`shop_id_fk`) REFERENCES `computershop` (`shop_id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
