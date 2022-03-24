@@ -86,7 +86,7 @@
 				<div class="col-md-9 col-xs-1">
 					<h3 class="h5 mb-4 text-center"></h3>
 					<div class="table-wrap">
-						<table class="table">
+						<!-- <table class="table">
 						  <thead class="thead-primary">
 						    <tr>
 						      <th>No.</th>
@@ -119,7 +119,7 @@
 						    </tr>
 						<?php } ?>  
 						  </tbody>
-						</table>
+						</table> -->
 					</div>
 				</div>
         

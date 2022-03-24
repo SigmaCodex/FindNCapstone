@@ -175,14 +175,21 @@ class MainModel extends CI_Model{
         $query = $this->db->get();
         return $query->result();
     }
-    public function getComputerTypeInfo($id){
+    public function selectforUpdateComputerTypeInfo($id){
         $this->db->select('*');
         $this->db->from('computer_type');
         $this->db->where('Ctype_id',$id);
         $query = $this->db->get();
         return $query->result();
     }
-
+    public function getComputerTypeInfo($id){
+        $this->db->select('*');
+        $this->db->from('computer_type');
+        $this->db->where('Ctype_id',$id);
+        $query = $this->db->get();
+        $resultquery = $query->row_array();
+        return $resultquery;
+    }
     public function getListOfComputerShops(){
         $this->db->select('*');
         $this->db->from('computershop');

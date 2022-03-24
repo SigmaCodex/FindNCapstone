@@ -128,9 +128,8 @@ class Main_Controller extends CI_Controller {
 	}
 	public function shopadmin_comptypeInfo($ctypeid){
 		$this->load->model('MainModel');
-		$val['Ctype_id'] = $ctypeid;
-		$val['details'] = $this->MainModel->getComputerTypeInfo($ctypeid);
-		$this->load->view('admin/updatecomptype',$val);
+		$val['details'] = $this->MainModel->selectforUpdateComputerTypeInfo($ctypeid);
+		$this->load->view('admin/viewComputertype',$val);
 	}
 	public function shopadmin_addComputerType(){
 		$this->load->view('admin/computertype');
