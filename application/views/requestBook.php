@@ -104,7 +104,7 @@
                         <!-- Computer Type Card -->
                         <div class="col-12 col-md-6 mt-2">
                           <div class="card shadow-sm">
-                            <div class="card-body" name_comptype = "<?php echo $c->name;?>" comptype_status ="<?php echo $c->status;?>">
+                            <div class="card-body" comptype_id = "<?php echo $c->Ctype_id;?>" comptype_status ="<?php echo $c->status;?>">
                               <h5 class="card-title" ><b><?php echo $c->name;?></b></h5>
                               <hr>
                               <div class="list">
@@ -153,7 +153,7 @@
                           <select name="" class="multisteps-form__input form-control" id="comp_typeSelect" placeholder="">
                           <?php foreach ($computertype_details as $cm) {?>
                             <?php if($cm->status == "Available") {?>
-                              <option value="<?php echo $cm->name;?>"><?php echo $cm->name;?></option>
+                              <option value="<?php echo $cm->Ctype_id;?>"><?php echo $cm->name;?></option>
                          
                           <?php }
                           }
@@ -182,7 +182,7 @@
   
                       <div class="form-row mt-4 d-flex justify-content-center">
                         <div class="col-8 col-sm-4 mt-4 mt-sm-0">
-                          <label for="person">Number of Person</label><input class="multisteps-form__input form-control text-center" type="number" value="1"/>
+                          <label for="person">Number of Person</label><input id="num-person" class="multisteps-form__input form-control text-center" type="number" value="1"/>
                         </div>
                         <div class="col-8 col-sm-4 mt-4 mt-sm-0">
                           <label for="date">Date of Booking</label><input class="multisteps-form__input form-control" type="date" id="date" />
@@ -205,11 +205,11 @@
                   
                     <div class="multisteps-form__content">
                       <div class="form-row mt-4">
-                        <textarea rows="4" cols="50" class="multisteps-form__textarea form-control" placeholder="Additional Request or Questions for the computer cafe admin."></textarea>
+                        <textarea id="message" rows="4" cols="50" class="multisteps-form__textarea form-control" placeholder="Additional Request or Questions for the computer cafe admin."></textarea>
                       </div>
                       <div class="button-row d-flex mt-4">
                         <button class="btn btn-warning js-btn-prev" style="color: aliceblue;" type="button" title="Prev">Prev</button>
-                        <button class="btn btn-success ml-auto" style="color: aliceblue;" type="button" title="Send">Submit Booking</button>
+                        <button class="btn btn-success ml-auto" id="submit-booking" style="color: aliceblue;" type="button" title="Send">Submit Booking</button>
                       </div>
                     </div>
                   </div>
@@ -237,7 +237,7 @@
 
 <script>
   	$(document).on('click','.card-body',function(){ 
-        var name_comptype = $(this).attr("name_comptype");
+        var name_comptype = $(this).attr("comptype_id");
         var status = $(this).attr("comptype_status");
         if(status == "Available"){
           $('#comp_typeSelect').val(name_comptype);
@@ -248,6 +248,43 @@
 							'error'
 						)
         }
+    });
+</script>
+
+<!-- computertype populate if selected -->
+<script>
+    $(document).on('click','#submit-booking',function(){ 
+         shop_id       = $('#shop_id').text();
+         numperson     = $('#num-person').val();
+         date_arrival  = $('#date').val();
+         time_arrival  = $('#time').val();
+         message       = $('#message').val();
+         computer_type = $('#comp_typeSelect').val();
+
+         var BASE_URL = "<?php echo base_url();?>";
+         //ajax for submiting CompBooking Request
+         $.ajax({
+          url: BASE_URL+"submit-CompBooking-Request",
+          type: "POST",
+          data:{s_id:shop_id,num_person:numperson,arrival_date:date_arrival,arrival_time:time_arrival,addtional_message:message,comp_type:computer_type},
+          beforeSend : function()
+          {
+            alert("processing");
+          },
+          success: function(data)
+          {
+              swal({
+                title: "Your Booking Request is send!",
+                text: "Wait for the Respond",
+                icon: "success",
+                button: "Continue",
+              }).then((value) => {
+                    location.reload();
+              });           
+          }
+        });
+
+
     });
 </script>
 

@@ -214,7 +214,7 @@ class MainModel extends CI_Model{
             'instruction'       => 	$this->input->post('addtional_message'),
             'date_issued'              => 	$date_issued,
             'transaction_status'       => 	"pending",
-            'service_fee'              => 	"5",
+            'service_fee'              => 	"15",
             'payment_status	'          => 	"not_paid",
             'payment_type'             => 	"not_selected",
             'qr_code'                  => 	"not_issued",
@@ -227,7 +227,7 @@ class MainModel extends CI_Model{
                 'comp_type_id'     =>  $this->input->post('comp_type'),
                 'num_ticket'         => 	$this->input->post('num_person'),
             );  
-            echo json_encode($transaction);
+  
              $this->db->insert('transaction',$transaction);
              $this->db->insert('comp_booking', $comp_booking);
     }
