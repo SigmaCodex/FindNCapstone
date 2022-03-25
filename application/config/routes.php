@@ -67,7 +67,7 @@ $route['deleteCompShop/(:num)'] = 'logicalcontroller/deleteComputerShop/$1';
     $route['deleteComputerType/(:num)'] = 'logicalcontroller/deleteComputerType/$1';
     $route['updateCompType/(:num)'] = 'logicalcontroller/updateComputerType/$1';
     $route['updateCompTypeStat/(:num)'] = 'logicalcontroller/updateComputerTypeStatus/$1';
-    
+    $route['getCompTypeInfo/(:num)'] = 'logicalcontroller/getComputerTypeInfo/$1';
     $route['uploadshopimages/(:num)'] = 'logicalcontroller/uploadshopimages/$1';
 
     //api 

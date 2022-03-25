@@ -239,13 +239,54 @@ class MainModel extends CI_Model{
         $query = $this->db->get();
         return $query->result();
     }
-    public function getComputerTypeInfo($id){
+    public function selectforUpdateComputerTypeInfo($id){
         $this->db->select('*');
         $this->db->from('computer_type');
         $this->db->where('Ctype_id',$id);
         $query = $this->db->get();
         return $query->result();
     }
+
+    public function getComputerTypeInfo($id){
+        $this->db->select('*');
+        $this->db->from('computer_type');
+        $this->db->where('Ctype_id',$id);
+        $query = $this->db->get();
+        $resultquery = $query->row_array();
+        return $resultquery;
+    }
+    public function getListOfComputerShops(){
+        $this->db->select('*');
+        $this->db->from('computershop');
+        $this->db->where('Shop_Status','Active');
+        $query = $this->db->get();
+        return $query->result();
+    }
+
+    public function getAdminDetails($id){
+		$this->db->select('*');
+        $this->db->from('computershop');
+        $this->db->where('shop_id',$id);
+        $query = $this->db->get();
+        return $query->result();
+    }
+
+    public function getShopDetails($id){
+		$this->db->select('*');
+        $this->db->from('computershop');
+        $this->db->where('shop_id',$id);
+        $query = $this->db->get();
+        $resultquery = $query->row_array();
+        return $resultquery;
+    }
+
+    public function getListOfAdmins($id){
+		$this->db->select('*');
+        $this->db->from('compmanager');
+        $this->db->where('shop_id_fk',$id);
+        $query = $this->db->get();
+        return $query->result();
+
 
     public function addRate($shop_id, $user_id){
         $datafinder = array(
@@ -256,6 +297,7 @@ class MainModel extends CI_Model{
         );
         $this->db->insert('computer_ratings',$datafinder);
         echo json_encode($datafinder);
+
     }
     public function updateRate($shop_id, $user_id, $rate_id){
         $datafinder = array(
