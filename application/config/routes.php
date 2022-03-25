@@ -23,10 +23,10 @@ $route['loginpage'] = 'main_controller/viewLogin';
 $route['findnRegister'] = 'main_controller/viewFindnRegister';
 $route['findnlogin'] = 'main_controller/viewFindNLogin';
 $route['viewShop']     = 'main_controller/viewViewShop';
-$route['requestBook']     = 'main_controller/viewRequestBook';
 $route['findershomepage'] = 'main_controller/viewFinders_HomePage';
 $route['accountSettings'] = 'main_controller/viewAccountSettings';
 
+$route['finder-ComputerBookingfinder/(:num)']   = 'main_controller/viewRequestBook/$1';
 $route['finder-Compbookingrequest/(:num)'] = 'main_controller/finder_BookingRequest/$1';
 $route['computerbform'] = 'main_controller/viewcompbookForm';
 $route['viewMap']       = 'main_controller/viewMap';

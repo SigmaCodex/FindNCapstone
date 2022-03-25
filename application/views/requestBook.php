@@ -9,13 +9,13 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   
   <!-- jquery plugin -->
-  <script src="assets/js/jquery/jquery-1.10.2.min.js"></script>
+  <script src="../assets/js/jquery/jquery-1.10.2.min.js"></script>
   <!-- date dropper style sheet -->
-  <link rel="stylesheet" href="assets/css/datedropper.css">
+  <link rel="stylesheet" href="../assets/css/datedropper.css">
   <!-- date dropper js file -->
-  <script src="assets/js/datedropper.js"></script>
+  <script src="../assets/js/datedropper.js"></script>
 
-  <link rel="stylesheet" href="assets/css/requestBook.css">
+  <link rel="stylesheet" href="../assets/css/requestBook.css">
 
 
 </head>
@@ -246,7 +246,7 @@
 
 
 
-<script  src="assets/js/requestBook.js"></script>
+<script  src="../assets/js/requestBook.js"></script>
 
 <script>$('#date').dateDropper();</script>
 <!-- <script>$$('#time').timeDropper();</script> -->
