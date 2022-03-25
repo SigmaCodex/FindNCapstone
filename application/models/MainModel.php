@@ -142,8 +142,6 @@ class MainModel extends CI_Model{
 		}
     }
 
-
-    
     //finders
     public function registerFinder(){
         $Primarycode = 0;
@@ -275,6 +273,43 @@ class MainModel extends CI_Model{
         $query = $this->db->get('computer_ratings');
         return $query->result();
     }    
+
+    public function createNotif($user_id){
+        $datafinder = array(
+            'user_id'               => 	 $user_id,
+            'notification_type'     => 	 "simple",
+            'notif_title'           => 	 "this is a title",
+            'notif_body'            =>   "this is a body",
+            'notif_created'         =>   "8/28/1999",
+            'status'                =>   "active",
+        );
+        $this->db->insert('notifications',$datafinder);
+        echo json_encode($datafinder);
+    }
+    public function createCompNotif($user_id){
+        $datafinder = array(
+            'user_id'               => 	 $user_id,
+            'notification_type'     => 	 "simple",
+            'notif_title'           => 	 "this is a title",
+            'notif_body'            =>   "this is a body",
+            'notif_created'         =>   "8/28/1999",
+            'status'                =>   "active",
+        );
+        $this->db->insert('compshop_notifications',$datafinder);
+        echo json_encode($datafinder);
+    }
+    public function createFinderNotif($user_id){
+        $datafinder = array(
+            'user_id'               => 	 $user_id,
+            'notification_type'     => 	 "simple",
+            'notif_title'           => 	 "this is a title",
+            'notif_body'            =>   "this is a body",
+            'notif_created'         =>   "8/28/1999",
+            'status'                =>   "active",
+        );
+        $this->db->insert('finder_notifications',$datafinder);
+        echo json_encode($datafinder);
+    }
 
     //admin
     public function updateComputerDetails($id){

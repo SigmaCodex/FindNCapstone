@@ -155,7 +155,10 @@ class LogicalController extends CI_Controller {
         $this->load->model('MainModel');
         $this->MainModel->updateComputerTypeStatus($id);
     }
-
+    public function createNotif($user_id){
+        $this->load->model('MainModel');
+        $this->MainModel->createNotif($user_id);
+    }
 
         //Shop Computer Details
     public function uploadshopimages($shop_id){

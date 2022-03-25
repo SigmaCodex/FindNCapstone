@@ -61,6 +61,8 @@ $route['deleteCompShop/(:num)'] = 'logicalcontroller/deleteComputerShop/$1';
     $route['addRate/(:num)/(:num)'] = 'logicalcontroller/addRate/$1/$2';
     $route['updateRate/(:num)/(:num)/(:num)'] = 'logicalcontroller/updateRate/$1/$2/$3';
 
+    $route['createNotif/(:num)'] = 'logicalcontroller/createNotif/$1';
+
     //admin
     $route['updateComputerDetails/(:num)'] = 'logicalcontroller/updateComputerDetails/$1';
     $route['addcomtype/(:num)'] = 'logicalcontroller/addComputerType/$1';
