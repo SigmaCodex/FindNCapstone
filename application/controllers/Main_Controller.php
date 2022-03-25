@@ -33,6 +33,10 @@ class Main_Controller extends CI_Controller {
 	}
 	public function viewViewShop()
 	{
+		$this->load->model('MainModel');
+		//get shop details(shop_id) 
+		//get shop_image(shop_id)
+		//get computertypedetails(shop_id)
 		$this->load->view('viewShop');
 	}
 	public function viewRequestBook()
