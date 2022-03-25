@@ -161,7 +161,7 @@ class MainModel extends CI_Model{
                 'user_id'   =>    $Primarycode,
                 'username'  => 	  $this->input->post('username'),
                 'password'  =>    $this->input->post('conpass'),
-                'user_type' =>    "Finder",
+                'user_type' =>    "finder",
                 'status'    =>    "Active"
             );
                 $this->db->insert('user',$datauser);
@@ -292,7 +292,13 @@ class MainModel extends CI_Model{
         $this->db->where('user_id_fk',$user_id);
         $query = $this->db->get('computer_ratings');
         return $query->result();
-    }    
+    } 
+    
+    public function selectFinderDetails($user_id){
+        $this->db->where('user_id',$user_id);
+        $query = $this->db->get('finders');
+        return $query->result();
+    }
 
     //admin
     public function updateComputerDetails($id){
