@@ -52,7 +52,7 @@
                   <!-- First Form -->
                   <div class="multisteps-form__panel shadow p-4 rounded bg-white js-active" data-animation="scaleIn">
                     <h3 class="multisteps-form__title">Update Profile Information</h3>
-                    <label style="color: red; font-size: 12px;">* Note that you can edit profile information during booking. Double check if information reflects <strong>finders name.</strong> </label>
+                    <label style="color: red; font-size: 12px;">* Note that you can edit profile information during booking. Double check if information reflects <strong style="color:green; font-size:13px;">finders name.</strong> </label>
                     <div class="multisteps-form__content">
                       <div class="form-row mt-4">
                         <div class="col-md-6 pt-md-0 pt-3">
@@ -93,8 +93,8 @@
                   <!-- Second Form -->
                   <div class="multisteps-form__panel shadow p-4 rounded bg-white" data-animation="scaleIn">
                     <h3 class="multisteps-form__title">Access Type</h3>
-                    <label style="color: red; font-size: 12px;">* Choose your preferred access type.
-                       <strong>You only need to pay our booking fee.</strong> </label>
+                    <label style="color: red; font-size: 12px;">* Choose your preferred access type. You only need to
+                      <strong style="color:green; font-size:15px;">   pay our booking fee.</strong></label>
                   
                     <div class="multisteps-form__content">
   
@@ -194,7 +194,7 @@
                   <div class="multisteps-form__panel shadow p-4 rounded bg-white" data-animation="scaleIn">
   
                     <h3 class="multisteps-form__title">Booking Information</h3>
-                    <label style="color: red; font-size: 12px;">* Make sure to arrive on or before the date and time you set for your booking.</label> 
+                    <label style="color: red; font-size: 12px;">* Make sure to arrive<strong style="color:green; font-size:15px;">  on or before</strong> the date and time you set for your booking.</label> 
                     <div class="multisteps-form__content">
   
                       <div class="form-row mt-4 d-flex justify-content-center">
@@ -218,11 +218,11 @@
                   <!-- Fourth Form -->
                   <div class="multisteps-form__panel shadow p-4 rounded bg-white" data-animation="scaleIn">
                     <h3 class="multisteps-form__title">Additional Message</h3>
-                    <label style="color: red; font-size: 12px;">* Specify any request or questions for the admin.</label> 
+                    <label style="color: red; font-size: 12px;">* <strong style="color:green; font-size:15px;"> Specify </strong> any request or questions for the admin.</label> 
                   
                     <div class="multisteps-form__content">
                       <div class="form-row mt-4">
-                        <textarea rows="4" cols="50" class="multisteps-form__textarea form-control" placeholder="Additional Message and Questions"></textarea>
+                        <textarea rows="4" cols="50" class="multisteps-form__textarea form-control" placeholder="Additional Request or Questions for the computer cafe admin."></textarea>
                       </div>
                       <div class="button-row d-flex mt-4">
                         <button class="btn btn-warning js-btn-prev" style="color: aliceblue;" type="button" title="Prev">Prev</button>

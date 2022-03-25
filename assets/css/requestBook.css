@@ -160,8 +160,10 @@ body a {
   visibility: visible;
   
 }
+
 .card{
   box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.1);
+  
 
 }
 .card:hover{
@@ -202,9 +204,13 @@ body a {
 .fee p:hover{
   color: #750902;
 }
+.card-body{
+  cursor: pointer;
+}
 .card-body .card-title {
   text-align: center;
   font-size: 18px;
+
 }
 .card-title b{
   background-image: linear-gradient(45deg, #f83f0b,#e09e1a);
@@ -221,7 +227,9 @@ body a {
 .btn-dark {
   font-size: 8px;
 }
-
+.multisteps-form__input{
+  background-color: #fff !important;
+}
 .multisteps-form__panel[data-animation="scaleIn"] {
   -webkit-transform: scale(0.9);
           transform: scale(0.9);
@@ -251,7 +259,11 @@ body a {
 {
 background: rgb(238, 198, 20);
 }
-
+#date,
+#time
+{
+  cursor: pointer;
+}
 
 
 
