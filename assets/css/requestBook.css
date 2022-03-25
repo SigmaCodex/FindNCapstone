@@ -1,0 +1,323 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800&display=swap");
+@import url('http://fonts.cdnfonts.com/css/uni-neue');
+@import url('//db.onlinewebfonts.com/c/80241b4ef777109d2625c9195e7ca852?family=NordiquePro-Bold');
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  font-size: 14px;
+  color: #2c2c2c;
+  background-color: #F7F7F7;
+  
+  
+}
+body a {
+  color: inherit;
+  text-decoration: none;
+  
+}
+
+.content {
+  width: 100%;
+  margin: 0 auto 10px;
+  border-radius: 10px;
+  
+}
+#wrap {
+  box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.6);
+  max-width: 100%;
+  align-items: center;
+  padding: 10px;
+  padding-top: 30px;
+  border-radius: 5px;
+  background-color: #fff;
+}
+
+.content__title {
+  margin-bottom: 20px;
+  font-size: 40px;
+  text-align: center;
+  background-image: linear-gradient(45deg, #fc4a1a,#f7b733);
+  background-size: 100%;
+  -webkit-background-clip: text;
+  -moz-background-clip: text;
+  -webkit-text-fill-color: transparent; 
+  -moz-text-fill-color: transparent;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.content__title--m-sm {
+  margin-bottom: 10px;
+}
+
+.multisteps-form__progress {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(0, 1fr));
+  
+}
+
+.multisteps-form__progress-btn {
+  transition-property: all;
+  transition-duration: 0.15s;
+  transition-timing-function: linear;
+  transition-delay: 0s;
+  position: relative;
+  padding-top: 20px;
+  color: rgba(108, 117, 125, 0.7);
+  text-indent: -9999px;
+  border: none;
+  background-color: transparent;
+  outline: none !important;
+  cursor: pointer;
+  border-radius: 10px;
+}
+@media (min-width: 250px) {
+  .multisteps-form__progress-btn {
+    text-indent: 0;
+  }
+}
+.multisteps-form__progress-btn:before {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  display: block;
+  width: 15px;
+  height: 15px;
+  content: '';
+  -webkit-transform: translateX(-50%);
+  transform: translateX(-50%);
+  transition: all 0.15s linear 0s, -webkit-transform 0.15s cubic-bezier(0.05, 1.09, 0.16, 1.4) 0s;
+  transition: all 0.15s linear 0s, transform 0.15s cubic-bezier(0.05, 1.09, 0.16, 1.4) 0s;
+  transition: all 0.15s linear 0s, transform 0.15s cubic-bezier(0.05, 1.09, 0.16, 1.4) 0s, -webkit-transform 0.15s cubic-bezier(0.05, 1.09, 0.16, 1.4) 0s;
+  border: 2px solid currentColor;
+  border-radius: 50%;
+  background-color: #fff;
+  box-sizing: border-box;
+  z-index: 3;
+}
+.multisteps-form__progress-btn:after {
+  position: absolute;
+  top: 6px;
+  left: calc(-50% - 13px / 2);
+  transition-property: all;
+  transition-duration: 0.15s;
+  transition-timing-function: linear;
+  transition-delay: 0s;
+  display: block;
+  width: 100%;
+  height: 3px;
+  content: '';
+  background-color:#067a15;
+  z-index: 1;
+}
+.multisteps-form__progress-btn:first-child:after {
+  display: none;
+}
+.multisteps-form__progress-btn.js-active {
+  color: #067a15;
+  /* background-image: linear-gradient(45deg, #067a15,#b8eea3);
+  background-size: 100%;
+  -webkit-background-clip: text;
+  -moz-background-clip: text;
+  -webkit-text-fill-color: transparent; 
+  -moz-text-fill-color: transparent; */
+  font-weight: 300;
+}
+.multisteps-form__progress-btn.js-active:before {
+  -webkit-transform: translateX(-50%) scale(1.2);
+          transform: translateX(-50%) scale(1.2);
+  background-color: currentColor;
+}
+
+.multisteps-form__form {
+  position: relative;
+}
+.multisteps-form__title {
+  font-family: 'Poppins', sans-serif;
+  text-transform: uppercase;
+  color: #4b180a;
+  font-size: 23px;
+}
+.multisteps-form__panel {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  visibility: hidden;
+  
+}
+.multisteps-form__panel.js-active {
+  height: auto;
+  opacity: 1;
+  visibility: visible;
+  
+}
+
+.card{
+  box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.1);
+  
+
+}
+.card:hover{
+  box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.8);
+}
+
+.list{
+  font-size: 13px;
+}
+.list ul{
+  list-style-type: none;
+  text-align: left;
+  margin: 1rem 0;
+}
+.list ul li{
+  background-size: 18px;
+  margin: 0.3rem 0;
+  font-weight: 600;
+  opacity: 0.9;
+  text-align: left;
+}
+.list ul li span{
+  font-weight: 400;
+  text-align: center;
+}
+.list ul li i{
+  padding-right: 10px;
+  background-image: linear-gradient(45deg, #f83f0b,#e09e1a);
+  background-size: 100%;
+  -webkit-background-clip: text;
+  -moz-background-clip: text;
+  -webkit-text-fill-color: transparent; 
+  -moz-text-fill-color: transparent;
+}
+.fee p{
+  cursor: pointer;
+}
+.fee p:hover{
+  color: #750902;
+}
+.card-body{
+  cursor: pointer;
+}
+.card-body .card-title {
+  text-align: center;
+  font-size: 18px;
+
+}
+.card-title b{
+  background-image: linear-gradient(45deg, #f83f0b,#e09e1a);
+  background-size: 100%;
+  -webkit-background-clip: text;
+  -moz-background-clip: text;
+  -webkit-text-fill-color: transparent; 
+  -moz-text-fill-color: transparent;
+  font-size: 22px;
+}
+.select{
+  padding-top: 10px;
+}
+.btn-dark {
+  font-size: 8px;
+}
+.multisteps-form__input{
+  background-color: #fff !important;
+}
+.multisteps-form__panel[data-animation="scaleIn"] {
+  -webkit-transform: scale(0.9);
+          transform: scale(0.9);
+}
+.multisteps-form__panel[data-animation="scaleIn"].js-active {
+  transition-property: all;
+  transition-duration: 0.2s;
+  transition-timing-function: linear;
+  transition-delay: 0s;
+  -webkit-transform: scale(1);
+          transform: scale(1);
+}
+.multisteps-form__textarea{
+  resize: none;
+}
+.js-btn-next,
+.js-btn-prev
+{
+  background-image: linear-gradient(90deg,#fc4a1a,#f7b733);
+  padding-left: 15px;
+  padding-right: 15px;
+  font-weight: 500;
+  
+}
+.js-btn-next:hover,
+.js-btn-prev:hover
+{
+background: rgb(238, 198, 20);
+}
+#date,
+#time
+{
+  cursor: pointer;
+}
+
+
+
+/* date dropper */
+div.datedropper.my-style {
+  border-radius: 8px;
+  width: 180px;
+}
+div.datedropper.my-style .picker {
+  border-radius: 8px;
+  box-shadow: 0 0 32px 0px rgba(0, 0, 0, 0.1);
+}
+div.datedropper.my-style .pick-l {
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+}
+div.datedropper.my-style:before,
+div.datedropper.my-style .pick-submit,
+div.datedropper.my-style .pick-lg-b .pick-sl:before,
+div.datedropper.my-style .pick-m,
+div.datedropper.my-style .pick-lg-h {
+  background-color: #1da0f2;
+}
+div.datedropper.my-style .pick-y.pick-jump,
+div.datedropper.my-style .pick li span,
+div.datedropper.my-style .pick-lg-b .pick-wke,
+div.datedropper.my-style .pick-btn {
+  color: #1da0f2;
+}
+div.datedropper.my-style .picker,
+div.datedropper.my-style .pick-l {
+  background-color: #fff;
+}
+div.datedropper.my-style .picker,
+div.datedropper.my-style .pick-arw,
+div.datedropper.my-style .pick-l {
+  color: #4d4d4d;
+}
+div.datedropper.my-style .pick-m,
+div.datedropper.my-style .pick-m .pick-arw,
+div.datedropper.my-style .pick-lg-h,
+div.datedropper.my-style .pick-lg-b .pick-sl,
+div.datedropper.my-style .pick-submit {
+  color: #fff;
+}
+div.datedropper.my-style.picker-tiny:before,
+div.datedropper.my-style.picker-tiny .pick-m {
+  background-color: #fff;
+}
+div.datedropper.my-style.picker-tiny .pick-m,
+div.datedropper.my-style.picker-tiny .pick-m .pick-arw {
+  color: #4d4d4d;
+}
+div.datedropper.my-style.picker-lkd .pick-submit {
+  background-color: #fff;
+  color: #4d4d4d;
+}

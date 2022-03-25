@@ -131,7 +131,7 @@
 		      		</div>
 					<div class="form-group mb-2">
 		      			<label for="name">Specifications</label>
-		      			<input name="username" id="comp_specs" type="text" class="form-control">
+		      			<textarea name="username" id="comp_specs" type="text" class="form-control"></textarea>
 		      		</div>
 					<div class="form-group mb-2">
 		      			<label for="name">Image Upload</label>
