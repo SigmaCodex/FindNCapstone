@@ -40,15 +40,16 @@ class Main_Controller extends CI_Controller {
 		echo json_encode($val);
 		$this->load->view('viewShop',$val);
 	}
-	public function viewRequestBook($shop_id)
+	public function viewRequestBook($shopid)
 	{
 		$this->load->model('MainModel');
 		$user_id = $this->session->userdata('user_id');
+		$val['shop_id']					 = $shopid;
 		$val['findersPersonalDetails']	 = $this->MainModel->selectFinderDetails($user_id);
-		// $val['shopdetails']	 = $this->MainModel->getShopDetails($shopid);
-		// $val['computertype_details']	 = $this->MainModel->getListOfComputerTypes($shopid);
-		echo json_encode($val);
-		$this->load->view('requestBook');
+		$val['computertype_details']	 = $this->MainModel->getListOfComputerTypes($shopid);
+	    $val['shopdetails']	 			 = $this->MainModel->getShopDetails($shopid);
+	
+		$this->load->view('requestBook',$val);
 	}
 	public function viewRegister()
 	{

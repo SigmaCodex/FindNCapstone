@@ -23,9 +23,7 @@
 
 	</head>
 	<body>
-		<h1 id="compshop_id" style= "display:none">
-		<?php if(isset($shop_id_fk)){echo $shopid_id_fk;}?>
-		</h1>
+		<h1 id="compshop_id"><?php if(isset($shopid)){echo $shopid;}?></h1>
 	<section class="ftco-section">
 		<nav>
         <ul class="menu">

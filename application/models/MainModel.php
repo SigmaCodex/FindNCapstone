@@ -323,7 +323,8 @@ class MainModel extends CI_Model{
             'total_units'   => 	 $this->input->post('comp_total'),
             'rate'   => 	 $this->input->post('comp_rate'),
             'specs'   => 	 $this->input->post('comp_specs'),
-            'comp_type_img' =>  $this->input->post('comp_img')
+            'comp_type_img' =>  $this->input->post('comp_img'),
+            'service_fee'   => "10",
         );
         $this->db->insert('computer_type',$datafinder);
         echo $id;
