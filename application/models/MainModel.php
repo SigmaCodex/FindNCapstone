@@ -255,23 +255,7 @@ class MainModel extends CI_Model{
         $resultquery = $query->row_array();
         return $resultquery;
     }
-    // public function getListOfComputerShops(){
-    //     $this->db->select('*');
-    //     $this->db->from('computershop');
-    //     $this->db->where('Shop_Status','Active');
-    //     $query = $this->db->get();
-    //     return $query->result();
-    // }
-
-    // public function getShopDetails($id){
-	// 	$this->db->select('*');
-    //     $this->db->from('computershop');
-    //     $this->db->where('shop_id',$id);
-    //     $query = $this->db->get();
-    //     $resultquery = $query->row_array();
-    //     return $resultquery;
-    // }
-
+ 
     public function addRate($shop_id, $user_id){
         $datafinder = array(
             'shop_id_fk'           => 	 $shop_id,
