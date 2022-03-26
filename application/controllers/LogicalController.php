@@ -134,6 +134,23 @@ class LogicalController extends CI_Controller {
     }
 
     //ADMIN
+    public function addshopPosts($id){
+        $this->load->model('MainModel');
+        $this->MainModel->addshopPosts($id);
+    }
+    public function deleteshopPosts($id){
+        $this->load->model('MainModel');
+        $this->MainModel->deleteshopPosts($id);
+    }
+    public function selectforUpdatePostDetails($id){
+        $this->load->model('MainModel');
+        $result = $this->MainModel->selectforUpdatePostDetails($id);
+        echo json_encode($result);
+    }
+    public function updateshopPosts($id){
+        $this->load->model('MainModel');
+        $this->MainModel->updateshopPosts($id);
+    }
     public function updateComputerDetails($id){
         $this->load->model('MainModel');
         $this->MainModel->updateComputerDetails($id);

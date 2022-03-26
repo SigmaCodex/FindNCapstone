@@ -214,3 +214,32 @@
 			
 		});
 </script>
+<script>
+		$(document).on("click",".remove-shop",function(){
+         var BASE_URL = "<?php echo base_url();?>";
+			var id = $(this).attr("data");
+
+			swal({
+  				title: "Are you sure to delete this computer type?",
+  				icon: "warning",
+  				buttons: true,
+  				dangerMode: true,
+			}).then((willDelete) => {
+  				if (willDelete) {
+					$.ajax({
+						url: BASE_URL+"deleteComputerType/" + id,
+						method: "POST",
+						data: { Ctype_id: id },
+						success: function (data){
+							swal("Computer Type has been deleted!", {
+    					  		icon: "success",
+    						}).then((value) => {
+								location.reload(); 
+							});
+
+						},
+					});	
+  				}
+			});
+		});
+	</script>
