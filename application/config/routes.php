@@ -22,7 +22,7 @@ $route['loginpage'] = 'main_controller/viewLogin';
 //finders
 $route['findnRegister'] = 'main_controller/viewFindnRegister';
 $route['findnlogin'] = 'main_controller/viewFindNLogin';
-$route['viewShop']     = 'main_controller/viewViewShop';
+$route['viewShop/(:num)']     = 'main_controller/viewViewShop/$1';
 $route['findershomepage'] = 'main_controller/viewFinders_HomePage';
 $route['accountSettings'] = 'main_controller/viewAccountSettings';
 

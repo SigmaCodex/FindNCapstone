@@ -161,7 +161,7 @@ class MainModel extends CI_Model{
                 'user_id'   =>    $Primarycode,
                 'username'  => 	  $this->input->post('username'),
                 'password'  =>    $this->input->post('conpass'),
-                'user_type' =>    "Finder",
+                'user_type' =>    "finder",
                 'status'    =>    "Active"
             );
                 $this->db->insert('user',$datauser);
@@ -214,7 +214,7 @@ class MainModel extends CI_Model{
             'instruction'       => 	$this->input->post('addtional_message'),
             'date_issued'              => 	$date_issued,
             'transaction_status'       => 	"pending",
-            'service_fee'              => 	"5",
+            'service_fee'              => 	"15",
             'payment_status	'          => 	"not_paid",
             'payment_type'             => 	"not_selected",
             'qr_code'                  => 	"not_issued",
@@ -227,7 +227,7 @@ class MainModel extends CI_Model{
                 'comp_type_id'     =>  $this->input->post('comp_type'),
                 'num_ticket'         => 	$this->input->post('num_person'),
             );  
-            echo json_encode($transaction);
+  
              $this->db->insert('transaction',$transaction);
              $this->db->insert('comp_booking', $comp_booking);
     }
@@ -270,23 +270,7 @@ class MainModel extends CI_Model{
         $resultquery = $query->row_array();
         return $resultquery;
     }
-    // public function getListOfComputerShops(){
-    //     $this->db->select('*');
-    //     $this->db->from('computershop');
-    //     $this->db->where('Shop_Status','Active');
-    //     $query = $this->db->get();
-    //     return $query->result();
-    // }
-
-    // public function getShopDetails($id){
-	// 	$this->db->select('*');
-    //     $this->db->from('computershop');
-    //     $this->db->where('shop_id',$id);
-    //     $query = $this->db->get();
-    //     $resultquery = $query->row_array();
-    //     return $resultquery;
-    // }
-
+ 
     public function addRate($shop_id, $user_id){
         $datafinder = array(
             'shop_id_fk'           => 	 $shop_id,
@@ -323,7 +307,13 @@ class MainModel extends CI_Model{
         $this->db->where('user_id_fk',$user_id);
         $query = $this->db->get('computer_ratings');
         return $query->result();
-    }    
+    } 
+    
+    public function selectFinderDetails($user_id){
+        $this->db->where('user_id',$user_id);
+        $query = $this->db->get('finders');
+        return $query->result();
+    }
 
     //admin
     public function addshopPosts($id){
@@ -377,7 +367,8 @@ class MainModel extends CI_Model{
             'total_units'   => 	 $this->input->post('comp_total'),
             'rate'   => 	 $this->input->post('comp_rate'),
             'specs'   => 	 $this->input->post('comp_specs'),
-            'comp_type_img' =>  $this->input->post('comp_img')
+            'comp_type_img' =>  $this->input->post('comp_img'),
+            'service_fee'   => "10",
         );
         $this->db->insert('computer_type',$datafinder);
         echo $id;

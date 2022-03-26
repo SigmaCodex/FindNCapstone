@@ -31,17 +31,25 @@ class Main_Controller extends CI_Controller {
 	{
 		$this->load->view('accountSettings');
 	}
-	public function viewViewShop()
+	public function viewViewShop($shopid)
 	{
 		$this->load->model('MainModel');
-		//get shop details(shop_id) 
-		//get shop_image(shop_id)
-		//get computertypedetails(shop_id)
-		$this->load->view('viewShop');
+		$val['shopdetails']	 = $this->MainModel->getShopDetails($shopid);
+		$val['shop_images']	 = $this->MainModel->listshopimages($shopid);
+		$val['computertype_details']	 = $this->MainModel->getListOfComputerTypes($shopid);
+		echo json_encode($val);
+		$this->load->view('viewShop',$val);
 	}
-	public function viewRequestBook()
+	public function viewRequestBook($shopid)
 	{
-		$this->load->view('requestBook');
+		$this->load->model('MainModel');
+		$user_id = $this->session->userdata('user_id');
+		$val['shop_id']					 = $shopid;
+		$val['findersPersonalDetails']	 = $this->MainModel->selectFinderDetails($user_id);
+		$val['computertype_details']	 = $this->MainModel->getListOfComputerTypes($shopid);
+	    $val['shopdetails']	 			 = $this->MainModel->getShopDetails($shopid);
+	
+		$this->load->view('requestBook',$val);
 	}
 	public function viewRegister()
 	{
