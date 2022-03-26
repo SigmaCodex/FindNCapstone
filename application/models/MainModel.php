@@ -246,6 +246,21 @@ class MainModel extends CI_Model{
         $query = $this->db->get();
         return $query->result();
     }
+    public function getPostDetails($id){
+        $this->db->select('*');
+        $this->db->from('post_events');
+        $this->db->where('shop_id',$id);
+        $query = $this->db->get();
+        return $query->result();
+    }
+    public function selectforUpdatePostDetails($id){
+        $this->db->select('*');
+        $this->db->from('post_events');
+        $this->db->where('post_id',$id);
+        $query = $this->db->get();
+        $resultquery = $query->row_array();
+        return $resultquery;
+    }
 
     public function getComputerTypeInfo($id){
         $this->db->select('*');
@@ -301,6 +316,35 @@ class MainModel extends CI_Model{
     }
 
     //admin
+    public function addshopPosts($id){
+        $date_created = date('m/d/y');
+        $data = array(
+            'shop_id' => $id,
+            'post_description'   => 	 $this->input->post('post_desc'),
+            'post_title'   => 	 $this->input->post('post_title'),  
+            'post_img' =>  $this->input->post('post_image'),
+            'post_created' =>  $date_created
+        );
+        $this->db->insert('post_events',$data);
+        echo json_encode($data);
+    }
+    public function updateshopPosts($id){
+        $date_updated = date('m/d/y');
+        $data = array(
+            'post_description'   => 	 $this->input->post('post_desc'),
+            'post_title'   => 	 $this->input->post('post_title'),  
+            'post_img' =>  $this->input->post('post_image'),
+            'post_updated' =>  $date_updated
+        );
+        $this->db->where('post_id',$id);
+        $this->db->update('post_events',$data);
+        echo json_encode($data);
+    }
+    public function deleteshopPosts($id){
+        $this->db->where('post_id',$id);
+        $this->db->delete('post_events');
+    }
+    
     public function updateComputerDetails($id){
         $datafinder = array(
             'shop_name'   => 	 $this->input->post('cshop'),

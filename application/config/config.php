@@ -24,8 +24,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 |
 */
 
+
 $config['base_url'] = 'http://localhost:8080/FindNCapstone/'; // kang dave na base URL AYAW HILABTI
-$config['atoang_url'] = 'http://localhost/FindNCapstone/';   //Mao ni inyung base url
+//$config['base_url'] = 'http://localhost/FindNCapstone/'; //Mao ni inyung base url
+
+// $config['base_url'] = 'http://localhost:8080/FindNCapstone/'; // kang dave na base URL AYAW HILABTI
+// $config['atoang_url'] = 'http://localhost/FindNCapstone/';   //Mao ni inyung base url
+
 
 /*
 |--------------------------------------------------------------------------

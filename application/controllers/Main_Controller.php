@@ -158,7 +158,12 @@ class Main_Controller extends CI_Controller {
 		$val['id'] = $shop_id;
 		$val['details'] = $this->MainModel->listshopimages($shop_id);
 		$this->load->view('admin/shopimages',$val);
-		
+	}
+	public function shopadmin_postEvents($shopid){
+		$this->load->model('MainModel');
+		$val['shopid'] = $shopid;
+		$val['postDetails'] = $this->MainModel->getPostDetails($shopid);
+		$this->load->view('admin/postEvents',$val);
 	}
 }
     
