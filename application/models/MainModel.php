@@ -3,7 +3,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 
 class MainModel extends CI_Model{
-    // user login 
+    // ---- USER LOGIN ---- //
     public function login_user(){
       $user = $this->input->post('username');
       $pass = $this->input->post('password');
@@ -29,7 +29,8 @@ class MainModel extends CI_Model{
 
     }
 
-    //superAdmin
+    // ********* SHOP ADMIN ********* //
+
     public function addComputerShop(){
 
         $data = array(
@@ -144,7 +145,8 @@ class MainModel extends CI_Model{
 
 
     
-    //finders
+    // ********* FINDERS ********* //
+
     public function registerFinder(){
         $Primarycode = 0;
         $Primarycode = $this->generatePrimarykey();
@@ -198,7 +200,7 @@ class MainModel extends CI_Model{
         $third  = rand (1, 100);
         return $first."".$second."".$third."";
     }
-    //Finder Submit Booking Request
+    // ---- Finder Submit Booking Request ---- //
     public function FindersCompBookingRequest(){
 
         $transaction_id = $this->generatePrimarykeyForTransaction($this->input->post('s_id'));
@@ -232,45 +234,7 @@ class MainModel extends CI_Model{
              $this->db->insert('comp_booking', $comp_booking);
     }
 
-     public function getListOfComputerTypes($id){
-        $this->db->select('*');
-        $this->db->from('computer_type');
-        $this->db->where('shop_id_fk',$id);
-        $query = $this->db->get();
-        return $query->result();
-    }
-    public function selectforUpdateComputerTypeInfo($id){
-        $this->db->select('*');
-        $this->db->from('computer_type');
-        $this->db->where('Ctype_id',$id);
-        $query = $this->db->get();
-        return $query->result();
-    }
-    public function getPostDetails($id){
-        $this->db->select('*');
-        $this->db->from('post_events');
-        $this->db->where('shop_id',$id);
-        $query = $this->db->get();
-        return $query->result();
-    }
-    public function selectforUpdatePostDetails($id){
-        $this->db->select('*');
-        $this->db->from('post_events');
-        $this->db->where('post_id',$id);
-        $query = $this->db->get();
-        $resultquery = $query->row_array();
-        return $resultquery;
-    }
-
-    public function getComputerTypeInfo($id){
-        $this->db->select('*');
-        $this->db->from('computer_type');
-        $this->db->where('Ctype_id',$id);
-        $query = $this->db->get();
-        $resultquery = $query->row_array();
-        return $resultquery;
-    }
- 
+    // ---- COMPUTER SHOP RATINGS MANAGEMENT ---- //
     public function addRate($shop_id, $user_id){
         $datafinder = array(
             'shop_id_fk'           => 	 $shop_id,
@@ -280,7 +244,6 @@ class MainModel extends CI_Model{
         );
         $this->db->insert('computer_ratings',$datafinder);
         echo json_encode($datafinder);
-
     }
     public function updateRate($shop_id, $user_id, $rate_id){
         $datafinder = array(
@@ -315,7 +278,40 @@ class MainModel extends CI_Model{
         return $query->result();
     }
 
-    //admin
+    // ********* SHOP ADMIN ********* //
+    
+    // ---- COMPUTER SHOP DETAILS ---- //
+    public function updateComputerDetails($id){
+        $datafinder = array(
+            'shop_name'   => 	 $this->input->post('cshop'),
+            'address'   => 	 $this->input->post('cshop_address'),
+            'coordinates'   => 	 $this->input->post('cshop_coordi'),
+            'operating_hours'   => 	 $this->input->post('cshop_ophours'),
+            'net_speed'   => 	 $this->input->post('cshop_netspeed'),
+            'description'   => 	 $this->input->post('cshop_description'),
+            'contact_number'   => 	 $this->input->post('cshop_contact'),
+            'email_address'   => 	 $this->input->post('cshop_emailadd')
+        );
+        $this->db->where('shop_id',$id);
+        $this->db->update('computershop',$datafinder);
+        echo json_encode($datafinder);
+    }
+    // ---- COMPUTER SHOP POST AND ANNOUNCEMENTS MANAGEMENT ---- //
+    public function getPostDetails($id){
+        $this->db->select('*');
+        $this->db->from('post_events');
+        $this->db->where('shop_id',$id);
+        $query = $this->db->get();
+        return $query->result();
+    }
+    public function selectforUpdatePostDetails($id){
+        $this->db->select('*');
+        $this->db->from('post_events');
+        $this->db->where('post_id',$id);
+        $query = $this->db->get();
+        $resultquery = $query->row_array();
+        return $resultquery;
+    }
     public function addshopPosts($id){
         $date_created = date('m/d/y');
         $data = array(
@@ -344,21 +340,28 @@ class MainModel extends CI_Model{
         $this->db->where('post_id',$id);
         $this->db->delete('post_events');
     }
-    
-    public function updateComputerDetails($id){
-        $datafinder = array(
-            'shop_name'   => 	 $this->input->post('cshop'),
-            'address'   => 	 $this->input->post('cshop_address'),
-            'coordinates'   => 	 $this->input->post('cshop_coordi'),
-            'operating_hours'   => 	 $this->input->post('cshop_ophours'),
-            'net_speed'   => 	 $this->input->post('cshop_netspeed'),
-            'description'   => 	 $this->input->post('cshop_description'),
-            'contact_number'   => 	 $this->input->post('cshop_contact'),
-            'email_address'   => 	 $this->input->post('cshop_emailadd')
-        );
-        $this->db->where('shop_id',$id);
-        $this->db->update('computershop',$datafinder);
-        echo json_encode($datafinder);
+    // ---- COMPUTER SHOP COMPUTER TYPE MANAGEMENT ---- //
+    public function getListOfComputerTypes($id){
+        $this->db->select('*');
+        $this->db->from('computer_type');
+        $this->db->where('shop_id_fk',$id);
+        $query = $this->db->get();
+        return $query->result();
+    }
+    public function selectforUpdateComputerTypeInfo($id){
+        $this->db->select('*');
+        $this->db->from('computer_type');
+        $this->db->where('Ctype_id',$id);
+        $query = $this->db->get();
+        return $query->result();
+    }
+    public function getComputerTypeInfo($id){
+        $this->db->select('*');
+        $this->db->from('computer_type');
+        $this->db->where('Ctype_id',$id);
+        $query = $this->db->get();
+        $resultquery = $query->row_array();
+        return $resultquery;
     }
     public function addComputerType($id){
         $datafinder = array(

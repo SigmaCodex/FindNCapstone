@@ -21,7 +21,7 @@ class LogicalController extends CI_Controller {
         redirect(findnlogin);
     }
 
-    //superAdmin
+    // ********* SUPERADMIN ********* //
     public function addComputerShop(){
         $this->load->model('MainModel');
         $this->MainModel->addComputerShop();
@@ -35,7 +35,7 @@ class LogicalController extends CI_Controller {
         $this->load->model('MainModel');
         $this->MainModel->getAdminDetails($id);
     }
-    //FINDERS
+    // ********* FINDERS ********* //
     public function FindersCompBookingRequest(){
         $this->load->model('MainModel');
         $this->MainModel->FindersCompBookingRequest();
@@ -133,7 +133,7 @@ class LogicalController extends CI_Controller {
         $this->MainModel->updateRate($shop_id, $user_id, $rate_id);
     }
 
-    //ADMIN
+    // ********* SHOP ADMIN ********* //
     public function addshopPosts($id){
         $this->load->model('MainModel');
         $this->MainModel->addshopPosts($id);
