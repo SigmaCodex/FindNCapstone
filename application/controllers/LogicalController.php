@@ -219,7 +219,7 @@ class LogicalController extends CI_Controller {
 				'description' => $servicetype."for". $shop,
 				'customername' =>  $name,
 				'customermobile' => $contact_num ,
-				'merchantlogourl' => 'http://localhost:8080/FindNCapstone/assets/images/findnslogan.png',
+				'merchantlogourl' => 'http://localhost:8080/FindNCapstone/assets/images/Logo.svg',
 				'customeremail' => $email,
 				// 'redirectsuccessurl' => 'http://localhost:8080/FindNCapstone/gcashsuccess',	
 			),
