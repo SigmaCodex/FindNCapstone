@@ -24,177 +24,6 @@
 .custom-shape-divider-top-1647103383 .shape-fill {
     fill: #f78133;
 } */
-/* Profile CSS */
-.avatar-upload {
-    position: relative;
-    max-width: 205px;
-    margin: 50px auto;
-  }
-  .avatar-upload .avatar-edit {
-    position: absolute;
-    right: 12px;
-    z-index: 1;
-    top: 10px;
-  }
-  .avatar-upload .avatar-edit input {
-    display: none;
-  }
-  .avatar-upload .avatar-edit input + label {
-    display: inline-block;
-    width: 34px;
-    height: 34px;
-    margin-bottom: 0;
-    border-radius: 100%;
-    background: #FFFFFF;
-    border: 1px solid transparent;
-    box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.12);
-    cursor: pointer;
-    font-weight: normal;
-    transition: all 0.2s ease-in-out;
-  }
-  .avatar-upload .avatar-edit input + label:hover {
-    background: #f1f1f1;
-    border-color: #d6d6d6;
-  }
-  .avatar-upload .avatar-edit input + label:after {
-    content: "\f040";
-    font-family: 'FontAwesome';
-    color: #757575;
-    position: absolute;
-    top: 10px;
-    left: 0;
-    right: 0;
-    text-align: center;
-    margin: auto;
-  }
-  .avatar-upload .avatar-preview {
-    width: 192px;
-    height: 192px;
-    position: relative;
-    border-radius: 100%;
-    border: 6px solid #F8F8F8;
-    box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.1);
-  }
-  .avatar-upload .avatar-preview > div {
-    width: 100%;
-    height: 100%;
-    border-radius: 100%;
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
-  }
-
-/*NAVBAR PRACTICE START*/
-header{
-    position: fixed;
-    background-image: linear-gradient(90deg,#fc4a1a,#f7b733);
-    padding: 20px;
-    width: 100%;
-    height: 60px;
-    z-index: 5;
-    top: 0;
-}
-.logo{
-    width: 50px;
-    height: 50px;
-    margin-right: -10px;
-    margin-top: -20px;
-}
-.logo_holder{
-    margin-top: -25px;
-    color: white;
-    top: 20px;
-}
-.fs-4 {
-    margin-top: -20px;
-}
-.center_area{
-    text-align: center;   
-    color: white;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-.side_bar{
-    z-index: 999;
-    background: #fc4a1a;
-    margin-top: 60.2px;
-    padding-top: 20px;
-    position: fixed;
-    left: 0;
-    width: 250px;
-    height: 100%;
-    transition: 0.5s;
-    transition-property: left;
-    top: 0;
-    overflow: auto;
-}
-.side_bar .profile_image{
-    width: 100px;
-    height: 100px;
-    border-radius: 100px;
-    margin-bottom: 10px;
-}
-.centerA{
-    text-align: center;
-}
-.side_bar h4{
-    color: rgb(249, 255, 253);
-    margin-top: 0;
-    margin-bottom: 20px;
-    font-family: 'Source Sans Pro', sans-serif;
-    font-weight: 400;
-}
-.side_bar a{
-    color: #fff;
-    display:block;
-    width: 100%;
-    line-height: 60px;
-    text-decoration: none;
-    padding-left: 40px;
-    box-sizing: border-box;
-    transition: 0.5s;
-    transition-property: background-color;
-    display: flex;
-    /* flex-direction: row; */
-    justify-content: left;
-    align-items: center;
-    /* text-align: left;  */
-}
-.side_bar a:hover{
-    background-color: #fae3ce;
-    color: rgb(66, 64, 64);
-}
-
-.side_bar span {
-    margin-left: 10px;
-}
-label #side_bar_btn{
-    z-index: 1;
-    color: #fff;
-    position: fixed;
-    cursor: pointer;
-    left: 15px;
-    font-size: 20px;    
-    margin: 5px 0;
-    top: 15px;
-    transition: 0.5s;
-    transition-property: color;
-}
-label #side_bar_btn:hover{
-    color: #ffffff;
-}
-
-#check:checked ~ .side_bar a{
-    font-size: 16px;
-    margin-left: 170px;
-    width: 80px;
-}
-#check{
-    display: none;
-}
-/*NAVBAR PRACTICE END*/
-
 
 * {
     margin: 0;
@@ -338,4 +167,63 @@ select:focus {
 .fa-check-circle{
     color: green;
 }
-/* radio button */
+/* Profile CSS */
+.avatar-upload {
+  position: relative;
+  max-width: 205px;
+  margin: 50px auto;
+}
+.avatar-upload .avatar-edit {
+  position: absolute;
+  right: 12px;
+  z-index: 1;
+  top: 10px;
+}
+.avatar-upload .avatar-edit input {
+  display: none;
+}
+.avatar-upload .avatar-edit input + label {
+  display: inline-block;
+  width: 34px;
+  height: 34px;
+  margin-bottom: 0;
+  border-radius: 100%;
+  background: #FFFFFF;
+  border: 1px solid transparent;
+  box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.12);
+  cursor: pointer;
+  font-weight: normal;
+  transition: all 0.2s ease-in-out;
+}
+.avatar-upload .avatar-edit input + label:hover {
+  background: #f1f1f1;
+  border-color: #d6d6d6;
+}
+.avatar-upload .avatar-edit input + label:after {
+  content: "\f040";
+  font-family: 'FontAwesome';
+  color: #757575;
+  position: absolute;
+  top: 10px;
+  left: 0;
+  right: 0;
+  text-align: center;
+  margin: auto;
+}
+.avatar-upload .avatar-preview {
+  width: 192px;
+  height: 192px;
+  position: relative;
+  border-radius: 100%;
+  border: 6px solid #F8F8F8;
+  box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.1);
+}
+.avatar-upload .avatar-preview > div {
+  width: 100%;
+  height: 100%;
+  border-radius: 100%;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
