@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>View Computer Shop</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="assets/css/viewShop.css">
+    <link rel="stylesheet" href="../assets/css/viewShop.css">
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
@@ -31,31 +31,31 @@
 
           <div class = "img-display">
             <div class = "img-showcase">
-              <img src = "assets/images/TNC-1.jpg">
-              <img src = "assets/images/TNC-2.jpg">
-              <img src = "assets/images/TNC-3.jpg">
-              <img src = "assets/images/TNC-4.jpeg">
+              <img src = "../assets/images/TNC-1.jpg">
+              <img src = "../assets/images/TNC-2.jpg">
+              <img src = "../assets/images/TNC-3.jpg">
+              <img src = "../assets/images/TNC-4.jpeg">
             </div>
           </div>
           <div class = "img-select">
             <div class = "img-item">
               <a href = "#" data-id = "1">
-                <img src = "assets/images/TNC-1.jpg">
+                <img src = "../assets/images/TNC-1.jpg">
               </a>
             </div>
             <div class = "img-item">
               <a href = "#" data-id = "2">
-                <img src = "assets/images/TNC-2.jpg ">
+                <img src = "../assets/images/TNC-2.jpg ">
               </a>
             </div>
             <div class = "img-item">
               <a href = "#" data-id = "3">
-                <img src = "assets/images/TNC-3.jpg">
+                <img src = "../assets/images/TNC-3.jpg">
               </a>
             </div>
             <div class = "img-item">
               <a href = "#" data-id = "4">
-                <img src = "assets/images/TNC-4.jpeg">
+                <img src = "../assets/images/TNC-4.jpeg">
               </a>
             </div>
           </div>
@@ -116,7 +116,7 @@
               <div class="services_container container grid">
                 <div class="services_card">
                   <h3 class="services_title"><strong>VIP Access</strong> </h3>
-                  <img class="access-type-img" src="assets/images/TNC-5.png" >
+                  <img class="access-type-img" src="../assets/images/TNC-5.png" >
                   <div class="list">
                     <ul class="list">
                       <li> <i class="fa-solid fa-peso-sign"></i> Price Rate(/hr): <span> ₱20</span>
@@ -187,7 +187,7 @@
               <div class="services_container container grid">
                 <div class="services_card">
                   <h3 class="services_title"><strong>REGULAR Access</strong> </h3>
-                  <img class="access-type-img" src="assets/images/TNC-2.jpg" >
+                  <img class="access-type-img" src="../assets/images/TNC-2.jpg" >
                   <div class="list">
                     <ul class="list">
                       <li> <i class="fa-solid fa-peso-sign"></i> Price Rate(/hr): <span> ₱15</span>
@@ -251,8 +251,16 @@
       </div>
     </div>
     
-    
-    <script src="assets/js/viewShop.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="../assets/js/viewShop.js"></script>
   </body>
 </html>
+
+<script>
+  $(document).ready(function(){  
+ 
+    
+      
+  });  
+</script>
 

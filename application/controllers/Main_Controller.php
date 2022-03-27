@@ -29,15 +29,40 @@ class Main_Controller extends CI_Controller {
 
 	public function viewAccountSettings()
 	{
-		$this->load->view('accountSettings');
+		$session = $this->session->userdata('username');
+		if(!$session){
+			redirect(findnlogin);
+		}else{
+			$this->load->model('MainModel');
+			$user_id  = $this->session->userdata('user_id');
+			$val['username'] =  $session;
+			$val['findersPersonalDetails']	 = $this->MainModel->selectFinderDetails($user_id);
+			$this->load->view('accountSettings',$val);
+		}
 	}
-	public function viewViewShop()
+	public function viewViewShop($shopid)
 	{
-		$this->load->view('viewShop');
+		$this->load->model('MainModel');
+		$val['shopdetails']	 = $this->MainModel->getShopDetails($shopid);
+		$val['shop_images']	 = $this->MainModel->listshopimages($shopid);
+		$val['computertype_details']	 = $this->MainModel->getListOfComputerTypes($shopid);
+		echo json_encode($val);
+		$this->load->view('viewShop',$val);
 	}
-	public function viewRequestBook()
+	public function viewRequestBook($shopid)
 	{
-		$this->load->view('requestBook');
+		$session = $this->session->userdata('username');
+		if(!$session){
+			redirect(findnlogin);
+		}else{
+			$this->load->model('MainModel');
+			$user_id = $this->session->userdata('user_id');
+			$val['shop_id']					 = $shopid;
+			$val['findersPersonalDetails']	 = $this->MainModel->selectFinderDetails($user_id);
+			$val['computertype_details']	 = $this->MainModel->getListOfComputerTypes($shopid);
+			$val['shopdetails']	 			 = $this->MainModel->getShopDetails($shopid);
+			$this->load->view('requestBook',$val);
+		}
 	}
 	public function viewRegister()
 	{
@@ -146,7 +171,12 @@ class Main_Controller extends CI_Controller {
 		$val['id'] = $shop_id;
 		$val['details'] = $this->MainModel->listshopimages($shop_id);
 		$this->load->view('admin/shopimages',$val);
-		
+	}
+	public function shopadmin_postEvents($shopid){
+		$this->load->model('MainModel');
+		$val['shopid'] = $shopid;
+		$val['postDetails'] = $this->MainModel->getPostDetails($shopid);
+		$this->load->view('admin/postEvents',$val);
 	}
 }
     

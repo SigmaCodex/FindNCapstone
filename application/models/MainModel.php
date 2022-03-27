@@ -28,6 +28,41 @@ class MainModel extends CI_Model{
       }
 
     }
+    //user account update
+    public function updateFinderAccount($status){
+        // echo $status;
+        $user_id  = $this->session->userdata('user_id');
+        if($status == "no-image"){
+
+            $findersdata = array(
+                'firstname'  => 	  $this->input->post('f_name'),
+                'lastname'  =>    $this->input->post('l_name'),
+                'gender'  =>    $this->input->post('gender'),
+                'birthdate'  =>    $this->input->post('b_date'),
+                'email'  =>    $this->input->post('email'),
+                'phone_num'  =>    $this->input->post('p_number'),
+                'vac_status'  =>    $this->input->post('vac_status'),
+            );
+            $this->db->where('user_id',$user_id);
+            $this->db->update('finders',$findersdata);
+
+        }else if($status == "with-image"){
+            $image_data = $this->upload->data();
+            $findersdata = array(
+                'profile_pic' =>     $image_data['file_name'], 
+                'firstname'  => 	  $this->input->post('f_name'),
+                'lastname'  =>    $this->input->post('l_name'),
+                'gender'  =>    $this->input->post('gender'),
+                'birthdate'  =>    $this->input->post('b_date'),
+                'email'  =>    $this->input->post('email'),
+                'phone_num'  =>    $this->input->post('p_number'),
+                'vac_status'  =>    $this->input->post('vac_status'),
+            );
+
+            $this->db->where('user_id',$user_id);
+            $this->db->update('finders',$findersdata);
+        }
+    }
 
     //superAdmin
     public function addComputerShop(){
@@ -161,7 +196,7 @@ class MainModel extends CI_Model{
                 'user_id'   =>    $Primarycode,
                 'username'  => 	  $this->input->post('username'),
                 'password'  =>    $this->input->post('conpass'),
-                'user_type' =>    "Finder",
+                'user_type' =>    "finder",
                 'status'    =>    "Active"
             );
                 $this->db->insert('user',$datauser);
@@ -214,7 +249,7 @@ class MainModel extends CI_Model{
             'instruction'       => 	$this->input->post('addtional_message'),
             'date_issued'              => 	$date_issued,
             'transaction_status'       => 	"pending",
-            'service_fee'              => 	"5",
+            'service_fee'              => 	"15",
             'payment_status	'          => 	"not_paid",
             'payment_type'             => 	"not_selected",
             'qr_code'                  => 	"not_issued",
@@ -227,7 +262,7 @@ class MainModel extends CI_Model{
                 'comp_type_id'     =>  $this->input->post('comp_type'),
                 'num_ticket'         => 	$this->input->post('num_person'),
             );  
-            echo json_encode($transaction);
+  
              $this->db->insert('transaction',$transaction);
              $this->db->insert('comp_booking', $comp_booking);
     }
@@ -246,6 +281,21 @@ class MainModel extends CI_Model{
         $query = $this->db->get();
         return $query->result();
     }
+    public function getPostDetails($id){
+        $this->db->select('*');
+        $this->db->from('post_events');
+        $this->db->where('shop_id',$id);
+        $query = $this->db->get();
+        return $query->result();
+    }
+    public function selectforUpdatePostDetails($id){
+        $this->db->select('*');
+        $this->db->from('post_events');
+        $this->db->where('post_id',$id);
+        $query = $this->db->get();
+        $resultquery = $query->row_array();
+        return $resultquery;
+    }
 
     public function getComputerTypeInfo($id){
         $this->db->select('*');
@@ -255,23 +305,7 @@ class MainModel extends CI_Model{
         $resultquery = $query->row_array();
         return $resultquery;
     }
-    // public function getListOfComputerShops(){
-    //     $this->db->select('*');
-    //     $this->db->from('computershop');
-    //     $this->db->where('Shop_Status','Active');
-    //     $query = $this->db->get();
-    //     return $query->result();
-    // }
-
-    // public function getShopDetails($id){
-	// 	$this->db->select('*');
-    //     $this->db->from('computershop');
-    //     $this->db->where('shop_id',$id);
-    //     $query = $this->db->get();
-    //     $resultquery = $query->row_array();
-    //     return $resultquery;
-    // }
-
+ 
     public function addRate($shop_id, $user_id){
         $datafinder = array(
             'shop_id_fk'           => 	 $shop_id,
@@ -308,9 +342,43 @@ class MainModel extends CI_Model{
         $this->db->where('user_id_fk',$user_id);
         $query = $this->db->get('computer_ratings');
         return $query->result();
-    }    
+    } 
+    
+    public function selectFinderDetails($user_id){
+        $this->db->where('user_id',$user_id);
+        $query = $this->db->get('finders');
+        return $query->result();
+    }
 
     //admin
+    public function addshopPosts($id){
+        $date_created = date('m/d/y');
+        $data = array(
+            'shop_id' => $id,
+            'post_description'   => 	 $this->input->post('post_desc'),
+            'post_title'   => 	 $this->input->post('post_title'),  
+            'post_img' =>  $this->input->post('post_image'),
+            'post_created' =>  $date_created
+        );
+        $this->db->insert('post_events',$data);
+        echo json_encode($data);
+    }
+    public function updateshopPosts($id){
+        $date_updated = date('m/d/y');
+        $data = array(
+            'post_description'   => 	 $this->input->post('post_desc'),
+            'post_title'   => 	 $this->input->post('post_title'),  
+            'post_img' =>  $this->input->post('post_image'),
+        );
+        $this->db->where('post_id',$id);
+        $this->db->update('post_events',$data);
+        echo json_encode($data);
+    }
+    public function deleteshopPosts($id){
+        $this->db->where('post_id',$id);
+        $this->db->delete('post_events');
+    }
+    
     public function updateComputerDetails($id){
         $datafinder = array(
             'shop_name'   => 	 $this->input->post('cshop'),
@@ -333,7 +401,8 @@ class MainModel extends CI_Model{
             'total_units'   => 	 $this->input->post('comp_total'),
             'rate'   => 	 $this->input->post('comp_rate'),
             'specs'   => 	 $this->input->post('comp_specs'),
-            'comp_type_img' =>  $this->input->post('comp_img')
+            'comp_type_img' =>  $this->input->post('comp_img'),
+            'service_fee'   => "10",
         );
         $this->db->insert('computer_type',$datafinder);
         echo $id;

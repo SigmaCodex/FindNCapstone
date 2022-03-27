@@ -23,9 +23,7 @@
 
 	</head>
 	<body>
-		<h1 id="compshop_id" style= "display:none">
-		<?php if(isset($shop_id_fk)){echo $shopid_id_fk;}?>
-		</h1>
+		<h1 id="compshop_id"><?php if(isset($shopid)){echo $shopid;}?></h1>
 	<section class="ftco-section">
 		<nav>
         <ul class="menu">
@@ -214,3 +212,32 @@
 			
 		});
 </script>
+<script>
+		$(document).on("click",".remove-shop",function(){
+         var BASE_URL = "<?php echo base_url();?>";
+			var id = $(this).attr("data");
+
+			swal({
+  				title: "Are you sure to delete this computer type?",
+  				icon: "warning",
+  				buttons: true,
+  				dangerMode: true,
+			}).then((willDelete) => {
+  				if (willDelete) {
+					$.ajax({
+						url: BASE_URL+"deleteComputerType/" + id,
+						method: "POST",
+						data: { Ctype_id: id },
+						success: function (data){
+							swal("Computer Type has been deleted!", {
+    					  		icon: "success",
+    						}).then((value) => {
+								location.reload(); 
+							});
+
+						},
+					});	
+  				}
+			});
+		});
+	</script>

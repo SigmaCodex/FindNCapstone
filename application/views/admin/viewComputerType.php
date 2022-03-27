@@ -42,10 +42,9 @@
 	<section class="ftco-section">
 		<nav>
         <ul class="menu">
-        <h1 id="compshop_id" style= "display:none"><?php if(isset($shop_id_fk)){ echo $shopid_id_fk;}?></h1>
-			<li class="logo"><a href="<?php echo base_url();?>listofcomputershop">Back</a></li>
+			<!-- <li class="logo"><a href="">Back</a></li> -->
             <li class="logo"><a href="#">FindN</a></li>
-			<li class="item button secondary"><a href="user-logout">Log out</a></li>
+			<li class="item button secondary"><a href="<?php echo base_url();?>user-logout">Log out</a></li>
 
             <li class="toggle"><span class="bars"></span></li>
         </ul>
@@ -70,6 +69,7 @@
 						  <?php foreach ($details as $d) {?>  
             				<h5 class="card-title" ><?php echo $d->name;?></h5>
             				<p class="card-text" id="CompShopPK"><?php echo $d->Ctype_id;?></p>
+							<p class="card-text" id="CompShopFK" style="display:none"><?php echo $d->shop_id_fk;?></p>
           				</div>
           				<ul class="list-group list-group-flush">
             				<li class="list-group-item">Total Units: <p><?php echo $d->total_units;?></p></li>
@@ -161,7 +161,6 @@
 <script>
 $(document).on("click", ".editbtn", function () {
 	var CSPK = $("#CompShopPK").text();
-	alert(CSPK);
 	var BASE_URL = "<?php echo base_url();?>";
 	$.ajax({
 		url: BASE_URL+"getCompTypeInfo/" + CSPK,
@@ -169,8 +168,7 @@ $(document).on("click", ".editbtn", function () {
         data: { Ctype_id: CSPK },
 		dataType: "json",
 		success: function (data) {
-			alert(data);
-
+			
 			$("#shopName").val(data.name);
 			$("#c_number").val(data.total_units);
 			$("#emailadd").val(data.rate);
@@ -208,20 +206,19 @@ $(document).on("click", ".editbtn", function () {
 $(document).on("click", "#deletebtn", function () {
     var BASE_URL = "<?php echo base_url();?>";
     var CSPK = $("#CompShopPK").text();
-    var shop_id = $("#compshop_id").text();
-    alert(shop_id);
-	// $.ajax({
-	// 					url: BASE_URL+"deleteComputerType/" + CSPK,
-	// 					method: "POST",
-	// 					data: { shop_id: CSPK },
-	// 					success: function (data) {
-	// 						swal("Computer Type has been deleted!", {
-    // 					  		icon: "success",
-    // 						}).then((value) => {
-	// 					  		window.location = BASE_URL+"shopadmin-computertypelist/" +shop_id;
-	// 						});
+    var shop_id = $("#CompShopFK").text();
+	$.ajax({
+						url: BASE_URL+"deleteComputerType/" + CSPK,
+						method: "POST",
+						data: { Ctype_id: CSPK },
+						success: function (data) {
+							swal("Computer Type has been deleted!", {
+    					  		icon: "success",
+    						}).then((value) => {
+						  		window.location = BASE_URL+"shopadmin-computertypelist/" +shop_id;
+							});
 
-	// 					},
-	// 				});	
+						},
+					});	
  });
  </script>
