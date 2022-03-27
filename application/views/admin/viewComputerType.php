@@ -20,22 +20,7 @@
   
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.js"></script>
 
-	
-	<script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.48.0/mapbox-gl.js'></script>
-    <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.48.0/mapbox-gl.css' rel='stylesheet' />
-    <script src='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v2.3.0/mapbox-gl-geocoder.min.js'></script>
-    <link rel='stylesheet' href='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v2.3.0/mapbox-gl-geocoder.css' type='text/css' />
 
-
-	<style>
-		#map {
-        height: 100%;
-		}
-		#map { position:absolute;left: 550px; top:350px; bottom:0px;height:450px ;width:580px; }
-        .geocoder {
-            position:absolute;left: 550px; top:290px;
-        }
-	</style>
 
 	</head>
 	<body>
