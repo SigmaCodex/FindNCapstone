@@ -59,7 +59,7 @@
             </div>
 
             <!-- <img src="assets/images/perfil.png" alt="" class="nav__img"> -->
-            <img src="assets/images/Prof.png" class="nav__img">
+            <a href="accountSettings"><img src="assets/images/Prof.png" class="nav__img"> Dnko12</a>
         </nav>
     </header>
 
