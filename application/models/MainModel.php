@@ -33,8 +33,7 @@ class MainModel extends CI_Model{
         // echo $status;
         $user_id  = $this->session->userdata('user_id');
         if($status == "no-image"){
-      
-    
+
             $findersdata = array(
                 'firstname'  => 	  $this->input->post('f_name'),
                 'lastname'  =>    $this->input->post('l_name'),
@@ -50,7 +49,7 @@ class MainModel extends CI_Model{
         }else if($status == "with-image"){
             $image_data = $this->upload->data();
             $findersdata = array(
-                'profile_pic' => $image_data['file_name'],
+                'profile_pic' =>     $image_data['file_name'], 
                 'firstname'  => 	  $this->input->post('f_name'),
                 'lastname'  =>    $this->input->post('l_name'),
                 'gender'  =>    $this->input->post('gender'),
@@ -370,7 +369,6 @@ class MainModel extends CI_Model{
             'post_description'   => 	 $this->input->post('post_desc'),
             'post_title'   => 	 $this->input->post('post_title'),  
             'post_img' =>  $this->input->post('post_image'),
-            'post_updated' =>  $date_updated
         );
         $this->db->where('post_id',$id);
         $this->db->update('post_events',$data);
