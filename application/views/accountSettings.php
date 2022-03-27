@@ -65,85 +65,99 @@
 
 
 
+
+<!-- Content Inside -->
+
 <form method="post" id="upload_form" enctype="multipart/form-data"> 
 <div class="container my-2 ">
     <div class="wrapper bg-white mt-sm-5">
         <h4 class="tit pb-4 border-bottom">Account Settings</h4>
-        <div class="d-flex align-items-start py-3 border-bottom"> 
-            <!-- img Upload Update -->
-            <!-- <img src="assets/Images/Prof.png" class="img" alt=""> -->
-            <?php foreach ($findersPersonalDetails as $w) {?> 
-            <div class="avatar-upload">
-                <div class="avatar-edit">
-                    <input type='file' id="imageUpload" name="imageUpload" accept=".png, .jpg, .jpeg" />
-                    <label for="imageUpload"></label>
-                </div>
-                <div class="avatar-preview">
-                    <div id="imagePreview" style="background-image: url(assets/upload/finder/<?php echo $w->profile_pic;?>);">
-                    </div>
+        <div class="d-flex align-items-start "> 
 
+        <!-- <div class="pp pl-sm-4 pl-2" id="img-section"> <b>Profile Photo</b>
+                <p>Accepted file type (.png). Less than 5MB</p> <button class="btn button border"><b>Upload</b></button>
+            </div>  -->
+       <!-- img Upload Update -->
+            <!-- <img src="assets/Images/Prof.png" class="img" alt=""> -->
         </div>
-        <div class="py-2">
+        <?php foreach ($findersPersonalDetails as $w) {?> 
+        <div class="py-2"> 
+            <div class="row py-2">
+                <div class="avatar-upload">
+                    <div class="avatar-edit">
+                        <input type='file' id="imageUpload" name="imageUpload" accept=".png, .jpg, .jpeg" />
+                        <label for="imageUpload"></label>
+                    </div>
+                
+                    <div class="avatar-preview">
+                            <div id="imagePreview" style="background-image: url(assets/upload/finder/<?php echo $w->profile_pic;?>);"></div>
+                    </div>
+                </div>  
+            </div>    
+        </div>       
             <div class="title-info"> <b>USER INFORMATION</b>
             </div>
             <div class="row py-2">
                 <div class="col-md-6"> <label for="firstname">First Name</label> <input type="text" name="f_name" value="<?php echo $w->firstname;?>" class="bg-light form-control"> </div>
-                <div class="col-md-6 pt-md-0 pt-3"> <label for="lastname">Last Name</label> <input type="text" name="l_name" value="<?php echo $w->lastname;?>"  class="bg-light form-control"> </div>
-                <div class="col-md-6 pt-md-0 pt-3"> <label for="lastname">Birthday</label> <input type="date" name="b_date" value="<?php echo date( "Y-m-d", strtotime($w->birthdate));?>" class="bg-light form-control" value=""> </div>
+                <div class="col-md-6 pt-md-0 pt-3"> <label for="lastname">Last Name</label><input type="text" name="l_name" value="<?php echo $w->lastname;?>"  class="bg-light form-control"> </div>
+                <div class="col-md-6 pt-md-0 pt-3"> <label for="lastname">Birthday</label> <input type="date" name="b_date" value="<?php echo date( "Y-m-d", strtotime($w->birthdate));?>" class="bg-light form-control" > </div>
                 <div class="col-md-6 pt-md-0 pt-3"> <label for="gender">Gender</label>  
                 <select name="gender" id="gender" class="bg-light">
-                    <!-- <option value="select" selected>(Select)</option> -->
                     <option value="male" selected>Male</option>
                     <option value="female">Female</option>
-                    <!-- <option value="female">Other</option> -->
                 </select>
                 </div>
             </div>
             <br>
             <div class="title-info"> <b>ACCOUNT INFORMATION</b>
              <div class="row py-2">
-                <div class="col-md-6"> <label for="username">Username</label> <input name="username" value="<?php if(isset($username)){ echo $username;}?>" type="text" class="bg-light form-control" disabled> </div>
-                <div class="col-md-6 pt-md-0 pt-3"> <label for="email">Email</label> <input name="email" type="email" value="<?php echo $w->email;?>" class="bg-light form-control"> </div>
-                <div class="col-md-6"> <label for="phone">Phone Number</label> <input  name="p_number" value="<?php echo $w->phone_num;?>" type="text" class="bg-light form-control" placeholder="+63"> </div>
+                <div class="col-md-6"> <label for="username">Username</label> <input name="username" value="<?php if(isset($username)){ echo $username;}?>" type="text" class="bg-light form-control" disabled>  </div>
+                <div class="col-md-6 pt-md-0 pt-3"> <label for="email">Email</label> <input name="email" type="email" value="<?php echo $w->email;?>" class="bg-light form-control">  </div>
+                <div class="col-md-6"> <label for="phone">Phone Number</label> <input  name="p_number" value="<?php echo $w->phone_num;?>" type="text" class="bg-light form-control" placeholder="+63">  </div>
             </div>
             <div class="title-info"> <b>VACCINATION STATUS</b></div>
             <div class="row py-2">
                 <div class="col-md-6"> <label for="vaccine">Vaccination Form Status</label> 
-                    <select id="vaccine" name="vac_status" class="bg-light">
-                        <!-- <option value="select" selected>(Select)</option> -->
-                        <option value="1stvac" selected>Vaccinated 1st Dose</option>
+                    <select id="vaccine" name="vac_status"  class="bg-light">
+                        <option value="select" selected>(Select)</option>
+                        <option value="1stvac">Vaccinated 1st Dose</option>
                         <option value="2ndvac">Vaccinated 2nd Dose</option>
                         <option value="unvaccinated">Unvaccinated</option>
                     </select> 
                 </div>
                 <div class="col-md-6"> <label for="vaccine">Status</label><div class="ml-auto"> 
+                    <button class="btn button border"><b>Upload</b></button>
                     <button class="ver btn success">Verified <i class="fa-solid fa-check-circle "></i></button>
-                    <button class="btn button border"><b>click</b></button>
                 </div>
             </div>
             <div class="d-sm-flex align-items-center pt-5 " id="change">
                 <div class="title-info mx-3"> <b>CHANGE PASSWORD</b>
                     <p>Do not share your password to anyone.</p>   
-
                 </div>
+                <div class="ml-auto mx-3" > <button class="btn danger">Change</button> </div>
             </div>
-            
+            <br>
+            <br>
+            <div class="py-2 pb-4 mx-3 "> <button class="btn btn-primary mr-3">Save Changes</button> <button class="btn border button">Cancel</button> </div>
         </div>
-
-    </form>
     </div>
-    <?php }?> 
+   
 </div>
+<?php }?> 
 </form>
 
 
-    <!-- NAavbar JS -->
-    
-</body>
 
-<script src="assets/js/navbar.js"></script>
+
+
+    <!-- NAavbar JS -->
+
+</body>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="assets/js/navbar.js"></script>
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+
     <script>
         function btn(){
             let side_bar = document.getElementById("side_bar_show")
@@ -153,7 +167,8 @@
             } else {
                 side_bar.style.display = "none"
             }
-        </script>
+        }
+    </script>
         <!-- imgUpload and preview -->
         <script>
             function readURL(input) {
@@ -170,7 +185,7 @@
             $("#imageUpload").change(function() {
                 readURL(this);
             });
-        </script>
+        </script> 
 
 <script>  
  $(document).ready(function(){  
