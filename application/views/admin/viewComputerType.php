@@ -42,9 +42,9 @@
 	<section class="ftco-section">
 		<nav>
         <ul class="menu">
-			<li class="logo"><a href="<?php echo base_url();?>listofcomputershop">Back</a></li>
+			<!-- <li class="logo"><a href="">Back</a></li> -->
             <li class="logo"><a href="#">FindN</a></li>
-			<li class="item button secondary"><a href="user-logout">Log out</a></li>
+			<li class="item button secondary"><a href="<?php echo base_url();?>user-logout">Log out</a></li>
 
             <li class="toggle"><span class="bars"></span></li>
         </ul>
@@ -161,7 +161,6 @@
 <script>
 $(document).on("click", ".editbtn", function () {
 	var CSPK = $("#CompShopPK").text();
-	alert(CSPK);
 	var BASE_URL = "<?php echo base_url();?>";
 	$.ajax({
 		url: BASE_URL+"getCompTypeInfo/" + CSPK,
@@ -169,8 +168,7 @@ $(document).on("click", ".editbtn", function () {
         data: { Ctype_id: CSPK },
 		dataType: "json",
 		success: function (data) {
-			alert(data);
-
+			
 			$("#shopName").val(data.name);
 			$("#c_number").val(data.total_units);
 			$("#emailadd").val(data.rate);

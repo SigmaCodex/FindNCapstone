@@ -44,7 +44,7 @@
         <ul class="menu">
 			<li class="logo"><a href="<?php echo base_url();?>listofcomputershop">Back</a></li>
             <li class="logo"><a href="#">FindN</a></li>
-			<li class="item button secondary"><a href="user-logout">Log out</a></li>
+			<li class="item button secondary"><a href="<?php echo base_url();?>user-logout">Log out</a></li>
 
             <li class="toggle"><span class="bars"></span></li>
         </ul>
@@ -153,11 +153,11 @@
 		      		</div>
 					<div class="form-group mb-2">
 		      			<label for="name">Latitude</label>
-		      			<input  type="text" id="lat" name="lat" placeholder="Your lat.." class="form-control">
+		      			<input  type="text" id="lat" name="lat" value="<?php echo "hellow";?>"  placeholder="Your lat.." class="form-control">
 		      		</div>
 					<div class="form-group mb-2">
 		      			<label for="name">Longtitude</label>
-		      			<input type="text" id="lng" name="lng" placeholder="Your lng.." class="form-control">
+		      			<input type="text" id="lng" name="lng" placeholder="Your lng.." value="sample" class="form-control">
 		      		</div>
 					<div>		
 		      </div>
@@ -170,7 +170,7 @@
 		        		</button>
 	              	</div>
                 	<div class="form-group mb-2">
-					  <input value="Add" class="form-control btn btn-primary rounded submit px-3" id="updatecomputershopbtn" readonly="readonly">
+					  <input value="Update" class="form-control btn btn-primary rounded submit px-3" id="updatecomputershopbtn" readonly="readonly">
 	              	</div>
               	</div>
 			  </form>
@@ -258,97 +258,7 @@
 		    </div>
 		  </div>
 		</div>
-		<script>
-         var user_location = [123.89702509681695, 10.297418655907592];
-        mapboxgl.accessToken = 'pk.eyJ1IjoiZG5rbzEzIiwiYSI6ImNrbWZxNWl5eDM3amcyeGp4cHRvN3pxdGgifQ.HM7QZISQcECRgm9aKAZysg';
-        var map = new mapboxgl.Map({
-            container: 'map',
-            style: 'mapbox://styles/mapbox/streets-v10',
-            center: user_location,
-            zoom: 12
-        });
-        //  geocoder here
-        var geocoder = new MapboxGeocoder({
-            accessToken: mapboxgl.accessToken,
-            // limit results to Australia
-            //country: 'IN',
-        });
 
-        var marker ;
-
-        // After the map style has loaded on the page, add a source layer and default
-        // styling for a single point.
-        map.on('load', function() {
-            addMarker(user_location,'load');
-            // add_markers(saved_markers);
-
-            // Listen for the `result` event from the MapboxGeocoder that is triggered when a user
-            // makes a selection and add a symbol that matches the result.
-            geocoder.on('result', function(ev) {
-                alert("aaaaa");
-                console.log(ev.result.center);
-
-            });
-        });
-        map.on('click', function (e) {
-            marker.remove();
-            addMarker(e.lngLat,'click');
-            //console.log(e.lngLat.lat);
-            document.getElementById("lat").value = e.lngLat.lat;
-            document.getElementById("lng").value = e.lngLat.lng;
-
-        });
-
-        function addMarker(ltlng,event) {
-
-            if(event === 'click'){
-                user_location = ltlng;
-            }
-            marker = new mapboxgl.Marker({draggable: true,color:"#d02922"})
-                .setLngLat(user_location)
-                .addTo(map)
-                .on('dragend', onDragEnd);
-        }
-        // function add_markers(coordinates) {
-
-        //     var geojson = (saved_markers == coordinates ? saved_markers : '');
-
-        //     console.log(geojson);
-        //     // add markers to map
-        //     geojson.forEach(function (marker) {
-        //         console.log(marker);
-        //         // make a marker for each feature and add to the map
-        //         new mapboxgl.Marker()
-        //             .setLngLat(marker)
-        //             .addTo(map);
-        //     });
-
-        // }
-
-        function onDragEnd() {
-            var lngLat = marker.getLngLat();
-            document.getElementById("lat").value = lngLat.lat;
-            document.getElementById("lng").value = lngLat.lng;
-            console.log('lng: ' + lngLat.lng + '<br />lat: ' + lngLat.lat);
-        }
-
-        // $('#signupForm').submit(function(event){
-        //     event.preventDefault();
-        //     var lat = $('#lat').val();
-        //     var lng = $('#lng').val();
-        //     var url = 'locations_model.php?add_location&lat=' + lat + '&lng=' + lng;
-        //     $.ajax({
-        //         url: url,
-        //         method: 'GET',
-        //         dataType: 'json',
-        //         success: function(data){
-        //             alert(data);
-        //             location.reload();
-        //         }
-        //     });
-        // });
-        document.getElementById('geocoder').appendChild(geocoder.onAdd(map));
-    </script>
 	</body>
 </html>
 
@@ -536,34 +446,11 @@ $(document).on("click", "#addadminbtn", function () {
 	}
 });
 $(document).on("click", ".editbtn", function () {
-	var CSPK = $("#CompShopPK").text();
-	alert(CSPK);
-	var BASE_URL = "<?php echo base_url();?>";
-	$.ajax({
-		url: BASE_URL+"getshopdetails/" + CSPK,
-		method: "POST",
-		data: { shop_id: CSPK },
-		dataType: "json",
-		success: function (data) {
-			alert(data);
-			$("#shopName").val(data.shop_name);
-			$("#c_number").val(data.contact_number);
-			$("#emailadd").val(data.email_address);
-			$("#AddressIN").val(data.address);
-
-			let text = data.coordinates;
-			const myArray = text.split(",");
-
-			var lat = myArray[0];
-			var lng = myArray[1];
-
-			$("#lat").val(lat);
-			$("#lng").val(lng);
-
-			$("#updateComputerModal").modal('show');
-		},
-	});
+	$("#updateComputerModal").modal('show');
 });
+
+
+
 $(document).on("click", "#updatecomputershopbtn", function () {
 	var validator = $("#updatecompform").validate();
 	var BASE_URL = "<?php echo base_url();?>";
@@ -619,3 +506,134 @@ $(document).on("click", "#updatecomputershopbtn", function () {
 });
 
 </script>
+<script>
+$(document).ready(function() {
+	var CSPK = $("#CompShopPK").text();
+
+var BASE_URL = "<?php echo base_url();?>";
+$.ajax({
+	url: BASE_URL+"getshopdetails/" + CSPK,
+	method: "POST",
+	data: { shop_id: CSPK },
+	dataType: "json",
+	success: function (data) {
+		
+		$("#shopName").val(data.shop_name);
+		$("#c_number").val(data.contact_number);
+		$("#emailadd").val(data.email_address);
+		$("#AddressIN").val(data.address);
+
+		let text = data.coordinates;
+		const myArray = text.split(",");
+
+		var lat = myArray[0];
+		var lng = myArray[1];
+
+		$("#lat").val(lat);
+		$("#lng").val(lng);
+
+	},
+});
+});
+
+
+	// var lati = document.getElementById("lat").value;
+	// alert(lati);
+    //  document.getElementById("lng").value;
+    // //  var sample = "hello";
+	//  alert(document.getElementById("lat").value);
+	//  var text =  document.getElementsByClassName('heading-section').textContent;
+    //   alert(text);
+
+		var long = 123.89702509681695;
+		var lang =  10.297418655907592;
+         var user_location = [long, lang ];
+        mapboxgl.accessToken = 'pk.eyJ1IjoiZG5rbzEzIiwiYSI6ImNrbWZxNWl5eDM3amcyeGp4cHRvN3pxdGgifQ.HM7QZISQcECRgm9aKAZysg';
+        var map = new mapboxgl.Map({
+            container: 'map',
+            style: 'mapbox://styles/mapbox/streets-v10',
+            center: user_location,
+            zoom: 12
+        });
+        //  geocoder here
+        var geocoder = new MapboxGeocoder({
+            accessToken: mapboxgl.accessToken,
+            // limit results to Australia
+            //country: 'IN',
+        });
+
+        var marker ;
+
+        // After the map style has loaded on the page, add a source layer and default
+        // styling for a single point.
+        map.on('load', function() {
+            addMarker(user_location,'load');
+            // add_markers(saved_markers);
+
+            // Listen for the `result` event from the MapboxGeocoder that is triggered when a user
+            // makes a selection and add a symbol that matches the result.
+            geocoder.on('result', function(ev) {
+                alert("aaaaa");
+                console.log(ev.result.center);
+
+            });
+        });
+        map.on('click', function (e) {
+            marker.remove();
+            addMarker(e.lngLat,'click');
+            //console.log(e.lngLat.lat);
+            document.getElementById("lat").value = e.lngLat.lat;
+            document.getElementById("lng").value = e.lngLat.lng;
+
+        });
+
+        function addMarker(ltlng,event) {
+
+            if(event === 'click'){
+                user_location = ltlng;
+            }
+            marker = new mapboxgl.Marker({draggable: true,color:"#d02922"})
+                .setLngLat(user_location)
+                .addTo(map)
+                .on('dragend', onDragEnd);
+        }
+        // function add_markers(coordinates) {
+
+        //     var geojson = (saved_markers == coordinates ? saved_markers : '');
+
+        //     console.log(geojson);
+        //     // add markers to map
+        //     geojson.forEach(function (marker) {
+        //         console.log(marker);
+        //         // make a marker for each feature and add to the map
+        //         new mapboxgl.Marker()
+        //             .setLngLat(marker)
+        //             .addTo(map);
+        //     });
+
+        // }
+
+        function onDragEnd() {
+            var lngLat = marker.getLngLat();
+            document.getElementById("lat").value = lngLat.lat;
+            document.getElementById("lng").value = lngLat.lng;
+            console.log('lng: ' + lngLat.lng + '<br />lat: ' + lngLat.lat);
+        }
+
+        // $('#signupForm').submit(function(event){
+        //     event.preventDefault();
+        //     var lat = $('#lat').val();
+        //     var lng = $('#lng').val();
+        //     var url = 'locations_model.php?add_location&lat=' + lat + '&lng=' + lng;
+        //     $.ajax({
+        //         url: url,
+        //         method: 'GET',
+        //         dataType: 'json',
+        //         success: function(data){
+        //             alert(data);
+        //             location.reload();
+        //         }
+        //     });
+        // });
+        document.getElementById('geocoder').appendChild(geocoder.onAdd(map));
+    </script>
