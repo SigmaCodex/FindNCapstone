@@ -18,6 +18,7 @@ class Main_Controller extends CI_Controller {
     }
 	//finders
 	public function finder_BookingRequest($shopid){
+		$this->load->view('finders/navbar-query');
 		$this->load->model('MainModel');
 		$val['username']      = $this->session->userdata('username');
 		$val['shop_id']       = $shopid;
@@ -29,6 +30,7 @@ class Main_Controller extends CI_Controller {
 
 	public function viewAccountSettings()
 	{
+		$this->load->view('finders/navbar');
 		$session = $this->session->userdata('username');
 		if(!$session){
 			redirect(findnlogin);
@@ -42,15 +44,17 @@ class Main_Controller extends CI_Controller {
 	}
 	public function viewViewShop($shopid)
 	{
+		$this->load->view('finders/navbar-query');
 		$this->load->model('MainModel');
 		$val['shopdetails']	 = $this->MainModel->getShopDetails($shopid);
 		$val['shop_images']	 = $this->MainModel->listshopimages($shopid);
 		$val['computertype_details']	 = $this->MainModel->getListOfComputerTypes($shopid);
-		echo json_encode($val);
+		// echo json_encode($val);
 		$this->load->view('viewShop',$val);
 	}
 	public function viewRequestBook($shopid)
 	{
+		$this->load->view('finders/navbar-query');
 		$session = $this->session->userdata('username');
 		if(!$session){
 			redirect(findnlogin);
@@ -78,6 +82,7 @@ class Main_Controller extends CI_Controller {
 	}
 	public function viewFinders_HomePage()
 	{
+		$this->load->view('finders/navbar');
 		$this->load->view('findersHomePage');
 	}
 	public function view_ticket(){
