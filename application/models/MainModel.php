@@ -44,18 +44,29 @@ class MainModel extends CI_Model{
         $this->db->insert('computershop',$data);
         // echo json_encode($data);
     }
-    public function getAdminDetails($id){
+    public function getAdminList($id){
 		$this->db->select('*');
         $this->db->from('computershop');
         $this->db->where('shop_id',$id);
         $query = $this->db->get();
         return $query->result();
     }
-
+    public function deleteAdmin($id){
+        $this->db->where('user_id',$id);
+        $this->db->delete('compmanager');
+    }
     public function getShopDetails($id){
 		$this->db->select('*');
         $this->db->from('computershop');
         $this->db->where('shop_id',$id);
+        $query = $this->db->get();
+        $resultquery = $query->row_array();
+        return $resultquery;
+    }
+    public function getAdminDetails($id){
+		$this->db->select('*');
+        $this->db->from('compmanager');
+        $this->db->where('user_id',$id);
         $query = $this->db->get();
         $resultquery = $query->row_array();
         return $resultquery;
@@ -87,6 +98,19 @@ class MainModel extends CI_Model{
         $this->db->update('computershop',$datafinder);
         echo json_encode($datafinder);
     }
+    public function updateAdminDetails($id){
+        $datafinder = array(
+            'firstname'          => 	 $this->input->post('firstname'),
+            'lastname'           => 	 $this->input->post('lastname'),
+            'gender'             => 	 $this->input->post('gender'),
+            'birthdate'          => 	 $this->input->post('birthdate'),
+            'email'              => 	 $this->input->post('email'),
+            'contactaddress'     => 	 $this->input->post('contactaddress')
+        );
+        $this->db->where('user_id',$id);
+        $this->db->update('compmanager',$datafinder);
+        echo json_encode($datafinder);
+    }
     public function getListOfComputerShops(){
         $this->db->select('*');
         $this->db->from('computershop');
@@ -115,8 +139,8 @@ class MainModel extends CI_Model{
 		{
             $datauser = array(
                 'user_id'   =>    $Primarycode,
-                'username'  => 	  $this->input->post('username'),
-                'password'  =>    $this->input->post('conpass'),
+                'username'  => 	  "admin123",
+                'password'  =>    "12345",
                 'user_type' =>    "Admin",
                 'status'    =>    "Active"
             );

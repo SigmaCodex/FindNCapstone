@@ -30,10 +30,23 @@ class LogicalController extends CI_Controller {
         $this->load->model('MainModel');
         $this->MainModel->registerAdmin();
     }
-        
+    public function updateAdminDetails($id){
+        $this->load->model('MainModel');
+        $this->MainModel->updateAdminDetails($id);
+    }
     public function getAdminDetails($id){
         $this->load->model('MainModel');
-        $this->MainModel->getAdminDetails($id);
+        $result = $this->MainModel->getAdminDetails($id);
+        // $query2->result_array($result);
+        echo json_encode($result);
+    }
+    public function deleteAdmin($id){
+        $this->load->model('MainModel');
+        $this->MainModel->deleteAdmin($id);
+    }
+    public function getAdminList($id){
+        $this->load->model('MainModel');
+        $this->MainModel->getAdminList($id);
     }
     //FINDERS
     public function FindersCompBookingRequest(){
