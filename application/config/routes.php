@@ -9,7 +9,8 @@ $route['shopadmin-computerdetails'] = 'main_controller/shopadmin_computerdetails
 $route['shopadmin-computertype'] = 'main_controller/shopadmin_addComputerType';
 $route['shopadmin-posts/(:num)'] = 'main_controller/shopadmin_postEvents/$1';
 $route['shopadmin-computertypelist/(:num)'] = 'main_controller/shopadmin_computertypeList/$1';
-$route['shopadmin-comptypeinfo/(:num)'] = 'main_controller/shopadmin_comptypeInfo/$1';
+$route['shopadmin-viewPosts/(:num)'] = 'main_controller/shopadmin_viewPost/$1';
+
 
 $route['shopadmin-updatecomputertype'] = 'main_controller/shopadmin_updatecompType';
 $route['shopadmin-shopimages/(:num)'] = 'main_controller/shopimages/$1';
@@ -73,6 +74,10 @@ $route['deleteCompShop/(:num)'] = 'logicalcontroller/deleteComputerShop/$1';
     $route['updateCompTypeStat/(:num)'] = 'logicalcontroller/updateComputerTypeStatus/$1';
     $route['getCompTypeInfo/(:num)'] = 'logicalcontroller/getComputerTypeInfo/$1';
     $route['uploadshopimages/(:num)'] = 'logicalcontroller/uploadshopimages/$1';
+    $route['getpostComments/(:num)'] = 'logicalcontroller/getallPostComments/$1';
+    $route['addComment/(:num)'] = 'logicalcontroller/addComments/$1';
+    $route['deleteComment/(:num)'] = 'logicalcontroller/deleteComments/$1';
+
 
     //api 
     $route['goto-gcash']          = 'logicalcontroller/GotoGcash';
