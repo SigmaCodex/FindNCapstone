@@ -80,7 +80,7 @@
             
             <p class="social-text ">Don't have an account yet? <br>Register below!</p>
             <div class="social-media">
-              <a href="#" class="social-icon">
+              <a href="findnRegister" class="social-icon">
                 <i class="fas fa-user-ninja"></i>
               </a>
             </div>

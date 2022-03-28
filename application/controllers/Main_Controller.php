@@ -29,7 +29,16 @@ class Main_Controller extends CI_Controller {
 
 	public function viewAccountSettings()
 	{
-		$this->load->view('accountSettings');
+		$session = $this->session->userdata('username');
+		if(!$session){
+			redirect(findnlogin);
+		}else{
+			$this->load->model('MainModel');
+			$user_id  = $this->session->userdata('user_id');
+			$val['username'] =  $session;
+			$val['findersPersonalDetails']	 = $this->MainModel->selectFinderDetails($user_id);
+			$this->load->view('accountSettings',$val);
+		}
 	}
 	public function viewViewShop($shopid)
 	{
@@ -42,14 +51,18 @@ class Main_Controller extends CI_Controller {
 	}
 	public function viewRequestBook($shopid)
 	{
-		$this->load->model('MainModel');
-		$user_id = $this->session->userdata('user_id');
-		$val['shop_id']					 = $shopid;
-		$val['findersPersonalDetails']	 = $this->MainModel->selectFinderDetails($user_id);
-		$val['computertype_details']	 = $this->MainModel->getListOfComputerTypes($shopid);
-	    $val['shopdetails']	 			 = $this->MainModel->getShopDetails($shopid);
-	
-		$this->load->view('requestBook',$val);
+		$session = $this->session->userdata('username');
+		if(!$session){
+			redirect(findnlogin);
+		}else{
+			$this->load->model('MainModel');
+			$user_id = $this->session->userdata('user_id');
+			$val['shop_id']					 = $shopid;
+			$val['findersPersonalDetails']	 = $this->MainModel->selectFinderDetails($user_id);
+			$val['computertype_details']	 = $this->MainModel->getListOfComputerTypes($shopid);
+			$val['shopdetails']	 			 = $this->MainModel->getShopDetails($shopid);
+			$this->load->view('requestBook',$val);
+		}
 	}
 	public function viewRegister()
 	{

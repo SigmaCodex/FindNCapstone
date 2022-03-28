@@ -77,19 +77,13 @@ class LogicalController extends CI_Controller {
         $this->upload->initialize($config);
         if(! $this->upload->do_upload('imageUpload'))
         {
-            echo $this->upload->display_errors();
+            //update useraccount without the profileimage   
+            $this->load->model('MainModel');
+            $this->MainModel->updateFinderAccount("no-image");
         }else{
-            $data= array(
-                'f_name'  => 	  $this->input->post('f_name'),
-                'l_name'  =>    $this->input->post('l_name'),
-                'b_date'  =>    $this->input->post('b_date'),
-                'username'  =>    $this->input->post('username'),
-                'b_date'  =>    $this->input->post('b_date'),
-                'email'  =>    $this->input->post('email'),
-                'p_number'  =>    $this->input->post('p_number'),
-                'vac_status'  =>    $this->input->post('vac_status'),
-            );
-            echo json_encode($data);
+             //update useraccount with the profileimage
+            $this->load->model('MainModel');
+            $this->MainModel->updateFinderAccount("with-image");
         }
     }
 
@@ -238,7 +232,7 @@ class LogicalController extends CI_Controller {
 				'description' => $servicetype."for". $shop,
 				'customername' =>  $name,
 				'customermobile' => $contact_num ,
-				'merchantlogourl' => 'http://localhost:8080/FindNCapstone/assets/images/findnslogan.png',
+				'merchantlogourl' => 'http://localhost:8080/FindNCapstone/assets/images/Logo.svg',
 				'customeremail' => $email,
 				// 'redirectsuccessurl' => 'http://localhost:8080/FindNCapstone/gcashsuccess',	
 			),

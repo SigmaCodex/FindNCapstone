@@ -19,9 +19,10 @@
                <div class='desc'>
                <?php foreach ($postDetails as $s) {?>
                   <img src="..\assets\images\<?php echo $s->post_img?>" alt="">
+                  <br>
                   <button class="df2-contact" shoppost_id="<?php echo $s->post_id;?>">Edit Post</button>
                   <h3><?php echo $s->post_title;?></h3>
-                  <p><?php echo $s->post_created;?></p><p><?php echo $s->post_updated;?></p>
+                  <p><?php echo $s->post_created;?></p></p>
                   <h3 id="compshop_postid" style="display:none"><?php echo $s->post_id;?></h3>
                   <p><?php echo $s->post_description;?></p>
                   <?php }?> 

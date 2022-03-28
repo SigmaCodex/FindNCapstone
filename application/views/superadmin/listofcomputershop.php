@@ -316,7 +316,7 @@
 						icon: "success",
 						button: "Continue",
 					}).then((value) => {
-						window.location = "http://localhost/FindNCapstone/listofcomputershop";
+						location.reload();
 					});					
                 }
             });
@@ -353,7 +353,7 @@
 	<script>
 		$(document).on("click",".remove-shop",function(){
 			var CSPK = $(this).attr("data");
-
+			var BASE_URL = "<?php echo base_url();?>";
 			swal({
   				title: "Are you sure to delete this computer shop?",
   				icon: "warning",
@@ -362,14 +362,14 @@
 			}).then((willDelete) => {
   				if (willDelete) {
 					$.ajax({
-						url: "http://localhost/FindNCapstone/deleteCompShop/" + CSPK,
+						url: BASE_URL+"deleteCompShop/" + CSPK,
 						method: "POST",
 						data: { shop_id: CSPK },
 						success: function (data) {
 							swal("Computer Shop has been deleted!", {
     					  		icon: "success",
     						}).then((value) => {
-						  		window.location = "http://localhost/FindNCapstone/listofcomputershop";
+								location.reload();
 							});
 
 						},
