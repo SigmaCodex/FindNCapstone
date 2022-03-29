@@ -332,8 +332,8 @@ class LogicalController extends CI_Controller {
 
     //check verification code
     public function checkVerificationCode(){
-        $v_code = $this->session->userdata('v_code');
-        echo $v_code;
+        $this->load->model('MainModel');
+        $this->MainModel->update_To_FinderAccountVerified();   
     }
 }
     

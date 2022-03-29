@@ -7,7 +7,7 @@
     <title>Account Profile</title>
 
     <link rel="stylesheet" href="assets/css/accountSettings.css">
-    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"> -->
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">    
 </head>
@@ -78,19 +78,41 @@
                     <p>Enter verification code sent to your email.</p>   
                 </div>
                     <div class="col-md-6 d-flex justify-content-evenly" >
-                        <!-- <input name="activate" type="text" class="bg-light form-control" placeholder="Enter code..." style="width:150px">  -->
-                        <!-- <button class="ver btn success">Verified <i class="fa-solid fa-check-circle "></i></button>     -->
-                        <div class="ver btn btn-outline-primary" id="click-verify-btn" data-toggle="modal" data-target="#AccountVerificationModal">Click to Verify<i class="fa-solid fa-envelope "></i></div>
-                        <div class="ver btn btn-outline-primary" disabled>Verified<i class="fa-solid fa-check-circle "></i></div>
+                        <?php
+                       if(isset($status)){
+                           
+                            if($status == "verified"){
+                                echo " <div class='ver btn success' disabled>Verified <i class='fa-solid fa-check-circle '></i></div>";
+                            }else{
+                                echo "<div class='ver btn btn-outline-primary' id='click-verify-btn' data-toggle='modal' data-target='#AccountVerificationModal'>Click to Verify <i class='fa-solid fa-envelope '></i></div>";
+                            }
+                        }    
+                        ?>
+                        <!-- <div class="ver btn btn-outline-primary" id="click-verify-btn" data-toggle="modal" data-target="#AccountVerificationModal">Click to Verify<i class="fa-solid fa-envelope "></i></div>
+                        <div class="ver btn success" disabled>Verified<i class="fa-solid fa-check-circle "></i></div> -->
                     </div>
                 
             </div>
-            <div class="d-sm-flex align-items-center " id="change">
+            <div class="d-sm-flex align-items-center py-4" id="change">
                 <div class="title-info"> CHANGE PASSWORD
                     <p>Do not share your password to anyone.</p>   
                 </div>
                 <div class="" > <button class="btn danger">Change</button> </div>
             </div>
+            <?php
+                if(isset($status)){
+                    if($status == "verified"){
+                        echo "
+                        <div class='d-sm-flex align-items-center py-2' id='change'>
+                            <div class='title-info'> Disabled Account
+                                <p>You will Disabled your account</p>   
+                            </div>
+                            <div ><button class='btn danger' id='disable_account'>Click To Disable</button> </div>
+                        </div>";
+                    }
+                }    
+            ?>
+
 
             <div class="py-2 pb-4 "> <button class="btn btn-primary mr-3">Save Changes</button> <button class="btn border button">Cancel</button> </div>
         </div>
@@ -137,7 +159,7 @@
         </button>
       </div>
       <div class="modal-body" style="justify-content: center;">
-      <form class="form-verification">
+      <div class="form-verification">
         <h4 class="text-center mb-4">Enter your code</h4>
         <div class="d-flex mb-3">
             <input type="text" id="1st" maxlength="1"  class="verificationform-control">
@@ -147,8 +169,8 @@
             <input type="text" id="5th" maxlength="1" class="verificationform-control">
             <input type="text" id="6th" maxlength="1"  class="verificationform-control">
         </div>
-        <button type="submit" id="btn-code-submit" class="w-100 btn btn-primary">Verify account</button>
-        </form>    
+        <button id="btn-code-submit" class="w-100 btn btn-primary">Verify account</button>
+        </div>
       </div>
       <div class="modal-footer">
       </div>
@@ -211,7 +233,7 @@
                             }).then((value) => {
                                     location.reload();
                             }); 
-                        }  
+                    }  
                 });  
              
       });  
@@ -228,26 +250,51 @@
     
 
         var code = first+second+third+fourth+fifth+sixth;
-        alert(code);
+        
+        $.ajax({
+				url:"checkVerificationCode",
+				method: "POST",
+				data: {input_code:code},
+				success: function (data) {
+
+
+                    if(data == "Match"){
+                        swal({
+                            title: "Account Verified Successfully",
+                            text: "",
+                            icon: "success",
+                            button: "Continue",
+                            }).then((value) => {
+                                    location.reload();
+                            }); 
+                    }else{
+                        swal(
+							'Code Not Match!',
+							'Please Check your Code or Check your Email',
+							'error'
+						)
+                    }
+
+
+
+                },
+		});	
         
     });
  </script>
  <script>
     $(document).on('click','#click-verify-btn',function(){ 
         var emailaddress = $('#email').val();
-        var BASE_URL = "<?php echo base_url();?>";
 
-        alert(email);
         $.ajax({
 				url:"sendVerificationCodeToEmail",
 				method: "POST",
-				data: { email:emailaddress},
+				data: {email:emailaddress},
 				success: function (data) {
                     alert(data);
                 },
 		});	
 
-        
        
     });
  </script>

@@ -18,7 +18,8 @@ class MainModel extends CI_Model{
           $datasession  = array(
               'user_id' => $row->user_id,
               'username'  => $row->username,
-              'user_type' => $row->user_type                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    
+              'user_type' => $row->user_type,
+              'status'    => $row->status,                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   
           );
           $this->session->set_userdata($datasession);
           return true;
@@ -28,7 +29,7 @@ class MainModel extends CI_Model{
       }
 
     }
-    //user account update
+    //finder user account update
     public function updateFinderAccount($status){
         // echo $status;
         $user_id  = $this->session->userdata('user_id');
@@ -61,6 +62,25 @@ class MainModel extends CI_Model{
 
             $this->db->where('user_id',$user_id);
             $this->db->update('finders',$findersdata);
+        }
+    }
+    //finder user verified status account
+    public function update_To_FinderAccountVerified(){
+        $v_code = $this->session->userdata('v_code');
+        $inputed_code = $this->input->post('input_code');
+
+        if($v_code == $inputed_code){
+            $user_id = $this->session->userdata('user_id');
+
+            $data = array(
+                'status' => 'verified',
+            );
+            $this->db->where('user_id', $user_id);
+            $this->db->update('user',$data);
+
+            echo "Match";
+        }else{
+            echo "Not_Match";
         }
     }
 
@@ -177,7 +197,7 @@ class MainModel extends CI_Model{
                 'username'  => 	  "admin123",
                 'password'  =>    "12345",
                 'user_type' =>    "Admin",
-                'status'    =>    "Active"
+                'status'    =>    "verified"
             );
                 $this->db->insert('user',$datauser);
 
@@ -221,7 +241,7 @@ class MainModel extends CI_Model{
                 'username'  => 	  $this->input->post('username'),
                 'password'  =>    $this->input->post('conpass'),
                 'user_type' =>    "finder",
-                'status'    =>    "Active"
+                'status'    =>    "not_verified"
             );
                 $this->db->insert('user',$datauser);
 

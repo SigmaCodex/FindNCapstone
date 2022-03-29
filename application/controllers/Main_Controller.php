@@ -37,6 +37,7 @@ class Main_Controller extends CI_Controller {
 		}else{
 			$this->load->model('MainModel');
 			$user_id  = $this->session->userdata('user_id');
+			$val['status']	 = $this->session->userdata('status');
 			$val['username'] =  $session;
 			$val['findersPersonalDetails']	 = $this->MainModel->selectFinderDetails($user_id);
 			$this->load->view('accountSettings',$val);
