@@ -272,13 +272,29 @@ class LogicalController extends CI_Controller {
 			
     }
 
+    //generate Verification Code
+    public function generateVeificationCode(){
+        $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        $randomString = '';
+      
+        for ($i = 0; $i < 6; $i++) {
+            $index = rand(0, strlen($characters) - 1);
+            $randomString .= $characters[$index];
+        }
+        return $randomString;
+    }
 
+    //send verification code to email
     public function sendVCodeToEmail(){
-        $email = "hackmetry01@gmail.com";
+
+        $verificationCode = $this->generateVeificationCode();
+        $this->session->set_userdata('v_code',$verificationCode);
+
+        $email = $this->input->post('email');
         $messageText = "
         <center><img src='assets/images/Logo1.png' style='width: 100px;'></center>
         <br>
-        <center><h1>This is your Code: <b>200331</b></h1></center>
+        <center><h1>This is your Code: <b>".$verificationCode."</b></h1></center>
         
         ";
 
@@ -312,8 +328,12 @@ class LogicalController extends CI_Controller {
             echo 'Message has been sent';
         }
 
-    
+    }
 
+    //check verification code
+    public function checkVerificationCode(){
+        $v_code = $this->session->userdata('v_code');
+        echo $v_code;
     }
 }
     

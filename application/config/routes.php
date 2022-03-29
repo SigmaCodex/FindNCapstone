@@ -84,6 +84,7 @@ $route['admin-list/(:num)'] = 'main_controller/adminlist/$1';
     $route['goto-gcash']                  = 'logicalcontroller/GotoGcash';
     $route['select-paymentmethod']        = 'main_controller/payment_exercise';
     $route['sendVerificationCodeToEmail'] = 'logicalcontroller/sendVCodeToEmail';
+    $route['checkVerificationCode']       = 'logicalcontroller/checkVerificationCode';
 
 $route['user-login']               = 'logicalcontroller/login_user';
 $route['user-logout']              = 'logicalcontroller/logout_user';

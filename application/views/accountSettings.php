@@ -57,7 +57,7 @@
             <div class="title-info"> ACCOUNT INFORMATION
              <div class="row py-2">
                 <div class="col-md-6"> <label for="username">Username</label> <input name="username" value="<?php if(isset($username)){ echo $username;}?>" type="text" class="bg-light form-control" disabled>  </div>
-                <div class="col-md-6 pt-md-0 pt-3"> <label for="email">Email</label> <input name="email" type="email" value="<?php echo $w->email;?>" class="bg-light form-control">  </div>
+                <div class="col-md-6 pt-md-0 pt-3"> <label for="email">Email</label> <input id="email" name="email" type="email" value="<?php echo $w->email;?>" class="bg-light form-control">  </div>
                 <div class="col-md-6"> <label for="phone">Phone Number</label> <input  name="p_number" value="<?php echo $w->phone_num;?>" type="text" class="bg-light form-control" placeholder="+63">  </div>
             </div>
             <div class="title-info"> VACCINATION STATUS</div>
@@ -140,12 +140,12 @@
       <form class="form-verification">
         <h4 class="text-center mb-4">Enter your code</h4>
         <div class="d-flex mb-3">
-            <input type="tel" id="1st" maxlength="1" pattern="[0-9]" class="verificationform-control">
-            <input type="tel" id="2nd" maxlength="1" pattern="[0-9]" class="verificationform-control">
-            <input type="tel" id="3rd" maxlength="1" pattern="[0-9]" class="verificationform-control">
-            <input type="tel" id="4th"maxlength="1" pattern="[0-9]" class="verificationform-control">
-            <input type="tel" id="5th" maxlength="1" pattern="[0-9]" class="verificationform-control">
-            <input type="tel" id="6th" maxlength="1" pattern="[0-9]" class="verificationform-control">
+            <input type="text" id="1st" maxlength="1"  class="verificationform-control">
+            <input type="text" id="2nd" maxlength="1"  class="verificationform-control">
+            <input type="text" id="3rd" maxlength="1"  class="verificationform-control">
+            <input type="text" id="4th"maxlength="1" class="verificationform-control">
+            <input type="text" id="5th" maxlength="1" class="verificationform-control">
+            <input type="text" id="6th" maxlength="1"  class="verificationform-control">
         </div>
         <button type="submit" id="btn-code-submit" class="w-100 btn btn-primary">Verify account</button>
         </form>    
@@ -218,13 +218,6 @@
  });  
  </script>  
  <script>
-    $(document).on('click','#click-verify-btn',function(){ 
-        alert("send code to email");
-
-        
-       
-    });
-
     $(document).on('click','#btn-code-submit',function(){ 
         var first = $("#1st").val();
         var second = $("#2nd").val();
@@ -236,6 +229,24 @@
 
         var code = first+second+third+fourth+fifth+sixth;
         alert(code);
+        
+    });
+ </script>
+ <script>
+    $(document).on('click','#click-verify-btn',function(){ 
+        var emailaddress = $('#email').val();
+        var BASE_URL = "<?php echo base_url();?>";
+
+        alert(email);
+        $.ajax({
+				url:"sendVerificationCodeToEmail",
+				method: "POST",
+				data: { email:emailaddress},
+				success: function (data) {
+                    alert(data);
+                },
+		});	
+
         
        
     });
