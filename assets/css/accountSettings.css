@@ -94,7 +94,7 @@ label {
 }
 .title-info{
     font-family: 'Poppins', sans-serif;
-    font-weight: 900;
+    font-weight: 600;
     color: #fc4a1a;
 }
 .form-control {
@@ -128,7 +128,9 @@ select:focus {
     color: #0779e4;
     font-family: 'Poppins', sans-serif;
 }
-
+.btn .danger{
+    background-color: #757575;
+}
 .button:hover {
     background-color: #0779e4;
     color: #fff;
@@ -171,13 +173,12 @@ select:focus {
 .avatar-upload {
   position: relative;
   max-width: 205px;
-  margin: 50px auto;
+  margin: 0px auto;
 }
 .avatar-upload .avatar-edit {
   position: absolute;
   right: 12px;
   z-index: 1;
-  top: 10px;
 }
 .avatar-upload .avatar-edit input {
   display: none;
@@ -202,7 +203,13 @@ select:focus {
 .avatar-upload .avatar-edit input + label:after {
   content: "\f040";
   font-family: 'FontAwesome';
-  color: #757575;
+  background-image: linear-gradient(45deg, #f83f0b,#e09e1a);
+  background-size: 100%;
+  -webkit-background-clip: text;
+  -moz-background-clip: text;
+  -webkit-text-fill-color: transparent; 
+  -moz-text-fill-color: transparent;
+  text-decoration: none;
   position: absolute;
   top: 10px;
   left: 0;
@@ -215,7 +222,7 @@ select:focus {
   height: 192px;
   position: relative;
   border-radius: 100%;
-  border: 6px solid #F8F8F8;
+  border: 6px solid #eea264;
   box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.1);
 }
 .avatar-upload .avatar-preview > div {

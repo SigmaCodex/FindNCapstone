@@ -16,37 +16,6 @@
 </head>
 <body>
 
-
-  <!--Navigation Bar-->
-<input type="checkbox" id="check">
-<!--Start header-->
-<header class="p-2">
-    <label for="check">
-        <i class="fa-solid fa-bars" id="side_bar_btn" onclick = "btn();"></i>
-    </label>
-    <div class="logo_holder d-flex justify-content-center align-items-center align-self-center" >
-        <img class="logo" src="assets/Images/logo.png"> 
-        <p class="fs-4 pt-1 my--1 mb-4 fw-bolder" style="font-family: 'NordiquePro-Bold', sans-serif; font-size: 35px;">FindN</p>
-    </div>
-   
-</header>
-<!--End header-->
-
-<!--Sidebar start-->
-
-<div class="side_bar" id="side_bar_show" style="display:none;" >
-    <div class="centerA">
-        <img src="assets/images/Prof.png" class="profile_image" alt="">
-        <h4>Junky Dubs</h4>
-    </div>
-    <a href="#" class="m-0 w-100"><i class="fa-solid fa-home fa-fw"></i><span>Home</span></a>
-    <a href="#" class="m-0 w-100"><i class="fa-solid fa-history"></i><span>History</span></a>
-    <a href="#" class="m-0 w-100"><i class="fa-solid fa-tasks"></i><span>Pending Booking</span></a>
-    <a href="#" class="m-0 w-100"><i class="fa-solid fa-share-alt"></i><span>Settings</span></a>
-    <a href="#" class="m-0 w-100"><i class="fa-solid fa-question-circle"></i><span>About</span></a>
-    <a href="user-logout" class="m-0 w-100"><i class="fa-solid fa-door-open"></i><span>Logout</span></a>
-    
-</div>
 <!--Content Inside-->
 <div class="container ">
     <div class="row content-holder mt-5">

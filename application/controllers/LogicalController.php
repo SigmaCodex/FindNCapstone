@@ -30,10 +30,23 @@ class LogicalController extends CI_Controller {
         $this->load->model('MainModel');
         $this->MainModel->registerAdmin();
     }
-        
+    public function updateAdminDetails($id){
+        $this->load->model('MainModel');
+        $this->MainModel->updateAdminDetails($id);
+    }
     public function getAdminDetails($id){
         $this->load->model('MainModel');
-        $this->MainModel->getAdminDetails($id);
+        $result = $this->MainModel->getAdminDetails($id);
+        // $query2->result_array($result);
+        echo json_encode($result);
+    }
+    public function deleteAdmin($id){
+        $this->load->model('MainModel');
+        $this->MainModel->deleteAdmin($id);
+    }
+    public function getAdminList($id){
+        $this->load->model('MainModel');
+        $this->MainModel->getAdminList($id);
     }
     //FINDERS
     public function FindersCompBookingRequest(){
@@ -257,6 +270,50 @@ class LogicalController extends CI_Controller {
 			//redirect($decoded['data']['checkouturl']);
 			
 			
+    }
+
+
+    public function sendVCodeToEmail(){
+        $email = "hackmetry01@gmail.com";
+        $messageText = "
+        <center><img src='assets/images/Logo1.png' style='width: 100px;'></center>
+        <br>
+        <center><h1>This is your Code: <b>200331</b></h1></center>
+        
+        ";
+
+        $this->load->library('phpmailer_lib');
+        $mail = $this->phpmailer_lib->load();
+
+        // $mail->SMTPDebug = 3;                               // Enable verbose debug output
+
+        $mail->isSMTP();                                      // Set mailer to use SMTP
+        $mail->Host = 'tls://smtp.gmail.com:587';  // Specify main and backup SMTP servers
+        $mail->SMTPAuth = true;                               // Enable SMTP authentication
+        $mail->Username = 'findn.cebu.ph@gmail.com';                 // SMTP username
+        $mail->Password = 'RuntimeNimble12345678';                           // SMTP password
+        $mail->Port = 587;                                    // TCP port to connect to
+
+        $mail->From = 'findn.cebu.ph@gmail.com';
+        $mail->FromName = 'FindN Admins';
+        $mail->addAddress($email);               // Name is optional
+        
+
+        $mail->isHTML(true);                                  // Set email format to HTML
+
+        $mail->Subject = ("Finder Verification Code");
+        $mail->Body = $messageText;
+        $mail->addEmbeddedImage('assets/images/Logo1.png', 'FindNlogo');
+
+        if(!$mail->send()) {
+            echo 'Message could not be sent.';
+            echo 'Mailer Error: ' . $mail->ErrorInfo;
+        } else {
+            echo 'Message has been sent';
+        }
+
+    
+
     }
 }
     
