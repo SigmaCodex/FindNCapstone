@@ -180,8 +180,15 @@ class Main_Controller extends CI_Controller {
 	public function shopadmin_postEvents($shopid){
 		$this->load->model('MainModel');
 		$val['shopid'] = $shopid;
-		$val['postDetails'] = $this->MainModel->getPostDetails($shopid);
+		$val['postDetails'] = $this->MainModel->listofPosts($shopid);
 		$this->load->view('admin/postEvents',$val);
+	}
+	public function shopadmin_viewPost($post_id){
+		$this->load->model('MainModel');
+		$val['id'] = $post_id;
+		$val['postDetails'] = $this->MainModel->viewPosts($post_id);
+		$val['userDetails'] = $this->MainModel->getallPostComments($post_id);
+		$this->load->view('admin/viewPost',$val);
 	}
 }
     

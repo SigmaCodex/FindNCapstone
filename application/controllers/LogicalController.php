@@ -141,6 +141,10 @@ class LogicalController extends CI_Controller {
     }
 
     //ADMIN
+    public function getUserDetails($id){
+        $this->load->model('MainModel');
+        $this->MainModel->getUserDetails($id);
+    }
     public function addshopPosts($id){
         $this->load->model('MainModel');
         $this->MainModel->addshopPosts($id);
@@ -153,6 +157,19 @@ class LogicalController extends CI_Controller {
         $this->load->model('MainModel');
         $result = $this->MainModel->selectforUpdatePostDetails($id);
         echo json_encode($result);
+    }
+    public function getallPostComments($shop_id){
+        $this->load->model('MainModel');
+        $result = $this->MainModel->getallPostComments($shop_id);
+
+    }
+    public function addComments($id){
+        $this->load->model('MainModel');
+        $result = $this->MainModel->addComments($id);
+    }
+    public function deleteComments($id){
+        $this->load->model('MainModel');
+        $result = $this->MainModel->deleteComments($id);
     }
     public function updateshopPosts($id){
         $this->load->model('MainModel');

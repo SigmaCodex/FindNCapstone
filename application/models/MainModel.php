@@ -305,12 +305,29 @@ class MainModel extends CI_Model{
         $query = $this->db->get();
         return $query->result();
     }
-    public function getPostDetails($id){
+    public function listofPosts($id){
         $this->db->select('*');
         $this->db->from('post_events');
         $this->db->where('shop_id',$id);
         $query = $this->db->get();
         return $query->result();
+    }
+    public function viewPosts($id){
+        $this->db->select('*');
+        $this->db->from('post_events');
+        $this->db->where('post_id',$id);
+        $query = $this->db->get();
+        return $query->result();
+    }
+    public function getallPostComments($id){
+        $this->db->select('user.username, comments.*');
+        $this->db->from('comments');
+        $this->db->join('user', 'user.user_id = comments.user_id');
+        // $this->db->join('finders', 'finders.user_id = user.user_id', 'left');
+        $this->db->where('post_id',$id);
+        $query = $this->db->get();
+        return $query->result();
+        //echo json_encode($query->result());     
     }
     public function selectforUpdatePostDetails($id){
         $this->db->select('*');
@@ -402,7 +419,21 @@ class MainModel extends CI_Model{
         $this->db->where('post_id',$id);
         $this->db->delete('post_events');
     }
-    
+    public function addComments($id){
+        $date_created = date('m/d/y');
+        $data = array(
+            'post_id' => $id,
+            'user_id' => '2222855',
+            'comment'   => 	 $this->input->post('comment_txt'),
+            'date' =>  $date_created
+        );
+        $this->db->insert('comments',$data);
+        echo json_encode($data);
+    }
+    public function deleteComments($id){
+        $this->db->where('comment_id',$id);
+        $this->db->delete('comments');
+    }
     public function updateComputerDetails($id){
         $datafinder = array(
             'shop_name'   => 	 $this->input->post('cshop'),
