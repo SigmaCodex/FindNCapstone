@@ -75,8 +75,9 @@ $route['deleteCompShop/(:num)'] = 'logicalcontroller/deleteComputerShop/$1';
     $route['uploadshopimages/(:num)'] = 'logicalcontroller/uploadshopimages/$1';
 
     //api 
-    $route['goto-gcash']          = 'logicalcontroller/GotoGcash';
-    $route['select-paymentmethod']     = 'main_controller/payment_exercise';
+    $route['goto-gcash']                  = 'logicalcontroller/GotoGcash';
+    $route['select-paymentmethod']        = 'main_controller/payment_exercise';
+    $route['sendVerificationCodeToEmail'] = 'logicalcontroller/sendVCodeToEmail';
 
 $route['user-login']               = 'logicalcontroller/login_user';
 $route['user-logout']              = 'logicalcontroller/logout_user';

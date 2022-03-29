@@ -7,7 +7,7 @@
     <title>Account Profile</title>
 
     <link rel="stylesheet" href="assets/css/accountSettings.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js">
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"> -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">    
 </head>
@@ -75,11 +75,13 @@
             </div>
             <div class="d-sm-flex align-items-center py-4" id="change">
                 <div class="title-info"> VERIFICATION STATUS
-                    <p>Enter verification code sent to email.</p>   
+                    <p>Enter verification code sent to your email.</p>   
                 </div>
                     <div class="col-md-6 d-flex justify-content-evenly" >
-                        <input name="activate" type="text" class="bg-light form-control" placeholder="Enter code..." style="width:150px"> 
-                        <button class="ver btn success">Verified <i class="fa-solid fa-check-circle "></i></button>    
+                        <!-- <input name="activate" type="text" class="bg-light form-control" placeholder="Enter code..." style="width:150px">  -->
+                        <!-- <button class="ver btn success">Verified <i class="fa-solid fa-check-circle "></i></button>     -->
+                        <div class="ver btn btn-outline-primary" id="click-verify-btn" data-toggle="modal" data-target="#AccountVerificationModal">Click to Verify<i class="fa-solid fa-envelope "></i></div>
+                        <div class="ver btn btn-outline-primary" disabled>Verified<i class="fa-solid fa-check-circle "></i></div>
                     </div>
                 
             </div>
@@ -100,9 +102,63 @@
 
 
 </body>
+
+<!-- modal style  -->
+<style>
+    .form-verification {
+  padding: 2rem;
+  border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(0,0,0,.1);
+  max-width: 500px;
+  background: #fff;
+  
+  }
+  .verificationform-control {
+    display: block;
+    height: 50px;
+    margin-right: 0.5rem;
+    text-align: center;
+    font-size: 1.25rem;
+    min-width: 0;
+    
+    &:last-child {
+      margin-right: 0;
+    }
+}
+</style>
+<!-- Modals -->
+<div class="modal fade" id="AccountVerificationModal" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Account Verification</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body" style="justify-content: center;">
+      <form class="form-verification">
+        <h4 class="text-center mb-4">Enter your code</h4>
+        <div class="d-flex mb-3">
+            <input type="tel" id="1st" maxlength="1" pattern="[0-9]" class="verificationform-control">
+            <input type="tel" id="2nd" maxlength="1" pattern="[0-9]" class="verificationform-control">
+            <input type="tel" id="3rd" maxlength="1" pattern="[0-9]" class="verificationform-control">
+            <input type="tel" id="4th"maxlength="1" pattern="[0-9]" class="verificationform-control">
+            <input type="tel" id="5th" maxlength="1" pattern="[0-9]" class="verificationform-control">
+            <input type="tel" id="6th" maxlength="1" pattern="[0-9]" class="verificationform-control">
+        </div>
+        <button type="submit" id="btn-code-submit" class="w-100 btn btn-primary">Verify account</button>
+        </form>    
+      </div>
+      <div class="modal-footer">
+      </div>
+    </div>
+  </div>
+</div>
+
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"  ></script>
 
     <script>
         function btn(){
@@ -132,7 +188,7 @@
                 readURL(this);
             });
         </script> 
-
+<!-- ajax for updating account -->
 <script>  
  $(document).ready(function(){  
       $('#upload_form').on('submit', function(e){  
@@ -161,6 +217,29 @@
       });  
  });  
  </script>  
+ <script>
+    $(document).on('click','#click-verify-btn',function(){ 
+        alert("send code to email");
+
+        
+       
+    });
+
+    $(document).on('click','#btn-code-submit',function(){ 
+        var first = $("#1st").val();
+        var second = $("#2nd").val();
+        var third = $("#3rd").val();
+        var fourth = $("#4th").val();
+        var fifth = $("#5th").val();
+        var sixth = $("#6th").val();
+    
+
+        var code = first+second+third+fourth+fifth+sixth;
+        alert(code);
+        
+       
+    });
+ </script>
 </html>
 
 
