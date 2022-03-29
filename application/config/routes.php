@@ -7,7 +7,7 @@ $route['shopadmin-scanqr']    = 'main_controller/admin_scanqr';
 $route['shopadmin-bookings']  = 'main_controller/admin_bookings';
 $route['shopadmin-computerdetails'] = 'main_controller/shopadmin_computerdetails';
 $route['shopadmin-computertype'] = 'main_controller/shopadmin_addComputerType';
-$route['shopadmin-posts/(:num)'] = 'main_controller/shopadmin_postEvents/$1';
+
 $route['shopadmin-computertypelist/(:num)'] = 'main_controller/shopadmin_computertypeList/$1';
 $route['shopadmin-comptypeinfo/(:num)'] = 'main_controller/shopadmin_comptypeInfo/$1';
 
@@ -38,17 +38,22 @@ $route['add-admin'] = 'main_controller/addAdmin';
 $route['add-computershop'] = 'main_controller/addComputershop';
 $route['listofcomputershop'] = 'main_controller/listofcomputershop';
 $route['admin-list/(:num)'] = 'main_controller/adminlist/$1';
-$route['getadmin-list/(:num)'] = 'logicalcontroller/getListOfAdmins/$1';
-$route['getshopdetails/(:num)'] = 'logicalcontroller/getShopDetails/$1';
-$route['updateshopdetails/(:num)'] = 'logicalcontroller/updateShopDetails/$1';
-$route['deleteCompShop/(:num)'] = 'logicalcontroller/deleteComputerShop/$1';
-
 
 //Logics
     //SuperAdmin
     $route['registeradmin'] = 'logicalcontroller/registerAdmin';
     $route['addshop'] = 'logicalcontroller/addComputerShop';
     $route['admindetails'] = 'logicalcontroller/getAdminDetails';
+    $route['getadmin-list/(:num)'] = 'logicalcontroller/getListOfAdmins/$1';
+    $route['getadmin-details/(:num)'] = 'logicalcontroller/getAdminDetails/$1';
+    $route['updateadmindetails/(:num)'] = 'logicalcontroller/updateAdminDetails/$1';
+    $route['deleteadmin/(:num)'] = 'logicalcontroller/deleteAdmin/$1';
+
+    $route['getshopdetails/(:num)'] = 'logicalcontroller/getShopDetails/$1';
+    $route['updateshopdetails/(:num)'] = 'logicalcontroller/updateShopDetails/$1';
+    $route['deleteCompShop/(:num)'] = 'logicalcontroller/deleteComputerShop/$1';
+
+
     
     //finders
     $route['submit-CompBooking-Request'] = 'logicalcontroller/FindersCompBookingRequest';      
@@ -63,10 +68,6 @@ $route['deleteCompShop/(:num)'] = 'logicalcontroller/deleteComputerShop/$1';
 
     //admin
     $route['updateComputerDetails/(:num)'] = 'logicalcontroller/updateComputerDetails/$1';
-    $route['getshopPost/(:num)'] = 'logicalcontroller/selectforUpdatePostDetails/$1';
-    $route['addshopPost/(:num)'] = 'logicalcontroller/addshopPosts/$1';
-    $route['updateshopPost/(:num)'] = 'logicalcontroller/updateshopPosts/$1';
-    $route['deleteshopPost/(:num)'] = 'logicalcontroller/deleteshopPosts/$1';
     $route['addcomtype/(:num)'] = 'logicalcontroller/addComputerType/$1';
     $route['deleteComputerType/(:num)'] = 'logicalcontroller/deleteComputerType/$1';
     $route['updateCompType/(:num)'] = 'logicalcontroller/updateComputerType/$1';
