@@ -82,7 +82,7 @@
                        if(isset($status)){
                            
                             if($status == "verified"){
-                                echo " <div class='ver btn success' disabled>Verified <i class='fa-solid fa-check-circle '></i></div>";
+                                echo " <div class='ver btn btn-success' disabled>Verified <i class='fa-solid fa-check-circle '></i></div>";
                             }else{
                                 echo "<div class='ver btn btn-outline-primary' id='click-verify-btn' data-toggle='modal' data-target='#AccountVerificationModal'>Click to Verify <i class='fa-solid fa-envelope '></i></div>";
                             }
@@ -107,7 +107,7 @@
                             <div class='title-info'> Disabled Account
                                 <p>You will Disabled your account</p>   
                             </div>
-                            <div ><button class='btn danger' id='disable_account'>Click To Disable</button> </div>
+                            <div class='btn danger' id='disable_account'> Click To Disable </div>
                         </div>";
                     }
                 }    
@@ -239,6 +239,7 @@
       });  
  });  
  </script>  
+ <!-- verify account -->
  <script>
     $(document).on('click','#btn-code-submit',function(){ 
         var first = $("#1st").val();
@@ -297,6 +298,39 @@
 
        
     });
+ </script>
+ <!-- disable account -->
+ <script>
+    $(document).on('click','#disable_account',function(){ 
+
+        swal({
+  				title: "Are you sure to delete Account?",
+  				icon: "warning",
+  				buttons: true,
+  				dangerMode: true,
+			}).then((willDelete) => {
+  				if (willDelete) {
+
+                    $.ajax({
+                            url:"disableFinderAccountStatus",
+                            method: "POST",
+                            data: {},
+                            success: function (data) {
+                                window.location = "findnlogin";
+                            },
+                    });	
+
+  				}
+			});
+
+
+
+
+
+       
+    });
+
+
  </script>
 </html>
 

@@ -83,6 +83,16 @@ class MainModel extends CI_Model{
             echo "Not_Match";
         }
     }
+    // finder disable account status
+    public function disableFinderAccountStatus(){
+        $user_id = $this->session->userdata('user_id');
+        $data = array(
+            'status' => 'disable',
+        );
+        $this->db->where('user_id', $user_id);
+        $this->db->update('user',$data);
+        $this->session->sess_destroy();
+    }
 
     //superAdmin
     public function addComputerShop(){

@@ -62,6 +62,7 @@ $route['admin-list/(:num)'] = 'main_controller/adminlist/$1';
     $route['generatePrimarykey'] = 'logicalcontroller/generatePrimarykey';
     $route['get-computershops'] = 'logicalcontroller/getListOfComputerShops';
     $route['updateFinderAccount/(:num)'] = 'logicalcontroller/updateFinderAccount/$1';
+    $route['disableFinderAccountStatus'] ='logicalcontroller/disableFinderAccountStatus';
     $route['select-computershops/(:any)/(:num)'] = 'logicalcontroller/selectComputerShop/$1/$2';
 
     $route['addRate/(:num)/(:num)'] = 'logicalcontroller/addRate/$1/$2';

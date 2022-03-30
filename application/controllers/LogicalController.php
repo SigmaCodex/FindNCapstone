@@ -87,6 +87,11 @@ class LogicalController extends CI_Controller {
         }
     }
 
+    public function disableFinderAccountStatus(){
+        $this->load->model('MainModel');
+        $this->MainModel->disableFinderAccountStatus();
+    }
+
     public function getListOfComputerShops(){
         $this->load->model('MainModel');
         $result = $this->MainModel->getListOfComputerShops();
