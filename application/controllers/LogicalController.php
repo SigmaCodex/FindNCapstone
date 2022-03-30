@@ -155,9 +155,13 @@ class LogicalController extends CI_Controller {
         $this->load->model('MainModel');
         $this->MainModel->updateComputerTypeStatus($id);
     }
-    public function createNotif($user_id){
+    public function createFinderNotif(){
         $this->load->model('MainModel');
-        $this->MainModel->createNotif($user_id);
+        $this->MainModel->createFinderNotif();
+    }
+    public function createComputerNotif(){
+        $this->load->model('MainModel');
+        $this->MainModel->createComputerNotif();
     }
 
         //Shop Computer Details
