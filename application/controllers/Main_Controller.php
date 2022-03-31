@@ -160,9 +160,11 @@ class Main_Controller extends CI_Controller {
 		$this->load->view('admin/Bookings');
 		$this->load->view('admin/template/footer');
 	}
-	public function shopadmin_computerdetails(){
+	public function shopadmin_computerdetails($shopid){
+		$this->load->model('MainModel');
+		$val['shop_details'] = $this->MainModel->getshopDetails($shopid);
 		$this->load->view('admin/template/header');
-		$this->load->view('admin/computershopdetails');
+		$this->load->view('admin/computershopdetails',$val);
 		//$this->load->view('admin/template/footer');
 	}
 	public function shopadmin_computertypeList($shopid){
