@@ -28,6 +28,41 @@ class MainModel extends CI_Model{
       }
 
     }
+    //user account update
+    public function updateFinderAccount($status){
+        // echo $status;
+        $user_id  = $this->session->userdata('user_id');
+        if($status == "no-image"){
+
+            $findersdata = array(
+                'firstname'  => 	  $this->input->post('f_name'),
+                'lastname'  =>    $this->input->post('l_name'),
+                'gender'  =>    $this->input->post('gender'),
+                'birthdate'  =>    $this->input->post('b_date'),
+                'email'  =>    $this->input->post('email'),
+                'phone_num'  =>    $this->input->post('p_number'),
+                'vac_status'  =>    $this->input->post('vac_status'),
+            );
+            $this->db->where('user_id',$user_id);
+            $this->db->update('finders',$findersdata);
+
+        }else if($status == "with-image"){
+            $image_data = $this->upload->data();
+            $findersdata = array(
+                'profile_pic' =>     $image_data['file_name'], 
+                'firstname'  => 	  $this->input->post('f_name'),
+                'lastname'  =>    $this->input->post('l_name'),
+                'gender'  =>    $this->input->post('gender'),
+                'birthdate'  =>    $this->input->post('b_date'),
+                'email'  =>    $this->input->post('email'),
+                'phone_num'  =>    $this->input->post('p_number'),
+                'vac_status'  =>    $this->input->post('vac_status'),
+            );
+
+            $this->db->where('user_id',$user_id);
+            $this->db->update('finders',$findersdata);
+        }
+    }
 
     //superAdmin
     public function addComputerShop(){
@@ -374,7 +409,6 @@ class MainModel extends CI_Model{
             'post_description'   => 	 $this->input->post('post_desc'),
             'post_title'   => 	 $this->input->post('post_title'),  
             'post_img' =>  $this->input->post('post_image'),
-            'post_updated' =>  $date_updated
         );
         $this->db->where('post_id',$id);
         $this->db->update('post_events',$data);

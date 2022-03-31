@@ -20,31 +20,16 @@
   
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.js"></script>
 
-	
-	<script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.48.0/mapbox-gl.js'></script>
-    <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.48.0/mapbox-gl.css' rel='stylesheet' />
-    <script src='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v2.3.0/mapbox-gl-geocoder.min.js'></script>
-    <link rel='stylesheet' href='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v2.3.0/mapbox-gl-geocoder.css' type='text/css' />
 
-
-	<style>
-		#map {
-        height: 100%;
-		}
-		#map { position:absolute;left: 550px; top:350px; bottom:0px;height:450px ;width:580px; }
-        .geocoder {
-            position:absolute;left: 550px; top:290px;
-        }
-	</style>
 
 	</head>
 	<body>
 	<section class="ftco-section">
 		<nav>
         <ul class="menu">
-			<li class="logo"><a href="<?php echo base_url();?>listofcomputershop">Back</a></li>
+			<!-- <li class="logo"><a href="">Back</a></li> -->
             <li class="logo"><a href="#">FindN</a></li>
-			<li class="item button secondary"><a href="user-logout">Log out</a></li>
+			<li class="item button secondary"><a href="<?php echo base_url();?>user-logout">Log out</a></li>
 
             <li class="toggle"><span class="bars"></span></li>
         </ul>
@@ -161,7 +146,6 @@
 <script>
 $(document).on("click", ".editbtn", function () {
 	var CSPK = $("#CompShopPK").text();
-	alert(CSPK);
 	var BASE_URL = "<?php echo base_url();?>";
 	$.ajax({
 		url: BASE_URL+"getCompTypeInfo/" + CSPK,
@@ -169,8 +153,7 @@ $(document).on("click", ".editbtn", function () {
         data: { Ctype_id: CSPK },
 		dataType: "json",
 		success: function (data) {
-			alert(data);
-
+			
 			$("#shopName").val(data.name);
 			$("#c_number").val(data.total_units);
 			$("#emailadd").val(data.rate);
