@@ -277,6 +277,11 @@ class LogicalController extends CI_Controller {
             
             }
     }
+    public function removeshopimage($image_id){
+        $this->load->model('MainModel');
+        $this->MainModel->removeshopimage($image_id);
+       
+    }
 
     // api 
     public function GotoGcash(){

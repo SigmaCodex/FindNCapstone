@@ -665,6 +665,11 @@ class MainModel extends CI_Model{
         echo json_encode($data);
         $this->db->insert('shop_image', $data);
     }
+    public function removeshopimage($image_id){
+        $this->db->where('image_id',$image_id);
+        $this->db->delete('shop_image');
+    }
+
     public function listshopimages($shop_id){
         $this->db->select('*');
         $this->db->from('shop_image');
