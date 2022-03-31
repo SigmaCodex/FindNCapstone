@@ -5,7 +5,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 $route['shopadmin-dashboard'] = 'main_controller/admin_dashboard';
 $route['shopadmin-scanqr']    = 'main_controller/admin_scanqr';
 $route['shopadmin-bookings']  = 'main_controller/admin_bookings';
+
+$route['shopadmin-viewPosts/(:num)'] = 'main_controller/shopadmin_viewPost/$1';
+$route['shopadmin-computerdetails'] = 'main_controller/shopadmin_computerdetails';
+
 $route['shopadmin-computerdetails/(:num)'] = 'main_controller/shopadmin_computerdetails/$1';
+
 $route['shopadmin-computertype'] = 'main_controller/shopadmin_addComputerType';
 $route['shopadmin-computertypelist/(:num)'] = 'main_controller/shopadmin_computertypeList/$1';
 $route['shopadmin-comptypeinfo/(:num)'] = 'main_controller/shopadmin_comptypeInfo/$1';
@@ -96,8 +101,11 @@ $route['comptypefee/(:num)'] = 'main_controller/shopadmin_comptypeInfo/$1';
     $route['getComment/(:num)'] = 'logicalcontroller/selectforUpdateComment/$1';
     $route['updateComment/(:num)'] = 'logicalcontroller/updateComments/$1';
     $route['deleteComment/(:num)'] = 'logicalcontroller/deleteComments/$1';
-
-
+    $route['showpendinglist/(:num)'] = 'logicalcontroller/getallPendingRequest/$1';
+    $route['showacceptedlist/(:num)'] = 'logicalcontroller/getallAcceptedRequest/$1';
+    $route['showcancelledlist/(:num)'] = 'logicalcontroller/getallCancelledRequest/$1';
+    $route['viewBookRequest/(:num)'] = 'logicalcontroller/viewBookRequest/$1';
+    $route['updateBookStatus/(:num)'] = 'logicalcontroller/updateBookingTransacStatus/$1';
     //api 
     $route['goto-gcash']                  = 'logicalcontroller/GotoGcash';
     $route['select-paymentmethod']        = 'main_controller/payment_exercise';

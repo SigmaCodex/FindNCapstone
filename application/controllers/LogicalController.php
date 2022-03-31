@@ -179,6 +179,27 @@ class LogicalController extends CI_Controller {
         $this->load->model('MainModel');
         $this->MainModel->updateRate($shop_id, $user_id, $rate_id);
     }
+    public function getallPendingRequest($shop_id){
+        $this->load->model('MainModel');
+        $this->MainModel->getallPendingRequest($shop_id);
+    }
+    public function getallAcceptedRequest($shop_id){
+        $this->load->model('MainModel');
+        $this->MainModel->getallAcceptedRequest($shop_id);
+    }
+    public function getallCancelledRequest($shop_id){
+        $this->load->model('MainModel');
+        $this->MainModel->getallCancelledRequest($shop_id);
+    }
+    public function viewBookRequest($transac_id){
+        $this->load->model('MainModel');
+        $this->MainModel->viewBookRequest($transac_id);
+    }
+    public function updateBookingTransacStatus($transac_id){
+        $status = 'accepted';
+        $this->load->model('MainModel');
+        $this->MainModel->updateBookingTransacStatus($transac_id,$status);
+    }
 
     //ADMIN
     public function getUserDetails($id){
