@@ -76,6 +76,8 @@ $route['deleteCompShop/(:num)'] = 'logicalcontroller/deleteComputerShop/$1';
     $route['uploadshopimages/(:num)'] = 'logicalcontroller/uploadshopimages/$1';
     $route['getpostComments/(:num)'] = 'logicalcontroller/getallPostComments/$1';
     $route['addComment/(:num)'] = 'logicalcontroller/addComments/$1';
+    $route['getComment/(:num)'] = 'logicalcontroller/selectforUpdateComment/$1';
+    $route['updateComment/(:num)'] = 'logicalcontroller/updateComments/$1';
     $route['deleteComment/(:num)'] = 'logicalcontroller/deleteComments/$1';
 
 

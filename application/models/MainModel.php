@@ -296,7 +296,7 @@ class MainModel extends CI_Model{
         return $query->result();
     }
     public function getallPostComments($id){
-        $this->db->select('user.username, comments.*');
+        $this->db->select('user.username, user.user_type, comments.*');
         $this->db->from('comments');
         $this->db->join('user', 'user.user_id = comments.user_id');
         // $this->db->join('finders', 'finders.user_id = user.user_id', 'left');
@@ -309,6 +309,14 @@ class MainModel extends CI_Model{
         $this->db->select('*');
         $this->db->from('post_events');
         $this->db->where('post_id',$id);
+        $query = $this->db->get();
+        $resultquery = $query->row_array();
+        return $resultquery;
+    }
+    public function selectforUpdateComment($id){
+        $this->db->select('*');
+        $this->db->from('comments');
+        $this->db->where('comment_id',$id);
         $query = $this->db->get();
         $resultquery = $query->row_array();
         return $resultquery;
@@ -396,10 +404,11 @@ class MainModel extends CI_Model{
         $this->db->delete('post_events');
     }
     public function addComments($id){
+        $comuser_id = $this->session->userdata('user_id');
         $date_created = date('m/d/y');
         $data = array(
             'post_id' => $id,
-            'user_id' => '2222855',
+            'user_id' => $comuser_id,
             'comment'   => 	 $this->input->post('comment_txt'),
             'date' =>  $date_created
         );
@@ -409,6 +418,16 @@ class MainModel extends CI_Model{
     public function deleteComments($id){
         $this->db->where('comment_id',$id);
         $this->db->delete('comments');
+    }
+    public function updateComments($id){
+        $date_created = date('m/d/y');
+        $data = array(
+            'comment'   => 	 $this->input->post('comment_txt'),
+            'date' =>  $date_created
+        );
+        $this->db->where('comment_id',$id);
+        $this->db->update('comments',$data);
+        echo json_encode($data);
     }
     public function updateComputerDetails($id){
         $datafinder = array(
