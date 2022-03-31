@@ -345,6 +345,16 @@ class MainModel extends CI_Model{
              $this->db->insert('transaction',$transaction);
              $this->db->insert('comp_booking', $comp_booking);
     }
+    // finder select all Computerbookingtransactions
+    public function select_finderBookingTransaction($user_id){
+        $this->db->select('transaction.*,comp_booking.*,computer_type.name,computer_type.rate');
+        $this->db->from('transaction');
+        $this->db->join('comp_booking', 'comp_booking.transaction_id = transaction.transaction_id');
+         $this->db->join('computer_type', 'computer_type.Ctype_id = comp_booking.comp_type_id', 'left');
+        $this->db->where('user_id_fk',$user_id);
+        $query = $this->db->get();
+        return $query->result();
+    }
 
      public function getListOfComputerTypes($id){
         $this->db->select('*');
