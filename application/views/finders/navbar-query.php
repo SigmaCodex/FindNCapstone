@@ -27,16 +27,16 @@
                 <ul class="nav__list">
                     <!-- Home -->
                     <li class="nav__item">
-                        <a href="findershomepage" class="nav__link">
+                        <a href="<?php echo base_url();?>findershomepage" class="nav__link">
                             <i class='bx bx-home-alt nav__icon'></i>
                             <span class="nav__name">Home</span>
                         </a>
                     </li>
                     <!-- Search -->
                     <li class="nav__item">
-                        <a href="#search" class="nav__link">
+                        <a href="<?php echo base_url();?>viewMap" class="nav__link">
                             <i class='bx bx-search-alt nav__icon'></i>
-                            <span class="nav__name">Search</span>
+                            <span class="nav__name">Map</span>
                         </a>
                     </li>
                     <!-- Bookings -->

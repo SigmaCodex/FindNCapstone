@@ -92,29 +92,29 @@ var geojson = {
 //star of loop
 
 
-  {
-    type: 'Feature',
-    geometry: {
-      coordinates: [<?php echo "123.89735336183276";?>,<?php echo "10.295601483082422";?>]
-    },
-    properties: {
-      title: 'Tnc Computer Shop',
-      description: '<strong>TNC Cyber Cafe Cebu, Cebu City.</strong><br><a class="btn btn-primary btn-sm select_compshop" href="viewShop/7">View</a><p>We are open to serve you!<br>Address: P.Del Rosario St., Cebu City Operating hours : 8am - 9pm</p>'
-    }
-  },
 
 <?php 
+   $long = "123.898581319924";
+  foreach ($listofshops as $s) {
+
   
+    // $str_arr = explode (",", $s->coordinates); 
+    // $newCoordinate = $str_arr[1].","$str_arr[0];
+     $string = $s->coordinates;
+     $str_arr = explode (",", $string);  
+    //  $coor = .","print_r($str_arr[1]);
   echo "{
       type: 'Feature',
        geometry: {
-        coordinates: [123.898581319924, 10.297919]
+        coordinates: [".$str_arr[1].",".$str_arr[0]."]
      },
       properties: {
-        title: 'GameCity',
-        description: '<strong>GameCity</strong><p><a class=".'btn btn-primary  btn-sm select_compshop'.">Click</a></p>'
+        title: '".$s->shop_name."',
+        description: '<strong>GameCity</strong><p><a href= ".'"viewShop/'.$s->shop_id.'"'."        class=".'"btn btn-primary"'.">Click</a></p>'
       }
      },";
+
+    }
 ?>
 
   // {

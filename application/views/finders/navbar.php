@@ -31,9 +31,9 @@
                     </li>
                     <!-- Search -->
                     <li class="nav__item">
-                        <a href="#search" class="nav__link">
+                        <a href="viewMap" class="nav__link">
                             <i class='bx bx-search-alt nav__icon'></i>
-                            <span class="nav__name">Search</span>
+                            <span class="nav__name">Map</span>
                         </a>
                     </li>
                     <!-- Bookings -->
