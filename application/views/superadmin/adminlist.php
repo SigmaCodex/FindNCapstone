@@ -52,10 +52,11 @@
 		<div class="container">
 			<div class="row justify-content-center">
 				<div class="col-md-9 text-left mb-6">
-					<h2 class="heading-section">Computer shop admin list</h2>
+				<?php foreach ($compDetails as $s) {?>  
+					<h2 class="heading-section">Reports</h2>
 				</div>
         		<div class="col-md-3 text-right mb-4">
-        			<button type="button" class="btn mb-2 mb-md-0 btn-primary btn-block" data-target="#exampleModalCenter" data-toggle="modal">Add Admin</button>
+        			<button type="button" class="btn mb-2 mb-md-0 btn-primary btn-block" data-target="#exampleModalCenter" data-toggle="modal">Reports</button>
 				</div>
 			</div>
       		<br>
@@ -66,8 +67,8 @@
         			<h3 class="h5 mb-4 text-center"></h3>
         			<div class="card" style="width: 18rem;">
           				<div class="card-body">
-						  <?php foreach ($compDetails as $s) {?>  
-            				<h5 class="card-title" ><?php echo $s->shop_name;?></h5>
+						  
+            				<h5 class="card-title"><?php echo $s->shop_name;?></h5>
             				<p class="card-text" id="CompShopPK"><?php echo $s->shop_id;?></p>
           				</div>
           				<ul class="list-group list-group-flush">
@@ -86,6 +87,19 @@
 				<div class="col-md-9 col-xs-1">
 					<h3 class="h5 mb-4 text-center"></h3>
 					<div class="table-wrap">
+					<div class="row justify-content-center" style="padding: 0 0 0 60px;">
+				<div class="col-md-9 text-left mb-6" >
+					<h2 class="heading-section">Computer shop admins</h2>
+				</div>
+        		<div class="col-md-3 text-right mb-4">
+        			<button type="button" class="btn mb-2 mb-md-0 btn-primary btn-block" data-target="#exampleModalCenter" data-toggle="modal">Add Admin</button>
+				</div>
+			</div>
+					<!-- <div class="col-md-6 text-right mb-4">
+						<h2 style="padding: 0 0 0 50px; text-align:center;">Computer shop admin list</h2> 
+        				<button type="button" class="btn mb-2 mb-md-0 btn-primary btn-block" data-target="#exampleModalCenter" data-toggle="modal">Add Admin</button>
+					</div> -->
+					
 						<table class="table">
 						  <thead class="thead-primary">
 						    <tr>
@@ -93,7 +107,6 @@
 						      <th>Name</th>
 						      <th>Email</th>
 						      <th>Action</th>
-							   <th>&nbsp;</th> 
 						    </tr>
 						  </thead>
 						  <tbody>
@@ -120,12 +133,72 @@
 						<?php } ?>  
 						  </tbody>
 						</table> 
+						<br>
+						<h3 style="padding: 0 0 0 60px;">Computer types list</h3>
+						<table class="table">
+						  <thead class="thead-primary">
+						    <tr>
+						      <th>No.</th>
+						      <th>Name</th>
+						      <th>Service Fee</th>
+							  <th>Action</th>
+						    </tr>
+						  </thead>
+						  <tbody>
+						  <?php foreach($compTypeList as $CT){ ?>
+							<tr class="alert" role="alert">
+							<td><?php echo $CT->Ctype_id ?></td>
+								<td>
+								  <div class="email">
+									  <?php echo $CT->name?>
+						      		</div>
+						      	</td>
+						      	<td><?php echo $CT->service_fee ?></td>
+								<td>
+									<button type="button" data-target="#updateFee" data-toggle="modal" class="view-fee" data="<?php echo $CT->Ctype_id;?>" style="padding: 0;background-color: transparent;border: 0;appearance: none; color:orange;">
+										<!-- <span aria-hidden="true"><i class="fa fa-eye"></i></span> -->
+										Change service fee
+									</button>
+								</td>
+						    </tr>
+						<?php } ?>  
+						  </tbody>
+						</table> 
 					</div>
 				</div>
-        
+							
 			</div>
 		</div>
 	</section>
+<div id="updateFeeModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+	  <h3 class="text-center mb-3">Computer Type service fee</h3>
+      </div>
+      	<div class="modal-body">
+	  		<form id="updatefeeform" class="" name="updatefeeform">
+			  		<input id="CompTypeID" hidden>	
+					<div class="form-group mb-2">
+		      			<label for="servicefee">Service Fee</label>
+		      			<input name="serviceFee" id="serviceFee" type="text" class="form-control">
+		      		</div>	
+			</form>
+      	</div>
+		  	<div class="modal-footer">
+                	<div class="form-group mb-2">
+					 	<button type="button" id="close-feebtn" class="close d-flex align-items-center justify-content-center" data-dismiss="modal">
+						 <input value="Cancel" class="form-control btn btn-primary rounded px-3"  readonly="readonly">
+		        		</button>
+	              	</div>
+                	<div class="form-group mb-2">
+					  <input value="Update" class="form-control btn btn-primary rounded submit px-3" id="updatefeebtn" readonly="readonly">
+	              	</div>
+            </div>
+    </div>
+  </div>
+</div>
 <div id="updateComputerModal" class="modal fade" role="dialog">
   <div class="modal-dialog">
     <!-- Modal content-->
@@ -609,6 +682,68 @@ $(document).on("click", ".view-admin", function () {
 			$("#updateAdminModal").modal('show');
 		},
 	});
+});
+$(document).on("click", ".view-fee", function () {
+	var id = $(this).attr("data");
+	// var CSPK = $("#CompShopPK").text();
+	var BASE_URL = "<?php echo base_url();?>";
+	$.ajax({
+		url: BASE_URL+"getCompTypeInfo/" + id,
+		method: "POST",
+		data: { Ctype_id : id },
+		dataType: "json",
+		success: function (data) {
+			$("#serviceFee").val(data.service_fee);
+			$("#CompTypeID").text(data.Ctype_id);
+
+			$("#updateFeeModal").modal('show');
+		},
+	});
+});
+$(document).on("click", "#updatefeebtn", function () {
+	var validator = $("#updatefeeform").validate();
+	var BASE_URL = "<?php echo base_url();?>";
+	if ($("#updatefeeform").valid()) {
+
+		var CTPK = $("#CompTypeID").text();
+		var servicefee = $("#serviceFee").val();
+
+		$.ajax({
+			url: BASE_URL+"updateFee/" + CTPK,
+			method: "POST",
+			data: {
+				service_fee : servicefee,
+			},
+			success: function (data) {
+				alert(data);
+				// window.location = "listofcomputershop";
+				swal({
+					title: "Good job!",
+					text: "Service fee has been changed!",
+					icon: "success",
+					button: "Continue",
+				}).then((value) => {
+					location.reload(); 
+				});
+			},
+		});
+	} else {
+		swal(
+			{
+				title: "Are you sure?",
+				text: "You will not be able to recover this imaginary file!",
+				type: "warning",
+				showCancelButton: true,
+				confirmButtonColor: "#DD6B55",
+				confirmButtonText: "Yes, delete it!",
+				closeOnConfirm: false,
+				//closeOnCancel: false
+			},
+			function () {
+				swal("Deleted!", "Your imaginary file has been deleted!", "success");
+			}
+		);
+	}
 });
 $(document).on("click", "#updateadminbtn", function () {
 	var validator = $("#updateadminform").validate();

@@ -130,6 +130,7 @@ class Main_Controller extends CI_Controller {
 			$this->load->model('MainModel');
 			$val['compDetails'] = $this->MainModel->selectComputerShop($id);
 			$val['adminList'] = $this->MainModel->getListOfAdmins($id);
+			$val['compTypeList'] = $this->MainModel->getComputerTypeServiceFee($id);
 			$this->load->view('superadmin/adminlist',$val);
 		}
 	}

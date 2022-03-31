@@ -7,9 +7,10 @@ $route['shopadmin-scanqr']    = 'main_controller/admin_scanqr';
 $route['shopadmin-bookings']  = 'main_controller/admin_bookings';
 $route['shopadmin-computerdetails'] = 'main_controller/shopadmin_computerdetails';
 $route['shopadmin-computertype'] = 'main_controller/shopadmin_addComputerType';
-
 $route['shopadmin-computertypelist/(:num)'] = 'main_controller/shopadmin_computertypeList/$1';
+$route['shopadmin-comptypeinfo/(:num)'] = 'main_controller/shopadmin_comptypeInfo/$1';
 $route['shopadmin-viewPosts/(:num)'] = 'main_controller/shopadmin_viewPost/$1';
+
 
 
 $route['shopadmin-updatecomputertype'] = 'main_controller/shopadmin_updatecompType';
@@ -38,6 +39,7 @@ $route['generate-QR']     = 'main_controller/generateQrCode';
 $route['add-admin'] = 'main_controller/addAdmin';
 $route['add-computershop'] = 'main_controller/addComputershop';
 $route['listofcomputershop'] = 'main_controller/listofcomputershop';
+$route['comptypefee/(:num)'] = 'main_controller/shopadmin_comptypeInfo/$1';
 $route['admin-list/(:num)'] = 'main_controller/adminlist/$1';
 
 //Logics
@@ -49,6 +51,8 @@ $route['admin-list/(:num)'] = 'main_controller/adminlist/$1';
     $route['getadmin-details/(:num)'] = 'logicalcontroller/getAdminDetails/$1';
     $route['updateadmindetails/(:num)'] = 'logicalcontroller/updateAdminDetails/$1';
     $route['deleteadmin/(:num)'] = 'logicalcontroller/deleteAdmin/$1';
+    $route['comptypefee/(:num)'] = 'logicalcontroller/getComputerTypeServiceFee/$1';
+    $route['updateFee/(:num)'] = 'logicalcontroller/updateServiceFee/$1';
 
     $route['getshopdetails/(:num)'] = 'logicalcontroller/getShopDetails/$1';
     $route['updateshopdetails/(:num)'] = 'logicalcontroller/updateShopDetails/$1';
