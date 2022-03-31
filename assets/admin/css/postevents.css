@@ -1,0 +1,522 @@
+*, *:after, *:before {
+    box-sizing: border-box;
+  }
+  
+  html,
+  body {
+    min-width: 320px;
+    margin: 0;
+    padding: 0;
+    background-color: #fff;
+  }
+  
+  a {
+    text-decoration: none;
+  }
+  
+  ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  
+  img {
+    height: auto;
+    vertical-align: middle;
+    border: 0;
+  }
+  
+  svg:not(:root) {
+    overflow: hidden;
+  }
+  
+  /* ----------------------------- */
+  /* == HTML                */
+  /* ----------------------------- */
+  html {
+    font-size: 62.5%;
+    /* 14px = 10px  */
+  }
+  
+  body {
+    font-family: 'Source Sans Pro', sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.5;
+  }
+  
+  /* font-sizing for content */
+  p,
+  .p-like,
+  ul,
+  ol,
+  dl,
+  blockquote,
+  pre,
+  td,
+  th,
+  label,
+  textarea,
+  caption,
+  details,
+  figure {
+    line-height: 1.5;
+    margin-bottom: 0;
+  }
+  
+  /* ----------------------------------- */
+  /* == PROPRIETES NAVIGATEURS RESET     */
+  /* ----------------------------------- */
+  p:first-child
+  ,
+  .p-like:first-child
+  ,
+  ul:first-child
+  ,
+  ol:first-child
+  ,
+  dl:first-child
+  ,
+  blockquote:first-child
+  ,
+  pre:first-child
+  ,
+  h1:first-child
+  ,
+  h2:first-child
+  ,
+  h3:first-child
+  ,
+  h4:first-child
+  ,
+  h5:first-child
+  ,
+  h6:first-child {
+    margin-top: 0;
+  }
+  
+  li p,
+  li .p-like,
+  li ul,
+  li ol {
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+  
+  img,
+  table,
+  td,
+  blockquote,
+  code,
+  pre,
+  textarea,
+  input,
+  video {
+    max-width: 100%;
+  }
+  
+  .container {
+    margin-right: auto;
+    margin-left: auto;
+  }
+  
+  @media (min-width: 768px) {
+    .container {
+      width: 750px;
+    }
+  }
+  
+  @media (min-width: 992px) {
+    .container {
+      width: 970px;
+    }
+  }
+  
+  @media (min-width: 1200px) {
+    .container {
+      width: 1170px;
+    }
+  }
+  
+  .container-fluid {
+    margin-right: auto;
+    margin-left: auto;
+  }
+  
+  .container:after,
+  .container-fluid:after,
+  .row:after {
+    clear: both;
+  }
+  
+  /* ----------------------------------- */
+  /* Home */
+  /* ----------------------------------- */
+  .df-content-wrapper {
+    width: 100%;
+    height: 100%;
+    background: #ef7f4d;
+  }
+  
+  .df-content {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    background: url("http://lorempicsum.com/nemo/1600/800/6") center center;
+    background-size: cover;
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .df-content > * {
+    position: relative;
+    z-index: 10;
+  }
+  
+  .df-overlay {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: 5;
+    background: linear-gradient(to bottom, rgba(33, 33, 33, 0.2) 0%, #212121 95%);
+  }
+  .df2-overlay {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: 5;
+    background: linear-gradient(to bottom, rgba(33, 33, 33, 0.2) 0%, #212121 95%);
+  }
+  
+  /********************
+  Content
+  *********************/
+  .df-main {
+    text-align: center;
+    padding: 20px;
+  }
+  
+  .df-contact {
+    background: #f44336;
+    color: #fff;
+    padding: 5px 20px;
+    font-size: 2.5rem;
+    border-radius: 5px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+  }
+  .df2-contact {
+    background: #f44336;
+    color: #fff;
+    padding: 5px 20px;
+    font-size: 2.5rem;
+    border-radius: 5px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+  }
+  .df3-contact {
+    background: #f44336;
+    color: #fff;
+    padding: 5px 20px;
+    font-size: 2.5rem;
+    border-radius: 5px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+  }
+  
+  /* ----------------------------------- */
+  /* Details */
+  /* ----------------------------------- */
+  html.df-modal-active {
+    overflow: hidden;
+  }
+  html.df-modal2-active {
+    overflow: hidden;
+  }
+  
+  .df-modal {
+    position: fixed;
+    z-index: -999;
+  }
+  .df2-modal {
+    position: fixed;
+    z-index: -999;
+  }
+  
+  .df-modal .df-modal-overlay {
+    opacity: 0;
+    transition: all 500ms ease;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.4);
+    position: fixed;
+    top: 0;
+    left: 0;
+  }
+  .df2-modal .df2-modal-overlay {
+    opacity: 0;
+    transition: all 500ms ease;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.4);
+    position: fixed;
+    top: 0;
+    left: 0;
+  }
+  
+  .df-modal .df-modal-content {
+    transform: translate3d(0, -200%, 0);
+    transition: all 500ms ease;
+    text-align: center;
+    position: fixed;
+    top: 25vh;
+    left: 0;
+    right: 0;
+    margin: auto;
+    width: 500px;
+    max-width: 100%;
+    max-height: 85vh;
+    overflow-y: auto;
+    background: #212121;
+    color: #fff;
+    padding: 20px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+    border-radius: 5px;
+  }
+  .df2-modal .df2-modal-content{
+    transform: translate3d(0, -200%, 0);
+    transition: all 500ms ease;
+    text-align: center;
+    position: fixed;
+    top: 25vh;
+    left: 0;
+    right: 0;
+    margin: auto;
+    width: 500px;
+    max-width: 100%;
+    max-height: 85vh;
+    overflow-y: auto;
+    background: #212121;
+    color: #fff;
+    padding: 20px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+    border-radius: 5px;
+  }
+  
+  .df-modal .df-modal-content h2 {
+    margin: 0;
+    text-transform: uppercase;
+    color: #f44336;
+  }
+  .df2-modal .df2-modal-content2 h2 {
+    margin: 0;
+    text-transform: uppercase;
+    color: #f44336;
+  }
+  
+  .df-modal .df-modal-content p {
+    margin: 0 0 20px 0;
+    font-weight: 300;
+  }
+  .df2-modal .df-modal-content p {
+    margin: 0 0 20px 0;
+    font-weight: 300;
+  }
+  
+  .df-modal-active .df-modal .df-modal-overlay {
+    opacity: 1;
+  }
+  .df2-modal-active .df2-modal .df2-modal-overlay {
+    opacity: 1;
+  }
+  
+  .df-modal-active .df-modal .df-modal-content {
+    transform: translate3d(0, 0, 0);
+  }
+  .df2-modal-active .df2-modal .df2-modal-content {
+    transform: translate3d(0, 0, 0);
+  }
+  
+  /* ----------------------------------- */
+  /* FORMULAIRE */
+  /* ----------------------------------- */
+  .df-input-box {
+    position: relative;
+  }
+  .df2-input-box {
+    position: relative;
+  }
+  
+  .df-form input[type="email"],
+  .df-form input[type="sujet"],
+  .df-form textarea {
+    width: 100%;
+    padding: 15px;
+    display: block;
+    margin-bottom: 5px;
+    border: 0;
+    outline: 0;
+    background: #3b3b3b;
+    color: #fff;
+  }
+  .df2-form input[type="email"],
+  .df2-form input[type="sujet"],
+  .df2-form textarea {
+    width: 100%;
+    padding: 15px;
+    display: block;
+    margin-bottom: 5px;
+    border: 0;
+    outline: 0;
+    background: #3b3b3b;
+    color: #fff;
+  }
+  
+  .df-form input[type="submit"] {
+    display: block;
+    border-radius: 2px;
+    width: 100%;
+    border: 0;
+    margin: 20px 0 0 0;
+    background-color: #f44336;
+    padding: 15px 0;
+  }
+  .df2-form input[type="submit"] {
+    display: block;
+    border-radius: 2px;
+    width: 100%;
+    border: 0;
+    margin: 20px 0 0 0;
+    background-color: #f44336;
+    padding: 15px 0;
+  }
+  
+  .df-form input:focus,
+  .df-form textarea:focus {
+    color: white;
+  }
+  .df2-form input:focus,
+  .df2-form textarea:focus {
+    color: white;
+  }
+  
+  .df-form input:required ~ label,
+  .df-form input:focus:valid ~ label,
+  .df-form input:focus:invalid ~ label,
+  .df-form textarea:required ~ label,
+  .df-form textarea:focus:valid ~ label,
+  .df-form textarea:focus:invalid ~ label {
+    display: block;
+    position: absolute;
+    top: 5px;
+    right: 10px;
+    font-size: 1.5rem;
+    font-weight: bold;
+  }
+  .df2-form input:required ~ label,
+  .df2-form input:focus:valid ~ label,
+  .df2-form input:focus:invalid ~ label,
+  .df2-form textarea:required ~ label,
+  .df2-form textarea:focus:valid ~ label,
+  .df2-form textarea:focus:invalid ~ label {
+    display: block;
+    position: absolute;
+    top: 5px;
+    right: 10px;
+    font-size: 1.5rem;
+    font-weight: bold;
+  }
+  
+  .df-form input:required:focus:valid ~ label::before,
+  .df-form input:focus:valid ~ label::before,
+  .df-form textarea:required:focus:valid ~ label::before,
+  .df-form textarea:focus:valid ~ label::before {
+    content: '☺';
+    color: #4f934f;
+    font-size: 1.5em;
+  }
+  .df2-form input:required:focus:valid ~ label::before,
+  .df2-form input:focus:valid ~ label::before,
+  .df2-form textarea:required:focus:valid ~ label::before,
+  .df2-form textarea:focus:valid ~ label::before {
+    content: '☺';
+    color: #4f934f;
+    font-size: 1.5em;
+  }
+  
+  .df-form input:required:valid ~ label::before,
+  .df-form textarea:required:valid ~ label::before {
+    color: #4f934f;
+  }
+  .df2-form input:required:valid ~ label::before,
+  .df2-form textarea:required:valid ~ label::before {
+    color: #4f934f;
+  }
+  
+  .df-form input:required:focus ~ label::before,
+  .df-form input:focus:invalid ~ label::before,
+  .df-form textarea:required:focus ~ label::before,
+  .df-form textarea:focus:invalid ~ label::before {
+    content: '☹';
+    color: #f44336;
+    font-size: 1.5em;
+  }
+  .df2-form input:required:focus ~ label::before,
+  .df2-form input:focus:invalid ~ label::before,
+  .df2-form textarea:required:focus ~ label::before,
+  .df2-form textarea:focus:invalid ~ label::before {
+    content: '☹';
+    color: #f44336;
+    font-size: 1.5em;
+  }
+  
+  html{
+    background: #EEECEC;
+  }
+    .picture{
+
+        width: 300px;
+        display:flex;
+    }
+    img{
+        width: 300px;
+        display:flex;
+        }
+    
+    .column{
+      padding: 2em;
+      height: auto;
+      position: relative;
+    }
+    
+    .desc{
+      background:white;
+      padding: 2em;
+      margin-left: 3em;
+      text-align: left;
+    }
+      h3{
+        padding-bottom: 1em;
+      }
+    
+  
+  
+  .column:hover .desc h3{
+    color: #723939;  
+  }
+  
+  .column:hover .desc, .column:hover .picture{
+    box-shadow: 10px 10px 29px -13px rgba(0,0,0,0.75);
+  }
+  
+  .column::after{
+    content:'';
+    width: 80%;
+    height: 66.5%;
+    background: transparent;
+    position:absolute;
+    top: 13px;
+    left: 40px;
+    display: block;
+    border: 10px solid white;
+    z-index: -1;
+  }

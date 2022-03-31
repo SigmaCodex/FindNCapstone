@@ -4,6 +4,7 @@
 	<title>View Map</title>
     <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v2.1.1/mapbox-gl.js'></script>  
     <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v2.1.1/mapbox-gl.css' rel='stylesheet'/>
+    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css'>
 </head>
 
 
@@ -75,7 +76,7 @@ mapboxgl.accessToken = 'pk.eyJ1IjoiZG5rbzEzIiwiYSI6ImNrbWZxNWl5eDM3amcyeGp4cHRvN
 
 var map = new mapboxgl.Map({
         style: 'mapbox://styles/mapbox/light-v10',
-        center: [123.89631512119513, 10.297400535503103],
+        center: [<?php echo "123.89631512119513";?>, 10.297400535503103],
         zoom: 15.5,
         pitch: 45,
         bearing: -17.6,
@@ -86,16 +87,18 @@ var map = new mapboxgl.Map({
 
 var geojson = {
   type: 'FeatureCollection',
-  features: [{
-    type: 'Feature',
-    geometry: {
-      coordinates: [123.8976816, 10.2981602]
-    },
-    properties: {
-      title: 'G7',
-      description: '<strong>G-7 CyberCafe Cebu, Cebu City.</strong><p><a data-toggle="modal" data-target="#Modal1" compID="2" class="btn btn-primary btn-sm select_compshop" value="2" target="_blank">View</a> <br> We are open to serve you!G-7 UrgelloAddress: G/F JKR Ladies Dormitory, A. Tormis St., Sambag II, Urgello, Cebu CityOperating hours : 8am - 9pmG-7 P.Del RosarioAddress: P.Del Rosario St., Cebu City (beside Palawan Pawnshop)Operating hours : 8am - 9pm</p>'
-    }
-  },
+  features: [
+
+  //   {
+  //   type: 'Feature',
+  //   geometry: {
+  //     coordinates: [123.8976816, 10.2981602]
+  //   },
+  //   properties: {
+  //     title: 'G7',
+  //     description: '<strong>G-7 CyberCafe Cebu, Cebu City.</strong><p><a data-toggle="modal" data-target="#Modal1" compID="2" class="btn btn-primary btn-sm select_compshop" value="2" target="_blank">View</a> <br> We are open to serve you!G-7 UrgelloAddress: G/F JKR Ladies Dormitory, A. Tormis St., Sambag II, Urgello, Cebu CityOperating hours : 8am - 9pmG-7 P.Del RosarioAddress: P.Del Rosario St., Cebu City (beside Palawan Pawnshop)Operating hours : 8am - 9pm</p>'
+  //   }
+  // },
 
 
   {
@@ -105,42 +108,42 @@ var geojson = {
     },
     properties: {
       title: 'Tnc Computer Shop',
-      description: '<strong>TNC Cyber Cafe Cebu, Cebu City.</strong><p><a data-toggle="modal" data-target="#Modal1"  compID="5" class="btn btn-primary btn-sm select_compshop" target="_blank">View</a> <br> We are open to serve you!G-7 UrgelloAddress: G/F JKR Ladies Dormitory, A. Tormis St., Sambag II, Urgello, Cebu CityOperating hours : 8am - 9pmG-7 P.Del RosarioAddress: P.Del Rosario St., Cebu City (beside Palawan Pawnshop)Operating hours : 8am - 9pm</p>'
+      description: '<strong>TNC Cyber Cafe Cebu, Cebu City.</strong><br><a class="btn btn-primary btn-sm select_compshop" href="viewShop/7">View</a><p>We are open to serve you!<br>Address: P.Del Rosario St., Cebu City Operating hours : 8am - 9pm</p>'
     }
   },
 
-   {
-    type: 'Feature',
-    geometry: {
-      coordinates: [123.8965304,10.2974556]
-    },
-    properties: {
-      title: 'Live Wire',
-      description: '<strong>Live Wire.</strong><p><a data-toggle="modal" data-target="#Modal1"  compID="3" class="btn btn-primary btn-sm select_compshop" target="_blank">View</a> <br> We are open to serve you!G-7 UrgelloAddress: G/F JKR Ladies Dormitory, A. Tormis St., Sambag II, Urgello, Cebu CityOperating hours : 8am - 9pmG-7 P.Del RosarioAddress: P.Del Rosario St., Cebu City (beside Palawan Pawnshop)Operating hours : 8am - 9pm</p>'
-    }
-  },
+  //  {
+  //   type: 'Feature',
+  //   geometry: {
+  //     coordinates: [123.8965304,10.2974556]
+  //   },
+  //   properties: {
+  //     title: 'Live Wire',
+  //     description: '<strong>Live Wire.</strong><p><a data-toggle="modal" data-target="#Modal1"  compID="3" class="btn btn-primary btn-sm select_compshop" target="_blank">View</a> <br> We are open to serve you!G-7 UrgelloAddress: G/F JKR Ladies Dormitory, A. Tormis St., Sambag II, Urgello, Cebu CityOperating hours : 8am - 9pmG-7 P.Del RosarioAddress: P.Del Rosario St., Cebu City (beside Palawan Pawnshop)Operating hours : 8am - 9pm</p>'
+  //   }
+  // },
 
-   {
-    type: 'Feature',
-    geometry: {
-      coordinates: [123.89575304,10.2974556]
-    },
-    properties: {
-      title: 'Net Express',
-      description: '<strong>Net Express Cebu City.</strong><p><a data-toggle="modal" data-target="#Modal1"  compID="4" class="btn btn-primary btn-sm select_compshop" target="_blank">View</a> <br> We are open to serve you!G-7 UrgelloAddress: G/F JKR Ladies Dormitory, A. Tormis St., Sambag II, Urgello, Cebu CityOperating hours : 8am - 9pmG-7 P.Del RosarioAddress: P.Del Rosario St., Cebu City (beside Palawan Pawnshop)Operating hours : 8am - 9pm</p>'
-    }
-  },
+  //  {
+  //   type: 'Feature',
+  //   geometry: {
+  //     coordinates: [123.89575304,10.2974556]
+  //   },
+  //   properties: {
+  //     title: 'Net Express',
+  //     description: '<strong>Net Express Cebu City.</strong><p><a data-toggle="modal" data-target="#Modal1"  compID="4" class="btn btn-primary btn-sm select_compshop" target="_blank">View</a> <br> We are open to serve you!G-7 UrgelloAddress: G/F JKR Ladies Dormitory, A. Tormis St., Sambag II, Urgello, Cebu CityOperating hours : 8am - 9pmG-7 P.Del RosarioAddress: P.Del Rosario St., Cebu City (beside Palawan Pawnshop)Operating hours : 8am - 9pm</p>'
+  //   }
+  // },
 
 
 
   {
     type: 'Feature',
     geometry: {
-      coordinates: [123.8978914, 10.2981602]
+      coordinates: [123.89735336183276, 10.295601483082422]
     },
     properties: {
-      title: 'Voyager',
-      description: '<strong>Voyager Branch1, Cebu City.</strong><p><a data-toggle="modal" data-target="#Modal1"  compID="1" class="btn btn-primary btn-sm select_compshop" target="_blank">View</a> <br> We are open to serve you!G-7 UrgelloAddress: G/F JKR Ladies Dormitory, A. Tormis St., Sambag II, Urgello, Cebu CityOperating hours : 8am - 9pmG-7 P.Del RosarioAddress: P.Del Rosario St., Cebu City (beside Palawan Pawnshop)Operating hours : 8am - 9pm</p>'
+      title: 'GameCity',
+      description: '<strong>GameCity</strong><p><a class="btn btn-primary btn-sm select_compshop" href="viewShop/7">View</a> </p>'
     }
   }
 

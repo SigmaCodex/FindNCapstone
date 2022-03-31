@@ -71,9 +71,17 @@
 				},
 				success: function(data){
 					//redirect to pages
-					if(data == "finder"){
-						window.location = "findershomepage";
-						// alert(data);
+					if(data == "Admin"){
+						// window.location = "findershomepage";
+							$.ajax({
+								url: "shopAdmin-login",
+								type: "POST",
+								data:{},
+								success: function(data){
+									 window.location = "shopadmin-dashboard";
+								}
+							});
+							//end
 					}else if(data == "superadmin"){
 						alert("superadmin");
 					}

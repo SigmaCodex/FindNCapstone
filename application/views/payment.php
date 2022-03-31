@@ -139,7 +139,7 @@
               <div class="border-top px-2 mx-2"></div>
               <div class="p-2 d-flex pt-3">
                 <div class="col-8"><b>Total</b></div>
-                <div class="ms-auto"><div class="text-success">₱<b id="amount">2.00</b></div></div>
+                <div class="ms-auto"><div class="text-success">₱<b id="amount">20.00</b></div></div>
               </div>
             </div>
 			

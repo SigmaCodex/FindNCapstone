@@ -18,6 +18,7 @@ class Main_Controller extends CI_Controller {
     }
 	//finders
 	public function finder_BookingRequest($shopid){
+		$this->load->view('finders/navbar-query');
 		$this->load->model('MainModel');
 		$val['username']      = $this->session->userdata('username');
 		$val['shop_id']       = $shopid;
@@ -29,11 +30,44 @@ class Main_Controller extends CI_Controller {
 
 	public function viewAccountSettings()
 	{
-		$this->load->view('accountSettings');
+		$this->load->view('finders/navbar');
+		$session = $this->session->userdata('username');
+		if(!$session){
+			redirect(findnlogin);
+		}else{
+			$this->load->model('MainModel');
+			$user_id  = $this->session->userdata('user_id');
+			$val['status']	 = $this->session->userdata('status');
+			$val['username'] =  $session;
+			$val['findersPersonalDetails']	 = $this->MainModel->selectFinderDetails($user_id);
+			$this->load->view('accountSettings',$val);
+		}
 	}
-	public function viewViewShop()
+	public function viewViewShop($shopid)
 	{
-		$this->load->view('viewShop');
+		$this->load->view('finders/navbar-query');
+		$this->load->model('MainModel');
+		$val['shopdetails']	 = $this->MainModel->getShopDetails($shopid);
+		$val['shop_images']	 = $this->MainModel->listshopimages($shopid);
+		$val['computertype_details']	 = $this->MainModel->getListOfComputerTypes($shopid);
+		// echo json_encode($val);
+		$this->load->view('viewShop',$val);
+	}
+	public function viewRequestBook($shopid)
+	{
+		$this->load->view('finders/navbar-query');
+		$session = $this->session->userdata('username');
+		if(!$session){
+			redirect(findnlogin);
+		}else{
+			$this->load->model('MainModel');
+			$user_id = $this->session->userdata('user_id');
+			$val['shop_id']					 = $shopid;
+			$val['findersPersonalDetails']	 = $this->MainModel->selectFinderDetails($user_id);
+			$val['computertype_details']	 = $this->MainModel->getListOfComputerTypes($shopid);
+			$val['shopdetails']	 			 = $this->MainModel->getShopDetails($shopid);
+			$this->load->view('requestBook',$val);
+		}
 	}
 	public function viewRegister()
 	{
@@ -49,6 +83,7 @@ class Main_Controller extends CI_Controller {
 	}
 	public function viewFinders_HomePage()
 	{
+		$this->load->view('finders/navbar');
 		$this->load->view('findersHomePage');
 	}
 	public function view_ticket(){
@@ -94,14 +129,16 @@ class Main_Controller extends CI_Controller {
 		}else{	
 			$this->load->model('MainModel');
 			$val['compDetails'] = $this->MainModel->selectComputerShop($id);
-			$val['adminDetails'] = $this->MainModel->getListOfAdmins($id);
+			$val['adminList'] = $this->MainModel->getListOfAdmins($id);
 			$this->load->view('superadmin/adminlist',$val);
 		}
 	}
 	//shop admin show pages
 	public function admin_dashboard(){
-		$this->load->view('admin/template/header');
-		$this->load->view('admin/dashboard');
+		$val['shop_id']   = $this->session->userdata('admin_shop_id'); 
+		$val['shop_name'] = $this->session->userdata('admin_shop_name'); 
+		$this->load->view('admin/template/header',$val);
+		$this->load->view('admin/dashboard',$val);
 		$this->load->view('admin/template/footer');
 	}
 	public function admin_scanqr(){
@@ -128,9 +165,8 @@ class Main_Controller extends CI_Controller {
 	}
 	public function shopadmin_comptypeInfo($ctypeid){
 		$this->load->model('MainModel');
-		$val['Ctype_id'] = $ctypeid;
-		$val['details'] = $this->MainModel->getComputerTypeInfo($ctypeid);
-		$this->load->view('admin/updatecomptype',$val);
+		$val['details'] = $this->MainModel->selectforUpdateComputerTypeInfo($ctypeid);
+		$this->load->view('admin/viewComputertype',$val);
 	}
 	public function shopadmin_addComputerType(){
 		$this->load->view('admin/computertype');
@@ -143,7 +179,19 @@ class Main_Controller extends CI_Controller {
 		$val['id'] = $shop_id;
 		$val['details'] = $this->MainModel->listshopimages($shop_id);
 		$this->load->view('admin/shopimages',$val);
-		
+	}
+	public function shopadmin_postEvents($shopid){
+		$this->load->model('MainModel');
+		$val['shopid'] = $shopid;
+		$val['postDetails'] = $this->MainModel->listofPosts($shopid);
+		$this->load->view('admin/postEvents',$val);
+	}
+	public function shopadmin_viewPost($post_id){
+		$this->load->model('MainModel');
+		$val['id'] = $post_id;
+		$val['postDetails'] = $this->MainModel->viewPosts($post_id);
+		$val['userDetails'] = $this->MainModel->getallPostComments($post_id);
+		$this->load->view('admin/viewPost',$val);
 	}
 }
     

@@ -3,9 +3,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class LogicalController extends CI_Controller {
 
+ 
     public function login_user(){
         $this->load->model('MainModel');
         $result = $this->MainModel->login_user();
+        $user_status = $this->session->userdata('status');
         if(!$result){
             echo "no-user";
         }else{
@@ -13,7 +15,12 @@ class LogicalController extends CI_Controller {
            echo $user_type;
         }
     }
-
+    public function shopAdmin_login(){
+        $user_id_admin = $this->session->userdata('user_id');
+        $this->load->model('MainModel');
+        $this->MainModel->checkShopAdminAccount($user_id_admin);
+        //  echo $this->session->userdata('admin_shop_name'); //return data to ajax
+    }
     public function logout_user(){
         $this->session->sess_destroy();
         // redirect("http://localhost:8080/FindNCapstone/findnlogin");
@@ -30,10 +37,23 @@ class LogicalController extends CI_Controller {
         $this->load->model('MainModel');
         $this->MainModel->registerAdmin();
     }
-        
+    public function updateAdminDetails($id){
+        $this->load->model('MainModel');
+        $this->MainModel->updateAdminDetails($id);
+    }
     public function getAdminDetails($id){
         $this->load->model('MainModel');
-        $this->MainModel->getAdminDetails($id);
+        $result = $this->MainModel->getAdminDetails($id);
+        // $query2->result_array($result);
+        echo json_encode($result);
+    }
+    public function deleteAdmin($id){
+        $this->load->model('MainModel');
+        $this->MainModel->deleteAdmin($id);
+    }
+    public function getAdminList($id){
+        $this->load->model('MainModel');
+        $this->MainModel->getAdminList($id);
     }
     //FINDERS
     public function FindersCompBookingRequest(){
@@ -64,20 +84,20 @@ class LogicalController extends CI_Controller {
         $this->upload->initialize($config);
         if(! $this->upload->do_upload('imageUpload'))
         {
-            echo $this->upload->display_errors();
+            //update useraccount without the profileimage   
+            $this->load->model('MainModel');
+            $this->MainModel->updateFinderAccount("no-image");
         }else{
-            $data= array(
-                'f_name'  => 	  $this->input->post('f_name'),
-                'l_name'  =>    $this->input->post('l_name'),
-                'b_date'  =>    $this->input->post('b_date'),
-                'username'  =>    $this->input->post('username'),
-                'b_date'  =>    $this->input->post('b_date'),
-                'email'  =>    $this->input->post('email'),
-                'p_number'  =>    $this->input->post('p_number'),
-                'vac_status'  =>    $this->input->post('vac_status'),
-            );
-            echo json_encode($data);
+             //update useraccount with the profileimage
+            $this->load->model('MainModel');
+            $this->MainModel->updateFinderAccount("with-image");
         }
+    }
+
+    public function disableFinderAccountStatus(){
+        $this->load->model('MainModel');
+        $this->MainModel->disableFinderAccountStatus();
+        
     }
 
     public function getListOfComputerShops(){
@@ -85,16 +105,17 @@ class LogicalController extends CI_Controller {
         $result = $this->MainModel->getListOfComputerShops();
         echo json_encode($result);
     }
+    public function selectforUpdateComputerTypeInfo($id){
+        $this->load->model('MainModel');
+        $result = $this->MainModel->selectforUpdateComputerTypeInfo($id);
+        echo json_encode($result);
+    }
     public function getComputerTypeInfo($id){
         $this->load->model('MainModel');
         $result = $this->MainModel->getComputerTypeInfo($id);
         echo json_encode($result);
     }
-    public function getListOfComputerTypes($id){
-        $this->load->model('MainModel');
-        $result = $this->MainModel->getListOfComputerTypes($id);
-        echo json_encode($result);
-    }
+
 
     public function getListOfAdmins($id){
         $this->load->model('MainModel');
@@ -133,6 +154,40 @@ class LogicalController extends CI_Controller {
     }
 
     //ADMIN
+    public function getUserDetails($id){
+        $this->load->model('MainModel');
+        $this->MainModel->getUserDetails($id);
+    }
+    public function addshopPosts($id){
+        $this->load->model('MainModel');
+        $this->MainModel->addshopPosts($id);
+    }
+    public function deleteshopPosts($id){
+        $this->load->model('MainModel');
+        $this->MainModel->deleteshopPosts($id);
+    }
+    public function selectforUpdatePostDetails($id){
+        $this->load->model('MainModel');
+        $result = $this->MainModel->selectforUpdatePostDetails($id);
+        echo json_encode($result);
+    }
+    public function getallPostComments($shop_id){
+        $this->load->model('MainModel');
+        $result = $this->MainModel->getallPostComments($shop_id);
+
+    }
+    public function addComments($id){
+        $this->load->model('MainModel');
+        $result = $this->MainModel->addComments($id);
+    }
+    public function deleteComments($id){
+        $this->load->model('MainModel');
+        $result = $this->MainModel->deleteComments($id);
+    }
+    public function updateshopPosts($id){
+        $this->load->model('MainModel');
+        $this->MainModel->updateshopPosts($id);
+    }
     public function updateComputerDetails($id){
         $this->load->model('MainModel');
         $this->MainModel->updateComputerDetails($id);
@@ -214,7 +269,7 @@ class LogicalController extends CI_Controller {
 				'description' => $servicetype."for". $shop,
 				'customername' =>  $name,
 				'customermobile' => $contact_num ,
-				'merchantlogourl' => 'http://localhost:8080/FindNCapstone/assets/images/findnslogan.png',
+				'merchantlogourl' => 'http://localhost:8080/FindNCapstone/assets/images/Logo.svg',
 				'customeremail' => $email,
 				// 'redirectsuccessurl' => 'http://localhost:8080/FindNCapstone/gcashsuccess',	
 			),
@@ -235,6 +290,70 @@ class LogicalController extends CI_Controller {
 			//redirect($decoded['data']['checkouturl']);
 			
 			
+    }
+
+    //generate Verification Code
+    public function generateVeificationCode(){
+        $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        $randomString = '';
+      
+        for ($i = 0; $i < 6; $i++) {
+            $index = rand(0, strlen($characters) - 1);
+            $randomString .= $characters[$index];
+        }
+        return $randomString;
+    }
+
+    //send verification code to email
+    public function sendVCodeToEmail(){
+
+        $verificationCode = $this->generateVeificationCode();
+        $this->session->set_userdata('v_code',$verificationCode);
+
+        $email = $this->input->post('email');
+        $messageText = "
+        <center><img src='assets/images/Logo1.png' style='width: 100px;'></center>
+        <br>
+        <center><h1>This is your Code: <b>".$verificationCode."</b></h1></center>
+        
+        ";
+
+        $this->load->library('phpmailer_lib');
+        $mail = $this->phpmailer_lib->load();
+
+        // $mail->SMTPDebug = 3;                               // Enable verbose debug output
+
+        $mail->isSMTP();                                      // Set mailer to use SMTP
+        $mail->Host = 'tls://smtp.gmail.com:587';  // Specify main and backup SMTP servers
+        $mail->SMTPAuth = true;                               // Enable SMTP authentication
+        $mail->Username = 'findn.cebu.ph@gmail.com';                 // SMTP username
+        $mail->Password = 'RuntimeNimble12345678';                           // SMTP password
+        $mail->Port = 587;                                    // TCP port to connect to
+
+        $mail->From = 'findn.cebu.ph@gmail.com';
+        $mail->FromName = 'FindN Admins';
+        $mail->addAddress($email);               // Name is optional
+        
+
+        $mail->isHTML(true);                                  // Set email format to HTML
+
+        $mail->Subject = ("Finder Verification Code");
+        $mail->Body = $messageText;
+        $mail->addEmbeddedImage('assets/images/Logo1.png', 'FindNlogo');
+
+        if(!$mail->send()) {
+            echo 'Message could not be sent.';
+            echo 'Mailer Error: ' . $mail->ErrorInfo;
+        } else {
+            echo 'Message has been sent';
+        }
+
+    }
+
+    //check verification code
+    public function checkVerificationCode(){
+        $this->load->model('MainModel');
+        $this->MainModel->update_To_FinderAccountVerified();   
     }
 }
     

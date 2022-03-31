@@ -1,0 +1,270 @@
+/* GOOGLE FONTS */
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800&display=swap");
+@import url('http://fonts.cdnfonts.com/css/uni-neue');
+@import url('//db.onlinewebfonts.com/c/80241b4ef777109d2625c9195e7ca852?family=NordiquePro-Bold');
+
+/* VARIABLES CSS */
+:root {
+  --z-tooltip: 10;
+  --z-fixed: 100;
+}
+
+@media screen and (min-width: 968px) {
+  :root {
+    --h1-font-size: 2.25rem;
+    --normal-font-size: 1rem;
+  }
+}
+
+/* BASE */
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 3rem 0 0 0;
+  font-family: 'Poppins', sans-serif !important;
+  font-size: .938rem;
+  background-color: hsl(174, 100%, 99%);
+  color: hsl(174, 8%, 35%);
+}
+.username{
+  text-decoration: none!important;
+  background-image: linear-gradient(45deg, #f83f0b,#e09e1a);
+  background-size: 100%;
+  -webkit-background-clip: text;
+  -moz-background-clip: text;
+  -webkit-text-fill-color: transparent; 
+  -moz-text-fill-color: transparent;
+  font-family: 'Poppins', sans-serif;
+  font-size: 12px;
+  padding-top: 5px;
+  margin-left: 10px;
+  font-weight: 700;
+}
+.username:hover {
+  color: rgb(240, 88, 0);
+}
+ul {
+  padding-top: 20px;
+  list-style: none;
+}
+
+.nav__item a {
+  text-decoration: none !important;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* REUSABLE CSS CLASSES */
+.section {
+  padding: 4.5rem 0 2rem;
+}
+
+.section__title {
+  font-size: var(--h1-font-size);
+  color: hsl(174, 12%, 15%);
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.section__height {
+  height: 100vh;
+}
+
+/* LAYOUT */
+.container-nav {
+  max-width: 968px;
+  margin-left: 1rem;
+  margin-right: 1rem;
+}
+
+/* HEADER */
+.header {
+  position: relative;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: #FFF;
+  box-shadow: 0 -1px 12px hsla(174, 63%, 15%, 0.15);
+  z-index: var(--z-fixed);
+  transition: .4s;
+  border-bottom-left-radius: 5%;
+  border-bottom-right-radius: 5%;
+  padding: 5px;
+}
+.header__search {
+  display: flex;
+  padding: 1rem .75rem;
+  background-color: #FFF;
+  border-radius: .25rem;
+}
+.header__input {
+  width: 100%;
+  border: none;
+  outline: none;
+  background-color: #FFF;
+}
+
+.header__input::placeholder {
+  font-family: 'Poppins', sans-serif;
+  color: hsl(174, 8%, 35%);
+}
+.header__icon {
+  font-size: 1.2rem;
+}
+/* NAV */
+.nav {
+  height: 3rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.nav__img {
+  width: 32px;
+  border-radius: 50%;
+}
+
+.nav__logo {
+  background-image: linear-gradient(45deg, #f83f0b,#e09e1a);
+  background-size: 100%;
+  -webkit-background-clip: text;
+  -moz-background-clip: text;
+  -webkit-text-fill-color: transparent; 
+  -moz-text-fill-color: transparent;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+@media screen and (max-width: 767px) {
+  .nav__menu {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    background-color: #FFF;
+    box-shadow: 0 -1px 12px hsla(174, 63%, 15%, 0.15);
+    width: 100%;
+    height: 4rem;
+    padding: 10px 1rem;
+    display: grid;
+    align-content: center;
+    border-radius: 1.25rem 1.25rem 0 0;
+    transition: .4s;
+  }
+}
+
+.nav__list, 
+.nav__link {
+  display: flex;
+}
+
+.nav__link {
+  flex-direction: column;
+  align-items: center;
+  row-gap: 4px;
+  color: hsl(174, 12%, 15%);
+  font-weight: 600;
+}
+
+.nav__list {
+  justify-content: space-around;
+}
+
+.nav__name {
+  background-image: linear-gradient(45deg, #f83f0b,#e09e1a);
+  background-size: 100%;
+  -webkit-background-clip: text;
+  -moz-background-clip: text;
+  -webkit-text-fill-color: transparent; 
+  -moz-text-fill-color: transparent;
+  text-decoration: none;
+  font-size: 13px;
+  /* display: none;*/ /* Minimalist design, hidden labels */
+}
+
+.nav__icon {
+  font-size: 1.5rem;
+  text-decoration: none;
+  background-image: linear-gradient(45deg, #471506,#e24d07);
+  background-size: 100%;
+  -webkit-background-clip: text;
+  -moz-background-clip: text;
+  -webkit-text-fill-color: transparent; 
+  -moz-text-fill-color: transparent;
+  text-decoration: none;
+  padding-top: 10px;
+}
+
+/* Change background header */
+.scroll-header {
+  box-shadow: 0 1px 12px hsla(174, 63%, 15%, 0.15);
+}
+
+/* MEDIA QUERIES */
+/* For small devices */
+/* Remove if you choose, the minimalist design */
+@media screen and (max-width: 320px) {
+  .nav__name {
+    display: none;
+  }
+  /* .header__search {
+    width: 70%;
+  } */
+}
+
+/* For medium devices */
+@media screen and (min-width: 576px) {
+  .nav__list {
+    justify-content: center;
+    column-gap: 3rem;
+  }
+  
+}
+
+@media screen and (min-width: 767px) {
+  body {
+    margin: 0;
+  }
+  .section {
+    padding: 7rem 0 2rem;
+  }
+  .nav {
+    height: calc(3rem + 1.5rem); /* 4.5rem */
+  }
+  .nav__img {
+      cursor: pointer;
+    /* display: none; */
+  }
+  /* .header__search {
+    width: 300px;
+    padding: .55rem .75rem;
+  } */
+  .nav__icon {
+    display: none;
+  }
+  .nav__name {
+    font-size: .938rem;
+    /* display: block; */ /* Minimalist design, visible labels */
+  }
+  .nav__link:hover {
+    color: hsl(174, 100%, 99%);
+  }
+}
+
+/* For large devices */
+@media screen and (min-width: 1024px) {
+  .container-nav {
+    margin-left: auto;
+    margin-right: auto;
+  }
+}

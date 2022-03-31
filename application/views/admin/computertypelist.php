@@ -23,10 +23,7 @@
 
 	</head>
 	<body>
-		<h1 id="compshop_id" style= "display:none">
-		<?php if(isset($shopid)){ echo 
-                    $shopid;}?>
-		</h1>
+		<h1 id="compshop_id"><?php if(isset($shopid)){echo $shopid;}?></h1>
 	<section class="ftco-section">
 		<nav>
         <ul class="menu">
@@ -205,5 +202,42 @@
 });
 
 </script>
+<!-- script for viewing details of a computer type -->
+<script>
+		$(document).on("click",".view-shop",function(){
+			var Base_URL = "<?php echo base_url();?>";
+			var id = $(this).attr("data");
 
-</html>
+			window.location = Base_URL+"shopadmin-comptypeinfo/" + id;
+			
+		});
+</script>
+<script>
+		$(document).on("click",".remove-shop",function(){
+         var BASE_URL = "<?php echo base_url();?>";
+			var id = $(this).attr("data");
+
+			swal({
+  				title: "Are you sure to delete this computer type?",
+  				icon: "warning",
+  				buttons: true,
+  				dangerMode: true,
+			}).then((willDelete) => {
+  				if (willDelete) {
+					$.ajax({
+						url: BASE_URL+"deleteComputerType/" + id,
+						method: "POST",
+						data: { Ctype_id: id },
+						success: function (data){
+							swal("Computer Type has been deleted!", {
+    					  		icon: "success",
+    						}).then((value) => {
+								location.reload(); 
+							});
+
+						},
+					});	
+  				}
+			});
+		});
+	</script>

@@ -44,7 +44,7 @@
         <ul class="menu">
 			<li class="logo"><a href="<?php echo base_url();?>listofcomputershop">Back</a></li>
             <li class="logo"><a href="#">FindN</a></li>
-			<li class="item button secondary"><a href="user-logout">Log out</a></li>
+			<li class="item button secondary"><a href="<?php echo base_url();?>user-logout">Log out</a></li>
 
             <li class="toggle"><span class="bars"></span></li>
         </ul>
@@ -77,7 +77,7 @@
 						</ul>
           				<div class="card-body">
 						  <div class="form-group mb-2">
-						  <button type="button" data-target="updateComputerModal" data-toggle="modal" class="editbtn btn mb-2 mb-md-0 btn-primary btn-block">Edit Details</button>
+						  <button type="button" data-target="#updateComputerModal" data-toggle="modal" class="editbtn btn mb-2 mb-md-0 btn-primary btn-block">Edit Details</button>
 	              		  </div>
           				</div>
         			</div>
@@ -93,11 +93,11 @@
 						      <th>Name</th>
 						      <th>Email</th>
 						      <th>Action</th>
-							  <!-- <th>&nbsp;</th> -->
+							   <th>&nbsp;</th> 
 						    </tr>
 						  </thead>
 						  <tbody>
-						  <?php foreach($adminDetails as $aD){ ?>
+						  <?php foreach($adminList as $aD){ ?>
 							<tr class="alert" role="alert">
 							<td><?php echo $aD->user_id ?></td>
 							<td>
@@ -108,10 +108,10 @@
 						      	<td><?php echo $aD->email ?></td>
 						      	<td>
 								  <div style="display:flex;justify-content:space-around;align-items:center;">
-										<button type="button" class="view-admin" data="<?php echo $s->shop_id;?>" style="padding: 0;background-color: transparent;border: 0;appearance: none;">
+										<button type="button" data-target="#updateAdminModal" data-toggle="modal" class="view-admin" data="<?php echo $aD->user_id;?>" style="padding: 0;background-color: transparent;border: 0;appearance: none;">
 												<span aria-hidden="true"><i class="fa fa-eye"></i></span>
 										</button>
-										<button type="button" class="remove-admin" data="<?php echo $s->shop_id;?>" style="padding: 0;background-color: transparent;border: 0;appearance: none;">
+										<button type="button"  class="remove-admin" data="<?php echo $aD->user_id;?>" style="padding: 0;background-color: transparent;border: 0;appearance: none;">
 										<span aria-hidden="true"><i class="fa fa-close"></i></span>
 										</button>
 								   </div>
@@ -119,7 +119,7 @@
 						    </tr>
 						<?php } ?>  
 						  </tbody>
-						</table>
+						</table> 
 					</div>
 				</div>
         
@@ -153,11 +153,68 @@
 		      		</div>
 					<div class="form-group mb-2">
 		      			<label for="name">Latitude</label>
-		      			<input  type="text" id="lat" name="lat" placeholder="Your lat.." class="form-control">
+		      			<input  type="text" id="lat" name="lat" value="<?php echo "hellow";?>"  placeholder="Your lat.." class="form-control">
 		      		</div>
 					<div class="form-group mb-2">
 		      			<label for="name">Longtitude</label>
-		      			<input type="text" id="lng" name="lng" placeholder="Your lng.." class="form-control">
+		      			<input type="text" id="lng" name="lng" placeholder="Your lng.." value="sample" class="form-control">
+		      		</div>
+					<div>		
+		      </div>
+			    <div class="geocoder"><div id="geocoder" ></div></div>
+				<div id="map"></div>
+				<div class="modal-footer">
+                	<div class="form-group mb-2">
+					 	<button type="button" id="close-adminbtn" class="close d-flex align-items-center justify-content-center" data-dismiss="modal">
+						 <input value="Cancel" class="form-control btn btn-primary rounded px-3"  readonly="readonly">
+		        		</button>
+	              	</div>
+                	<div class="form-group mb-2">
+					  <input value="Update" class="form-control btn btn-primary rounded submit px-3" id="updatecomputershopbtn" readonly="readonly">
+	              	</div>
+              	</div>
+			  </form>
+      </div>
+    </div>
+  </div>
+</div>
+<div id="updateAdminModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+	  <h3 class="text-center mb-3">Update Admin Details</h3>
+      </div>
+      <div class="modal-body">
+	  	<form id="updateadminform" class="" name="updateadminform">
+		 			 <input id="useridid" hidden>	
+					<div class="form-group mb-2">
+		      			<label for="name">First Name</label>
+		      			<input name="updfirst" id="updfirst" type="text" class="form-control">
+		      		</div>
+					<div class="form-group mb-2">
+		      			<label for="name">Last Name</label>
+		      			<input  name="updlast" id="updlast" type="text" class="form-control">
+		      		</div> 
+					  <div class="form-group mb-2">
+                		<label for="updgender">Gender</label>
+	              		<select name="updgender" class="form-control mb-2 form-select-lg mb-3 form-select" aria-label="Default select example">
+				  			<option value="">Choose. . .</option>
+                  			<option value="Male">Male</option>
+                  			<option value="Female">Female</option>
+                  		</select>
+              		  </div>
+						<div class="form-group mb-2">
+		      			<label for="name">Birthdate</label>
+		      			<input name="upddate" id="upddate" type="date" class="form-control">
+		      		 </div> 
+					<div class="form-group mb-2">
+		      			<label for="name">Email</label>
+		      			<input type="text" id="updemail" name="updemail" class="form-control">
+		      		</div>
+					  <div class="form-group mb-2">
+		      			<label for="name">Contact Number</label>
+		      			<input type="text" id="updCNum" name="updCNum"  class="form-control">
 		      		</div>
 					<div>		
 		      </div>
@@ -170,7 +227,7 @@
 		        		</button>
 	              	</div>
                 	<div class="form-group mb-2">
-					  <input value="Add" class="form-control btn btn-primary rounded submit px-3" id="updatecomputershopbtn" readonly="readonly">
+					  <input value="Update" class="form-control btn btn-primary rounded submit px-3" id="updateadminbtn" readonly="readonly">
 	              	</div>
               	</div>
 			  </form>
@@ -208,15 +265,7 @@
 					  <div class="form-group mb-2">
 		      			<label for="name">Birthdate</label>
 		      			<input name="date" id="date" type="date" class="form-control">
-		      		</div>
-				<div class="form-group mb-2">
-                <label for="vacstatus">Vacination Status</label>
-	              <select name="vacstatus" class="form-control mb-2 form-select-lg mb-3 form-select" aria-label="Default select example">
-                  <option value="">Pick...</option>
-				  <option value="1st Dose">1st Dose</option>
-                  <option value="2nd Dose">2nd Dose</option>
-                  </select>
-              	</div>	  
+		      		 </div> 
 				<div class="form-group mb-2">
                 <label for="gender">Gender</label>
 	              <select name="gender" class="form-control mb-2 form-select-lg mb-3 form-select" aria-label="Default select example">
@@ -258,8 +307,523 @@
 		    </div>
 		  </div>
 		</div>
-		<script>
-         var user_location = [123.89702509681695, 10.297418655907592];
+
+	</body>
+</html>
+
+
+
+<script>
+$(document).ready(function () {
+	$("#addadminform").validate({
+		rules: {
+			first: {
+				required: true,
+				minlength: 2,
+			},
+			last: {
+				required: true,
+				minlength: 2,
+			},
+			pnum: {
+				required: true,
+				number: true,
+				minlength: 11,
+				maxlength: 11,
+			},
+			email: {
+				required: true,
+				email: true,
+			},
+			date: {
+				required: true,
+			},
+			username: {
+				required: true,
+				minlength: 4,
+				maxlength: 16,
+			},
+			pass: {
+				required: true,
+				minlength: 8,
+			},
+			conpass: {
+				required: true,
+				minlength: 8,
+				equalTo: "#pass",
+			},
+			status: {
+				required: true,
+			},
+			gender: {
+				required: true,
+			},
+		},
+		messages: {
+			first: {
+				required: "Please enter your first name",
+				minlength: "Name should atleast have 2 characters",
+			},
+			last: {
+				required: "Please enter your last name",
+				minlength: "Name should atleast have 2 characters ",
+			},
+			pnum: {
+				required: "Please enter your phone number",
+				number: "Please enter numbers only",
+			},
+			email: {
+				required: "Please enter your email",
+			},
+			username: {
+				required: "Please enter your username",
+				minlength: "Username should be atleast 4 characters",
+				maxlength: "Username should not be long than 8 characters",
+			},
+			pass: {
+				required: "Please enter your password",
+				minlength: "Password should be 8 or more characters long",
+			},
+			conpass: {
+				required: "Please re enter your password",
+				equalTo: "Incorrect password",
+			},
+		},
+	});
+	$("#updateadminform").validate({
+		rules: {
+			updfirst: {
+				required: true,
+				minlength: 2,
+			},
+			updlast: {
+				required: true,
+				minlength: 2,
+			},
+			updCNum: {
+				required: true,
+				number: true,
+				minlength: 11,
+				maxlength: 11,
+			},
+			updemail: {
+				required: true,
+				email: true,
+			},
+			upddate: {
+				required: true,
+			},
+			updgender: {
+				required: true,
+			},
+		},
+		messages: {
+			updfirst: {
+				required: "Please enter your first name",
+				minlength: "Name should atleast have 2 characters",
+			},
+			updlast: {
+				required: "Please enter your last name",
+				minlength: "Name should atleast have 2 characters ",
+			},
+			updCNum: {
+				required: "Please enter your phone number",
+				number: "Please enter numbers only",
+			},
+			updemail: {
+				required: "Please enter your email",
+			},
+		},
+	});
+	$("#updatecompform").validate({
+		rules: {
+			compname: {
+				required: true,
+				minlength: 2,
+			},
+			number: {
+				required: true,
+				number: true,
+				minlength: 11,
+				maxlength: 11,
+			},
+			lat: {
+				required: true,
+			},
+			emailadd: {
+				required: true,
+				email: true,
+			},
+			lng: {
+				required: true,
+			},
+			address: {
+				required: true,
+			},
+		},
+		messages: {
+			compname: {
+				required: "Please enter Computer shop name",
+				minlength: "Name should atleast have 2 characters",
+			},
+			number: {
+				required: "Please enter your phone number",
+				number: "Please enter numbers only",
+			},
+			emailadd: {
+				required: "Please enter your email",
+			},
+		},
+	});
+});
+
+//backbutton
+function BackPage(el) {
+	window.location = "/listofcomputershop";
+}
+
+//inserting data with AJAX
+
+$(document).on("click", "#addadminbtn", function () {
+	var validator = $("#addadminform").validate();
+	if ($("#addadminform").valid()) {
+		var CSPK = $("#CompShopPK").text();
+		var fname = $("#first").val();
+		var lname = $("#last").val();
+		var uname = $("#username").val();
+		var phonenum = $("#pnum").val();
+		var email = $("#email").val();
+		var pass = $("#pass").val();
+		var conpass = $("#conpass").val();
+
+		var bdate = new Date($("#date").val());
+		var day = bdate.getDate();
+		var month = bdate.getMonth() + 1;
+		var year = bdate.getFullYear();
+
+		var actbdate = [day, month, year].join("/");
+
+		//select tag
+		var gender = $('select[name="gender"]').val();
+		var BASE_URL = "<?php echo base_url();?>";
+		$.ajax({
+			url:"<?php echo base_url();?>registeradmin",
+			type: "POST",
+			data: {
+				shop_id		: CSPK,
+				firstname	: fname,
+				lastname	: lname,
+				pnum		: phonenum,
+				birthdate	: actbdate,
+				username	: uname,
+				email		: email,
+				gender		: gender,
+			},
+			// 	// contentType: false,
+			// 	//       cache: false,
+			// 	// processData:false,
+			// beforeSend : function()
+			// {
+			// //$("#preview").fadeOut();
+			// // $("#err").fadeOut();
+			// alert("processing");
+			// },
+			success: function (data) {
+				swal({
+					title: "Good job!",
+					text: "Admin has been registered!",
+					icon: "success",
+					button: "Continue",
+				}).then((value) => {
+					// $("#closebtn").trigger("click");
+					window.location =  BASE_URL+"admin-list/" + CSPK;
+				});
+			},
+		});
+
+		// $("#CompShopPK").text("");
+		// $("#first").val("");
+		// $("#last").val("");
+		// $("#username").val("");
+		// $("#pnum").val("");
+		// $("#email").val("");
+		// $("#pass").val("");
+		// $("#conpass").val("");
+		// $("#date").val("");
+
+		//select tag
+		// $('select[name="gender"]').val("");
+		// $('select[name="vacstatus"]').val("");
+	} else {
+		// swal(
+		// 	{
+		// 		title: "Are you sure?",
+		// 		text: "You will not be able to recover this imaginary file!",
+		// 		type: "warning",
+		// 		showCancelButton: true,
+		// 		confirmButtonColor: "#DD6B55",
+		// 		confirmButtonText: "Yes, delete it!",
+		// 		closeOnConfirm: false,
+		// 		//closeOnCancel: false
+		// 	},
+		// 	function () {
+		// 		swal("Deleted!", "Your imaginary file has been deleted!", "success");
+		// 	}
+		// );
+	}
+});
+$(document).on("click", ".view-admin", function () {
+	var id = $(this).attr("data");
+	// var CSPK = $("#CompShopPK").text();
+	var BASE_URL = "<?php echo base_url();?>";
+	$.ajax({
+		url: BASE_URL+"getadmin-details/" + id,
+		method: "POST",
+		data: { user_id: id },
+		dataType: "json",
+		success: function (data) {
+			$("#updfirst").val(data.firstname);
+			$("#updlast").val(data.lastname);
+			$('select[name="updgender"]').val(data.gender);
+			$("#updemail").val(data.email);
+			$("#updCNum").val(data.contactaddress);
+			$("#useridid").text(data.user_id);
+
+
+			
+			let text = data.birthdate;
+			const myArray = text.split("/");
+			var dd = myArray[0];
+			var mm = myArray[1];
+			var yy = myArray[2];
+			if(mm.length > 1){
+				var actbdate = [yy, mm, dd].join("-");
+			}
+			else{
+				var actbdate = [yy, "0"+mm, dd].join("-");
+			}
+			
+
+			$("#upddate").val(actbdate);
+
+			$("#updateAdminModal").modal('show');
+		},
+	});
+});
+$(document).on("click", "#updateadminbtn", function () {
+	var validator = $("#updateadminform").validate();
+	var BASE_URL = "<?php echo base_url();?>";
+	if ($("#updateadminform").valid()) {
+		var CSPK = $("#useridid").text();
+		var first = $("#updfirst").val();
+		var last = $("#updlast").val();
+		var gender = $('select[name="gender"]').val();
+		var email = $("#updemail").val();
+		var number = $("#updCNum").val();
+
+		var bdate = new Date($("#upddate").val());
+		var day = bdate.getDate();
+		var month = bdate.getMonth() + 1;
+		var year = bdate.getFullYear();
+
+		var actbdate = [day, month, year].join("/");
+
+		$.ajax({
+			url: BASE_URL+"updateadmindetails/" + CSPK,
+			method: "POST",
+			data: {
+				firstname: first,
+				lastname: last,
+				gender: gender,
+				birthdate: actbdate,
+				email: email,
+				contactaddress: number
+			},
+			success: function (data) {
+				// window.location = "listofcomputershop";
+				swal({
+					title: "Good job!",
+					text: "ComputerShop has been registered!",
+					icon: "success",
+					button: "Continue",
+				}).then((value) => {
+					location.reload(); 
+				});
+			},
+		});
+	} else {
+		swal(
+			{
+				title: "Are you sure?",
+				text: "You will not be able to recover this imaginary file!",
+				type: "warning",
+				showCancelButton: true,
+				confirmButtonColor: "#DD6B55",
+				confirmButtonText: "Yes, delete it!",
+				closeOnConfirm: false,
+				//closeOnCancel: false
+			},
+			function () {
+				swal("Deleted!", "Your imaginary file has been deleted!", "success");
+			}
+		);
+	}
+});
+$(document).on("click", ".remove-admin", function () {
+		var BASE_URL = "<?php echo base_url();?>";
+		var id = $(this).attr("data");
+
+			swal({
+  				title: "Are you sure to delete this computer type?",
+  				icon: "warning",
+  				buttons: true,
+  				dangerMode: true,
+			}).then((willDelete) => {
+  				if (willDelete) {
+					$.ajax({
+						url: BASE_URL+"deleteadmin/" + id,
+						method: "POST",
+						data: { user_id: id },
+						success: function (data){
+							swal("Computer Type has been deleted!", {
+    					  		icon: "success",
+    						}).then((value) => {
+								location.reload(); 
+							});
+
+						},
+					});	
+  				}
+			});
+});
+$(document).on("click", ".editbtn", function () {
+	var CSPK = $("#CompShopPK").text();
+	var BASE_URL = "<?php echo base_url();?>";
+	$.ajax({
+		url: BASE_URL+"getshopdetails/" + CSPK,
+		method: "POST",
+		data: { shop_id: CSPK },
+		dataType: "json",
+		success: function (data) {
+			$("#shopName").val(data.shop_name);
+			$("#c_number").val(data.contact_number);
+			$("#emailadd").val(data.email_address);
+			$("#AddressIN").val(data.address);
+
+			let text = data.coordinates;
+			const myArray = text.split(",");
+
+			var lat = myArray[0];
+			var lng = myArray[1];
+
+			$("#lat").val(lat);
+			$("#lng").val(lng);
+
+			$("#updateComputerModal").modal('show');
+		},
+	});
+
+});
+
+
+
+$(document).on("click", "#updatecomputershopbtn", function () {
+	var validator = $("#updatecompform").validate();
+	var BASE_URL = "<?php echo base_url();?>";
+	if ($("#updatecompform").valid()) {
+		var CSPK = $("#CompShopPK").text();
+		var s_name = $("#shopName").val();
+		var c_number = $("#c_number").val();
+		var email = $("#emailadd").val();
+		var add = $("#AddressIN").val();
+		var lat = $("#lat").val();
+		var lng = $("#lng").val();
+		var coordinate = lat + "," + lng;
+
+		$.ajax({
+			url: BASE_URL+"updateshopdetails/" + CSPK,
+			method: "POST",
+			data: {
+				shop_name: s_name,
+				number: c_number,
+				email_add: email,
+				address: add,
+				coor: coordinate,
+			},
+			success: function (data) {
+				// window.location = "listofcomputershop";
+				swal({
+					title: "Good job!",
+					text: "ComputerShop has been registered!",
+					icon: "success",
+					button: "Continue",
+				}).then((value) => {
+					window.location = BASE_URL +"admin-list/"+CSPK;
+				});
+			},
+		});
+	} else {
+		swal(
+			{
+				title: "Are you sure?",
+				text: "You will not be able to recover this imaginary file!",
+				type: "warning",
+				showCancelButton: true,
+				confirmButtonColor: "#DD6B55",
+				confirmButtonText: "Yes, delete it!",
+				closeOnConfirm: false,
+				//closeOnCancel: false
+			},
+			function () {
+				swal("Deleted!", "Your imaginary file has been deleted!", "success");
+			}
+		);
+	}
+});
+
+</script>
+<script>
+$(document).ready(function() {
+	var CSPK = $("#CompShopPK").text();
+
+var BASE_URL = "<?php echo base_url();?>";
+$.ajax({
+	url: BASE_URL+"getshopdetails/" + CSPK,
+	method: "POST",
+	data: { shop_id: CSPK },
+	dataType: "json",
+	success: function (data) {
+		
+		$("#shopName").val(data.shop_name);
+		$("#c_number").val(data.contact_number);
+		$("#emailadd").val(data.email_address);
+		$("#AddressIN").val(data.address);
+
+		let text = data.coordinates;
+		const myArray = text.split(",");
+
+		var lat = myArray[0];
+		var lng = myArray[1];
+
+		$("#lat").val(lat);
+		$("#lng").val(lng);
+
+	},
+});
+});
+
+
+	// var lati = document.getElementById("lat").value;
+	// alert(lati);
+    //  document.getElementById("lng").value;
+    // //  var sample = "hello";
+	//  alert(document.getElementById("lat").value);
+	//  var text =  document.getElementsByClassName('heading-section').textContent;
+    //   alert(text);
+
+		var long = 123.89702509681695;
+		var lang =  10.297418655907592;
+         var user_location = [long, lang ];
         mapboxgl.accessToken = 'pk.eyJ1IjoiZG5rbzEzIiwiYSI6ImNrbWZxNWl5eDM3amcyeGp4cHRvN3pxdGgifQ.HM7QZISQcECRgm9aKAZysg';
         var map = new mapboxgl.Map({
             container: 'map',
@@ -349,273 +913,3 @@
         // });
         document.getElementById('geocoder').appendChild(geocoder.onAdd(map));
     </script>
-	</body>
-</html>
-
-
-
-<script>
-$(document).ready(function () {
-	$("#addadminform").validate({
-		rules: {
-			first: {
-				required: true,
-				minlength: 2,
-			},
-			last: {
-				required: true,
-				minlength: 2,
-			},
-			pnum: {
-				required: true,
-				number: true,
-				minlength: 11,
-				maxlength: 11,
-			},
-			email: {
-				required: true,
-				email: true,
-			},
-			date: {
-				required: true,
-			},
-			username: {
-				required: true,
-				minlength: 4,
-				maxlength: 16,
-			},
-			pass: {
-				required: true,
-				minlength: 8,
-			},
-			conpass: {
-				required: true,
-				minlength: 8,
-				equalTo: "#pass",
-			},
-			vacstatus: {
-				required: true,
-			},
-			status: {
-				required: true,
-			},
-			gender: {
-				required: true,
-			},
-		},
-		messages: {
-			first: {
-				required: "Please enter your first name",
-				minlength: "Name should atleast have 2 characters",
-			},
-			last: {
-				required: "Please enter your last name",
-				minlength: "Name should atleast have 2 characters ",
-			},
-			pnum: {
-				required: "Please enter your phone number",
-				number: "Please enter numbers only",
-			},
-			email: {
-				required: "Please enter your email",
-			},
-			username: {
-				required: "Please enter your username",
-				minlength: "Username should be atleast 4 characters",
-				maxlength: "Username should not be long than 8 characters",
-			},
-			pass: {
-				required: "Please enter your password",
-				minlength: "Password should be 8 or more characters long",
-			},
-			conpass: {
-				required: "Please re enter your password",
-				equalTo: "Incorrect password",
-			},
-		},
-	});
-});
-
-//backbutton
-function BackPage(el) {
-	window.location = "/listofcomputershop";
-}
-
-//inserting data with AJAX
-
-$(document).on("click", "#addadminbtn", function () {
-	var validator = $("#addadminform").validate();
-	if ($("#addadminform").valid()) {
-		var CSPK = $("#CompShopPK").text();
-		var fname = $("#first").val();
-		var lname = $("#last").val();
-		var uname = $("#username").val();
-		var phonenum = $("#pnum").val();
-		var email = $("#email").val();
-		var pass = $("#pass").val();
-		var conpass = $("#conpass").val();
-
-		var bdate = new Date($("#date").val());
-		var day = bdate.getDate();
-		var month = bdate.getMonth() + 1;
-		var year = bdate.getFullYear();
-
-		var actbdate = [day, month, year].join("/");
-
-		//select tag
-		var gender = $('select[name="gender"]').val();
-		var vacstatus = $('select[name="vacstatus"]').val();
-		var BASE_URL = "<?php echo base_url();?>";
-		$.ajax({
-			url:"<?php echo base_url();?>registeradmin",
-			type: "POST",
-			data: {
-				shop_id: CSPK,
-				firstname: fname,
-				lastname: lname,
-				pnum: phonenum,
-				birthdate: actbdate,
-				username: uname,
-				email: email,
-				pass: pass,
-				conpass: conpass,
-				gender: gender,
-				vacstatus: vacstatus,
-			},
-			// 	// contentType: false,
-			// 	//       cache: false,
-			// 	// processData:false,
-			// beforeSend : function()
-			// {
-			// //$("#preview").fadeOut();
-			// // $("#err").fadeOut();
-			// alert("processing");
-			// },
-			success: function (data) {
-				swal({
-					title: "Good job!",
-					text: "Admin has been registered!",
-					icon: "success",
-					button: "Continue",
-				}).then((value) => {
-					// $("#closebtn").trigger("click");
-					window.location =  BASE_URL+"admin-list/" + CSPK;
-				});
-			},
-		});
-
-		// $("#CompShopPK").text("");
-		// $("#first").val("");
-		// $("#last").val("");
-		// $("#username").val("");
-		// $("#pnum").val("");
-		// $("#email").val("");
-		// $("#pass").val("");
-		// $("#conpass").val("");
-		// $("#date").val("");
-
-		//select tag
-		$('select[name="gender"]').val("");
-		$('select[name="vacstatus"]').val("");
-	} else {
-		// swal(
-		// 	{
-		// 		title: "Are you sure?",
-		// 		text: "You will not be able to recover this imaginary file!",
-		// 		type: "warning",
-		// 		showCancelButton: true,
-		// 		confirmButtonColor: "#DD6B55",
-		// 		confirmButtonText: "Yes, delete it!",
-		// 		closeOnConfirm: false,
-		// 		//closeOnCancel: false
-		// 	},
-		// 	function () {
-		// 		swal("Deleted!", "Your imaginary file has been deleted!", "success");
-		// 	}
-		// );
-	}
-});
-$(document).on("click", ".editbtn", function () {
-	var CSPK = $("#CompShopPK").text();
-	alert(CSPK);
-	var BASE_URL = "<?php echo base_url();?>";
-	$.ajax({
-		url: BASE_URL+"getshopdetails/" + CSPK,
-		method: "POST",
-		data: { shop_id: CSPK },
-		dataType: "json",
-		success: function (data) {
-			alert(data);
-			$("#shopName").val(data.shop_name);
-			$("#c_number").val(data.contact_number);
-			$("#emailadd").val(data.email_address);
-			$("#AddressIN").val(data.address);
-
-			let text = data.coordinates;
-			const myArray = text.split(",");
-
-			var lat = myArray[0];
-			var lng = myArray[1];
-
-			$("#lat").val(lat);
-			$("#lng").val(lng);
-
-			$("#updateComputerModal").modal('show');
-		},
-	});
-});
-$(document).on("click", "#updatecomputershopbtn", function () {
-	var validator = $("#updatecompform").validate();
-	var BASE_URL = "<?php echo base_url();?>";
-	if ($("#updatecompform").valid()) {
-		var CSPK = $("#CompShopPK").text();
-		var s_name = $("#shopName").val();
-		var c_number = $("#c_number").val();
-		var email = $("#emailadd").val();
-		var add = $("#AddressIN").val();
-		var lat = $("#lat").val();
-		var lng = $("#lng").val();
-		var coordinate = lat + "," + lng;
-
-		$.ajax({
-			url: BASE_URL+"updateshopdetails/" + CSPK,
-			method: "POST",
-			data: {
-				shop_name: s_name,
-				number: c_number,
-				email_add: email,
-				address: add,
-				coor: coordinate,
-			},
-			success: function (data) {
-				// window.location = "listofcomputershop";
-				swal({
-					title: "Good job!",
-					text: "ComputerShop has been registered!",
-					icon: "success",
-					button: "Continue",
-				}).then((value) => {
-					window.location = BASE_URL +"admin-list/"+CSPK;
-				});
-			},
-		});
-	} else {
-		swal(
-			{
-				title: "Are you sure?",
-				text: "You will not be able to recover this imaginary file!",
-				type: "warning",
-				showCancelButton: true,
-				confirmButtonColor: "#DD6B55",
-				confirmButtonText: "Yes, delete it!",
-				closeOnConfirm: false,
-				//closeOnCancel: false
-			},
-			function () {
-				swal("Deleted!", "Your imaginary file has been deleted!", "success");
-			}
-		);
-	}
-});
-
-</script>

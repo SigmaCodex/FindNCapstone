@@ -86,11 +86,11 @@
           <h5 id="errorvac"></h5>
         </div>
         <div class="button" >
-          <input type="" value="Register" id="registration_btn" disabled="disabled">        
+          <input type="" value="Register" id="registration_btn" >        
         </div>
       </form>
 
-      <form>
+      <!-- <form>
         <div class="imagebody">
           <div class="container1">
             <span class="gender-title">Vaccination Card</span>
@@ -112,7 +112,7 @@
                 
           </div>
         </div>
-      </form>
+      </form> -->
     </div>
   </div>
 </body>
