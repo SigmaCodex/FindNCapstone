@@ -3,9 +3,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class LogicalController extends CI_Controller {
 
+ 
     public function login_user(){
         $this->load->model('MainModel');
         $result = $this->MainModel->login_user();
+        $user_status = $this->session->userdata('status');
         if(!$result){
             echo "no-user";
         }else{
@@ -13,7 +15,12 @@ class LogicalController extends CI_Controller {
            echo $user_type;
         }
     }
-
+    public function shopAdmin_login(){
+        $user_id_admin = $this->session->userdata('user_id');
+        $this->load->model('MainModel');
+        $this->MainModel->checkShopAdminAccount($user_id_admin);
+        //  echo $this->session->userdata('admin_shop_name'); //return data to ajax
+    }
     public function logout_user(){
         $this->session->sess_destroy();
         // redirect("http://localhost:8080/FindNCapstone/findnlogin");
@@ -91,6 +98,7 @@ class LogicalController extends CI_Controller {
     public function disableFinderAccountStatus(){
         $this->load->model('MainModel');
         $this->MainModel->disableFinderAccountStatus();
+        
     }
 
     public function getListOfComputerShops(){
@@ -131,10 +139,12 @@ class LogicalController extends CI_Controller {
         $this->load->model('MainModel');
         $this->MainModel->updateShopDetails($id);
     }
+
     public function updateSuperAdminPassword($id){
         $this->load->model('MainModel');
         $this->MainModel->updateSuperAdminPassword($id);
     }
+
     public function updateServiceFee($comptype_id){
         $this->load->model('MainModel');
         $this->MainModel->updateServiceFee($comptype_id);
@@ -216,7 +226,14 @@ class LogicalController extends CI_Controller {
         $this->load->model('MainModel');
         $this->MainModel->updateComputerTypeStatus($id);
     }
-
+    public function createFinderNotif(){
+        $this->load->model('MainModel');
+        $this->MainModel->createFinderNotif();
+    }
+    public function createComputerNotif(){
+        $this->load->model('MainModel');
+        $this->MainModel->createComputerNotif();
+    }
 
         //Shop Computer Details
     public function uploadshopimages($shop_id){

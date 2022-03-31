@@ -171,6 +171,7 @@
 			</div>
 		</div>
 	</section>
+
 <div id="changePassword" class="modal fade" role="dialog">
   <div class="modal-dialog">
     <!-- Modal content-->
@@ -208,6 +209,7 @@
     </div>
   </div>
 </div>
+
 <div id="updateFeeModal" class="modal fade" role="dialog">
   <div class="modal-dialog">
     <!-- Modal content-->

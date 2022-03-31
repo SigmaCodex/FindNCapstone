@@ -27,7 +27,6 @@ class MainModel extends CI_Model{
       }else{
         return false;
       }
-
     }
     //finder user account update
     public function updateFinderAccount($status){
@@ -207,6 +206,7 @@ class MainModel extends CI_Model{
         $query = $this->db->get();
         return $query->result();
     }
+
     public function updateSuperAdminPassword(){
         $user_id = $this->session->userdata('user_id');
         $datafinder = array(
@@ -258,8 +258,6 @@ class MainModel extends CI_Model{
 		}
     }
 
-
-    
     //finders
     public function registerFinder(){
         $Primarycode = 0;
@@ -456,7 +454,60 @@ class MainModel extends CI_Model{
         return $query->result();
     }
 
+    // public function createNotif($user_id){
+    //     $datafinder = array(
+    //         'user_id'               => 	 $user_id,
+    //         'notification_type'     => 	 "simple",
+    //         'notif_title'           => 	 "this is a title",
+    //         'notif_body'            =>   "this is a body",
+    //         'notif_created'         =>   "8/28/1999",
+    //         'status'                =>   "active",
+    //     );
+    //     $this->db->insert('notifications',$datafinder);
+    //     echo json_encode($datafinder);
+    // }
+    public function createComputerNotif(){
+        $Primarycode = 0;
+        $Primarycode = $this->generatePrimarykey();
+        $datafinder = array(
+            'cp_noti_id'           => 	 $Primarycode,
+            'to_shop_id'            => 	 "1",
+            'noti_title'            => 	 "this is a title",
+            'noti_body'            =>   "this is a body",
+            'noti_created'         =>   "8/28/1999",
+            'status'                =>   "active",
+        );
+        $this->db->insert('compshop_notification',$datafinder);
+        echo json_encode($datafinder);
+    }
+    public function createFinderNotif(){
+        $Primarycode = 0;
+        $Primarycode = $this->generatePrimarykey();
+        $datafinder = array(
+            'finder_notif_id'       => 	 $Primarycode,
+            'to_user_id'            => 	 "1",
+            'noti_title'            => 	 "this is a title",
+            'noti_body'            =>   "this is a body",
+            'noti_created'         =>   "8/28/1999",
+            'status'                =>   "active",
+        );
+        $this->db->insert('finder_notification',$datafinder);
+        echo json_encode($datafinder);
+    }
+
     //admin
+    public function checkShopAdminAccount($id){
+        $this->db->select('compmanager.*,computershop.shop_name');
+        $this->db->from('compmanager');
+        $this->db->join('computershop', 'computershop.shop_id = compmanager.shop_id_fk');
+        $this->db->where('user_id',$id);
+        $query = $this->db->get();
+        if(!empty($query->result_array())){
+            $row = $query->row();
+            $this->session->set_userdata('admin_shop_id', $row->shop_id_fk);
+            $this->session->set_userdata('admin_shop_name', $row->shop_name);
+        }
+    }
     public function addshopPosts($id){
         $date_created = date('m/d/y');
         $data = array(
