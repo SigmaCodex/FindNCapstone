@@ -68,6 +68,9 @@ $route['admin-list/(:num)'] = 'main_controller/adminlist/$1';
     $route['addRate/(:num)/(:num)'] = 'logicalcontroller/addRate/$1/$2';
     $route['updateRate/(:num)/(:num)/(:num)'] = 'logicalcontroller/updateRate/$1/$2/$3';
 
+    $route['computerNotif'] = 'logicalcontroller/createComputerNotif';
+    $route['finderNotif'] = 'logicalcontroller/createFinderNotif';
+
     //admin
     $route['updateComputerDetails/(:num)'] = 'logicalcontroller/updateComputerDetails/$1';
     $route['addcomtype/(:num)'] = 'logicalcontroller/addComputerType/$1';
