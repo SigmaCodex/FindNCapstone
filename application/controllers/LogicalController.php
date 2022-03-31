@@ -200,6 +200,15 @@ class LogicalController extends CI_Controller {
         $this->load->model('MainModel');
         $result = $this->MainModel->deleteComments($id);
     }
+    public function selectforUpdateComment($id){
+        $this->load->model('MainModel');
+        $result = $this->MainModel->selectforUpdateComment($id);
+        echo json_encode($result);
+    }
+    public function updateComments($id){
+        $this->load->model('MainModel');
+        $result = $this->MainModel->updateComments($id);
+    }
     public function updateshopPosts($id){
         $this->load->model('MainModel');
         $this->MainModel->updateshopPosts($id);

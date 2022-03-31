@@ -1,4 +1,4 @@
-<!doctype html>
+ <!doctype html>
 <html lang="en">
   <head>
   	<title>Shop Admin Posts</title>
@@ -30,7 +30,6 @@
 			<!-- <li class="logo"><a href="">Back</a></li> -->
             <li class="logo"><a href="#">FindN</a></li>
 			<li class="item button secondary"><a href="<?php echo base_url();?>user-logout">Log out</a></li>
-
             <li class="toggle"><span class="bars"></span></li>
         </ul>
     	</nav>
@@ -94,7 +93,12 @@
                                     <div class='cell__c__img'><img class="comment-pic" src=""/></div>
                                     <div class='cell__footer'>
                                     <div class='cell__time pull-left'><?php echo $s->date?></div>
-                                    <button class="dlt_com_btn btn-sm btn-primary text-uppercase pull-right" data="<?php echo $s->comment_id;?>">Delete</button>  
+									<?php if(isset($user_id)){
+										if($user_id == $s->user_id){
+											echo "<button class='dlt_com_btn btn-sm btn-primary text-uppercase pull-right' data='$s->comment_id'>Delete</button>  
+											<button class='editbtn btn-sm btn-primary text-uppercase pull-right' editdata='$s->comment_id'>Edit</button>";
+										}
+									}?>
                                     </div>
                                     
                                     </div>
@@ -106,6 +110,7 @@
                             style="height:7rem;"></textarea>
                             <div class="hstack justify-content-end gap-2">
                   <button class="addcombtn btn-sm btn-primary text-uppercase">comment</button>
+				  <button class="editaddcombtn btn-sm btn-primary text-uppercase" data="<?php if(isset($user_id)){echo $user_id;} ?>" >edit comment</button>
                </div>
                             </td>
 						    </tr>
@@ -188,6 +193,41 @@ $(document).on("click", '.addcombtn', function() {
          });
  });
 </script>
+<script>
+$(document).on("click", ".editbtn", function () {
+	var id = $(this).attr("editdata");
+	var BASE_URL = "<?php echo base_url();?>";
+	$(".editaddcombtn").attr("data",id);
+	$.ajax({
+		url: BASE_URL+"getComment/" + id,
+		method: "POST",
+        data: { comment_id: id },
+		dataType: "json",
+		success: function (data) {	
+			$("#comm_text").val(data.comment);
+		},
+	});
+});
+  $(document).on("click", '.editaddcombtn', function() {
+    var BASE_URL = "<?php echo base_url();?>";
+	var comm = $('#comm_text').val();
+    var id = $(this).attr("data");
+	alert(id);
+    $.ajax({
+          url:BASE_URL+"updateComment/"+id,
+          type: "POST",
+          data:{comment_txt:comm},
+          beforeSend : function()
+          {
+          alert("processing");
+          },
+          success: function(data)
+          {
+            location.reload();   
+          }
+         });
+ });
+ </script>
 <script>
 		$(document).on("click",".dlt_com_btn",function(){
          var BASE_URL = "<?php echo base_url();?>";

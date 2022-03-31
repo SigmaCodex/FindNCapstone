@@ -189,6 +189,7 @@ class Main_Controller extends CI_Controller {
 	}
 	public function shopadmin_viewPost($post_id){
 		$this->load->model('MainModel');
+		$val['user_id'] = $this->session->userdata('user_id');
 		$val['id'] = $post_id;
 		$val['postDetails'] = $this->MainModel->viewPosts($post_id);
 		$val['userDetails'] = $this->MainModel->getallPostComments($post_id);
