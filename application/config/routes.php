@@ -52,6 +52,9 @@ $route['admin-list/(:num)'] = 'main_controller/adminlist/$1';
     $route['comptypefee/(:num)'] = 'logicalcontroller/getComputerTypeServiceFee/$1';
     $route['updateFee/(:num)'] = 'logicalcontroller/updateServiceFee/$1';
 
+    $route['checkpassword'] = 'logicalcontroller/getSuperAdminPassword';
+    $route['updatepassword/(:any)'] = 'logicalcontroller/updateSuperAdminPassword/$1';
+
     $route['getshopdetails/(:num)'] = 'logicalcontroller/getShopDetails/$1';
     $route['updateshopdetails/(:num)'] = 'logicalcontroller/updateShopDetails/$1';
     $route['deleteCompShop/(:num)'] = 'logicalcontroller/deleteComputerShop/$1';

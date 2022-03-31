@@ -79,6 +79,16 @@ class MainModel extends CI_Model{
         $this->db->insert('computershop',$data);
         // echo json_encode($data);
     }
+    public function getSuperAdminPassword(){
+        $user_id = $this->session->userdata('user_id');
+
+        $this->db->select('*');
+        $this->db->from('user');
+        $this->db->where('user_id',$user_id);
+        $query = $this->db->get();
+        $resultquery = $query->row_array();
+        return $resultquery;
+    }
     public function getAdminList($id){
 		$this->db->select('*');
         $this->db->from('computershop');
@@ -166,6 +176,15 @@ class MainModel extends CI_Model{
         $this->db->where('shop_id',$id);
         $query = $this->db->get();
         return $query->result();
+    }
+    public function updateSuperAdminPassword(){
+        $user_id = $this->session->userdata('user_id');
+        $datafinder = array(
+            'password'         => 	 $this->input->post('password'),
+        );
+        $this->db->where('user_id',$user_id);
+        $this->db->update('user',$datafinder);
+        echo json_encode($datafinder);
     }
 
     public function registerAdmin(){

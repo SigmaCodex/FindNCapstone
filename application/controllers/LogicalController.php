@@ -44,9 +44,10 @@ class LogicalController extends CI_Controller {
         $this->load->model('MainModel');
         $this->MainModel->deleteAdmin($id);
     }
-    public function getAdminList($id){
+    public function getSuperAdminPassword(){
         $this->load->model('MainModel');
-        $this->MainModel->getAdminList($id);
+        $result = $this->MainModel->getSuperAdminPassword();
+        echo json_encode($result);
     }
     //FINDERS
     public function FindersCompBookingRequest(){
@@ -124,6 +125,10 @@ class LogicalController extends CI_Controller {
     public function updateShopDetails($id){
         $this->load->model('MainModel');
         $this->MainModel->updateShopDetails($id);
+    }
+    public function updateSuperAdminPassword($id){
+        $this->load->model('MainModel');
+        $this->MainModel->updateSuperAdminPassword($id);
     }
     public function updateServiceFee($comptype_id){
         $this->load->model('MainModel');
