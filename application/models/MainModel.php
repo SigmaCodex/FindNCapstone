@@ -347,11 +347,23 @@ class MainModel extends CI_Model{
     }
     // finder select all Computerbookingtransactions
     public function view_finderBookingTransaction($user_id){
-        $this->db->select('transaction.*,comp_booking.*,computer_type.name,computer_type.rate');
+        $this->db->select('computershop.shop_name,transaction.*,comp_booking.*,computer_type.name,computer_type.rate');
         $this->db->from('transaction');
+        $this->db->join('computershop', 'computershop.shop_id = transaction.shop_id_fk');
         $this->db->join('comp_booking', 'comp_booking.transaction_id = transaction.transaction_id');
-         $this->db->join('computer_type', 'computer_type.Ctype_id = comp_booking.comp_type_id', 'left');
+        $this->db->join('computer_type', 'computer_type.Ctype_id = comp_booking.comp_type_id', 'left');
         $this->db->where('user_id_fk',$user_id);
+        $query = $this->db->get();
+        return $query->result();
+    }
+    // finder select ComputerBookingTransaction
+    public function select_finderBookingTransaction($transaction_id){
+        $this->db->select('computershop.shop_name,transaction.*,comp_booking.*,computer_type.name,computer_type.rate');
+        $this->db->from('transaction');
+        $this->db->join('computershop', 'computershop.shop_id = transaction.shop_id_fk');
+        $this->db->join('comp_booking', 'comp_booking.transaction_id = transaction.transaction_id');
+        $this->db->join('computer_type', 'computer_type.Ctype_id = comp_booking.comp_type_id', 'left');
+        $this->db->where('transaction.transaction_id',$transaction_id);
         $query = $this->db->get();
         return $query->result();
     }

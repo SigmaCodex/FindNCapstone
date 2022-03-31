@@ -74,7 +74,8 @@ $route['comptypefee/(:num)'] = 'main_controller/shopadmin_comptypeInfo/$1';
     $route['disableFinderAccountStatus'] ='logicalcontroller/disableFinderAccountStatus';
     $route['select-computershops/(:any)/(:num)'] = 'logicalcontroller/selectComputerShop/$1/$2';
     $route['view-FinderBookingTransaction/(:num)'] = 'logicalcontroller/view_finderBookingTransaction/$1';
-
+    $route['select-FinderBookingTransaction/(:num)'] = 'logicalcontroller/select_finderBookingTransaction/$1';
+   
     $route['addRate/(:num)/(:num)'] = 'logicalcontroller/addRate/$1/$2';
     $route['updateRate/(:num)/(:num)/(:num)'] = 'logicalcontroller/updateRate/$1/$2/$3';
 
