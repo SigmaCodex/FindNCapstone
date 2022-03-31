@@ -50,7 +50,7 @@ class Main_Controller extends CI_Controller {
 		// $val['shopdetails']	 = $this->MainModel->getShopDetails($shopid);
 		$val['shop_images']	 = $this->MainModel->viewShopimages($shopid);
 		// $val['computertype_details']	 = $this->MainModel->getListOfComputerTypes($shopid);
-		echo json_encode($val);
+		// echo json_encode($val);
 		$this->load->view('viewShop',$val);
 	}
 	public function viewRequestBook($shopid)
@@ -79,7 +79,14 @@ class Main_Controller extends CI_Controller {
     }
 
 	public function viewMap(){
-		$this->load->view('viewmap');
+		$this->load->model('MainModel');
+		$val['listofshops']	 = $this->MainModel->getListOfComputerShops();
+		$this->load->view('finders/navbar');
+		 $this->load->view('viewmap',$val);
+		// $string = "123,46,78,000";
+		// $str_arr = explode (",", $string); 
+		// print_r($str_arr[0]);
+		
 	}
 	public function viewFinders_HomePage()
 	{

@@ -28,7 +28,7 @@ $route['viewShop/(:num)']     = 'main_controller/viewShop/$1';
 $route['findershomepage'] = 'main_controller/viewFinders_HomePage';
 $route['accountSettings'] = 'main_controller/viewAccountSettings';
 
-$route['finder-ComputerBookingfinder/(:num)']   = 'main_controller/viewRequestBook/$1';
+$route['finder-ComputerBookingRequest/(:num)']   = 'main_controller/viewRequestBook/$1';
 $route['finder-Compbookingrequest/(:num)'] = 'main_controller/finder_BookingRequest/$1';
 $route['computerbform'] = 'main_controller/viewcompbookForm';
 $route['viewMap']       = 'main_controller/viewMap';
