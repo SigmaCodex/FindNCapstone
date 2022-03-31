@@ -108,6 +108,16 @@ class MainModel extends CI_Model{
         $this->db->insert('computershop',$data);
         // echo json_encode($data);
     }
+    public function getSuperAdminPassword(){
+        $user_id = $this->session->userdata('user_id');
+
+        $this->db->select('*');
+        $this->db->from('user');
+        $this->db->where('user_id',$user_id);
+        $query = $this->db->get();
+        $resultquery = $query->row_array();
+        return $resultquery;
+    }
     public function getAdminList($id){
 		$this->db->select('*');
         $this->db->from('computershop');
@@ -139,6 +149,13 @@ class MainModel extends CI_Model{
     public function getListOfAdmins($id){
 		$this->db->select('*');
         $this->db->from('compmanager');
+        $this->db->where('shop_id_fk',$id);
+        $query = $this->db->get();
+        return $query->result();
+    }
+    public function getComputerTypeServiceFee($id){
+        $this->db->select('*');
+        $this->db->from('computer_type');
         $this->db->where('shop_id_fk',$id);
         $query = $this->db->get();
         return $query->result();
@@ -189,6 +206,17 @@ class MainModel extends CI_Model{
         $query = $this->db->get();
         return $query->result();
     }
+
+    public function updateSuperAdminPassword(){
+        $user_id = $this->session->userdata('user_id');
+        $datafinder = array(
+            'password'         => 	 $this->input->post('password'),
+        );
+        $this->db->where('user_id',$user_id);
+        $this->db->update('user',$datafinder);
+        echo json_encode($datafinder);
+    }
+
     public function registerAdmin(){
         $Primarycode = 0;
         $Primarycode = $this->generatePrimarykey();
@@ -230,8 +258,6 @@ class MainModel extends CI_Model{
 		}
     }
 
-
-    
     //finders
     public function registerFinder(){
         $Primarycode = 0;
@@ -349,7 +375,7 @@ class MainModel extends CI_Model{
         return $query->result();
     }
     public function getallPostComments($id){
-        $this->db->select('user.username, comments.*');
+        $this->db->select('user.username, user.user_type, comments.*');
         $this->db->from('comments');
         $this->db->join('user', 'user.user_id = comments.user_id');
         // $this->db->join('finders', 'finders.user_id = user.user_id', 'left');
@@ -366,6 +392,14 @@ class MainModel extends CI_Model{
         $resultquery = $query->row_array();
         return $resultquery;
     }
+    public function selectforUpdateComment($id){
+        $this->db->select('*');
+        $this->db->from('comments');
+        $this->db->where('comment_id',$id);
+        $query = $this->db->get();
+        $resultquery = $query->row_array();
+        return $resultquery;
+    }
 
     public function getComputerTypeInfo($id){
         $this->db->select('*');
@@ -374,6 +408,14 @@ class MainModel extends CI_Model{
         $query = $this->db->get();
         $resultquery = $query->row_array();
         return $resultquery;
+    }
+    public function updateServiceFee($comptype_id){
+        $datafinder = array(
+            'service_fee'     => 	 $this->input->post('service_fee'),
+        );
+        $this->db->where('Ctype_id',$comptype_id);
+        $this->db->update('computer_type',$datafinder);
+        echo json_encode($datafinder);
     }
  
     public function addRate($shop_id, $user_id){
@@ -420,6 +462,47 @@ class MainModel extends CI_Model{
         return $query->result();
     }
 
+    // public function createNotif($user_id){
+    //     $datafinder = array(
+    //         'user_id'               => 	 $user_id,
+    //         'notification_type'     => 	 "simple",
+    //         'notif_title'           => 	 "this is a title",
+    //         'notif_body'            =>   "this is a body",
+    //         'notif_created'         =>   "8/28/1999",
+    //         'status'                =>   "active",
+    //     );
+    //     $this->db->insert('notifications',$datafinder);
+    //     echo json_encode($datafinder);
+    // }
+    public function createComputerNotif(){
+        $Primarycode = 0;
+        $Primarycode = $this->generatePrimarykey();
+        $datafinder = array(
+            'cp_noti_id'           => 	 $Primarycode,
+            'to_shop_id'            => 	 "1",
+            'noti_title'            => 	 "this is a title",
+            'noti_body'            =>   "this is a body",
+            'noti_created'         =>   "8/28/1999",
+            'status'                =>   "active",
+        );
+        $this->db->insert('compshop_notification',$datafinder);
+        echo json_encode($datafinder);
+    }
+    public function createFinderNotif(){
+        $Primarycode = 0;
+        $Primarycode = $this->generatePrimarykey();
+        $datafinder = array(
+            'finder_notif_id'       => 	 $Primarycode,
+            'to_user_id'            => 	 "1",
+            'noti_title'            => 	 "this is a title",
+            'noti_body'            =>   "this is a body",
+            'noti_created'         =>   "8/28/1999",
+            'status'                =>   "active",
+        );
+        $this->db->insert('finder_notification',$datafinder);
+        echo json_encode($datafinder);
+    }
+
     //admin
     public function checkShopAdminAccount($id){
         $this->db->select('compmanager.*,computershop.shop_name');
@@ -461,10 +544,11 @@ class MainModel extends CI_Model{
         $this->db->delete('post_events');
     }
     public function addComments($id){
+        $comuser_id = $this->session->userdata('user_id');
         $date_created = date('m/d/y');
         $data = array(
             'post_id' => $id,
-            'user_id' => '2222855',
+            'user_id' => $comuser_id,
             'comment'   => 	 $this->input->post('comment_txt'),
             'date' =>  $date_created
         );
@@ -474,6 +558,16 @@ class MainModel extends CI_Model{
     public function deleteComments($id){
         $this->db->where('comment_id',$id);
         $this->db->delete('comments');
+    }
+    public function updateComments($id){
+        $date_created = date('m/d/y');
+        $data = array(
+            'comment'   => 	 $this->input->post('comment_txt'),
+            'date' =>  $date_created
+        );
+        $this->db->where('comment_id',$id);
+        $this->db->update('comments',$data);
+        echo json_encode($data);
     }
     public function updateComputerDetails($id){
         $datafinder = array(

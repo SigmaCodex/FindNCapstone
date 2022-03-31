@@ -51,9 +51,10 @@ class LogicalController extends CI_Controller {
         $this->load->model('MainModel');
         $this->MainModel->deleteAdmin($id);
     }
-    public function getAdminList($id){
+    public function getSuperAdminPassword(){
         $this->load->model('MainModel');
-        $this->MainModel->getAdminList($id);
+        $result = $this->MainModel->getSuperAdminPassword();
+        echo json_encode($result);
     }
     //FINDERS
     public function FindersCompBookingRequest(){
@@ -122,6 +123,11 @@ class LogicalController extends CI_Controller {
         $result = $this->MainModel->getListOfAdmins($id);
         echo json_encode($result);
     }
+    public function getComputerTypeServiceFee($id){
+        $this->load->model('MainModel');
+        $result = $this->MainModel->getComputerTypeServiceFee($id);
+        echo json_encode($result);
+    }
 
     public function getShopDetails($id){
         $this->load->model('MainModel');
@@ -132,6 +138,16 @@ class LogicalController extends CI_Controller {
     public function updateShopDetails($id){
         $this->load->model('MainModel');
         $this->MainModel->updateShopDetails($id);
+    }
+
+    public function updateSuperAdminPassword($id){
+        $this->load->model('MainModel');
+        $this->MainModel->updateSuperAdminPassword($id);
+    }
+
+    public function updateServiceFee($comptype_id){
+        $this->load->model('MainModel');
+        $this->MainModel->updateServiceFee($comptype_id);
     }
 
     public function selectComputerShop($id){
@@ -184,6 +200,15 @@ class LogicalController extends CI_Controller {
         $this->load->model('MainModel');
         $result = $this->MainModel->deleteComments($id);
     }
+    public function selectforUpdateComment($id){
+        $this->load->model('MainModel');
+        $result = $this->MainModel->selectforUpdateComment($id);
+        echo json_encode($result);
+    }
+    public function updateComments($id){
+        $this->load->model('MainModel');
+        $result = $this->MainModel->updateComments($id);
+    }
     public function updateshopPosts($id){
         $this->load->model('MainModel');
         $this->MainModel->updateshopPosts($id);
@@ -210,7 +235,14 @@ class LogicalController extends CI_Controller {
         $this->load->model('MainModel');
         $this->MainModel->updateComputerTypeStatus($id);
     }
-
+    public function createFinderNotif(){
+        $this->load->model('MainModel');
+        $this->MainModel->createFinderNotif();
+    }
+    public function createComputerNotif(){
+        $this->load->model('MainModel');
+        $this->MainModel->createComputerNotif();
+    }
 
         //Shop Computer Details
     public function uploadshopimages($shop_id){
