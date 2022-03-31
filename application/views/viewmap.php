@@ -33,10 +33,10 @@
         right: 0%;
        /* translate:transform (-50,-50);*/
        	margin: auto;
-        bottom: 30%;
+       top: 10%;
   	    
         width: 100%;
-        height: 85vh;
+        height: 80%;
      
 /*
         border-radius: 5%;
@@ -89,63 +89,57 @@ var geojson = {
   type: 'FeatureCollection',
   features: [
 
-  //   {
-  //   type: 'Feature',
-  //   geometry: {
-  //     coordinates: [123.8976816, 10.2981602]
-  //   },
-  //   properties: {
-  //     title: 'G7',
-  //     description: '<strong>G-7 CyberCafe Cebu, Cebu City.</strong><p><a data-toggle="modal" data-target="#Modal1" compID="2" class="btn btn-primary btn-sm select_compshop" value="2" target="_blank">View</a> <br> We are open to serve you!G-7 UrgelloAddress: G/F JKR Ladies Dormitory, A. Tormis St., Sambag II, Urgello, Cebu CityOperating hours : 8am - 9pmG-7 P.Del RosarioAddress: P.Del Rosario St., Cebu City (beside Palawan Pawnshop)Operating hours : 8am - 9pm</p>'
-  //   }
-  // },
+//star of loop
 
 
-  {
-    type: 'Feature',
-    geometry: {
-      coordinates: [123.898581319924, 10.297919]
-    },
-    properties: {
-      title: 'Tnc Computer Shop',
-      description: '<strong>TNC Cyber Cafe Cebu, Cebu City.</strong><br><a class="btn btn-primary btn-sm select_compshop" href="viewShop/7">View</a><p>We are open to serve you!<br>Address: P.Del Rosario St., Cebu City Operating hours : 8am - 9pm</p>'
+
+<?php 
+   $long = "123.898581319924";
+  foreach ($listofshops as $s) {
+
+  
+    // $str_arr = explode (",", $s->coordinates); 
+    // $newCoordinate = $str_arr[1].","$str_arr[0];
+     $string = $s->coordinates;
+     $str_arr = explode (",", $string);  
+    //  $coor = .","print_r($str_arr[1]);
+  echo "{
+      type: 'Feature',
+       geometry: {
+        coordinates: [".$str_arr[1].",".$str_arr[0]."]
+     },
+      properties: {
+        title: '".$s->shop_name."',
+        description: '<strong>GameCity</strong><p><a href= ".'"viewShop/'.$s->shop_id.'"'."        class=".'"btn btn-primary"'.">Click</a></p>'
+      }
+     },";
+
     }
-  },
+?>
 
-  //  {
+  // {
   //   type: 'Feature',
   //   geometry: {
-  //     coordinates: [123.8965304,10.2974556]
+  //     coordinates: [123.898581319924, 10.297919]
   //   },
   //   properties: {
-  //     title: 'Live Wire',
-  //     description: '<strong>Live Wire.</strong><p><a data-toggle="modal" data-target="#Modal1"  compID="3" class="btn btn-primary btn-sm select_compshop" target="_blank">View</a> <br> We are open to serve you!G-7 UrgelloAddress: G/F JKR Ladies Dormitory, A. Tormis St., Sambag II, Urgello, Cebu CityOperating hours : 8am - 9pmG-7 P.Del RosarioAddress: P.Del Rosario St., Cebu City (beside Palawan Pawnshop)Operating hours : 8am - 9pm</p>'
+  //     title: 'Tnc Computer Shop',
+  //     description: '<strong>TNC Cyber Cafe Cebu, Cebu City.</strong><br><a class="btn btn-primary btn-sm select_compshop" href="viewShop/7">View</a><p>We are open to serve you!<br>Address: P.Del Rosario St., Cebu City Operating hours : 8am - 9pm</p>'
   //   }
   // },
 
-  //  {
+  // {
   //   type: 'Feature',
   //   geometry: {
-  //     coordinates: [123.89575304,10.2974556]
+  //     coordinates: [123.89735336183276, 10.295601483082422]
   //   },
   //   properties: {
-  //     title: 'Net Express',
-  //     description: '<strong>Net Express Cebu City.</strong><p><a data-toggle="modal" data-target="#Modal1"  compID="4" class="btn btn-primary btn-sm select_compshop" target="_blank">View</a> <br> We are open to serve you!G-7 UrgelloAddress: G/F JKR Ladies Dormitory, A. Tormis St., Sambag II, Urgello, Cebu CityOperating hours : 8am - 9pmG-7 P.Del RosarioAddress: P.Del Rosario St., Cebu City (beside Palawan Pawnshop)Operating hours : 8am - 9pm</p>'
+  //     title: 'GameCity',
+  //     description: '<strong>GameCity</strong><p><a class="btn btn-primary btn-sm select_compshop" href="viewShop/7">View</a> </p>'
   //   }
-  // },
+  // }
 
-
-
-  {
-    type: 'Feature',
-    geometry: {
-      coordinates: [123.89735336183276, 10.295601483082422]
-    },
-    properties: {
-      title: 'GameCity',
-      description: '<strong>GameCity</strong><p><a class="btn btn-primary btn-sm select_compshop" href="viewShop/7">View</a> </p>'
-    }
-  }
+  //end of loop
 
   ]
 

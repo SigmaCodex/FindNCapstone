@@ -23,11 +23,11 @@ $route['loginpage'] = 'main_controller/viewLogin';
 //finders
 $route['findnRegister'] = 'main_controller/viewFindnRegister';
 $route['findnlogin'] = 'main_controller/viewFindNLogin';
-$route['viewShop/(:num)']     = 'main_controller/viewViewShop/$1';
+$route['viewShop/(:num)']     = 'main_controller/viewShop/$1';
 $route['findershomepage'] = 'main_controller/viewFinders_HomePage';
 $route['accountSettings'] = 'main_controller/viewAccountSettings';
 
-$route['finder-ComputerBookingfinder/(:num)']   = 'main_controller/viewRequestBook/$1';
+$route['finder-ComputerBookingRequest/(:num)']   = 'main_controller/viewRequestBook/$1';
 $route['finder-Compbookingrequest/(:num)'] = 'main_controller/finder_BookingRequest/$1';
 $route['computerbform'] = 'main_controller/viewcompbookForm';
 $route['viewMap']       = 'main_controller/viewMap';
@@ -73,7 +73,8 @@ $route['comptypefee/(:num)'] = 'main_controller/shopadmin_comptypeInfo/$1';
     $route['disableFinderAccountStatus'] ='logicalcontroller/disableFinderAccountStatus';
     $route['select-computershops/(:any)/(:num)'] = 'logicalcontroller/selectComputerShop/$1/$2';
     $route['view-FinderBookingTransaction/(:num)'] = 'logicalcontroller/view_finderBookingTransaction/$1';
-
+    $route['select-FinderBookingTransaction/(:num)'] = 'logicalcontroller/select_finderBookingTransaction/$1';
+   
     $route['addRate/(:num)/(:num)'] = 'logicalcontroller/addRate/$1/$2';
     $route['updateRate/(:num)/(:num)/(:num)'] = 'logicalcontroller/updateRate/$1/$2/$3';
 
@@ -89,6 +90,7 @@ $route['comptypefee/(:num)'] = 'main_controller/shopadmin_comptypeInfo/$1';
     $route['updateCompTypeStat/(:num)'] = 'logicalcontroller/updateComputerTypeStatus/$1';
     $route['getCompTypeInfo/(:num)'] = 'logicalcontroller/getComputerTypeInfo/$1';
     $route['uploadshopimages/(:num)'] = 'logicalcontroller/uploadshopimages/$1';
+    $route['removeshopimage/(:num)'] = 'logicalcontroller/removeshopimage/$1';
     $route['getpostComments/(:num)'] = 'logicalcontroller/getallPostComments/$1';
     $route['addComment/(:num)'] = 'logicalcontroller/addComments/$1';
     $route['getComment/(:num)'] = 'logicalcontroller/selectforUpdateComment/$1';

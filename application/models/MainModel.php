@@ -265,15 +265,38 @@ class MainModel extends CI_Model{
              $this->db->insert('transaction',$transaction);
              $this->db->insert('comp_booking', $comp_booking);
     }
-    public function getCshopDetails($id){
-        $this->db->select('*');
-        $this->db->from('computershop');
-        $this->db->where('shop_id',$id);
+
+    // finder select all Computerbookingtransactions
+    public function view_finderBookingTransaction($user_id){
+        $this->db->select('computershop.shop_name,transaction.*,comp_booking.*,computer_type.name,computer_type.rate');
+        $this->db->from('transaction');
+        $this->db->join('computershop', 'computershop.shop_id = transaction.shop_id_fk');
+        $this->db->join('comp_booking', 'comp_booking.transaction_id = transaction.transaction_id');
+        $this->db->join('computer_type', 'computer_type.Ctype_id = comp_booking.comp_type_id', 'left');
+        $this->db->where('user_id_fk',$user_id);
+      
         $query = $this->db->get();
         $resultquery = $query->row_array();
         return $resultquery;
     }
-
+    // finder select ComputerBookingTransaction
+    public function select_finderBookingTransaction($transaction_id){
+        $this->db->select('computershop.shop_name,transaction.*,comp_booking.*,computer_type.name,computer_type.rate');
+        $this->db->from('transaction');
+        $this->db->join('computershop', 'computershop.shop_id = transaction.shop_id_fk');
+        $this->db->join('comp_booking', 'comp_booking.transaction_id = transaction.transaction_id');
+        $this->db->join('computer_type', 'computer_type.Ctype_id = comp_booking.comp_type_id', 'left');
+        $this->db->where('transaction.transaction_id',$transaction_id);
+        $query = $this->db->get();
+        return $query->result();
+    }
+  
+    public function getCshopDetails($id){
+        $this->db->select('*');
+        $this->db->from('computershop');
+        $this->db->where('shop_id',$id);
+    }
+  
      public function getListOfComputerTypes($id){
         $this->db->select('*');
         $this->db->from('computer_type');
@@ -510,10 +533,24 @@ class MainModel extends CI_Model{
         echo json_encode($data);
         $this->db->insert('shop_image', $data);
     }
+    public function removeshopimage($image_id){
+        $this->db->where('image_id',$image_id);
+        $this->db->delete('shop_image');
+    }
+    //view all shopImages
     public function listshopimages($shop_id){
         $this->db->select('*');
         $this->db->from('shop_image');
         $this->db->where('shop_id',$shop_id);
+        $query = $this->db->get();
+        return $query->result();
+    }
+    //view 5 shopImage
+    public function viewShopimages($shop_id){
+        $this->db->select('*');
+        $this->db->from('shop_image');
+        $this->db->where('shop_id',$shop_id);       
+        $this->db->limit(4);
         $query = $this->db->get();
         return $query->result();
     }
