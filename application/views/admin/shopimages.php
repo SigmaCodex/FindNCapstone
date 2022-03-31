@@ -158,13 +158,14 @@
         <div class="card col-md-4" style="width:400px">
             <img class="card-img-top" src="../assets/upload/shop/<?php echo $s->img_file;?>" alt="Card image" style="width:100%">
             <div class="card-body">      
-            <a href="#" class="btn btn-danger">remove</a>
+            <a href="#" class="btn btn-danger btn-remove" image_id ="<?php echo $s->image_id;?>">remove</a>
             </div>
         </div> 
       <?php }?>         
     </div>
    
 </div>
+
 
 
 
@@ -192,6 +193,30 @@
                      success:function(data)  
                      {  
                          alert(data);
+                         location.reload(); 
+                     }  
+                });  
+             
+      });  
+ });  
+ </script>
+ 
+ <script>  
+ $(document).ready(function(){  
+      $('.btn-remove').on('click', function(e){  
+        var image_id = $(this).attr("image_id");
+        var BASE_URL = "<?php echo base_url();?>";
+           e.preventDefault();  
+            alert("processing");
+                $.ajax({  
+                     url: BASE_URL+"removeshopimage/"+image_id ,   
+                     method:"POST",  
+                     data:{},  
+                     contentType: false,  
+                     cache: false,  
+                     processData:false,  
+                     success:function(data)  
+                     {  
                          location.reload(); 
                      }  
                 });  

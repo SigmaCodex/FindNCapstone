@@ -43,14 +43,14 @@ class Main_Controller extends CI_Controller {
 			$this->load->view('accountSettings',$val);
 		}
 	}
-	public function viewViewShop($shopid)
+	public function viewShop($shopid)
 	{
 		$this->load->view('finders/navbar-query');
 		$this->load->model('MainModel');
-		$val['shopdetails']	 = $this->MainModel->getShopDetails($shopid);
-		$val['shop_images']	 = $this->MainModel->listshopimages($shopid);
-		$val['computertype_details']	 = $this->MainModel->getListOfComputerTypes($shopid);
-		// echo json_encode($val);
+		// $val['shopdetails']	 = $this->MainModel->getShopDetails($shopid);
+		$val['shop_images']	 = $this->MainModel->viewShopimages($shopid);
+		// $val['computertype_details']	 = $this->MainModel->getListOfComputerTypes($shopid);
+		echo json_encode($val);
 		$this->load->view('viewShop',$val);
 	}
 	public function viewRequestBook($shopid)

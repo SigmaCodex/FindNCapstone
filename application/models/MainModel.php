@@ -669,11 +669,20 @@ class MainModel extends CI_Model{
         $this->db->where('image_id',$image_id);
         $this->db->delete('shop_image');
     }
-
+    //view all shopImages
     public function listshopimages($shop_id){
         $this->db->select('*');
         $this->db->from('shop_image');
         $this->db->where('shop_id',$shop_id);
+        $query = $this->db->get();
+        return $query->result();
+    }
+    //view 5 shopImage
+    public function viewShopimages($shop_id){
+        $this->db->select('*');
+        $this->db->from('shop_image');
+        $this->db->where('shop_id',$shop_id);       
+        $this->db->limit(4);
         $query = $this->db->get();
         return $query->result();
     }
