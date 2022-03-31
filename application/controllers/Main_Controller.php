@@ -135,11 +135,18 @@ class Main_Controller extends CI_Controller {
 	}
 	//shop admin show pages
 	public function admin_dashboard(){
-		$val['shop_id']   = $this->session->userdata('admin_shop_id'); 
-		$val['shop_name'] = $this->session->userdata('admin_shop_name'); 
-		$this->load->view('admin/template/header',$val);
-		$this->load->view('admin/dashboard',$val);
-		$this->load->view('admin/template/footer');
+		$session = $this->session->userdata('username');
+		$session2 = $this->session->userdata('admin_shop_id');
+		
+		if(!$session && !$session2){
+			redirect(findnlogin);
+		}else{
+			$val['shop_id']   = $this->session->userdata('admin_shop_id'); 
+			$val['shop_name'] = $this->session->userdata('admin_shop_name'); 
+			$this->load->view('admin/template/header',$val);
+			$this->load->view('admin/dashboard',$val);
+			$this->load->view('admin/template/footer');
+		}
 	}
 	public function admin_scanqr(){
 		$this->load->view('admin/template/header');
