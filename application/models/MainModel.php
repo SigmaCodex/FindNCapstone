@@ -538,6 +538,58 @@ class MainModel extends CI_Model{
             $this->session->set_userdata('admin_shop_name', $row->shop_name);
         }
     }
+    // ShopAdmin Booking Request Management
+    // arrival time, computer type name, additonal description, num of ticket 
+    public function getallPendingRequest($shop_id){
+        $this->db->select('transaction.arrival_time,transaction.arrival_date,transaction.instruction,comp_booking.num_ticket,computer_type.name');
+        $this->db->from('transaction');
+        $this->db->join('comp_booking', 'comp_booking.transaction_id = transaction.transaction_id');
+        $this->db->join('computer_type', 'computer_type.Ctype_id = comp_booking.comp_type_id', 'left');
+        $this->db->where('transaction_status', 'pending');
+        $query = $this->db->get();
+        // return $query->result();
+        echo json_encode($query->result());
+    }
+    public function getallAcceptedRequest($shop_id){
+        $this->db->select('transaction.arrival_time,transaction.arrival_date,transaction.instruction,comp_booking.num_ticket,computer_type.name');
+        $this->db->from('transaction');
+        $this->db->join('comp_booking', 'comp_booking.transaction_id = transaction.transaction_id');
+        $this->db->join('computer_type', 'computer_type.Ctype_id = comp_booking.comp_type_id', 'left');
+        $this->db->where('transaction_status', 'accepted');
+        $query = $this->db->get();
+        // return $query->result();
+        echo json_encode($query->result());
+    }
+    public function getallCancelledRequest($shop_id){
+        $this->db->select('transaction.arrival_time,transaction.arrival_date,transaction.instruction,comp_booking.num_ticket,computer_type.name');
+        $this->db->from('transaction');
+        $this->db->join('comp_booking', 'comp_booking.transaction_id = transaction.transaction_id');
+        $this->db->join('computer_type', 'computer_type.Ctype_id = comp_booking.comp_type_id', 'left');
+        $this->db->where('transaction_status', 'cancelled');
+        $query = $this->db->get();
+        // return $query->result();
+        echo json_encode($query->result());
+    }
+    public function viewBookRequest($transac_id){
+        $this->db->select('finders.firstname,finders.lastname,transaction.*,comp_booking.num_ticket,computer_type.name,computer_type.rate');
+        $this->db->from('transaction');
+        $this->db->join('user', 'user.user_id = transaction.user_id_fk');
+        $this->db->join('finders', 'user.user_id = finders.user_id', 'left');
+        $this->db->join('comp_booking', 'comp_booking.transaction_id = transaction.transaction_id');
+        $this->db->join('computer_type', 'computer_type.Ctype_id = comp_booking.comp_type_id', 'left');
+        $this->db->where('transaction.transaction_id',$transac_id);
+        $query = $this->db->get();
+        // return $query->result();
+        echo json_encode($query->result());
+    }
+    public function updateBookingTransacStatus($transac_id,$status){
+        $data = array(
+            'transaction_status'   => 	 $status
+        );
+        $this->db->where('transaction_id',$transac_id);
+        $this->db->update('transaction',$data);
+        echo json_encode($data);
+    }
     public function addshopPosts($id){
         $date_created = date('m/d/y');
         $data = array(
