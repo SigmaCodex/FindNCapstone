@@ -43,7 +43,8 @@
 		<nav>
         <ul class="menu">
 			<li class="logo"><a href="<?php echo base_url();?>listofcomputershop">Back</a></li>
-            <li class="logo"><a href="#">FindN</a></li>
+            <li class="logo"><a href=""></a>FindN Super Admin</li>
+			<li class="item button secondary"><a href="" class="changepassmodal" data-target="#changePassword" data-toggle="modal">Change password</a></li>
 			<li class="item button secondary"><a href="<?php echo base_url();?>user-logout">Log out</a></li>
 
             <li class="toggle"><span class="bars"></span></li>
@@ -170,6 +171,45 @@
 			</div>
 		</div>
 	</section>
+
+<div id="changePassword" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+	  <h3 class="text-center mb-3">Change Password</h3>
+      </div>
+      	<div class="modal-body">
+	  		<form id="changepassform" class="" name="changepassform">
+			  		<input id="currentpass" hidden>	
+					<div class="form-group mb-2">
+		      			<label for="servicefee">Current Password</label>
+		      			<input name="curpas" id="curpas" type="text" class="form-control">
+		      		</div>	
+					  <div class="form-group mb-2">
+		      			<label for="servicefee">New Password</label>
+		      			<input name="newpas" id="newpas" type="text" class="form-control">
+		      		</div>
+					  <div class="form-group mb-2">
+		      			<label for="servicefee">Repeat New Password</label>
+		      			<input name="repnewpas" id="repnewpas" type="text" class="form-control">
+		      		</div>
+			</form>
+      	</div>
+		  	<div class="modal-footer">
+                	<div class="form-group mb-2">
+					 	<button type="button" id="close-passbtn" class="close d-flex align-items-center justify-content-center" data-dismiss="modal">
+						 <input value="Cancel" class="form-control btn btn-primary rounded px-3"  readonly="readonly">
+		        		</button>
+	              	</div>
+                	<div class="form-group mb-2">
+					  <input value="Change" class="form-control btn btn-primary rounded submit px-3" id="changepassbtn" readonly="readonly">
+	              	</div>
+            </div>
+    </div>
+  </div>
+</div>
+
 <div id="updateFeeModal" class="modal fade" role="dialog">
   <div class="modal-dialog">
     <!-- Modal content-->
@@ -463,6 +503,35 @@ $(document).ready(function () {
 			},
 		},
 	});
+	$("#changepassform").validate({
+		rules: {
+			curpas: {
+				required: true,
+			},
+			newpas: {
+				required: true,
+				minlength: 8,
+			},
+			repnewpas: {
+				required: true,
+				minlength: 8,
+				equalTo: "#newpas",
+			},
+		},
+		messages: {
+			curpas: {
+				required: "Please enter your current password",
+			},
+			newpas: {
+				required: "Please enter your new password",
+				minlength: "Password should be 8 or more characters long",
+			},
+			repnewpas: {
+				required: "Please repeater your new password",
+				equalTo: "Incorrect password",
+			},
+		},
+	});
 	$("#updateadminform").validate({
 		rules: {
 			updfirst: {
@@ -547,6 +616,13 @@ $(document).ready(function () {
 				required: "Please enter your email",
 			},
 		},
+	});
+	$("#updatefeeform").validate({
+		rules: {
+			serviceFee: {
+				required: true,
+			},
+		}
 	});
 });
 
@@ -644,6 +720,55 @@ $(document).on("click", "#addadminbtn", function () {
 		// 	}
 		// );
 	}
+});
+$(document).on("click", ".changepassmodal", function () {
+	var BASE_URL = "<?php echo base_url();?>";
+	$.ajax({
+			url: BASE_URL+"checkpassword",
+			method: "POST",
+			dataType: "json",
+			success: function (data) {
+				$("#currentpass").text(data.password);
+			},
+		});//end ajax
+});
+$(document).on("click", "#changepassbtn", function () {
+	var validator = $("#changepassform").validate();
+	var BASE_URL = "<?php echo base_url();?>";
+	if ($("#changepassform").valid()) {
+		var current = $("#curpas").val();
+		var newpas = $("#newpas").val();
+		var repeat = $("#repnewpas").val();
+
+		
+
+			alert($("#currentpass").text());
+			alert($("#curpas").val());
+
+		  if($("#currentpass").text() == $("#curpas").val()) { 
+			//   alert("good to change");
+
+		$.ajax({
+			url: BASE_URL+"updatepassword/"+repeat,
+			method: "POST",
+			data: {
+				password : repeat,
+			},
+			success: function (data) {
+				// window.location = "listofcomputershop";
+				swal({
+					title: "Good job!",
+					text: "Password has been changed!",
+					icon: "success",
+					button: "Continue",
+				}).then((value) => {
+					location.reload(); 
+				});
+			},
+		});//end ajax
+		}else{alert("notgood");}//end check pass
+	}//end validate if
+	
 });
 $(document).on("click", ".view-admin", function () {
 	var id = $(this).attr("data");

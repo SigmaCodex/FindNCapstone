@@ -41,6 +41,7 @@ $route['add-computershop'] = 'main_controller/addComputershop';
 $route['listofcomputershop'] = 'main_controller/listofcomputershop';
 $route['comptypefee/(:num)'] = 'main_controller/shopadmin_comptypeInfo/$1';
 $route['admin-list/(:num)'] = 'main_controller/adminlist/$1';
+$route['comptypefee/(:num)'] = 'main_controller/shopadmin_comptypeInfo/$1';
 
 //Logics
     //SuperAdmin
@@ -53,6 +54,10 @@ $route['admin-list/(:num)'] = 'main_controller/adminlist/$1';
     $route['deleteadmin/(:num)'] = 'logicalcontroller/deleteAdmin/$1';
     $route['comptypefee/(:num)'] = 'logicalcontroller/getComputerTypeServiceFee/$1';
     $route['updateFee/(:num)'] = 'logicalcontroller/updateServiceFee/$1';
+
+    $route['checkpassword'] = 'logicalcontroller/getSuperAdminPassword';
+    $route['updatepassword/(:any)'] = 'logicalcontroller/updateSuperAdminPassword/$1';
+
 
     $route['getshopdetails/(:num)'] = 'logicalcontroller/getShopDetails/$1';
     $route['updateshopdetails/(:num)'] = 'logicalcontroller/updateShopDetails/$1';
