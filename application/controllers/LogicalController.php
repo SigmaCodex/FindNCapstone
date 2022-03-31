@@ -115,6 +115,11 @@ class LogicalController extends CI_Controller {
         $result = $this->MainModel->getListOfAdmins($id);
         echo json_encode($result);
     }
+    public function getComputerTypeServiceFee($id){
+        $this->load->model('MainModel');
+        $result = $this->MainModel->getComputerTypeServiceFee($id);
+        echo json_encode($result);
+    }
 
     public function getShopDetails($id){
         $this->load->model('MainModel');
@@ -125,6 +130,10 @@ class LogicalController extends CI_Controller {
     public function updateShopDetails($id){
         $this->load->model('MainModel');
         $this->MainModel->updateShopDetails($id);
+    }
+    public function updateServiceFee($comptype_id){
+        $this->load->model('MainModel');
+        $this->MainModel->updateServiceFee($comptype_id);
     }
 
     public function selectComputerShop($id){

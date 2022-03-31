@@ -79,6 +79,13 @@ class MainModel extends CI_Model{
         $query = $this->db->get();
         return $query->result();
     }
+    public function getComputerTypeServiceFee($id){
+        $this->db->select('*');
+        $this->db->from('computer_type');
+        $this->db->where('shop_id_fk',$id);
+        $query = $this->db->get();
+        return $query->result();
+    }
     public function deleteComputerShop($id){
         $datafinder = array(
             'shop_status' => 'Inactive',
@@ -125,6 +132,7 @@ class MainModel extends CI_Model{
         $query = $this->db->get();
         return $query->result();
     }
+
     public function registerAdmin(){
         $Primarycode = 0;
         $Primarycode = $this->generatePrimarykey();
@@ -293,6 +301,14 @@ class MainModel extends CI_Model{
         $query = $this->db->get();
         $resultquery = $query->row_array();
         return $resultquery;
+    }
+    public function updateServiceFee($comptype_id){
+        $datafinder = array(
+            'service_fee'     => 	 $this->input->post('service_fee'),
+        );
+        $this->db->where('Ctype_id',$comptype_id);
+        $this->db->update('computer_type',$datafinder);
+        echo json_encode($datafinder);
     }
  
     public function addRate($shop_id, $user_id){
