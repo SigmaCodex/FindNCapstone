@@ -18,7 +18,8 @@ class MainModel extends CI_Model{
           $datasession  = array(
               'user_id' => $row->user_id,
               'username'  => $row->username,
-              'user_type' => $row->user_type                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    
+              'user_type' => $row->user_type,
+              'status'    => $row->status,                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   
           );
           $this->session->set_userdata($datasession);
           return true;
@@ -28,7 +29,7 @@ class MainModel extends CI_Model{
       }
 
     }
-    //user account update
+    //finder user account update
     public function updateFinderAccount($status){
         // echo $status;
         $user_id  = $this->session->userdata('user_id');
@@ -62,6 +63,35 @@ class MainModel extends CI_Model{
             $this->db->where('user_id',$user_id);
             $this->db->update('finders',$findersdata);
         }
+    }
+    //finder user verified status account
+    public function update_To_FinderAccountVerified(){
+        $v_code = $this->session->userdata('v_code');
+        $inputed_code = $this->input->post('input_code');
+
+        if($v_code == $inputed_code){
+            $user_id = $this->session->userdata('user_id');
+
+            $data = array(
+                'status' => 'verified',
+            );
+            $this->db->where('user_id', $user_id);
+            $this->db->update('user',$data);
+
+            echo "Match";
+        }else{
+            echo "Not_Match";
+        }
+    }
+    // finder disable account status
+    public function disableFinderAccountStatus(){
+        $user_id = $this->session->userdata('user_id');
+        $data = array(
+            'status' => 'disable',
+        );
+        $this->db->where('user_id', $user_id);
+        $this->db->update('user',$data);
+        $this->session->sess_destroy();
     }
 
     //superAdmin
@@ -204,7 +234,7 @@ class MainModel extends CI_Model{
                 'username'  => 	  "admin123",
                 'password'  =>    "12345",
                 'user_type' =>    "Admin",
-                'status'    =>    "Active"
+                'status'    =>    "verified"
             );
                 $this->db->insert('user',$datauser);
 
@@ -248,7 +278,7 @@ class MainModel extends CI_Model{
                 'username'  => 	  $this->input->post('username'),
                 'password'  =>    $this->input->post('conpass'),
                 'user_type' =>    "finder",
-                'status'    =>    "Active"
+                'status'    =>    "not_verified"
             );
                 $this->db->insert('user',$datauser);
 
@@ -332,12 +362,29 @@ class MainModel extends CI_Model{
         $query = $this->db->get();
         return $query->result();
     }
-    public function getPostDetails($id){
+    public function listofPosts($id){
         $this->db->select('*');
         $this->db->from('post_events');
         $this->db->where('shop_id',$id);
         $query = $this->db->get();
         return $query->result();
+    }
+    public function viewPosts($id){
+        $this->db->select('*');
+        $this->db->from('post_events');
+        $this->db->where('post_id',$id);
+        $query = $this->db->get();
+        return $query->result();
+    }
+    public function getallPostComments($id){
+        $this->db->select('user.username, comments.*');
+        $this->db->from('comments');
+        $this->db->join('user', 'user.user_id = comments.user_id');
+        // $this->db->join('finders', 'finders.user_id = user.user_id', 'left');
+        $this->db->where('post_id',$id);
+        $query = $this->db->get();
+        return $query->result();
+        //echo json_encode($query->result());     
     }
     public function selectforUpdatePostDetails($id){
         $this->db->select('*');
@@ -437,7 +484,21 @@ class MainModel extends CI_Model{
         $this->db->where('post_id',$id);
         $this->db->delete('post_events');
     }
-    
+    public function addComments($id){
+        $date_created = date('m/d/y');
+        $data = array(
+            'post_id' => $id,
+            'user_id' => '2222855',
+            'comment'   => 	 $this->input->post('comment_txt'),
+            'date' =>  $date_created
+        );
+        $this->db->insert('comments',$data);
+        echo json_encode($data);
+    }
+    public function deleteComments($id){
+        $this->db->where('comment_id',$id);
+        $this->db->delete('comments');
+    }
     public function updateComputerDetails($id){
         $datafinder = array(
             'shop_name'   => 	 $this->input->post('cshop'),

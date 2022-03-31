@@ -18,6 +18,7 @@ class Main_Controller extends CI_Controller {
     }
 	//finders
 	public function finder_BookingRequest($shopid){
+		$this->load->view('finders/navbar-query');
 		$this->load->model('MainModel');
 		$val['username']      = $this->session->userdata('username');
 		$val['shop_id']       = $shopid;
@@ -29,12 +30,14 @@ class Main_Controller extends CI_Controller {
 
 	public function viewAccountSettings()
 	{
+		$this->load->view('finders/navbar');
 		$session = $this->session->userdata('username');
 		if(!$session){
 			redirect(findnlogin);
 		}else{
 			$this->load->model('MainModel');
 			$user_id  = $this->session->userdata('user_id');
+			$val['status']	 = $this->session->userdata('status');
 			$val['username'] =  $session;
 			$val['findersPersonalDetails']	 = $this->MainModel->selectFinderDetails($user_id);
 			$this->load->view('accountSettings',$val);
@@ -42,15 +45,17 @@ class Main_Controller extends CI_Controller {
 	}
 	public function viewViewShop($shopid)
 	{
+		$this->load->view('finders/navbar-query');
 		$this->load->model('MainModel');
 		$val['shopdetails']	 = $this->MainModel->getShopDetails($shopid);
 		$val['shop_images']	 = $this->MainModel->listshopimages($shopid);
 		$val['computertype_details']	 = $this->MainModel->getListOfComputerTypes($shopid);
-		echo json_encode($val);
+		// echo json_encode($val);
 		$this->load->view('viewShop',$val);
 	}
 	public function viewRequestBook($shopid)
 	{
+		$this->load->view('finders/navbar-query');
 		$session = $this->session->userdata('username');
 		if(!$session){
 			redirect(findnlogin);
@@ -78,6 +83,7 @@ class Main_Controller extends CI_Controller {
 	}
 	public function viewFinders_HomePage()
 	{
+		$this->load->view('finders/navbar');
 		$this->load->view('findersHomePage');
 	}
 	public function view_ticket(){
@@ -176,8 +182,15 @@ class Main_Controller extends CI_Controller {
 	public function shopadmin_postEvents($shopid){
 		$this->load->model('MainModel');
 		$val['shopid'] = $shopid;
-		$val['postDetails'] = $this->MainModel->getPostDetails($shopid);
+		$val['postDetails'] = $this->MainModel->listofPosts($shopid);
 		$this->load->view('admin/postEvents',$val);
+	}
+	public function shopadmin_viewPost($post_id){
+		$this->load->model('MainModel');
+		$val['id'] = $post_id;
+		$val['postDetails'] = $this->MainModel->viewPosts($post_id);
+		$val['userDetails'] = $this->MainModel->getallPostComments($post_id);
+		$this->load->view('admin/viewPost',$val);
 	}
 }
     

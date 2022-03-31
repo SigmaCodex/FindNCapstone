@@ -21,6 +21,7 @@
                   <img src="..\assets\images\<?php echo $s->post_img?>" alt="">
                   <br>
                   <button class="df2-contact" shoppost_id="<?php echo $s->post_id;?>">Edit Post</button>
+                  <button class="df3-contact" shoppost_id="<?php echo $s->post_id;?>">View Post</button>
                   <h3><?php echo $s->post_title;?></h3>
                   <p><?php echo $s->post_created;?></p></p>
                   <h3 id="compshop_postid" style="display:none"><?php echo $s->post_id;?></h3>
@@ -180,8 +181,8 @@ $(document).on("click", ".df2-contact", function () {
           }
          });
  });
- </script>
- <script>
+</script>
+ <!-- <script>
 		$(document).on("click",".remove-shop",function(){
          var BASE_URL = "<?php echo base_url();?>";
 			var CSPK = $(this).attr("data");
@@ -209,6 +210,14 @@ $(document).on("click", ".df2-contact", function () {
   				}
 			});
 		});
-	</script>
+	</script> -->
+<script>
+		$(document).on("click",".df3-contact",function(){
+			var Base_URL = "<?php echo base_url();?>";
+			var id = $(this).attr("shoppost_id");
+			window.location = Base_URL+"shopadmin-viewPosts/" + id;
+			
+		});
+</script>
 </body>
 </html>

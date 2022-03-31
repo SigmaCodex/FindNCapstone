@@ -365,3 +365,56 @@ a:hover {
 		padding-right: 0;
 	}
 }
+.comment-reply{
+	width: 100%; 
+  }
+  
+  .cell__logo__img {
+	width: 3rem;
+	margin-right : 1rem;
+	border-radius: 50%;
+  }
+  
+  .cell {
+	max-width: 100%;
+	overflow:hidden;
+	padding : 1rem;
+  }
+  
+  .cell__c {
+	width : calc(100% - 4rem);
+  }
+  
+  .cell__c__title {
+	font-size: 1.1rem;
+	font-weight: 500;
+	margin-top: 0.3rem;
+	display: inline-block;
+  }
+  
+  .cell__logo__img {
+	width: 3rem;
+	margin-right : 1rem;
+	border-radius: 50%;
+  }
+  .cell__time {
+	text-transform : titlecase;
+  }
+  .cell__c__desc {
+	font-size: 1rem;
+	color: #a1a1a1;
+	line-height: 1.2rem;
+  }
+  
+  .cell__footer {
+	margin-top : 0.8rem;
+	color: #ccc;
+  }
+  
+  .cell__footer > * {
+	margin-right: 1rem;
+  }
+  
+  .cell__time {
+	text-transform : titlecase;
+  }
