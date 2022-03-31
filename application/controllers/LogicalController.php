@@ -6,6 +6,7 @@ class LogicalController extends CI_Controller {
     public function login_user(){
         $this->load->model('MainModel');
         $result = $this->MainModel->login_user();
+        $user_status = $this->session->userdata('status');
         if(!$result){
             echo "no-user";
         }else{
@@ -90,6 +91,7 @@ class LogicalController extends CI_Controller {
     public function disableFinderAccountStatus(){
         $this->load->model('MainModel');
         $this->MainModel->disableFinderAccountStatus();
+        
     }
 
     public function getListOfComputerShops(){
