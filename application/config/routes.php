@@ -7,10 +7,11 @@ $route['shopadmin-scanqr']    = 'main_controller/admin_scanqr';
 $route['shopadmin-bookings']  = 'main_controller/admin_bookings';
 $route['shopadmin-computerdetails'] = 'main_controller/shopadmin_computerdetails';
 $route['shopadmin-computertype'] = 'main_controller/shopadmin_addComputerType';
-
 $route['shopadmin-computertypelist/(:num)'] = 'main_controller/shopadmin_computertypeList/$1';
 $route['shopadmin-comptypeinfo/(:num)'] = 'main_controller/shopadmin_comptypeInfo/$1';
-$route['comptypefee/(:num)'] = 'main_controller/shopadmin_comptypeInfo/$1';
+$route['shopadmin-viewPosts/(:num)'] = 'main_controller/shopadmin_viewPost/$1';
+
+
 
 $route['shopadmin-updatecomputertype'] = 'main_controller/shopadmin_updatecompType';
 $route['shopadmin-shopimages/(:num)'] = 'main_controller/shopimages/$1';
@@ -38,6 +39,7 @@ $route['generate-QR']     = 'main_controller/generateQrCode';
 $route['add-admin'] = 'main_controller/addAdmin';
 $route['add-computershop'] = 'main_controller/addComputershop';
 $route['listofcomputershop'] = 'main_controller/listofcomputershop';
+$route['comptypefee/(:num)'] = 'main_controller/shopadmin_comptypeInfo/$1';
 $route['admin-list/(:num)'] = 'main_controller/adminlist/$1';
 
 //Logics
@@ -64,10 +66,14 @@ $route['admin-list/(:num)'] = 'main_controller/adminlist/$1';
     $route['generatePrimarykey'] = 'logicalcontroller/generatePrimarykey';
     $route['get-computershops'] = 'logicalcontroller/getListOfComputerShops';
     $route['updateFinderAccount/(:num)'] = 'logicalcontroller/updateFinderAccount/$1';
+    $route['disableFinderAccountStatus'] ='logicalcontroller/disableFinderAccountStatus';
     $route['select-computershops/(:any)/(:num)'] = 'logicalcontroller/selectComputerShop/$1/$2';
 
     $route['addRate/(:num)/(:num)'] = 'logicalcontroller/addRate/$1/$2';
     $route['updateRate/(:num)/(:num)/(:num)'] = 'logicalcontroller/updateRate/$1/$2/$3';
+
+    $route['computerNotif'] = 'logicalcontroller/createComputerNotif';
+    $route['finderNotif'] = 'logicalcontroller/createFinderNotif';
 
     //admin
     $route['updateComputerDetails/(:num)'] = 'logicalcontroller/updateComputerDetails/$1';
@@ -77,11 +83,19 @@ $route['admin-list/(:num)'] = 'main_controller/adminlist/$1';
     $route['updateCompTypeStat/(:num)'] = 'logicalcontroller/updateComputerTypeStatus/$1';
     $route['getCompTypeInfo/(:num)'] = 'logicalcontroller/getComputerTypeInfo/$1';
     $route['uploadshopimages/(:num)'] = 'logicalcontroller/uploadshopimages/$1';
+    $route['getpostComments/(:num)'] = 'logicalcontroller/getallPostComments/$1';
+    $route['addComment/(:num)'] = 'logicalcontroller/addComments/$1';
+    $route['deleteComment/(:num)'] = 'logicalcontroller/deleteComments/$1';
+
 
     //api 
-    $route['goto-gcash']          = 'logicalcontroller/GotoGcash';
-    $route['select-paymentmethod']     = 'main_controller/payment_exercise';
+    $route['goto-gcash']                  = 'logicalcontroller/GotoGcash';
+    $route['select-paymentmethod']        = 'main_controller/payment_exercise';
+    $route['sendVerificationCodeToEmail'] = 'logicalcontroller/sendVCodeToEmail';
+    $route['checkVerificationCode']       = 'logicalcontroller/checkVerificationCode';
 
+    
+$route['shopAdmin-login']          = 'logicalcontroller/shopAdmin_login';
 $route['user-login']               = 'logicalcontroller/login_user';
 $route['user-logout']              = 'logicalcontroller/logout_user';
 $route['index'] = 'main_controller/index';

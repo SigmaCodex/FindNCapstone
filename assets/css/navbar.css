@@ -34,7 +34,23 @@ body {
   background-color: hsl(174, 100%, 99%);
   color: hsl(174, 8%, 35%);
 }
-
+.username{
+  text-decoration: none!important;
+  background-image: linear-gradient(45deg, #f83f0b,#e09e1a);
+  background-size: 100%;
+  -webkit-background-clip: text;
+  -moz-background-clip: text;
+  -webkit-text-fill-color: transparent; 
+  -moz-text-fill-color: transparent;
+  font-family: 'Poppins', sans-serif;
+  font-size: 12px;
+  padding-top: 5px;
+  margin-left: 10px;
+  font-weight: 700;
+}
+.username:hover {
+  color: rgb(240, 88, 0);
+}
 ul {
   padding-top: 20px;
   list-style: none;
@@ -82,6 +98,9 @@ img {
   box-shadow: 0 -1px 12px hsla(174, 63%, 15%, 0.15);
   z-index: var(--z-fixed);
   transition: .4s;
+  border-bottom-left-radius: 5%;
+  border-bottom-right-radius: 5%;
+  padding: 5px;
 }
 .header__search {
   display: flex;
@@ -124,6 +143,7 @@ img {
   -webkit-text-fill-color: transparent; 
   -moz-text-fill-color: transparent;
   font-weight: 600;
+  cursor: pointer;
 }
 
 @media screen and (max-width: 767px) {
@@ -185,24 +205,6 @@ img {
   padding-top: 10px;
 }
 
-/*Active link*/
-.active-link {
-  position: relative;
-  color: hsl(174, 63%, 40%);
-  transition: .3s;
-}
-
-/* Minimalist design, active link */
-.active-link::before{
-  content: '';
-  position: absolute;
-  bottom: -.5rem;
-  width: 4px;
-  height: 4px;
-  background-color: hsl(174, 63%, 40%);
-  border-radius: 50%;
-}
-
 /* Change background header */
 .scroll-header {
   box-shadow: 0 1px 12px hsla(174, 63%, 15%, 0.15);
@@ -255,23 +257,7 @@ img {
     /* display: block; */ /* Minimalist design, visible labels */
   }
   .nav__link:hover {
-    color: hsl(174, 63%, 40%);
-  }
-
-  /* First design, remove if you choose the minimalist design */
-  .active-link::before {
-    content: '';
-    position: absolute;
-    bottom: -.75rem;
-    width: 4px;
-    height: 4px;
-    background-color: hsl(174, 63%, 40%);
-    border-radius: 50%;
-  }
-
-  /* Minimalist design */
-  .active-link::before{
-      bottom: -.75rem;
+    color: hsl(174, 100%, 99%);
   }
 }
 

@@ -3,9 +3,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class LogicalController extends CI_Controller {
 
+ 
     public function login_user(){
         $this->load->model('MainModel');
         $result = $this->MainModel->login_user();
+        $user_status = $this->session->userdata('status');
         if(!$result){
             echo "no-user";
         }else{
@@ -13,7 +15,12 @@ class LogicalController extends CI_Controller {
            echo $user_type;
         }
     }
-
+    public function shopAdmin_login(){
+        $user_id_admin = $this->session->userdata('user_id');
+        $this->load->model('MainModel');
+        $this->MainModel->checkShopAdminAccount($user_id_admin);
+        //  echo $this->session->userdata('admin_shop_name'); //return data to ajax
+    }
     public function logout_user(){
         $this->session->sess_destroy();
         // redirect("http://localhost:8080/FindNCapstone/findnlogin");
@@ -87,6 +94,12 @@ class LogicalController extends CI_Controller {
         }
     }
 
+    public function disableFinderAccountStatus(){
+        $this->load->model('MainModel');
+        $this->MainModel->disableFinderAccountStatus();
+        
+    }
+
     public function getListOfComputerShops(){
         $this->load->model('MainModel');
         $result = $this->MainModel->getListOfComputerShops();
@@ -150,6 +163,10 @@ class LogicalController extends CI_Controller {
     }
 
     //ADMIN
+    public function getUserDetails($id){
+        $this->load->model('MainModel');
+        $this->MainModel->getUserDetails($id);
+    }
     public function addshopPosts($id){
         $this->load->model('MainModel');
         $this->MainModel->addshopPosts($id);
@@ -162,6 +179,19 @@ class LogicalController extends CI_Controller {
         $this->load->model('MainModel');
         $result = $this->MainModel->selectforUpdatePostDetails($id);
         echo json_encode($result);
+    }
+    public function getallPostComments($shop_id){
+        $this->load->model('MainModel');
+        $result = $this->MainModel->getallPostComments($shop_id);
+
+    }
+    public function addComments($id){
+        $this->load->model('MainModel');
+        $result = $this->MainModel->addComments($id);
+    }
+    public function deleteComments($id){
+        $this->load->model('MainModel');
+        $result = $this->MainModel->deleteComments($id);
     }
     public function updateshopPosts($id){
         $this->load->model('MainModel');
@@ -189,7 +219,14 @@ class LogicalController extends CI_Controller {
         $this->load->model('MainModel');
         $this->MainModel->updateComputerTypeStatus($id);
     }
-
+    public function createFinderNotif(){
+        $this->load->model('MainModel');
+        $this->MainModel->createFinderNotif();
+    }
+    public function createComputerNotif(){
+        $this->load->model('MainModel');
+        $this->MainModel->createComputerNotif();
+    }
 
         //Shop Computer Details
     public function uploadshopimages($shop_id){
@@ -262,6 +299,70 @@ class LogicalController extends CI_Controller {
 			//redirect($decoded['data']['checkouturl']);
 			
 			
+    }
+
+    //generate Verification Code
+    public function generateVeificationCode(){
+        $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        $randomString = '';
+      
+        for ($i = 0; $i < 6; $i++) {
+            $index = rand(0, strlen($characters) - 1);
+            $randomString .= $characters[$index];
+        }
+        return $randomString;
+    }
+
+    //send verification code to email
+    public function sendVCodeToEmail(){
+
+        $verificationCode = $this->generateVeificationCode();
+        $this->session->set_userdata('v_code',$verificationCode);
+
+        $email = $this->input->post('email');
+        $messageText = "
+        <center><img src='assets/images/Logo1.png' style='width: 100px;'></center>
+        <br>
+        <center><h1>This is your Code: <b>".$verificationCode."</b></h1></center>
+        
+        ";
+
+        $this->load->library('phpmailer_lib');
+        $mail = $this->phpmailer_lib->load();
+
+        // $mail->SMTPDebug = 3;                               // Enable verbose debug output
+
+        $mail->isSMTP();                                      // Set mailer to use SMTP
+        $mail->Host = 'tls://smtp.gmail.com:587';  // Specify main and backup SMTP servers
+        $mail->SMTPAuth = true;                               // Enable SMTP authentication
+        $mail->Username = 'findn.cebu.ph@gmail.com';                 // SMTP username
+        $mail->Password = 'RuntimeNimble12345678';                           // SMTP password
+        $mail->Port = 587;                                    // TCP port to connect to
+
+        $mail->From = 'findn.cebu.ph@gmail.com';
+        $mail->FromName = 'FindN Admins';
+        $mail->addAddress($email);               // Name is optional
+        
+
+        $mail->isHTML(true);                                  // Set email format to HTML
+
+        $mail->Subject = ("Finder Verification Code");
+        $mail->Body = $messageText;
+        $mail->addEmbeddedImage('assets/images/Logo1.png', 'FindNlogo');
+
+        if(!$mail->send()) {
+            echo 'Message could not be sent.';
+            echo 'Mailer Error: ' . $mail->ErrorInfo;
+        } else {
+            echo 'Message has been sent';
+        }
+
+    }
+
+    //check verification code
+    public function checkVerificationCode(){
+        $this->load->model('MainModel');
+        $this->MainModel->update_To_FinderAccountVerified();   
     }
 }
     
