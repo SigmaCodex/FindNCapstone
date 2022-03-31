@@ -27,7 +27,6 @@ class MainModel extends CI_Model{
       }else{
         return false;
       }
-
     }
     //finder user account update
     public function updateFinderAccount($status){
@@ -422,6 +421,18 @@ class MainModel extends CI_Model{
     }
 
     //admin
+    public function checkShopAdminAccount($id){
+        $this->db->select('compmanager.*,computershop.shop_name');
+        $this->db->from('compmanager');
+        $this->db->join('computershop', 'computershop.shop_id = compmanager.shop_id_fk');
+        $this->db->where('user_id',$id);
+        $query = $this->db->get();
+        if(!empty($query->result_array())){
+            $row = $query->row();
+            $this->session->set_userdata('admin_shop_id', $row->shop_id_fk);
+            $this->session->set_userdata('admin_shop_name', $row->shop_name);
+        }
+    }
     public function addshopPosts($id){
         $date_created = date('m/d/y');
         $data = array(

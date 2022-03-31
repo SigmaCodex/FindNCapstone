@@ -3,6 +3,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class LogicalController extends CI_Controller {
 
+ 
     public function login_user(){
         $this->load->model('MainModel');
         $result = $this->MainModel->login_user();
@@ -14,7 +15,12 @@ class LogicalController extends CI_Controller {
            echo $user_type;
         }
     }
-
+    public function shopAdmin_login(){
+        $user_id_admin = $this->session->userdata('user_id');
+        $this->load->model('MainModel');
+        $this->MainModel->checkShopAdminAccount($user_id_admin);
+        //  echo $this->session->userdata('admin_shop_name'); //return data to ajax
+    }
     public function logout_user(){
         $this->session->sess_destroy();
         // redirect("http://localhost:8080/FindNCapstone/findnlogin");

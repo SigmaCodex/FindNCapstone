@@ -87,6 +87,8 @@ $route['admin-list/(:num)'] = 'main_controller/adminlist/$1';
     $route['sendVerificationCodeToEmail'] = 'logicalcontroller/sendVCodeToEmail';
     $route['checkVerificationCode']       = 'logicalcontroller/checkVerificationCode';
 
+    
+$route['shopAdmin-login']          = 'logicalcontroller/shopAdmin_login';
 $route['user-login']               = 'logicalcontroller/login_user';
 $route['user-logout']              = 'logicalcontroller/logout_user';
 $route['index'] = 'main_controller/index';
