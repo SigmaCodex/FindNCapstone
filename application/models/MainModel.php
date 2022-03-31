@@ -346,7 +346,7 @@ class MainModel extends CI_Model{
              $this->db->insert('comp_booking', $comp_booking);
     }
     // finder select all Computerbookingtransactions
-    public function select_finderBookingTransaction($user_id){
+    public function view_finderBookingTransaction($user_id){
         $this->db->select('transaction.*,comp_booking.*,computer_type.name,computer_type.rate');
         $this->db->from('transaction');
         $this->db->join('comp_booking', 'comp_booking.transaction_id = transaction.transaction_id');

@@ -95,9 +95,9 @@ class LogicalController extends CI_Controller {
         }
     }
 
-    public function select_finderBookingTransaction($user_id){
+    public function view_finderBookingTransaction($user_id){
         $this->load->model('MainModel');
-        $result = $this->MainModel->select_finderBookingTransaction($user_id);
+        $result = $this->MainModel->view_finderBookingTransaction($user_id);
         echo json_encode($result);
     }
 
