@@ -2,10 +2,10 @@
 -- version 5.0.2
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Mar 31, 2022 at 07:29 PM
--- Server version: 10.4.13-MariaDB
--- PHP Version: 7.3.20
+-- Host: 
+-- Generation Time: Apr 01, 2022 at 02:47 PM
+-- Server version: 10.4.14-MariaDB
+-- PHP Version: 7.3.22
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -169,6 +169,7 @@ INSERT INTO `comp_booking` (`transaction_id`, `comp_type_id`, `num_ticket`) VALU
 (310375, 4, '1'),
 (2503743, 5, '1'),
 (2703769, 4, '1'),
+(3103741, 4, '1'),
 (3103778, 4, '1'),
 (27031223, 13, '1'),
 (27031230, 11, '2');
@@ -332,11 +333,12 @@ CREATE TABLE `transaction` (
 
 INSERT INTO `transaction` (`transaction_id`, `user_id_fk`, `shop_id_fk`, `servicetype`, `arrival_time`, `arrival_date`, `instruction`, `date_issued`, `transaction_status`, `service_fee`, `payment_status`, `payment_type`, `qr_code`) VALUES
 (310375, 2522878, 7, 'ComputerBooking', '01:32', '04/02/2022', 'asdasd', '03/31/22', 'pending', 15, 'not_paid', 'not_selected', 'not_issued'),
-(2503743, 2522878, 7, 'ComputerBooking', '02:12', '03/27/2022', 'Kilid sa gwapa na cashier', '03/25/22', 'pending', 5, 'not_paid', 'not_selected', 'not_issued'),
-(2703769, 2522878, 7, 'ComputerBooking', '14:53', '03/27/2022', 'tapad sa cashier <3', '03/27/22', 'pending', 15, 'not_paid', 'not_selected', 'not_issued'),
-(3103778, 2522878, 7, 'ComputerBooking', '01:27', '04/01/2022', '', '03/31/22', 'pending', 15, 'not_paid', 'not_selected', 'not_issued'),
-(27031223, 2722686, 7, 'ComputerBooking', '16:46', '03/27/2022', 'Note', '03/27/22', 'pending', 15, 'not_paid', 'not_selected', 'not_issued'),
-(27031230, 2722686, 7, 'ComputerBooking', '16:38', '03/28/2022', 'Note', '03/27/22', 'pending', 15, 'not_paid', 'not_selected', 'not_issued');
+(2503743, 2522878, 7, 'ComputerBooking', '02:12', '03/27/2022', 'Kilid sa gwapa na cashier', '03/25/22', 'accepted', 5, 'not_paid', 'not_selected', 'not_issued'),
+(2703769, 2522878, 7, 'ComputerBooking', '14:53', '03/27/2022', 'tapad sa cashier <3', '03/27/22', 'cancelled', 15, 'not_paid', 'not_selected', 'not_issued'),
+(3103741, 2722686, 7, 'ComputerBooking', '15:33', '04/02/2022', 'ajiSD', '03/31/22', 'accepted', 15, 'not_paid', 'not_selected', 'not_issued'),
+(3103778, 2522878, 7, 'ComputerBooking', '01:27', '04/01/2022', '', '03/31/22', 'accepted', 15, 'not_paid', 'not_selected', 'not_issued'),
+(27031223, 2722686, 7, 'ComputerBooking', '16:46', '03/27/2022', 'Note', '03/27/22', 'accepted', 15, 'not_paid', 'not_selected', 'not_issued'),
+(27031230, 2722686, 7, 'ComputerBooking', '16:38', '03/28/2022', 'Note', '03/27/22', 'accepted', 15, 'not_paid', 'not_selected', 'not_issued');
 
 -- --------------------------------------------------------
 
