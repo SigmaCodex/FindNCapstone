@@ -104,7 +104,7 @@
                     if($status == "verified"){
                         echo "
                         <div class='d-sm-flex align-items-center py-2' id='change'>
-                            <div class='title-info'> Disabled Account
+                            <div class='title-info'> Disable Account
                                 <p>You will Disabled your account</p>   
                             </div>
                             <div class='btn danger' id='disable_account'> Click To Disable </div>

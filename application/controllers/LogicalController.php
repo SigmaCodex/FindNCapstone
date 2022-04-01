@@ -10,7 +10,10 @@ class LogicalController extends CI_Controller {
         $user_status = $this->session->userdata('status');
         if(!$result){
             echo "no-user";
-        }else{
+        }else if($user_status =="disable"){
+            echo $user_status;
+        }
+        else{
            $user_type = $this->session->userdata('user_type');
            echo $user_type;
         }

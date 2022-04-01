@@ -67,7 +67,7 @@
 				data:{username:user,password:pass},
 				beforeSend : function()
 				{
-					alert("processing");
+					
 				},
 				success: function(data){
 					//redirect to pages
@@ -83,7 +83,7 @@
 							});
 							//end
 					}else if(data == "superadmin"){
-						alert("superadmin");
+						window.location = "listofcomputershop";
 					}
 					else{
 						swal(
