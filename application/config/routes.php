@@ -32,6 +32,11 @@ $route['findnlogin'] = 'main_controller/viewFindNLogin';
 $route['viewShop/(:num)']     = 'main_controller/viewShop/$1';
 $route['findershomepage'] = 'main_controller/viewFinders_HomePage';
 $route['accountSettings'] = 'main_controller/viewAccountSettings';
+$route['finderBookingList'] = 'main_controller/viewfinderBookingList';
+$route['findersTransactionDetail'] = 'main_controller/viewfindersTransactionDetail';
+$route['findersGCashPayment'] = 'main_controller/viewfindersGCashPayment';
+
+
 
 $route['finder-ComputerBookingRequest/(:num)']   = 'main_controller/viewRequestBook/$1';
 $route['finder-Compbookingrequest/(:num)'] = 'main_controller/finder_BookingRequest/$1';

@@ -41,7 +41,7 @@
                     </li>
                     <!-- Bookings -->
                     <li class="nav__item">
-                        <a href="#bookings" class="nav__link">
+                        <a href="finderBookingList" class="nav__link">
                             <i class='bx bx-book-alt nav__icon'></i>
                             <span class="nav__name">Bookings</span>
                         </a>
