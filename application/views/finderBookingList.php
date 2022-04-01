@@ -16,14 +16,14 @@
     <div class="transaction-form-wrapper d-flex justify-content-center mt-3">
     <div class="transaction-form ">
       <div class=" d-flex justify-content-between p-3 m-0">
-      <a href="findershomepage"> 
-        <!-- <i class="back-icon fa-solid fa-chevron-left"></i> -->
-      </a>  
-      <h3 class="back-button-title">Bookings</h3> 
-      <a href="#filter">
-        <!-- <i class="filter-icon fa-solid fa-stream"></i>  -->
-      </a>
-      </div>
+          <a href="findershomepage"> 
+            <!-- <i class="back-icon fa-solid fa-chevron-left"></i> -->
+          </a>  
+          <h3 class="back-button-title">Bookings</h3> 
+          <a href="#filter">
+            <!-- <i class="filter-icon fa-solid fa-stream"></i>  -->
+          </a>
+        </div>
       <div class="menu">
         <div class="menu-tab">
           <button class="btn btn-tab btn-ripple active shadow-none" data-target-tab="#all-tab">
@@ -38,6 +38,8 @@
         </div>
       </div>
       
+
+
       <div class="menu-search">
         <div class="menu-tab-search m-auto justify-content-between px-4">
           <div class="d-flex">
@@ -53,7 +55,7 @@
           <p class="legendTitle m-0 text-muted">Legend:</p>
           <div class="legend-wrap d-flex align-items-center justify-content-end flex-wrap">
             <div class="legend legend1 py-2 px-3 mx-1">
-              <p class="legendText p-0 m-0">Unpaid</p>
+              <p class="legendText p-0 m-0" >Sucessful</p>
             </div>
             <div class="legend legend2 py-2 px-3 mx-1">
               <p class="legendText p-0 m-0">Accepted</p>
@@ -69,11 +71,23 @@
       <div class="transaction-body justify-content-center">
         <div class="transaction-content">
 
-         <!-- sign in -->
+         <!-- all -->
           <div class="content active" id="all-tab">
 
-            <p class="legendTitle m-0 text-muted d-flex justify-content-start"  style="font-size: 12px; padding-bottom: 5px; font-weight: 800;">March 31, 2022</p>
-            <div class="card-holder" id="red" style="border-left: 10px solid rgb(175, 5, 5);">
+            <?php foreach ($listofbookings as $row) {?> 
+
+            <p class="legendTitle m-0 text-muted d-flex justify-content-start"  style="font-size: 12px; padding-bottom: 5px; font-weight: 800;"><?php echo date("M j, Y", strtotime($row->arrival_date));?></p>
+            <?php if($row->transaction_status == "pending"){
+                $color = "border-left: 10px solid rgb(233, 220, 36);";
+              }else if($row->transaction_status == "accepted" && $row->payment_status == "paid"){
+                $color = "border-left: 10px solid  rgb(233 97 18);";
+              }
+              else if($row->transaction_status == "accepted"){
+                $color = "border-left: 10px solid rgb(54, 157, 79);";
+              }
+            ?>
+             
+            <div class="card-holder click_transaction" transaction-id="<?php echo $row->transaction_id?>" style="<?php echo $color;?>">
               <div class="row">
                 <div class="col-3 booking-list pt-3 align-items-center"> 
                   <h6 style="font-size: 15px; font-weight: 600;">Request</h6>
@@ -81,97 +95,34 @@
                 </div>
                 <div class="col-3 booking-list pt-3" style="border-left: 1px solid rgb(219, 219, 219)"> 
                   <h6 style="font-size: 15px; font-weight: 600;">Cafe Name</h6>
-                  <p style="font-size:12px">TNC</p>
+                  <p style="font-size:12px"><?php echo $row->shop_name?></p>
                 </div>
                 <div class="col-3 booking-list pt-3" > 
                   <h6 style="font-size: 15px; font-weight: 600;">Payment Status</h6>
-                  <p style="font-size:12px">Unpaid</p>
+                  <p style="font-size:12px"><?php echo $row->payment_status?></p>
                 </div>
                 <div class="col-3 booking-list pt-3"> 
                   <h6 style="font-size: 15px; font-weight: 600;">Booking Status</h6>
-                  <p style="font-size:12px">Pending</p>
+                  <p style="font-size:12px"><?php echo $row->transaction_status?></p>
                 </div>
               </div>
             </div>
             <hr>
 
-            <p class="legendTitle m-0 text-muted d-flex justify-content-start"  style="font-size: 12px; padding-bottom: 5px; font-weight: 800;">March 29, 2022</p>
-            <div class="card-holder" style="border-left: 10px solid rgb(64, 68, 65);">
-              <div class="row">
-                <div class="col-3 booking-list pt-3 align-items-center"> 
-                  <h6 style="font-size: 15px; font-weight: 600;">Request</h6>
-                  <i class="booking-icon fa-solid fa-calendar-plus" style="font-size: 25px; color: rgb(73, 71, 71);"></i><br>
-                </div>
-                <div class="col-3 booking-list pt-3" style="border-left: 1px solid rgb(219, 219, 219)"> 
-                  <h6 style="font-size: 15px; font-weight: 600;">Cafe Name</h6>
-                  <p style="font-size:12px">GameCity</p>
-                </div>
-                <div class="col-3 booking-list pt-3"> 
-                  <h6 style="font-size: 15px; font-weight: 600;">Payment Status</h6>
-                  <p style="font-size:12px">Unpaid</p>
-                </div>
-                <div class="col-3 booking-list pt-3"> 
-                  <h6 style="font-size: 15px; font-weight: 600;">Booking Status</h6>
-                  <p style="font-size:12px">Pending</p>
-                </div>
-              </div>
-            </div>
-            <hr>
-
-            <p class="legendTitle m-0 text-muted d-flex justify-content-start"  style="font-size: 12px; padding-bottom: 5px; font-weight: 800;">March 26, 2022</p>
-            <div class="card-holder" style="border-left: 10px solid rgb(233, 220, 36);">
-              <div class="row">
-                <div class="col-3 booking-list pt-3 align-items-center"> 
-                  <h6 style="font-size: 15px; font-weight: 600;">Request</h6>
-                  <i class="booking-icon fa-solid fa-calendar-plus" style="font-size: 25px; color: rgb(73, 71, 71);"></i><br>
-                </div>
-                <div class="col-3 booking-list pt-3" style="border-left: 1px solid rgb(219, 219, 219)"> 
-                  <h6 style="font-size: 15px; font-weight: 600;">Cafe Name</h6>
-                  <p style="font-size:12px">Voyager</p>
-                </div>
-                <div class="col-3 booking-list pt-3"> 
-                  <h6 style="font-size: 15px; font-weight: 600;">Payment Status</h6>
-                  <p style="font-size:12px">Unpaid</p>
-                </div>
-                <div class="col-3 booking-list pt-3"> 
-                  <h6 style="font-size: 15px; font-weight: 600;">Booking Status</h6>
-                  <p style="font-size:12px">Pending</p>
-                </div>
-              </div>
-            </div>
-            <hr>
-
-            <p class="legendTitle m-0 text-muted d-flex justify-content-start"  style="font-size: 12px; padding-bottom: 5px; font-weight: 800;">March 5, 2022</p>
-            <div class="card-holder" style="border-left: 10px solid rgb(233, 220, 36);">
-              <div class="row">
-                <div class="col-3 booking-list pt-3 align-items-center"> 
-                  <h6 style="font-size: 15px; font-weight: 600;">Request</h6>
-                  <i class="booking-icon fa-solid fa-calendar-plus" style="font-size: 25px; color: rgb(73, 71, 71);"></i><br>
-                </div>
-                <div class="col-3 booking-list pt-3" style="border-left: 1px solid rgb(219, 219, 219)"> 
-                  <h6 style="font-size: 15px; font-weight: 600;">Cafe Name</h6>
-                  <p style="font-size:12px">G7</p>
-                </div>
-                <div class="col-3 booking-list pt-3"> 
-                  <h6 style="font-size: 15px; font-weight: 600;">Payment Status</h6>
-                  <p style="font-size:12px">Unpaid</p>
-                </div>
-                <div class="col-3 booking-list pt-3"> 
-                  <h6 style="font-size: 15px; font-weight: 600;">Booking Status</h6>
-                  <p style="font-size:12px">Pending</p>
-                </div>
-              </div>
-            </div>
-            
-            <hr>
+            <?php   
+             }?>  
 
           </div>
 
-          <!-- sign up -->
-          <div class="content" id="pending">
+      <!-- Pending -->
+      <div class="content" id="pending">
 
-            <p class="legendTitle m-0 text-muted d-flex justify-content-start"  style="font-size: 12px; padding-bottom: 5px; font-weight: 800;">March 31, 2022</p>
-            <div class="card-holder" style="border-left: 10px solid rgb(175, 5, 5);">
+          <?php foreach ($listofbookings as $row){
+              if($row->transaction_status  == "pending"){
+            ?> 
+            
+            <p class="legendTitle m-0 text-muted d-flex justify-content-start"  style="font-size: 12px; padding-bottom: 5px; font-weight: 800;"><?php echo date("M j, Y", strtotime($row->arrival_date));?></p>
+            <div class="card-holder click_transaction" transaction-id="<?php echo $row->transaction_id?>"  style="border-left: 10px solid rgb(233, 220, 36);">
               <div class="row">
                 <div class="col-3 booking-list pt-3 align-items-center"> 
                   <h6 style="font-size: 15px; font-weight: 600;">Request</h6>
@@ -179,99 +130,77 @@
                 </div>
                 <div class="col-3 booking-list pt-3" style="border-left: 1px solid rgb(219, 219, 219)"> 
                   <h6 style="font-size: 15px; font-weight: 600;">Cafe Name</h6>
-                  <p style="font-size:12px">TNC</p>
+                  <p style="font-size:12px"><?php echo $row->shop_name;?></p>
                 </div>
                 <div class="col-3 booking-list pt-3" > 
                   <h6 style="font-size: 15px; font-weight: 600;">Payment Status</h6>
-                  <p style="font-size:12px">Unpaid</p>
+                  <p style="font-size:12px"><?php echo $row->payment_status;?></p>
                 </div>
                 <div class="col-3 booking-list pt-3"> 
                   <h6 style="font-size: 15px; font-weight: 600;">Booking Status</h6>
-                  <p style="font-size:12px">Pending</p>
+                  <p style="font-size:12px"><?php echo $row->transaction_status?></p>
                 </div>
               </div>
             </div>
+            <!-- end of cardholder -->
             <hr>
-
-            <p class="legendTitle m-0 text-muted d-flex justify-content-start"  style="font-size: 12px; padding-bottom: 5px; font-weight: 800;">March 26, 2022</p>
-            <div class="card-holder" style="border-left: 10px solid rgb(233, 220, 36);">
-              <div class="row">
-                <div class="col-3 booking-list pt-3 align-items-center"> 
-                  <h6 style="font-size: 15px; font-weight: 600;">Request</h6>
-                  <i class="booking-icon fa-solid fa-calendar-plus" style="font-size: 25px; color: rgb(73, 71, 71);"></i><br>
-                </div>
-                <div class="col-3 booking-list pt-3" style="border-left: 1px solid rgb(219, 219, 219)"> 
-                  <h6 style="font-size: 15px; font-weight: 600;">Cafe Name</h6>
-                  <p style="font-size:12px">TNC CyberCafe</p>
-                </div>
-                <div class="col-3 booking-list pt-3"> 
-                  <h6 style="font-size: 15px; font-weight: 600;">Payment Status</h6>
-                  <p style="font-size:12px">Unpaid</p>
-                </div>
-                <div class="col-3 booking-list pt-3"> 
-                  <h6 style="font-size: 15px; font-weight: 600;">Booking Status</h6>
-                  <p style="font-size:12px">Pending</p>
-                </div>
-              </div>
-            </div>
-            <hr>
-
-            <p class="legendTitle m-0 text-muted d-flex justify-content-start"  style="font-size: 12px; padding-bottom: 5px; font-weight: 800;">March 5, 2022</p>
-            <div class="card-holder" style="border-left: 10px solid rgb(233, 220, 36);">
-              <div class="row">
-                <div class="col-3 booking-list pt-3 align-items-center"> 
-                  <h6 style="font-size: 15px; font-weight: 600;">Request</h6>
-                  <i class="booking-icon fa-solid fa-calendar-plus" style="font-size: 25px; color: rgb(73, 71, 71);"></i><br>
-                </div>
-                <div class="col-3 booking-list pt-3" style="border-left: 1px solid rgb(219, 219, 219)"> 
-                  <h6 style="font-size: 15px; font-weight: 600;">Cafe Name</h6>
-                  <p style="font-size:12px">TNC CyberCafe</p>
-                </div>
-                <div class="col-3 booking-list pt-3"> 
-                  <h6 style="font-size: 15px; font-weight: 600;">Payment Status</h6>
-                  <p style="font-size:12px">Unpaid</p>
-                </div>
-                <div class="col-3 booking-list pt-3"> 
-                  <h6 style="font-size: 15px; font-weight: 600;">Booking Status</h6>
-                  <p style="font-size:12px">Pending</p>
-                </div>
-              </div>
-            </div>
-            
-            <hr>
-          </div>
-
-          <!-- accepted -->
-          <div class="content" id="accepted">
-
-            <p class="legendTitle m-0 text-muted d-flex justify-content-start"  style="font-size: 12px; padding-bottom: 5px; font-weight: 800;">March 29, 2022</p>
-            <div class="card-holder" style="border-left: 10px solid rgb(64, 68, 65);">
-              <div class="row">
-                <div class="col-3 booking-list pt-3 align-items-center"> 
-                  <h6 style="font-size: 15px; font-weight: 600;">Request</h6>
-                  <i class="booking-icon fa-solid fa-calendar-plus" style="font-size: 25px; color: rgb(73, 71, 71);"></i><br>
-                </div>
-                <div class="col-3 booking-list pt-3" style="border-left: 1px solid rgb(219, 219, 219)"> 
-                  <h6 style="font-size: 15px; font-weight: 600;">Cafe Name</h6>
-                  <p style="font-size:12px">TNC CyberCafe</p>
-                </div>
-                <div class="col-3 booking-list pt-3"> 
-                  <h6 style="font-size: 15px; font-weight: 600;">Payment Status</h6>
-                  <p style="font-size:12px">Unpaid</p>
-                </div>
-                <div class="col-3 booking-list pt-3"> 
-                  <h6 style="font-size: 15px; font-weight: 600;">Booking Status</h6>
-                  <p style="font-size:12px">Pending</p>
-                </div>
-              </div>
-            </div>
-            <hr>
-          </div>
-
-        </div>
+       
+        <?php   
+           }
+           }?>  
+        
       </div>
+
+      <!-- end of pending -->
+      <!-- accepted -->
+      <div class="content" id="accepted">
+         <?php foreach ($listofbookings as $row){
+          if($row->transaction_status  == "accepted"){
+            ?> 
+            
+            <?php if($row->transaction_status == "accepted" && $row->payment_status == "paid"){
+                      $color = "border-left: 10px solid  rgb(233 97 18);";
+                  }else if($row->transaction_status == "accepted"){
+                      $color = "border-left: 10px solid rgb(54, 157, 79);";
+                  }
+            
+            ?>
+            <p class="legendTitle m-0 text-muted d-flex justify-content-start"  style="font-size: 12px; padding-bottom: 5px; font-weight: 800;"><?php echo date("M j, Y", strtotime($row->arrival_date));?></p>
+          
+            <div class="card-holder click_transaction" transaction-id="<?php echo $row->transaction_id?>"  style="<?php echo $color;?>">
+              <div class="row">
+                <div class="col-3 booking-list pt-3 align-items-center"> 
+                  <h6 style="font-size: 15px; font-weight: 600;">Request</h6>
+                  <i class="booking-icon fa-solid fa-calendar-plus" style="font-size: 25px; color: rgb(73, 71, 71);"></i><br>
+                </div>
+                <div class="col-3 booking-list pt-3" style="border-left: 1px solid rgb(219, 219, 219)"> 
+                  <h6 style="font-size: 15px; font-weight: 600;">Cafe Name</h6>
+                  <p style="font-size:12px"><?php echo $row->shop_name;?></p>
+                </div>
+                <div class="col-3 booking-list pt-3" > 
+                  <h6 style="font-size: 15px; font-weight: 600;">Payment Status</h6>
+                  <p style="font-size:12px"><?php echo $row->payment_status;?></p>
+                </div>
+                <div class="col-3 booking-list pt-3"> 
+                  <h6 style="font-size: 15px; font-weight: 600;">Booking Status</h6>
+                  <p style="font-size:12px"><?php echo $row->transaction_status?></p>
+                </div>
+              </div>
+            </div>
+            <!-- end of cardholder -->
+            <hr>
+
+        <?php   
+          }
+           }?>  
+      </div>
+      <!-- end of accepted tab -->
+
+
     </div>
-    </div>
+      
+  </div>
+  </div>
     
 
     <script src="assets/js/findersBookings.js" defer></script>
@@ -294,10 +223,23 @@
 
     </script>
 
-  <script type="text/javascript">
-  document.getElementById("red").onclick = function () {
-      location.href = "findersTransactionDetail";
-  };
+<script>
+    $(document).on('click','.click_transaction',function(){ 
+        var transaction_id = $(this).attr("transaction-id");
+        window.location = "findersTransactionDetail";
+
+        // $.ajax({
+				// url:"sendVerificationCodeToEmail",
+				// method: "POST",
+				// data: {email:emailaddress},
+				// success: function (data) {
+        //             alert(data);
+        //         },
+        // });	
+
+    });
 </script>
+
+
   </body>
 </html>

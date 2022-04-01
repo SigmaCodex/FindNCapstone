@@ -258,7 +258,7 @@ class MainModel extends CI_Model{
         $transaction = array(
             'transaction_id'    =>  $transaction_id,
             'user_id_fk'        =>  $user_id_fk,
-            'shop_id_fk'           =>  7,
+            'shop_id_fk'           =>  $this->input->post('s_id'),
             'servicetype'       =>  "ComputerBooking",
             'arrival_date'      => 	$this->input->post('arrival_date'),
             'arrival_time'      => 	$this->input->post('arrival_time'),
@@ -266,7 +266,7 @@ class MainModel extends CI_Model{
             'date_issued'              => 	$date_issued,
             'transaction_status'       => 	"pending",
             'service_fee'              => 	"15",
-            'payment_status	'          => 	"not_paid",
+            'payment_status	'          => 	"unpaid",
             'payment_type'             => 	"not_selected",
             'qr_code'                  => 	"not_issued",
             );
@@ -285,16 +285,19 @@ class MainModel extends CI_Model{
 
     // finder select all Computerbookingtransactions
     public function view_finderBookingTransaction($user_id){
-        $this->db->select('computershop.shop_name,transaction.*,comp_booking.*,computer_type.name,computer_type.rate');
+        $this->db->select('transaction.*,comp_booking.*,computershop.shop_name,computer_type.name,computer_type.rate');
         $this->db->from('transaction');
         $this->db->join('computershop', 'computershop.shop_id = transaction.shop_id_fk');
         $this->db->join('comp_booking', 'comp_booking.transaction_id = transaction.transaction_id');
         $this->db->join('computer_type', 'computer_type.Ctype_id = comp_booking.comp_type_id', 'left');
-        $this->db->where('user_id_fk',$user_id);
+        $this->db->where('transaction.user_id_fk',$user_id);
+        $this->db->order_by("transaction.arrival_date", "desc");
       
         $query = $this->db->get();
-        $resultquery = $query->row_array();
-        return $resultquery;
+        return $query->result();
+        // $query = $this->db->get();
+        // $resultquery = $query->row_array();
+        // return $resultquery;
     }
     // finder select ComputerBookingTransaction
     public function select_finderBookingTransaction($transaction_id){

@@ -118,10 +118,20 @@ class Main_Controller extends CI_Controller {
 	public function viewcompbookForm(){
 		$this->load->view('computerbform');
 	}
+
 	public function viewfinderBookingList(){
-		$this->load->view('finders/navbar');
-		$this->load->view('finderBookingList');
+		$session = $this->session->userdata('username');
+		$user_id = $this->session->userdata('user_id');
+		if(!$session){
+			redirect(findnlogin);
+		}else{
+			$this->load->model('MainModel');
+			$val['listofbookings']	 = $this->MainModel->view_finderBookingTransaction($user_id);
+			$this->load->view('finders/navbar');
+			$this->load->view('finderBookingList',$val);
+		}
 	}
+
 	public function viewfindersTransactionDetail(){
 		$this->load->view('findersTransactionDetail');
 	}

@@ -97,12 +97,13 @@ class LogicalController extends CI_Controller {
             $this->MainModel->updateFinderAccount("with-image");
         }
     }
-
+    //view all finderBooking Transaction
     public function view_finderBookingTransaction($user_id){
         $this->load->model('MainModel');
         $result = $this->MainModel->view_finderBookingTransaction($user_id);
         echo json_encode($result);
     }
+    //select FinderBooking Transaction
     public function select_finderBookingTransaction($transaction_id){
         $this->load->model('MainModel');
         $result = $this->MainModel->select_finderBookingTransaction($transaction_id);
