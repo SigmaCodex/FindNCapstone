@@ -118,6 +118,17 @@ class Main_Controller extends CI_Controller {
 	public function viewcompbookForm(){
 		$this->load->view('computerbform');
 	}
+	public function viewfinderBookingList(){
+		$this->load->view('finders/navbar');
+		$this->load->view('finderBookingList');
+	}
+	public function viewfindersTransactionDetail(){
+		$this->load->view('findersTransactionDetail');
+	}
+	public function viewfindersGCashPayment(){
+		$this->load->view('findersGCashPayment');
+	}
+
 	//super admin
 	public function listofcomputershop(){
 		$session = $this->session->userdata('username');
