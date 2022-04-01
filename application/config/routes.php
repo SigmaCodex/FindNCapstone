@@ -47,9 +47,8 @@ $route['comptypefee/(:num)'] = 'main_controller/shopadmin_comptypeInfo/$1';
 $route['admin-list/(:num)'] = 'main_controller/adminlist/$1';
 $route['comptypefee/(:num)'] = 'main_controller/shopadmin_comptypeInfo/$1';
 
-
-//REPORTS NI HA
-
+//REPORTS HERE
+$route['reports'] = 'main_controller/viewReports';
 
 //Logics
     //SuperAdmin

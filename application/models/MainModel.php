@@ -135,6 +135,7 @@ class MainModel extends CI_Model{
         $query = $this->db->get();
         return $query->result();
     }
+
     public function registerAdmin(){
         $Primarycode = 0;
         $Primarycode = $this->generatePrimarykey();
@@ -175,6 +176,9 @@ class MainModel extends CI_Model{
 
 		}
     }
+    
+    //REPORTS ----------------------------------
+    
 
 
     

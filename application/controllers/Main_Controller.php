@@ -119,6 +119,14 @@ class Main_Controller extends CI_Controller {
 		$this->load->view('computerbform');
 	}
 	//super admin
+
+
+	//REPORTS ------------------------------------------------
+	public function viewReports()
+	{
+        $this->load->view('superadmin/reports');
+    }
+
 	public function listofcomputershop(){
 		$session = $this->session->userdata('username');
 		if(!$session){
