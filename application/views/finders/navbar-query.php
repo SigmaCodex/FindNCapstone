@@ -41,7 +41,7 @@
                     </li>
                     <!-- Bookings -->
                     <li class="nav__item">
-                        <a href="finderBookingList" class="nav__link">
+                        <a href="<?php echo base_url();?>finderBookingList" class="nav__link">
                             <i class='bx bx-book-alt nav__icon'></i>
                             <span class="nav__name">Bookings</span>
                         </a>
@@ -57,8 +57,36 @@
                 </ul>
             </div>
 
-            <a href="accountSettings" class="username"><img src="../assets/images/Prof.png" class="nav__img">  Junky  <i class="fa-solid fa-caret-right"></i> </a>
+            <ul id="dropdown">
+				<li class="nr_li dd_main">
+                <div class="profile-dropdown d-flex">
+                <img src="../assets/images/Prof.png" class="nav__img">  
+                <h6 class="username" style="padding-left:4px;"></h6>  <i class="down-arrow fa-solid fa-caret-down"></i>
+                </div>
+                    <div class="drop-wrap pt-1">
+                    <div class="dd_menu">
+						<div class="dd_right">
+							<ul class="p-0">
+                                <li>    
+                                    <h6 class="name-user"  style="text-align:center">Junky</h6>
+                                
+                                </li>
+								<li>    
+                                    <a class="profile-settings d-flex" href="<?php echo base_url();?>accountSettings"><i class="fa-solid fa-house-user" style="padding-top:3px; padding-right:5px"></i>Profile</a>
+                               
+                                </li>
+								<li>
+                                    <a class="logout-settings d-flex"href="<?php echo base_url();?>user-logout"><i class="fa-solid fa-sign-out" style="padding-top:4px; padding-right:5px"></i>Logout</a>
+                                </li>
+							</ul>
+						</div>
+					</div>
+                    </div>
+					
+				</li>
+		    </ul>
+        
         </nav>
     </header>
 
-    <script src="assets/js/navbar.js"></script>
+    <script src="../assets/js/navbar.js"></script>

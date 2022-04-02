@@ -22,7 +22,7 @@
       .containermap{
 
      	background-color: blue;
-      	 z-index: 1000;
+      	 z-index: -1;
       	 width: 50%;
       }
 
