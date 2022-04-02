@@ -12,8 +12,8 @@
   </head>
   <body>
 
-    <div class="transaction-form-wrapper d-flex justify-content-center m-3">
-      <div class="transaction-form ">
+    <div class="transaction-form-wrapper d-flex justify-content-center ">
+      <div class="transaction-form p-1 ">
         <div class="header-transaction d-flex justify-content-between p-3 m-0">
           <a href="findersTransactionDetail"> <i class="back-icon fa-solid fa-xmark"></i></a>  
           <h3 class="back-button-title">Transaction Details</h3> <a href="#filter"></a>
@@ -21,7 +21,7 @@
 
         <!-- LEGEND END -->
         <div class="transaction-body justify-content-center align-items-center">
-          <div class="transaction-content">
+          <div class="transaction-content p-4">
               <img src="assets/images/icon-logo.png" style="width: 50px;">
               <hr>
               

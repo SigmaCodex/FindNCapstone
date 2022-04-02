@@ -3,8 +3,11 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>View Computer Shop</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>View Computer Shop</title>
+    
+    
     <link rel="stylesheet" href="../assets/css/viewShop.css">
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -12,17 +15,8 @@
   </head>
   <body>
     
-     <!-- background -->
-     <div class="custom-shape-divider-top-1647977806">
-    <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
-        <path d="M1200 120L0 16.48 0 0 1200 0 1200 120z" class="shape-fill"></path>
-    </svg>
-    
-    </div>
-        <br>
-        <!-- end -->
 
-    <div class = "card-wrapper" id="wrap">
+    <div class = "card-wrapper mt-3 mb-5" id="wrap">
       <div class = " row">
         
         <!-- card left -->
@@ -101,7 +95,7 @@
   <br>
   <span class="services">Computer Access Type</span>
   <br>
-  <span class="desc">Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit..Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit.. </span>
+  <span class="desc"> Providing you high quality equpiment and accessories in such a fair price. </span>
   <hr>
   <!-- MESSAGE CONTAINER END-->    
 
@@ -114,7 +108,7 @@
             <section class="services">
               
               <div class="services_container container grid">
-                <div class="services_card">
+                <div class="services_card vip-card">
                   <h3 class="services_title"><strong>VIP Access</strong> </h3>
                   <img class="access-type-img" src="../assets/images/TNC-5.png" >
                   <div class="list">
@@ -140,7 +134,7 @@
                       <div class="popup-box-container">
                         <div class="check-container">
                           <h3 class="services_title"><strong>VIP Access</strong> </h3>
-                          <img class="modal-type-img" src="assets/images/TNC-5.png" >
+                          <img class="modal-type-img" src="../assets/images/TNC-5.png" >
                         </div>
                         <div class="popup-message-container">
                           <div class="list">
@@ -165,7 +159,7 @@
                             </ul>
                           </div>
                         </div>
-                        <button class="ok-btn">
+                        <button class="ok-btn ok-vip-btn">
                           <span>OK</span>
                         </button>
                       </div>
@@ -185,7 +179,7 @@
             <section class="services">
     
               <div class="services_container container grid">
-                <div class="services_card">
+                <div class="services_card regular-card">
                   <h3 class="services_title"><strong>REGULAR Access</strong> </h3>
                   <img class="access-type-img" src="../assets/images/TNC-2.jpg" >
                   <div class="list">
@@ -210,7 +204,7 @@
                     <div class="popup-box-container-2">
                       <div class="check-container-2">
                         <h3 class="services_title"><strong>Regular Access</strong> </h3>
-                        <img class="modal-type-img-2" src="assets/images/TNC-2.jpg" >
+                        <img class="modal-type-img-2" src="../assets/images/TNC-2.jpg" >
                       </div>
                       <div class="popup-message-container-2">
                         <div class="list">
@@ -235,7 +229,7 @@
                           </ul>
                         </div>
                       </div>
-                      <button class="ok-btn-2">
+                      <button class="ok-btn-2 ok-regular-btn">
                         <span>OK</span>
                       </button>
                     </div>

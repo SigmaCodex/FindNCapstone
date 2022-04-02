@@ -73,7 +73,7 @@ a:hover {
 
 .transaction-form {
   width: 500px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
+  /* box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); */
   text-align: center;
   font-size: 1.25rem;
   padding-top: 5px;
@@ -147,7 +147,7 @@ a:hover {
   font-weight: 500;
 }
 .transaction-form .transaction-body{
-  padding: 20px;
+  padding: 0;
 }
 
 .content {
@@ -163,9 +163,9 @@ a:hover {
 responsive design
 
 ******************/
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 750px) {
   .transaction-form {
-    width: 400px;
+    width: 370px;
   }
 
   .flex {
@@ -186,7 +186,7 @@ responsive design
     transition-timing-function: ease-out;
 }
 .search-input {
-  width: 320px;
+  width: 290px;
 }
 
 /* LEGEND */
@@ -209,6 +209,9 @@ responsive design
 }
 .legend4 {
   background-color: rgb(18, 122, 4);
+}
+.legend5{
+  background-color: rgb(154, 5, 5);
 }
 
 .legendText {

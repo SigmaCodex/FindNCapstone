@@ -26,3 +26,12 @@ function scrollHeader(){
     if(this.scrollY >= 80) header.classList.add('scroll-header'); else header.classList.remove('scroll-header')
 }
 window.addEventListener('scroll', scrollHeader)
+
+
+//icon
+
+var dd_main = document.querySelector(".dd_main");
+
+	dd_main.addEventListener("click", function(){
+		this.classList.toggle("active");
+	})
