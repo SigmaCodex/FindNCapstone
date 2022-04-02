@@ -578,35 +578,66 @@ class MainModel extends CI_Model{
         $this->db->update('computershop',$datafinder);
         echo json_encode($datafinder);
     }
-    public function addComputerType($id){
-        $datafinder = array(
+    public function addComputerType($id, $status){
+        if($status == "no-image"){
+            $data = array(
             'shop_id_fk'  =>    $id,
+            'status' => "Available",
             'name'   => 	 $this->input->post('comp_name'),
             'total_units'   => 	 $this->input->post('comp_total'),
             'rate'   => 	 $this->input->post('comp_rate'),
             'specs'   => 	 $this->input->post('comp_specs'),
-            'comp_type_img' =>  $this->input->post('comp_img'),
-            'service_fee'   => "10",
-        );
-        $this->db->insert('computer_type',$datafinder);
+            'service_fee'   => "10"
+            );
+            echo "no image";
+        }
+        else if($status == "with-image"){
+            $image_data = $this->upload->data();
+            $data = array(
+                'shop_id_fk'  =>    $id,
+                'status' => "Available",
+                'name'   => 	 $this->input->post('comp_name'),
+                'total_units'   => 	 $this->input->post('comp_total'),
+                'rate'   => 	 $this->input->post('comp_rate'),
+                'specs'   => 	 $this->input->post('comp_specs'),
+                'comp_type_img' =>  $image_data['file_name'],
+                'service_fee'   => "10"
+            );
+            echo "with image";
+        }
+        $this->db->insert('computer_type',$data);
         echo $id;
-        echo json_encode($datafinder);
+        echo json_encode($data);
     }
     public function deleteComputerType($id){
         $this->db->where('Ctype_id',$id);
         $this->db->delete('computer_type');
     }
-    public function updateComputerType($id){
-        $datafinder = array(
-            'name'   => 	 $this->input->post('comp_name'),
-            'total_units'   => 	 $this->input->post('comp_total'),
-            'rate'   => 	 $this->input->post('comp_rate'),
-            'specs'   => 	 $this->input->post('comp_specs'),
-            'comp_type_img' =>  $this->input->post('comp_img'),
-        );
+    public function updateComputerType($id, $status){
+        if($status == "no-image"){
+            $data = array(
+                'name'   => 	 $this->input->post('comp_name'),
+                'total_units'   => 	 $this->input->post('comp_total'),
+                'rate'   => 	 $this->input->post('comp_rate'),
+                'specs'   => 	 $this->input->post('comp_specs'),
+            );
+            echo "no-image";
+        }
+        else if($status == "with-image"){
+                $image_data = $this->upload->data();
+                $data = array(
+                    'comp_type_img' =>     $image_data['file_name'], 
+                    'name'   => 	 $this->input->post('comp_name'),
+                    'total_units'   => 	 $this->input->post('comp_total'),
+                    'rate'   => 	 $this->input->post('comp_rate'),
+                    'specs'   => 	 $this->input->post('comp_specs'),
+                );
+                echo "with image";
+            }
         $this->db->where('Ctype_id',$id);
-        $this->db->update('computer_type',$datafinder);
-        echo json_encode($datafinder);
+        $this->db->update('computer_type',$data);
+        echo json_encode($data);
+        echo "hello world";
     }
     public function updateComputerTypeStatus($id){
         $datafinder = array(

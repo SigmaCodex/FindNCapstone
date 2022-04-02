@@ -255,8 +255,24 @@ class LogicalController extends CI_Controller {
     }
       //Computer Type
     public function addComputerType($id){
-        $this->load->model('MainModel');
-        $this->MainModel->addComputerType($id);
+        $this->load->helper(array('form', 'url')); 
+        
+            $config['upload_path']          = './assets/upload/shop/computertype';
+            $config['allowed_types']        = 'gif|jpg|png|jpeg';
+            $config['max_size']             = 5000;
+            $config['max_width']            = 5024;
+            $config['max_height']           = 5268;
+            $this->load->library('upload', $config);
+            $this->upload->initialize($config);
+            if(!$this->upload->do_upload('imageUpload'))
+            {
+                $this->load->model('MainModel');
+                $this->MainModel->addComputerType($id, "no-image");
+            }else{
+                
+                $this->load->model('MainModel');
+                $this->MainModel->addComputerType($id, "with-image");
+            }
     }
     public function deleteComputerType($id){
 
@@ -264,8 +280,25 @@ class LogicalController extends CI_Controller {
         $this->MainModel->deleteComputerType($id);
     }
     public function updateComputerType($id){
-        $this->load->model('MainModel');
-        $this->MainModel->updateComputerType($id);
+        $this->load->helper(array('form', 'url')); 
+
+            $config['upload_path']          = './assets/upload/shop/computertype';
+            $config['allowed_types']        = 'gif|jpg|png|jpeg';
+            $config['max_size']             = 5000;
+            $config['max_width']            = 5024;
+            $config['max_height']           = 5268;
+            $this->load->library('upload', $config);
+            $this->upload->initialize($config);
+            if(! $this->upload->do_upload('imageUpload'))
+            {
+                $this->load->model('MainModel');
+                $this->MainModel->updateComputerType($id, "no-image");
+            }else{
+                
+                $this->load->model('MainModel');
+                $this->MainModel->updateComputerType($id, "with-image");
+            
+            }
     }
     public function updateComputerTypeStatus($id){
         $this->load->model('MainModel');
