@@ -268,6 +268,7 @@
                             }).then((value) => {
                                     location.reload();
                             }); 
+                          
                     }else{
                         swal(
 							'Code Not Match!',

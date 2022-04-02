@@ -73,6 +73,24 @@ class MainModel extends CI_Model{
         $this->db->update('user',$data);
         $this->session->sess_destroy();
     }
+    public function update_To_FinderAccountVerified(){
+        $user_id = $this->session->userdata('user_id');
+        $code  = $this->session->userdata('v_code');
+        $user_code =  $this->input->post('input_code');
+        if($user_code == $code){
+            echo "Match";
+            $data = array(
+                'status'  =>    "verified",
+            );
+
+            $this->db->where('user_id',$user_id);
+            $this->db->update('user',$data);
+            $this->session->set_userdata('status',"verified");
+        }else{
+            echo "NotMatch";
+        }
+ 
+    }
 
 
     //superAdmin
