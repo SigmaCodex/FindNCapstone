@@ -328,6 +328,15 @@ class MainModel extends CI_Model{
         $query = $this->db->get();
         return $query->result();
     }
+    //update Payment Type
+    public function updatePaymentType($transaction_id,$payment_type){
+        $data = array(
+            'payment_type'     => 	 $payment_type,
+        );
+
+        $this->db->where('transaction_id',$transaction_id);
+        $this->db->update('transaction',$data);
+    }
   
     public function getCshopDetails($id){
         $this->db->select('*');

@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"> 
     
-    <link rel="stylesheet" href="assets/css/findersBookings.css" />
+    <link rel="stylesheet" href="../assets/css/findersBookings.css" />
     <title>Booking History</title>
   </head>
   <body>
@@ -22,7 +22,7 @@
         <!-- LEGEND END -->
         <div class="transaction-body justify-content-center align-items-center">
           <div class="transaction-content p-4">
-              <img src="assets/images/icon-logo.png" style="width: 50px;">
+              <img src="../assets/images/icon-logo.png" style="width: 50px;">
               <hr>
               
               <div class="content active extra-info p-0" id="all-tab">
@@ -35,7 +35,7 @@
                   
 
                   <div class="col-6 d-flex justify-content-end gcash-logo">
-                    <img src="assets/images/gcash.png" class="gcash-logo-pic">
+                    <img src="../assets/images/gcash.png" class="gcash-logo-pic">
                   </div>
                 </div>
 
@@ -110,15 +110,15 @@
     
 
 
-    <script src="assets/js/findersBookings.js" defer></script>
+    <script src="../assets/js/findersBookings.js" defer></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
 
   <!-- when edit is clicked -->
-  <script type="text/javascript">
+  <!-- <script type="text/javascript">
      document.getElementById("edit-booking-request").onclick = function () {
       location.href = "booking-request";
   };
-    </script>
+    </script> -->
   </body>
 </html>

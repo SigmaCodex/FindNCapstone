@@ -109,11 +109,17 @@ class LogicalController extends CI_Controller {
         $result = $this->MainModel->select_finderBookingTransaction($transaction_id);
         echo json_encode($result);
     }
+    //update overthecounter paymenttype and generate qr code
+    public function updatePaymentType_overthecounter($transaction_id){
+        $this->load->model('MainModel');
+        $status = "overthecounter";
+        $this->MainModel->updatePaymentType($transaction_id,$status);
+        //generate qr code logic -- call a function generaterQR($transaction_id);
+    }
 
     public function disableFinderAccountStatus(){
         $this->load->model('MainModel');
         $this->MainModel->disableFinderAccountStatus();
-        
     }
 
     public function getListOfComputerShops(){

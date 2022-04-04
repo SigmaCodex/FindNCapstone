@@ -33,8 +33,8 @@ $route['viewShop/(:num)']     = 'main_controller/viewShop/$1';
 $route['findershomepage'] = 'main_controller/viewFinders_HomePage';
 $route['accountSettings'] = 'main_controller/viewAccountSettings';
 $route['finderBookingList'] = 'main_controller/viewfinderBookingList';
-$route['findersTransactionDetail'] = 'main_controller/viewfindersTransactionDetail';
-$route['findersGCashPayment'] = 'main_controller/viewfindersGCashPayment';
+$route['findersTransactionDetail/(:num)'] = 'main_controller/viewfindersTransactionDetail/$1';
+$route['findersGCashPayment/(:num)'] = 'main_controller/viewfindersGCashPayment/$1';
 
 
 
@@ -85,6 +85,7 @@ $route['comptypefee/(:num)'] = 'main_controller/shopadmin_comptypeInfo/$1';
     $route['select-computershops/(:any)/(:num)'] = 'logicalcontroller/selectComputerShop/$1/$2';
     $route['view-FinderBookingTransaction/(:num)'] = 'logicalcontroller/view_finderBookingTransaction/$1';
     $route['select-FinderBookingTransaction/(:num)'] = 'logicalcontroller/select_finderBookingTransaction/$1';
+    $route['updatePaymentType-overthecounter/(:num)']       = 'logicalcontroller/updatePaymentType_overthecounter/$1';
    
     $route['addRate/(:num)/(:num)'] = 'logicalcontroller/addRate/$1/$2';
     $route['updateRate/(:num)/(:num)/(:num)'] = 'logicalcontroller/updateRate/$1/$2/$3';

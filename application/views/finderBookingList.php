@@ -220,7 +220,7 @@
           <script>
                 $(document).on('click','.click_transaction',function(){ 
                     var transaction_id = $(this).attr("transaction-id");
-                    window.location = "findersTransactionDetail";
+                    window.location = "findersTransactionDetail/"+transaction_id;
 
                     // $.ajax({
                     // url:"sendVerificationCodeToEmail",
