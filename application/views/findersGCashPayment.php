@@ -286,7 +286,7 @@
        <!-- start modalbody -->
         <form method="post" id="upload_form" enctype="multipart/form-data">
           <div class="form-group">
-            <input type="number" class="form-control" id="reference_num" placeholder="Gcash ReferenceNumber">
+            <input type="reference_number" name="reference_number" class="form-control" id="reference_num" placeholder="Gcash ReferenceNumber">
           </div>
           <hr>
           <!-- upload image receipt -->
@@ -329,6 +329,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" ></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" ></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
     <script>
     $(document).on('click','#p_num_ChangeBtn',function(){ 
@@ -376,7 +377,7 @@
            e.preventDefault();  
     
                 $.ajax({  
-                     url: BASE_URL+"uploadGcashPaymentDetails"+transaction_id,   
+                     url: BASE_URL+"uploadGcashPaymentDetails/"+transaction_id,   
                      method:"POST",  
                      data:new FormData(this),  
                      contentType: false,  
@@ -384,8 +385,19 @@
                      processData:false,  
                      success:function(data)  
                      {  
-                         alert(data);
                         
+                      swal({
+                            title: "Good job!",
+                            text: "Transaction Complete",
+                            icon: "success",
+                            button: "Continue",
+                          }).then((value) => {
+                            window.location = BASE_URL+"findersTransactionDetail/"+transaction_id;
+                          });
+
+
+
+
                      }  
                 });  
              

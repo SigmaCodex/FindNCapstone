@@ -371,20 +371,20 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <!-- when card is clicked -->
-  <script type="text/javascript">
+  <!-- <script type="text/javascript">
   document.getElementById("red").onclick = function () {
       location.href = "findersTransactionDetail";
-  };
+  }; -->
 
  
   </script>
 
   <!-- when edit is clicked -->
-  <script type="text/javascript">
+  <!-- <script type="text/javascript">
      document.getElementById("edit-booking-request").onclick = function () {
       location.href = "booking-request";
   };
-    </script>
+    </script> -->
 
    <!-- when gcash is clicked -->
 <!-- <script type="text/javascript">

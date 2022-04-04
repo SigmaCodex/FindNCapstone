@@ -130,10 +130,15 @@ class LogicalController extends CI_Controller {
             $this->upload->initialize($config);
             if(! $this->upload->do_upload('imageUpload'))
             {
-               echo "error";
+               echo "no-image";
             }else{
+                $this->load->model('MainModel');
+                $payment_type = "gcash";
+                $payment_status = "paid";
+                $this->MainModel->updatePaymentType($transaction_id,$payment_type);
+                $this->MainModel->addGcashPaymentDetails($transaction_id);
+                $this->MainModel->updatePaymentStatus($transaction_id, $payment_status);
                 
-                echo "uploaded";
                 //update Payment Status
                 //generate QR code
                 //add Data to GcashPayment Details Table

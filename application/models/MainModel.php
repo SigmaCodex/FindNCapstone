@@ -346,9 +346,30 @@ class MainModel extends CI_Model{
         $data = array(
             'payment_type'     => 	 $payment_type,
         );
-
         $this->db->where('transaction_id',$transaction_id);
         $this->db->update('transaction',$data);
+    }
+    //updatePaymentStatus
+    public function updatePaymentStatus($transaction_id,$payment_status){
+        $data = array(
+            'payment_status'     => 	 $payment_status,
+        );
+        $this->db->where('transaction_id',$transaction_id);
+        $this->db->update('transaction',$data);
+    }
+
+    //add GcashPaymentDetails
+    public function addGcashPaymentDetails($transaction_id){
+        $date_created = date('m/d/y');
+        $image_data = $this->upload->data();
+        $data = array(
+            'transaction_id'    => 	$transaction_id,
+            'reference_num'     => 	$this->input->post('reference_number'),
+            'payment_date'      =>  $date_created,
+            'receipt_image'     =>  $image_data['file_name']
+        );
+  
+         $this->db->insert('gcash_payment_details',$data);
     }
   
     public function getCshopDetails($id){
@@ -523,6 +544,7 @@ class MainModel extends CI_Model{
         // return $query->result();
         echo json_encode($query->result());
     }
+    //update Transaction Status
     public function updateBookingTransacStatus($transac_id,$status){
         $data = array(
             'transaction_status'   => 	 $status
