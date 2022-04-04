@@ -328,6 +328,19 @@ class MainModel extends CI_Model{
         $query = $this->db->get();
         return $query->result();
     }
+    //finder select ComputerBookingTransaction and Finder Details
+    public function select_finderdetailsBookingTransaction($transaction_id){
+        $this->db->select('computer_type.name,computershop.shop_name,transaction.*,comp_booking.num_ticket,finders.email,finders.phone_num,finders.firstname,finders.lastname');
+        $this->db->from('transaction');
+        $this->db->join('computershop', 'computershop.shop_id = transaction.shop_id_fk');
+        $this->db->join('comp_booking', 'comp_booking.transaction_id = transaction.transaction_id');
+        $this->db->join('computer_type', 'computer_type.Ctype_id = comp_booking.comp_type_id', 'left');
+        $this->db->join('user', 'user.user_id = transaction.user_id_fk');
+        $this->db->join('finders', 'finders.user_id = user.user_id','left');
+        $this->db->where('transaction.transaction_id',$transaction_id);
+        $query = $this->db->get();
+        return $query->result();
+    }
     //update Payment Type
     public function updatePaymentType($transaction_id,$payment_type){
         $data = array(
