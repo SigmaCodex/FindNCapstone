@@ -138,7 +138,10 @@ class Main_Controller extends CI_Controller {
 		$this->load->view('findersTransactionDetail',$result);
 	}
 	public function viewfindersGCashPayment($transaction_id){
-		$this->load->view('findersGCashPayment');
+		$this->load->model('MainModel');
+		$result['transaction_details'] = $this->MainModel->select_finderdetailsBookingTransaction($transaction_id);
+		// echo json_encode($result);
+		$this->load->view('findersGCashPayment',$result);
 	}
 
 	//super admin

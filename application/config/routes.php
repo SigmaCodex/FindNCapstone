@@ -86,7 +86,8 @@ $route['comptypefee/(:num)'] = 'main_controller/shopadmin_comptypeInfo/$1';
     $route['view-FinderBookingTransaction/(:num)'] = 'logicalcontroller/view_finderBookingTransaction/$1';
     $route['select-FinderBookingTransaction/(:num)'] = 'logicalcontroller/select_finderBookingTransaction/$1';
     $route['updatePaymentType-overthecounter/(:num)']       = 'logicalcontroller/updatePaymentType_overthecounter/$1';
-   
+    $route['uploadGcashPaymentDetails/(:num)']                 = 'logicalcontroller/uploadGcashPaymentDetails/$1';
+
     $route['addRate/(:num)/(:num)'] = 'logicalcontroller/addRate/$1/$2';
     $route['updateRate/(:num)/(:num)/(:num)'] = 'logicalcontroller/updateRate/$1/$2/$3';
 

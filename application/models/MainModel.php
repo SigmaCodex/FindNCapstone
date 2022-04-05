@@ -328,14 +328,48 @@ class MainModel extends CI_Model{
         $query = $this->db->get();
         return $query->result();
     }
+    //finder select ComputerBookingTransaction and Finder Details
+    public function select_finderdetailsBookingTransaction($transaction_id){
+        $this->db->select('computer_type.name,computershop.shop_name,transaction.*,comp_booking.num_ticket,finders.email,finders.phone_num,finders.firstname,finders.lastname');
+        $this->db->from('transaction');
+        $this->db->join('computershop', 'computershop.shop_id = transaction.shop_id_fk');
+        $this->db->join('comp_booking', 'comp_booking.transaction_id = transaction.transaction_id');
+        $this->db->join('computer_type', 'computer_type.Ctype_id = comp_booking.comp_type_id', 'left');
+        $this->db->join('user', 'user.user_id = transaction.user_id_fk');
+        $this->db->join('finders', 'finders.user_id = user.user_id','left');
+        $this->db->where('transaction.transaction_id',$transaction_id);
+        $query = $this->db->get();
+        return $query->result();
+    }
     //update Payment Type
     public function updatePaymentType($transaction_id,$payment_type){
         $data = array(
             'payment_type'     => 	 $payment_type,
         );
-
         $this->db->where('transaction_id',$transaction_id);
         $this->db->update('transaction',$data);
+    }
+    //updatePaymentStatus
+    public function updatePaymentStatus($transaction_id,$payment_status){
+        $data = array(
+            'payment_status'     => 	 $payment_status,
+        );
+        $this->db->where('transaction_id',$transaction_id);
+        $this->db->update('transaction',$data);
+    }
+
+    //add GcashPaymentDetails
+    public function addGcashPaymentDetails($transaction_id){
+        $date_created = date('m/d/y');
+        $image_data = $this->upload->data();
+        $data = array(
+            'transaction_id'    => 	$transaction_id,
+            'reference_num'     => 	$this->input->post('reference_number'),
+            'payment_date'      =>  $date_created,
+            'receipt_image'     =>  $image_data['file_name']
+        );
+  
+         $this->db->insert('gcash_payment_details',$data);
     }
   
     public function getCshopDetails($id){
@@ -510,6 +544,7 @@ class MainModel extends CI_Model{
         // return $query->result();
         echo json_encode($query->result());
     }
+    //update Transaction Status
     public function updateBookingTransacStatus($transac_id,$status){
         $data = array(
             'transaction_status'   => 	 $status

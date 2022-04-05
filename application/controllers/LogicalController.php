@@ -117,6 +117,34 @@ class LogicalController extends CI_Controller {
         //generate qr code logic -- call a function generaterQR($transaction_id);
     }
 
+    //upload Gcash Payment Details
+    public function uploadGcashPaymentDetails($transaction_id){
+        $this->load->helper(array('form', 'url')); 
+
+            $config['upload_path']          = './assets/upload/finder/gcash-receipt';
+            $config['allowed_types']        = 'gif|jpg|png|jpeg';
+            $config['max_size']             = 5000;
+            $config['max_width']            = 5024;
+            $config['max_height']           = 5268;
+            $this->load->library('upload', $config);
+            $this->upload->initialize($config);
+            if(! $this->upload->do_upload('imageUpload'))
+            {
+               echo "no-image";
+            }else{
+                $this->load->model('MainModel');
+                $payment_type = "gcash";
+                $payment_status = "paid";
+                $this->MainModel->updatePaymentType($transaction_id,$payment_type);
+                $this->MainModel->addGcashPaymentDetails($transaction_id);
+                $this->MainModel->updatePaymentStatus($transaction_id, $payment_status);
+                
+                //update Payment Status
+                //generate QR code
+                //add Data to GcashPayment Details Table
+            }
+    }
+
     public function disableFinderAccountStatus(){
         $this->load->model('MainModel');
         $this->MainModel->disableFinderAccountStatus();
