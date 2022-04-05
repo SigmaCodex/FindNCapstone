@@ -9,7 +9,7 @@
     
     <link rel="stylesheet" href="assets/css/findersNotification.css" />
     
-    <title>Booking History</title>
+    <title>FindN</title>
   </head>
   <body>
 
@@ -28,7 +28,7 @@
             </div>
           </div>
           
-          <div class="menu-search">
+          <!-- <div class="menu-search">
             <div class="menu-tab-search m-auto justify-content-between px-4">
               <div class="d-flex">
                 <i class="search-icon fa-solid fa-search"></i>
@@ -36,7 +36,7 @@
               </div>
               <i class="clear fa-solid fa-xmark" onclick="document.getElementById('search-transaction').value =''"></i>
             </div>
-          </div>
+          </div> -->
           <br>
 
           <!-- CONTENT  -->
