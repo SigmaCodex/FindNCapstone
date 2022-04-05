@@ -50,6 +50,7 @@ $route['comptypefee/(:num)'] = 'main_controller/shopadmin_comptypeInfo/$1';
 //REPORTS HERE
 $route['reports'] = 'main_controller/viewReports';
 
+
 //Logics
     //SuperAdmin
     $route['registeradmin'] = 'logicalcontroller/registerAdmin';
@@ -62,6 +63,15 @@ $route['reports'] = 'main_controller/viewReports';
     $route['comptypefee/(:num)'] = 'logicalcontroller/getComputerTypeServiceFee/$1';
     $route['updateFee/(:num)'] = 'logicalcontroller/updateServiceFee/$1';
 
+    //REPORTS
+    $route['total-salesNbooks'] = 'logicalcontroller/getTotalSalesAndBooks';
+    $route['total-GCashBooks'] = 'logicalcontroller/getTotalGCashBooks';
+    $route['total-OTCBooks'] = 'logicalcontroller/getTotalOTCBooks';
+    $route['monthly-PTB'] = 'logicalcontroller/getMonthlyPaymentTypeBooks';
+    $route['monthlyData'] = 'logicalcontroller/getMonthlyData';
+    $route['shopNames'] = 'logicalcontroller/getListOfComputerShopName';
+
+    //PASSWORDS
     $route['checkpassword'] = 'logicalcontroller/getSuperAdminPassword';
     $route['updatepassword/(:any)'] = 'logicalcontroller/updateSuperAdminPassword/$1';
 

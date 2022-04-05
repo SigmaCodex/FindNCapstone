@@ -800,6 +800,10 @@ $(document).on("click", ".view-admin", function () {
 			else{
 				var actbdate = [yy, "0"+mm, dd].join("-");
 			}
+
+			// if(mm.length == 0){
+
+			// }
 			
 
 			$("#upddate").val(actbdate);

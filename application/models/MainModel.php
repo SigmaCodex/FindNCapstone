@@ -94,7 +94,14 @@ class MainModel extends CI_Model{
         $query = $this->db->get();
         return $query->result();
     }
-
+    
+    public function getComputerTypeServiceFee($id){
+        $this->db->select('*');
+        $this->db->from('computer_type');
+        $this->db->where('shop_id_fk',$id);
+        $query = $this->db->get();
+        return $query->result();
+    }
     public function getListOfAdmins($id){
 		$this->db->select('*');
         $this->db->from('compmanager');
@@ -178,10 +185,93 @@ class MainModel extends CI_Model{
     }
     
     //REPORTS ----------------------------------
-    
+    public function getTotalSalesAndBooks(){
+        $this->db->select('transaction.service_fee,comp_booking.num_ticket, transaction.payment_type');
+        $this->db->select_sum('(transaction.service_fee * comp_booking.num_ticket)', 'totalSales');
+        $this->db->select_sum('comp_booking.num_ticket', 'totalBooks');
+        $this->db->from('transaction');
+        $this->db->join('comp_booking', 'comp_booking.transaction_id = transaction.transaction_id',);
+        $this->db->where('transaction_status', 'accepted');
+        $this->db->where('payment_status', 'paid');
+        $query = $this->db->get();
+        // return $query->result();
+        return $query->result();
+    }
+
+    public function getTotalGCashBooks(){
+        $this->db->select('transaction.payment_type, transaction.date_issued,comp_booking.num_ticket');
+        $this->db->select_sum('comp_booking.num_ticket', 'GcashBooks');
+        $this->db->from('transaction');
+        $this->db->join('comp_booking', 'comp_booking.transaction_id = transaction.transaction_id',);
+        $this->db->where('transaction_status', 'accepted');
+        $this->db->where('payment_status', 'paid');
+        $this->db->where('payment_type', 'GCash');
+        $query = $this->db->get();
+        // return $query->result();
+        return $query->result();
+    }
+    public function getTotalOTCBooks(){
+        $this->db->select('transaction.payment_type, transaction.date_issued,comp_booking.num_ticket');
+        $this->db->select_sum('comp_booking.num_ticket', 'OTCbooks');
+        $this->db->from('transaction');
+        $this->db->join('comp_booking', 'comp_booking.transaction_id = transaction.transaction_id',);
+        $this->db->where('transaction_status', 'accepted');
+        $this->db->where('payment_status', 'paid');
+        $this->db->where('payment_type', 'OverTheCounter');
+        $query = $this->db->get();
+        // return $query->result();
+        return $query->result();
+    }
+
+    public function getMonthlyPaymentTypeBooks(){
+        $this->db->select('transaction.payment_type,transaction.service_fee, transaction.date_issued,comp_booking.num_ticket');
+        $this->db->from('transaction');
+        $this->db->join('comp_booking', 'comp_booking.transaction_id = transaction.transaction_id',);
+        $this->db->where('transaction_status', 'accepted');
+        $this->db->where('payment_status', 'paid');
+        $query = $this->db->get();
+        // return $query->result();
+        return $query->result();
+    }
+
+    public function getMonthlyPaymentTypeBooksCount(){
+        $this->db->select('transaction.payment_type,transaction.service_fee, transaction.date_issued,comp_booking.num_ticket');
+        $this->db->from('transaction');
+        $this->db->join('comp_booking', 'comp_booking.transaction_id = transaction.transaction_id',);
+        $this->db->where('transaction_status', 'accepted');
+        $this->db->where('payment_status', 'paid');
+        $query = $this->db->get();
+        // return $query->result();
+        return $query->result();
+    }
+
+    public function getMonthlyData(){
+        $this->db->select('transaction.date_issued,transaction.service_fee,computershop.shop_name');
+        $this->db->from('transaction');
+        $this->db->join('comp_booking', 'comp_booking.transaction_id = transaction.transaction_id',);
+        $this->db->join('computershop', 'computershop.shop_id = transaction.shop_id_fk',);
+        $this->db->where('transaction_status', 'accepted');
+        $this->db->where('payment_status', 'paid');
+        $this->db->order_by('transaction.date_issued', 'ASC');
+        $query = $this->db->get();
+        // return $query->result();
+        return $query->result();
+    }
+    // public function getMonthlyDataSpecifcShop($shop_id){
+    //     $this->db->select('transaction.date_issued,transaction.service_fee,computershop.shop_name');
+    //     $this->db->from('transaction');
+    //     $this->db->join('comp_booking', 'comp_booking.transaction_id = transaction.transaction_id',);
+    //     $this->db->join('computershop', 'computershop.shop_id = transaction.shop_id_fk',);
+    //     $this->db->where('transaction_status', 'accepted');
+    //     $this->db->where('payment_status', 'paid');
+    //     $this->db->where('computershop.shop_id', $shop_id);
+    //     $this->db->order_by('transaction.date_issued', 'ASC');
+    //     $query = $this->db->get();
+    //     // return $query->result();
+    //     return $query->result();
+    // }
 
 
-    
     //finders
     public function registerFinder(){
         $Primarycode = 0;

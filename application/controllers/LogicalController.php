@@ -56,6 +56,34 @@ class LogicalController extends CI_Controller {
         $result = $this->MainModel->getSuperAdminPassword();
         echo json_encode($result);
     }
+
+    //REPORTS----------------------
+    public function getTotalSalesAndBooks(){
+        $this->load->model('MainModel');
+        $result = $this->MainModel->getTotalSalesAndBooks();
+        echo json_encode($result);
+    }
+    public function getTotalGCashBooks(){
+        $this->load->model('MainModel');
+        $result = $this->MainModel->getTotalGCashBooks();
+        echo json_encode($result);
+    }
+    public function getMonthlyPaymentTypeBooks(){
+        $this->load->model('MainModel');
+        $result = $this->MainModel->getMonthlyPaymentTypeBooks();
+        echo json_encode($result);
+    }
+    public function getMonthlyData(){
+        $this->load->model('MainModel');
+        $result = $this->MainModel->getMonthlyData();
+        echo json_encode($result);
+    }
+    public function getListOfComputerShopName(){
+        $this->load->model('MainModel');
+        $result = $this->MainModel->getListOfComputerShopName();
+        echo json_encode($result);
+    }
+
     //FINDERS
     public function FindersCompBookingRequest(){
         $this->load->model('MainModel');
