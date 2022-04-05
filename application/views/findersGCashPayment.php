@@ -16,7 +16,7 @@
       <div class="transaction-form p-1 ">
         <div class="header-transaction d-flex justify-content-between p-3 m-0">
           <a href="findersTransactionDetail"> <i class="back-icon fa-solid fa-xmark"></i></a>  
-          <h3 class="back-button-title">Transaction Details</h3> <a href="#filter"></a>
+          <h3 class="back-button-title" style="color:white;">Transaction Details</h3> <a href="#filter"></a>
         </div>
 
         <!-- LEGEND END -->

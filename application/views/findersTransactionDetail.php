@@ -17,7 +17,7 @@
         <div class="transaction-form ">
           <div class="header-transaction d-flex justify-content-between p-4 m-0">
             <a href="<?php echo base_url();?>finderBookingList"> <i class="back-icon fa-solid fa-chevron-left"></i></a>  
-            <h3 class="back-button-title">Transaction Details</h3> <a href="#filter"><i class="filter-icon fa-solid fa-stream"></i> </a>
+            <h3 class="back-button-title" style="color:white;">Transaction Details</h3> <a href="#filter"><i class="filter-icon fa-solid fa-stream"></i> </a>
           </div>
 
           <!-- LEGEND END -->

@@ -60,7 +60,7 @@
 				<li class="nr_li dd_main">
                 <div class="profile-dropdown d-flex">
                 <img src="assets/images/Prof.png" class="nav__img">  
-                <h6 class="username" style="padding-left:4px;"></h6>  <i class="down-arrow fa-solid fa-caret-down"></i>
+                <h6 class="username" style="padding-left:4px;"></h6>  <i class="down-arrow fa-solid fa-caret-down" style="font-size:15px;"></i>
                 </div>
                     <div class="drop-wrap pt-1">
                     <div class="dd_menu">

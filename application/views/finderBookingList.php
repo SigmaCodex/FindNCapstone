@@ -14,7 +14,7 @@
   <body>
     
 
-      <div class="transaction-form-wrapper d-flex justify-content-center mt-1">
+      <div class="transaction-form-wrapper d-flex justify-content-center mt-1 mb-5">
         <div class="transaction-form p-2 " style="box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);">
           <div class=" d-flex justify-content-between p-3 m-0">
               <a href="findershomepage"> 
@@ -77,22 +77,21 @@
 
                 <p class="legendTitle m-0 text-muted d-flex justify-content-start"  style="font-size: 12px; padding-bottom: 5px; font-weight: 800;"><?php echo date("M j, Y", strtotime($row->arrival_date));?></p>
                 <?php if($row->transaction_status == "pending"){
-                    $color = "border-left: 10px solid rgb(233, 220, 36);";
+                    $color = "border-left: 15px solid rgb(233, 220, 36);";
                   }else if($row->transaction_status == "accepted" && $row->payment_status == "paid"){
-                    $color = "border-left: 10px solid  rgb(233 97 18);";
+                    $color = "border-left: 15px solid  rgb(233 97 18);";
                   }
                   else if($row->transaction_status == "accepted"){
-                    $color = "border-left: 10px solid rgb(54, 157, 79);";
+                    $color = "border-left: 15px solid rgb(54, 157, 79);";
                   }
                 ?>
                 
                 <div class="card-holder click_transaction" transaction-id="<?php echo $row->transaction_id?>" style="<?php echo $color;?>">
-                  <div class="row">
-                    <div class="col-3 booking-list pt-3 align-items-center"> 
-                      <h6 style="font-size: 15px; font-weight: 600;">Request</h6>
+                  <!-- <div class="row">
+                    <div class="col-3 booking-list pt-3 align-items-center icon-left"> 
                       <i class="booking-icon fa-solid fa-calendar-plus" style="font-size: 25px; color: rgb(73, 71, 71);"></i><br>
                     </div>
-                    <div class="col-3 booking-list pt-3" style="border-left: 1px solid rgb(219, 219, 219)"> 
+                    <div class="col-3 booking-list pt-3" style="border-left: 1px solid rgb(219, 219, 219);  padding-top:20px;"> 
                       <h6 style="font-size: 15px; font-weight: 600;">Cafe Name</h6>
                       <p style="font-size:12px"><?php echo $row->shop_name?></p>
                     </div>
@@ -103,6 +102,23 @@
                     <div class="col-3 booking-list pt-3"> 
                       <h6 style="font-size: 15px; font-weight: 600;">Booking Status</h6>
                       <p style="font-size:12px"><?php echo $row->transaction_status?></p>
+                    </div>
+                  </div> -->
+                  
+                  <!-- NEW CARD DESIGN -->
+                  <div class="row d-flex justify-content-between">
+                    <div class="col-2 booking-list icon-left"> 
+                      <i class="booking-icon fa-solid fa-calendar-plus" style="font-size: 25px; color: rgb(73, 71, 71);"></i><br>
+                    </div>
+                    <div class="col-5 booking-list" style="border-left: 1px solid rgb(219, 219, 219);  padding-top:10px; text-align:left"> 
+                      <h6 style="font-size: 15px; font-weight: 600;">TNC</h6><hr>
+                      <p style="font-size: 11px; font-weight: 400;">Transaction Status :</p>
+                      <p style="font-size: 11px; font-weight: 400;">Payment Status :</p>
+                    </div>
+                    <div class="col-5 booking-list" style="padding-top:10px; text-align:center"> 
+                    <h6 style="font-size: 15px; font-weight: 600;"> Regular</h6><hr>
+                      <p class ="card-status trans-stat">Pending</p>
+                      <p class ="card-status pay-stat">Unpaid</p>
                     </div>
                   </div>
                 </div>
@@ -121,10 +137,10 @@
                     ?> 
                     
                     <p class="legendTitle m-0 text-muted d-flex justify-content-start"  style="font-size: 12px; padding-bottom: 5px; font-weight: 800;"><?php echo date("M j, Y", strtotime($row->arrival_date));?></p>
-                    <div class="card-holder click_transaction" transaction-id="<?php echo $row->transaction_id?>"  style="border-left: 10px solid rgb(233, 220, 36);">
-                      <div class="row">
-                        <div class="col-3 booking-list pt-3 align-items-center"> 
-                          <h6 style="font-size: 15px; font-weight: 600;">Request</h6>
+                    <div class="card-holder click_transaction" transaction-id="<?php echo $row->transaction_id?>"  style="border-left: 15px solid rgb(233, 220, 36);">
+<!--                       
+                    <div class="row">
+                        <div class="col-3 booking-list pt-3 icon-left"> 
                           <i class="booking-icon fa-solid fa-calendar-plus" style="font-size: 25px; color: rgb(73, 71, 71);"></i><br>
                         </div>
                         <div class="col-3 booking-list pt-3" style="border-left: 1px solid rgb(219, 219, 219)"> 
@@ -140,10 +156,28 @@
                           <p style="font-size:12px"><?php echo $row->transaction_status?></p>
                         </div>
                       </div>
+                    </div> -->
+                        
+                  <!-- NEW CARD DESIGN -->
+                  <div class="row d-flex justify-content-between">
+                    <div class="col-2 booking-list icon-left"> 
+                      <i class="booking-icon fa-solid fa-calendar-plus" style="font-size: 25px; color: rgb(73, 71, 71);"></i><br>
                     </div>
+                    <div class="col-5 booking-list" style="border-left: 1px solid rgb(219, 219, 219);  padding-top:10px; text-align:left"> 
+                      <h6 style="font-size: 15px; font-weight: 600;">TNC</h6><hr>
+                      <p style="font-size: 11px; font-weight: 400;">Transaction Status :</p>
+                      <p style="font-size: 11px; font-weight: 400;">Payment Status :</p>
+                    </div>
+                    <div class="col-5 booking-list" style="padding-top:10px; text-align:center"> 
+                    <h6 style="font-size: 15px; font-weight: 600;"> Regular</h6><hr>
+                      <p class ="card-status trans-stat">Pending</p>
+                      <p class ="card-status pay-stat">Unpaid</p>
+                    </div>
+                  </div>
+                  
                     <!-- end of cardholder -->
-                    <hr>
-              
+                      </div>
+                      <hr>
                 <?php   
                   }
                   }?>  
@@ -157,9 +191,9 @@
                     ?> 
                     
                     <?php if($row->transaction_status == "accepted" && $row->payment_status == "paid"){
-                              $color = "border-left: 10px solid  rgb(233 97 18);";
+                              $color = "border-left: 15px solid  rgb(233 97 18);";
                           }else if($row->transaction_status == "accepted"){
-                              $color = "border-left: 10px solid rgb(54, 157, 79);";
+                              $color = "border-left: 15px solid rgb(54, 157, 79);";
                           }
                     
                     ?>
@@ -167,8 +201,7 @@
                   
                     <div class="card-holder click_transaction" transaction-id="<?php echo $row->transaction_id?>"  style="<?php echo $color;?>">
                       <div class="row">
-                        <div class="col-3 booking-list pt-3 align-items-center"> 
-                          <h6 style="font-size: 15px; font-weight: 600;">Request</h6>
+                        <div class="col-3 booking-list pt-3 icon-left"> 
                           <i class="booking-icon fa-solid fa-calendar-plus" style="font-size: 25px; color: rgb(73, 71, 71);"></i><br>
                         </div>
                         <div class="col-3 booking-list pt-3" style="border-left: 1px solid rgb(219, 219, 219)"> 
