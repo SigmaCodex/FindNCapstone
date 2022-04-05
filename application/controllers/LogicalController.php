@@ -135,14 +135,32 @@ class LogicalController extends CI_Controller {
                 $this->load->model('MainModel');
                 $payment_type = "gcash";
                 $payment_status = "paid";
-                $this->MainModel->updatePaymentType($transaction_id,$payment_type);
-                $this->MainModel->addGcashPaymentDetails($transaction_id);
-                $this->MainModel->updatePaymentStatus($transaction_id, $payment_status);
-                
-                //update Payment Status
-                //generate QR code
-                //add Data to GcashPayment Details Table
+                $this->MainModel->updatePaymentType($transaction_id,$payment_type);//UpdatePayment Type
+                $this->MainModel->addGcashPaymentDetails($transaction_id); //add Data to GcashPayment Details Table
+                $this->MainModel->updatePaymentStatus($transaction_id, $payment_status);  //update Payment Status
+                $this->generateFinderQrCode($transaction_id);       //generate QR code
             }
+    }
+    //generate FinderQr Code
+    public function generateFinderQrCode($transaction_id){
+		$this->load->model('MainModel');
+        $result = $this->MainModel->select_finderdetailsBookingTransaction($transaction_id);
+        foreach($result as $key => $value){
+				$data = $value->transaction_id.",".$value->firstname." ".$value->lastname;
+		}
+	
+		$this->load->library('bb_qrcode');
+
+		$qr_image = 'qrCode-'.date('m-d-y-h-i-s').'.png';
+		$params['data'] = $data;
+		$params['level'] = 'M';
+		$params['size'] = 6;
+		$params['savename'] = FCPATH.'assets/QrCodes/'.$qr_image;
+		$this->bb_qrcode->generate($params);
+
+        $this->MainModel->FinderQRCode($transaction_id,$qr_image);
+		// $details['qr_image'] = $qr_image;
+	
     }
 
     public function disableFinderAccountStatus(){

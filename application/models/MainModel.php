@@ -371,7 +371,15 @@ class MainModel extends CI_Model{
   
          $this->db->insert('gcash_payment_details',$data);
     }
-  
+    //add FinderQRCode
+    public function FinderQRCode($transaction_id,$qr_code){
+        $data = array(
+            'qr_code'    => 	$qr_code,
+        );
+        $this->db->where('transaction_id',$transaction_id);
+        $this->db->update('transaction',$data);
+    }
+
     public function getCshopDetails($id){
         $this->db->select('*');
         $this->db->from('computershop');

@@ -173,44 +173,44 @@
 
                   <div class="row ">
                       <div class="col-4"><h4 class="info-text-left">Transaction Number:</h4> </div>
-                      <div class="col-2"><p class="info-text-middle">:</p></div>
-                      <div class="col-6"><p class="info-text-right" id="transaction_id"><?php echo $row->transaction_id?></p></div>
+                      <!-- <div class="col-2"><p class="info-text-middle">:</p></div> -->
+                      <div class="col-8"><p class="info-text-right" id="transaction_id"><?php echo $row->transaction_id?></p></div>
                   </div>
 
                   <div class="row d-flex">
                     <div class="col-4"><h4 class="info-text-left">Computer Type</h4> </div>
-                    <div class="col-2"><p class="info-text-middle">:</p></div>
-                    <div class="col-6"><p class="payment-info-text-right"><?php echo $row->name;//name == computertype name?></p></div>
+                    <!-- <div class="col-2"><p class="info-text-middle">:</p></div> -->
+                    <div class="col-8"><p class="payment-info-text-right"><?php echo $row->name;//name == computertype name?></p></div>
                   </div>
                   <div class="row d-flex">
                     <div class="col-4"><h4 class="info-text-left">Service Type</h4> </div>
-                    <div class="col-2"><p class="info-text-middle">:</p></div>
-                    <div class="col-6"><p class="payment-info-text-right" id="service-type"><?php echo $row->servicetype;?></p></div>
+                    <!-- <div class="col-2"><p class="info-text-middle">:</p></div> -->
+                    <div class="col-8"><p class="payment-info-text-right" id="service-type"><?php echo $row->servicetype;?></p></div>
                   </div>
    
 
                   <div class="row">
                     <div class="col-4"><h4 class="info-text-left">Number of Bookings (Person)</h4></div>
-                    <div class="col-2"><p class="info-text-middle">:</p></div>
-                    <div class="col-6"><p class="payment-info-text-right"><?php echo $row->num_ticket;?></p></div>
+                    <!-- <div class="col-2"><p class="info-text-middle">:</p></div> -->
+                    <div class="col-8"><p class="payment-info-text-right"><?php echo $row->num_ticket;?></p></div>
                   </div>
 
                   <div class="row">
                     <div class="col-4"><h4 class="info-text-left">Name</h4></div>
-                    <div class="col-2"><p class="info-text-middle">:</p></div>
-                    <div class="col-6"><p class="payment-info-text-right" id="b_name"><?php echo $row->lastname;echo ","; echo $row->firstname?></p></div>
+                    <!-- <div class="col-2"><p class="info-text-middle">:</p></div> -->
+                    <div class="col-8"><p class="payment-info-text-right" id="b_name"><?php echo $row->lastname;echo ","; echo $row->firstname?></p></div>
                   </div>
 
                   <div class="row">
                     <div class="col-4"><h4 class="info-text-left">Email</h4></div>
-                    <div class="col-2"><p class="payment-info-text-middle">:</p></div>
-                    <div class="col-6"><p class="payment-info-text-right" id="b_email"><?php echo $row->email;?></p></div>
+                    <!-- <div class="col-1"><p class="payment-info-text-middle">:</p></div> -->
+                    <div class="col-8"><p class="payment-info-text-right" id="b_email"><?php echo $row->email; echo " ";?></p></div>
                   </div>
 
                   <div class="row">
                     <div class="col-4"><h4 class="info-text-left">Contact Number</h4></div>
-                    <div class="col-2"><p class="info-text-middle">:</p></div>
-                    <div class="col-6"><p class="payment-info-text-right" id="phone_number"><?php echo $row->phone_num;?>
+                    <!-- <div class="col-2"><p class="info-text-middle">:</p></div> -->
+                    <div class="col-8"><p class="payment-info-text-right" id="phone_number"><?php echo $row->phone_num;?>
                       <i class="edit-icon fa-solid fa-edit"  data-toggle='modal' data-target='#ChangePhoneNumberModal'></i></p>
                     </div>
                   </div>

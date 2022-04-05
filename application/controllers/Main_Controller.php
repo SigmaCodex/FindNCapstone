@@ -96,12 +96,20 @@ class Main_Controller extends CI_Controller {
 	public function view_ticket(){
 		$this->load->view('viewticket');
 	}
-	public function generateQrCode(){
+	public function generateQrCode($transaction_id){
+
+		$this->load->model('MainModel');
+        $result = $this->MainModel->select_finderdetailsBookingTransaction($transaction_id);
+        foreach($result as $key => $value){
+				$data = $value->transaction_id.",".$value->firstname." ".$value->lastname;
+		}
+	
+
 		$this->load->library('bb_qrcode');
 
-		$data = "John KEn DUblinGwapo,
-				2ndDose, 
-				Arrival Time:4:30 pm";
+		// $data = "John KEn DUblinGwapo,
+		// 		2ndDose, 
+		// 		Arrival Time:4:30 pm";
 
 		$qr_image = 'qrCode-'.date('m-d-y-h-i-s').'.png';
 		$params['data'] = $data;
