@@ -14,6 +14,7 @@ body {
   font-family: 'Poppins', sans-serif;
   min-height: 100vh;
   /* background-color: #F1A971; */
+  
 }
 
 h1 {
@@ -72,7 +73,7 @@ a:hover {
 }
 
 .transaction-form {
-  width: 500px;
+  width:500px;
   /* box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); */
   text-align: center;
   font-size: 1.25rem;
@@ -124,22 +125,15 @@ a:hover {
   height: 28px;
   padding-top: 5px;
 }
+.header-transaction{
+  background-color: #e96112;
+}
 .back-icon {
-  background-image: linear-gradient(45deg, #f83f0b,#e09e1a);
-  background-size: 100%;
-  -webkit-background-clip: text;
-  -moz-background-clip: text;
-  -webkit-text-fill-color: transparent; 
-  -moz-text-fill-color: transparent;
+  color: white;
   text-decoration: none;
 }
 .filter-icon{
-  background-image: linear-gradient(45deg, #f83f0b,#e09e1a);
-  background-size: 100%;
-  -webkit-background-clip: text;
-  -moz-background-clip: text;
-  -webkit-text-fill-color: transparent; 
-  -moz-text-fill-color: transparent;
+  color: white;
   text-decoration: none;
 }
 .back-button-title{
@@ -148,14 +142,47 @@ a:hover {
 }
 .transaction-form .transaction-body{
   padding: 0;
+  
 }
 
 .content {
   display: none;
+  padding: 5px;
 }
 
 .content.active {
   display: block;
+}
+.icon-left{
+  padding-top: 45px !important;
+  padding-right: 5px !important;
+}
+
+.card-status{
+  font-size: 12px; 
+  font-weight: 400; 
+  border-radius:10px;
+  font-weight: 600;
+} 
+.trans-stat{
+  background-image: linear-gradient(45deg, #353534,#898682);
+  background-size: 100%;
+  -webkit-background-clip: text;
+  -moz-background-clip: text;
+  -webkit-text-fill-color: transparent; 
+  -moz-text-fill-color: transparent;
+  text-decoration: none;
+  font-weight: 700; 
+}
+.pay-stat{
+  background-image: linear-gradient(45deg, #0e0e0d,#686867);
+  background-size: 100%;
+  -webkit-background-clip: text;
+  -moz-background-clip: text;
+  -webkit-text-fill-color: transparent; 
+  -moz-text-fill-color: transparent;
+  text-decoration: none;
+  font-weight: 700;
 }
 
 /*****************  
@@ -175,10 +202,11 @@ responsive design
 }
 /* CARDS */
 .card-holder {
-    padding: 10px;
+    padding: 2px;
     box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
     rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
     cursor: pointer;
+    border-radius: 10px;
 }
 .card-holder:hover {
     box-shadow: rgba(50, 50, 93, 3) 0px 2px 5px -1px,
