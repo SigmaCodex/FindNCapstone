@@ -140,6 +140,11 @@ class Main_Controller extends CI_Controller {
 	public function viewfindersGCashPayment($transaction_id){
 		$this->load->view('findersGCashPayment');
 	}
+	public function viewFindersNotification()
+	{
+		$this->load->view('finders/navbar');
+		$this->load->view('findersNotification');
+	}
 
 	//super admin
 	public function listofcomputershop(){

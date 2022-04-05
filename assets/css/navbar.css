@@ -201,7 +201,7 @@ img {
   -moz-text-fill-color: transparent;
   text-decoration: none;
   font-size: 13px;
-  /* display: none;*/ /* Minimalist design, hidden labels */
+  display: none; /* Minimalist design, hidden labels */
 }
 
 .nav__icon {
@@ -216,29 +216,17 @@ img {
   text-decoration: none;
   padding-top: 10px;
 }
-/* .nav__list .nav__icon i .active {
-  text-decoration: none;
-  background-image: linear-gradient(45deg, #e60909,#1600df);
-  background-size: 100%;
-  -webkit-background-clip: text;
-  -moz-background-clip: text;
-  -webkit-text-fill-color: transparent; 
-  -moz-text-fill-color: transparent;
-  text-decoration: none;
+.notif-bar{
+  display: flex;
 }
-.bx .nav__icon:visited  {
-  font-size: 1.5rem;
-  text-decoration: none;
-  background-image: linear-gradient(45deg, #e60909,#1600df);
-  background-size: 100%;
-  -webkit-background-clip: text;
-  -moz-background-clip: text;
-  -webkit-text-fill-color: transparent; 
-  -moz-text-fill-color: transparent;
-  text-decoration: none;
-  padding-top: 10px;
-} */
-
+.notif-bar .badge{
+  position: absolute;
+  margin-top: -40px;
+  padding: 3px 5px;
+  border-radius: 50%;
+  background: red;
+  color: white;
+}
 /* Change background header */
 .scroll-header {
   box-shadow: 0 1px 12px hsla(175, 77%, 37%, 0.15);
@@ -279,19 +267,19 @@ img {
       cursor: pointer;
     /* display: none; */
   }
-  /* .header__search {
-    width: 300px;
-    padding: .55rem .75rem;
-  } */
   .nav__icon {
     display: none;
   }
   .nav__name {
     font-size: .938rem;
-    /* display: block; */ /* Minimalist design, visible labels */
+    display: block; /* Minimalist design, visible labels */
   }
   .nav__link:hover {
     color: hsl(174, 100%, 99%);
+  }
+  .notif-bar .badge{
+    margin-top: -8px;
+    margin-left: 95px;
   }
 }
 
