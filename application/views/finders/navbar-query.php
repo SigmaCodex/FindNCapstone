@@ -48,9 +48,12 @@
                     </li>
                     <!-- Notification -->
                     <li class="nav__item">
-                        <a href="#notifications" class="nav__link">
+                        <a href="<?php echo base_url();?>findersNotification" class="nav__link">
                             <i class='bx bx-bell nav__icon'></i>
+                            <div class="notif-bar d-flex">
                             <span class="nav__name">Notifications</span>
+                            <span class="badge">3</span>
+                            </div>
                         </a>
                     </li>
 

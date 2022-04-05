@@ -47,9 +47,13 @@
                     </li>
                     <!-- Notification -->
                     <li class="nav__item d-flex" >
-                        <a href="#notifications" class="nav__link">
+                        <a href="findersNotification" class="nav__link">
                             <i class='bx bx-bell nav__icon' id="icon-logo-id"></i>
+                            <div class="notif-bar d-flex">
                             <span class="nav__name">Notifications</span>
+                            <span class="badge">3</span>
+                            </div>
+                            
                         </a>
                     </li>
 

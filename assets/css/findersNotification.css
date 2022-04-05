@@ -1,0 +1,241 @@
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;1,300&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins');
+@import url('http://fonts.cdnfonts.com/css/uni-neue');
+@import url('//db.onlinewebfonts.com/c/80241b4ef777109d2625c9195e7ca852?family=NordiquePro-Bold');
+                
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  min-height: 100vh;
+  
+}
+
+h1 {
+  font-weight: 300;
+  color: #343434;
+  margin: 0.5rem 0;
+}
+
+a {
+  text-decoration: none !important;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+.flex {
+  display: flex;
+  margin-bottom: 1.5rem;
+}
+
+.justify-between {
+  justify-content: space-between;
+}
+
+/*****************  
+
+    buttons
+
+******************/
+
+.btn {
+  padding: 0.5rem 1rem;
+  border: none;
+}
+
+.btn-tab {
+  width: 50%;
+  font-size: 13px;
+  border-radius: 3px;
+  color: rgb(19, 18, 18);
+}
+
+.btn-tab.active {
+  background-color: #e96112;
+  border: none;
+  color: white;
+  outline: none;
+  border:none !important;
+  outline:none !important;
+  box-shadow: none;
+  font-weight: 500;
+  font-size: 13px;
+  transition-timing-function: ease-in-out;
+  transition-delay: 0.08s;
+}
+
+.transaction-form {
+  width:700px;
+  /* box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); */
+  text-align: center;
+  font-size: 1.25rem;
+  padding-top: 5px;
+  background-color: rgb(255, 255, 255);
+}
+.menu {
+  padding: 20px 30px 20px 30px;
+}
+
+.transaction-form .menu-tab {
+  display: flex;
+  padding: 3px;
+  background-color: #ece8e5;
+  border-radius: 5px;
+  border: none;
+}
+
+.transaction-form .menu-tab-search {
+  display: flex;
+  padding: 10px;
+  background-color: #ece8e5;
+  border-radius: 10px;
+  border: none;
+}
+.menu-tab-search {
+  width: 95%;
+  margin-left: 2px;
+}
+.transaction-form .menu-tab-search .search-icon {
+  color: rgb(148, 148, 147);
+  padding-top: 5px;
+}
+.transaction-form .menu-tab-search .clear{
+  color: rgb(148, 148, 147);
+  font-size: 15px;
+  padding-top: 8px;
+  cursor: pointer;
+  margin-left: -20px;
+  display: none;
+}
+
+.transaction-form .menu-tab-search .search-input{
+  outline: none;
+  background-color: #ece8e5;
+  border: none;
+  font-size: 15px;
+  padding-left: 16px ;
+  height: 28px;
+  padding-top: 5px;
+}
+
+.back-button-title{
+  display: grid;
+  place-items: center;
+  font-size: 20px;
+  font-weight: 500;
+  text-align: left;
+  padding-top: 20px;
+  padding-left: 15px;
+  margin: 0;
+}
+.transaction-form .transaction-body{
+  padding: 0;
+  
+}
+
+.content {
+  display: none;
+  padding: 5px;
+}
+
+.content.active {
+  display: block;
+}
+.icon-left{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0;
+}
+.icon-close{
+  display: flex;
+  justify-content: center;
+  align-items: top;
+  padding: 5px 10px;
+  background-image: linear-gradient(45deg, #3f3d3d,#e3e2df);
+  background-size: 100%;
+  -webkit-background-clip: text;
+  -moz-background-clip: text;
+  -webkit-text-fill-color: transparent; 
+  -moz-text-fill-color: transparent;
+}
+.icon-close:hover{
+  background-image: linear-gradient(45deg, #1c1c1c,#2b2929);
+  background-size: 100%;
+  -webkit-background-clip: text;
+  -moz-background-clip: text;
+  -webkit-text-fill-color: transparent; 
+  -moz-text-fill-color: transparent;
+}
+
+/*****************  
+
+responsive design
+
+******************/
+@media screen and (max-width: 750px) {
+  .transaction-form {
+    width: 370px;
+  }
+
+  .flex {
+    flex-direction: column;
+  }
+
+}
+/* CARDS */
+.card-holder {
+    padding: 2px;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
+    rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+    cursor: pointer;
+    border-radius: 10px;
+    background-color: rgb(229, 225, 225);
+}
+.card-holder-read{
+  padding: 2px;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
+  rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+  cursor: pointer;
+  border-radius: 10px;
+  background-color: rgb(252, 249, 249);
+}
+
+.card-holder:hover, .card-holder-read:hover {
+    box-shadow: rgba(50, 50, 93, 3) 0px 2px 5px -1px,
+    rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+    transition-timing-function: ease-out;
+}
+.search-input {
+  width: 290px;
+}
+
+.shop-image-icon {
+  width: 50px;
+  border-radius: 50%;
+}
+.shop-name-card{
+  color: #0e0e0d;
+  font-weight: 600;
+}
+.booking-list i #close{
+  cursor: pointer;
+}
+.booking-list i #close:hover{
+  color: rgb(2, 26, 10);
+}
+/* WHEN CARD IS CLICKED */
+
+.edit-link {
+  text-align:right; 
+  padding-right: 5px;
+  cursor: pointer;
+  color: blue;
+}

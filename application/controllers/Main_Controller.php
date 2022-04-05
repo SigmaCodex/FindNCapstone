@@ -151,6 +151,11 @@ class Main_Controller extends CI_Controller {
 		// echo json_encode($result);
 		$this->load->view('findersGCashPayment',$result);
 	}
+	public function viewFindersNotification()
+	{
+		$this->load->view('finders/navbar');
+		$this->load->view('findersNotification');
+	}
 
 	//super admin
 	public function listofcomputershop(){

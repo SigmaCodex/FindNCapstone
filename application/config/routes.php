@@ -33,6 +33,7 @@ $route['viewShop/(:num)']     = 'main_controller/viewShop/$1';
 $route['findershomepage'] = 'main_controller/viewFinders_HomePage';
 $route['accountSettings'] = 'main_controller/viewAccountSettings';
 $route['finderBookingList'] = 'main_controller/viewfinderBookingList';
+$route['findersNotification'] = 'main_controller/viewFindersNotification';
 $route['findersTransactionDetail/(:num)'] = 'main_controller/viewfindersTransactionDetail/$1';
 $route['findersGCashPayment/(:num)'] = 'main_controller/viewfindersGCashPayment/$1';
 
