@@ -158,6 +158,20 @@ class Main_Controller extends CI_Controller {
 	}
 
 	//super admin
+
+
+	//REPORTS ------------------------------------------------
+	public function viewReports()
+	{
+        $this->load->model('MainModel');
+		$val['totalSalesAndBooks'] = $this->MainModel->getTotalSalesAndBooks();
+		$val['totalGcashBooks'] = $this->MainModel->getTotalGCashBooks();
+		$val['totalOTCBooks'] = $this->MainModel->getTotalOTCBooks();
+		$val['MonthlyPT'] = $this->MainModel->getMonthlyPaymentTypeBooks();
+		$val['monthly'] = $this->MainModel->getMonthlyData();
+		$this->load->view('superadmin/reports',$val);
+    }
+
 	public function listofcomputershop(){
 		$session = $this->session->userdata('username');
 		if(!$session){
