@@ -130,13 +130,13 @@ class MainModel extends CI_Model{
         return $query->result();
     }
     
-    public function getComputerTypeServiceFee($id){
-        $this->db->select('*');
-        $this->db->from('computer_type');
-        $this->db->where('shop_id_fk',$id);
-        $query = $this->db->get();
-        return $query->result();
-    }
+    // public function getComputerTypeServiceFee($id){
+    //     $this->db->select('*');
+    //     $this->db->from('computer_type');
+    //     $this->db->where('shop_id_fk',$id);
+    //     $query = $this->db->get();
+    //     return $query->result();
+    // }
     public function getListOfAdmins($id){
 		$this->db->select('*');
         $this->db->from('compmanager');
