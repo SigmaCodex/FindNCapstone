@@ -70,6 +70,7 @@ $route['reports'] = 'main_controller/viewReports';
     $route['monthly-PTB'] = 'logicalcontroller/getMonthlyPaymentTypeBooks';
     $route['monthlyData'] = 'logicalcontroller/getMonthlyData';
     $route['shopNames'] = 'logicalcontroller/getListOfComputerShopName';
+    $route['shopSales'] = 'logicalcontroller/getMonthlyDataSpecifcShop';
 
     //PASSWORDS
     $route['checkpassword'] = 'logicalcontroller/getSuperAdminPassword';

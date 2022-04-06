@@ -130,6 +130,7 @@ class Main_Controller extends CI_Controller {
 		$val['totalOTCBooks'] = $this->MainModel->getTotalOTCBooks();
 		$val['MonthlyPT'] = $this->MainModel->getMonthlyPaymentTypeBooks();
 		$val['monthly'] = $this->MainModel->getMonthlyData();
+		$val['listofshops'] = $this->MainModel->getListOfComputerShops();
 		$this->load->view('superadmin/reports',$val);
     }
 

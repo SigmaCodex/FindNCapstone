@@ -234,37 +234,28 @@ class MainModel extends CI_Model{
         return $query->result();
     }
 
-    public function getMonthlyPaymentTypeBooksCount(){
-        $this->db->select('transaction.payment_type,transaction.service_fee, transaction.date_issued,comp_booking.num_ticket');
-        $this->db->from('transaction');
-        $this->db->join('comp_booking', 'comp_booking.transaction_id = transaction.transaction_id',);
-        $this->db->where('transaction_status', 'accepted');
-        $this->db->where('payment_status', 'paid');
-        $query = $this->db->get();
-        // return $query->result();
-        return $query->result();
-    }
-
     public function getMonthlyData(){
-        $this->db->select('transaction.date_issued,transaction.service_fee,computershop.shop_name');
+        $this->db->select('transaction.date_issued,transaction.service_fee,computershop.shop_name,comp_booking.num_ticket,transaction.payment_type');
         $this->db->from('transaction');
         $this->db->join('comp_booking', 'comp_booking.transaction_id = transaction.transaction_id',);
         $this->db->join('computershop', 'computershop.shop_id = transaction.shop_id_fk',);
         $this->db->where('transaction_status', 'accepted');
         $this->db->where('payment_status', 'paid');
+        // $this->db->where('shop_id', '7');
         $this->db->order_by('transaction.date_issued', 'ASC');
         $query = $this->db->get();
         // return $query->result();
         return $query->result();
     }
-    // public function getMonthlyDataSpecifcShop($shop_id){
+
+    // public function getMonthlyDataSpecifcShop(){
     //     $this->db->select('transaction.date_issued,transaction.service_fee,computershop.shop_name');
     //     $this->db->from('transaction');
     //     $this->db->join('comp_booking', 'comp_booking.transaction_id = transaction.transaction_id',);
     //     $this->db->join('computershop', 'computershop.shop_id = transaction.shop_id_fk',);
     //     $this->db->where('transaction_status', 'accepted');
     //     $this->db->where('payment_status', 'paid');
-    //     $this->db->where('computershop.shop_id', $shop_id);
+    //     $this->db->where('computershop.shop_name', 'TNC');
     //     $this->db->order_by('transaction.date_issued', 'ASC');
     //     $query = $this->db->get();
     //     // return $query->result();
