@@ -87,6 +87,13 @@ class MainModel extends CI_Model{
         return $query->result();
     }
 
+    public function updateSuperAdminPassword($id){
+		$this->db->select('*');
+        $this->db->from('computershop');
+        $this->db->where('shop_id',$id);
+        $query = $this->db->get();
+        return $query->result();
+    }
     public function getShopDetails($id){
 		$this->db->select('*');
         $this->db->from('computershop');
@@ -94,7 +101,14 @@ class MainModel extends CI_Model{
         $query = $this->db->get();
         return $query->result();
     }
-    
+    public function getSuperAdminPassword(){
+        $user_id_fk = $this->session->userdata('user_id');
+        $this->db->select('password');
+        $this->db->from('user');
+        $this->db->where('shop_id',$user_id_fk);
+        $query = $this->db->get();
+        return $query->result();
+    }
     public function getComputerTypeServiceFee($id){
         $this->db->select('*');
         $this->db->from('computer_type');

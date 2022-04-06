@@ -77,6 +77,10 @@ class Main_Controller extends CI_Controller {
 	{
         $this->load->view('findnRegister');
     }
+	public function addRate()
+	{
+        $this->load->view('addrate');
+    }
 
 	public function viewMap(){
 		$this->load->model('MainModel');

@@ -38,6 +38,7 @@ $route['computerbform'] = 'main_controller/viewcompbookForm';
 $route['viewMap']       = 'main_controller/viewMap';
 $route['view-ticket']     = 'main_controller/view_ticket';
 $route['generate-QR']     = 'main_controller/generateQrCode';
+$route['viewAddRate']     = 'main_controller/addRate';
 
 //superadmin 
 $route['add-admin'] = 'main_controller/addAdmin';
