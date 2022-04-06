@@ -283,22 +283,33 @@ class MainModel extends CI_Model{
             'instruction'       => 	$this->input->post('addtional_message'),
             'date_issued'              => 	$date_issued,
             'transaction_status'       => 	"pending",
-            'service_fee'              => 	"15",
+            'service_fee'              => 	$this->input->post('service_fee'),
             'payment_status	'          => 	"unpaid",
             'payment_type'             => 	"not_selected",
             'qr_code'                  => 	"not_issued",
             );
 
             
-            
             $comp_booking = array(
                 'transaction_id'    =>  $transaction_id,
                 'comp_type_id'     =>  $this->input->post('comp_type'),
                 'num_ticket'         => 	$this->input->post('num_person'),
+            );
+            
+            $finderNotification = array(
+                'to_user_id'         => $user_id_fk,
+                'transaction_id'     =>  $transaction_id,
+                'status'         => 	"unseen",
+                'noti_title'     =>     "Pending",
+                'noti_body'      => 	"booking request to be accepted by the admin",
+                'noti_created'   => 	$date_issued,
+
             );  
   
              $this->db->insert('transaction',$transaction);
              $this->db->insert('comp_booking', $comp_booking);
+             $this->db->insert('finder_notification', $finderNotification);
+             echo $transaction_id; //return generated id to ajax
     }
 
     // finder select all Computerbookingtransactions
@@ -368,8 +379,21 @@ class MainModel extends CI_Model{
             'payment_date'      =>  $date_created,
             'receipt_image'     =>  $image_data['file_name']
         );
+
+        $user_id = $this->session->userdata('user_id');
+        $finderNotification = array(
+            'to_user_id'         => $user_id,
+            'transaction_id'     =>  $transaction_id,
+            'status'         => 	"unseen",
+            'noti_title'     =>     "Booking Successful",
+            'noti_body'      => 	"booking request transaction successfully booked. You can now proceed to the intended cafe you booked. Have Fun Finder!",
+            'noti_created'   => 	$date_created,
+
+        );
   
          $this->db->insert('gcash_payment_details',$data);
+         $this->db->insert('finder_notification', $finderNotification);
+
     }
     //add FinderQRCode
     public function FinderQRCode($transaction_id,$qr_code){
