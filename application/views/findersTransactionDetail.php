@@ -196,36 +196,37 @@
                           
                           
                               if($row->payment_type == "gcash"){
-                                echo " 
+                                foreach($payment_details as $payment){
+                                  echo " 
+                                  <div class='row'>
+                                    <div class='col-6'><h4 class='info-text-left'>Payment Method:</h4></div>
+                                    <div class='col-2'><p class='info-text-middle'>:</p></div>
+                                    <div class='col-4'><p class='info-text-right' style='padding-right:36px; font-weight: 700;'>GCash</p></div>
+                                  </div>
 
-                                <div class='row'>
-                                  <div class='col-6'><h4 class='info-text-left'>Payment Method:</h4></div>
-                                  <div class='col-2'><p class='info-text-middle'>:</p></div>
-                                  <div class='col-4'><p class='info-text-right' style='padding-right:36px; font-weight: 700;'>GCash</p></div>
-                                </div>
+                                  <h6 style='text-align:center; font-size: 15px; font-weight: 700; padding-top: 20px;'>GCASH Payment Receipt </h6>
+                                  <hr> 
 
-                                <h6 style='text-align:center; font-size: 15px; font-weight: 700; padding-top: 20px;'>GCASH Payment Receipt </h6>
-                                <hr> 
+                                  <div class='row'>
+                                  <div class='col-6'><h4 class='info-text-left'>Reference Number:</h4> </div>
+                                  <div class='col-2'><p class=info-text-middle'>:</p></div>
+                                  <div class='col-4'><p class='info-text-right'>".$payment->reference_num."</p></div>
+                                </div>
+                                  
+                                  <div class='row'>
+                                    <div class='col-6'><h4 class='info-text-left'>Payment Date </h4></div>
+                                    <div class='col-2'><p class='info-text-middle'>:</p></div>
+                                    <div class='col-4'><p class='info-text-right'>".date("M j, Y", strtotime($payment->payment_date))."</p></div>
+                                  </div>
+                                  <div class='row'>
+                                    <div class='col-6'><h4 class='info-text-left'>GCASH Receipt Screenshot</h4></div>
+                                    <div class='col-2'><p class='info-text-middle'>:</p></div>
+                                    <div class='col-4'><img src='../assets/upload/finder/gcash-receipt/".$payment->receipt_image."' style='max-width: 100px;'>      
+                                  </div>
 
-                                <div class='row'>
-                                <div class='col-6'><h4 class='info-text-left'>Reference Number:</h4> </div>
-                                <div class='col-2'><p class=info-text-middle'>:</p></div>
-                                <div class='col-4'><p class='info-text-right'>7004 8043 8574 9</p></div>
-                               </div>
-                                
-                                <div class='row'>
-                                  <div class='col-6'><h4 class='info-text-left'>Payment Date </h4></div>
-                                  <div class='col-2'><p class='info-text-middle'>:</p></div>
-                                  <div class='col-4'><p class='info-text-right'>March 31, 2022</p></div>
-                                </div>
-                                <div class='row'>
-                                  <div class='col-6'><h4 class='info-text-left'>GCASH Receipt Screenshot</h4></div>
-                                  <div class='col-2'><p class='info-text-middle'>:</p></div>
-                                  <div class='col-4'><img src='../assets/images/receipt.jpg' style='width: 30px;'>      
-                                </div>
-
-                                </div>
-                                ";
+                                  </div>
+                                  ";
+                                }
                               }
 
                             if($row->payment_type == "overthecounter"){

@@ -482,6 +482,13 @@ class MainModel extends CI_Model{
          $this->db->insert('finder_notification', $finderNotification);
 
     }
+    public function select_GcashpaymentDetails($transaction_id){
+        $this->db->select('*');
+        $this->db->from('gcash_payment_details');
+        $this->db->where('transaction_id',$transaction_id);
+        $query = $this->db->get();
+        return $query->result();
+    }
     //add FinderQRCode
     public function FinderQRCode($transaction_id,$qr_code){
         $data = array(

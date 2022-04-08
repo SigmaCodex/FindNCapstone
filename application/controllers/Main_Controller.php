@@ -143,6 +143,7 @@ class Main_Controller extends CI_Controller {
 	public function viewfindersTransactionDetail($transaction_id){
 		$this->load->model('MainModel');
 		$result['transaction_details'] = $this->MainModel->select_finderBookingTransaction($transaction_id);
+		$result['payment_details'] = $this->MainModel->select_GcashpaymentDetails($transaction_id);
 		$this->load->view('findersTransactionDetail',$result);
 	}
 	public function viewfindersGCashPayment($transaction_id){
