@@ -153,8 +153,14 @@ class Main_Controller extends CI_Controller {
 	}
 	public function viewFindersNotification()
 	{
+		$user_id = $this->session->userdata('user_id');
+		//viewFinderNotification
+		$this->load->model('MainModel');
+		$result['Notification'] = $this->MainModel->viewFinderNotification($user_id);
+
+		// echo json_encode($result);
 		$this->load->view('finders/navbar');
-		$this->load->view('findersNotification');
+		$this->load->view('findersNotification',$result);
 	}
 
 	//super admin

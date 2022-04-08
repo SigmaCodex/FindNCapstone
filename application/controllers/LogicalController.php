@@ -388,9 +388,9 @@ class LogicalController extends CI_Controller {
         $this->load->model('MainModel');
         $this->MainModel->createFinderNotif();
     }
-    public function createComputerNotif(){
+    public function deleteFinderNotification($notif_id){
         $this->load->model('MainModel');
-        $this->MainModel->createComputerNotif();
+        $this->MainModel->deleteFinderNotification($notif_id);
     }
 
         //Shop Computer Details

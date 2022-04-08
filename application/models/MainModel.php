@@ -129,14 +129,7 @@ class MainModel extends CI_Model{
         $query = $this->db->get();
         return $query->result();
     }
-    
-    // public function getComputerTypeServiceFee($id){
-    //     $this->db->select('*');
-    //     $this->db->from('computer_type');
-    //     $this->db->where('shop_id_fk',$id);
-    //     $query = $this->db->get();
-    //     return $query->result();
-    // }
+
     public function getListOfAdmins($id){
 		$this->db->select('*');
         $this->db->from('compmanager');
@@ -503,7 +496,23 @@ class MainModel extends CI_Model{
         $this->db->from('computershop');
         $this->db->where('shop_id',$id);
     }
-  
+    //viewFinderNotification View ALl FinderNotification
+    public function viewFinderNotification($finder_id){
+        $this->db->select('finder_notification.*,computershop.shop_name');
+        $this->db->from('finder_notification');
+        $this->db->join('transaction', 'transaction.transaction_id = finder_notification.transaction_id');
+        $this->db->join('computershop', 'computershop.shop_id = transaction.shop_id_fk','left');
+        $this->db->where('finder_notification.to_user_id',$finder_id);
+        $this->db->order_by("finder_notification.noti_created", "desc");
+        $query = $this->db->get();
+        return $query->result();
+    }
+    //Delete Notification
+    public function deleteFinderNotification($noti_id){
+        $this->db->where('finder_notif_id',$noti_id);
+        $this->db->delete('finder_notification');
+    }
+    
      public function getListOfComputerTypes($id){
         $this->db->select('*');
         $this->db->from('computer_type');

@@ -106,6 +106,7 @@ $route['reports'] = 'main_controller/viewReports';
     $route['updateRate/(:num)/(:num)/(:num)'] = 'logicalcontroller/updateRate/$1/$2/$3';
 
     //notification 
+    $route['deleteNotification/(:num)'] = 'logicalcontroller/deleteFinderNotification/$1';
     $route['computerNotif'] = 'logicalcontroller/createComputerNotif';
     $route['finderNotif'] = 'logicalcontroller/createFinderNotif';
 
