@@ -2,7 +2,14 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 
+
 class MainModel extends CI_Model{
+
+    public function __construct() {
+        parent::__construct();
+        date_default_timezone_set("Asia/Manila");
+    }
+
     // user login 
     public function login_user(){
       $user = $this->input->post('username');
@@ -388,7 +395,7 @@ class MainModel extends CI_Model{
                 'transaction_id'     =>  $transaction_id,
                 'status'         => 	"unseen",
                 'noti_title'     =>     "Pending",
-                'noti_body'      => 	"booking request to be accepted by the admin",
+                'noti_body'      => 	"Booking Request To be accepted by the admin",
                 'noti_created'   => 	$date_issued,
 
             );  
@@ -472,8 +479,8 @@ class MainModel extends CI_Model{
             'to_user_id'         => $user_id,
             'transaction_id'     =>  $transaction_id,
             'status'         => 	"unseen",
-            'noti_title'     =>     "Booking Successful",
-            'noti_body'      => 	"booking request transaction successfully booked. You can now proceed to the intended cafe you booked. Have Fun Finder!",
+            'noti_title'     =>     "Booking_Successful",
+            'noti_body'      => 	"Sucess",
             'noti_created'   => 	$date_created,
 
         );

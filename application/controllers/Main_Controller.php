@@ -3,6 +3,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Main_Controller extends CI_Controller {
 
+	public function __construct() {
+        parent::__construct();
+        date_default_timezone_set("Asia/Manila");
+    }
+
 	 //show pages
 	public function index()
 	{
@@ -47,7 +52,7 @@ class Main_Controller extends CI_Controller {
 	{
 		$this->load->view('finders/navbar-query');
 		$this->load->model('MainModel');
-		// $val['shopdetails']	 = $this->MainModel->getShopDetails($shopid);
+		$val['shopdetails']	 = $this->MainModel->getShopDetails($shopid);
 		$val['shop_images']	 = $this->MainModel->viewShopimages($shopid);
 		// $val['computertype_details']	 = $this->MainModel->getListOfComputerTypes($shopid);
 		// echo json_encode($val);

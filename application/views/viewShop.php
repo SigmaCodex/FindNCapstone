@@ -21,8 +21,9 @@
         
         <!-- card left -->
         <div class = "shop-imgs col-lg-6 col-sm-12">
-          <h5 class = "shop-title mt-3">|  TNC Cebu HQ CyberCafe</h5>
-
+          <?php foreach($shopdetails as $row){?>
+          <h5 class = "shop-title mt-3">|  <?php echo $row->shop_name?> CyberCafe</h5>
+        
           <div class = "img-display">
             <div class = "img-showcase">
               <img src = "../assets/images/TNC-1.jpg">
@@ -60,10 +61,10 @@
 
           <div class = "shop-detail">
             <div class="title-bookmark mt-3">
-              <h2>All about TNC: </h2>
+              <h2>All about <?php echo $row->shop_name?>: </h2>
               <i class = "sus fa-solid fa-bookmark"></i>
             </div>
-                <p>TNC, one of the Philippines’ fastest-growing cyber cafe franchises, in partnership with premium gaming brand Acer Predator officially opened on March 7, 2020 the TNC Cebu Headquarters – the largest cybercafe in Southeast Asia.</p>
+                <p><?php echo $row->shop_name?>, one of the Philippines’ fastest-growing cyber cafe franchises, in partnership with premium gaming brand Acer Predator officially opened on March 7, 2020 the TNC Cebu Headquarters – the largest cybercafe in Southeast Asia.</p>
               <ul>
                 <li> <i class = "fa-solid fa-location-dot"></i>   
                   Address: <span> II Pelaez St. Brgy. Kalubihan Cebu City</span>
@@ -80,7 +81,7 @@
                 <br>
               </ul>
               <div class = "book-now">
-                <button type = "button" class = "btn">
+                <button type = "button" class = "btn"  data-bs-toggle="modal" data-bs-target="#select_service">
                   Book Now <i class = "fas fa-shopping-cart"></i>
                 </button>
                 <button type = "button" class = "btn">	
@@ -90,6 +91,7 @@
           </div>
         </div>
       </div>
+  
       
   <!-- MESSAGE CONTAINER START-->     
   <br>
@@ -244,8 +246,27 @@
         </div>
       </div>
     </div>
-    
+    <!-- select services modal -->
+    <div  class="modal fade" id="select_service" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered" role="document">
+              <div class="modal-content py-md-5 px-md-4 p-sm-3 p-4">
+          
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <h6 class="text-center mb-5" style="font-size: 20px; font-weight: 600;">Select Service</h6>
+                <i class="fa fa-computer"></i>
+               <div class="text-center mb-4"><a href="<?php echo base_url();?>finder-ComputerBookingRequest/<?php echo $row->shop_id;?>" class="btn btn-primary w-50 rounded-pill b1">Computer Bookings</a></div> 
+               <div class="text-center mb-3"> <button class="btn btn-primary w-50 rounded-pill b1" >Printing Service</button> </div> 
+              </div>
+         </div>
+    </div>
+
+    <?php }?><!-- end of foreach shopdetails -->
+
+
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
     <script src="../assets/js/viewShop.js"></script>
   </body>
 </html>
