@@ -52,7 +52,7 @@
                             <i class='bx bx-bell nav__icon'></i>
                             <div class="notif-bar d-flex">
                             <span class="nav__name">Notifications</span>
-                            <span class="badge">3</span>
+                            <span class="badge" id="count_noti"></span>
                             </div>
                         </a>
                     </li>
@@ -93,3 +93,30 @@
     </header>
 
     <script src="../assets/js/navbar.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+        setInterval(function(){
+            // alert("hello world");
+            BASE_URL = "<?php echo base_url();?>";
+            $.ajax({
+                        url:BASE_URL+"Countfindernotification",
+                        method:"POST", 
+                        data:{},
+                        success:function(data)
+                        {
+                          if(data>0){
+                            $("#count_noti").text(data);  
+                            $("#count_noti").css("display", "block");
+                          
+                          } else{
+                        
+                            $("#count_noti").css("display", "none");
+                          }
+                          
+                            
+                        }
+                      }); 
+            //ajax;
+
+        },10);
+    </script>

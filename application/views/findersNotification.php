@@ -19,12 +19,13 @@
           <h3 class="back-button-title mt-3">Notifications</h3> 
           <div class="menu">
             <div class="menu-tab">
-              <button class="btn btn-tab btn-ripple active shadow-none" data-target-tab="#all-tab">
-                All
-              </button>
-              <button class="btn btn-tab btn-ripple shadow-none" data-target-tab="#unseen">
+              <button class="btn btn-tab btn-ripple active shadow-none" data-target-tab="#unseen">
                 Unread
               </button>
+              <button class="btn btn-tab btn-ripple  shadow-none" data-target-tab="#all-tab">
+                All
+              </button>
+
             </div>
           </div>
           
@@ -36,14 +37,14 @@
             <div class="transaction-content">
 
               <!-- all -->
-              <div class="content active " id="all-tab">
+              <div class="content " id="all-tab">
 
               <?php foreach ($Notification as $row) {?> 
                 <p class="legendTitle m-0 text-muted d-flex justify-content-start"  style="font-size: 12px; padding-bottom: 5px; font-weight: 800;"></p>
               
                 <?php if($row->noti_title == "Message"){?>
                 <!-- MESSAGE -->
-                <div class="card-holder click_transaction mb-3" style="border-left: 8px solid #7B7B7C;" data-toggle="modal" data-target="#MessageModal<?php echo $row->finder_notif_id;?>">
+                <div class="card-holder click_notification mb-3" notif_id="<?php echo $row->finder_notif_id;?>" style="border-left: 8px solid #7B7B7C;" data-toggle="modal" data-target="#MessageModal<?php echo $row->finder_notif_id;?>">
                   <div class="row d-flex justify-content-center">
                     <div class="col-2 booking-list icon-left"> 
                       <i class="booking-icon fa-solid fa-comment-dots" style="font-size: 35px; color: #7B7B7C;"></i><br>
@@ -64,7 +65,7 @@
 
                 <?php if($row->noti_title == "Booking_Successful"){?>
                  <!-- BOOKED SUCCESSFULLY-->
-                 <div class="card-holder click_transaction mb-3" style="border-left: 8px solid rgb(5, 134, 29);" data-toggle="modal" data-target="#BookingSuccessfulModal<?php echo $row->finder_notif_id;?>">
+                 <div class="card-holder click_notification mb-3" notif_id="<?php echo $row->finder_notif_id;?>"  style="border-left: 8px solid rgb(5, 134, 29);" data-toggle="modal" data-target="#BookingSuccessfulModal<?php echo $row->finder_notif_id;?>">
                   <div class="row d-flex justify-content-center">
                     <div class="col-2 booking-list icon-left"> 
                       <i class="booking-icon fa-solid fa-trophy" style="font-size: 35px; color: rgb(5, 134, 29);"></i><br>
@@ -85,7 +86,7 @@
                 
                 <?php if($row->noti_title == "Success"){?>
                 <!-- SUCCESS TO PROCEED PAYMENT -->
-                <div class="card-holder click_transaction mb-3" style="border-left: 8px solid rgb(5, 134, 29);" data-toggle="modal" data-target="#SucessModal<?php echo $row->finder_notif_id;?>">
+                <div class="card-holder click_notification mb-3" notif_id="<?php echo $row->finder_notif_id;?>"  style="border-left: 8px solid rgb(5, 134, 29);" data-toggle="modal" data-target="#SucessModal<?php echo $row->finder_notif_id;?>">
                   <div class="row d-flex justify-content-center">
                     <div class="col-2 booking-list icon-left"> 
                       <i class="booking-icon fa-solid fa-check-circle" style="font-size: 35px; color: rgb(5, 134, 29);"></i><br>
@@ -106,7 +107,7 @@
 
                 <?php if($row->noti_title == "Pending"){?>
                 <!-- PENDING -->
-                <div class="card-holder click_transaction mb-3" style="border-left: 8px solid #EDD94C;" data-toggle="modal" data-target="#PendingModal<?php echo $row->finder_notif_id;?>">
+                <div class="card-holder click_notification mb-3" notif_id="<?php echo $row->finder_notif_id;?>"  style="border-left: 8px solid #EDD94C;" data-toggle="modal" data-target="#PendingModal<?php echo $row->finder_notif_id;?>">
                   <div class="row d-flex justify-content-center">
                     <div class="col-2 booking-list icon-left"> 
                       <i class="booking-icon fa-solid fa-user-clock" style="font-size: 35px; color: #EDD94C; padding-left: 5px;"></i><br>
@@ -128,7 +129,7 @@
               
                 <?php if($row->noti_title == "Fail"){?>
                     <!-- DENIED-->
-                <div class="card-holder click_transaction mb-3" style="border-left: 8px  solid red;" data-target="#FailedModal<?php echo $row->finder_notif_id;?>">
+                <div class="card-holder click_notification mb-3" notif_id="<?php echo $row->finder_notif_id;?>"  style="border-left: 8px  solid red;" data-target="#FailedModal<?php echo $row->finder_notif_id;?>">
                   <div class="row d-flex justify-content-center">
                     <div class="col-2 booking-list icon-left"> 
                       <i class="booking-icon fa-solid fa-circle-xmark" style="font-size: 35px; color: red;"></i><br>
@@ -151,7 +152,7 @@
               </div>
 
               <!--Unseen-->
-              <div class="content" id="unseen">
+              <div class="content active" id="unseen">
 
                     <p class="legendTitle m-0 text-muted d-flex justify-content-start"  style="font-size: 12px; padding-bottom: 5px; font-weight: 800;"></p>
               <?php foreach ($Notification as $row) {
@@ -161,7 +162,7 @@
               
                 <?php if($row->noti_title == "Message"){?>
                 <!-- MESSAGE -->
-                <div class="card-holder click_transaction mb-3" style="border-left: 8px solid #7B7B7C;" data-toggle="modal" data-target="#MessageModal<?php echo $row->finder_notif_id;?>">
+                <div class="card-holder click_notification mb-3" notif_id="<?php echo $row->finder_notif_id;?>"  style="border-left: 8px solid #7B7B7C;" data-toggle="modal" data-target="#MessageModal<?php echo $row->finder_notif_id;?>">
                   <div class="row d-flex justify-content-center">
                     <div class="col-2 booking-list icon-left"> 
                       <i class="booking-icon fa-solid fa-comment-dots " style="font-size: 35px; color: #7B7B7C;"></i><br>
@@ -182,7 +183,7 @@
 
                 <?php if($row->noti_title == "Booking_Successful"){?>
                  <!-- BOOKED SUCCESSFULLY-->
-                 <div class="card-holder click_transaction mb-3" style="border-left: 8px solid rgb(5, 134, 29);" data-toggle="modal" data-target="#BookingSuccessfulModal<?php echo $row->finder_notif_id;?>">
+                 <div class="card-holder click_notification mb-3" notif_id="<?php echo $row->finder_notif_id;?>"  style="border-left: 8px solid rgb(5, 134, 29);" data-toggle="modal" data-target="#BookingSuccessfulModal<?php echo $row->finder_notif_id;?>">
                   <div class="row d-flex justify-content-center">
                     <div class="col-2 booking-list icon-left"> 
                       <i class="booking-icon fa-solid fa-trophy" style="font-size: 35px; color: rgb(5, 134, 29);"></i><br>
@@ -203,7 +204,7 @@
                 
                 <?php if($row->noti_title == "Success"){?>
                 <!-- SUCCESS TO PROCEED PAYMENT -->
-                <div class="card-holder click_transaction mb-3" style="border-left: 8px solid rgb(5, 134, 29);" data-toggle="modal" data-target="#SucessModal<?php echo $row->finder_notif_id;?>">
+                <div class="card-holder click_notification mb-3" notif_id="<?php echo $row->finder_notif_id;?>"  style="border-left: 8px solid rgb(5, 134, 29);" data-toggle="modal" data-target="#SucessModal<?php echo $row->finder_notif_id;?>">
                   <div class="row d-flex justify-content-center">
                     <div class="col-2 booking-list icon-left"> 
                       <i class="booking-icon fa-solid fa-check-circle" style="font-size: 35px; color: rgb(5, 134, 29);"></i><br>
@@ -224,7 +225,7 @@
 
                 <?php if($row->noti_title == "Pending"){?>
                 <!-- PENDING -->
-                <div class="card-holder click_transaction mb-3" style="border-left: 8px solid #EDD94C;" data-toggle="modal" data-target="#PendingModal<?php echo $row->finder_notif_id;?>">
+                <div class="card-holder click_notification mb-3" notif_id="<?php echo $row->finder_notif_id;?>"  style="border-left: 8px solid #EDD94C;" data-toggle="modal" data-target="#PendingModal<?php echo $row->finder_notif_id;?>">
                   <div class="row d-flex justify-content-center">
                     <div class="col-2 booking-list icon-left"> 
                       <i class="booking-icon fa-solid fa-user-clock" style="font-size: 35px; color: #EDD94C; padding-left: 5px;"></i><br>
@@ -246,7 +247,7 @@
               
                 <?php if($row->noti_title == "Fail"){?>
                     <!-- DENIED-->
-                <div class="card-holder click_transaction mb-3" style="border-left: 8px  solid red;" data-target="#FailedModal<?php echo $row->finder_notif_id;?>">
+                <div class="card-holder click_notification mb-3" notif_id="<?php echo $row->finder_notif_id;?>"  style="border-left: 8px  solid red;" data-target="#FailedModal<?php echo $row->finder_notif_id;?>">
                   <div class="row d-flex justify-content-center">
                     <div class="col-2 booking-list icon-left"> 
                       <i class="booking-icon fa-solid fa-circle-xmark" style="font-size: 35px; color: red;"></i><br>
@@ -259,7 +260,7 @@
                       <img src="assets/images/Image5.jpg" class="shop-image-icon">
                     </div>
                     <div class="col-1 booking-list icon-close"> 
-                      <i class="booking-icon fa-solid fa-xmark delete-notification" noti_id="<?php echo $row->finder_notif_id;?>" id="close" style="font-size: 15px;"></i>
+                      <button><i class="booking-icon fa-solid fa-xmark delete-notification" noti_id="<?php echo $row->finder_notif_id;?>" id="close" style="font-size: 15px;"></i></button>
                     </div>
                   </div>
                 </div>
@@ -386,6 +387,7 @@
 $(document).on('click','.delete-notification',function(){ 
     noti_id = $(this).attr("noti_id");
     BASE_URL = "<?php echo base_url();?>";
+
     $.ajax({
           url: BASE_URL+"deleteNotification/"+noti_id,
           type: "POST",
@@ -395,8 +397,23 @@ $(document).on('click','.delete-notification',function(){
             location.reload();
           }
         });
- 
+});
+</script>
 
+<script>
+$(document).on('click','.click_notification ',function(){ 
+    noti_id = $(this).attr("notif_id");
+    BASE_URL = "<?php echo base_url();?>";
+    $(this).addClass('d-none');
+    $.ajax({
+          url: BASE_URL+"updateNotificationStatus/"+noti_id,
+          type: "POST",
+          data:{},
+          success: function(data)
+          {
+           
+          }
+        });
 });
 </script>
 

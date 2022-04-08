@@ -107,6 +107,8 @@ $route['reports'] = 'main_controller/viewReports';
 
     //notification 
     $route['deleteNotification/(:num)'] = 'logicalcontroller/deleteFinderNotification/$1';
+    $route['updateNotificationStatus/(:num)'] = 'logicalcontroller/updateNotificationStatus/$1';
+    $route['Countfindernotification'] = 'logicalcontroller/Countfindernotification';
     $route['computerNotif'] = 'logicalcontroller/createComputerNotif';
     $route['finderNotif'] = 'logicalcontroller/createFinderNotif';
 

@@ -512,6 +512,20 @@ class MainModel extends CI_Model{
         $this->db->where('finder_notif_id',$noti_id);
         $this->db->delete('finder_notification');
     }
+    //update Notification To seen
+    public function updateNotificationStatus($noti_id){
+        $data= array(
+            'status'     => 	 "seen",
+        );
+        $this->db->where('finder_notif_id',$noti_id);
+        $this->db->update('finder_notification',$data);
+    }
+    public function Countfindernotification(){
+        $user_id = $this->session->userdata('user_id');
+        $query = $this->db->select('*')->from('finder_notification')->where('to_user_id ',$user_id)->where('status',"unseen")->get();
+		$row = $query->num_rows();
+		return $row;
+    }
     
      public function getListOfComputerTypes($id){
         $this->db->select('*');
