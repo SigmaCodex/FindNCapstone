@@ -100,7 +100,7 @@
            
             $.ajax({
                         url:"Countfindernotification",
-                        method:"POST", 
+                        method:"GET", 
                         data:{},
                         success:function(data)
                         {
