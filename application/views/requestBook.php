@@ -91,7 +91,9 @@
                   <!-- Second Form -->
                   <div class="multisteps-form__panel shadow p-4 rounded bg-white" data-animation="scaleIn">
                     <h3 class="multisteps-form__title">Access Type</h3>
-                    <h3 class="multisteps-form__title" >TNC</h3>
+                    <?php foreach ($shopdetails as $shop) {?>
+                    <h3 class="multisteps-form__title" ><?php echo $shop->shop_name;?></h3>
+                    <?php }?>
                     <div id="shop_id"><?php if(isset($shop_id)){ echo $shop_id;}?></div>
                     <label style="color: red; font-size: 12px;">* Choose your preferred access type. You only need to
                       <strong style="color:green; font-size:15px;">   pay our booking fee.</strong></label>
@@ -104,7 +106,7 @@
                         <!-- Computer Type Card -->
                         <div class="col-12 col-md-6 mt-2">
                           <div class="card shadow-sm">
-                            <div class="card-body" comptype_id = "<?php echo $c->Ctype_id;?>" comptype_status ="<?php echo $c->status;?>">
+                            <div class="card-body" service_fee = "<?php echo $c->service_fee;?>" comptype_id = "<?php echo $c->Ctype_id;?>" comptype_status ="<?php echo $c->status;?>">
                               <h5 class="card-title" ><b><?php echo $c->name;?></b></h5>
                               <hr>
                               <div class="list">
@@ -147,10 +149,14 @@
                       <!-- Second Row -->
                       <div class="form-row mt-4">
                         <div class="col-md-6 pt-md-0 pt-3">
-                          <h6 class="select">Select preferred access type:</h6>     
+                          <h6 class="select">Selected Computer access type:</h6>   
+                          <input type="text" class="multisteps-form__input form-control d-none" id="service_fee" value="15" disabled>
                         </div>
                         <div class="col-md-6 pt-md-0 pt-3">
-                          <select name="" class="multisteps-form__input form-control" id="comp_typeSelect" placeholder="">
+
+                        
+                          <select name="" class="multisteps-form__input form-control " id="comp_typeSelect" placeholder="" disabled>
+                          <option value="not_selected">select accestype</option>
                           <?php foreach ($computertype_details as $cm) {?>
                             <?php if($cm->status == "Available") {?>
                               <option value="<?php echo $cm->Ctype_id;?>"><?php echo $cm->name;?></option>
@@ -241,6 +247,9 @@
         var status = $(this).attr("comptype_status");
         if(status == "Available"){
           $('#comp_typeSelect').val(name_comptype);
+          service_fee = $(this).attr("service_fee");
+          $("#service_fee").val(service_fee);
+     
         }else{
           swal(
 							'Not Available!',
@@ -260,30 +269,40 @@
          time_arrival  = $('#time').val();
          message       = $('#message').val();
          computer_type = $('#comp_typeSelect').val();
+         servicefee    = $('#service_fee').val();
 
          var BASE_URL = "<?php echo base_url();?>";
-         //ajax for submiting CompBooking Request
-         $.ajax({
-          url: BASE_URL+"submit-CompBooking-Request",
-          type: "POST",
-          data:{s_id:shop_id,num_person:numperson,arrival_date:date_arrival,arrival_time:time_arrival,addtional_message:message,comp_type:computer_type},
-          beforeSend : function()
-          {
-            alert("processing");
-          },
-          success: function(data)
-          {
-              swal({
-                title: "Your Booking Request is send!",
-                text: "Wait for the Respond",
-                icon: "success",
-                button: "Continue",
-              }).then((value) => {
-                    location.reload();
-              });           
-          }
-        });
 
+         if(computer_type == "not_selected"){
+          swal(
+              'Missing Informaction',
+              'Please Select Your Preffered Computer Type',
+              'warning'
+		        	)
+         }else{
+         //ajax for submiting CompBooking Request
+          $.ajax({
+            url: BASE_URL+"submit-CompBooking-Request",
+            type: "POST",
+            data:{s_id:shop_id,num_person:numperson,arrival_date:date_arrival,arrival_time:time_arrival,addtional_message:message,comp_type:computer_type,service_fee:servicefee},
+            beforeSend : function()
+            {
+              alert("processing");
+            },
+            success: function(data)
+            {
+                swal({
+                  title: "Your Booking Request is send!",
+                  text: "Wait for the Respond",
+                  icon: "success",
+                  button: "Continue",
+                }).then((value) => {
+                  window.location = BASE_URL+"findersTransactionDetail/"+data;
+                      
+                });           
+            }
+          });
+        }
 
     });
 </script>

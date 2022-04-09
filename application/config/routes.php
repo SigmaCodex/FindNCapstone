@@ -2,6 +2,7 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 //admin
+$route['adminlogin'] = 'main_controller/viewLogin';
 $route['shopadmin-dashboard'] = 'main_controller/admin_dashboard';
 $route['shopadmin-scanqr']    = 'main_controller/admin_scanqr';
 $route['shopadmin-bookings']  = 'main_controller/admin_bookings';
@@ -22,7 +23,7 @@ $route['shopadmin-shopimages/(:num)'] = 'main_controller/shopimages/$1';
 
 
 $route['register'] = 'main_controller/viewRegister';
-$route['loginpage'] = 'main_controller/viewLogin';
+
 
 
 //finders
@@ -31,14 +32,21 @@ $route['findnlogin'] = 'main_controller/viewFindNLogin';
 $route['viewShop/(:num)']     = 'main_controller/viewShop/$1';
 $route['findershomepage'] = 'main_controller/viewFinders_HomePage';
 $route['accountSettings'] = 'main_controller/viewAccountSettings';
+$route['finderBookingList'] = 'main_controller/viewfinderBookingList';
+$route['findersNotification'] = 'main_controller/viewFindersNotification';
+$route['findersTransactionDetail/(:num)'] = 'main_controller/viewfindersTransactionDetail/$1';
+$route['findersGCashPayment/(:num)'] = 'main_controller/viewfindersGCashPayment/$1';
+
+
 
 $route['finder-ComputerBookingRequest/(:num)']   = 'main_controller/viewRequestBook/$1';
 $route['finder-Compbookingrequest/(:num)'] = 'main_controller/finder_BookingRequest/$1';
 $route['computerbform'] = 'main_controller/viewcompbookForm';
 $route['viewMap']       = 'main_controller/viewMap';
-$route['view-ticket']     = 'main_controller/view_ticket';
-$route['generate-QR']     = 'main_controller/generateQrCode';
+
 $route['viewAddRate/(:num)']     = 'main_controller/viewRate/$1';
+$route['view-ticket/(:num)']     = 'main_controller/view_ticket/$1';
+$route['generate-QR/(:num)']     = 'main_controller/generateQrCode/$1';
 
 //superadmin 
 $route['add-admin'] = 'main_controller/addAdmin';
@@ -94,12 +102,20 @@ $route['reports'] = 'main_controller/viewReports';
     $route['select-computershops/(:any)/(:num)'] = 'logicalcontroller/selectComputerShop/$1/$2';
     $route['view-FinderBookingTransaction/(:num)'] = 'logicalcontroller/view_finderBookingTransaction/$1';
     $route['select-FinderBookingTransaction/(:num)'] = 'logicalcontroller/select_finderBookingTransaction/$1';
+
    
     $route['addRate/(:num)'] = 'logicalcontroller/addRate/$1';
     $route['updateRate/(:num)'] = 'logicalcontroller/updateRate/$1';
     $route['viewRate/(:num)'] = 'logicalcontroller/viewRate/$1';
 
+    $route['updatePaymentType-overthecounter/(:num)']       = 'logicalcontroller/updatePaymentType_overthecounter/$1';
+    $route['uploadGcashPaymentDetails/(:num)']                 = 'logicalcontroller/uploadGcashPaymentDetails/$1';
+
+
     //notification 
+    $route['deleteNotification/(:num)'] = 'logicalcontroller/deleteFinderNotification/$1';
+    $route['updateNotificationStatus/(:num)'] = 'logicalcontroller/updateNotificationStatus/$1';
+    $route['Countfindernotification'] = 'logicalcontroller/Countfindernotification';
     $route['computerNotif'] = 'logicalcontroller/createComputerNotif';
     $route['finderNotif'] = 'logicalcontroller/createFinderNotif';
 

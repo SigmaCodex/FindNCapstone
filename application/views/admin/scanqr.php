@@ -50,7 +50,7 @@
                              <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="uname1">Transaction Id:</label> 
-                                    <input class="form-control" id="uname1" name="uname1" required="" type="text">
+                                    <input class="form-control" id="transaction_id" name="uname1" required="" type="text">
                                 </div>
                              </div>
 

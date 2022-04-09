@@ -3,6 +3,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Main_Controller extends CI_Controller {
 
+	public function __construct() {
+        parent::__construct();
+        date_default_timezone_set("Asia/Manila");
+		$this->load->model('MainModel');
+    }
+
 	 //show pages
 	public function index()
 	{
@@ -47,7 +53,7 @@ class Main_Controller extends CI_Controller {
 	{
 		$this->load->view('finders/navbar-query');
 		$this->load->model('MainModel');
-		// $val['shopdetails']	 = $this->MainModel->getShopDetails($shopid);
+		$val['shopdetails']	 = $this->MainModel->getShopDetails($shopid);
 		$val['shop_images']	 = $this->MainModel->viewShopimages($shopid);
 		// $val['computertype_details']	 = $this->MainModel->getListOfComputerTypes($shopid);
 		// echo json_encode($val);
@@ -98,15 +104,25 @@ class Main_Controller extends CI_Controller {
 		$this->load->view('finders/navbar');
 		$this->load->view('findersHomePage');
 	}
-	public function view_ticket(){
-		$this->load->view('viewticket');
+	public function view_ticket($transaction_id){
+		$result['transaction_details'] = $this->MainModel->select_finderdetailsBookingTransaction($transaction_id);
+		$this->load->view('finders/navbar-query');
+		$this->load->view('viewticket',$result);
 	}
-	public function generateQrCode(){
+	public function generateQrCode($transaction_id){
+
+		$this->load->model('MainModel');
+        $result = $this->MainModel->select_finderdetailsBookingTransaction($transaction_id);
+        foreach($result as $key => $value){
+				$data = $value->transaction_id.",".$value->firstname." ".$value->lastname;
+		}
+	
+
 		$this->load->library('bb_qrcode');
 
-		$data = "John KEn DUblinGwapo,
-				2ndDose, 
-				Arrival Time:4:30 pm";
+		// $data = "John KEn DUblinGwapo,
+		// 		2ndDose, 
+		// 		Arrival Time:4:30 pm";
 
 		$qr_image = 'qrCode-'.date('m-d-y-h-i-s').'.png';
 		$params['data'] = $data;
@@ -123,6 +139,44 @@ class Main_Controller extends CI_Controller {
 	public function viewcompbookForm(){
 		$this->load->view('computerbform');
 	}
+
+	public function viewfinderBookingList(){
+		$session = $this->session->userdata('username');
+		$user_id = $this->session->userdata('user_id');
+		if(!$session){
+			redirect(findnlogin);
+		}else{
+			$this->load->model('MainModel');
+			$val['listofbookings']	 = $this->MainModel->view_finderBookingTransaction($user_id);
+			$this->load->view('finders/navbar');
+			$this->load->view('finderBookingList',$val);
+		}
+	}
+
+	public function viewfindersTransactionDetail($transaction_id){
+		$this->load->model('MainModel');
+		$result['transaction_details'] = $this->MainModel->select_finderBookingTransaction($transaction_id);
+		$result['payment_details'] = $this->MainModel->select_GcashpaymentDetails($transaction_id);
+		$this->load->view('findersTransactionDetail',$result);
+	}
+	public function viewfindersGCashPayment($transaction_id){
+		$this->load->model('MainModel');
+		$result['transaction_details'] = $this->MainModel->select_finderdetailsBookingTransaction($transaction_id);
+		// echo json_encode($result);
+		$this->load->view('findersGCashPayment',$result);
+	}
+	public function viewFindersNotification()
+	{
+		$user_id = $this->session->userdata('user_id');
+		//viewFinderNotification
+		$this->load->model('MainModel');
+		$result['Notification'] = $this->MainModel->viewFinderNotification($user_id);
+
+		// echo json_encode($result);
+		$this->load->view('finders/navbar');
+		$this->load->view('findersNotification',$result);
+	}
+
 	//super admin
 
 

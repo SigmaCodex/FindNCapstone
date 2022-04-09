@@ -9,7 +9,7 @@
 <body>
 <h1>Generate Find QR Code</h1>
     <?php if(isset($qr_image)){?>
-        <img src="assets/QrCodes/<?php echo $qr_image?>" alt="qrcode">
+        <img src="../assets/QrCodes/<?php echo $qr_image?>" alt="qrcode">
    <?php }?>
 </body>
 </html>

@@ -16,8 +16,8 @@
 		</div>
 		<div class="login-content">
 			<div class="form">
-				<img src="assets/images/login-image.png">
-				<h2 class="title">Welcome</h2>
+				<img src="assets/images/login-image.jpg" style="height:200px;">
+				<h2 class="title">Shop Admin</h2>
            		<div class="input-div one">
            		   <div class="i">
            		   		<i class="fas fa-user"></i>
@@ -36,7 +36,6 @@
            		    	<input type="password" id="pass" class="input">
             	   </div>
             	</div>
-            	<a href="#">Forgot Password?</a>
             	<input type="submit" class="btn" id="btn-login" value="Login">
 				<!-- <button class="btn" id="btn-login" >click</button> -->
 			</div>
@@ -67,7 +66,7 @@
 				data:{username:user,password:pass},
 				beforeSend : function()
 				{
-					alert("processing");
+					
 				},
 				success: function(data){
 					//redirect to pages
@@ -83,7 +82,7 @@
 							});
 							//end
 					}else if(data == "superadmin"){
-						alert("superadmin");
+						window.location = "listofcomputershop";
 					}
 					else{
 						swal(

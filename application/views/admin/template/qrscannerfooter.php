@@ -6,10 +6,10 @@
 						  alert(content);
 						//  $("#data").text(content);
 						 var res = content.split(",");
-					      $("#name").val(res[0]);
-					      $("#email").val(res[1]);
-					      $("#p_number").val(res[2]);
-					      $("#status").val(res[3]);
+					      $("#transaction_id").val(res[0]);
+					      $("#name").val(res[1]);
+					    //   $("#p_number").val(res[2]);
+					    //   $("#status").val(res[3]);
 					    //   $("#arrival").val(res[4]);
 					    //  $("#total").text(res[5]);
 					
@@ -42,4 +42,13 @@
 						console.error(e);
 						alert(e);
 					});
-				</script>
+</script>
+<script>
+	setInterval(function(){
+            // alert("hello world");
+		
+            //ajax;
+			var transaction_id = $("#transaction_id").val();
+		    console.log(transaction_id);
+        },1000);
+</script>

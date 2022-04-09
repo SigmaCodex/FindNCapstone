@@ -19,7 +19,119 @@
 	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 	<link rel="stylesheet" href="../assets/css/register.css">
     <link rel="stylesheet" type="text/css" href="../assets/css/typetoggle.css">
+	<style>
+.file-upload {
+  background-color: #ffffff;
+  width: 400px;
+  margin: 0 auto;
+  padding: 20px;
+}
 
+.file-upload-btn {
+  width: 100%;
+  margin: 0;
+  color: #fff;
+  background: #1FB264;
+  border: none;
+  padding: 10px;
+  border-radius: 4px;
+  border-bottom: 4px solid #15824B;
+  transition: all .2s ease;
+  outline: none;
+  text-transform: uppercase;
+  font-weight: 700;
+}
+
+.file-upload-btn:hover {
+  background: #1AA059;
+  color: #ffffff;
+  transition: all .2s ease;
+  cursor: pointer;
+}
+
+.file-upload-btn:active {
+  border: 0;
+  transition: all .2s ease;
+}
+
+.file-upload-content {
+  display: none;
+  text-align: center;
+}
+
+.file-upload-input {
+  position: absolute;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  outline: none;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.image-upload-wrap {
+  margin-top: 20px;
+  border: 4px dashed #1FB264;
+  position: relative;
+}
+
+.image-dropping,
+.image-upload-wrap:hover {
+  background-color: #1FB264;
+  border: 4px dashed #ffffff;
+}
+
+.image-title-wrap {
+  padding: 0 15px 15px 15px;
+  color: #222;
+}
+
+.drag-text {
+  text-align: center;
+}
+
+.drag-text h3 {
+  font-weight: 100;
+  text-transform: uppercase;
+  color: #15824B;
+  padding: 60px 0;
+}
+
+.file-upload-image {
+  max-height: 200px;
+  max-width: 200px;
+  margin: auto;
+  padding: 20px;
+}
+
+.remove-image {
+  width: 200px;
+  margin: 0;
+  color: #fff;
+  background: #cd4535;
+  border: none;
+  padding: 10px;
+  border-radius: 4px;
+  border-bottom: 4px solid #b02818;
+  transition: all .2s ease;
+  outline: none;
+  text-transform: uppercase;
+  font-weight: 700;
+}
+
+.remove-image:hover {
+  background: #c13b2a;
+  color: #ffffff;
+  transition: all .2s ease;
+  cursor: pointer;
+}
+
+.remove-image:active {
+  border: 0;
+  transition: all .2s ease;
+}
+</style>
 
 	</head>
 	<body>
@@ -112,30 +224,46 @@
 		          <span aria-hidden="true" class="ion-ios-close"></span>
 		        </button>
 		      </div>
+			  <form method="post" id="upload_form" enctype="multipart/form-data"> 
 		      <div class="modal-body p-4 py-5 p-md-5">
 		    		<h3 class="text-center mb-3">Add Computer Shop</h3>
 					
 					<div class="form-group mb-2">
 		      			<label for="name">Computer Type Name</label>
-		      			<input name="username" id="comp_name" type="text" class="form-control">
+		      			<input name="comp_name" id="comp_name" type="text" class="form-control">
 		      		</div>
 					<div class="form-group mb-2">
 		      			<label for="name">Total Units</label>
-		      			<input name="username" id="comp_total" type="text" class="form-control">
+		      			<input name="comp_total" id="comp_total" type="text" class="form-control">
 		      		</div> 
 					<div class="form-group mb-2">
 		      			<label for="name">Rate</label>
-		      			<input name="username" id="comp_rate" type="text" class="form-control">
+		      			<input name="comp_rate" id="comp_rate" type="text" class="form-control">
 		      		</div>
 					<div class="form-group mb-2">
 		      			<label for="name">Specifications</label>
-		      			<textarea name="username" id="comp_specs" type="text" class="form-control"></textarea>
+		      			<textarea name="comp_specs" id="comp_specs" type="text" class="form-control"></textarea>
 		      		</div>
 					<div class="form-group mb-2">
 		      			<label for="name">Image Upload</label>
-		      			<input type="text" id="comp_img" name="lat" placeholder="Your lat.." class="form-control">
+		      			<div class="row file-upload">
+					<button class="file-upload-btn" type="button" onclick="$('.file-upload-input').trigger( 'click' )">Add Image</button>
+
+					<div class="image-upload-wrap">
+						<input class="file-upload-input" name="imageUpload" type='file' onchange="readURL(this);"/>
+						<div class="drag-text">
+						<h3>Drag and drop a file or select add Image</h3>
+						</div>
+					</div>
+					<div class="file-upload-content">
+						<img class="file-upload-image" src="#" alt="your image" />
+						<div class="image-title-wrap">
+						<button type="button" onclick="removeUpload()" class="remove-image">Remove <span class="image-title">Uploaded Image</span></button>
+						</div>
+					</div>
+
+					</div>
 		      		</div>
-					  
 					<div>		
 		      </div>
 				<div class="modal-footer">
@@ -148,33 +276,34 @@
 	              </div>
                 <div class="form-group mb-2">
 	            	  <!-- <button input="" id="addadminbtn" class="form-control btn btn-primary rounded submit px-3">Add</button> -->
-					  <input value="Add" class="form-control btn btn-primary rounded submit px-3" id="addcomputertypeBtn">
+					  <input value="Add" type="submit" class="form-control btn btn-primary rounded submit px-3" id="addcomputertypeBtn">
 	              </div>
               </div>
+						  </form>
 		    </div>
 		  </div>
 		</div>
 	</body>
 <!-- script for inserting computer types  -->
 <script>
-  $(document).on("click", '#addcomputertypeBtn', function() {
-	var Base_URL = "<?php echo base_url();?>";
-    var shopID = $('#compshop_id').text();
-    var name = $('#comp_name').val();
-    var total = $('#comp_total').val();
-    var rate = $('#comp_rate').val();
-    var specs = $('#comp_specs').val();
-    var cimage = $('#comp_img').val();
-    $.ajax({
-          url: Base_URL+"addcomtype/"+shopID,
-          type: "POST",
-          data:{comp_name:name,comp_total:total,comp_rate:rate,comp_specs:specs,comp_img:cimage},
-          success: function(data)
-          {
-            location.reload(); 
-          }
-         });
- });
+//   $(document).on("click", '#addcomputertypeBtn', function() {
+// 	var Base_URL = "<?php echo base_url();?>";
+//     var shopID = $('#compshop_id').text();
+//     var name = $('#comp_name').val();
+//     var total = $('#comp_total').val();
+//     var rate = $('#comp_rate').val();
+//     var specs = $('#comp_specs').val();
+
+//     $.ajax({
+//           url: Base_URL+"addcomtype/"+shopID,
+//           type: "POST",
+//           data:{comp_name:name,comp_total:total,comp_rate:rate,comp_specs:specs,comp_img:cimage},
+//           success: function(data)
+//           {
+//             location.reload(); 
+//           }
+//          });
+//  });
 </script>
 <script>
 	$(document).on("change", '.checkbox', function() {
@@ -241,3 +370,82 @@
 			});
 		});
 	</script>
+<script>
+$(document).on("click", "#deletebtn", function () {
+    var BASE_URL = "<?php echo base_url();?>";
+    var CSPK = $("#CompShopPK").text();
+    var shop_id = $("#CompShopFK").text();
+	$.ajax({
+						url: BASE_URL+"deleteComputerType/" + CSPK,
+						method: "POST",
+						data: { Ctype_id: CSPK },
+						success: function (data) {
+							swal("Computer Type has been deleted!", {
+    					  		icon: "success",
+    						}).then((value) => {
+						  		window.location = BASE_URL+"shopadmin-computertypelist/" +shop_id;
+							});
+
+						},
+					});	
+ });
+ </script>
+ <script>  
+ $(document).ready(function(){  
+      $('#upload_form').on('submit', function(e){  
+        var shopID = $('#compshop_id').text();
+        var BASE_URL = "<?php echo base_url();?>";
+           e.preventDefault();  
+            alert("processing");
+                $.ajax({  
+                     url: BASE_URL+"addcomtype/"+shopID,   
+                     method:"POST",  
+                     data:new FormData(this),  
+                     contentType: false,  
+                     cache: false,  
+                     processData:false,  
+                     success:function(data)  
+                     {  
+                         alert(data);
+                        //  location.reload(); 
+                     }  
+                });  
+             
+      });  
+ });  
+ </script>
+ <script>
+    function readURL(input) {
+  if (input.files && input.files[0]) {
+
+    var reader = new FileReader();
+
+    reader.onload = function(e) {
+      $('.image-upload-wrap').hide();
+
+      $('.file-upload-image').attr('src', e.target.result);
+      $('.file-upload-content').show();
+
+      $('.image-title').html(input.files[0].name);
+    };
+
+    reader.readAsDataURL(input.files[0]);
+
+  } else {
+    removeUpload();
+  }
+}
+
+function removeUpload() {
+  $('.file-upload-input').replaceWith($('.file-upload-input').clone());
+  $('.file-upload-content').hide();
+  $('.image-upload-wrap').show();
+}
+$('.image-upload-wrap').bind('dragover', function () {
+		$('.image-upload-wrap').addClass('image-dropping');
+	});
+	$('.image-upload-wrap').bind('dragleave', function () {
+		$('.image-upload-wrap').removeClass('image-dropping');
+});
+
+</script>

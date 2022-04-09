@@ -3,8 +3,11 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>View Computer Shop</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>View Computer Shop</title>
+    
+    
     <link rel="stylesheet" href="../assets/css/viewShop.css">
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -12,23 +15,15 @@
   </head>
   <body>
     
-     <!-- background -->
-     <div class="custom-shape-divider-top-1647977806">
-    <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
-        <path d="M1200 120L0 16.48 0 0 1200 0 1200 120z" class="shape-fill"></path>
-    </svg>
-    
-    </div>
-        <br>
-        <!-- end -->
 
-    <div class = "card-wrapper" id="wrap">
+    <div class = "card-wrapper mt-3 mb-5" id="wrap">
       <div class = " row">
         
         <!-- card left -->
         <div class = "shop-imgs col-lg-6 col-sm-12">
-          <h5 class = "shop-title mt-3">|  TNC Cebu HQ CyberCafe</h5>
-
+          <?php foreach($shopdetails as $row){?>
+          <h5 class = "shop-title mt-3">|  <?php echo $row->shop_name?> CyberCafe</h5>
+        
           <div class = "img-display">
             <div class = "img-showcase">
               <img src = "../assets/images/TNC-1.jpg">
@@ -66,10 +61,10 @@
 
           <div class = "shop-detail">
             <div class="title-bookmark mt-3">
-              <h2>All about TNC: </h2>
+              <h2>All about <?php echo $row->shop_name?>: </h2>
               <i class = "sus fa-solid fa-bookmark"></i>
             </div>
-                <p>TNC, one of the Philippines’ fastest-growing cyber cafe franchises, in partnership with premium gaming brand Acer Predator officially opened on March 7, 2020 the TNC Cebu Headquarters – the largest cybercafe in Southeast Asia.</p>
+                <p><?php echo $row->shop_name?>, one of the Philippines’ fastest-growing cyber cafe franchises, in partnership with premium gaming brand Acer Predator officially opened on March 7, 2020 the TNC Cebu Headquarters – the largest cybercafe in Southeast Asia.</p>
               <ul>
                 <li> <i class = "fa-solid fa-location-dot"></i>   
                   Address: <span> II Pelaez St. Brgy. Kalubihan Cebu City</span>
@@ -86,7 +81,7 @@
                 <br>
               </ul>
               <div class = "book-now">
-                <button type = "button" class = "btn">
+                <button type = "button" class = "btn"  data-bs-toggle="modal" data-bs-target="#select_service">
                   Book Now <i class = "fas fa-shopping-cart"></i>
                 </button>
                 <button type = "button" class = "btn">	
@@ -96,12 +91,13 @@
           </div>
         </div>
       </div>
+  
       
   <!-- MESSAGE CONTAINER START-->     
   <br>
   <span class="services">Computer Access Type</span>
   <br>
-  <span class="desc">Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit..Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit.. </span>
+  <span class="desc"> Providing you high quality equpiment and accessories in such a fair price. </span>
   <hr>
   <!-- MESSAGE CONTAINER END-->    
 
@@ -114,7 +110,7 @@
             <section class="services">
               
               <div class="services_container container grid">
-                <div class="services_card">
+                <div class="services_card vip-card">
                   <h3 class="services_title"><strong>VIP Access</strong> </h3>
                   <img class="access-type-img" src="../assets/images/TNC-5.png" >
                   <div class="list">
@@ -140,7 +136,7 @@
                       <div class="popup-box-container">
                         <div class="check-container">
                           <h3 class="services_title"><strong>VIP Access</strong> </h3>
-                          <img class="modal-type-img" src="assets/images/TNC-5.png" >
+                          <img class="modal-type-img" src="../assets/images/TNC-5.png" >
                         </div>
                         <div class="popup-message-container">
                           <div class="list">
@@ -165,7 +161,7 @@
                             </ul>
                           </div>
                         </div>
-                        <button class="ok-btn">
+                        <button class="ok-btn ok-vip-btn">
                           <span>OK</span>
                         </button>
                       </div>
@@ -185,7 +181,7 @@
             <section class="services">
     
               <div class="services_container container grid">
-                <div class="services_card">
+                <div class="services_card regular-card">
                   <h3 class="services_title"><strong>REGULAR Access</strong> </h3>
                   <img class="access-type-img" src="../assets/images/TNC-2.jpg" >
                   <div class="list">
@@ -210,7 +206,7 @@
                     <div class="popup-box-container-2">
                       <div class="check-container-2">
                         <h3 class="services_title"><strong>Regular Access</strong> </h3>
-                        <img class="modal-type-img-2" src="assets/images/TNC-2.jpg" >
+                        <img class="modal-type-img-2" src="../assets/images/TNC-2.jpg" >
                       </div>
                       <div class="popup-message-container-2">
                         <div class="list">
@@ -235,7 +231,7 @@
                           </ul>
                         </div>
                       </div>
-                      <button class="ok-btn-2">
+                      <button class="ok-btn-2 ok-regular-btn">
                         <span>OK</span>
                       </button>
                     </div>
@@ -250,8 +246,27 @@
         </div>
       </div>
     </div>
-    
+    <!-- select services modal -->
+    <div  class="modal fade" id="select_service" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered" role="document">
+              <div class="modal-content py-md-5 px-md-4 p-sm-3 p-4">
+          
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <h6 class="text-center mb-5" style="font-size: 20px; font-weight: 600;">Select Service</h6>
+                <i class="fa fa-computer"></i>
+               <div class="text-center mb-4"><a href="<?php echo base_url();?>finder-ComputerBookingRequest/<?php echo $row->shop_id;?>" class="btn btn-primary w-50 rounded-pill b1">Computer Bookings</a></div> 
+               <div class="text-center mb-3"> <button class="btn btn-primary w-50 rounded-pill b1" >Printing Service</button> </div> 
+              </div>
+         </div>
+    </div>
+
+    <?php }?><!-- end of foreach shopdetails -->
+
+
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
     <script src="../assets/js/viewShop.js"></script>
   </body>
 </html>

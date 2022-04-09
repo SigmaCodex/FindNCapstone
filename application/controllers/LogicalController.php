@@ -10,7 +10,10 @@ class LogicalController extends CI_Controller {
         $user_status = $this->session->userdata('status');
         if(!$result){
             echo "no-user";
-        }else{
+        }else if($user_status =="disable"){
+            echo $user_status;
+        }
+        else{
            $user_type = $this->session->userdata('user_type');
            echo $user_type;
         }
@@ -127,22 +130,76 @@ class LogicalController extends CI_Controller {
             $this->MainModel->updateFinderAccount("with-image");
         }
     }
-
+    //view all finderBooking Transaction
     public function view_finderBookingTransaction($user_id){
         $this->load->model('MainModel');
         $result = $this->MainModel->view_finderBookingTransaction($user_id);
         echo json_encode($result);
     }
+    //select FinderBooking Transaction
     public function select_finderBookingTransaction($transaction_id){
         $this->load->model('MainModel');
         $result = $this->MainModel->select_finderBookingTransaction($transaction_id);
         echo json_encode($result);
     }
+    //update overthecounter paymenttype and generate qr code
+    public function updatePaymentType_overthecounter($transaction_id){
+        $this->load->model('MainModel');
+        $status = "overthecounter";
+        $this->MainModel->updatePaymentType($transaction_id,$status);
+        $this->generateFinderQrCode($transaction_id); 
+      
+    }
+
+    //upload Gcash Payment Details
+    public function uploadGcashPaymentDetails($transaction_id){
+        $this->load->helper(array('form', 'url')); 
+
+            $config['upload_path']          = './assets/upload/finder/gcash-receipt';
+            $config['allowed_types']        = 'gif|jpg|png|jpeg';
+            $config['max_size']             = 5000;
+            $config['max_width']            = 5024;
+            $config['max_height']           = 5268;
+            $this->load->library('upload', $config);
+            $this->upload->initialize($config);
+            if(! $this->upload->do_upload('imageUpload'))
+            {
+               echo "no-image";
+            }else{
+                $this->load->model('MainModel');
+                $payment_type = "gcash";
+                $payment_status = "paid";
+                $this->MainModel->updatePaymentType($transaction_id,$payment_type);//UpdatePayment Type
+                $this->MainModel->addGcashPaymentDetails($transaction_id); //add Data to GcashPayment Details Table
+                $this->MainModel->updatePaymentStatus($transaction_id, $payment_status);  //update Payment Status
+                $this->generateFinderQrCode($transaction_id);       //generate QR code
+            }
+    }
+    //generate FinderQr Code
+    public function generateFinderQrCode($transaction_id){
+		$this->load->model('MainModel');
+        $result = $this->MainModel->select_finderdetailsBookingTransaction($transaction_id);
+        foreach($result as $key => $value){
+				$data = $value->transaction_id.",".$value->firstname." ".$value->lastname;
+		}
+	
+		$this->load->library('bb_qrcode');
+
+		$qr_image = 'qrCode-'.date('m-d-y-h-i-s').'.png';
+		$params['data'] = $data;
+		$params['level'] = 'M';
+		$params['size'] = 6;
+		$params['savename'] = FCPATH.'assets/QrCodes/'.$qr_image;
+		$this->bb_qrcode->generate($params);
+
+        $this->MainModel->FinderQRCode($transaction_id,$qr_image);
+		// $details['qr_image'] = $qr_image;
+	
+    }
 
     public function disableFinderAccountStatus(){
         $this->load->model('MainModel');
         $this->MainModel->disableFinderAccountStatus();
-        
     }
 
     public function getListOfComputerShops(){
@@ -292,8 +349,24 @@ class LogicalController extends CI_Controller {
     }
       //Computer Type
     public function addComputerType($id){
-        $this->load->model('MainModel');
-        $this->MainModel->addComputerType($id);
+        $this->load->helper(array('form', 'url')); 
+        
+            $config['upload_path']          = './assets/upload/shop/computertype';
+            $config['allowed_types']        = 'gif|jpg|png|jpeg';
+            $config['max_size']             = 5000;
+            $config['max_width']            = 5024;
+            $config['max_height']           = 5268;
+            $this->load->library('upload', $config);
+            $this->upload->initialize($config);
+            if(!$this->upload->do_upload('imageUpload'))
+            {
+                $this->load->model('MainModel');
+                $this->MainModel->addComputerType($id, "no-image");
+            }else{
+                
+                $this->load->model('MainModel');
+                $this->MainModel->addComputerType($id, "with-image");
+            }
     }
     public function deleteComputerType($id){
 
@@ -301,8 +374,25 @@ class LogicalController extends CI_Controller {
         $this->MainModel->deleteComputerType($id);
     }
     public function updateComputerType($id){
-        $this->load->model('MainModel');
-        $this->MainModel->updateComputerType($id);
+        $this->load->helper(array('form', 'url')); 
+
+            $config['upload_path']          = './assets/upload/shop/computertype';
+            $config['allowed_types']        = 'gif|jpg|png|jpeg';
+            $config['max_size']             = 5000;
+            $config['max_width']            = 5024;
+            $config['max_height']           = 5268;
+            $this->load->library('upload', $config);
+            $this->upload->initialize($config);
+            if(! $this->upload->do_upload('imageUpload'))
+            {
+                $this->load->model('MainModel');
+                $this->MainModel->updateComputerType($id, "no-image");
+            }else{
+                
+                $this->load->model('MainModel');
+                $this->MainModel->updateComputerType($id, "with-image");
+            
+            }
     }
     public function updateComputerTypeStatus($id){
         $this->load->model('MainModel');
@@ -312,9 +402,21 @@ class LogicalController extends CI_Controller {
         $this->load->model('MainModel');
         $this->MainModel->createFinderNotif();
     }
-    public function createComputerNotif(){
+    //delete selected notification
+    public function deleteFinderNotification($notif_id){
         $this->load->model('MainModel');
-        $this->MainModel->createComputerNotif();
+        $this->MainModel->deleteFinderNotification($notif_id);
+    }
+    //update notification statys to seen
+    public function updateNotificationStatus($notif_id){
+        $this->load->model('MainModel');
+        $this->MainModel->updateNotificationStatus($notif_id);
+    }
+    //count of notification 
+    public function Countfindernotification(){
+        $this->load->model('MainModel');
+        $num = $this->MainModel->Countfindernotification();
+        echo $num;
     }
 
         //Shop Computer Details

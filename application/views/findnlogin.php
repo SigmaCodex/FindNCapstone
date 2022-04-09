@@ -212,7 +212,14 @@
 					//redirect to pages
 					if(data == "finder"){
 						window.location = "findershomepage";
-					}else if(data == "superadmin"){
+					}else if(data == "disable"){
+            swal(
+              'Account Disabled!',
+              'Contact the admin for activation and recovery of your account',
+              'warning'
+		        	)
+          }
+          else if(data == "superadmin"){
             window.location = "listofcomputershop";
 					}
 					else{
