@@ -39,7 +39,7 @@
 					<h2 class="heading-section">View Posts and Comments</h2>
 				</div>
         		<div class="col-md-3 text-right mb-4">
-        			<button type="button" id="deletebtn" class="btn mb-2 mb-md-0 btn-primary btn-block">Delete Post</button>
+        			<button type="button" id="deletebtn" class="deletebtn btn mb-2 mb-md-0 btn-primary btn-block">Delete Post</button>
 				</div>
 			</div>
       		<br>
@@ -49,7 +49,7 @@
         			<div class="card" style="width: 18rem;">
           				<div class="card-body">
 						  <?php foreach ($postDetails as $d) {?>  
-            				<h5 class="card-title" ><?php echo $d->shop_id;?></h5>
+            				<h5 id="compshopid" class="card-title" ><?php echo $d->shop_id;?></h5>
             				<p class="card-text" id="CompShopPK"><?php echo $d->post_title;?></p>
 							<p class="card-text" id="postdata_id" style="display:none"><?php echo $d->post_id;?></p> 
           				</div>
@@ -256,5 +256,34 @@ $(document).on("click", ".editbtn", function () {
   				}
 			});
 		});
-	</script>
+</script>
+<script>
+		$(document).on("click",".deletebtn",function(){
+         var BASE_URL = "<?php echo base_url();?>";
+		 var id = $('#compshopid').text();
+		 var postid = $('#postdata_id').text();
+			swal({
+  				title: "Are you sure to delete this post?",
+  				icon: "warning",
+  				buttons: true,
+  				dangerMode: true,
+			}).then((willDelete) => {
+  				if (willDelete) {
+					$.ajax({
+						url: BASE_URL+"deletePost/"+postid,
+						method: "POST",
+						data: {post_id: id },
+						success: function (data){
+							swal("Post has been deleted!", {
+    					  		icon: "success",
+    						}).then((value) => {
+								window.location = BASE_URL+"shopadmin-adminPosts/"+id;
+							});
+
+						},	
+					});	
+  				}
+			});
+		});
+</script>
 
