@@ -7,7 +7,7 @@ $route['shopadmin-dashboard'] = 'main_controller/admin_dashboard';
 $route['shopadmin-scanqr']    = 'main_controller/admin_scanqr';
 $route['shopadmin-bookings']  = 'main_controller/admin_bookings';
 
-$route['shopadmin-viewPosts/(:num)'] = 'main_controller/shopadmin_viewPost/$1';
+$route['shopadmin-adminPosts/(:num)'] = 'main_controller/shopadmin_postEvents/$1';
 $route['shopadmin-computerdetails'] = 'main_controller/shopadmin_computerdetails';
 
 $route['shopadmin-computerdetails/(:num)'] = 'main_controller/shopadmin_computerdetails/$1';
@@ -122,6 +122,7 @@ $route['reports'] = 'main_controller/viewReports';
     $route['uploadshopimages/(:num)'] = 'logicalcontroller/uploadshopimages/$1';
     $route['removeshopimage/(:num)'] = 'logicalcontroller/removeshopimage/$1';
     $route['getpostComments/(:num)'] = 'logicalcontroller/getallPostComments/$1';
+    $route['updateshopPosts/(:num)']  = 'logicalcontroller/updateshopPosts/$1';
     $route['addComment/(:num)'] = 'logicalcontroller/addComments/$1';
     $route['getComment/(:num)'] = 'logicalcontroller/selectforUpdateComment/$1';
     $route['updateComment/(:num)'] = 'logicalcontroller/updateComments/$1';
