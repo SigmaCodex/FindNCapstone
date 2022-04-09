@@ -7,7 +7,7 @@ $route['shopadmin-dashboard'] = 'main_controller/admin_dashboard';
 $route['shopadmin-scanqr']    = 'main_controller/admin_scanqr';
 $route['shopadmin-bookings']  = 'main_controller/admin_bookings';
 
-$route['shopadmin-viewPosts/(:num)'] = 'main_controller/shopadmin_viewPost/$1';
+$route['shopadmin-adminPosts/(:num)'] = 'main_controller/shopadmin_postEvents/$1';
 $route['shopadmin-computerdetails'] = 'main_controller/shopadmin_computerdetails';
 
 $route['shopadmin-computerdetails/(:num)'] = 'main_controller/shopadmin_computerdetails/$1';
@@ -138,6 +138,9 @@ $route['reports'] = 'main_controller/viewReports';
     $route['showcancelledlist/(:num)'] = 'logicalcontroller/getallCancelledRequest/$1';
     $route['viewBookRequest/(:num)'] = 'logicalcontroller/viewBookRequest/$1';
     $route['updateBookStatus/(:num)'] = 'logicalcontroller/updateBookingTransacStatus/$1';
+    $route['addshopPost/(:num)'] = 'logicalcontroller/addshopPosts/$1';
+    $route['deletePost/(:num)'] = 'logicalcontroller/deleteshopPosts/$1';
+    $route['updateshopPost/(:num)'] = 'logicalcontroller/updateshopPosts/$1';
     //api 
     $route['goto-gcash']                  = 'logicalcontroller/GotoGcash';
     $route['select-paymentmethod']        = 'main_controller/payment_exercise';
