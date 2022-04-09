@@ -83,6 +83,11 @@ class Main_Controller extends CI_Controller {
 	{
         $this->load->view('findnRegister');
     }
+	public function viewRate($shop_id){
+		$this->load->model('MainModel');
+		$val['rate_score']	 = $this->MainModel->viewRate($shop_id);
+        $this->load->view('addrate',$val);
+    }
 
 	public function viewMap(){
 		$this->load->model('MainModel');
@@ -184,6 +189,7 @@ class Main_Controller extends CI_Controller {
 		$val['totalOTCBooks'] = $this->MainModel->getTotalOTCBooks();
 		$val['MonthlyPT'] = $this->MainModel->getMonthlyPaymentTypeBooks();
 		$val['monthly'] = $this->MainModel->getMonthlyData();
+		$val['listofshops'] = $this->MainModel->getListOfComputerShops();
 		$this->load->view('superadmin/reports',$val);
     }
 
