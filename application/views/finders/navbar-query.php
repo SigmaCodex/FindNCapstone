@@ -96,11 +96,11 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script>
         setInterval(function(){
-            // alert("hello world");
+
             BASE_URL = "<?php echo base_url();?>";
             $.ajax({
                         url:BASE_URL+"Countfindernotification",
-                        method:"POST", 
+                        method:"GET", 
                         data:{},
                         success:function(data)
                         {
@@ -118,5 +118,5 @@
                       }); 
             //ajax;
 
-        },10);
+        },100);
     </script>

@@ -76,7 +76,7 @@
               <div class="content active" id="today">
 
               <?php foreach ($listofbookings as $row) {?> 
-                <?php date_default_timezone_set("Asia/Manila"); 
+                <?php date_default_timezone_set("Asia/Bangkok"); 
                   
                   if(date("M j, Y") == date("M j, Y", strtotime($row->arrival_date))){?>  
                 <div class="transaction-card ">
