@@ -266,11 +266,11 @@
 		      		</div>
 					<div class="form-group mb-2">
 		      			<label for="name">Latitude</label>
-		      			<input  type="text" id="lat" name="lat" value="<?php echo "hellow";?>"  placeholder="Your lat.." class="form-control">
+		      			<input  type="text" id="lat" name="lat" value=""  placeholder="Your lat.." class="form-control">
 		      		</div>
 					<div class="form-group mb-2">
 		      			<label for="name">Longtitude</label>
-		      			<input type="text" id="lng" name="lng" placeholder="Your lng.." value="sample" class="form-control">
+		      			<input type="text" id="lng" name="lng" placeholder="Your lng.." value="" class="form-control">
 		      		</div>
 					<div>		
 		      </div>
@@ -961,27 +961,31 @@ $(document).on("click", ".remove-admin", function () {
 			});
 });
 $(document).on("click", ".editbtn", function () {
+
 	var CSPK = $("#CompShopPK").text();
 	var BASE_URL = "<?php echo base_url();?>";
+	
 	$.ajax({
 		url: BASE_URL+"getshopdetails/" + CSPK,
 		method: "POST",
 		data: { shop_id: CSPK },
 		dataType: "json",
 		success: function (data) {
-			$("#shopName").val(data.shop_name);
+
+				
+		    $("#shopName").val(data.shop_name);
 			$("#c_number").val(data.contact_number);
 			$("#emailadd").val(data.email_address);
 			$("#AddressIN").val(data.address);
 
-			let text = data.coordinates;
-			const myArray = text.split(",");
+			// let text = data.coordinates;
+			// const myArray = text.split(",");
 
-			var lat = myArray[0];
-			var lng = myArray[1];
+			// var lat = myArray[0];
+			// var lng = myArray[1];
 
-			$("#lat").val(lat);
-			$("#lng").val(lng);
+			// $("#lat").val(lat);
+			// $("#lng").val(lng);
 
 			$("#updateComputerModal").modal('show');
 		},
