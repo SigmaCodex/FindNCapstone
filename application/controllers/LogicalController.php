@@ -142,7 +142,8 @@ class LogicalController extends CI_Controller {
         $this->load->model('MainModel');
         $status = "overthecounter";
         $this->MainModel->updatePaymentType($transaction_id,$status);
-        //generate qr code logic -- call a function generaterQR($transaction_id);
+        $this->generateFinderQrCode($transaction_id); 
+      
     }
 
     //upload Gcash Payment Details

@@ -6,6 +6,7 @@ class Main_Controller extends CI_Controller {
 	public function __construct() {
         parent::__construct();
         date_default_timezone_set("Asia/Manila");
+		$this->load->model('MainModel');
     }
 
 	 //show pages
@@ -98,8 +99,10 @@ class Main_Controller extends CI_Controller {
 		$this->load->view('finders/navbar');
 		$this->load->view('findersHomePage');
 	}
-	public function view_ticket(){
-		$this->load->view('viewticket');
+	public function view_ticket($transaction_id){
+		$result['transaction_details'] = $this->MainModel->select_finderdetailsBookingTransaction($transaction_id);
+		$this->load->view('finders/navbar-query');
+		$this->load->view('viewticket',$result);
 	}
 	public function generateQrCode($transaction_id){
 

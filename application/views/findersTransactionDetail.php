@@ -246,7 +246,7 @@
 
                               echo "<br><span class='source'  style='font-size:13px; font-weight: 700;'>View Ticket Now : 
                                     </span>
-                                    <a href='".base_url()."view-ticket' style='font-size:13px'> Ticket</a>";
+                                    <a href='".base_url()."view-ticket/".$row->transaction_id."' style='font-size:13px'> Ticket</a>";
                             }
 
               

@@ -43,7 +43,7 @@ $route['finder-ComputerBookingRequest/(:num)']   = 'main_controller/viewRequestB
 $route['finder-Compbookingrequest/(:num)'] = 'main_controller/finder_BookingRequest/$1';
 $route['computerbform'] = 'main_controller/viewcompbookForm';
 $route['viewMap']       = 'main_controller/viewMap';
-$route['view-ticket']     = 'main_controller/view_ticket';
+$route['view-ticket/(:num)']     = 'main_controller/view_ticket/$1';
 $route['generate-QR/(:num)']     = 'main_controller/generateQrCode/$1';
 
 //superadmin 
