@@ -109,9 +109,9 @@ class LogicalController extends CI_Controller {
         // $img = $this->input->post('profilepic');
         $config['upload_path']          = './assets/upload/finder';
                 $config['allowed_types']        = 'gif|jpg|png';
-                $config['max_size']             = 1000;
-                $config['max_width']            = 1024;
-                $config['max_height']           = 768;
+                $config['max_size']             = 2500;
+                $config['max_width']            = 2540;
+                $config['max_height']           = 2568;
         $this->load->library('upload', $config);
         $this->upload->initialize($config);
         if(! $this->upload->do_upload('imageUpload'))
