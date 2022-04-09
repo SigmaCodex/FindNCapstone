@@ -204,14 +204,22 @@ class LogicalController extends CI_Controller {
         $result = $this->MainModel->deleteComputerShop($id);
         echo json_encode($result);
     }
-    public function addRate($shop_id,$user_id){
+
+    //RATE-RATINGS--------------------------------
+    public function addRate($shop_id){
         $this->load->model('MainModel');
-        $this->MainModel->addRate($shop_id,$user_id);
+        $this->MainModel->addRate($shop_id);
     }
-    public function updateRate($shop_id, $user_id, $rate_id){
+    public function updateRate($shop_id){
         $this->load->model('MainModel');
-        $this->MainModel->updateRate($shop_id, $user_id, $rate_id);
+        $this->MainModel->updateRate($shop_id);
     }
+    public function viewRate($shop_id){
+        $this->load->model('MainModel');
+        $result = $this->MainModel->viewRate($shop_id);
+        echo json_encode($result);
+    }
+
     public function getallPendingRequest($shop_id){
         $this->load->model('MainModel');
         $this->MainModel->getallPendingRequest($shop_id);

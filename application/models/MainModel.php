@@ -79,6 +79,7 @@ class MainModel extends CI_Model{
         $this->db->insert('computershop',$data);
         // echo json_encode($data);
     }
+
     public function getAdminDetails($id){
 		$this->db->select('*');
         $this->db->from('computershop');
@@ -87,13 +88,7 @@ class MainModel extends CI_Model{
         return $query->result();
     }
 
-    public function updateSuperAdminPassword($id){
-		$this->db->select('*');
-        $this->db->from('computershop');
-        $this->db->where('shop_id',$id);
-        $query = $this->db->get();
-        return $query->result();
-    }
+    
     public function getShopDetails($id){
 		$this->db->select('*');
         $this->db->from('computershop');
@@ -108,6 +103,16 @@ class MainModel extends CI_Model{
         $this->db->where('shop_id',$user_id_fk);
         $query = $this->db->get();
         return $query->result();
+    }
+    public function updateSuperAdminPassword($repeat){
+        $user_id_fk = $this->session->userdata('user_id');
+
+		$datafinder = array(
+            'password'         => 	 $this->input->post('password')
+        );
+        $this->db->where('user_id',$user_id_fk);
+        $this->db->update('user',$datafinder);
+        echo json_encode($datafinder);
     }
     public function getComputerTypeServiceFee($id){
         $this->db->select('*');
@@ -460,41 +465,42 @@ class MainModel extends CI_Model{
         return $resultquery;
     }
  
-    public function addRate($shop_id, $user_id){
+    public function addRate($shop_id){
+        $user_id_fk = $this->session->userdata('user_id');
+        $Primarycode = 0;
+        $Primarycode = $this->generatePrimarykey();
+
         $datafinder = array(
-            'shop_id_fk'           => 	 $shop_id,
-            'user_id_fk'           => 	$user_id,
-            'computer_rate'     => 	 "4",
-            'date'              =>   "8/28/1999"
+            'rating_id'         =>  $Primarycode,
+            'shop_id'           => 	$shop_id,
+            'user_id'           => 	$user_id_fk,
+            'computer_rate'     => 	$this->input->post('score'), 
+            'date'              =>  "8/28/1999",
         );
         $this->db->insert('computer_ratings',$datafinder);
         echo json_encode($datafinder);
 
     }
-    public function updateRate($shop_id, $user_id, $rate_id){
+    public function updateRate($shop_id){
+        $user_id_fk = $this->session->userdata('user_id');
+
         $datafinder = array(
-            'computer_rate'     => 	 "3",
+            'computer_rate'     => 	 $this->input->post('score'),
         );
-        $this->db->where('shop_id_fk',$shop_id);
-        $this->db->where('user_id_fk',$user_id);
-        $this->db->where('rating_id',$rate_id);
+        $this->db->where('shop_id',$shop_id);
+        $this->db->where('user_id',$user_id_fk);
         $this->db->update('computer_ratings',$datafinder);
         echo json_encode($datafinder);
     }
-    public function viewRate($shop_id, $user_id, $rate_id){
-        $datafinder = array(
-            'computer_rate'     => 	 "3",
-        );
-        $this->db->where('shop_id_fk',$shop_id);
-        $this->db->where('user_id_fk',$user_id);
-        $this->db->where('rating_id',$rate_id);
-        $this->db->update('computer_ratings',$datafinder);
-        echo json_encode($datafinder);
-    }
-    public function getRate($shop_id, $user_id){
-        $this->db->where('shop_id_fk',$shop_id);
-        $this->db->where('user_id_fk',$user_id);
-        $query = $this->db->get('computer_ratings');
+
+    public function viewRate($shop_id){
+        $user_id_fk = $this->session->userdata('user_id');
+
+        $this->db->select('*');
+        $this->db->from('computer_ratings');
+        $this->db->where('shop_id',$shop_id);
+        $this->db->where('user_id',$user_id_fk);
+        $query = $this->db->get();
         return $query->result();
     } 
     

@@ -38,7 +38,7 @@ $route['computerbform'] = 'main_controller/viewcompbookForm';
 $route['viewMap']       = 'main_controller/viewMap';
 $route['view-ticket']     = 'main_controller/view_ticket';
 $route['generate-QR']     = 'main_controller/generateQrCode';
-$route['viewAddRate']     = 'main_controller/addRate';
+$route['viewAddRate/(:num)']     = 'main_controller/viewRate/$1';
 
 //superadmin 
 $route['add-admin'] = 'main_controller/addAdmin';
@@ -95,8 +95,9 @@ $route['reports'] = 'main_controller/viewReports';
     $route['view-FinderBookingTransaction/(:num)'] = 'logicalcontroller/view_finderBookingTransaction/$1';
     $route['select-FinderBookingTransaction/(:num)'] = 'logicalcontroller/select_finderBookingTransaction/$1';
    
-    $route['addRate/(:num)/(:num)'] = 'logicalcontroller/addRate/$1/$2';
-    $route['updateRate/(:num)/(:num)/(:num)'] = 'logicalcontroller/updateRate/$1/$2/$3';
+    $route['addRate/(:num)'] = 'logicalcontroller/addRate/$1';
+    $route['updateRate/(:num)'] = 'logicalcontroller/updateRate/$1';
+    $route['viewRate/(:num)'] = 'logicalcontroller/viewRate/$1';
 
     //notification 
     $route['computerNotif'] = 'logicalcontroller/createComputerNotif';
