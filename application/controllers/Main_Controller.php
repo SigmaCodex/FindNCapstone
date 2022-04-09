@@ -51,12 +51,13 @@ class Main_Controller extends CI_Controller {
 	}
 	public function viewShop($shopid)
 	{
-		$this->load->view('finders/navbar-query');
+	
 		$this->load->model('MainModel');
 		$val['shopdetails']	 = $this->MainModel->getShopDetails($shopid);
 		$val['shop_images']	 = $this->MainModel->viewShopimages($shopid);
-		// $val['computertype_details']	 = $this->MainModel->getListOfComputerTypes($shopid);
-		// echo json_encode($val);
+		$val['computertype_details']	 = $this->MainModel->getListOfComputerTypes($shopid);
+	
+		$this->load->view('finders/navbar-query');
 		$this->load->view('viewShop',$val);
 	}
 	public function viewRequestBook($shopid)

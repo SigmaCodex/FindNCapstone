@@ -184,15 +184,15 @@
 			  		<input id="currentpass" hidden>	
 					<div class="form-group mb-2">
 		      			<label for="servicefee">Current Password</label>
-		      			<input name="curpas" id="curpas" type="text" class="form-control">
+		      			<input name="curpas" id="curpas" type="password" class="form-control">
 		      		</div>	
 					  <div class="form-group mb-2">
 		      			<label for="servicefee">New Password</label>
-		      			<input name="newpas" id="newpas" type="text" class="form-control">
+		      			<input name="newpas" id="newpas" type="password" class="form-control">
 		      		</div>
 					  <div class="form-group mb-2">
 		      			<label for="servicefee">Repeat New Password</label>
-		      			<input name="repnewpas" id="repnewpas" type="text" class="form-control">
+		      			<input name="repnewpas" id="repnewpas" type="password" class="form-control">
 		      		</div>
 			</form>
       	</div>

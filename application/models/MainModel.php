@@ -126,7 +126,6 @@ class MainModel extends CI_Model{
     }
 
     public function getShopDetailsrow($id){
-
 		$this->db->select('*');
         $this->db->from('computershop');
         $this->db->where('shop_id',$id);
@@ -134,6 +133,14 @@ class MainModel extends CI_Model{
         $resultquery = $query->row_array();
         return $resultquery;
     }
+    public function getShopDetails($id){
+        $this->db->select('*');
+        $this->db->from('computershop');
+        $this->db->where('shop_id',$id);
+        $query = $this->db->get();
+        return $query->result();
+    }
+
     public function getSuperAdminPassword(){
         $user_id_fk = $this->session->userdata('user_id');
 

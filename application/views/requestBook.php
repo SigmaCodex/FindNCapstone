@@ -275,7 +275,7 @@
 
          if(computer_type == "not_selected"){
           swal(
-              'Missing Informaction',
+              'Missing Information',
               'Please Select Your Preffered Computer Type',
               'warning'
 		        	)

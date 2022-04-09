@@ -258,8 +258,8 @@
                             <a href="#">Close</a>
                     </div>
                         <img src="assets/images/advertisement1.png" class="sidebar-ads">
-                        <img src="assets/images/ads2.png" class="sidebar-ads">
-                        <img src="assets/images/ads3.jpeg" class="sidebar-ads">
+                        <!-- <img src="assets/images/ads2.png" class="sidebar-ads">
+                        <img src="assets/images/ads3.jpeg" class="sidebar-ads"> -->
                 </div>
             </div>
     </div>

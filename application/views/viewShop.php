@@ -104,22 +104,23 @@
       <!-- NEW ROW -->
       <div class="row">
           
-        <!-- left col -->
+        <!-- computer type -->
+        <?php foreach($computertype_details as $type){?>
         <div class="col-lg-6 col-sm-12">
           <div class = "card-2 ">
             <section class="services">
               
               <div class="services_container container grid">
                 <div class="services_card vip-card">
-                  <h3 class="services_title"><strong>VIP Access</strong> </h3>
+                  <h3 class="services_title"><strong><?php echo $type->name?> Access</strong> </h3>
                   <img class="access-type-img" src="../assets/images/TNC-5.png" >
                   <div class="list">
                     <ul class="list">
-                      <li> <i class="fa-solid fa-peso-sign"></i> Price Rate(/hr): <span> ₱20</span>
+                      <li> <i class="fa-solid fa-peso-sign"></i> Price Rate(/hr): <span> ₱<?php echo $type->service_fee?></span>
                       </li>
                       <li><i class="fa-solid fa-microchip"></i>CPU: <span> Intel Core i5-8400 @2.80ghZ(6 CPUs), `2.8Ghz</span>
                       </li> 
-                      <li><i class="fa-solid fa-desktop"></i>Computer Slot: <span>200</span>
+                      <li><i class="fa-solid fa-desktop"></i>Computer Slot: <span><?php echo $type->total_units?></span>
                       </li>
                       <li><i class="fa-solid fa-keyboard"></i><span>Predator PC and Predator Accessories</span>
                       </li>
@@ -130,9 +131,8 @@
                     See more <i class = "fa-solid fa-arrow-alt-circle-right services-icon"></i>
                   </span>
 
-                    <!-- VIP MODAL START -->
-           
-                    <div class="popup-overlay">
+                    <!-- MODAL START -->
+                    <!-- <div class="popup-overlay">
                       <div class="popup-box-container">
                         <div class="check-container">
                           <h3 class="services_title"><strong>VIP Access</strong> </h3>
@@ -165,85 +165,17 @@
                           <span>OK</span>
                         </button>
                       </div>
-                    </div>
+                    </div> -->
                         
-                    <!-- VIP MODAL END -->
+                    <!-- MODAL END -->
 
                 </div>
               </div>
             </section>
           </div> 
         </div>
+        <?php }?>
         
-        <!-- right col -->
-        <div class="col-lg-6 col-sm-12">
-          <div class = "card-2 ">
-            <section class="services">
-    
-              <div class="services_container container grid">
-                <div class="services_card regular-card">
-                  <h3 class="services_title"><strong>REGULAR Access</strong> </h3>
-                  <img class="access-type-img" src="../assets/images/TNC-2.jpg" >
-                  <div class="list">
-                    <ul class="list">
-                      <li> <i class="fa-solid fa-peso-sign"></i> Price Rate(/hr): <span> ₱15</span>
-                      </li>
-                      <li><i class="fa-solid fa-microchip"></i>CPU: <span> Intel Core i3 @3.60ghZ(4 CPUs), `3.6Ghz</span>
-                      </li> 
-                      <li><i class="fa-solid fa-desktop"></i>Computer Slot: <span>200</span>
-                      </li>
-                      <li><i class="fa-solid fa-keyboard"></i><span>Regular</span>
-                      </li>
-                    </ul>
-                  </div>
-                  <span class="services_button-2">
-                    See more <i class = "fa-solid fa-arrow-alt-circle-right services-icon"></i>
-                  </span>
-
-                   <!-- REGULAR MODAL START -->
-                  
-                   <div class="popup-overlay-2">
-                    <div class="popup-box-container-2">
-                      <div class="check-container-2">
-                        <h3 class="services_title"><strong>Regular Access</strong> </h3>
-                        <img class="modal-type-img-2" src="../assets/images/TNC-2.jpg" >
-                      </div>
-                      <div class="popup-message-container-2">
-                        <div class="list">
-                          <ul class="list">
-                            <li> <i class="fa-solid fa-peso-sign"></i> Price Rate(/hr): <span> ₱15</span>
-                            </li>
-                            <li><i class="fa-solid fa-microchip"></i>CPU: <span> Intel Core i3 @3.60ghZ(4 CPUs), `3.6Ghz</span>
-                            </li> 
-                            <li><i class="fa-solid fa-microchip"></i>GPU: <span>NVIDIA GeForce GTX 1050 @ TI 4GB</span>
-                            </li>
-                            <li><i class="fa-solid fa-memory"></i>Total RAM: <span>1X16 GB @ 2667 MHz</span>
-                            </li>
-                            <li><i class="fa-solid fa-windows"></i>OS: <span>Windows 10 Pro 64-bit</span>
-                            </li>
-                            <li><i class="fa-solid fa-globe"></i>Internet: <span>1,000 mbps</span>
-                            </li>
-                            <li><i class="fa-solid fa-desktop"></i>Computer Slot: <span>200</span>
-                            </li>
-                            <li><i class="fa-solid fa-keyboard"></i><span>Regular</span>
-                            </li>
-                           
-                          </ul>
-                        </div>
-                      </div>
-                      <button class="ok-btn-2 ok-regular-btn">
-                        <span>OK</span>
-                      </button>
-                    </div>
-                  </div>
-                      
-                  <!-- VIP MODAL END -->
-
-                </div>
-              </div>
-            </section>
-          </div> 
-        </div>
       </div>
     </div>
     <!-- select services modal -->
