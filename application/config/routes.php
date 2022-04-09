@@ -139,6 +139,9 @@ $route['reports'] = 'main_controller/viewReports';
     $route['showcancelledlist/(:num)'] = 'logicalcontroller/getallCancelledRequest/$1';
     $route['viewBookRequest/(:num)'] = 'logicalcontroller/viewBookRequest/$1';
     $route['updateBookStatus/(:num)'] = 'logicalcontroller/updateBookingTransacStatus/$1';
+    $route['addshopPost/(:num)'] = 'logicalcontroller/addshopPosts/$1';
+    $route['deletePost/(:num)'] = 'logicalcontroller/deleteshopPosts/$1';
+    $route['updateshopPost/(:num)'] = 'logicalcontroller/updateshopPosts/$1';
     //api 
     $route['goto-gcash']                  = 'logicalcontroller/GotoGcash';
     $route['select-paymentmethod']        = 'main_controller/payment_exercise';
