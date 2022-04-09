@@ -46,9 +46,95 @@
 <script>
 	setInterval(function(){
             // alert("hello world");
-		
             //ajax;
 			var transaction_id = $("#transaction_id").val();
-		    console.log(transaction_id);
+			var BASE_URL = "<?php echo base_url();?>";
+			if(transaction_id != ""){
+				$.ajax({
+					url: BASE_URL+"select-FinderBookingTransaction/"+transaction_id,
+					type: "POST",
+					data:{},
+					success: function(data)
+					{
+						$('.gcash').hide();
+						$('.overcounter').hide();
+						var result = JSON.parse(data);
+						for(var x = 0 ; x < result.length ; x ++)
+                		{
+						
+
+								$("#gender").text(result[x]['gender']);
+								// $("#vac_status").text(result[x]['']);
+								$("#p_number").text(result[x]['phone_num']);
+								$("#email").text(result[x]['email']);
+						
+								$("#shop").val(result[x]['shop_name']);
+								$("#service").val(result[x]['servicetype']);
+								$("#time_arrival").val(result[x]['arrival_time']);
+								$("#date_arrival").val(result[x]['arrival_date']);
+								$("#comp_type").val(result[x]['name']);
+								$("#num_person").val(result[x]['num_ticket']);
+						
+						
+
+							if(result[x]['payment_type']=="gcash"){
+								$('.gcash').show();
+								$('.overcounter').hide();
+								
+								$("#gcash_payment_status").text(result[x]['payment_status']);
+								$("#gcash_service_fee").text("₱"+result[x]['service_fee']);
+
+							}else if(result[x]['payment_type'] == "overthecounter"){
+								 $('.overcounter').show();
+								 $('.gcash').hide();
+								
+
+								 $("#Over_C_payment_status").text(result[x]['payment_status']);
+								$("#gcash_service_fee").text("₱"+result[x]['Over_C_service_fee']);
+							}
+
+                		}
+
+					}
+				});
+			}else{
+
+			
+			}
+		
+
         },1000);
+</script>
+<script>
+	$(document).on('click','#click_paid',function(){ 
+		transaction_id = $("#transaction_id").val();	
+		
+		var BASE_URL = "<?php echo base_url();?>";
+		$.ajax({
+          url: BASE_URL+"updatePaymentStatus/"+transaction_id+"/paid",
+          type: "POST",
+          data:{},
+          success: function(data)
+          {
+         
+          }
+        });
+    });
+
+	$(document).on('click','#click_unpaid',function(){ 
+		transaction_id = $("#transaction_id").val();	
+		
+		var BASE_URL = "<?php echo base_url();?>";
+		$.ajax({
+          url: BASE_URL+"updatePaymentStatus/"+transaction_id+"/unpaid",
+          type: "POST",
+          data:{},
+          success: function(data)
+          {
+         
+          }
+        });
+    });
+
+
 </script>

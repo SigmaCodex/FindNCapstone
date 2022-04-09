@@ -479,7 +479,7 @@ class MainModel extends CI_Model{
     }
     //finder select ComputerBookingTransaction and Finder Details
     public function select_finderdetailsBookingTransaction($transaction_id){
-        $this->db->select('computer_type.name,computershop.shop_name,transaction.*,comp_booking.num_ticket,finders.email,finders.phone_num,finders.firstname,finders.lastname');
+        $this->db->select('computer_type.name,computershop.shop_name,transaction.*,comp_booking.num_ticket,finders.email,finders.phone_num,finders.gender,finders.firstname,finders.lastname');
         $this->db->from('transaction');
         $this->db->join('computershop', 'computershop.shop_id = transaction.shop_id_fk');
         $this->db->join('comp_booking', 'comp_booking.transaction_id = transaction.transaction_id');

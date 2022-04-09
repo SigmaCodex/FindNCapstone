@@ -139,7 +139,7 @@ class LogicalController extends CI_Controller {
     //select FinderBooking Transaction
     public function select_finderBookingTransaction($transaction_id){
         $this->load->model('MainModel');
-        $result = $this->MainModel->select_finderBookingTransaction($transaction_id);
+        $result = $this->MainModel->select_finderdetailsBookingTransaction($transaction_id);
         echo json_encode($result);
     }
     //update overthecounter paymenttype and generate qr code
@@ -261,7 +261,11 @@ class LogicalController extends CI_Controller {
         $result = $this->MainModel->deleteComputerShop($id);
         echo json_encode($result);
     }
-
+    public function updatePaymentStatus($transaction_id,$status){
+        $this->load->model('MainModel');
+        $this->MainModel->updatePaymentStatus($transaction_id,$status);
+     
+    }
     //RATE-RATINGS--------------------------------
     public function addRate($shop_id){
         $this->load->model('MainModel');

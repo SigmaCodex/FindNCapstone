@@ -109,8 +109,9 @@ $route['reports'] = 'main_controller/viewReports';
     $route['viewRate/(:num)'] = 'logicalcontroller/viewRate/$1';
 
     $route['updatePaymentType-overthecounter/(:num)']       = 'logicalcontroller/updatePaymentType_overthecounter/$1';
-    $route['uploadGcashPaymentDetails/(:num)']                 = 'logicalcontroller/uploadGcashPaymentDetails/$1';
+    $route['uploadGcashPaymentDetails/(:num)']              = 'logicalcontroller/uploadGcashPaymentDetails/$1';
 
+    $route['updatePaymentStatus/(:num)/(:any)']                    = 'logicalcontroller/updatePaymentStatus/$1/$2';
 
     //notification 
     $route['deleteNotification/(:num)'] = 'logicalcontroller/deleteFinderNotification/$1';
