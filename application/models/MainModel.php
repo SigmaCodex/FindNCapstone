@@ -135,11 +135,13 @@ class MainModel extends CI_Model{
     }
     public function getSuperAdminPassword(){
         $user_id_fk = $this->session->userdata('user_id');
+
         $this->db->select('password');
         $this->db->from('user');
         $this->db->where('user_id',$user_id_fk);
         $query = $this->db->get();
-        return $query->result();
+        $resultquery = $query->row_array();
+        return $resultquery;
     }
     public function updateSuperAdminPassword($repeat){
         $user_id_fk = $this->session->userdata('user_id');
