@@ -266,11 +266,11 @@
 		      		</div>
 					<div class="form-group mb-2">
 		      			<label for="name">Latitude</label>
-		      			<input  type="text" id="lat" name="lat" value="<?php echo "hellow";?>"  placeholder="Your lat.." class="form-control">
+		      			<input  type="text" id="lat" name="lat" value=""  placeholder="Your lat.." class="form-control">
 		      		</div>
 					<div class="form-group mb-2">
 		      			<label for="name">Longtitude</label>
-		      			<input type="text" id="lng" name="lng" placeholder="Your lng.." value="sample" class="form-control">
+		      			<input type="text" id="lng" name="lng" placeholder="Your lng.." value="" class="form-control">
 		      		</div>
 					<div>		
 		      </div>
@@ -667,6 +667,7 @@ $(document).on("click", "#addadminbtn", function () {
 				username	: uname,
 				email		: email,
 				gender		: gender,
+				pass:conpass,
 			},
 			// 	// contentType: false,
 			// 	//       cache: false,
@@ -775,7 +776,7 @@ $(document).on("click", ".view-admin", function () {
 	// var CSPK = $("#CompShopPK").text();
 	var BASE_URL = "<?php echo base_url();?>";
 	$.ajax({
-		url: BASE_URL+"getadmin-details/" + id,
+		url: BASE_URL+"getadmin-details/"+id,
 		method: "POST",
 		data: { user_id: id },
 		dataType: "json",
@@ -844,7 +845,6 @@ $(document).on("click", "#updatefeebtn", function () {
 				service_fee : servicefee,
 			},
 			success: function (data) {
-				alert(data);
 				// window.location = "listofcomputershop";
 				swal({
 					title: "Good job!",
@@ -877,6 +877,7 @@ $(document).on("click", "#updatefeebtn", function () {
 $(document).on("click", "#updateadminbtn", function () {
 	var validator = $("#updateadminform").validate();
 	var BASE_URL = "<?php echo base_url();?>";
+
 	if ($("#updateadminform").valid()) {
 		var CSPK = $("#useridid").text();
 		var first = $("#updfirst").val();
@@ -893,7 +894,7 @@ $(document).on("click", "#updateadminbtn", function () {
 		var actbdate = [day, month, year].join("/");
 
 		$.ajax({
-			url: BASE_URL+"updateadmindetails/" + CSPK,
+			url: BASE_URL+"updateadmindetails/"+CSPK,
 			method: "POST",
 			data: {
 				firstname: first,
@@ -961,27 +962,31 @@ $(document).on("click", ".remove-admin", function () {
 			});
 });
 $(document).on("click", ".editbtn", function () {
+
 	var CSPK = $("#CompShopPK").text();
 	var BASE_URL = "<?php echo base_url();?>";
+	
 	$.ajax({
 		url: BASE_URL+"getshopdetails/" + CSPK,
 		method: "POST",
 		data: { shop_id: CSPK },
 		dataType: "json",
 		success: function (data) {
-			$("#shopName").val(data.shop_name);
+
+				
+		    $("#shopName").val(data.shop_name);
 			$("#c_number").val(data.contact_number);
 			$("#emailadd").val(data.email_address);
 			$("#AddressIN").val(data.address);
 
-			let text = data.coordinates;
-			const myArray = text.split(",");
+			// let text = data.coordinates;
+			// const myArray = text.split(",");
 
-			var lat = myArray[0];
-			var lng = myArray[1];
+			// var lat = myArray[0];
+			// var lng = myArray[1];
 
-			$("#lat").val(lat);
-			$("#lng").val(lng);
+			// $("#lat").val(lat);
+			// $("#lng").val(lng);
 
 			$("#updateComputerModal").modal('show');
 		},
