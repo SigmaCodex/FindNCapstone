@@ -118,10 +118,11 @@ class MainModel extends CI_Model{
 
     public function getAdminDetails($id){
 		$this->db->select('*');
-        $this->db->from('computershop');
-        $this->db->where('shop_id',$id);
+        $this->db->from('compmanager');
+        $this->db->where('user_id',$id);
         $query = $this->db->get();
-        return $query->result();
+        $resultquery = $query->row_array();
+        return $resultquery;
     }
 
     public function getShopDetailsrow($id){
@@ -136,7 +137,7 @@ class MainModel extends CI_Model{
         $user_id_fk = $this->session->userdata('user_id');
         $this->db->select('password');
         $this->db->from('user');
-        $this->db->where('shop_id',$user_id_fk);
+        $this->db->where('user_id',$user_id_fk);
         $query = $this->db->get();
         return $query->result();
     }
@@ -222,7 +223,7 @@ class MainModel extends CI_Model{
             $datauser = array(
                 'user_id'   =>    $Primarycode,
                 'username'  => 	  $this->input->post('username'),
-                'password'  =>    $this->input->post('conpass'),
+                'password'  =>    $this->input->post('pass'),
                 'user_type' =>    "Admin",
                 'status'    =>    "Active"
             );
@@ -246,6 +247,26 @@ class MainModel extends CI_Model{
                 $this->db->insert('compmanager',$datafinder);
 
 		}
+    }
+    public function updateAdminDetails($user_id){
+        $data = array(
+            'firstname'          => 	 $this->input->post('firstname'),
+            'lastname'           => 	 $this->input->post('lastname'),
+            'gender'             => 	 $this->input->post('gender'),
+            'birthdate'          => 	 $this->input->post('birthdate'),
+            'email'              => 	 $this->input->post('email'),
+            'contactaddress'     => 	 $this->input->post('contactaddress'),
+
+        );
+        $this->db->where('user_id',$user_id);
+        $this->db->update('compmanager',$data);
+    }
+    public function updateServiceFee($computer_type_id){
+        $data = array(
+            'service_fee'          => 	 $this->input->post('service_fee'),
+        );
+        $this->db->where('Ctype_id',$computer_type_id);
+        $this->db->update('computer_type',$data);
     }
     
     //REPORTS ----------------------------------

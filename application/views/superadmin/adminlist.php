@@ -667,6 +667,7 @@ $(document).on("click", "#addadminbtn", function () {
 				username	: uname,
 				email		: email,
 				gender		: gender,
+				pass:conpass,
 			},
 			// 	// contentType: false,
 			// 	//       cache: false,
@@ -775,7 +776,7 @@ $(document).on("click", ".view-admin", function () {
 	// var CSPK = $("#CompShopPK").text();
 	var BASE_URL = "<?php echo base_url();?>";
 	$.ajax({
-		url: BASE_URL+"getadmin-details/" + id,
+		url: BASE_URL+"getadmin-details/"+id,
 		method: "POST",
 		data: { user_id: id },
 		dataType: "json",
@@ -844,7 +845,6 @@ $(document).on("click", "#updatefeebtn", function () {
 				service_fee : servicefee,
 			},
 			success: function (data) {
-				alert(data);
 				// window.location = "listofcomputershop";
 				swal({
 					title: "Good job!",
@@ -877,6 +877,7 @@ $(document).on("click", "#updatefeebtn", function () {
 $(document).on("click", "#updateadminbtn", function () {
 	var validator = $("#updateadminform").validate();
 	var BASE_URL = "<?php echo base_url();?>";
+
 	if ($("#updateadminform").valid()) {
 		var CSPK = $("#useridid").text();
 		var first = $("#updfirst").val();
@@ -893,7 +894,7 @@ $(document).on("click", "#updateadminbtn", function () {
 		var actbdate = [day, month, year].join("/");
 
 		$.ajax({
-			url: BASE_URL+"updateadmindetails/" + CSPK,
+			url: BASE_URL+"updateadmindetails/"+CSPK,
 			method: "POST",
 			data: {
 				firstname: first,
