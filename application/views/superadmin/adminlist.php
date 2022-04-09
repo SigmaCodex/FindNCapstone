@@ -766,7 +766,7 @@ $(document).on("click", "#changepassbtn", function () {
 				});
 			},
 		});//end ajax
-		}else{alert("notgood");}//end check pass
+		}//end check pass
 	}//end validate if
 	
 });

@@ -43,6 +43,8 @@ $route['finder-ComputerBookingRequest/(:num)']   = 'main_controller/viewRequestB
 $route['finder-Compbookingrequest/(:num)'] = 'main_controller/finder_BookingRequest/$1';
 $route['computerbform'] = 'main_controller/viewcompbookForm';
 $route['viewMap']       = 'main_controller/viewMap';
+
+$route['viewAddRate/(:num)']     = 'main_controller/viewRate/$1';
 $route['view-ticket/(:num)']     = 'main_controller/view_ticket/$1';
 $route['generate-QR/(:num)']     = 'main_controller/generateQrCode/$1';
 
@@ -77,6 +79,7 @@ $route['reports'] = 'main_controller/viewReports';
     $route['monthly-PTB'] = 'logicalcontroller/getMonthlyPaymentTypeBooks';
     $route['monthlyData'] = 'logicalcontroller/getMonthlyData';
     $route['shopNames'] = 'logicalcontroller/getListOfComputerShopName';
+    $route['shopSales'] = 'logicalcontroller/getMonthlyDataSpecifcShop';
 
     //PASSWORDS
     $route['checkpassword'] = 'logicalcontroller/getSuperAdminPassword';
@@ -99,11 +102,15 @@ $route['reports'] = 'main_controller/viewReports';
     $route['select-computershops/(:any)/(:num)'] = 'logicalcontroller/selectComputerShop/$1/$2';
     $route['view-FinderBookingTransaction/(:num)'] = 'logicalcontroller/view_finderBookingTransaction/$1';
     $route['select-FinderBookingTransaction/(:num)'] = 'logicalcontroller/select_finderBookingTransaction/$1';
+
+   
+    $route['addRate/(:num)'] = 'logicalcontroller/addRate/$1';
+    $route['updateRate/(:num)'] = 'logicalcontroller/updateRate/$1';
+    $route['viewRate/(:num)'] = 'logicalcontroller/viewRate/$1';
+
     $route['updatePaymentType-overthecounter/(:num)']       = 'logicalcontroller/updatePaymentType_overthecounter/$1';
     $route['uploadGcashPaymentDetails/(:num)']                 = 'logicalcontroller/uploadGcashPaymentDetails/$1';
 
-    $route['addRate/(:num)/(:num)'] = 'logicalcontroller/addRate/$1/$2';
-    $route['updateRate/(:num)/(:num)/(:num)'] = 'logicalcontroller/updateRate/$1/$2/$3';
 
     //notification 
     $route['deleteNotification/(:num)'] = 'logicalcontroller/deleteFinderNotification/$1';

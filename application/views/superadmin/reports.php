@@ -21,16 +21,9 @@
 	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 	<link rel="stylesheet" href="assets/css/register.css">
 
-  <?php
-  // $MPTlength=0;
-  // foreach ($MonthlyPT as $MPT) {
-  //     $MPTlength++;
-  // }
 
-  ?>
 	</head>
 	<body>
-	<section class="ftco-section">
 		<nav>
         <ul class="menu">
 			<!-- <li class="logo"><a href="" id="Back">Back</a></li> -->
@@ -40,13 +33,13 @@
         </ul>
     	</nav>
 		<div class="container">
-		<div class='row dashboard-cards'>
-  <div class='card col-md-4'>
-  <?php foreach ($totalSalesAndBooks as $tS) {?> 
-    <div class='card-title'>
-      <h2>
-      Computer bookings
-      </h2>
+		 <div class='row dashboard-cards'>
+      <div class='card col-md-4'>
+        <?php foreach ($totalSalesAndBooks as $tS) {?> 
+        <div class='card-title'>
+          <h2>
+            Computer bookings
+          </h2>
       <!-- <div class='task-count'>
         14
       </div> -->
@@ -270,7 +263,54 @@
     </div>
   </div>
 </div>
+          <?php 
+            $LSarray = array();
+            $SBarray = array("shopname",0,0,0,0,0);
+          ?>
+          
+          <?php 
+          //list of shops
+          foreach($listofshops as $shoplist) {
+            //push every shop name into array
+            $SBarray[0] = $shoplist->shop_name;
+            array_push($LSarray,$shoplist->shop_name);
+            //all booking details
+            foreach($monthly as $SBlist) {
+              //check if shop name is equal booked shop
+              if($shoplist->shop_name == $SBlist->shop_name){
+                //if statements of OTC or GCash
+                if($SBlist->payment_type == "OverTheCounter") {
+                  $totalAmount = $SBlist->service_fee * $SBlist->num_ticket;
+                  $SBarray[2] = $totalAmount;
+                  $SBarray[3] = $SBlist->num_ticket;
+                }
+                if($SBlist->payment_type == "GCash") {
+                  $totalAmount = $SBlist->service_fee * $SBlist->num_ticket;
+                  $SBarray[4] = $totalAmount;
+                  $SBarray[5] = $SBlist->num_ticket;
+                } 
+                $SBarray[1] = $SBarray[2] + $SBarray[4];
+                
+                //next line is pag populate?>
+                <ul>
+                  <li><label><?php echo $SBarray[0]; ?></label></li>
+                  <li><label><?php echo $SBarray[1]; ?></label></li>
 
+                  <li><label><?php echo $SBarray[2]; ?></label></li>
+                  <li><label><?php echo $SBarray[3]; ?></label></li>
+                  <li><label><?php echo $SBarray[4]; ?></label></li>
+                  <li><label><?php echo $SBarray[5]; ?></label></li>
+                </ul>
+                
+                <?php
+              }  
+              
+            } 
+            $SBarray = array("shopname",0,0,0,0,0); 
+          }  
+          ?>
+
+          
 		</div>
 	</body>
 
