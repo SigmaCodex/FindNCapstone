@@ -736,15 +736,12 @@ $(document).on("click", ".changepassmodal", function () {
 $(document).on("click", "#changepassbtn", function () {
 	var validator = $("#changepassform").validate();
 	var BASE_URL = "<?php echo base_url();?>";
+
 	if ($("#changepassform").valid()) {
 		var current = $("#curpas").val();
 		var newpas = $("#newpas").val();
 		var repeat = $("#repnewpas").val();
 
-		
-
-			alert($("#currentpass").text());
-			alert($("#curpas").val());
 
 		  if($("#currentpass").text() == $("#curpas").val()) { 
 			//   alert("good to change");
@@ -767,7 +764,7 @@ $(document).on("click", "#changepassbtn", function () {
 				});
 			},
 		});//end ajax
-		}//end check pass
+		}else{alert("Wrong current password")}//end check pass
 	}//end validate if
 	
 });
