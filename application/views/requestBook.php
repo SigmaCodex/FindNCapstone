@@ -23,7 +23,7 @@
 
 <div class="container">
 
-  <div class="content mt-3">
+  <div class="content mt-3 mb-5">
     <div class="content__inner">
   
       <div class="container overflow-hidden">
