@@ -171,11 +171,11 @@
         foreach ($MonthlyPT as $MPT) {
           $curmonth = date("M", strtotime($MPT->date_issued));
             for($x=0; $x<12; $x++){
-              if($curmonth == $monthSales[$x][0] && $MPT->payment_type == "OverTheCounter") {
+              if($curmonth == $monthSales[$x][0] && $MPT->payment_type == "overthecounter") {
                 $monthSales[$x][1] = $monthSales[$x][1] + $MPT->service_fee;
                 $monthSales[$x][2] = $monthSales[$x][2] + 1;
               }
-              if($curmonth == $monthSales[$x][0] && $MPT->payment_type == "GCash") {
+              if($curmonth == $monthSales[$x][0] && $MPT->payment_type == "gcash") {
                 $monthSales[$x][1] = $monthSales[$x][1] + $MPT->service_fee;
                 $monthSales[$x][3] = $monthSales[$x][3] + 1;
               } 
@@ -212,12 +212,12 @@
         <?php $PaymentTypeSales = array(0,0);
         foreach ($MonthlyPT as $MPT) {
           $curmonth = date("M", strtotime($MPT->date_issued));
-              if($MPT->payment_type == "OverTheCounter") {
-                $totalAmount = $MPT->service_fee * $MPT->num_ticket;
+              if($MPT->payment_type == "overthecounter") {
+                $totalAmount = $MPT->service_fee;
                 $PaymentTypeSales[0] = $PaymentTypeSales[0] + $totalAmount;
               }
-              if($MPT->payment_type == "GCash") {
-                $totalAmount = $MPT->service_fee * $MPT->num_ticket;
+              if($MPT->payment_type == "gcash") {
+                $totalAmount = $MPT->service_fee;
                 $PaymentTypeSales[1] = $PaymentTypeSales[1] + $totalAmount;
               } 
         }?>
@@ -280,12 +280,12 @@
               //check if shop name is equal booked shop
               if($shoplist->shop_name == $SBlist->shop_name){
                 //if statements of OTC or GCash
-                if($SBlist->payment_type == "OverTheCounter") {
+                if($SBlist->payment_type == "	overthecounter") {
                   $totalAmount = $SBlist->service_fee * $SBlist->num_ticket;
                   $SBarray[2] = $totalAmount;
                   $SBarray[3] = $SBlist->num_ticket;
                 }
-                if($SBlist->payment_type == "GCash") {
+                if($SBlist->payment_type == "gcash") {
                   $totalAmount = $SBlist->service_fee * $SBlist->num_ticket;
                   $SBarray[4] = $totalAmount;
                   $SBarray[5] = $SBlist->num_ticket;

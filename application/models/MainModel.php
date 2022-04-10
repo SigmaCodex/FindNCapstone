@@ -282,7 +282,7 @@ class MainModel extends CI_Model{
     //REPORTS ----------------------------------
     public function getTotalSalesAndBooks(){
         $this->db->select('transaction.service_fee,comp_booking.num_ticket, transaction.payment_type');
-        $this->db->select_sum('(transaction.service_fee * comp_booking.num_ticket)', 'totalSales');
+        $this->db->select_sum('(transaction.service_fee)', 'totalSales');
         $this->db->select_sum('comp_booking.num_ticket', 'totalBooks');
         $this->db->from('transaction');
         $this->db->join('comp_booking', 'comp_booking.transaction_id = transaction.transaction_id',);
