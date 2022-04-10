@@ -264,7 +264,7 @@
     </div>
   </div>
 </div>
-          <?php 
+          <!-- <?php 
             $LSarray = array();
             $SBarray = array("shopname",0,0,0,0,0);
           ?>
@@ -309,7 +309,7 @@
             } 
             $SBarray = array("shopname",0,0,0,0,0); 
           }  
-          ?>
+          ?> -->
 
           
 		</div>

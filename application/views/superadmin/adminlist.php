@@ -54,11 +54,9 @@
 			<div class="row justify-content-center">
 				<div class="col-md-9 text-left mb-6">
 				<?php foreach ($compDetails as $s) {?>  
-					<h2 class="heading-section">Reports</h2>
+					
 				</div>
-        		<div class="col-md-3 text-right mb-4">
-        			<button type="button" class="btn mb-2 mb-md-0 btn-primary btn-block" data-target="#exampleModalCenter" data-toggle="modal">Reports</button>
-				</div>
+
 			</div>
       		<br>
 			

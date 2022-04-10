@@ -47,8 +47,8 @@
                 <div class="col-md-6 pt-md-0 pt-3"> <label for="lastname">Last Name</label><input type="text" name="l_name" value="<?php echo $w->lastname;?>"  class="bg-light form-control"> </div>
                 <div class="col-md-6 pt-md-0 pt-3"> <label for="lastname">Birthday</label> <input type="date" name="b_date" value="<?php echo date( "Y-m-d", strtotime($w->birthdate));?>" class="bg-light form-control" > </div>
                 <div class="col-md-6 pt-md-0 pt-3"> <label for="gender">Gender</label>  
-                <select name="gender" id="gender" class="bg-light">
-                    <option value="male" selected>Male</option>
+                <select name="gender" id="gender" class="bg-light" value="<?php echo $w->gender;?>">
+                    <option value="male">Male</option>
                     <option value="female">Female</option>
                 </select>
                 </div>
@@ -64,8 +64,8 @@
             <div class="row py-2">
                 <div class="col-md-6"> <label for="vaccine">Vaccination Form Status</label> 
                     <select id="vaccine" name="vac_status"  class="bg-light">
-                        <option value="select" selected>(Select)</option>
-                        <option value="1stvac">Vaccinated 1st Dose</option>
+                        <!-- <option value="select" selected>(Select)</option> -->
+                        <option value="1stvac" selected>Vaccinated 1st Dose</option>
                         <option value="2ndvac">Vaccinated 2nd Dose</option>
                         <option value="unvaccinated">Unvaccinated</option>
                     </select> 

@@ -271,6 +271,13 @@ class MainModel extends CI_Model{
         $this->db->where('Ctype_id',$computer_type_id);
         $this->db->update('computer_type',$data);
     }
+    public function deleteAdmin($user_id){
+        // $this->db->where('user_id',$user_id);
+        // $this->db->delete('user');
+
+        $this->db->where('user_id',$user_id);
+        $this->db->delete('compmanager');
+    }
     
     //REPORTS ----------------------------------
     public function getTotalSalesAndBooks(){

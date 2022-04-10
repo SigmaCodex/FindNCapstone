@@ -83,7 +83,7 @@
                                     <h6>
                                         <span class="price">VIP Hours - <small><s class="text-secondary">₱20</s></small> ₱18 </span>
                                     </h6>
-                                    <button type="button" class="btn btn-success my-3" name="view">View Shop <i class="fa-solid fa-eye"></i></button>
+                                    <a href="<?php echo base_url();?>viewShop/8"> <button type="button" class="btn btn-success my-3" name="view">View Shop <i class="fa-solid fa-eye"></i></button></a>
                                     </div>
                             </div>
                         </form>
