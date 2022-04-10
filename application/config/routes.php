@@ -80,6 +80,7 @@ $route['reports'] = 'main_controller/viewReports';
     $route['monthlyData'] = 'logicalcontroller/getMonthlyData';
     $route['shopNames'] = 'logicalcontroller/getListOfComputerShopName';
     $route['shopSales'] = 'logicalcontroller/getMonthlyDataSpecifcShop';
+    $route['pdf'] = 'main_controller/showpdf';
 
     //PASSWORDS
     $route['checkpassword'] = 'logicalcontroller/getSuperAdminPassword';

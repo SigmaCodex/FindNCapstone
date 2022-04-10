@@ -91,6 +91,11 @@ class LogicalController extends CI_Controller {
         $result = $this->MainModel->getListOfComputerShopName();
         echo json_encode($result);
     }
+    public function pdf(){
+        $this->load->model('MainModel');
+        $result = $this->MainModel->pdf();
+        echo json_encode($result);
+    }
 
     //FINDERS
     public function FindersCompBookingRequest(){

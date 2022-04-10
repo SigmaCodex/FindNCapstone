@@ -192,6 +192,16 @@ class Main_Controller extends CI_Controller {
 		$val['listofshops'] = $this->MainModel->getListOfComputerShops();
 		$this->load->view('superadmin/reports',$val);
     }
+	public function showpdf(){
+		$this->load->library('pdf');
+		$val['totalSalesAndBooks'] = $this->MainModel->getTotalSalesAndBooks();
+		$val['totalGcashBooks'] = $this->MainModel->getTotalGCashBooks();
+		$val['totalOTCBooks'] = $this->MainModel->getTotalOTCBooks();
+		$val['MonthlyPT'] = $this->MainModel->getMonthlyPaymentTypeBooks();
+		$val['monthly'] = $this->MainModel->getMonthlyData();
+		$val['listofshops'] = $this->MainModel->getListOfComputerShops();
+		$this->load->view('makepdf',$val);
+	}
 
 	public function listofcomputershop(){
 		$session = $this->session->userdata('username');
