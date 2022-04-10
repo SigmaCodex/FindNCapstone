@@ -128,6 +128,12 @@
                       </div>
 
                       <div class="row">
+                        <div class="col-6"><h4 class="info-text-left">Number of Person:</h4></div>
+                        <div class="col-2"><p class="info-text-middle">:</p></div>
+                        <div class="col-4"><p class="info-text-right" style="color: green; font-weight: 700;"><?php echo $row->num_ticket;?></p></div>
+                      </div>
+
+                      <div class="row">
                         <div class="col-6"><h4 class="info-text-left">Booking Fee:</h4></div>
                         <div class="col-2"><p class="info-text-middle">:</p></div>
                         <div class="col-4"><p class="info-text-right" style="color: green; font-weight: 700;">₱<?php echo $row->service_fee;?></p></div>

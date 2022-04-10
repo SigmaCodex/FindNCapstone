@@ -418,6 +418,8 @@ class MainModel extends CI_Model{
         $transaction_id = $this->generatePrimarykeyForTransaction($this->input->post('s_id'));
         $user_id_fk = $this->session->userdata('user_id');
         $date_issued = date('m/d/y');
+
+        $service_fee = $this->input->post('service_fee') * $this->input->post('num_person');
         $transaction = array(
             'transaction_id'    =>  $transaction_id,
             'user_id_fk'        =>  $user_id_fk,
@@ -428,7 +430,7 @@ class MainModel extends CI_Model{
             'instruction'       => 	$this->input->post('addtional_message'),
             'date_issued'              => 	$date_issued,
             'transaction_status'       => 	"pending",
-            'service_fee'              => 	$this->input->post('service_fee'),
+            'service_fee'              => 	$service_fee,
             'payment_status	'          => 	"unpaid",
             'payment_type'             => 	"not_selected",
             'qr_code'                  => 	"not_issued",
