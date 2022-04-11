@@ -207,6 +207,11 @@ class LogicalController extends CI_Controller {
         $this->MainModel->disableFinderAccountStatus();
     }
 
+    public function change_finderpassword(){
+        $this->load->model('MainModel');
+        $this->MainModel->change_finderpassword();
+    }
+
     public function getListOfComputerShops(){
         $this->load->model('MainModel');
         $result = $this->MainModel->getListOfComputerShops();

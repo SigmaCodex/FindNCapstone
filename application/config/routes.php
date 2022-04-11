@@ -103,7 +103,7 @@ $route['reports'] = 'main_controller/viewReports';
     $route['select-computershops/(:any)/(:num)'] = 'logicalcontroller/selectComputerShop/$1/$2';
     $route['view-FinderBookingTransaction/(:num)'] = 'logicalcontroller/view_finderBookingTransaction/$1';
     $route['select-FinderBookingTransaction/(:num)'] = 'logicalcontroller/select_finderBookingTransaction/$1';
-
+    $route['change-finderpassword']                        = 'logicalcontroller/change_finderpassword';
    
     $route['addRate/(:num)'] = 'logicalcontroller/addRate/$1';
     $route['updateRate/(:num)'] = 'logicalcontroller/updateRate/$1';

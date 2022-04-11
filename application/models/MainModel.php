@@ -80,6 +80,32 @@ class MainModel extends CI_Model{
         $this->db->update('user',$data);
         $this->session->sess_destroy();
     }
+    public function change_finderpassword(){
+
+        $newpassword = $this->input->post('newpassword');
+        $current_pass = $this->input->post('currentpassword');
+        $user_id = $this->session->userdata('user_id');
+
+        $this->db->where('user_id',$user_id );
+        $this->db->where('password',$current_pass);
+        $query = $this->db->get('user');
+        if(!empty($query->result_array()))
+        {
+            
+            $data = array(
+                'password'  =>  $newpassword,
+            );
+            $this->db->where('user_id',$user_id);
+            $this->db->update('user',$data);
+
+         
+            
+        }else{
+          echo "invalid";
+        }
+
+    }
+
     public function update_To_FinderAccountVerified(){
         $user_id = $this->session->userdata('user_id');
         $code  = $this->session->userdata('v_code');

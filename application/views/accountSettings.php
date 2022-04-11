@@ -48,8 +48,8 @@
                 <div class="col-md-6 pt-md-0 pt-3"> <label for="lastname">Birthday</label> <input type="date" name="b_date" value="<?php echo date( "Y-m-d", strtotime($w->birthdate));?>" class="bg-light form-control" > </div>
                 <div class="col-md-6 pt-md-0 pt-3"> <label for="gender">Gender</label>  
                 <select name="gender" id="gender" class="bg-light" value="<?php echo $w->gender;?>">
-                    <option value="male">Male</option>
-                    <option value="female">Female</option>
+                    <option value="male" <?php if($w->gender == "male"){echo "selected";}?>>Male</option>
+                    <option value="female" <?php if($w->gender == "female"){echo "selected";}?>>Female</option>
                 </select>
                 </div>
             </div>
@@ -60,14 +60,14 @@
                 <div class="col-md-6 pt-md-0 pt-3"> <label for="email">Email</label> <input id="email" name="email" type="email" value="<?php echo $w->email;?>" class="bg-light form-control">  </div>
                 <div class="col-md-6"> <label for="phone">Phone Number</label> <input  name="p_number" value="<?php echo $w->phone_num;?>" type="text" class="bg-light form-control" placeholder="+63">  </div>
             </div>
-            <div class="title-info"> VACCINATION STATUS</div>
+            <div class="title-info">VACCINATION STATUS</div>
             <div class="row py-2">
                 <div class="col-md-6"> <label for="vaccine">Vaccination Form Status</label> 
-                    <select id="vaccine" name="vac_status"  class="bg-light">
-                        <!-- <option value="select" selected>(Select)</option> -->
-                        <option value="1stvac" selected>Vaccinated 1st Dose</option>
-                        <option value="2ndvac">Vaccinated 2nd Dose</option>
-                        <option value="unvaccinated">Unvaccinated</option>
+                    <select id="vaccine" name="vac_status" value="<?php echo $w->status;?>" class="bg-light">
+                  
+                        <option value="1stvac" <?php if($w->vac_status=="1stvac"){echo "selected";}?>>Vaccinated 1st Dose</option>
+                        <option value="2ndvac" <?php if($w->vac_status=="2ndvac"){echo "selected";}?>>Vaccinated 2nd Dose</option>
+                        <option value="unvaccinated"<?php if($w->vac_status=="unvaccinated"){echo "selected";}?>>Unvaccinated</option>
                     </select> 
                 </div>
 
@@ -97,7 +97,7 @@
                 <div class="title-info"> CHANGE PASSWORD
                     <p>Do not share your password to anyone.</p>   
                 </div>
-                <div class="" > <button class="btn danger">Change</button> </div>
+                <div class="" > <div class="btn danger" data-toggle='modal' data-target='#changepassword'>Change</div> </div>
             </div>
             <?php
                 if(isset($status)){
@@ -114,7 +114,7 @@
             ?>
 
 
-            <div class="py-2 pb-4 "> <button class="btn btn-primary mr-3">Save Changes</button> <button class="btn border button">Cancel</button> </div>
+            <div class="py-2 pb-4 "> <button class="btn btn-primary mr-3">Save Changes</button></div>
         </div>
     </div>
    
@@ -170,6 +170,33 @@
             <input type="text" id="6th" maxlength="1"  class="verificationform-control">
         </div>
         <button id="btn-code-submit" class="w-100 btn btn-primary">Verify account</button>
+        </div>
+      </div>
+      <div class="modal-footer">
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- changepassowrd -->
+<div class="modal fade" id="changepassword" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Change Password</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body" style="justify-content: center;">
+        <div class="form-verification">
+            <div class="col-md-12"> <label >CurrentPassword:</label> <input type="password" id="current_password" name="currentpassword" value="" class="bg-light form-control"> </div>
+            <!-- <br> -->
+            <hr>
+            <div class="col-md-8"> <label>New Password:</label> <input type="password" id="new_password" name="newpassword" value="" class="bg-light form-control"> </div>
+            <div class="col-md-8"> <label>Repeat New Password:</label> <input type="password" id="check_new_password" value="" class="bg-light form-control"> </div>
+            <br>
+        <button id="change_pass_btn" class="w-100 btn btn-primary">Change password</button>
         </div>
       </div>
       <div class="modal-footer">
@@ -324,14 +351,61 @@
   				}
 			});
 
-
-
-
-
        
     });
 
 
+ </script>
+ <!-- change password  -->
+ <script>
+$(document).on('click','#change_pass_btn',function(){ 
+
+    c_pass = $("#current_password").val(); 
+    new_password = $("#new_password").val(); 
+    repeat_password = $("#check_new_password").val(); 
+
+    if(new_password != repeat_password){
+        swal(
+		'Password Not Match!',
+		'Please Match Your Password',
+		'error'
+		)
+    }else{
+            $.ajax({
+                    url:"change-finderpassword",
+                    method: "POST",
+                    data: { newpassword:new_password,currentpassword:c_pass},
+                    success: function (data) {
+                        if(data == "invalid"){
+                            swal(
+                                    'Current Password Not Match!',
+                                    'Please Match Your CurrentPassword',
+                                    'error'
+                                    )
+                        }else{
+
+                            swal({
+                            title: "Password Changed Successfully",
+                            text: "",
+                            icon: "success",
+                            button: "Proceed",
+                            }).then((value) => {
+                                    location.reload();
+                            }); 
+
+                        }
+                    },
+            });
+            // console.log("hello");
+    }
+
+   
+
+
+
+
+});
+    
  </script>
 </html>
 

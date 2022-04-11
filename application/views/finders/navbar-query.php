@@ -101,7 +101,8 @@
             $.ajax({
                         url:BASE_URL+"Countfindernotification",
                         method:"GET", 
-                        data:{},
+                        // data:{},
+                        cache: false, 
                         success:function(data)
                         {
                           if(data>0){
