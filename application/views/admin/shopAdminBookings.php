@@ -9,14 +9,14 @@
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script> 
     <link rel="stylesheet" href="assets/css/shopAdminBookings.css">
     
 
     <title>Shop Admin Bookings</title> 
 </head>
 <body>
-
+<?php date_default_timezone_set("Asia/Bangkok"); ?> 
     <div class="container ">
         <div class="row content-holder mt-5">
             <!--Left side column-->
@@ -30,7 +30,7 @@
                     <div class="left-sidebar-padding">
                         
                         <!-- Request Card -->
-
+                        <?php foreach ($bookingrequest as $br) {?>
                         <div class="request-card mt-3">
 
                             <div class="card-head-color row p-3 ">
@@ -43,12 +43,11 @@
                                         <img class="request-card-logo" src="assets/images/Prof.png" alt="">
                                     </div>
                                     <div class="col-5 mt-1">
-                                        <p class="finder-name">Junky Dubs</p>
-                                        <p class="finder-user text-muted">junkydubs</p>
+                                        <p class="finder-name"><?php echo $br->firstname;?>, <?php echo $br->lastname;?></p>
+                                        <p class="finder-user text-muted"><?php echo $br->username;?></p>
                                     </div>
                                     <div class="col-4 mt-1 d-flex flex-column justify-content-center align-items-center ">
-                                        <p class="finder-date-trans text-muted">April 21, 2022</p>
-                                        <p class="finder-time-trans text-muted">8:00PM GMT+8</p>
+                                        <p class="finder-date-trans text-muted"><?php echo date("M j, Y", strtotime($br->date_issued));?></p>
                                     </div>
     
                                 </div>
@@ -56,15 +55,15 @@
                                 <div class="row mt-3">
                                     <div class="col-5 d-flex flex-column justify-content-center align-items-center">
                                         <p class="finder-details text-muted">Service</p>
-                                        <p class="finder-details-bold">Computer Booking</p>
+                                        <p class="finder-details-bold"><?php echo $br->servicetype;?></p>
                                     </div>
                                     <div class="col-4 d-flex flex-column justify-content-center align-items-center">
                                         <p class="finder-details text-muted">Access Type</p>
-                                        <p class="finder-details-bold">VIP</p>
+                                        <p class="finder-details-bold"><?php echo $br->name;?></p>
                                     </div>
                                     <div class="col-3 d-flex flex-column justify-content-center align-items-center">
                                         <p class="finder-details text-muted">Tickets</p>
-                                        <p class="finder-details-bold">2</p>
+                                        <p class="finder-details-bold"><?php echo $br->num_ticket?></p>
                                     </div>
                                     
                                 </div>
@@ -80,8 +79,8 @@
                                         <p class="finder-details-book text-muted">Time:</p>
                                     </div>
                                     <div class="col-5 d-flex flex-column justify-content-center align-items-end">
-                                        <p class="finder-details-bold">April 22, 2022</p>
-                                        <p class="finder-details-bold">4:00 PM(GMT+8)</p>
+                                        <p class="finder-details-bold"><?php echo date("M j, Y", strtotime($br->arrival_date));?></p>
+                                        <p class="finder-details-bold"><?php echo date("h:i:a", strtotime($br->arrival_time));?></p>
                                     </div>
                                     
                                 </div>
@@ -91,7 +90,7 @@
                                         <p class="finder-details-book text-muted">Message :</p>
                                     </div>
                                     <div class="col-8 d-flex flex-column justify-content-center align-items-end">
-                                        <p class="finder-details-bold"> Kanang daghan chix dadi ha.</p>
+                                        <p class="finder-details-bold"> <?php echo $br->instruction;?></p>
                                     </div> 
                                 </div>
 
@@ -100,16 +99,16 @@
                                         <button class="btn btn-danger p-2" >Decline</button>
                                     </div>
                                     <div class="col-6 p-2 d-flex justify-content-center align-items-center">
-                                        <button class="btn btn-success p-2">Accept</button>
+                                        <button transac_id="<?php echo $br->transaction_id;?>" class="btn btn-success p-2 acceptbtn">Accept</button>
                                     </div> 
                                 </div>
                             </div>
                             
                         </div>
-
+                        <?php }?> 
                         <!-- Request Card -->
 
-                        <div class="request-card mt-3">
+                        <!-- <div class="request-card mt-3">
 
                             <div class="card-head-color row p-3 ">
                             </div>
@@ -183,7 +182,7 @@
                                 </div>
                             </div>
                             
-                        </div>
+                        </div> -->
                         
                     </div>
 
@@ -353,3 +352,12 @@
     <script src="assets/js/shopAdminBookings.js"></script>
 </body>
 </html>
+<script>
+		$(document).on("click",".acceptbtn",function(){
+			var Base_URL = "<?php echo base_url();?>";
+			var id = $(this).attr("transac_id");
+            alert(id);
+			// window.location = Base_URL+"shopadmin-comptypeinfo/" + id;
+			
+		});
+</script>

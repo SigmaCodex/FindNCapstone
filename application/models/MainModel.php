@@ -759,14 +759,17 @@ class MainModel extends CI_Model{
     // ShopAdmin Booking Request Management
     // arrival time, computer type name, additonal description, num of ticket 
     public function getallPendingRequest($shop_id){
-        $this->db->select('transaction.arrival_time,transaction.arrival_date,transaction.instruction,comp_booking.num_ticket,computer_type.name');
+        $this->db->select('user.username,finders.profile_pic,finders.firstname,finders.lastname,transaction.transaction_id,transaction.instruction,transaction.date_issued,transaction.servicetype,transaction.arrival_time,transaction.arrival_date,transaction.instruction,comp_booking.num_ticket,computer_type.name');
         $this->db->from('transaction');
+        $this->db->join('user', 'user.user_id = transaction.user_id_fk');
+        $this->db->join('finders', 'user.user_id = finders.user_id', 'left');
         $this->db->join('comp_booking', 'comp_booking.transaction_id = transaction.transaction_id');
         $this->db->join('computer_type', 'computer_type.Ctype_id = comp_booking.comp_type_id', 'left');
+        $this->db->where('transaction.shop_id_fk', $shop_id);
         $this->db->where('transaction_status', 'pending');
         $query = $this->db->get();
-        // return $query->result();
-        echo json_encode($query->result());
+        return $query->result();
+        //echo json_encode($query->result());
     }
     public function getallAcceptedRequest($shop_id){
         $this->db->select('transaction.arrival_time,transaction.arrival_date,transaction.instruction,comp_booking.num_ticket,computer_type.name');
