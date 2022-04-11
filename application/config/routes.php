@@ -25,6 +25,8 @@ $route['shopadmin-shopimages/(:num)'] = 'main_controller/shopimages/$1';
 $route['register'] = 'main_controller/viewRegister';
 
 
+//admin-junky
+$route['adminHeader'] = 'main_controller/viewAdminHeader';
 
 //finders
 $route['findnRegister'] = 'main_controller/viewFindnRegister';
