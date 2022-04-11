@@ -249,6 +249,11 @@ class Main_Controller extends CI_Controller {
 		}
 	}
 	//shop admin show pages
+	public function viewAdminHeader(){
+		$this->load->view('adminHeader');
+	}
+
+
 	public function admin_dashboard(){
 		$session = $this->session->userdata('username');
 		$session2 = $this->session->userdata('admin_shop_id');
@@ -270,7 +275,7 @@ class Main_Controller extends CI_Controller {
 		$this->load->view('admin/template/qrscannerfooter');
 	}
 	public function admin_bookings(){
-		$this->load->view('admin/template/header');
+		$this->load->view('admin/template/adminHeader');
 		$this->load->view('admin/Bookings');
 		$this->load->view('admin/template/footer');
 	}

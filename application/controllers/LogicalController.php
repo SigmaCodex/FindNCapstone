@@ -314,6 +314,7 @@ class LogicalController extends CI_Controller {
     }
 
     //ADMIN
+
     public function getUserDetails($id){
         $this->load->model('MainModel');
         $this->MainModel->getUserDetails($id);
