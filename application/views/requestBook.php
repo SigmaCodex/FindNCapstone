@@ -273,10 +273,10 @@
 
          var BASE_URL = "<?php echo base_url();?>";
 
-         if(computer_type == "not_selected"){
+         if(computer_type == "not_selected" || time_arrival == ""){
           swal(
               'Missing Information',
-              'Please Select Your Preffered Computer Type',
+              'Please Check Your Booking Information',
               'warning'
 		        	)
          }else{

@@ -410,7 +410,7 @@ $(document).on('click','.click_notification-unread',function(){
     status = $(this).attr("status");
     if(status=="unseen"){
       $(this).addClass('d-none');
-      $(".click_notification[notif_id='"+noti_id+"']").addClass('d-none');
+      // $(".click_notification[notif_id='"+noti_id+"']").addClass('d-none');
         $.ajax({
               url: BASE_URL+"updateNotificationStatus/"+noti_id,
               type: "POST",

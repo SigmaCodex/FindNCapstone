@@ -36,16 +36,17 @@ class Main_Controller extends CI_Controller {
 
 	public function viewAccountSettings()
 	{
-		$this->load->view('finders/navbar');
-		$session = $this->session->userdata('username');
+
+		$session['user_name'] = $this->session->userdata('username');
 		if(!$session){
 			redirect(findnlogin);
 		}else{
 			$this->load->model('MainModel');
 			$user_id  = $this->session->userdata('user_id');
 			$val['status']	 = $this->session->userdata('status');
-			$val['username'] =  $session;
+			$val['user_name'] =  $session;
 			$val['findersPersonalDetails']	 = $this->MainModel->selectFinderDetails($user_id);
+			$this->load->view('finders/navbar',$session);
 			$this->load->view('accountSettings',$val);
 		}
 	}
@@ -91,19 +92,34 @@ class Main_Controller extends CI_Controller {
     }
 
 	public function viewMap(){
-		$this->load->model('MainModel');
-		$val['listofshops']	 = $this->MainModel->getListOfComputerShops();
-		$this->load->view('finders/navbar');
-		 $this->load->view('viewmap',$val);
+
+		$session['user_name'] = $this->session->userdata('username');
+
+		if(!$session['user_name']){
+			redirect(findnlogin);
+		}else{
+			$this->load->model('MainModel');
+			$val['listofshops']	 = $this->MainModel->getListOfComputerShops();
+			$this->load->view('finders/navbar',$session);
+			$this->load->view('viewmap',$val);
 		// $string = "123,46,78,000";
 		// $str_arr = explode (",", $string); 
 		// print_r($str_arr[0]);
+		}
 		
 	}
 	public function viewFinders_HomePage()
 	{
-		$this->load->view('finders/navbar');
-		$this->load->view('findersHomePage');
+		$session['profile_pic'] = $this->session->userdata('profile_pic');
+		$session['user_name'] = $this->session->userdata('username');
+
+		if(!$session['user_name']){
+			redirect(findnlogin);
+		}else{
+
+			$this->load->view('finders/navbar',$session);
+			$this->load->view('findersHomePage');
+		}
 	}
 	public function view_ticket($transaction_id){
 		$result['transaction_details'] = $this->MainModel->select_finderdetailsBookingTransaction($transaction_id);
@@ -142,14 +158,14 @@ class Main_Controller extends CI_Controller {
 	}
 
 	public function viewfinderBookingList(){
-		$session = $this->session->userdata('username');
+		$session['user_name'] = $this->session->userdata('username');
 		$user_id = $this->session->userdata('user_id');
-		if(!$session){
+		if(!$session['user_name']){
 			redirect(findnlogin);
 		}else{
 			$this->load->model('MainModel');
 			$val['listofbookings']	 = $this->MainModel->view_finderBookingTransaction($user_id);
-			$this->load->view('finders/navbar');
+			$this->load->view('finders/navbar',$session);
 			$this->load->view('finderBookingList',$val);
 		}
 	}
@@ -168,14 +184,20 @@ class Main_Controller extends CI_Controller {
 	}
 	public function viewFindersNotification()
 	{
-		$user_id = $this->session->userdata('user_id');
-		//viewFinderNotification
-		$this->load->model('MainModel');
-		$result['Notification'] = $this->MainModel->viewFinderNotification($user_id);
 
-		// echo json_encode($result);
-		$this->load->view('finders/navbar');
-		$this->load->view('findersNotification',$result);
+		$session['user_name'] = $this->session->userdata('username');
+
+		if(!$session['user_name']){
+			redirect(findnlogin);
+		}else{
+			$user_id = $this->session->userdata('user_id');
+			//viewFinderNotification
+			$this->load->model('MainModel');
+			$result['Notification'] = $this->MainModel->viewFinderNotification($user_id);
+			$this->load->view('finders/navbar',$session);
+			$this->load->view('findersNotification',$result);
+		}
+
 	}
 
 	//super admin
