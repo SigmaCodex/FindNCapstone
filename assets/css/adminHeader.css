@@ -1,4 +1,4 @@
-/* ===== Google Font Import - Poppins ===== */
+
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600&display=swap');
 *{
     margin: 0;
@@ -28,13 +28,13 @@
 
 body{
     min-height: 100vh;
-    background-color: var(--primary-color);
+    /* background-color: var(--primary-color); */
 }
-body.close{
+body.close-shop{
     --primary-color: #3A3B3C;
     --panel-color: #242526;
     --text-color: rgb(29, 28, 28);
-    --black-light-color: #CCC;
+    --black-light-color: rgb(170, 29, 29);
     --border-color: #4D4C4C;
     --toggle-color: #FFF;
     --box1-color: #3A3B3C;
@@ -42,8 +42,8 @@ body.close{
     --box3-color: #3A3B3C;
     --title-icon-color: #CCC;
 }
-.header {
-    z-index: 100;
+.admin-header {
+    z-index: -1;
 }
 nav{
     position: fixed;
@@ -55,6 +55,7 @@ nav{
     background-color: var(--panel-color);
     border-right: 1px solid var(--border-color);
     transition: var(--tran-05);
+    
 }
 nav.close{
     width: 73px;
@@ -69,11 +70,7 @@ nav .logo-name{
     -webkit-text-fill-color: transparent; 
     -moz-text-fill-color: transparent;
 }
-nav .logo-name .uil{
-    outline: none;
-    border: none;
-    box-shadow: none !important;
-}
+
 .shop_name {
     background-image: linear-gradient(45deg, #cb3107,#b45a0b);
     background-size: 100%;
@@ -161,6 +158,7 @@ nav .menu-items{
 }
 .menu-items li{
     list-style: none;
+    
 }
 .menu-items li a{
     display: flex;
@@ -173,12 +171,13 @@ nav .menu-items{
     text-decoration: none;
     box-shadow: none;
     outline: none;
+    z-index: 1;
 }
-body.close li a:hover:before{
+body.close-shop li a:hover:before{
     background-color: var(--text-color);
 }
 .menu-items li a i{
-    font-size: 24px;
+    font-size: 20px;
     min-width: 45px;
     height: 100%;
     display: flex;
@@ -196,10 +195,7 @@ nav.close li a .link-name{
     opacity: 0;
     pointer-events: none;
 }
-nav.close li a .link-status{
-    opacity: 0;
-    pointer-events: none;
-}
+
 .nav-links li a:hover i,
 .nav-links li a:hover .link-name{
     background-image: linear-gradient(45deg, #fc4a1a,#f7b733);
@@ -208,10 +204,10 @@ nav.close li a .link-status{
     -moz-background-clip: text;
     -webkit-text-fill-color: transparent; 
     -moz-text-fill-color: transparent;
-    font-weight: 500;
+    /* font-weight: 500; */
 }
-body.close .nav-links li a:hover i,
-body.close .nav-links li a:hover .link-name{
+body.close-shop .nav-links li a:hover i,
+body.close-shop .nav-links li a:hover .link-name{
     color: var(--text-color);
 }
 .menu-items .logout-mode{
@@ -269,7 +265,6 @@ body.close .nav-links li a:hover .link-name{
 }
 body.close .switch:before{
     left: 20px;
-    background-color: red;
     
 }
 
@@ -279,7 +274,6 @@ body.close .switch:before{
     position: relative;
     left: 250px;
     background-color: var(--panel-color);
-    min-height: 100vh;
     width: calc(100% - 250px);
     padding: 10px 14px;
     transition: var(--tran-05);
@@ -360,21 +354,9 @@ nav.close ~ .header-top .top{
         opacity: 0;
         pointer-events: none;
     }
-    nav li a .link-status{
-        opacity: 0;
-        pointer-events: none;
-    }
-    nav.close li .status-shop-legend{
-        opacity: 1;
-        pointer-events: none;
-    }
-
+  
     nav.close li a .link-name{
         opacity: 1;
-        pointer-events: auto;
-    }
-    nav li a .link-status{
-        opacity: 0;
         pointer-events: auto;
     }
     nav ~ .header-top{
@@ -403,9 +385,6 @@ nav.close ~ .header-top .top{
         width: calc(100% / 2 - 15px);
         margin-top: 15px;
     }
-    .status-shop-legend{
-        display: none;
-    } 
 }
 @media (max-width: 560px) {
     .dash-content .boxes .box{
@@ -437,15 +416,7 @@ nav.close ~ .header-top .top{
         opacity: 0;
         pointer-events: none;
     }
-    nav li a .link-status{
-        opacity: 0;
-        pointer-events: none;
-    }
     nav.close li a .link-name{
-        opacity: 0;
-        pointer-events: none;
-    }
-    nav.close li a .link-status{
         opacity: 0;
         pointer-events: none;
     }
