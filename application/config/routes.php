@@ -26,6 +26,10 @@ $route['register'] = 'main_controller/viewRegister';
 
 
 
+
+
+$route['shopAdminBookings'] = 'main_controller/viewShopAdminBookings';
+
 //finders
 $route['findnRegister'] = 'main_controller/viewFindnRegister';
 $route['findnlogin'] = 'main_controller/viewFindNLogin';
