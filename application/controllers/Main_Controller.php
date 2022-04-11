@@ -273,12 +273,11 @@ class Main_Controller extends CI_Controller {
 
 	//junky-admin
 	public function viewShopAdminBookings(){
+		// $this->load->view('admin/template/adminHeader');
 		$this->load->view('admin/shopAdminBookings');
 	}
-
-	//shop admin show pages
 	public function viewAdminHeader(){
-		$this->load->view('adminHeader');
+		$this->load->view('admin/template/adminHeader');
 	}
 
 

@@ -4,12 +4,14 @@
 
 .container {
     font-family: 'Poppins', sans-serif;
+    
 }
 
 /* LEFT CARD */
 .left-sidebar{
     border-radius: 15px;
     background-color: #f9f6f6;
+    z-index: 1 !important;
 }
 
 .left-sidebar-title{

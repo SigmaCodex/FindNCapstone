@@ -1,21 +1,18 @@
 <!DOCTYPE html>
-<!--=== Coding by CodingLab | www.codinglabweb.com === -->
+
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/5.0.0/css/bootstrap.min.css">
-    <!----======== CSS ======== -->
-    <link rel="stylesheet" href="assets/admin/css/adminHeader.css">
-    
-    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/fontawesome.min.css">
+    <link rel="stylesheet" href="assets/css/adminHeader.css">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
     <title>FindN Admin Panel</title> 
 </head>
-<body class="">
+<body >
     <header class="admin-header" id="admin-header">
         <nav>
             <div class="logo-name">
@@ -24,32 +21,16 @@
                 </div>
     
                 <span class="logo_name">FindN</span>
-                
-                
+
             </div>
             
             <div class="menu-items">
                 <ul class="nav-links">
 
 
-                    
-
-                    <!-- Legend -->
-                    <!-- <li><a href="#">
-                        <div class="status-shop-legend">
-
-                            <span class="status-legend">SHOP: </span>
-                            <span class="link-status status-open">Open</span>
-                            <span class="link-status status-close">Close</span>
-                        </div>
-                    </a>
-                    </li> -->
-
-                    <!-- DEFAULT SHOP = CLOSE -->
-
                     <li class="mode">
                         <a href="#">
-                            <i class="uil uil-store"></i>
+                            <i class="fa-solid fa-store icon-nav"></i>
                         <span class="link-name">Shop Status</span>
                     </a>
     
@@ -59,30 +40,30 @@
                     </li>
                     
                     <li><a href="#">
-                        <i class="uil uil-estate"></i>
+                        <i class="fas fa-home icon-nav"></i>
                         <span class="link-name">Dashboard</span>
                     </a></li>
                     <li><a href="#">
-                        <i class="uil uil-clipboard-alt"></i>
+                        <i class="fa-solid fa-clipboard-list icon-nav"></i>
                         <span class="link-name">Bookings</span>
                     </a></li>
                     <li><a href="#">
-                        <i class="uil uil-chart"></i>
+                        <i class="fa-solid fa-chart-line icon-nav"></i>
                         <span class="link-name">Reports</span>
                     </a></li>
                     <li><a href="#">
-                        <i class="uil uil-star"></i>
+                        <i class="fas fa-star icon-nav"></i>
                         <span class="link-name">Ratings</span>
                     </a></li>
                     <li><a href="#">
-                        <i class="uil uil-user-location"></i>
+                        <i class="fas fa-id-card-alt icon-nav"></i>
                         <span class="link-name">Shop Profile</span>
                     </a></li>              
                 </ul>
                 
                 <ul class="logout-mode">
                     <li><a href="#">
-                        <i class="uil uil-signout"></i>
+                        <i class="fa-solid fa-door-open"></i>
                         <span class="link-name">Logout</span>
                     </a></li>
     
@@ -92,7 +73,7 @@
     
         <section class="header-top">
             <div class="top">
-                <i class="uil uil-bars sidebar-toggle"></i>
+                <i class="fa-solid fa-stream sidebar-toggle"></i>
     
                 <span class="shop_name">TNC CYBERCAFE ADMIN PANEL</span>
                 <div class="profile-img-name">
@@ -106,7 +87,7 @@
 
     </header>
 
-    <script src="assets/admin/js/adminHeader.js"></script>
+    <script src="assets/js/adminHeader.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
 </body>

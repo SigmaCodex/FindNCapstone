@@ -4,8 +4,8 @@ const body = document.querySelector("body"),
       sidebarToggle = body.querySelector(".sidebar-toggle");
 
 let getMode = localStorage.getItem("mode");
-if(getMode && getMode ==="close"){
-    body.classList.toggle("close");
+if(getMode && getMode ==="close-shop"){
+    body.classList.toggle("close-shop");
 }
 
 let getStatus = localStorage.getItem("status");
@@ -14,9 +14,9 @@ if(getStatus && getStatus ==="close"){
 }
 
 modeToggle.addEventListener("click", () =>{
-    body.classList.toggle("close");
-    if(body.classList.contains("close")){
-        localStorage.setItem("mode", "close");
+    body.classList.toggle("close-shop");
+    if(body.classList.contains("close-shop")){
+        localStorage.setItem("mode", "close-shop");
     }else{
         localStorage.setItem("mode", "open");
     }
