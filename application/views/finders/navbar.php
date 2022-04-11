@@ -59,11 +59,11 @@
 
                 </ul>
             </div>
-
+            <?php $profile_pic;?>
             <ul id="dropdown">
 				<li class="nr_li dd_main">
                 <div class="profile-dropdown d-flex">
-                <img src="assets/upload/finder/dave.jpg" alt="assets/images/Prof.png" class="nav__img">  
+                <img src="assets/upload/finder/<?php echo $profile_pic;?>" onerror="this.src='assets/images/default.png';" alt="assets/images/Prof.png" class="nav__img">  
                 <h6 class="username" style="padding-left:4px;"></h6>  <i class="down-arrow fa-solid fa-caret-down" style="font-size:15px;"></i>
                 </div>
                     <div class="drop-wrap pt-1">

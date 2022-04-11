@@ -244,7 +244,7 @@
                               </div>
 
                               <h6 style='text-align:center; font-size: 10px; font-weight: 500; padding-top: 5px; color: rgb(55, 152, 10);'>Note: <b>Booking Fee</b> shall be paid over-the-counter before using the computer.</h6> 
-                              <h6 style='text-align:center; font-size: 10px; font-weight: 500; padding-top: 5px; color: rgb(55, 152, 10);'> <b>Late Arrival</b> shall be paid 5 pesos penalty</h6> 
+                              <h6 style='text-align:center; font-size: 10px; font-weight: 500; padding-top: 5px; color: rgb(55, 152, 10);'> <b>Dont Be Late Finders!</b></h6> 
                                 ";
                             }
                             
