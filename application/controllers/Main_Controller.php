@@ -248,6 +248,12 @@ class Main_Controller extends CI_Controller {
 			$this->load->view('superadmin/adminlist',$val);
 		}
 	}
+
+	//junky-admin
+	public function viewShopAdminBookings(){
+		$this->load->view('admin/shopAdminBookings');
+	}
+
 	//shop admin show pages
 	public function viewAdminHeader(){
 		$this->load->view('adminHeader');
@@ -279,6 +285,7 @@ class Main_Controller extends CI_Controller {
 		$this->load->view('admin/Bookings');
 		$this->load->view('admin/template/footer');
 	}
+
 	public function shopadmin_computerdetails($shopid){
 		$this->load->model('MainModel');
 		$val['shop_details'] = $this->MainModel->getshopDetails($shopid);
