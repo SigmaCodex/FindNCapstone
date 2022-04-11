@@ -270,7 +270,18 @@ class Main_Controller extends CI_Controller {
 			$this->load->view('superadmin/adminlist',$val);
 		}
 	}
+
+	//junky-admin
+	public function viewShopAdminBookings(){
+		$this->load->view('admin/shopAdminBookings');
+	}
+
 	//shop admin show pages
+	public function viewAdminHeader(){
+		$this->load->view('adminHeader');
+	}
+
+
 	public function admin_dashboard(){
 		$session = $this->session->userdata('username');
 		$session2 = $this->session->userdata('admin_shop_id');
@@ -292,10 +303,11 @@ class Main_Controller extends CI_Controller {
 		$this->load->view('admin/template/qrscannerfooter');
 	}
 	public function admin_bookings(){
-		$this->load->view('admin/template/header');
+		$this->load->view('admin/template/adminHeader');
 		$this->load->view('admin/Bookings');
 		$this->load->view('admin/template/footer');
 	}
+
 	public function shopadmin_computerdetails($shopid){
 		$this->load->model('MainModel');
 		$val['shop_details'] = $this->MainModel->getshopDetails($shopid);
