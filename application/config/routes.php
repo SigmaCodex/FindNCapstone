@@ -142,6 +142,7 @@ $route['reports'] = 'main_controller/viewReports';
     $route['getComment/(:num)'] = 'logicalcontroller/selectforUpdateComment/$1';
     $route['updateComment/(:num)'] = 'logicalcontroller/updateComments/$1';
     $route['deleteComment/(:num)'] = 'logicalcontroller/deleteComments/$1';
+    $route['adminshowallbookrequest/(:num)'] = 'logicalcontroller/viewallShopAdminBookingRequests/$1';
     $route['showpendinglist/(:num)'] = 'logicalcontroller/getallPendingRequest/$1';
     $route['showacceptedlist/(:num)'] = 'logicalcontroller/getallAcceptedRequest/$1';
     $route['showcancelledlist/(:num)'] = 'logicalcontroller/getallCancelledRequest/$1';
