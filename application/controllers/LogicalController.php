@@ -312,7 +312,10 @@ class LogicalController extends CI_Controller {
         $this->load->model('MainModel');
         $this->MainModel->updateBookingTransacStatus($transac_id,$status);
     }
-
+    public function viewallShopAdminBookingRequests($shop_id){
+        $this->load->model('MainModel');
+        $this->MainModel->viewallShopAdminBookingRequests($shop_id);
+    }
     //ADMIN
 
     public function getUserDetails($id){

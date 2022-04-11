@@ -783,7 +783,7 @@ class MainModel extends CI_Model{
         $this->db->from('transaction');
         $this->db->join('comp_booking', 'comp_booking.transaction_id = transaction.transaction_id');
         $this->db->join('computer_type', 'computer_type.Ctype_id = comp_booking.comp_type_id', 'left');
-        $this->db->where('transaction_status', 'cancelled');
+        $this->db->where('transaction_status', 'cancelled'); 
         $query = $this->db->get();
         // return $query->result();
         echo json_encode($query->result());
@@ -796,6 +796,18 @@ class MainModel extends CI_Model{
         $this->db->join('comp_booking', 'comp_booking.transaction_id = transaction.transaction_id');
         $this->db->join('computer_type', 'computer_type.Ctype_id = comp_booking.comp_type_id', 'left');
         $this->db->where('transaction.transaction_id',$transac_id);
+        $query = $this->db->get();
+        // return $query->result();
+        echo json_encode($query->result());
+    }
+    public function viewallShopAdminBookingRequests($shop_id){
+        $this->db->select('finders.firstname,finders.lastname,transaction.arrival_date,transaction.transaction_id,transaction.arrival_time,transaction.transaction_status,comp_booking.num_ticket,transaction.service_fee,computer_type.name');
+        $this->db->from('transaction');
+        $this->db->join('user', 'user.user_id = transaction.user_id_fk');
+        $this->db->join('finders', 'user.user_id = finders.user_id', 'left');
+        $this->db->join('comp_booking', 'comp_booking.transaction_id = transaction.transaction_id');
+        $this->db->join('computer_type', 'computer_type.Ctype_id = comp_booking.comp_type_id', 'left');
+        $this->db->where('transaction.shop_id_fk',$shop_id);
         $query = $this->db->get();
         // return $query->result();
         echo json_encode($query->result());
