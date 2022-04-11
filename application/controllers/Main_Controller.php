@@ -273,7 +273,8 @@ class Main_Controller extends CI_Controller {
 
 	//junky-admin
 	public function viewShopAdminBookings(){
-		$shop_id = 8;
+		
+		$shop_id = $this->session->userdata('admin_shop_id');
 		$this->load->model('MainModel');
 		$val['bookingrequest'] = $this->MainModel->getallPendingRequest($shop_id);
 		// $this->load->view('admin/template/adminHeader');
