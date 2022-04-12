@@ -338,18 +338,22 @@ input[type=button] {
     .left-side-bar{
         border-bottom-left-radius: 0px;
         border-bottom-right-radius: 0px;
+        padding: 10px 10px 5px 10px;
     }
     .right-side-bar{
         border-top-left-radius: 0px;
         border-top-right-radius: 0px;
+        padding: 30px 30px 10px 30px;
     }
-
+    .right-side-bar-title{
+        font-size: 24px;
+    }
     .trans-detail {
         font-size: 11px;
     }
     .trans-detail input{
         margin: 0;
-        width: 120px ;
+        width: 135px ;
         height: 25px;
         font-size: 10px;
     }
