@@ -25,6 +25,9 @@ $route['shopadmin-shopimages/(:num)'] = 'main_controller/shopimages/$1';
 $route['register'] = 'main_controller/viewRegister';
 
 
+//admin-junky
+$route['adminHeader'] = 'main_controller/viewAdminHeader';
+$route['shopAdminBookings'] = 'main_controller/viewShopAdminBookings';
 
 //finders
 $route['findnRegister'] = 'main_controller/viewFindnRegister';
@@ -104,7 +107,7 @@ $route['reports'] = 'main_controller/viewReports';
     $route['select-computershops/(:any)/(:num)'] = 'logicalcontroller/selectComputerShop/$1/$2';
     $route['view-FinderBookingTransaction/(:num)'] = 'logicalcontroller/view_finderBookingTransaction/$1';
     $route['select-FinderBookingTransaction/(:num)'] = 'logicalcontroller/select_finderBookingTransaction/$1';
-
+    $route['change-finderpassword']                        = 'logicalcontroller/change_finderpassword';
    
     $route['addRate/(:num)'] = 'logicalcontroller/addRate/$1';
     $route['updateRate/(:num)'] = 'logicalcontroller/updateRate/$1';
@@ -137,6 +140,7 @@ $route['reports'] = 'main_controller/viewReports';
     $route['getComment/(:num)'] = 'logicalcontroller/selectforUpdateComment/$1';
     $route['updateComment/(:num)'] = 'logicalcontroller/updateComments/$1';
     $route['deleteComment/(:num)'] = 'logicalcontroller/deleteComments/$1';
+    $route['adminshowallbookrequest/(:num)'] = 'logicalcontroller/viewallShopAdminBookingRequests/$1';
     $route['showpendinglist/(:num)'] = 'logicalcontroller/getallPendingRequest/$1';
     $route['showacceptedlist/(:num)'] = 'logicalcontroller/getallAcceptedRequest/$1';
     $route['showcancelledlist/(:num)'] = 'logicalcontroller/getallCancelledRequest/$1';

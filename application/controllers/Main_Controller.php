@@ -24,47 +24,61 @@ class Main_Controller extends CI_Controller {
     }
 	//finders
 	public function finder_BookingRequest($shopid){
-		$this->load->view('finders/navbar-query');
+		$session['profile_pic'] = $this->session->userdata('profile_pic');
+		$session['user_name'] = $this->session->userdata('username');
+		if(!$session){
+			redirect(findnlogin);
+		}else{
+
+		$this->load->view('finders/navbar-query',$session);
 		$this->load->model('MainModel');
 		$val['username']      = $this->session->userdata('username');
 		$val['shop_id']       = $shopid;
 		$val['shopdetails']		  = $this->MainModel->selectComputerShop($shopid);
 		$val['computer_type'] = $this->MainModel->getListOfShop_ComputerTypes($shopid);
-		
-		 $this->load->view('ComputerbookingRequest',$val);
+		$this->load->view('ComputerbookingRequest',$val);
+
+		}
 	}
 
 	public function viewAccountSettings()
 	{
-		$this->load->view('finders/navbar');
-		$session = $this->session->userdata('username');
+		$session['profile_pic'] = $this->session->userdata('profile_pic');
+		$session['user_name'] = $this->session->userdata('username');
 		if(!$session){
 			redirect(findnlogin);
 		}else{
 			$this->load->model('MainModel');
 			$user_id  = $this->session->userdata('user_id');
 			$val['status']	 = $this->session->userdata('status');
-			$val['username'] =  $session;
+			$val['user_name'] =  $session['user_name'];
 			$val['findersPersonalDetails']	 = $this->MainModel->selectFinderDetails($user_id);
+			$this->load->view('finders/navbar',$session);
 			$this->load->view('accountSettings',$val);
 		}
 	}
 	public function viewShop($shopid)
 	{
-	
-		$this->load->model('MainModel');
-		$val['shopdetails']	 = $this->MainModel->getShopDetails($shopid);
-		$val['shop_images']	 = $this->MainModel->viewShopimages($shopid);
-		$val['computertype_details']	 = $this->MainModel->getListOfComputerTypes($shopid);
-	
-		$this->load->view('finders/navbar-query');
-		$this->load->view('viewShop',$val);
+		$session['profile_pic'] = $this->session->userdata('profile_pic');
+		$session['user_name'] = $this->session->userdata('username');
+		if(!$session['user_name']){
+			redirect(findnlogin);
+		}else{
+			$this->load->model('MainModel');
+			$val['shopdetails']	 = $this->MainModel->getShopDetails($shopid);
+			$val['shop_images']	 = $this->MainModel->viewShopimages($shopid);
+			$val['computertype_details']	 = $this->MainModel->getListOfComputerTypes($shopid);
+		
+			$this->load->view('finders/navbar-query',$session);
+			$this->load->view('viewShop',$val);
+		}
 	}
 	public function viewRequestBook($shopid)
 	{
-		$this->load->view('finders/navbar-query');
-		$session = $this->session->userdata('username');
-		if(!$session){
+
+		$session['profile_pic'] = $this->session->userdata('profile_pic');
+		$session['user_name'] = $this->session->userdata('username');
+		if(!$session['user_name']){
 			redirect(findnlogin);
 		}else{
 			$this->load->model('MainModel');
@@ -73,8 +87,10 @@ class Main_Controller extends CI_Controller {
 			$val['findersPersonalDetails']	 = $this->MainModel->selectFinderDetails($user_id);
 			$val['computertype_details']	 = $this->MainModel->getListOfComputerTypes($shopid);
 			$val['shopdetails']	 			 = $this->MainModel->getShopDetails($shopid);
+			$this->load->view('finders/navbar-query',$session);
 			$this->load->view('requestBook',$val);
 		}
+
 	}
 	public function viewRegister()
 	{
@@ -91,24 +107,45 @@ class Main_Controller extends CI_Controller {
     }
 
 	public function viewMap(){
-		$this->load->model('MainModel');
-		$val['listofshops']	 = $this->MainModel->getListOfComputerShops();
-		$this->load->view('finders/navbar');
-		 $this->load->view('viewmap',$val);
+
+		$session['user_name'] = $this->session->userdata('username');
+		$session['profile_pic'] = $this->session->userdata('profile_pic');
+		if(!$session['user_name']){
+			redirect(findnlogin);
+		}else{
+			$this->load->model('MainModel');
+			$val['listofshops']	 = $this->MainModel->getListOfComputerShops();
+			$this->load->view('finders/navbar',$session);
+			$this->load->view('viewmap',$val);
 		// $string = "123,46,78,000";
 		// $str_arr = explode (",", $string); 
 		// print_r($str_arr[0]);
+		}
 		
 	}
 	public function viewFinders_HomePage()
 	{
-		$this->load->view('finders/navbar');
-		$this->load->view('findersHomePage');
+		$session['profile_pic'] = $this->session->userdata('profile_pic');
+		$session['user_name'] = $this->session->userdata('username');
+
+		if(!$session['user_name']){
+			redirect(findnlogin);
+		}else{
+
+			$this->load->view('finders/navbar',$session);
+			$this->load->view('findersHomePage');
+		}
 	}
 	public function view_ticket($transaction_id){
-		$result['transaction_details'] = $this->MainModel->select_finderdetailsBookingTransaction($transaction_id);
-		$this->load->view('finders/navbar-query');
-		$this->load->view('viewticket',$result);
+		$session['profile_pic'] = $this->session->userdata('profile_pic');
+		$session['user_name'] = $this->session->userdata('username');
+		if(!$session['user_name']){
+			redirect(findnlogin);
+		}else{
+			$result['transaction_details'] = $this->MainModel->select_finderdetailsBookingTransaction($transaction_id);
+			$this->load->view('finders/navbar-query',$session);
+			$this->load->view('viewticket',$result);
+		}
 	}
 	public function generateQrCode($transaction_id){
 
@@ -142,14 +179,15 @@ class Main_Controller extends CI_Controller {
 	}
 
 	public function viewfinderBookingList(){
-		$session = $this->session->userdata('username');
+		$session['profile_pic'] = $this->session->userdata('profile_pic');
+		$session['user_name'] = $this->session->userdata('username');
 		$user_id = $this->session->userdata('user_id');
-		if(!$session){
+		if(!$session['user_name']){
 			redirect(findnlogin);
 		}else{
 			$this->load->model('MainModel');
 			$val['listofbookings']	 = $this->MainModel->view_finderBookingTransaction($user_id);
-			$this->load->view('finders/navbar');
+			$this->load->view('finders/navbar',$session);
 			$this->load->view('finderBookingList',$val);
 		}
 	}
@@ -168,14 +206,20 @@ class Main_Controller extends CI_Controller {
 	}
 	public function viewFindersNotification()
 	{
-		$user_id = $this->session->userdata('user_id');
-		//viewFinderNotification
-		$this->load->model('MainModel');
-		$result['Notification'] = $this->MainModel->viewFinderNotification($user_id);
 
-		// echo json_encode($result);
-		$this->load->view('finders/navbar');
-		$this->load->view('findersNotification',$result);
+		$session['user_name'] = $this->session->userdata('username');
+		$session['profile_pic'] = $this->session->userdata('profile_pic');
+		if(!$session['user_name']){
+			redirect(findnlogin);
+		}else{
+			$user_id = $this->session->userdata('user_id');
+			//viewFinderNotification
+			$this->load->model('MainModel');
+			$result['Notification'] = $this->MainModel->viewFinderNotification($user_id);
+			$this->load->view('finders/navbar',$session);
+			$this->load->view('findersNotification',$result);
+		}
+
 	}
 
 	//super admin
@@ -230,7 +274,22 @@ class Main_Controller extends CI_Controller {
 			$this->load->view('superadmin/adminlist',$val);
 		}
 	}
-	//shop admin show pages
+
+	//junky-admin
+	public function viewShopAdminBookings(){
+		
+		$shop_id = $this->session->userdata('admin_shop_id');
+		$this->load->model('MainModel');
+		$val['bookingrequest'] = $this->MainModel->getallPendingRequest($shop_id);
+		// $this->load->view('admin/template/adminHeader');
+		$this->load->view('admin/shopAdminBookings',$val);
+		// echo json_encode($val);
+	}
+	public function viewAdminHeader(){
+		$this->load->view('admin/template/adminHeader');
+	}
+
+
 	public function admin_dashboard(){
 		$session = $this->session->userdata('username');
 		$session2 = $this->session->userdata('admin_shop_id');
@@ -252,10 +311,11 @@ class Main_Controller extends CI_Controller {
 		$this->load->view('admin/template/qrscannerfooter');
 	}
 	public function admin_bookings(){
-		$this->load->view('admin/template/header');
+		$this->load->view('admin/template/adminHeader');
 		$this->load->view('admin/Bookings');
 		$this->load->view('admin/template/footer');
 	}
+
 	public function shopadmin_computerdetails($shopid){
 		$this->load->model('MainModel');
 		$val['shop_details'] = $this->MainModel->getshopDetails($shopid);

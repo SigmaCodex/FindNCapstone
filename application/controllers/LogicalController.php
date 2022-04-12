@@ -212,6 +212,11 @@ class LogicalController extends CI_Controller {
         $this->MainModel->disableFinderAccountStatus();
     }
 
+    public function change_finderpassword(){
+        $this->load->model('MainModel');
+        $this->MainModel->change_finderpassword();
+    }
+
     public function getListOfComputerShops(){
         $this->load->model('MainModel');
         $result = $this->MainModel->getListOfComputerShops();
@@ -312,8 +317,12 @@ class LogicalController extends CI_Controller {
         $this->load->model('MainModel');
         $this->MainModel->updateBookingTransacStatus($transac_id,$status);
     }
-
+    public function viewallShopAdminBookingRequests($shop_id){
+        $this->load->model('MainModel');
+        $this->MainModel->viewallShopAdminBookingRequests($shop_id);
+    }
     //ADMIN
+
     public function getUserDetails($id){
         $this->load->model('MainModel');
         $this->MainModel->getUserDetails($id);

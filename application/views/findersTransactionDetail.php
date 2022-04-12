@@ -128,6 +128,12 @@
                       </div>
 
                       <div class="row">
+                        <div class="col-6"><h4 class="info-text-left">Number of Person:</h4></div>
+                        <div class="col-2"><p class="info-text-middle">:</p></div>
+                        <div class="col-4"><p class="info-text-right" style="color: green; font-weight: 700;"><?php echo $row->num_ticket;?></p></div>
+                      </div>
+
+                      <div class="row">
                         <div class="col-6"><h4 class="info-text-left">Booking Fee:</h4></div>
                         <div class="col-2"><p class="info-text-middle">:</p></div>
                         <div class="col-4"><p class="info-text-right" style="color: green; font-weight: 700;">₱<?php echo $row->service_fee;?></p></div>
@@ -238,7 +244,7 @@
                               </div>
 
                               <h6 style='text-align:center; font-size: 10px; font-weight: 500; padding-top: 5px; color: rgb(55, 152, 10);'>Note: <b>Booking Fee</b> shall be paid over-the-counter before using the computer.</h6> 
-                              <h6 style='text-align:center; font-size: 10px; font-weight: 500; padding-top: 5px; color: rgb(55, 152, 10);'> <b>Late Arrival</b> shall be paid 5 pesos penalty</h6> 
+                              <h6 style='text-align:center; font-size: 10px; font-weight: 500; padding-top: 5px; color: rgb(55, 152, 10);'> <b>Dont Be Late Finders!</b></h6> 
                                 ";
                             }
                             

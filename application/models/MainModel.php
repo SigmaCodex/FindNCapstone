@@ -29,6 +29,18 @@ class MainModel extends CI_Model{
               'status' => $row->status,                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    
           );
           $this->session->set_userdata($datasession);
+      
+
+          //if usertype is finder get the profile pic
+          if($row->user_type == "finder"){
+            $this->db->select("profile_pic");
+            $this->db->where('user_id',$row->user_id);
+            $query2 = $this->db->get('finders');
+            $query2->result_array();
+            $row2 = $query2->row();
+            $this->session->set_userdata('profile_pic',$row2->profile_pic);
+          }
+
           return true;
           
       }else{
@@ -69,6 +81,7 @@ class MainModel extends CI_Model{
 
             $this->db->where('user_id',$user_id);
             $this->db->update('finders',$findersdata);
+            $this->session->set_userdata('profile_pic',$image_data['file_name']);
         }
     }
     public function disableFinderAccountStatus(){
@@ -80,6 +93,32 @@ class MainModel extends CI_Model{
         $this->db->update('user',$data);
         $this->session->sess_destroy();
     }
+    public function change_finderpassword(){
+
+        $newpassword = $this->input->post('newpassword');
+        $current_pass = $this->input->post('currentpassword');
+        $user_id = $this->session->userdata('user_id');
+
+        $this->db->where('user_id',$user_id );
+        $this->db->where('password',$current_pass);
+        $query = $this->db->get('user');
+        if(!empty($query->result_array()))
+        {
+            
+            $data = array(
+                'password'  =>  $newpassword,
+            );
+            $this->db->where('user_id',$user_id);
+            $this->db->update('user',$data);
+
+         
+            
+        }else{
+          echo "invalid";
+        }
+
+    }
+
     public function update_To_FinderAccountVerified(){
         $user_id = $this->session->userdata('user_id');
         $code  = $this->session->userdata('v_code');
@@ -282,7 +321,7 @@ class MainModel extends CI_Model{
     //REPORTS ----------------------------------
     public function getTotalSalesAndBooks(){
         $this->db->select('transaction.service_fee,comp_booking.num_ticket, transaction.payment_type');
-        $this->db->select_sum('(transaction.service_fee * comp_booking.num_ticket)', 'totalSales');
+        $this->db->select_sum('(transaction.service_fee)', 'totalSales');
         $this->db->select_sum('comp_booking.num_ticket', 'totalBooks');
         $this->db->from('transaction');
         $this->db->join('comp_booking', 'comp_booking.transaction_id = transaction.transaction_id',);
@@ -424,6 +463,8 @@ class MainModel extends CI_Model{
         $transaction_id = $this->generatePrimarykeyForTransaction($this->input->post('s_id'));
         $user_id_fk = $this->session->userdata('user_id');
         $date_issued = date('m/d/y');
+
+        $service_fee = $this->input->post('service_fee') * $this->input->post('num_person');
         $transaction = array(
             'transaction_id'    =>  $transaction_id,
             'user_id_fk'        =>  $user_id_fk,
@@ -434,7 +475,7 @@ class MainModel extends CI_Model{
             'instruction'       => 	$this->input->post('addtional_message'),
             'date_issued'              => 	$date_issued,
             'transaction_status'       => 	"pending",
-            'service_fee'              => 	$this->input->post('service_fee'),
+            'service_fee'              => 	$service_fee,
             'payment_status	'          => 	"unpaid",
             'payment_type'             => 	"not_selected",
             'qr_code'                  => 	"not_issued",
@@ -724,14 +765,17 @@ class MainModel extends CI_Model{
     // ShopAdmin Booking Request Management
     // arrival time, computer type name, additonal description, num of ticket 
     public function getallPendingRequest($shop_id){
-        $this->db->select('transaction.arrival_time,transaction.arrival_date,transaction.instruction,comp_booking.num_ticket,computer_type.name');
+        $this->db->select('user.username,finders.profile_pic,finders.firstname,finders.lastname,transaction.transaction_id,transaction.instruction,transaction.date_issued,transaction.servicetype,transaction.arrival_time,transaction.arrival_date,transaction.instruction,comp_booking.num_ticket,computer_type.name');
         $this->db->from('transaction');
+        $this->db->join('user', 'user.user_id = transaction.user_id_fk');
+        $this->db->join('finders', 'user.user_id = finders.user_id', 'left');
         $this->db->join('comp_booking', 'comp_booking.transaction_id = transaction.transaction_id');
         $this->db->join('computer_type', 'computer_type.Ctype_id = comp_booking.comp_type_id', 'left');
+        $this->db->where('transaction.shop_id_fk', $shop_id);
         $this->db->where('transaction_status', 'pending');
         $query = $this->db->get();
-        // return $query->result();
-        echo json_encode($query->result());
+        return $query->result();
+        //echo json_encode($query->result());
     }
     public function getallAcceptedRequest($shop_id){
         $this->db->select('transaction.arrival_time,transaction.arrival_date,transaction.instruction,comp_booking.num_ticket,computer_type.name');
@@ -748,7 +792,7 @@ class MainModel extends CI_Model{
         $this->db->from('transaction');
         $this->db->join('comp_booking', 'comp_booking.transaction_id = transaction.transaction_id');
         $this->db->join('computer_type', 'computer_type.Ctype_id = comp_booking.comp_type_id', 'left');
-        $this->db->where('transaction_status', 'cancelled');
+        $this->db->where('transaction_status', 'cancelled'); 
         $query = $this->db->get();
         // return $query->result();
         echo json_encode($query->result());
@@ -761,6 +805,18 @@ class MainModel extends CI_Model{
         $this->db->join('comp_booking', 'comp_booking.transaction_id = transaction.transaction_id');
         $this->db->join('computer_type', 'computer_type.Ctype_id = comp_booking.comp_type_id', 'left');
         $this->db->where('transaction.transaction_id',$transac_id);
+        $query = $this->db->get();
+        // return $query->result();
+        echo json_encode($query->result());
+    }
+    public function viewallShopAdminBookingRequests($shop_id){
+        $this->db->select('finders.firstname,finders.lastname,transaction.arrival_date,transaction.transaction_id,transaction.arrival_time,transaction.transaction_status,comp_booking.num_ticket,transaction.service_fee,computer_type.name');
+        $this->db->from('transaction');
+        $this->db->join('user', 'user.user_id = transaction.user_id_fk');
+        $this->db->join('finders', 'user.user_id = finders.user_id', 'left');
+        $this->db->join('comp_booking', 'comp_booking.transaction_id = transaction.transaction_id');
+        $this->db->join('computer_type', 'computer_type.Ctype_id = comp_booking.comp_type_id', 'left');
+        $this->db->where('transaction.shop_id_fk',$shop_id);
         $query = $this->db->get();
         // return $query->result();
         echo json_encode($query->result());

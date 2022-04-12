@@ -385,16 +385,19 @@
 
 <script>
 $(document).on('click','.delete-notification',function(){ 
+  // $(".modal").hide()
     noti_id = $(this).attr("noti_id");
     BASE_URL = "<?php echo base_url();?>";
-
+ 
+    $(this).parent().parent().parent().addClass('d-none');
+    $(this).parent().parent().parent().removeAttr("data-target");
     $.ajax({
           url: BASE_URL+"deleteNotification/"+noti_id,
           type: "POST",
           data:{},
           success: function(data)
           {
-            location.reload();
+           
           }
         });
 });
@@ -407,7 +410,7 @@ $(document).on('click','.click_notification-unread',function(){
     status = $(this).attr("status");
     if(status=="unseen"){
       $(this).addClass('d-none');
-
+      // $(".click_notification[notif_id='"+noti_id+"']").addClass('d-none');
         $.ajax({
               url: BASE_URL+"updateNotificationStatus/"+noti_id,
               type: "POST",

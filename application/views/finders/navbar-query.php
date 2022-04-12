@@ -21,7 +21,7 @@
     <!-- HEADER -->
     <header class="header" id="header ">
         <nav class="nav container-nav ">
-        <a href="findershomepage"> <img src="../assets/images/icon-logo.png" class="nav__logo" style="width: 100px; padding-left: 10px;"></a>
+        <a href="findershomepage"> <img src="../assets/images/icon-logo.png"  class="nav__logo" style="width: 100px; padding-left: 10px;"></a>
 
             <div class="nav__menu" id="nav-menu ">
                 <ul class="nav__list">
@@ -63,7 +63,7 @@
             <ul id="dropdown">
 				<li class="nr_li dd_main">
                 <div class="profile-dropdown d-flex">
-                <img src="../assets/images/Prof.png" class="nav__img">  
+                <img src="../assets/upload/finder/<?php echo $profile_pic;?>"  onerror="this.src='../assets/images/default.png';" class="nav__img">  
                 <h6 class="username" style="padding-left:4px;"></h6>  <i class="down-arrow fa-solid fa-caret-down"></i>
                 </div>
                     <div class="drop-wrap pt-1">
@@ -71,7 +71,7 @@
 						<div class="dd_right">
 							<ul class="p-0">
                                 <li>    
-                                    <h6 class="name-user"  style="text-align:center">Junky</h6>
+                                    <h6 class="name-user"  style="text-align:center"><?php echo $user_name;?></h6>
                                 
                                 </li>
 								<li>    
@@ -101,7 +101,8 @@
             $.ajax({
                         url:BASE_URL+"Countfindernotification",
                         method:"GET", 
-                        data:{},
+                        // data:{},
+                        cache: false, 
                         success:function(data)
                         {
                           if(data>0){
