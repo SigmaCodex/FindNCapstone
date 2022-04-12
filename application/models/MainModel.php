@@ -750,7 +750,6 @@ class MainModel extends CI_Model{
 
     public function viewRate($shop_id){
         $user_id_fk = $this->session->userdata('user_id');
-
         $this->db->select('*');
         $this->db->from('computer_ratings');
         $this->db->where('shop_id',$shop_id);
@@ -790,6 +789,7 @@ class MainModel extends CI_Model{
         $this->db->join('computer_type', 'computer_type.Ctype_id = comp_booking.comp_type_id', 'left');
         $this->db->where('transaction.shop_id_fk', $shop_id);
         $this->db->where('transaction_status', 'pending');
+        $this->db->order_by('transaction.date_issued', 'DESC');
         $query = $this->db->get();
         return $query->result();
         //echo json_encode($query->result());
@@ -804,6 +804,7 @@ class MainModel extends CI_Model{
         $this->db->where('transaction.shop_id_fk', $shop_id);
         $this->db->where('transaction_status', 'accepted');
         $this->db->where('arrival_status', 'waiting');
+        $this->db->order_by('transaction.date_issued', 'DESC');
         $query = $this->db->get();
         return $query->result();
         // echo json_encode($query->result());
@@ -838,6 +839,7 @@ class MainModel extends CI_Model{
         $this->db->join('comp_booking', 'comp_booking.transaction_id = transaction.transaction_id');
         $this->db->join('computer_type', 'computer_type.Ctype_id = comp_booking.comp_type_id', 'left');
         $this->db->where('transaction.shop_id_fk',$shop_id);
+        $this->db->order_by('transaction.date_issued', 'DESC');
         $query = $this->db->get();
         return $query->result();
        // echo json_encode($query->result());
