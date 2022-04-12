@@ -21,7 +21,7 @@ function showDate() {
     let weekDay = days[date.getDay()];
     let currentDate = document.querySelector(".date");
   
-    currentDate.innerHTML = `${m} ${d}, ${y} ${weekDay}`;
+    currentDate.innerHTML = `${m} ${d},${y}`;
   }
   
   function showTime() {
@@ -54,7 +54,7 @@ function showDate() {
   
     let clock = document.querySelector(".my-clock");
   
-    clock.innerHTML = `${h}:${m}:${s} ${amPm}`;
+    clock.innerHTML = `${h}:${m} ${amPm}`;
   
     setTimeout(showTime, 1000);
   }

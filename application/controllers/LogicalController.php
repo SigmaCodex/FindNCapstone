@@ -148,9 +148,15 @@ class LogicalController extends CI_Controller {
     }
     //select FinderBooking Transaction
     public function select_finderBookingTransaction($transaction_id){
+        
         $this->load->model('MainModel');
         $result = $this->MainModel->select_finderdetailsBookingTransaction($transaction_id);
-        echo json_encode($result);
+        if (empty($result)) {
+            echo "no-data";
+        }else{
+            echo json_encode($result);
+         }
+    
     }
     //update overthecounter paymenttype and generate qr code
     public function updatePaymentType_overthecounter($transaction_id){
