@@ -281,6 +281,8 @@ class Main_Controller extends CI_Controller {
 		$shop_id = $this->session->userdata('admin_shop_id');
 		$this->load->model('MainModel');
 		$val['bookingrequest'] = $this->MainModel->getallPendingRequest($shop_id);
+		$val['acceptedrequest'] = $this->MainModel->getallAcceptedRequest($shop_id);
+		$val['alltransac'] = $this->MainModel->viewallShopAdminBookingRequests($shop_id);
 		// $this->load->view('admin/template/adminHeader');
 		$this->load->view('admin/shopAdminBookings',$val);
 		// echo json_encode($val);

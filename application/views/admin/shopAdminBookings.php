@@ -218,66 +218,20 @@
                                       <th>Tickets</th>
                                       <th>Service Fee</th>
                                     </tr>
+                                    <?php foreach($alltransac as $at){?>
                                     <tr>
-                                      <td>103645</td>
-                                      <td>Maria Anders</td>
-                                      <td>VIP</td>
-                                      <td>April 20, 2022  8:00 PM</td>
-                                      <td class="status-accepted">Accepted</td>
-                                      <td class="status-paid">Paid</td>
-                                      <td>1</td>
-                                      <td>₱10</td>
+                                      <td><?php echo $at->transaction_id;?></td>
+                                      <td><?php echo $at->firstname;?>,<?php echo $at->lastname;?></td>
+                                      <td><?php echo $at->name;?></td>
+                                      <td><?php echo date("M j, Y", strtotime($at->arrival_date));?>
+
+                                      <?php echo date("h:i A", strtotime($at->arrival_time));?></td>
+                                      <td class="status-<?php if($at->transaction_status == "declined"){echo "decline";} else {echo "accepted";}?>"><?php echo $at->transaction_status;?></td>
+                                      <td class="status-<?php if($at->payment_status == "unpaid"){echo "unpaid";} else {echo "paid";} ?>"><?php echo $at->payment_status;?></td>
+                                      <td><?php echo $at->num_ticket;?></td>
+                                      <td><?php echo $at->service_fee;?></td>
                                     </tr>
-                                    <tr>
-                                      <td>103645</td>
-                                      <td>Francisco Chang</td>
-                                      <td>VIP</td>
-                                      <td>April 21, 2022 8:00 PM</td>
-                                      <td class="status-pending">Pending</td>
-                                      <td class="status-unpaid">Unpaid</td>
-                                      <td>1</td>
-                                      <td>₱10</td>
-                                    </tr>
-                                    <tr>
-                                      <td>103645</td>
-                                      <td>Roland Mendel</td>
-                                      <td>VIP</td>
-                                      <td>April 23, 2022 11:00 AM</td>
-                                      <td class="status-accepted">Accepted</td>
-                                      <td class="status-unpaid">Unpaid</td>
-                                      <td>3</td>
-                                      <td>₱30</td>
-                                    </tr>
-                                    <tr>
-                                      <td>103645</td>
-                                      <td>Helen Bennett</td>
-                                      <td>VIP</td>
-                                      <td>April 21, 2022 12:00 PM</td>
-                                      <td class="status-accepted">Accepted</td>
-                                      <td class="status-paid">Paid</td>
-                                      <td>1</td>
-                                      <td>₱10</td>
-                                    </tr>
-                                    <tr>
-                                      <td>103645</td>
-                                      <td>Yoshi Tannamuri</td>
-                                      <td>Regular</td>
-                                      <td>April 25, 2022 1:00 PM</td>
-                                      <td class="status-decline">Declined</td>
-                                      <td class="status-unpaid">Unpaid</td>
-                                      <td>2</td>
-                                      <td>₱20</td>
-                                    </tr>
-                                    <tr>
-                                      <td>103645</td>
-                                      <td>Giovanni Rovelli</td>
-                                      <td>Regular</td>
-                                      <td>April 214, 2022 3:00 PM</td>
-                                      <td class="status-decline">Declined</td>
-                                      <td class="status-unpaid">Unpaid</td>
-                                      <td>1</td>
-                                      <td>₱10</td>
-                                    </tr>
+                                    <?php }?>
                                 </table>
                                   
                             </div>
@@ -290,6 +244,7 @@
                 </div>
 
                 <!-- ONGOING BOOKINGS -->
+                
                 <div class="right-sidebar my-3"> 
                     
                     <div class="right-sidebar-title d-flex align-items-left justify-content-start p-2">
@@ -302,7 +257,6 @@
                         <div class="table-card">
 
                             <div class="table-card-content">
-
                                 <table class="ongoing-table-bookings">
                                     <tr>
                                       <th>Transaction ID</th>
@@ -311,14 +265,25 @@
                                       <th>Payment Status</th>
                                       <th>Payment Method</th>
                                     </tr>
+                                    <?php foreach ($acceptedrequest as $ar) {?>
                                     <tr>
-                                      <td>103645</td>
-                                      <td>Maria Anders</td>
-                                      <td class="status-accepted">Accepted</td>
-                                      <td class="status-paid">Paid</td>
-                                      <td><img class="gcash-logo" src="assets/images/gcash.png" alt=""></td>
+                                      <td><?php echo $ar->transaction_id;?></td>
+                                      <td><?php echo $ar->firstname;?>,<?php echo $ar->lastname;?></td>
+                                      <td class="status-accepted"><?php echo $ar->transaction_status;?></td>
+                                      <td class="status-<?php if($ar->payment_status == "unpaid"){echo "unpaid";} else {echo "paid";} ?>"><?php echo $ar->payment_status;?></td>
+                                      <?php if($ar->payment_type == "gcash"){
+                                      echo '<td><img class="gcash-logo" src="assets/images/gcash.png" alt=""> </td>';
+                                      }
+                                      else if($ar->payment_type == "overthecounter"){
+                                      echo "<td><i class='fa-solid fa-cash-register' style='font-size: 25px; color: #565151;'></i></td>";
+                                      }
+                                      else{
+                                        echo '<td>-</td>';
+                                      }
+                                      ?>
                                     </tr>
-                                    <tr>
+                                    <?php }?>
+                                    <!-- <tr>
                                       <td>103645</td>
                                       <td>Helen Bennett</td>
                                       <td class="status-accepted">Accepted</td>
@@ -331,9 +296,8 @@
                                         <td class="status-accepted">Accepted</td>
                                         <td class="status-unpaid">Unpaid</td>
                                         <td><b>Over-the-counter</b></td>
-                                    </tr>
+                                    </tr> -->
                                 </table>
-                                  
                             </div>
                             
                         </div>
