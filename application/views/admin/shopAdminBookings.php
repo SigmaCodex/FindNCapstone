@@ -232,15 +232,10 @@
                                       <td><?php echo $at->service_fee;?></td>
                                     </tr>
                                     <?php }?>
-                                </table>
-                                  
+                                </table>  
                             </div>
-                            
-                        </div>
-                       
+                        </div>  
                     </div>
-
-
                 </div>
 
                 <!-- ONGOING BOOKINGS -->
