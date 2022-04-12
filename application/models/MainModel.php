@@ -477,6 +477,7 @@ class MainModel extends CI_Model{
             'transaction_status'       => 	"pending",
             'service_fee'              => 	$service_fee,
             'payment_status	'          => 	"unpaid",
+            'arrival_status	'          => 	"waiting",
             'payment_type'             => 	"not_selected",
             'qr_code'                  => 	"not_issued",
             );

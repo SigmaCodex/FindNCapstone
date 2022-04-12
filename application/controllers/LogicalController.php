@@ -312,8 +312,13 @@ class LogicalController extends CI_Controller {
         $this->load->model('MainModel');
         $this->MainModel->viewBookRequest($transac_id);
     }
-    public function updateBookingTransacStatus($transac_id){
+    public function updateAcceptBookingTransacStatus($transac_id){
         $status = 'accepted';
+        $this->load->model('MainModel');
+        $this->MainModel->updateBookingTransacStatus($transac_id,$status);
+    }
+    public function updateDeclineBookingTransacStatus($transac_id){
+        $status = 'declined';
         $this->load->model('MainModel');
         $this->MainModel->updateBookingTransacStatus($transac_id,$status);
     }
