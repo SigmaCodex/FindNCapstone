@@ -138,6 +138,8 @@
                   }
                   else if($row->transaction_status == "accepted"){
                     $color = "border-left: 15px solid rgb(54, 157, 79);";
+                  }else if($row->transaction_status == "declined"){
+                    $color = "border-left: 15px solid rgb(255, 0, 0);";
                   }
                 ?>
                 
