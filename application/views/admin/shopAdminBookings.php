@@ -96,10 +96,10 @@
 
                                 <div class="row mt-3">
                                     <div class="col-6 p-2 d-flex justify-content-center align-items-centers">
-                                        <button transac_id="<?php echo $br->transaction_id;?>" class="btn btn-danger p-2 declinebtn">Decline</button>
+                                        <button transac_id="<?php echo $br->transaction_id;?>" user_id="<?php echo $br->user_id_fk?>" class="btn btn-danger p-2 declinebtn">Decline</button>
                                     </div>
                                     <div class="col-6 p-2 d-flex justify-content-center align-items-center">
-                                        <button transac_id="<?php echo $br->transaction_id;?>" class="btn btn-success p-2 acceptbtn">Accept</button>
+                                        <button transac_id="<?php echo $br->transaction_id;?>" user_id="<?php echo $br->user_id_fk?>" class="btn btn-success p-2 acceptbtn">Accept</button>
                                     </div> 
                                 </div>
                             </div>
@@ -356,9 +356,10 @@
 		$(document).on("click",".acceptbtn",function(){
 			var Base_URL = "<?php echo base_url();?>";
 			var id = $(this).attr("transac_id");
+            var user_id = $(this).attr("user_id");
             alert(id);
             $.ajax({
-            url:Base_URL+"accept-updateBookStatus/"+id,
+            url:Base_URL+"accept-updateBookStatus/"+id+"/"+user_id,
                 type: "POST",
                 beforeSend : function()
                 {
@@ -366,6 +367,7 @@
                 },
                 success: function(data)
                 {
+                   
                     swal({
                             title: "Transaction has been moved to waiting list",
                             text: "",
@@ -383,9 +385,11 @@
 		$(document).on("click",".declinebtn",function(){
 			var Base_URL = "<?php echo base_url();?>";
 			var id = $(this).attr("transac_id");
+            var user_id = $(this).attr("user_id");
+            
             alert(id);
             $.ajax({
-            url:Base_URL+"decline-updateBookStatus/"+id,
+            url:Base_URL+"decline-updateBookStatus/"+id+"/"+user_id,
                 type: "POST",
                 beforeSend : function()
                 {

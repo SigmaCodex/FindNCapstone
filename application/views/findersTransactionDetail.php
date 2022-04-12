@@ -96,6 +96,8 @@
                                 echo "<p class='legend legend2 legendText p-1'>".$row->transaction_status."</p>";
                           }else if($row->transaction_status == "pending"){
                             echo "<p class='legend legend3 legendText p-1'>".$row->transaction_status."</p>";
+                          }else if($row->transaction_status == "declined"){
+                            echo "<p class='legend legend5 legendText p-1'>".$row->transaction_status."</p>";
                           }
                         ?>
                         <!-- <p class="legend legend3 legendText p-1">pending</p>

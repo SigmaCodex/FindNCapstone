@@ -639,6 +639,22 @@ class MainModel extends CI_Model{
 		$row = $query->num_rows();
 		return $row;
     }
+    //create notification
+    public function addFinderNotification($trancation_id,$to_user_id,$message,$title){
+        $date_issued = date('m/d/y');
+
+        $finderNotification = array(
+            'to_user_id'         => $to_user_id,
+            'transaction_id'     => $trancation_id,
+            'status'         => 	"unseen",
+            'noti_title'     =>     $title,
+            'noti_body'      => 	$message,
+            'noti_created'   => 	$date_issued,
+        );  
+
+        $this->db->insert('finder_notification', $finderNotification);
+
+    }
     
      public function getListOfComputerTypes($id){
         $this->db->select('*');
@@ -766,7 +782,7 @@ class MainModel extends CI_Model{
     // ShopAdmin Booking Request Management
     // arrival time, computer type name, additonal description, num of ticket 
     public function getallPendingRequest($shop_id){
-        $this->db->select('user.username,finders.profile_pic,finders.firstname,finders.lastname,transaction.transaction_id,transaction.instruction,transaction.date_issued,transaction.servicetype,transaction.arrival_time,transaction.arrival_date,transaction.instruction,comp_booking.num_ticket,computer_type.name');
+        $this->db->select('user.username,finders.profile_pic,finders.firstname,finders.lastname,transaction.*,comp_booking.num_ticket,computer_type.name');
         $this->db->from('transaction');
         $this->db->join('user', 'user.user_id = transaction.user_id_fk');
         $this->db->join('finders', 'user.user_id = finders.user_id', 'left');

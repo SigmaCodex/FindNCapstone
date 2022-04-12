@@ -260,7 +260,7 @@
                       <img src="assets/images/Image5.jpg" class="shop-image-icon">
                     </div>
                     <div class="col-1 booking-list icon-close"> 
-                      <button><i class="booking-icon fa-solid fa-xmark delete-notification" noti_id="<?php echo $row->finder_notif_id;?>" id="close" style="font-size: 15px;"></i></button>
+                     <i class="booking-icon fa-solid fa-xmark delete-notification" noti_id="<?php echo $row->finder_notif_id;?>" id="close" style="font-size: 15px;"></i>
                     </div>
                   </div>
                 </div>
