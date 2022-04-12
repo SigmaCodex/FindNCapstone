@@ -96,7 +96,7 @@
 
                                 <div class="row mt-3">
                                     <div class="col-6 p-2 d-flex justify-content-center align-items-centers">
-                                        <button class="btn btn-danger p-2" >Decline</button>
+                                        <button transac_id="<?php echo $br->transaction_id;?>" class="btn btn-danger p-2 declinebtn">Decline</button>
                                     </div>
                                     <div class="col-6 p-2 d-flex justify-content-center align-items-center">
                                         <button transac_id="<?php echo $br->transaction_id;?>" class="btn btn-success p-2 acceptbtn">Accept</button>
@@ -348,7 +348,7 @@
         </div>
         
     </div>
-
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script src="assets/js/shopAdminBookings.js"></script>
 </body>
 </html>
@@ -357,7 +357,45 @@
 			var Base_URL = "<?php echo base_url();?>";
 			var id = $(this).attr("transac_id");
             alert(id);
-			// window.location = Base_URL+"shopadmin-comptypeinfo/" + id;
-			
+            $.ajax({
+            url:Base_URL+"accept-updateBookStatus/"+id,
+                type: "POST",
+                beforeSend : function()
+                {
+                alert("processing");
+                },
+                success: function(data)
+                {
+                    swal({
+                            title: "Transaction has been moved to waiting list",
+                            text: "",
+                            icon: "success",
+                            button: "Continue",
+                            }).then((value) => {
+                                    location.reload();
+                            });   
+                }
+            });
+			// window.location = Base_URL+"shopadmin-comptypeinfo/" + id;	
+		});
+</script>
+<script>
+		$(document).on("click",".declinebtn",function(){
+			var Base_URL = "<?php echo base_url();?>";
+			var id = $(this).attr("transac_id");
+            alert(id);
+            $.ajax({
+            url:Base_URL+"decline-updateBookStatus/"+id,
+                type: "POST",
+                beforeSend : function()
+                {
+                alert("processing");
+                },
+                success: function(data)
+                {
+                    location.reload();   
+                }
+            });
+			// window.location = Base_URL+"shopadmin-comptypeinfo/" + id;	
 		});
 </script>
