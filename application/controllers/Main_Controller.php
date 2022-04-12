@@ -276,6 +276,11 @@ class Main_Controller extends CI_Controller {
 		// $this->load->view('admin/template/adminHeader');
 		$this->load->view('admin/shopAdminBookings');
 	}
+	public function viewShopAdminScanQR(){
+		// $this->load->view('admin/template/adminHeader');
+		$this->load->view('admin/shopAdminScanQR');
+	}
+
 	public function viewAdminHeader(){
 		$this->load->view('admin/template/adminHeader');
 	}
