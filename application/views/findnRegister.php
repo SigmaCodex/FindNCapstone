@@ -72,8 +72,7 @@
          </div>
          <div class="form-outer">
          <div class="col-md-6 pt-md-0 pt-3">
-            <form action="#">
-            
+            <form>
                <div class="page slide-page">
                   <div class="title">
                      Basic Info:
@@ -82,13 +81,13 @@
                      <div class="label">
                         First Name
                      </div>
-                     <input type="text">
+                     <input  name="fname" id="firstname" type="text">
                   </div>
                   <div class="field">
                      <div class="label">
                         Last Name
                      </div>
-                     <input type="text">
+                     <input  name="lastname" id="lastname"  type="text">
                   </div>
                   <div class="field">
                      <button class="firstNext next">Next</button>
@@ -102,13 +101,13 @@
                      <div class="label">
                         Email Address
                      </div>
-                     <input type="text">
+                     <input name="email" id="email"  type="text">
                   </div>
                   <div class="field">
                      <div class="label">
                         Phone Number
                      </div>
-                     <input type="Number" placeholder="+63 | ">
+                     <input type="Number"   name="p_numberform" id="p_numberform" placeholder="+63 | ">
                   </div>
                   <div class="field btns">
                      <button class="prev-1 prev">Previous</button>
@@ -123,13 +122,13 @@
                      <div class="label">
                         Date
                      </div>
-                     <input type="date">
+                     <input name="date" id="date"  type="date">
                   </div>
                   <div class="field">
                      <div class="label">
                         Gender
                      </div>
-                     <select>
+                     <select id="gender">
                         <option>Male</option>
                         <option>Female</option>
                         <option>Other</option>
@@ -148,11 +147,10 @@
                      <div class="label">
                         Vaccine Status
                      </div>
-                     <select>
+                     <select id="vac_status">
                         <option>Unvaccinated</option>
                         <option>Vaccinated 1st Dose</option>
                         <option>Vaccinated 2nd Dose</option>
-                        
                      </select>
                   </div>
                   <div class="field1">
@@ -174,28 +172,42 @@
                      <div class="label">
                         Username
                      </div>
-                     <input type="text">
+                     <input id="username" type="text">
                   </div>
                   <div class="field">
                      <div class="label">
                         Password
                      </div>
-                     <input type="password">
+                     <input id="pass" type="password">
                   </div>
                   <div class="field">
                      <div class="label">
                         Confirm Password
                      </div>
-                     <input type="password">
+                     <input id="conpass" type="password">
                   </div>
                   <div class="field btns">
                      <button class="prev-4 prev">Previous</button>
-                     <button class="submit">Submit</button>
+                     <button  id="registration_btn">Submit</button>
                   </div>
                </div>
             </form>
          </div>
       </div>
+      <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script> 
       <script src="assets/js/findnRegister.js"></script>
+      <script>
+         $(document).on("click", "#registration_btn", function () {
+            var name = $("#firstname").val();
+            var lname = $("#lastname").val();
+            var uname = $("#username").val();
+            var phonenum = $("#p_numberform").val();
+            var email = $("#email").val();
+            var pass = $("#pass").val();
+            var conpass = $("#conpass").val();
+            alert(name+lname+uname+phonenum+email+pass+conpass);
+           
+         });
+      </script>
    </body>
 </html>
