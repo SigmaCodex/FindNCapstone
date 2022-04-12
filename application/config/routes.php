@@ -28,6 +28,7 @@ $route['register'] = 'main_controller/viewRegister';
 //admin-junky
 $route['adminHeader'] = 'main_controller/viewAdminHeader';
 $route['shopAdminBookings'] = 'main_controller/viewShopAdminBookings';
+$route['shopAdminScanQR'] = 'main_controller/viewShopAdminScanQR';
 
 //finders
 $route['findnRegister'] = 'main_controller/viewFindnRegister';
