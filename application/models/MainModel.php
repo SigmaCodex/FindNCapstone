@@ -779,14 +779,18 @@ class MainModel extends CI_Model{
         //echo json_encode($query->result());
     }
     public function getallAcceptedRequest($shop_id){
-        $this->db->select('transaction.arrival_time,transaction.arrival_date,transaction.instruction,comp_booking.num_ticket,computer_type.name');
+        $this->db->select('finders.firstname,finders.lastname,transaction.transaction_status,transaction.transaction_id,transaction.payment_status,transaction.payment_type');
         $this->db->from('transaction');
+        $this->db->join('user', 'user.user_id = transaction.user_id_fk');
+        $this->db->join('finders', 'user.user_id = finders.user_id', 'left');
         $this->db->join('comp_booking', 'comp_booking.transaction_id = transaction.transaction_id');
         $this->db->join('computer_type', 'computer_type.Ctype_id = comp_booking.comp_type_id', 'left');
+        $this->db->where('transaction.shop_id_fk', $shop_id);
         $this->db->where('transaction_status', 'accepted');
+        $this->db->where('arrival_status', 'waiting');
         $query = $this->db->get();
-        // return $query->result();
-        echo json_encode($query->result());
+        return $query->result();
+        // echo json_encode($query->result());
     }
     public function getallCancelledRequest($shop_id){
         $this->db->select('transaction.arrival_time,transaction.arrival_date,transaction.instruction,comp_booking.num_ticket,computer_type.name');
@@ -811,7 +815,7 @@ class MainModel extends CI_Model{
         echo json_encode($query->result());
     }
     public function viewallShopAdminBookingRequests($shop_id){
-        $this->db->select('finders.firstname,finders.lastname,transaction.arrival_date,transaction.transaction_id,transaction.arrival_time,transaction.transaction_status,comp_booking.num_ticket,transaction.service_fee,computer_type.name');
+        $this->db->select('finders.firstname,finders.lastname,transaction.arrival_date,transaction.transaction_id,transaction.arrival_time,transaction.transaction_status,transaction.payment_status,comp_booking.num_ticket,transaction.service_fee,computer_type.name');
         $this->db->from('transaction');
         $this->db->join('user', 'user.user_id = transaction.user_id_fk');
         $this->db->join('finders', 'user.user_id = finders.user_id', 'left');
@@ -819,8 +823,8 @@ class MainModel extends CI_Model{
         $this->db->join('computer_type', 'computer_type.Ctype_id = comp_booking.comp_type_id', 'left');
         $this->db->where('transaction.shop_id_fk',$shop_id);
         $query = $this->db->get();
-        // return $query->result();
-        echo json_encode($query->result());
+        return $query->result();
+       // echo json_encode($query->result());
     }
     //update Transaction Status
     public function updateBookingTransacStatus($transac_id,$status){
