@@ -270,6 +270,7 @@ setInterval(function(){
                                 $("#contact_num").text("------");
                                 $("#email").text("------");
                                 $("#comp_service").text("------");
+                                $("#comp_shop").text("------");
                                 $("#comp_type").text("------");
                                 $("#num_person").text("------");
                                 $("#date_arrival").text("------");
