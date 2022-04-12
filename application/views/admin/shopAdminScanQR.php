@@ -179,7 +179,7 @@
                                 </div>
 
                                 <div class="info-status-button col-5 d-flex justify-content-end align-items-end">
-                                    <Button>Confirm Booking</Button>    
+                                    <Button class="btn pmd-btn-raised pmd-ripple-effect btn-success">Confirm Booking</Button>    
                                 </div>
                             </div>
 
