@@ -191,6 +191,8 @@ class Main_Controller extends CI_Controller {
 		$val['MonthlyPT'] = $this->MainModel->getMonthlyPaymentTypeBooks();
 		$val['monthly'] = $this->MainModel->getMonthlyData();
 		$val['listofshops'] = $this->MainModel->getListOfComputerShops();
+
+		$val['salesShop'] = $this->MainModel->getMonthlySalesSpecifcShop();
 		$this->load->view('superadmin/reports',$val);
     }
 	public function showpdf(){
@@ -201,6 +203,8 @@ class Main_Controller extends CI_Controller {
 		$val['MonthlyPT'] = $this->MainModel->getMonthlyPaymentTypeBooks();
 		$val['monthly'] = $this->MainModel->getMonthlyData();
 		$val['listofshops'] = $this->MainModel->getListOfComputerShops();
+
+		$val['salesShop'] = $this->MainModel->getMonthlySalesSpecifcShop();
 		$this->load->view('makepdf',$val);
 	}
 

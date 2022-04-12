@@ -208,6 +208,33 @@ $tbl .='
 </table>';
 
 //-----------------------------------------
+$tbl .= '<h1>Computer shop sales</h1>';
+$tbl .= '
+<table class="table table-bordered" id="example">
+	<thead>
+		<tr>
+			<th>Shop Name</th>
+			<th>OvertheCounter</th>
+			<th>GCash</th>
+			<th>Total Sale</th>
+		</tr>
+	</thead>';
+foreach ($salesShop as $sS) {
+
+
+	$tbl .= '	<tbody>
+					<tr>
+						<td>'. $sS->shop_name .'</td>
+						<td>'. $sS->overthecounter .'</td>
+						<td>'. $sS->gcash .'</td>
+						<td>'. $sS->sumofservicefee .'</td>
+					 </tr>';
+	}
+	$tbl .='
+		</tbody>
+	</table>';
+	
+	//-----------------------------------------
 
 $pdf->writeHTML($tbl, true, false, false, false, '');
 

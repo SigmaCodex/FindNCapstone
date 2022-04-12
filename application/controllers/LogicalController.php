@@ -76,9 +76,14 @@ class LogicalController extends CI_Controller {
         $result = $this->MainModel->getMonthlyPaymentTypeBooks();
         echo json_encode($result);
     }
-    public function getMonthlyDataSpecifcShop($shop_id){
+    public function getMonthlySalesSpecifcShop(){
         $this->load->model('MainModel');
-        $result = $this->MainModel->getMonthlyDataSpecifcShop($shop_id);
+        $result = $this->MainModel->getMonthlySalesSpecifcShop();
+        echo json_encode($result);
+    }
+    public function getMonthlyBooksSpecifcShop(){
+        $this->load->model('MainModel');
+        $result = $this->MainModel->getMonthlyBooksSpecifcShop();
         echo json_encode($result);
     }
     public function getMonthlyData(){

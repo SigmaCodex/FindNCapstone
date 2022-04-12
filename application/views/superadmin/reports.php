@@ -171,11 +171,11 @@
         foreach ($MonthlyPT as $MPT) {
           $curmonth = date("M", strtotime($MPT->date_issued));
             for($x=0; $x<12; $x++){
-              if($curmonth == $monthSales[$x][0] && $MPT->payment_type == "OverTheCounter") {
+              if($curmonth == $monthSales[$x][0] && $MPT->payment_type == "overthecounter") {
                 $monthSales[$x][1] = $monthSales[$x][1] + $MPT->service_fee;
                 $monthSales[$x][2] = $monthSales[$x][2] + 1;
               }
-              if($curmonth == $monthSales[$x][0] && $MPT->payment_type == "GCash") {
+              if($curmonth == $monthSales[$x][0] && $MPT->payment_type == "gcash") {
                 $monthSales[$x][1] = $monthSales[$x][1] + $MPT->service_fee;
                 $monthSales[$x][3] = $monthSales[$x][3] + 1;
               } 
@@ -212,12 +212,12 @@
         <?php $PaymentTypeSales = array(0,0);
         foreach ($MonthlyPT as $MPT) {
           $curmonth = date("M", strtotime($MPT->date_issued));
-              if($MPT->payment_type == "OverTheCounter") {
-                $totalAmount = $MPT->service_fee * $MPT->num_ticket;
+              if($MPT->payment_type == "overthecounter") {
+                $totalAmount = $MPT->service_fee;
                 $PaymentTypeSales[0] = $PaymentTypeSales[0] + $totalAmount;
               }
-              if($MPT->payment_type == "GCash") {
-                $totalAmount = $MPT->service_fee * $MPT->num_ticket;
+              if($MPT->payment_type == "gcash") {
+                $totalAmount = $MPT->service_fee;
                 $PaymentTypeSales[1] = $PaymentTypeSales[1] + $totalAmount;
               } 
         }?>
@@ -264,53 +264,35 @@
     </div>
   </div>
 </div>
-          <!-- <?php 
-            $LSarray = array();
-            $SBarray = array("shopname",0,0,0,0,0);
-          ?>
-          
-          <?php 
-          //list of shops
-          foreach($listofshops as $shoplist) {
-            //push every shop name into array
-            $SBarray[0] = $shoplist->shop_name;
-            array_push($LSarray,$shoplist->shop_name);
-            //all booking details
-            foreach($monthly as $SBlist) {
-              //check if shop name is equal booked shop
-              if($shoplist->shop_name == $SBlist->shop_name){
-                //if statements of OTC or GCash
-                if($SBlist->payment_type == "OverTheCounter") {
-                  $totalAmount = $SBlist->service_fee * $SBlist->num_ticket;
-                  $SBarray[2] = $totalAmount;
-                  $SBarray[3] = $SBlist->num_ticket;
-                }
-                if($SBlist->payment_type == "GCash") {
-                  $totalAmount = $SBlist->service_fee * $SBlist->num_ticket;
-                  $SBarray[4] = $totalAmount;
-                  $SBarray[5] = $SBlist->num_ticket;
-                } 
-                $SBarray[1] = $SBarray[2] + $SBarray[4];
-                
-                //next line is pag populate?>
-                <ul>
-                  <li><label><?php echo $SBarray[0]; ?></label></li>
-                  <li><label><?php echo $SBarray[1]; ?></label></li>
-
-                  <li><label><?php echo $SBarray[2]; ?></label></li>
-                  <li><label><?php echo $SBarray[3]; ?></label></li>
-                  <li><label><?php echo $SBarray[4]; ?></label></li>
-                  <li><label><?php echo $SBarray[5]; ?></label></li>
-                </ul>
-                
-                <?php
-              }  
-              
-            } 
-            $SBarray = array("shopname",0,0,0,0,0); 
-          }  
-          ?> -->
-
+    
+<div class="row">
+				<div class="col-md-12 col-xs-1">
+					<h3 class="h5 mb-4 text-center"></h3>
+					<div class="table-wrap">
+						<table class="table" style="margin:0;" !important>
+						  <thead class="thead-primary">
+						    <tr>
+						      <th>Shop Name</th>
+						      <th>Over the Counter</th>
+						      <th>Gcash</th>
+						      <th>Sales</th>
+						    </tr>
+						  </thead>
+						  <tbody>
+							<!-- php -->
+						  <?php foreach ($salesShop as $sS) {?>  
+						    <tr class="alert" role="alert">
+						    	<td ><?php echo $sS->shop_name;?></td>
+						    	<td ><?php echo $sS->overthecounter;?>	</td>
+						    	<td ><?php echo $sS->gcash;?>	</td>
+								  <td ><?php echo $sS->sumofservicefee;?></td>
+						    </tr>
+						    <?php }?>  	
+						  </tbody>
+						</table>
+					</div>
+				</div>
+			</div>
           
 		</div>
 	</body>
