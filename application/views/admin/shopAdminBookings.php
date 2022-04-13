@@ -18,9 +18,9 @@
 <body>
 <?php date_default_timezone_set("Asia/Bangkok"); ?> 
     <div class="container ">
-        <div class="row content-holder mt-5">
+        <div class="row content-holder">
             <!--Left side column-->
-            <div class="col-md-4 col-sm-4 col-xs-4 my-3 my-md-0">
+            <div class="col-md-4 col-sm-4 col-xs-4 my-3 my-md-1 pt-4">
                 <div class="left-sidebar card shadow"> 
                     
                     <div class="left-sidebar-title d-flex align-items-center justify-content-center p-2">
@@ -43,7 +43,7 @@
                                         <img class="request-card-logo" src="assets/images/Prof.png" alt="">
                                     </div>
                                     <div class="col-5 mt-1">
-                                        <p class="finder-name"><?php echo $br->firstname;?>, <?php echo $br->lastname;?></p>
+                                        <p class="finder-name"><?php echo $br->firstname;?> <?php echo $br->lastname;?></p>
                                         <p class="finder-user text-muted"><?php echo $br->username;?></p>
                                     </div>
                                     <div class="col-4 mt-1 d-flex flex-column justify-content-center align-items-center ">
@@ -191,52 +191,8 @@
             </div>
             
             <!--Right side column-->
-            <div class="col-md-8 col-sm-8 col-xs-8 my-3 my-md-0"> 
-
-                <!-- LIST OF BOOKINGS -->
-                <div class="right-sidebar my-3"> 
-                    
-                    <div class="right-sidebar-title d-flex align-items-left justify-content-start p-2">
-                        <i class="title-icon fa-solid fa-clipboard-list d-flex align-items-center justify-content-center"></i>
-                        <h6 class="card-title-text m-0 p-1">LIST OF BOOKINGS</h6>
-                    </div>
-                    
-                    <div class="right-sidebar-padding">
-                        
-                        <div class="table-card">
-
-                            <div class="table-card-content">
-
-                                <table class="list-table-bookings">
-                                    <tr>
-                                      <th>Transaction ID</th>
-                                      <th>Name</th>
-                                      <th>Service Access Type</th>
-                                      <th>Arrival Date & Time</th>
-                                      <th>Transaction Status</th>
-                                      <th>Payment Status</th>
-                                      <th>Tickets</th>
-                                      <th>Service Fee</th>
-                                    </tr>
-                                    <?php foreach($alltransac as $at){?>
-                                    <tr>
-                                      <td><?php echo $at->transaction_id;?></td>
-                                      <td><?php echo $at->firstname;?>,<?php echo $at->lastname;?></td>
-                                      <td><?php echo $at->name;?></td>
-                                      <td><?php echo date("M j, Y", strtotime($at->arrival_date));?>
-
-                                      <?php echo date("h:i A", strtotime($at->arrival_time));?></td>
-                                      <td class="status-<?php if($at->transaction_status == "declined"){echo "decline";} else {echo "accepted";}?>"><?php echo $at->transaction_status;?></td>
-                                      <td class="status-<?php if($at->payment_status == "unpaid"){echo "unpaid";} else {echo "paid";} ?>"><?php echo $at->payment_status;?></td>
-                                      <td><?php echo $at->num_ticket;?></td>
-                                      <td><?php echo $at->service_fee;?></td>
-                                    </tr>
-                                    <?php }?>
-                                </table>  
-                            </div>
-                        </div>  
-                    </div>
-                </div>
+            <div class="right-side col-md-8 col-sm-8 col-xs-8 my-3"> 
+                
 
                 <!-- ONGOING BOOKINGS -->
                 
@@ -253,17 +209,18 @@
 
                             <div class="table-card-content">
                                 <table class="ongoing-table-bookings">
-                                    <tr>
+                                    <tr class="title-table-wait">
                                       <th>Transaction ID</th>
                                       <th>Name</th>
                                       <th>Transaction Status</th>
                                       <th>Payment Status</th>
                                       <th>Payment Method</th>
+                                      <th>Status</th>
                                     </tr>
                                     <?php foreach ($acceptedrequest as $ar) {?>
-                                    <tr>
+                                    <tr class="table-row">
                                       <td><?php echo $ar->transaction_id;?></td>
-                                      <td><?php echo $ar->firstname;?>,<?php echo $ar->lastname;?></td>
+                                      <td><?php echo $ar->firstname;?> <?php echo $ar->lastname;?></td>
                                       <td class="status-accepted"><?php echo $ar->transaction_status;?></td>
                                       <td class="status-<?php if($ar->payment_status == "unpaid"){echo "unpaid";} else {echo "paid";} ?>"><?php echo $ar->payment_status;?></td>
                                       <?php if($ar->payment_type == "gcash"){
@@ -276,6 +233,7 @@
                                         echo '<td>-</td>';
                                       }
                                       ?>
+                                      <td class="status-waiting">waiting</td>
                                     </tr>
                                     <?php }?>
                                     <!-- <tr>
@@ -301,6 +259,53 @@
 
 
                 </div>
+                            
+                <!-- LIST OF BOOKINGS -->
+                <div class="right-sidebar my-3"> 
+                    
+                    <div class="right-sidebar-title d-flex align-items-left justify-content-start p-2">
+                        <i class="title-icon fa-solid fa-clipboard-list d-flex align-items-center justify-content-center"></i>
+                        <h6 class="card-title-text m-0 p-1">LIST OF BOOKINGS</h6>
+                    </div>
+                    
+                    <div class="right-sidebar-padding">
+                        
+                        <div class="table-card">
+
+                            <div class="table-card-content">
+
+                                <table class="list-table-bookings">
+                                    <tr class="title-table-all">
+                                      <th>Transaction ID</th>
+                                      <th>Name</th>
+                                      <th>Service Access Type</th>
+                                      <th>Arrival Date & Time</th>
+                                      <th>Transaction Status</th>
+                                      <th>Payment Status</th>
+                                      <th>Tickets</th>
+                                      <th>Service Fee</th>
+                                    </tr>
+                                    <?php foreach($alltransac as $at){?>
+                                    <tr class="table-row">
+                                      <td><?php echo $at->transaction_id;?></td>
+                                      <td><?php echo $at->firstname;?> <?php echo $at->lastname;?></td>
+                                      <td class="text-center"><?php echo $at->name;?></td>
+                                      <td><?php echo date("M j, Y", strtotime($at->arrival_date));?>
+
+                                      <?php echo date("h:i A", strtotime($at->arrival_time));?></td>
+                                      <td class="status-<?php if($at->transaction_status == "declined"){echo "decline";} else {echo "accepted";}?>"><?php echo $at->transaction_status;?></td>
+                                      <td class="status-<?php if($at->payment_status == "unpaid"){echo "unpaid";} else {echo "paid";} ?>"><?php echo $at->payment_status;?></td>
+                                      <td><?php echo $at->num_ticket;?></td>
+                                      <td class="fee">₱<?php echo $at->service_fee;?></td>
+                                    </tr>
+                                    <?php }?>
+                                </table>  
+                            </div>
+                        </div>  
+                    </div>
+                </div>
+
+                
             </div>
 
             
