@@ -13,12 +13,52 @@
 
     <link rel="stylesheet" href="assets/css/shopAdminScanQR.css">
     
+    <style>
+        .box{
+            --b:5px;   /* thickness of the border */
+            --c:#f46b31;   /* color of the border */
+            --w:20px;  /* width of border */
+            
+
+            border:var(--b) solid transparent; /* space for the border */
+            --g:#0000 90deg,var(--c) 0;
+            background:
+                conic-gradient(from 90deg  at top    var(--b) left  var(--b),var(--g)) 0    0,
+                conic-gradient(from 180deg at top    var(--b) right var(--b),var(--g)) 100% 0,
+                conic-gradient(from 0deg   at bottom var(--b) left  var(--b),var(--g)) 0    100%,
+                conic-gradient(from -90deg at bottom var(--b) right var(--b),var(--g)) 100% 100%;
+            background-size:var(--w) var(--w);
+            background-origin:border-box;
+            background-repeat:no-repeat;
+            
+            /*Irrelevant code*/  
+            /* width:200px;
+            height:100px;
+            box-sizing:border-box;
+            margin:5px;
+            display:inline-flex;
+            font-size:30px;
+            justify-content:center;
+            align-items:center;
+            line-height:90px; */
+            }
+        .frame{
+            position:absolute;
+            /* top:0; */
+             width:500px;
+            height:500px; 
+            background:rgba(108,103,103,0.56) ;
+            z-index: 1;
+            -webkit-clip-path: polygon(0% 0%, 0% 100%, 25% 100%, 25% 25%, 75% 25%, 75% 75%, 25% 75%, 25% 100%, 100% 100%, 100% 0%);
+            clip-path: polygon(0% 0%, 0% 100%, 25% 100%, 25% 25%, 75% 25%, 75% 75%, 25% 75%, 25% 100%, 100% 100%, 100% 0%);
+        }    
+    </style>
 
     <title>QR Scan Bookings</title> 
 </head>
 <body>
 
-    <div class="container ">
+    <div class="container">
         <div class="row content-holder mt-5 d-flex align-items-center justify-content-center">
             
             <div class="col-md-12 col-sm-12 col-xs-12 "> 
@@ -33,8 +73,9 @@
 
                             <!-- For camera scanner -->
                             <div class="row d-flex justify-content-center align-items-center">
-                                <div class="">
-                                    <video id="preview" class=""  style="width:100%; border: 4px dashed #bbb; transform: rotateY(180deg);"></video>
+                                <div class="" style="">
+                                    <video id="preview" class="box"  style="width:100%;  transform: rotateY(180deg);"></video>
+                                    <!-- <div class="frame"></div> -->
                                 </div>
                             </div>
                             <input type="radio" name="options" value="2" autocomplete="off">
@@ -69,15 +110,16 @@
                                 <div class="trans-detail-right col-6 ">
 
                                     <!-- If GCash -->
-                                    <p><img class="logo-img-method" src="assets/images/gcash.png" id="payment-method-logo" alt=""></p>
-                                    <p style="color: #08B64E;">Paid</p>
-
+                                    <p><img class="logo-img-method"  id="payment-method-logo" alt=""></p>
                                     <!-- If Over-the-counter -->
-                                    <!-- <p><img class="logo-img-method" src="assets/images/counter2.png" id="payment-method-logo" alt=""></p>
-                                    <p style="color: #e10404;">Unpaid</p> -->
+                                    <!-- <p><img class="logo-img-method overthecounter_method" style="display:none" src="assets/images/counter2.png" id="payment-method-logo" alt=""></p> -->
+                                    <p style="color: #08B64E;" id="payment_status">---------</p>
+
+                                  
+                                    <!-- <p style="color: #e10404;">Unpaid</p> -->
 
 
-                                    <p style="color: #e10404;">₱15</p>
+                                    <p style="color: #e10404;" id="service_fee">----------</p>
                                 </div>
                             </div>
 
@@ -92,16 +134,16 @@
                             </div>
 
                             <!-- IF GCASH  -->
-                            <div class="row">
+                            <div class="row" id="gcash_section" style="display:none">
                                 <div class="trans-detail-left col-6 ">
                                     <p>Reference Number</p>
                                     <p>Payment Date</p>
                                     <p>Gcash Payment Receipt</p>
                                 </div>
                                 <div class="trans-detail-right col-6 ">
-                                    <p >700 0556 345 1</p>
-                                    <p>April 22, 2022</p>
-                                    <p><img class="receipt-img-logo" src="assets/images/Receipt.jpg" id="gcash-receipt" alt=""></p>
+                                    <p id="reference_num">---------</p>
+                                    <p id="payment_date">-----------</p>
+                                    <p><img class="receipt-img-logo" id="gcash-receipt" alt=""></p>
                                     
                                 </div>
 
@@ -113,7 +155,7 @@
                             </div>  
 
                             <!-- IF OVER-THE-COUNTER PAYMENT METHOD --> 
-                            <!-- <div class="row pt-5">
+                            <div class="row pt-5" id="overthecounter_section" style="display:none">
                                 <div class="counter-button col-12 d-flex justify-content-around align-items-center">
                                     <button class="counter-button-cancel">Cancel Booking</button>
                                     <button class="counter-button-confirm">Confirm Payment</button>
@@ -122,7 +164,7 @@
                                 <div class="counter-button col-12 d-flex flex-column justify-content-center align-items-center">
                                     
                                 </div>
-                            </div> -->
+                            </div>
 
 
                         </div>
@@ -276,6 +318,11 @@ setInterval(function(){
                                 $("#date_arrival").text("------");
                                 $("#time_arrival").text("------");
                                 $("#message").text("------");
+                                $("#service_fee").text("-------");
+                                $("#payment_status").text("-----------");
+                                $('#overthecounter_section').hide();
+                                $('#gcash_section').hide();
+                                $("#payment-method-logo").removeAttr("src");
                         }else{
                             //populate data 
                             var result = JSON.parse(data);
@@ -297,6 +344,28 @@ setInterval(function(){
                                 $("#date_arrival").text(newdate);
                                 $("#time_arrival").text(arrival_time);
                                 $("#message").text(result[x]['instruction']);
+
+                                //payment details
+                                $("#service_fee").text("₱"+result[x]['service_fee']);
+                                $("#payment_status").text(result[x]['payment_status']);
+                                    if(result[x]['payment_type'] == "gcash"){
+                                        $("#payment-method-logo").removeAttr("src");
+                                        $("#payment-method-logo").attr("src","assets/images/gcash.png");
+
+                                        
+                                        $('#gcash_section').show();
+								        $('#overthecounter_section').hide();
+                                        select_paymentDetails(transaction_id);
+
+                                    }else if(result[x]['payment_type'] == "overthecounter"){
+                                        $("#payment-method-logo").removeAttr("src");
+                                        $("#payment-method-logo").attr("src","assets/images/counter2.png");
+
+                                        $('#overthecounter_section').show();
+								        $('#gcash_section').hide();
+                                    }
+                          
+
                             }
 
                         }
@@ -309,13 +378,6 @@ setInterval(function(){
 
 			
 			}
-            // arrival_time = "16:15";
-            // date = "04/09/2022";
-            // // newdate = dateformat(arrival_date);
-            // // console.log(newdate);
-            // // timeformat(arrival_time);
-            // timeformat = new Date(''+date+' '+arrival_time+'').toLocaleTimeString().replace(/([\d]+:[\d]{2})(:[\d]{2})(.*)/, "$1$3")
-            // console.log(timeformat);
         },1000);
 
         //return new date format
@@ -343,6 +405,34 @@ setInterval(function(){
             date_format =`${m} ${d},${y} `;
             return date_format;
         } 
+
+        //ajax for select paymentDetails
+        function select_paymentDetails(transaction_id){
+            
+         var BASE_URL = "<?php echo base_url();?>";
+     
+                $.ajax({
+                    url: BASE_URL+"select_GcashpaymentDetails/"+transaction_id,
+                    type: "GET",
+                    cache: false,
+                    async: false,
+                    success: function(data)
+                    {
+                        var result = JSON.parse(data);
+                        for(var x = 0 ; x < result.length ; x ++)
+                        {
+                            $("#reference_num").text(result[x]['reference_num']);
+                            newdate = dateformat(result[x]['payment_date']);
+                            $("#payment_date").text(newdate);
+                            $("#gcash-receipt").removeAttr("src");
+                            $("#gcash-receipt").attr("src","assets/upload/finder/gcash-receipt/"+result[x]['receipt_image']);
+                           
+                        }
+
+                    }
+                });
+                
+        }
 
         
 

@@ -588,6 +588,7 @@ class MainModel extends CI_Model{
          $this->db->insert('finder_notification', $finderNotification);
 
     }
+    //select GcashPaymentDetails
     public function select_GcashpaymentDetails($transaction_id){
         $this->db->select('*');
         $this->db->from('gcash_payment_details');

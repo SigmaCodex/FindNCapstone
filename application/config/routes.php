@@ -156,6 +156,7 @@ $route['reports'] = 'main_controller/viewReports';
     $route['select-paymentmethod']        = 'main_controller/payment_exercise';
     $route['sendVerificationCodeToEmail'] = 'logicalcontroller/sendVCodeToEmail';
     $route['checkVerificationCode']       = 'logicalcontroller/checkVerificationCode';
+    $route['select_GcashpaymentDetails/(:num)']  = 'logicalcontroller/select_GcashpaymentDetails/$1'; 
 
     
 $route['shopAdmin-login']          = 'logicalcontroller/shopAdmin_login';

@@ -109,7 +109,7 @@ input[type=number]:focus {
 
 /* GCASH RECEIPT IMAGE */
 .logo-img-method {
-    width: 60px;
+    width: 30px;
     object-fit: cover;
     cursor: pointer;
     border-radius: 5px;

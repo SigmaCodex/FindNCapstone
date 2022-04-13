@@ -191,6 +191,11 @@ class LogicalController extends CI_Controller {
                 $this->generateFinderQrCode($transaction_id);       //generate QR code
             }
     }
+    public function select_GcashpaymentDetails($transac_id){
+        $this->load->model('MainModel');
+        $result = $this->MainModel->select_GcashpaymentDetails($transac_id);
+        echo json_encode($result);
+    }
     //generate FinderQr Code
     public function generateFinderQrCode($transaction_id){
 		$this->load->model('MainModel');
