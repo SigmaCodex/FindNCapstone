@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     
     
-    <title>FindN Admin Panel/title>  
+    <title>FindN Admin Panel</title>  
 
     <!-- Style CSS -->
     <link rel="stylesheet" href="assets/css/adminHeader.css">
