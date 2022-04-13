@@ -1,32 +1,148 @@
-const body = document.querySelector("body"),
-      modeToggle = body.querySelector(".mode-toggle");
-      sidebar = body.querySelector("nav");
-      sidebarToggle = body.querySelector(".sidebar-toggle");
 
-let getMode = localStorage.getItem("mode");
-if(getMode && getMode ==="close-shop"){
-    body.classList.toggle("close-shop");
-}
+// Query for Sidebar
+jQuery(function ($) {
 
-let getStatus = localStorage.getItem("status");
-if(getStatus && getStatus ==="close"){
-    sidebar.classList.toggle("close");
-}
+    $(".sidebar-dropdown > a").click(function() {
+    $(".sidebar-submenu").slideUp(200);
+       if ($(this).parent().hasClass("active")){
+    
+          $(".sidebar-dropdown").removeClass("active");
+          $(this).parent().removeClass("active");
+       } 
+       else {
+          $(".sidebar-dropdown").removeClass("active");
+          $(this).next(".sidebar-submenu").slideDown(200);
+          $(this).parent().addClass("active");
+       }
+    });
+       $("#close-sidebar").click(function() {
+       $(".page-wrapper").removeClass("toggled");
+       });
+       $("#show-sidebar").click(function() {
+       $(".page-wrapper").addClass("toggled");
+       });
+       
+    });   
+    
+    // QUERY FOR TOGGLE ONLINE or OFFLINE SHOP STATUS
+    $(document).ready(function(){
+       if ($('#offline').prop('checked')) 
+          {
+          $(".stat-circ").css('color', 'green');
+          }
+       else 
+       {
+          $(".stat-circ").css('color', 'red');
+       }
+    });
+    
+    $('#offline').on('change',function(){
+           if(this.checked){
+              $(".user-status-update").text("Online");
+              $(".stat-circ").css('color', 'green');
+           }
+            else{
+               $(".user-status-update").text("Offline");
+               $(".stat-circ").css('color', 'red');
+            }
+    });
+    
 
-modeToggle.addEventListener("click", () =>{
-    body.classList.toggle("close-shop");
-    if(body.classList.contains("close-shop")){
-        localStorage.setItem("mode", "close-shop");
-    }else{
-        localStorage.setItem("mode", "open");
-    }
-});
+// Query for Sidebar
+jQuery(function ($) {
 
-sidebarToggle.addEventListener("click", () => {
-    sidebar.classList.toggle("close");
-    if(sidebar.classList.contains("close")){
-        localStorage.setItem("status", "close");
-    }else{
-        localStorage.setItem("status", "open");
-    }
-})
+    $(".sidebar-dropdown > a").click(function() {
+    $(".sidebar-submenu").slideUp(200);
+       if ($(this).parent().hasClass("active")){
+    
+          $(".sidebar-dropdown").removeClass("active");
+          $(this).parent().removeClass("active");
+       } 
+       else {
+          $(".sidebar-dropdown").removeClass("active");
+          $(this).next(".sidebar-submenu").slideDown(200);
+          $(this).parent().addClass("active");
+       }
+    });
+       $("#close-sidebar").click(function() {
+       $(".page-wrapper").removeClass("toggled");
+       });
+       $("#show-sidebar").click(function() {
+       $(".page-wrapper").addClass("toggled");
+       });
+       
+    });   
+    
+    // QUERY FOR TOGGLE ONLINE or OFFLINE SHOP STATUS
+    $(document).ready(function(){
+       if ($('#offline').prop('checked')) 
+          {
+          $(".stat-circ").css('color', 'green');
+          }
+       else 
+       {
+          $(".stat-circ").css('color', 'red');
+       }
+    });
+    
+    $('#offline').on('change',function(){
+           if(this.checked){
+              $(".user-status-update").text("Online");
+              $(".stat-circ").css('color', 'green');
+           }
+            else{
+               $(".user-status-update").text("Offline");
+               $(".stat-circ").css('color', 'red');
+            }
+    });
+    
+
+// Query for Sidebar
+jQuery(function ($) {
+
+    $(".sidebar-dropdown > a").click(function() {
+    $(".sidebar-submenu").slideUp(200);
+       if ($(this).parent().hasClass("active")){
+    
+          $(".sidebar-dropdown").removeClass("active");
+          $(this).parent().removeClass("active");
+       } 
+       else {
+          $(".sidebar-dropdown").removeClass("active");
+          $(this).next(".sidebar-submenu").slideDown(200);
+          $(this).parent().addClass("active");
+       }
+    });
+       $("#close-sidebar").click(function() {
+       $(".page-wrapper").removeClass("toggled");
+       });
+       $("#show-sidebar").click(function() {
+       $(".page-wrapper").addClass("toggled");
+       });
+       
+    });   
+    
+    // QUERY FOR TOGGLE ONLINE or OFFLINE SHOP STATUS
+    $(document).ready(function(){
+       if ($('#offline').prop('checked')) 
+          {
+          $(".stat-circ").css('color', 'green');
+          }
+       else 
+       {
+          $(".stat-circ").css('color', 'red');
+       }
+    });
+    
+    $('#offline').on('change',function(){
+           if(this.checked){
+              $(".user-status-update").text("Online");
+              $(".stat-circ").css('color', 'green');
+           }
+            else{
+               $(".user-status-update").text("Offline");
+               $(".stat-circ").css('color', 'red');
+            }
+    });
+    
+            
