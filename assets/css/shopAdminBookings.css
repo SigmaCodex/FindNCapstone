@@ -1,10 +1,9 @@
-@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Poppins');
 @import url('http://fonts.cdnfonts.com/css/uni-neue');
 @import url('//db.onlinewebfonts.com/c/80241b4ef777109d2625c9195e7ca852?family=NordiquePro-Bold');
 
 .container {
     font-family: 'Poppins', sans-serif;
-    
 }
 .content-holder{
     margin-top: 60px;
@@ -289,4 +288,167 @@
 .gcash-logo{
     width: 30px;
     border-radius: 5px;
+}
+
+/* MODAL CSS */
+
+
+.modal-holder {
+    padding: 10px;
+    font-family: 'Poppins', sans-serif;
+}
+.modal-left-card-profile{
+    padding: 20px 20px 10px 20px;
+    background-color: #EFEBEB;
+    border-radius: 10px;
+}
+.modal-user-information{
+    padding: 10px;
+}
+.modal-user-information img {
+    width: 100px;
+    border-radius: 70%;
+    padding-bottom: 10px;
+}
+.modal-user-name{
+    font-size: 20px;
+    color: #454242;
+}
+.modal-caption{
+    font-size: 15px;
+    color: #969393;
+}
+.modal-user-info{
+    padding-top: 10px;
+}
+.modal-user-info-title{
+    color: #774444;
+}
+.modal-caption-user{
+    font-size: 12px;
+    color: #969393;
+}
+.modal-caption-details-left{
+    padding-left: 10px;
+    font-size: 12px;
+    color: #969393;
+}
+.modal-caption-details-left-total{
+    padding-top: 5px;
+    font-size: 17px;
+}
+.modal-caption-details-right{
+    font-size: 12px;
+    color: #454242;
+    font-weight: 600;
+}
+.modal-caption-details-right-method{
+    color: white;
+    font-size: 12px;
+}
+.modal-caption-details-right-status{
+    color: white;
+    font-size: 12px;
+}
+.modal-caption-details-right-message{
+    font-size: 10px;
+    color: #454242;
+}
+.modal-caption-details-right-method img{
+    width: 30px;
+    border-radius: 5px;
+}
+.modal-right-card-profile .modal-user-info .modal-data-info-right{
+    text-align: right;
+}
+.ticket-fee-total {
+    padding-top: 17px;
+}
+.ticket-fee-total p{
+    font-size: 15px;
+}
+.ticket-fee-total-right p{
+    font-size: 15px;
+    color: green;
+}
+.modal-caption-details-right-total{
+    font-size: 17px;
+    color: green;   
+}
+/* For mobile */
+@media (max-width: 400px) {
+    .modal-holder {
+        padding: 5px;
+    }
+    .modal-left-card-profile{
+        padding: 10px 10px 5px 10px;
+        height: 350px;
+    }
+    .modal-user-information{
+        padding: 5px;
+    }
+    .modal-user-information img {
+        width: 50px;
+        padding-top: 20px;
+    }
+    .modal-user-name{
+        font-size: 10px;
+    }
+    .modal-caption{
+        font-size: 8px;
+    }
+    .modal-user-info{
+        padding-top: 5px;
+    }
+    .user{
+        font-size: 12px;
+        padding-top: 40px;
+    }
+    .modal-user-info-title{
+        font-size: 12px;
+    }
+    .modal-caption-user{
+        font-size: 10px;
+    }
+    .modal-caption-details-left{
+        font-size: 6px;
+    }
+    .modal-caption-details-right{
+        font-size: 6px;
+        margin-bottom: 15px;
+    }
+    .modal-caption-details-right-method{
+        font-size: 6px;
+        margin-bottom: 0;
+    }
+    .modal-caption-details-right-status{
+        font-size: 5px;
+    }
+    .modal-caption-details-right-message{
+        font-size: 6px;
+    }
+    .ticket-fee-total p{
+        font-size: 7px;
+    }
+    .ticket-fee-total-right p{
+        font-size: 7px;
+    }
+    .ticket-fee-total {
+        padding-top: 7px;
+    }
+    .modal-caption-details-left-total{
+        font-size: 6px;
+        text-align: right;
+    }
+    .ticket-fee-total p{
+        font-size: 7px;
+    }
+    .ticket-fee-total-right p{
+        font-size: 7px;
+    }
+    .modal-caption-details-right-total{
+        font-size: 9px;
+    }
+
+
 }

@@ -11,7 +11,11 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script> 
     <link rel="stylesheet" href="assets/css/shopAdminBookings.css">
-    
+
+    <!-- Modal CDN -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>	
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" ></script>
 
     <title>Shop Admin Bookings</title> 
 </head>
@@ -218,7 +222,7 @@
                                       <th>Status</th>
                                     </tr>
                                     <?php foreach ($acceptedrequest as $ar) {?>
-                                    <tr class="table-row">
+                                    <tr class="table-row " data-toggle="modal" data-target="#transaction-modal">
                                       <td><?php echo $ar->transaction_id;?></td>
                                       <td><?php echo $ar->firstname;?> <?php echo $ar->lastname;?></td>
                                       <td class="status-accepted"><?php echo $ar->transaction_status;?></td>
@@ -286,7 +290,7 @@
                                       <th>Service Fee</th>
                                     </tr>
                                     <?php foreach($alltransac as $at){?>
-                                    <tr class="table-row">
+                                    <tr class="table-row" data-toggle="modal" data-target="#transaction-modal">
                                       <td><?php echo $at->transaction_id;?></td>
                                       <td><?php echo $at->firstname;?> <?php echo $at->lastname;?></td>
                                       <td class="text-center"><?php echo $at->name;?></td>
@@ -308,7 +312,97 @@
                 
             </div>
 
-            
+
+            <!-- Modal -->
+            <div class="modal fade" id="transaction-modal">
+            <div class="modal-dialog modal-lg modal-dialog-scrollable" role="document">
+                <div class="modal-content">
+
+                <!-- Modal body -->
+                <div class="modal-body">
+                    <div class="modal-holder ">
+                    <div class="row d-flex justify-content-between">
+
+                        <div class="col-6">
+                            <div class="modal-left-card-profile">
+                                <div class="modal-user-information d-flex flex-column align-items-center justify-content-center">
+                                    <img src="assets/images/Prof.png" alt="">
+                                    <h6 class="modal-user-name">Junky Dubs</h6>
+                                    <p class="modal-caption">Finder</p> 
+
+                                <div class="modal-user-info d-flex flex-column align-items-center justify-content-center">
+                                    <h5 class="modal-user-info-title user">User Information</h5>
+                                    <p class="modal-caption-user">abc@gmail.com</p> 
+                                    <p class="modal-caption-user">09775678493</p> 
+                                    <p class="modal-caption-user">Vaccinated</p> 
+                                    <p class="modal-caption-user">Male</p> 
+                                </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-6">
+                        <div class="modal-right-card-profile">
+                            <div class="modal-user-info">
+                            <h5 class="modal-user-info-title">User Information</h5>
+                            <div class="row ">
+                                <div class="col-6">
+                                <p class="modal-caption-details-left">Computer Cafe:</p> 
+                                <p class="modal-caption-details-left">Service Type:</p> 
+                                <p class="modal-caption-details-left">Access Type:</p> 
+                                <p class="modal-caption-details-left">Arrival Date:</p> 
+                                <p class="modal-caption-details-left">Arrival Time:</p> 
+                                <p class="modal-caption-details-left">Payment Method:</p>
+                                <p class="modal-caption-details-left">Payment Status:</p>
+                                <p class="modal-caption-details-left"><b>Message:</b> </p>
+
+                                <div class="ticket-fee-total">
+                                    <p class="modal-caption-details-left"><b>Tickets:</b> </p>
+                                    <p class="modal-caption-details-left"><b>Booking Fee:</b> </p>
+                                </div>
+                                <p class="modal-caption-details-left-total"><b>Total Service Fee:</b> </p>
+                                </div>
+
+                                <div class="col-6 modal-data-info-right">
+                                <p class="modal-caption-details-right">TNC CyberCafe</p> 
+                                <p class="modal-caption-details-right">Computer Booking</p> 
+                                <p class="modal-caption-details-right">Regular</p> 
+                                <p class="modal-caption-details-right">April 22, 2022</p> 
+                                <p class="modal-caption-details-right">10:00 AM (GMT+8)</p> 
+                                <!-- If Gcash -->
+                                <!-- <p class="modal-caption-details-right"><img src="images/gcash.png" alt=""></p>  -->
+                                <!-- If over-the-counter -->
+                                <p class="modal-caption-details-right-method">over-the-counter<img src="images/counter2.png" alt=""></p> 
+
+                                <!-- If paid -->
+                                <p class="modal-caption-details-right-status badge badge-success">paid</p> 
+                                <!-- If unpaid -->
+                                <!-- <p class="modal-caption-details-right-status badge badge-danger">Unpaid</p>  -->
+                                
+                                <p class="modal-caption-details-right-message text-muted">Duol sa aircon admin please master</p> 
+
+                                <div class="ticket-fee-total-right" style="border-bottom: 1px solid #C4C4C4; margin-top: 0;">
+                                    <p class="modal-caption-details-left"><b>x1</b> </p>
+                                    <p class="modal-caption-details-left"><b>P10</b> </p>
+                                </div>
+
+                                <p class="modal-caption-details-right-total"><b>P10</b> </p>
+                                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                                </div>
+                            </div>
+                            
+                            </div>
+                        </div>
+                        </div>
+
+                    </div>
+                    </div>
+                </div>
+
+                </div>
+            </div>
+            </div>
+
         </div>
         
     </div>
