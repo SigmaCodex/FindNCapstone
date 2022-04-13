@@ -6,8 +6,23 @@
     font-family: 'Poppins', sans-serif;
     
 }
+.content-holder{
+    margin-top: 60px;
+}
 
 /* LEFT CARD */
+.right-side{
+    margin: 0;
+}
+.left-sidebar {
+    max-height: 700px;
+    height: 700px;
+    overflow-y: auto;
+  }
+.left-sidebar.desktop {
+    overflow-y: hidden;
+}
+
 .left-sidebar{
     border-radius: 15px;
     background-color: #f9f6f6;
@@ -52,14 +67,18 @@
     margin: 0;
 }
 .finder-date-trans{
-    font-size: 7px;
+    font-size: 10px;
     margin: 0;
 }
 .finder-time-trans{
     font-size: 7px;
     margin: 0;
 }
-
+.fee{
+    font-size: 7px;
+    font-weight: 700;
+    color: #555;
+}
 .finder-details{
     font-size: 10px;
     margin: 0;
@@ -134,13 +153,16 @@
     background-color: #FFFFFF;
     border-radius: 5px;
   }
-.list-table-bookings tr th {
-    font-size: 12px;
+.title-table-all{
+    background-color: #f3f6f9;
+}
+.list-table-bookings tr th{
+    font-size: 10px;
     text-align: center;
     align-items: start;
     padding: 8px;
     color: #7B7575;
-    border-bottom: 1px solid gainsboro;
+    text-transform: uppercase;
 }
 .card-title-text{
   background-image: linear-gradient(45deg, #f83f0b,#e09e1a);
@@ -158,6 +180,11 @@
     padding: 8px;
     font-family: 'Poppins', sans-serif;
     border-bottom: 1px solid gainsboro;
+}
+.table-row:hover {
+    background-color: #cfd1d4;
+    border-radius: 10px;
+    cursor: pointer;
 }
 
   /* Transaction Status */
@@ -179,6 +206,16 @@
   -webkit-text-fill-color: transparent; 
   -moz-text-fill-color: transparent;
   font-weight: 800;
+  cursor: pointer;
+}
+.status-waiting {
+    background-image: linear-gradient(45deg, #cbc34e,#e0ce0f);
+  background-size: 100%;
+  -webkit-background-clip: text;
+  -moz-background-clip: text;
+  -webkit-text-fill-color: transparent; 
+  -moz-text-fill-color: transparent;
+  font-weight: 500;
   cursor: pointer;
 }
 .status-decline {
@@ -224,19 +261,21 @@
 }
 .ongoing-table-bookings {
     display: block;
-    height: 200px;
+    height: 250px;
     overflow-y: auto;
     background-color: #FFFFFF;
     border-radius: 5px;
   }
+.title-table-wait {
+    background-color: #f3f6f9;
+    border-radius: 10px;
+}
 .ongoing-table-bookings tr th {
-    font-size: 15px;
+    font-size: 12px;
     text-align: center;
-    align-items: start;
-    padding: 10px;
+    align-items: center;
+    padding: 11px;
     color: #7B7575;
-    border-bottom: 1px solid gainsboro;
-    
 }
 
 .ongoing-table-bookings tr td{

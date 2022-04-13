@@ -283,12 +283,14 @@ class Main_Controller extends CI_Controller {
 		$val['bookingrequest'] = $this->MainModel->getallPendingRequest($shop_id);
 		$val['acceptedrequest'] = $this->MainModel->getallAcceptedRequest($shop_id);
 		$val['alltransac'] = $this->MainModel->viewallShopAdminBookingRequests($shop_id);
-		// $this->load->view('admin/template/adminHeader');
+		$this->load->view('admin/template/adminHeader');
 		$this->load->view('admin/shopAdminBookings',$val);
 		// echo json_encode($val);
 	}
 	public function viewShopAdminScanQR(){
+
 		 $this->load->view('admin/template/adminHeader');
+
 		$this->load->view('admin/shopAdminScanQR');
 	}
 
