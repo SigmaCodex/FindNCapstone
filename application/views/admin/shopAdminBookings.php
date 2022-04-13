@@ -338,11 +338,10 @@
                             icon: "success",
                             button: "Continue",
                             }).then((value) => {
-                                    location.reload();
                             });   
                 }
             });
-			// window.location = Base_URL+"shopadmin-comptypeinfo/" + id;	
+			$(this).parent().parent().parent().parent().addClass('d-none');
 		});
 </script>
 <script>
@@ -360,10 +359,9 @@
                 alert("processing");
                 },
                 success: function(data)
-                {
-                    location.reload();   
+                {  
                 }
             });
-			// window.location = Base_URL+"shopadmin-comptypeinfo/" + id;	
+			$(this).parent().parent().parent().parent().addClass('d-none');
 		});
 </script>
