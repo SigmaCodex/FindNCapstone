@@ -296,7 +296,6 @@ class Main_Controller extends CI_Controller {
 		$this->load->view('admin/template/adminHeader');
 	}
 
-
 	public function admin_dashboard(){
 		$session = $this->session->userdata('username');
 		$session2 = $this->session->userdata('admin_shop_id');
