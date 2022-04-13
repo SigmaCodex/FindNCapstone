@@ -288,7 +288,9 @@ class Main_Controller extends CI_Controller {
 		// echo json_encode($val);
 	}
 	public function viewShopAdminScanQR(){
+
 		 $this->load->view('admin/template/adminHeader');
+
 		$this->load->view('admin/shopAdminScanQR');
 	}
 
