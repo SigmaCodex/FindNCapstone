@@ -28,20 +28,20 @@
                 <div class="left-sidebar card shadow"> 
                     
                     <div class="left-sidebar-title d-flex align-items-center justify-content-center p-2">
-                        <h6 class="m-0 p-1">(2) BOOKING REQUEST</h6>
+                        <h6 class="m-0 p-1">BOOKING REQUEST(<span id="bookcount"></span>)</h6>
                     </div>
                     
                     <div class="left-sidebar-padding">
                         
                         <!-- Request Card -->
-                        <?php foreach ($bookingrequest as $br) {?>
+
                         <div class="request-card mt-3">
 
                             <div class="card-head-color row p-3 ">
                             </div>
 
                             <div class="request-card-content">
-
+                            <?php foreach ($bookingrequest as $br) {?>
                                 <div class="row mt-3">
                                     <div class="col-3 d-flex justify-content-center align-items-center">
                                         <img class="request-card-logo" src="assets/images/Prof.png" alt="">
@@ -216,16 +216,18 @@
                                     <tr class="title-table-wait">
                                       <th>Transaction ID</th>
                                       <th>Name</th>
-                                      <th>Transaction Status</th>
+                                      <th>Arrival Date & Time</th>
                                       <th>Payment Status</th>
                                       <th>Payment Method</th>
                                       <th>Status</th>
                                     </tr>
                                     <?php foreach ($acceptedrequest as $ar) {?>
-                                    <tr class="table-row " data-toggle="modal" data-target="#transaction-modal">
+                                    <tr class="table-row" data-toggle="modal" data-target="#transaction-modal" id_data="<?php echo $ar->transaction_id;?>">
                                       <td><?php echo $ar->transaction_id;?></td>
                                       <td><?php echo $ar->firstname;?> <?php echo $ar->lastname;?></td>
-                                      <td class="status-accepted"><?php echo $ar->transaction_status;?></td>
+                                      <td><?php echo date("M j, Y", strtotime($ar->arrival_date));?>
+                                      
+                                      <?php echo date("h:i A", strtotime($ar->arrival_time));?></td>
                                       <td class="status-<?php if($ar->payment_status == "unpaid"){echo "unpaid";} else {echo "paid";} ?>"><?php echo $ar->payment_status;?></td>
                                       <?php if($ar->payment_type == "gcash"){
                                       echo '<td><img class="gcash-logo" src="assets/images/gcash.png" alt=""> </td>';
@@ -290,7 +292,7 @@
                                       <th>Service Fee</th>
                                     </tr>
                                     <?php foreach($alltransac as $at){?>
-                                    <tr class="table-row" data-toggle="modal" data-target="#transaction-modal">
+                                    <tr class="table-row" data-toggle="modal" data-target="#transaction-modal" id_data="<?php echo $at->transaction_id;?>">
                                       <td><?php echo $at->transaction_id;?></td>
                                       <td><?php echo $at->firstname;?> <?php echo $at->lastname;?></td>
                                       <td class="text-center"><?php echo $at->name;?></td>
@@ -326,16 +328,16 @@
                         <div class="col-6">
                             <div class="modal-left-card-profile">
                                 <div class="modal-user-information d-flex flex-column align-items-center justify-content-center">
-                                    <img src="assets/images/Prof.png" alt="">
-                                    <h6 class="modal-user-name">Junky Dubs</h6>
+                                    <img id="finder_profile" onerror="this.src='assets/images/default.png';" alt="" style="object-fit:cover;">
+                                    <h6 class="modal-user-name" id="finder_name"></h6>
                                     <p class="modal-caption">Finder</p> 
 
                                 <div class="modal-user-info d-flex flex-column align-items-center justify-content-center">
                                     <h5 class="modal-user-info-title user">User Information</h5>
-                                    <p class="modal-caption-user">abc@gmail.com</p> 
-                                    <p class="modal-caption-user">09775678493</p> 
-                                    <p class="modal-caption-user">Vaccinated</p> 
-                                    <p class="modal-caption-user">Male</p> 
+                                    <p class="modal-caption-user" id="email"></p> 
+                                    <p class="modal-caption-user" id="contact_num"></p> 
+                                    <p class="modal-caption-user" id="vac_status"></p> 
+                                    <p class="modal-caption-user" id="gender"></p> 
                                 </div>
                                 </div>
                             </div>
@@ -344,10 +346,10 @@
                         <div class="col-6">
                         <div class="modal-right-card-profile">
                             <div class="modal-user-info">
-                            <h5 class="modal-user-info-title">User Information</h5>
+                            <h5 class="modal-user-info-title">Booking Information</h5>
                             <div class="row ">
                                 <div class="col-6">
-                                <p class="modal-caption-details-left">Computer Cafe:</p> 
+                                <!-- <p class="modal-caption-details-left">Computer Shop:</p>  -->
                                 <p class="modal-caption-details-left">Service Type:</p> 
                                 <p class="modal-caption-details-left">Access Type:</p> 
                                 <p class="modal-caption-details-left">Arrival Date:</p> 
@@ -364,29 +366,29 @@
                                 </div>
 
                                 <div class="col-6 modal-data-info-right">
-                                <p class="modal-caption-details-right">TNC CyberCafe</p> 
-                                <p class="modal-caption-details-right">Computer Booking</p> 
-                                <p class="modal-caption-details-right">Regular</p> 
-                                <p class="modal-caption-details-right">April 22, 2022</p> 
-                                <p class="modal-caption-details-right">10:00 AM (GMT+8)</p> 
+                                <p class="modal-caption-details-right" id="compshop">sdaasdsa</p> 
+                                <p class="modal-caption-details-right" id="servicetype"></p> 
+                                <p class="modal-caption-details-right" id="accesstype"></p> 
+                                <p class="modal-caption-details-right" id="date_arrival"></p> 
+                                <p class="modal-caption-details-right" id="time_arrival"></p> 
                                 <!-- If Gcash -->
-                                <!-- <p class="modal-caption-details-right"><img src="images/gcash.png" alt=""></p>  -->
+                                <p class="modal-caption-details-right" id="payment-notselected"><img id="payment-method-logo" alt="" style="width:19px;"></p>  
                                 <!-- If over-the-counter -->
-                                <p class="modal-caption-details-right-method">over-the-counter<img src="images/counter2.png" alt=""></p> 
+                                <!-- <p class="modal-caption-details-right-method"><img id="payment-method-logo" alt="" style=""></p>  -->
 
                                 <!-- If paid -->
-                                <p class="modal-caption-details-right-status badge badge-success">paid</p> 
+                                <p class="modal-caption-details-right-status badge badge-success" id="pay_status"></p> 
                                 <!-- If unpaid -->
                                 <!-- <p class="modal-caption-details-right-status badge badge-danger">Unpaid</p>  -->
                                 
-                                <p class="modal-caption-details-right-message text-muted">Duol sa aircon admin please master</p> 
+                                <p class="modal-caption-details-right-message text-muted" id="message"></p> 
 
                                 <div class="ticket-fee-total-right" style="border-bottom: 1px solid #C4C4C4; margin-top: 0;">
-                                    <p class="modal-caption-details-left"><b>x1</b> </p>
-                                    <p class="modal-caption-details-left"><b>P10</b> </p>
+                                    <p class="modal-caption-details-left" id="numticket"><b></b> </p>
+                                    <p class="modal-caption-details-left" id="servicefee"><b></b> </p>
                                 </div>
 
-                                <p class="modal-caption-details-right-total"><b>P10</b> </p>
+                                <p class="modal-caption-details-right-total" id="totalfee"><b></b> </p>
                                 <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
                                 </div>
                             </div>
@@ -410,18 +412,116 @@
     <script src="assets/js/shopAdminBookings.js"></script>
 </body>
 </html>
+ 
+<script>
+$(document).on("click",".table-row",function(){
+    var Base_URL = "<?php echo base_url();?>";
+    var id = $(this).attr("id_data");
+        $.ajax({
+					url: Base_URL+"viewTransaction/"+id,
+					type: "GET",
+                    cache: false,
+                    async: false,
+					success: function(data){
+                           var result = JSON.parse(data);
+                            for(var x = 0 ; x < result.length ; x ++)
+                            {
+                                $("#finder_name").text(result[x]['firstname']+","+result[x]['lastname']);
+                                $("#email").text(result[x]['email']);
+                                $("#gender").text(result[x]['gender']);
+                                $("#vac_status").text(result[x]['vac_status']);
+                                $("#contact_num").text(result[x]['phone_num']);
+                                $("#finder_profile").removeAttr("src");
+                                $("#finder_profile").attr("src","assets/upload/finder/"+result[x]['profile_pic']);
+                                
+                                $("#servicetype").text(result[x]['servicetype']);
+                                $("#accesstype").text(result[x]['name']);
+                                $("#numticket").text(result[x]['num_ticket']);
+                                newdate = dateformat(result[x]['arrival_date']);
+                                time = result[x]['arrival_time'];
+                                arrival_time = new Date(''+newdate+' '+time+'').toLocaleTimeString().replace(/([\d]+:[\d]{2})(:[\d]{2})(.*)/, "$1$3");
+                                $("#date_arrival").text(newdate);
+                                $("#time_arrival").text(arrival_time);
+                                $("#message").text(result[x]['instruction']);
+                                $("#servicefee").text("₱"+result[x]['service_fee']);
+                                $("#pay_status").text(result[x]['payment_status']);
+                                $("#totalfee").text("₱"+result[x]['service_fee'] * result[x]['num_ticket']);
+                                    if(result[x]['payment_type'] == "gcash"){
+                                        $("#payment-method-logo").removeAttr("src");
+                                        $("#payment-method-logo").attr("src","assets/images/gcash.png");
+                                      
+                                        $('#gcash_section').show();
+								        $('#overthecounter_section').hide();
+
+                                    }else if(result[x]['payment_type'] == "overthecounter"){
+                                        $("#payment-method-logo").removeAttr("src");
+                                        $("#payment-method-logo").attr("src","assets/images/counter2.png");
+
+                                        $('#overthecounter_section').show();
+								        $('#gcash_section').hide();
+                                    }else if(result[x]['payment_type'] == "not_selected"){
+                                        $("#payment-method-logo").removeAttr("src");
+                                    }
+                            }
+                    }
+        
+                });
+        function dateformat(arrival_date){
+            let date = new Date(arrival_date);
+            let d = date.getDate();
+            let months = [
+            "Jan",
+            "Feb",
+            "Mar",
+            "Apr",
+            "May",
+            "Jun",
+            "Jul",
+            "Aug",
+            "Sep",
+            "Oct",
+            "Nov",
+            "Dec",
+            ];
+            let m = months[date.getMonth()];
+            let y = date.getFullYear();
+            let days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+            let weekDay = days[date.getDay()];
+            date_format =`${m} ${d},${y} `;
+            return date_format;
+        } 
+});
+</script>
+<script>
+        setInterval(function(){
+
+            BASE_URL = "<?php echo base_url();?>";
+            $.ajax({
+                        url:BASE_URL+"countPendingBook",
+                        method:"GET", 
+                        // data:{},
+                        cache: false, 
+                        success:function(data)
+                        {
+                          if(data>0){
+                            $("#bookcount").text(data);   
+                          }  
+                        }
+                      }); 
+            //ajax;
+
+        },100);
+    </script>
 <script>
 		$(document).on("click",".acceptbtn",function(){
 			var Base_URL = "<?php echo base_url();?>";
 			var id = $(this).attr("transac_id");
             var user_id = $(this).attr("user_id");
-            alert(id);
             $.ajax({
             url:Base_URL+"accept-updateBookStatus/"+id+"/"+user_id,
                 type: "POST",
                 beforeSend : function()
                 {
-                alert("processing");
                 },
                 success: function(data)
                 {
@@ -443,14 +543,11 @@
 			var Base_URL = "<?php echo base_url();?>";
 			var id = $(this).attr("transac_id");
             var user_id = $(this).attr("user_id");
-            
-            alert(id);
             $.ajax({
             url:Base_URL+"decline-updateBookStatus/"+id+"/"+user_id,
                 type: "POST",
                 beforeSend : function()
                 {
-                alert("processing");
                 },
                 success: function(data)
                 {  

@@ -319,9 +319,10 @@ class LogicalController extends CI_Controller {
         $this->load->model('MainModel');
         $this->MainModel->getallCancelledRequest($shop_id);
     }
-    public function viewBookRequest($transac_id){
+    public function viewTransaction($transac_id){
         $this->load->model('MainModel');
-        $this->MainModel->viewBookRequest($transac_id);
+        $result = $this->MainModel->viewTransaction($transac_id);
+        echo json_encode($result);
     }
     public function updateAcceptBookingTransacStatus($transac_id,$to_user_id){
         $status = 'accepted';
@@ -345,6 +346,11 @@ class LogicalController extends CI_Controller {
     public function viewallShopAdminBookingRequests($shop_id){
         $this->load->model('MainModel');
         $this->MainModel->viewallShopAdminBookingRequests($shop_id);
+    }
+    public function CountBookingRequest(){
+        $this->load->model('MainModel');
+        $num = $this->MainModel->CountBookingRequest();
+        echo $num;
     }
     //ADMIN
 
