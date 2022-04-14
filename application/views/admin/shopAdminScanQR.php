@@ -221,7 +221,7 @@
                                 </div>
 
                                 <div class="info-status-update col-3 ">
-                                    <p class="status-color" style="color:#08B64E">On Schedule</p>
+                                    <p class="status-color" id="arrival_status">On Schedule</p>
                                     <p class="my-clock"></p>
                                     <p class="date"></p>
                                 </div>
@@ -244,6 +244,8 @@
     <script src="assets/js/shopAdminScanQR.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://rawgit.com/schmich/instascan-builds/master/instascan.min.js"></script>
+    <!-- library for convertime format -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script> 
     <script src="assets/js/clock.js"></script>
     <script type="text/javascript">
 					var scanner = new Instascan.Scanner({ video: document.getElementById('preview'), scanPeriod: 5, mirror: false });
@@ -364,19 +366,21 @@ setInterval(function(){
                                         $('#overthecounter_section').show();
 								        $('#gcash_section').hide();
                                     }
-                          
+                                    
+
+
 
                             }
 
                         }
 
 					},
-        
+                      
 				});
                 //end of ajax
+                checkTimeAndDateStatus();
 			}else{
-
-			
+                //else for transaction id is empty
 			}
         },1000);
 
@@ -432,6 +436,69 @@ setInterval(function(){
                     }
                 });
                 
+        }
+
+        function getTimeAsNumberOfMinutes(time)
+        {
+            var timeParts = time.split(":");
+            var timeInMinutes = (timeParts[0] * 60) + timeParts[1];
+            return timeInMinutes;
+        }
+ 
+        function addMinutesToTime(time, minsAdd) {
+            function z(n){ 
+                return (n<10? '0':'') + n;
+                };
+            var bits = time.split(':');
+            var mins = bits[0]*60 + +bits[1] + +minsAdd;
+            return z(mins%(24*60)/60 | 0) + ':' + z(mins%60);  
+        }
+
+        function checkTimeAndDateStatus(){// check if finder is LATE/OVERDUE/ONSCHEDULE
+            const convertTime12to24 = (time12h) => moment(time12h, 'hh:mm A').format('HH:mm'); // convert time to 24 hr format
+                time_arrival = $("#time_arrival").text();
+                date_arrival = $("#date_arrival").text();
+                
+                current_time = $(".my-clock").text();
+                current_date = $(".date").text();
+                var d1 = new Date(date_arrival);
+                var d2 = new Date(current_date);
+
+                 if(d1.getTime() >= d2.getTime()){
+                    
+                   time_arrivalMin = getTimeAsNumberOfMinutes(convertTime12to24(time_arrival));
+                   current_timeMin = getTimeAsNumberOfMinutes(convertTime12to24(current_time));
+
+                   time_arrival30 = addMinutesToTime(convertTime12to24(time_arrival),30);//add 30 mins to 24 hours format time arrival
+                   time_arrivalMin30 =  getTimeAsNumberOfMinutes(time_arrival30);
+
+                    if(d1.getTime() === d2.getTime()){//if the arrival date is equal to current date
+                        if(current_timeMin<= time_arrivalMin){
+                            $("#arrival_status").removeAttr("style");
+                            $("#arrival_status").attr("style","color:#08B64E");
+                            $("#arrival_status").text("OnSchedule");
+                        }
+                        else if(current_timeMin>time_arrivalMin && current_timeMin<=time_arrivalMin30){
+                            $("#arrival_status").removeAttr("style");
+                            $("#arrival_status").attr("style","color: #ffc107");
+                            $("#arrival_status").text("Late");
+                        }else{
+                            $("#arrival_status").removeAttr("style");
+                            $("#arrival_status").attr("style","#CC3333");
+                            $("#arrival_status").text("Overdue");
+                        }
+                    }else{
+                        $("#arrival_status").removeAttr("style");
+                        $("#arrival_status").attr("style","color:#08B64E");
+                        $("#arrival_status").text("OnSchedule");
+                    }
+ 
+
+                 }else{
+                    $("#arrival_status").removeAttr("style");
+                    $("#arrival_status").attr("style","color:#CC3333");
+                    $("#arrival_status").text("Overdue");
+                 }
         }
 
         
