@@ -413,6 +413,7 @@
 </body>
 </html>
  
+<!-- list of all bookings table -->
 <script>
 $(document).on("click",".table-row",function(){
     var Base_URL = "<?php echo base_url();?>";
