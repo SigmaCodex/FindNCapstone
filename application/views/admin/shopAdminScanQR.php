@@ -157,14 +157,15 @@
                             <!-- IF OVER-THE-COUNTER PAYMENT METHOD --> 
                             <div class="row pt-5" id="overthecounter_section" style="display:none">
                                 <div class="counter-button col-12 d-flex justify-content-around align-items-center">
-                                    <button class="counter-button-cancel">Cancel Booking</button>
-                                    <button class="counter-button-confirm">Confirm Payment</button>
+                                    <button class="counter-button-cancel" id="cancel_payment">Cancel Booking</button>
+                                    <button class="counter-button-confirm" id="confirm_payment">Confirm Payment</button>
                                     
                                 </div>
                                 <div class="counter-button col-12 d-flex flex-column justify-content-center align-items-center">
                                     
                                 </div>
                             </div>
+
 
 
                         </div>
@@ -209,7 +210,7 @@
                                     <p id="num_person">------</p>
                                     <p id="date_arrival">-----</p>
                                     <p id="time_arrival">-----</p>
-                                    <p class="message-comp" id="message">Kanang duol sa aircon niya kanang dili kaayo init niya dili silaw. adto dapit sa tournament lounge sir.</p>
+                                    <p class="message-comp" id="message">------------</p>
                                 </div>
                             </div>
 
@@ -221,13 +222,13 @@
                                 </div>
 
                                 <div class="info-status-update col-3 ">
-                                    <p class="status-color" id="arrival_status">On Schedule</p>
+                                    <p class="status-color" id="arrival_status">---------</p>
                                     <p class="my-clock"></p>
                                     <p class="date"></p>
                                 </div>
 
                                 <div class="info-status-button col-5 d-flex justify-content-end align-items-end">
-                                    <Button class="btn pmd-btn-raised pmd-ripple-effect btn-success">Confirm Booking</Button>    
+                                    <Button class="btn pmd-btn-raised pmd-ripple-effect btn-success" id="confirm_booking" style="display:none;">Confirm Booking</Button>    
                                 </div>
                             </div>
 
@@ -365,20 +366,23 @@ setInterval(function(){
 
                                         $('#overthecounter_section').show();
 								        $('#gcash_section').hide();
+                                        checkPaymentStatus();
                                     }
                                     
 
 
 
                             }
-
+                         //end of else
                         }
 
 					},
                       
 				});
                 //end of ajax
+                
                 checkTimeAndDateStatus();
+               
 			}else{
                 //else for transaction id is empty
 			}
@@ -441,7 +445,8 @@ setInterval(function(){
         function getTimeAsNumberOfMinutes(time)
         {
             var timeParts = time.split(":");
-            var timeInMinutes = (timeParts[0] * 60) + timeParts[1];
+            // var timeInMinutes = (timeParts[0] * 60) + timeParts[1];
+            var timeInMinutes = timeParts[0]+ timeParts[1];
             return timeInMinutes;
         }
  
@@ -472,7 +477,8 @@ setInterval(function(){
                    time_arrival30 = addMinutesToTime(convertTime12to24(time_arrival),30);//add 30 mins to 24 hours format time arrival
                    time_arrivalMin30 =  getTimeAsNumberOfMinutes(time_arrival30);
 
-                    if(d1.getTime() === d2.getTime()){//if the arrival date is equal to current date
+                    if(d1.getTime() === d2.getTime()){//if the arrival date is equal to current date 
+                    
                         if(current_timeMin<= time_arrivalMin){
                             $("#arrival_status").removeAttr("style");
                             $("#arrival_status").attr("style","color:#08B64E");
@@ -484,29 +490,64 @@ setInterval(function(){
                             $("#arrival_status").text("Late");
                         }else{
                             $("#arrival_status").removeAttr("style");
-                            $("#arrival_status").attr("style","#CC3333");
+                            $("#arrival_status").attr("style","color:#CC3333");
                             $("#arrival_status").text("Overdue");
                         }
+                    
                     }else{
                         $("#arrival_status").removeAttr("style");
                         $("#arrival_status").attr("style","color:#08B64E");
                         $("#arrival_status").text("OnSchedule");
                     }
- 
+
+                    // $("#confirm_payment").show();
+                    // $("#cancel_payment").show();
+                    // $("#confirm_booking").show(); 
 
                  }else{
                     $("#arrival_status").removeAttr("style");
                     $("#arrival_status").attr("style","color:#CC3333");
                     $("#arrival_status").text("Overdue");
+
+                    $("#confirm_booking").hide();   
+                    $("#confirm_payment").hide();
+                    $("#cancel_payment").hide();
+                    //ajax for updating trasaction status to fail
                  }
+                 
+        }
+        
+        function checkPaymentStatus(){
+            payment_Status = $("#payment_status").text();
+
+            if(payment_Status=="paid"){
+                $("#confirm_payment").hide();
+                $("#cancel_payment").hide();
+                $("#confirm_booking").show(); 
+            }else if("unpaid"){
+                $("#confirm_payment").show();
+                $("#cancel_payment").show();
+                $("#confirm_booking").hide(); 
+            }
         }
 
         
 
 </script>
-
 <script>
-   
+	$(document).on('click','#confirm_payment',function(){ 
+		transaction_id = $("#transaction_id").val();	
+		var BASE_URL = "<?php echo base_url();?>";
+		$.ajax({
+          url: BASE_URL+"updatePaymentStatus/"+transaction_id+"/paid",
+          type: "POST",
+          success: function(data)
+          {
+         
+          }
+        });
+    });
+
 </script>
     
 </body>
