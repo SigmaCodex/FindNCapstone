@@ -796,7 +796,7 @@ class MainModel extends CI_Model{
         //echo json_encode($query->result());
     }
     public function getallAcceptedRequest($shop_id){
-        $this->db->select('finders.firstname,finders.lastname,transaction.transaction_status,transaction.transaction_id,transaction.payment_status,transaction.payment_type');
+        $this->db->select('finders.firstname,finders.lastname,transaction.*');
         $this->db->from('transaction');
         $this->db->join('user', 'user.user_id = transaction.user_id_fk');
         $this->db->join('finders', 'user.user_id = finders.user_id', 'left');
@@ -820,8 +820,8 @@ class MainModel extends CI_Model{
         // return $query->result();
         echo json_encode($query->result());
     }
-    public function viewBookRequest($transac_id){
-        $this->db->select('finders.firstname,finders.lastname,transaction.*,comp_booking.num_ticket,computer_type.name,computer_type.rate');
+    public function viewTransaction($transac_id){
+        $this->db->select('finders.firstname,finders.lastname,finders.profile_pic,finders.email,finders.phone_num,finders.vac_status,finders.gender,transaction.*,comp_booking.num_ticket,computer_type.name');
         $this->db->from('transaction');
         $this->db->join('user', 'user.user_id = transaction.user_id_fk');
         $this->db->join('finders', 'user.user_id = finders.user_id', 'left');
@@ -829,8 +829,8 @@ class MainModel extends CI_Model{
         $this->db->join('computer_type', 'computer_type.Ctype_id = comp_booking.comp_type_id', 'left');
         $this->db->where('transaction.transaction_id',$transac_id);
         $query = $this->db->get();
-        // return $query->result();
-        echo json_encode($query->result());
+        return $query->result();
+        //echo json_encode($query->result());
     }
     public function viewallShopAdminBookingRequests($shop_id){
         $this->db->select('finders.firstname,finders.lastname,transaction.arrival_date,transaction.transaction_id,transaction.arrival_time,transaction.transaction_status,transaction.payment_status,comp_booking.num_ticket,transaction.service_fee,computer_type.name');
@@ -853,6 +853,13 @@ class MainModel extends CI_Model{
         $this->db->where('transaction_id',$transac_id);
         $this->db->update('transaction',$data);
         echo json_encode($data);
+    }
+    public function CountBookingRequest(){
+        $shop_id = $this->session->userdata('admin_shop_id');
+        $query = $this->db->select('*')->from('transaction')->where('shop_id_fk',$shop_id)->where('transaction_status',"pending")->get();
+		$row = $query->num_rows();
+		// return $row;
+        echo json_encode($row);
     }
 
     public function addshopPosts($id){
