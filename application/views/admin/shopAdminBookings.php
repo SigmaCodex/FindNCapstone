@@ -34,14 +34,12 @@
                     <div class="left-sidebar-padding">
                         
                         <!-- Request Card -->
-
+                        <?php foreach ($bookingrequest as $br) {?>
                         <div class="request-card mt-3">
 
                             <div class="card-head-color row p-3 ">
                             </div>
-
                             <div class="request-card-content">
-                            <?php foreach ($bookingrequest as $br) {?>
                                 <div class="row mt-3">
                                     <div class="col-3 d-flex justify-content-center align-items-center">
                                         <img class="request-card-logo" src="assets/images/Prof.png" alt="">
@@ -360,13 +358,12 @@
 
                                 <div class="ticket-fee-total">
                                     <p class="modal-caption-details-left"><b>Tickets:</b> </p>
-                                    <p class="modal-caption-details-left"><b>Booking Fee:</b> </p>
                                 </div>
                                 <p class="modal-caption-details-left-total"><b>Total Service Fee:</b> </p>
                                 </div>
 
                                 <div class="col-6 modal-data-info-right">
-                                <p class="modal-caption-details-right" id="compshop">sdaasdsa</p> 
+                                <!-- <p class="modal-caption-details-right" id="compshop">sdaasdsa</p>  -->
                                 <p class="modal-caption-details-right" id="servicetype"></p> 
                                 <p class="modal-caption-details-right" id="accesstype"></p> 
                                 <p class="modal-caption-details-right" id="date_arrival"></p> 
@@ -385,7 +382,6 @@
 
                                 <div class="ticket-fee-total-right" style="border-bottom: 1px solid #C4C4C4; margin-top: 0;">
                                     <p class="modal-caption-details-left" id="numticket"><b></b> </p>
-                                    <p class="modal-caption-details-left" id="servicefee"><b></b> </p>
                                 </div>
 
                                 <p class="modal-caption-details-right-total" id="totalfee"><b></b> </p>
@@ -444,9 +440,8 @@ $(document).on("click",".table-row",function(){
                                 $("#date_arrival").text(newdate);
                                 $("#time_arrival").text(arrival_time);
                                 $("#message").text(result[x]['instruction']);
-                                $("#servicefee").text("₱"+result[x]['service_fee']);
+                                $("#totalfee").text("₱"+result[x]['service_fee']);
                                 $("#pay_status").text(result[x]['payment_status']);
-                                $("#totalfee").text("₱"+result[x]['service_fee'] * result[x]['num_ticket']);
                                     if(result[x]['payment_type'] == "gcash"){
                                         $("#payment-method-logo").removeAttr("src");
                                         $("#payment-method-logo").attr("src","assets/images/gcash.png");
