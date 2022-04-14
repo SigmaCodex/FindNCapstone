@@ -577,7 +577,7 @@ input:checked + .slider:before {
   padding: 20px 20px 10px 20px;
   background-color: #F1F1F1 !important;
   transition: all 0.5s ease;
-  z-index: 200;
+  z-index: 100;
   box-shadow: 0px 0px 3px rgba(0,0,0,0.5);
   border-bottom-left-radius: 25px;
   border-bottom-right-radius: 25px;

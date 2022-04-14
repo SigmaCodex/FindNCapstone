@@ -126,7 +126,7 @@ input[type=number]:focus {
 .receipt-img-modal {
   display: none; 
   position: fixed; 
-  z-index: 20; 
+  z-index: 999; 
   padding-top: 100px; 
   left: 0;
   top: 0;
