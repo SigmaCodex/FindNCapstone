@@ -30,14 +30,14 @@
               <button class="btn btn-tab btn-ripple active  shadow-none" data-target-tab="#today">
                 Today
               </button>
-              <button class="btn btn-tab btn-ripple  shadow-none" data-target-tab="#all-tab">
-                All
-              </button>
               <button class="btn btn-tab btn-ripple shadow-none" data-target-tab="#pending">
                 Pending
               </button>
               <button class="btn btn-tab btn-ripple shadow-none" data-target-tab="#accepted">
                 Accepted
+              </button>
+              <button class="btn btn-tab btn-ripple  shadow-none" data-target-tab="#all-tab">
+                All
               </button>
             </div>
           </div>
@@ -83,13 +83,13 @@
                 <p class="legendTitle m-0 text-muted d-flex justify-content-start "  style="font-size: 12px; padding-bottom: 5px; font-weight: 800;"><?php echo date("M j, Y", strtotime($row->arrival_date));?></p>
                 <?php if($row->transaction_status == "pending"){
                     $color = "border-left: 15px solid rgb(233, 220, 36);";
-                  }else if($row->transaction_status == "accepted" && $row->payment_status == "paid"){
+                  }else if($row->transaction_status == "success" && $row->payment_status == "paid"){
                     $color = "border-left: 15px solid  rgb(233 97 18);";
                   }
                   else if($row->transaction_status == "accepted"){
                     $color = "border-left: 15px solid rgb(54, 157, 79);";
                   }
-                  else if($row->transaction_status == "declined"){
+                  else if($row->transaction_status == "declined" || $row->transaction_status == "cancelled"){
                     $color = "border-left: 15px solid rgb(255, 0, 0);";
                   }
                 ?>
@@ -133,12 +133,12 @@
                 <p class="legendTitle m-0 text-muted d-flex justify-content-start "  style="font-size: 12px; padding-bottom: 5px; font-weight: 800;"><?php echo date("M j, Y", strtotime($row->arrival_date));?></p>
                 <?php if($row->transaction_status == "pending"){
                     $color = "border-left: 15px solid rgb(233, 220, 36);";
-                  }else if($row->transaction_status == "accepted" && $row->payment_status == "paid"){
+                  }else if($row->transaction_status == "success" && $row->payment_status == "paid"){
                     $color = "border-left: 15px solid  rgb(233 97 18);";
                   }
                   else if($row->transaction_status == "accepted"){
                     $color = "border-left: 15px solid rgb(54, 157, 79);";
-                  }else if($row->transaction_status == "declined"){
+                  }else if($row->transaction_status || $row->transaction_status == "cancelled"){
                     $color = "border-left: 15px solid rgb(255, 0, 0);";
                   }
                 ?>
@@ -213,9 +213,7 @@
                   if($row->transaction_status  == "accepted"){
                     ?> 
                       <div class="transaction-card ">
-                    <?php if($row->transaction_status == "accepted" && $row->payment_status == "paid"){
-                              $color = "border-left: 15px solid  rgb(233 97 18);";
-                          }else if($row->transaction_status == "accepted"){
+                    <?php if($row->transaction_status == "accepted"){
                               $color = "border-left: 15px solid rgb(54, 157, 79);";
                           }
                     

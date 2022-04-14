@@ -156,7 +156,7 @@
 
                             <div class="row pt-2" id="transaction_status_section" style="display:none">
                                 <div class="counter-button col-12 d-flex justify-content-around align-items-center">
-                                            <h5>Transaction Status:<h1 style="color:#f83f0b">Success</h1></h5>
+                                            <h1 id="transaction_status"></h1>
                                 </div>
                                 <div class="counter-button col-12 d-flex flex-column justify-content-center align-items-center">
                              
@@ -386,13 +386,29 @@ setInterval(function(){
                                     if(result[x]['transaction_status'] == "success"){
                                         $("#arrival_status").removeAttr("style");
                                         $("#arrival_status").attr("style","color:#f83f0b");
-                                        $("#arrival_status").text("Arrived");
+                                        $("#arrival_status").text("Admitted");
+                                        $("#transaction_status").removeAttr("style");
+                                        $("#transaction_status").attr("style","color:#f83f0b");
+                                        $("#transaction_status").text(result[x]['transaction_status']);
                                         $("#confirm_booking").hide();   
                                         $("#confirm_payment").hide();
                                         $("#cancel_payment").hide();
                                         $("#transaction_status_section").show();
                                       
-                                    }else{
+                                    }else if(result[x]['transaction_status'] == "cancelled"){
+                                        $("#arrival_status").removeAttr("style");
+                                        $("#arrival_status").attr("style","color:#CC3333");
+                                        $("#arrival_status").text("Cancelled");
+                                        $("#transaction_status").removeAttr("style");
+                                        $("#transaction_status").attr("style","color:#CC3333");
+                                        $("#transaction_status").text(result[x]['transaction_status']);
+                                        $("#confirm_booking").hide();   
+                                        $("#confirm_payment").hide();
+                                        $("#cancel_payment").hide();
+                                        $("#transaction_status_section").show();
+
+                                    }
+                                    else{
                                           checkPaymentStatus();
                                           checkTimeAndDateStatus();
                                     }    
@@ -604,6 +620,31 @@ setInterval(function(){
         
     });
 
+    //cancel Booking Transaction
+    $(document).on('click','#cancel_payment',function(){ 
+		transaction_id = $("#transaction_id").val();	
+		var BASE_URL = "<?php echo base_url();?>";
+
+		$.ajax({
+          url: BASE_URL+"updateTranscationStatus/"+transaction_id+"/cancelled",
+          type: "POST",
+          success: function(data)
+          {
+         
+          }
+        });
+
+        $.ajax({
+          url: BASE_URL+"updateArrivalStatus/"+transaction_id+"/cancelled",
+          type: "POST",
+          success: function(data)
+          {
+         
+          }
+        });
+        
+    });
+  
 </script>
     
 </body>

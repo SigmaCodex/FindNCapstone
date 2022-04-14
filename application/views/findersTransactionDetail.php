@@ -96,8 +96,11 @@
                                 echo "<p class='legend legend2 legendText p-1'>".$row->transaction_status."</p>";
                           }else if($row->transaction_status == "pending"){
                             echo "<p class='legend legend3 legendText p-1'>".$row->transaction_status."</p>";
-                          }else if($row->transaction_status == "declined"){
+                          }else if($row->transaction_status == "declined" || $row->transaction_status == "cancelled"){
                             echo "<p class='legend legend5 legendText p-1'>".$row->transaction_status."</p>";
+                          }
+                          else if($row->transaction_status == "success"){
+                            echo "<p class='legend legendText p-1' style='background-color:rgb(252, 74, 26)'>".$row->transaction_status."</p>";
                           }
                         ?>
                         <!-- <p class="legend legend3 legendText p-1">pending</p>
@@ -237,7 +240,7 @@
                                 }
                               }
 
-                            if($row->payment_type == "overthecounter"){
+                            if($row->payment_type == "overthecounter" && $row->transaction_status != "cancelled" && $row->transaction_status!= "success" ){
                                 echo "
                               <div class='row'>
                                 <div class='col-6'><h4 class='info-text-left'>Payment Method:</h4></div>
@@ -248,9 +251,17 @@
                               <h6 style='text-align:center; font-size: 10px; font-weight: 500; padding-top: 5px; color: rgb(55, 152, 10);'>Note: <b>Booking Fee</b> shall be paid over-the-counter before using the computer.</h6> 
                               <h6 style='text-align:center; font-size: 10px; font-weight: 500; padding-top: 5px; color: rgb(55, 152, 10);'> <b>Dont Be Late Finders!</b></h6> 
                                 ";
+                            }else if($row->transaction_status == "success" && $row->payment_type == "overthecounter"){
+                              echo "
+                              <div class='row'>
+                                <div class='col-6'><h4 class='info-text-left'>Payment Method:</h4></div>
+                                <div class='col-2'><p class='info-text-middle'>:</p></div>
+                                <div class='col-4'><p class='info-text-right' style='padding-right:36px; font-weight: 700;'>Over the Counter</p></div>
+                              </div> 
+                                ";
                             }
                             
-                            if(($row->payment_status == "paid" && $row->transaction_status == "accepted")||$row->payment_type == "overthecounter"){
+                            if(($row->payment_status == "paid" && $row->transaction_status == "accepted")||$row->payment_type == "overthecounter" && $row->transaction_status != "cancelled" && $row->transaction_status!= "success"){
 
                               echo "<br><span class='source'  style='font-size:13px; font-weight: 700;'>View Ticket Now : 
                                     </span>
