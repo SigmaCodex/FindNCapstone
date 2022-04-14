@@ -2,17 +2,18 @@
 <html>
 <head>
 	<title>view Ticket</title>
-    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css'>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">    
 </head>
 
 <style>
-    * {
+
+@import url("https://fonts.googleapis.com/css?family=Ubuntu:300,400,500,700");
+
+* {
   box-sizing: border-box;
-}
-
-
+  }
 body {
-  @import url("https://fonts.googleapis.com/css?family=Ubuntu:300,400,500,700");
+ 
   font-family: "Ubuntu", sans-serif;
   background-color: #fff;
   height: 100%;
@@ -26,6 +27,7 @@ body {
 
 .ticket-system {
   max-width: 385px;
+
 }
 .ticket-system .top {
   display: flex;
@@ -41,7 +43,8 @@ body {
   color: #fff;
 }
 .ticket-system .top .printer {
-  width: 90%;
+  
+  width: 350px;
   height: 20px;
   border: 5px solid #fc5629;
   border-radius: 10px;
@@ -53,7 +56,7 @@ body {
   padding-bottom: 10px;
 }
 .ticket-system .receipts {
-  width: 100%;
+  width: 350px;
   display: flex;
   align-items: center;
   flex-direction: column;
@@ -67,48 +70,79 @@ body {
   padding: 25px 30px;
   text-align: left;
   min-height: 200px;
-  width: 88%;
+  width: 100%;
   background-color: #fff;
   border-radius: 10px 10px 20px 20px;
   box-shadow: 1px 3px 8px 3px rgba(0, 0, 0, 0.2);
+}
+.ticket-system .receipts .receipt hr{
+  margin:0;
+  padding-top:10px;
 }
 .ticket-system .receipts .receipt .airliner-logo {
   max-width: 80px;
 }
 .ticket-system .receipts .receipt .route {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
-  margin: 30px 0;
+}
+.ticket-system .receipts .receipt .route h2 {
+  font-weight: 500;
+  font-size: 30px;
+  padding-top: 10px;
+  margin:0;
+
+  background-image: linear-gradient(45deg, #f83f0b,#e09e1a);
+  background-size: 100%;
+  -webkit-background-clip: text;
+  -moz-background-clip: text;
+  -webkit-text-fill-color: transparent; 
+  -moz-text-fill-color: transparent;
 }
 .ticket-system .receipts .receipt .route .plane-icon {
   width: 30px;
   height: 30px;
   transform: rotate(90deg);
 }
-.ticket-system .receipts .receipt .route h2 {
-  font-weight: 300;
-  font-size: 2.2em;
-  margin: 0;
+.ticket-system .receipts .receipt .left-title span {
+  font-size: 15px;
+  color: #7B7575;
+  padding: 3px;
+  font-weight:300;
 }
-.ticket-system .receipts .receipt .details {
-  display: flex;
-  justify-content: space-between;
-  flex-wrap: wrap;
+.ticket-system .receipts .receipt .left-title .finder {
+  font-size: 15px;
+  color: #7B7575;
+  padding: 3px;
 }
-.ticket-system .receipts .receipt .details .item {
-  display: flex;
-  flex-direction: column;
-  min-width: 70px;
+.ticket-system .receipts .receipt .right-title p {
+  font-size: 15px;
+  color: #7B7575;
+  padding: 3px;
+  margin:0;
+  font-weight:500;
+  text-align: right;
 }
-.ticket-system .receipts .receipt .details .item span {
-  font-size: 0.8em;
-  color: rgba(28, 28, 28, 0.7);
+.ticket-system .receipts .receipt .right-title .time {
+  font-size: 15px;
+  color: #7B7575;
+  padding: 3px;
+  margin:0;
+  font-weight:500;
+}
+
+.ticket-system .receipts .receipt .details .item h5 {
+  color: #454242;
+  font-weight: 800;
+}
+.ticket-system .receipts .receipt .details .item .time {
+  color: #454242;
   font-weight: 500;
+  font-size: 14px;
 }
-.ticket-system .receipts .receipt .details .item h3 {
-  margin-top: 10px;
-  margin-bottom: 25px;
+.ticket-system .receipts .receipt .details .item p{
+  text-align: right;
 }
 .ticket-system .receipts .receipt.qr-code {
   height: auto;
@@ -174,68 +208,67 @@ body {
 
 <body>
 <!-- INSPO:  https://www.behance.net/gallery/69583099/Mobile-Flights-App-Concept -->
-<main class="ticket-system">
-   <div class="top">
-   <div class="printer">
-   </div>
-   <div class="receipts-wrapper ">
-      <div class="receipts">
-         <div class="receipt">
-            <img src="../assets/images/icon-logo.png" style="height:50px"></img>
-            <?php foreach($transaction_details as $row){?>
-            <div class="route">
-               <h2><?php echo $row->shop_name?></h2>
-            </div>
-            <hr>
-            <div class="details">
-            <div class="item">
-                  <span>Booking No.</span>
-                  <h5><?php echo $row->transaction_id?></h5>
-               </div>
-               <br><div class="item">  </div>
-               <div class="item">
-                  <span>Name:</span>
-                  <h5><?php echo $row->lastname?>,<?php echo $row->firstname?></h5>
-               </div>
-            
-               <div class="item">
-                  <span>Time And Date</span>
-                  <p> <?php echo date("M j, Y", strtotime($row->arrival_date));?> | <?php echo date("h:i:a", strtotime($row->arrival_time));?></p>
-               </div>
-               <br><div class="item">  </div>
-               <div class="item">
-                  <span>Computer Type</span>
-                  <p><?php echo $row->name;//name == computertype name?></p>
-               </div>
-              
-               <div class="item">
-                  <span>Number of Person</span>
-                  <p><?php echo $row->num_ticket;?></p>
-               </div>
-               <div class="item">
-                  <span>Payment Status</span>
-                  <p><?php echo $row->payment_status;?></p>
-               </div>
-               <div class="item">
-                  <span>Service Fee</span>
-                  <p>₱<?php echo $row->service_fee;?></p>
-               </div>
-            </div>
-         </div>
-         <div class="receipt qr-code d-flex flex-column">
-            <a href="../assets/QrCodes/<?php echo $row->qr_code?>"  download><img class="qr-image" src="../assets/QrCodes/<?php echo $row->qr_code?>" alt="" style=""  download></a>
-            <br>
-            <h6 style='text-align:center; font-size: 10px; font-weight: 500; padding-top: 5px; color: rgb(55, 152, 10);'>Note: <b>Click The Qr Code To Download</b></h6> 
-            <br>
-
-         </div>
+  <div class="container d-flex justify-content-center">
+  <main class="ticket-system ">
+      <div class="top">
+      <div class="printer">
       </div>
-      
-      <?php }?>
-   </div>
- 
+      <div class="receipts-wrapper ">
+          <div class="receipts">
+            <div class="receipt">
+                <img src="../assets/images/icon-logo.png" style="height:50px"></img>
+                <?php foreach($transaction_details as $row){?>
+                <div class="route">
+                  <h2 class="shop__name"><?php echo $row->shop_name?></h2>
+                </div>
+                <hr>
+                  
+                <div class="row">
+                  <div class="col-7 left-title d-flex flex-column">
+                    <span>Transaction ID:</span>
+                    <span>Name:</span>
+                    <span>Date:</span>
+                    <span>Time:</span>
+                    <span></span>
+                    <span></span>
+                    <span>Computer Type:</span>
+                    <span>Number of Person:</span>
+                    <span>Payment Status:</span>
+                    <span>Service Fee:</span>
+                  </div>
+                  <div class="col-5 right-title d-flex flex-column">
+                    <p><?php echo $row->transaction_id?></p>
+                    <p class="finder"><?php echo $row->firstname?> <?php echo $row->lastname?></p>
+                    <p class="time"><?php echo date("M j, Y", strtotime($row->arrival_date));?></p>    
+                    <p class="time"><?php echo date("h:i:a", strtotime($row->arrival_time));?></p>    
+                    <p></p>
+                    <p></p>
+                    <p><?php echo $row->name;//name == computertype name?></p>
+                    <p><?php echo $row->num_ticket;?></p>
+                    <p><?php echo $row->payment_status;?></p>
+                    <p>₱<?php echo $row->service_fee;?></p>
+                  </div>
+                </div>
+                
 
-</main>
+
+            </div>
+            <div class="receipt qr-code d-flex flex-column">
+                <a href="../assets/QrCodes/<?php echo $row->qr_code?>"  download><img class="qr-image" src="../assets/QrCodes/<?php echo $row->qr_code?>" alt="" style=""  download></a>
+                <br>
+                <h6 style='text-align:center; font-size: 10px; font-weight: 500; padding-top: 5px; color: rgb(55, 152, 10);'>Note: <b>Click The Qr Code To Download</b></h6> 
+                <br>
+
+            </div>
+          </div>
+          
+          <?php }?>
+      </div>
+      </div>
+
+    </main>
+  </div>
+    
 </body>
 </html>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
