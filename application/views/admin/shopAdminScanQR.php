@@ -154,6 +154,15 @@
                                 </div>
                             </div>  
 
+                            <div class="row pt-2" id="transaction_status_section" style="display:none">
+                                <div class="counter-button col-12 d-flex justify-content-around align-items-center">
+                                            <h5>Transaction Status:<h1 style="color:#f83f0b">Success</h1></h5>
+                                </div>
+                                <div class="counter-button col-12 d-flex flex-column justify-content-center align-items-center">
+                             
+                                </div>
+                            </div>
+
                             <!-- IF OVER-THE-COUNTER PAYMENT METHOD --> 
                             <div class="row pt-5" id="overthecounter_section" style="display:none">
                                 <div class="counter-button col-12 d-flex justify-content-around align-items-center">
@@ -165,6 +174,8 @@
                                     
                                 </div>
                             </div>
+
+                  
 
 
 
@@ -216,7 +227,7 @@
 
                             <div class="row d-flex justify-content-around align-items-center ">
                                 <div class="info-status col-4 ">
-                                    <p>Arrival Staus:</p>
+                                    <p>Arrival Status:</p>
                                     <p>Current Time:</p>
                                     <p>Current Date:</p>
                                 </div>
@@ -308,6 +319,7 @@ setInterval(function(){
                     async: false,
 					success: function(data)
 					{
+                        $("#transaction_status_section").hide();
                         if(data == "no-data"){
                                 $("#name").text("------");
                                 $("#gender").text("------");
@@ -326,6 +338,8 @@ setInterval(function(){
                                 $('#overthecounter_section').hide();
                                 $('#gcash_section').hide();
                                 $("#payment-method-logo").removeAttr("src");
+                                $("#arrival_status").removeAttr("style");
+                                $("#arrival_status").text("-------");
                         }else{
                             //populate data 
                             var result = JSON.parse(data);
@@ -366,22 +380,36 @@ setInterval(function(){
 
                                         $('#overthecounter_section').show();
 								        $('#gcash_section').hide();
-                                        checkPaymentStatus();
+                                       
                                     }
-                                    
+                                  
+                                    if(result[x]['transaction_status'] == "success"){
+                                        $("#arrival_status").removeAttr("style");
+                                        $("#arrival_status").attr("style","color:#f83f0b");
+                                        $("#arrival_status").text("Arrived");
+                                        $("#confirm_booking").hide();   
+                                        $("#confirm_payment").hide();
+                                        $("#cancel_payment").hide();
+                                        $("#transaction_status_section").show();
+                                      
+                                    }else{
+                                          checkPaymentStatus();
+                                          checkTimeAndDateStatus();
+                                    }    
 
 
 
                             }
-                         //end of else
+                              //end of loop
+                        
                         }
-
+                        //end of else
 					},
                       
 				});
                 //end of ajax
                 
-                checkTimeAndDateStatus();
+                
                
 			}else{
                 //else for transaction id is empty
@@ -535,6 +563,7 @@ setInterval(function(){
 
 </script>
 <script>
+    //update Payment Status
 	$(document).on('click','#confirm_payment',function(){ 
 		transaction_id = $("#transaction_id").val();	
 		var BASE_URL = "<?php echo base_url();?>";
@@ -546,6 +575,33 @@ setInterval(function(){
          
           }
         });
+    });
+
+    //Update transcation status to Success
+    $(document).on('click','#confirm_booking',function(){ 
+		transaction_id = $("#transaction_id").val();	
+		var BASE_URL = "<?php echo base_url();?>";
+
+    
+		$.ajax({
+          url: BASE_URL+"updateTranscationStatus/"+transaction_id+"/success",
+          type: "POST",
+          success: function(data)
+          {
+         
+          }
+        });
+
+		$.ajax({
+          url: BASE_URL+"updateArrivalStatus/"+transaction_id+"/arrived",
+          type: "POST",
+          success: function(data)
+          {
+         
+          }
+        });
+      
+        
     });
 
 </script>

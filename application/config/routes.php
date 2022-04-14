@@ -118,7 +118,8 @@ $route['reports'] = 'main_controller/viewReports';
     $route['uploadGcashPaymentDetails/(:num)']              = 'logicalcontroller/uploadGcashPaymentDetails/$1';
 
     $route['updatePaymentStatus/(:num)/(:any)']                    = 'logicalcontroller/updatePaymentStatus/$1/$2';
-
+    $route['updateTranscationStatus/(:num)/(:any)']                    = 'logicalcontroller/updateTranscationStatus/$1/$2';
+    $route['updateArrivalStatus/(:num)/(:any)']                    = 'logicalcontroller/updateArrivalStatus/$1/$2';
     //notification 
     $route['deleteNotification/(:num)'] = 'logicalcontroller/deleteFinderNotification/$1';
     $route['updateNotificationStatus/(:num)'] = 'logicalcontroller/updateNotificationStatus/$1';

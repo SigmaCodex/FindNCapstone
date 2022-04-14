@@ -561,6 +561,21 @@ class MainModel extends CI_Model{
         $this->db->where('transaction_id',$transaction_id);
         $this->db->update('transaction',$data);
     }
+    
+    public function updateTranscationStatus($transaction_id,$transaction_status){
+        $data = array(
+            'transaction_status'     => 	 $transaction_status,
+        );
+        $this->db->where('transaction_id',$transaction_id);
+        $this->db->update('transaction',$data);
+    }
+    public function updateArrivalStatus($transaction_id,$arrival_status){
+        $data = array(
+            'arrival_status'     => 	 $arrival_status,
+        );
+        $this->db->where('transaction_id',$transaction_id);
+        $this->db->update('transaction',$data);
+    }
 
     //add GcashPaymentDetails
     public function addGcashPaymentDetails($transaction_id){

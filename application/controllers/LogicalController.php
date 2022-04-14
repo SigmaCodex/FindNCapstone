@@ -292,6 +292,14 @@ class LogicalController extends CI_Controller {
         $this->MainModel->updatePaymentStatus($transaction_id,$status);
      
     }
+    public function updateTranscationStatus($transaction_id,$status){
+        $this->load->model('MainModel');
+        $this->MainModel->updateTranscationStatus($transaction_id,$status);
+    }
+    public function updateArrivalStatus($transaction_id,$status){
+        $this->load->model('MainModel');
+        $this->MainModel->updateArrivalStatus($transaction_id,$status);
+    }
     //RATE-RATINGS--------------------------------
     public function addRate($shop_id){
         $this->load->model('MainModel');
