@@ -326,7 +326,7 @@
                         <div class="col-6">
                             <div class="modal-left-card-profile">
                                 <div class="modal-user-information d-flex flex-column align-items-center justify-content-center">
-                                    <img id="finder_profile" onerror="this.src='assets/images/default.png';" alt="" style="object-fit:cover;">
+                                    <img id="finder_profile" onerror="this.src='assets/images/default.png';" alt="">
                                     <h6 class="modal-user-name" id="finder_name"></h6>
                                     <p class="modal-caption">Finder</p> 
 
