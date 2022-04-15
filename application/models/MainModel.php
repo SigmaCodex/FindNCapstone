@@ -444,6 +444,18 @@ class MainModel extends CI_Model{
 
 		}
     }
+    public function checkUsername($username){
+        $this->db->select('username');
+        $this->db->from('user');
+        $this->db->where('username',$username);
+        $query = $this->db->get();
+        if(!empty($query->result_array())){
+            return "true";
+        }else{
+            return "false";
+        }
+    }
+
     public function generatePrimarykey(){
         $first = date('dy');
         $second = rand (1, 100);
@@ -796,7 +808,23 @@ class MainModel extends CI_Model{
     }
     // ShopAdmin Booking Request Management
     // arrival time, computer type name, additonal description, num of ticket 
-    public function getallPendingRequest($shop_id){
+    // public function getallPendingRequest($shop_id){
+        
+    //     $this->db->select('user.username,finders.profile_pic,finders.firstname,finders.lastname,transaction.*,comp_booking.num_ticket,computer_type.name');
+    //     $this->db->from('transaction');
+    //     $this->db->join('user', 'user.user_id = transaction.user_id_fk');
+    //     $this->db->join('finders', 'user.user_id = finders.user_id', 'left');
+    //     $this->db->join('comp_booking', 'comp_booking.transaction_id = transaction.transaction_id');
+    //     $this->db->join('computer_type', 'computer_type.Ctype_id = comp_booking.comp_type_id', 'left');
+    //     $this->db->where('transaction.shop_id_fk', $shop_id);
+    //     $this->db->where('transaction_status', 'pending');
+    //     $this->db->order_by('transaction.date_issued', 'DESC');
+    //     $query = $this->db->get();
+    //     return $query->result();
+    //     //echo json_encode($query->result());
+    // }
+    public function getallPendingRequest(){
+        $shop_id = $this->session->userdata('admin_shop_id');
         $this->db->select('user.username,finders.profile_pic,finders.firstname,finders.lastname,transaction.*,comp_booking.num_ticket,computer_type.name');
         $this->db->from('transaction');
         $this->db->join('user', 'user.user_id = transaction.user_id_fk');

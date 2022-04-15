@@ -112,7 +112,11 @@ class LogicalController extends CI_Controller {
         $this->load->model('MainModel');
         $this->MainModel->registerFinder();
     }
-
+    public function checkUsername($username){
+        $this->load->model('MainModel');
+        $result = $this->MainModel->checkUsername($username);
+        echo $result;
+    }
     public function generatePrimarykey(){
         $this->load->model('MainModel');
         $result = $this->MainModel->generatePrimarykey();
@@ -315,9 +319,14 @@ class LogicalController extends CI_Controller {
         echo json_encode($result);
     }
 
-    public function getallPendingRequest($shop_id){
+    // public function getallPendingRequest($shop_id){
+    //     $this->load->model('MainModel');
+    //     $this->MainModel->getallPendingRequest($shop_id);
+    // }
+    public function getallPendingRequest(){
         $this->load->model('MainModel');
-        $this->MainModel->getallPendingRequest($shop_id);
+        $result = $this->MainModel->getallPendingRequest();
+        echo json_encode($result);
     }
     public function getallAcceptedRequest($shop_id){
         $this->load->model('MainModel');
@@ -340,7 +349,6 @@ class LogicalController extends CI_Controller {
         $message = "accepted";
         $title   = "Success";
         $this->MainModel->addFinderNotification($transac_id,$to_user_id,$message,$title);
-    
     }
     public function updateDeclineBookingTransacStatus($transac_id,$to_user_id){
         $status = 'declined';
