@@ -239,9 +239,6 @@ String.prototype.toCap = function () {
 //--------------------------------------------------------------------
 $("#firstname").keyup(function(){ 
    var fname = $("#firstname").val();
-   if (fname.length == 0) {
-		$("#errorfname").text("Please input your first name").css("color", "red");
-	}
    if (fname.length != 0) {
 		$("#errorfname").text("");
 	}
@@ -286,7 +283,12 @@ nextBtnFirst.addEventListener("click", function (event) {
 	event.preventDefault();
 	var fname = $("#firstname").val();
    var lname = $("#lastname").val();
-
+   if (fname.length == 0) {
+		$("#errorfname").text("Please input your first name").css("color", "red");
+	}
+   if (lname.length == 0) {
+		$("#errorlname").text("Please input your last name").css("color", "red");
+	}
 	if (fname.length > 0 && lname.length > 0) {
 		$("#errorfname").text("");
 		$("#errorlname").text("");
@@ -303,7 +305,12 @@ nextBtnSec.addEventListener("click", function (event) {
 	var number = $("#pnum").val();
 	let regEmail =
 		/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-	
+	if(email == ""){
+      $("#erroremail").text("Please input your email").css("color", "red");
+   }
+   if(number.length == 0){
+      $("#errornum").text("Please input a number").css("color", "red");
+   }
 	if (regEmail.test(email) && number.toString().length == 11) {
 		$("#erroremail").text("");
 		$("#errornum").text("");
@@ -387,13 +394,12 @@ var isUserTaken ="";
 			type: "POST",
          success: function (data){
             isUserTaken = data;
-            if(isUserTaken == "false"){
+            if(isUserTaken == "true"){
                $("#erroruser").text("Username is already taken").css("color", "red");
             }
-            if(isUserTaken == "true"){
+            if(isUserTaken == "false"){
                $("#erroruser").text("");
             }
-            console.log(data);
          }
          });
    });
@@ -442,7 +448,7 @@ submitBtn.addEventListener("click", function (event) {
 
 
 
-	if (pass.toString().length >= 8 && pass == conpass && isUserTaken == "true") {
+	if (pass.toString().length >= 8 && pass == conpass && isUserTaken == "false") {
 		$.ajax({
 			url: "registerfinder",
 			type: "POST",
