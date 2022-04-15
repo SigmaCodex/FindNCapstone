@@ -21,7 +21,7 @@
 <body>
 
 	<!-- CONTENT -->
-	<div class="container">
+	<div class="container mt-5 p-1">
 		<section id="content">
 
 			<!-- MAIN -->
