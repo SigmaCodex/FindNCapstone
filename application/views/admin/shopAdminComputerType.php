@@ -200,13 +200,13 @@
 							
 							<div class="modal-img-holder d-flex flex-column align-items-center justify-content-center">
 								<p class="modal-img-holder-caption text-muted">*Upload image for service type reference. Allowed extensions: (png, jpg jpeg)</p>
-								<img class="modal-image"src="assets/images/TNC-1.jpg" style="border-radius: 10px;">
+								<img id="upload-preview" class="modal-image"src="assets/images/TNC-1.jpg" style="border-radius: 10px;">
 							</div>
 							
 									<div class="modal-user-info">
 										<div class="input-group mb-3">
 											<div class="custom-file">
-											  <input type="file" class="custom-file-input" id="inputGroupFile03">
+											  <input type="file" class="custom-file-input img_upload" id="inputGroupFile03">
 											  <label class="custom-file-label" for="inputGroupFile03">Service Profile</label>
 											</div>
 										</div>
@@ -286,5 +286,22 @@
 	
 
 	<script src="assets/js/shopAdminComputerType.js"></script>
+
+	<script>
+		$(document).ready(function(){
+			var preview = $("#upload-preview");
+
+			$(".img_upload").change(function(event){
+			var input = $(event.currentTarget);
+			var file = input[0].files[0];
+			var reader = new FileReader();
+			reader.onload = function(e){
+				image_base64 = e.target.result;
+				preview.attr("src", image_base64);
+			};
+			reader.readAsDataURL(file);
+			});
+		});
+	</script>
 </body>
 </html>

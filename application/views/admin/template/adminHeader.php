@@ -160,7 +160,7 @@
                                     <a href="#">Edit Shop Details</a>
                                  </li>
                                  <li>
-                                    <a href="#">Ratings</a>
+                                    <a href="shopAdminComputerType">Computer Type</a>
                                  </li>
                               </ul>
                            </div>
