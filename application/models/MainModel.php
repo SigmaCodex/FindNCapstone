@@ -42,7 +42,7 @@ class MainModel extends CI_Model{
           }
 
           return true;
-          
+
       }else{
         return false;
       }
@@ -238,7 +238,7 @@ class MainModel extends CI_Model{
     public function getListOfComputerShops(){
         $this->db->select('*');
         $this->db->from('computershop');
-        $this->db->where('Shop_Status','Active');
+        $this->db->where('Shop_Status != "Inactive"');
         $query = $this->db->get();
         return $query->result();
     }
