@@ -112,7 +112,11 @@ class LogicalController extends CI_Controller {
         $this->load->model('MainModel');
         $this->MainModel->registerFinder();
     }
-
+    public function checkUsername($username){
+        $this->load->model('MainModel');
+        $result = $this->MainModel->checkUsername($username);
+        echo $result;
+    }
     public function generatePrimarykey(){
         $this->load->model('MainModel');
         $result = $this->MainModel->generatePrimarykey();
