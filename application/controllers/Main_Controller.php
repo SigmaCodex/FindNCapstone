@@ -290,9 +290,12 @@ class Main_Controller extends CI_Controller {
 	public function viewShopAdminScanQR(){
 
 		 $this->load->view('admin/template/adminHeader');
-
 		$this->load->view('admin/shopAdminScanQR');
 	}
+	public function viewShopAdminDashboard(){
+		$this->load->view('admin/template/adminHeader');
+		$this->load->view('admin/shopAdminDashboard');
+   }
 
 	public function viewAdminHeader(){
 		$this->load->view('admin/template/adminHeader');

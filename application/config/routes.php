@@ -29,6 +29,7 @@ $route['register'] = 'main_controller/viewRegister';
 $route['adminHeader'] = 'main_controller/viewAdminHeader';
 $route['shopAdminBookings'] = 'main_controller/viewShopAdminBookings';
 $route['shopAdminScanQR'] = 'main_controller/viewShopAdminScanQR';
+$route['shopAdminDashboard'] = 'main_controller/viewShopAdminDashboard';
 
 //finders
 $route['findnRegister'] = 'main_controller/viewFindnRegister';
