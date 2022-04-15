@@ -30,6 +30,7 @@ $route['adminHeader'] = 'main_controller/viewAdminHeader';
 $route['shopAdminBookings'] = 'main_controller/viewShopAdminBookings';
 $route['shopAdminScanQR'] = 'main_controller/viewShopAdminScanQR';
 $route['shopAdminDashboard'] = 'main_controller/viewShopAdminDashboard';
+$route['shopAdminComputerType'] = 'main_controller/viewShopAdminComputerType';
 
 //finders
 $route['findnRegister'] = 'main_controller/viewFindnRegister';

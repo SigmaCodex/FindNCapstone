@@ -1,4 +1,3 @@
-
 // Query for Sidebar
 jQuery(function ($) {
 
