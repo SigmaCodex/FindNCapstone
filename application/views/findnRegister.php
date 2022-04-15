@@ -331,7 +331,7 @@ nextBtnThird.addEventListener("click", function (event) {
 	if (gender == "") {
 		$("#errorgender").text("Please select gender").css("color", "red");
 	}
-	if ($("#registerform").valid() && !(gender == "")) {
+	if (!(date == "") && !(gender == "")) {
 		$("#errordate").text("");
 		$("#errorgender").text("");
 		slidePage.style.marginLeft = "-75%";
