@@ -235,16 +235,58 @@ String.prototype.toCap = function () {
 	});
 };
 
+
+//--------------------------------------------------------------------
+$("#firstname").keyup(function(){ 
+   var fname = $("#firstname").val();
+   if (fname.length == 0) {
+		$("#errorfname").text("Please input your first name").css("color", "red");
+	}
+   if (fname.length != 0) {
+		$("#errorfname").text("");
+	}
+});
+//--------------------------------------------------------------------
+$("#lastname").keyup(function(){ 
+   var lname = $("#lastname").val();
+   if (lname.length == 0) {
+		$("#errorlname").text("Please input your last name").css("color", "red");
+	}
+   if (lname.length != 0) {
+		$("#errorlname").text("");
+	}
+});
+//--------------------------------------------------------------------
+let regEmail =
+		/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+$("#email").keyup(function(){ 
+	var email = $("#email").val();
+   if (!regEmail.test(email)) {
+		$("#erroremail").text("Please input valid email").css("color", "red");
+	}
+   if (regEmail.test(email)) {
+		$("#erroremail").text("");
+	}
+});
+//--------------------------------------------------------------------
+$("#pnum").keyup(function(){ 
+   var number = $("#pnum").val();
+   if (number.toString().length > 11 || number.toString().length < 11) {
+		$("#errornum")
+			.text("Number must be 11 digits long along with first zero")
+			.css("color", "red");
+	}
+   if (number.length == 11) {
+		$("#errornum").text("");
+	}
+});
+
+
 nextBtnFirst.addEventListener("click", function (event) {
 	event.preventDefault();
 	var fname = $("#firstname").val();
-	var lname = $("#lastname").val();
-	if (fname.length == 0) {
-		$("#errorfname").text("Please input your first name").css("color", "red");
-	}
-	if (lname.length == 0) {
-		$("#errorlname").text("Please input your last name").css("color", "red");
-	}
+   var lname = $("#lastname").val();
+
 	if (fname.length > 0 && lname.length > 0) {
 		$("#errorfname").text("");
 		$("#errorlname").text("");
@@ -261,14 +303,7 @@ nextBtnSec.addEventListener("click", function (event) {
 	var number = $("#pnum").val();
 	let regEmail =
 		/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-	if (!regEmail.test(email)) {
-		$("#erroremail").text("Please input your first name").css("color", "red");
-	}
-	if (number.toString().length > 11 || number.toString().length < 11) {
-		$("#errornum")
-			.text("Number must be 11 digits long along with first zero")
-			.css("color", "red");
-	}
+	
 	if (regEmail.test(email) && number.toString().length == 11) {
 		$("#erroremail").text("");
 		$("#errornum").text("");
@@ -299,6 +334,8 @@ nextBtnThird.addEventListener("click", function (event) {
 		current += 1;
 	}
 });
+
+//--------------------------------------------------------------------------------
 nextBtnFourth.addEventListener("click", function (event) {
 	event.preventDefault();
 	slidePage.style.marginLeft = "-100%";
