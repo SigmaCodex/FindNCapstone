@@ -315,7 +315,11 @@ class Main_Controller extends CI_Controller {
 			$this->load->view('admin/shopAdminDashboard',$result);
 		}
    }
+   public function viewShopAdminComputerType(){
 
+	$this->load->view('admin/template/adminHeader');
+   $this->load->view('admin/shopAdminComputerType');
+}
 	public function viewAdminHeader(){
 		$this->load->view('admin/template/adminHeader');
 	}
