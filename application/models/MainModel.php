@@ -444,6 +444,18 @@ class MainModel extends CI_Model{
 
 		}
     }
+    public function checkUsername($username){
+        $this->db->select('username');
+        $this->db->from('user');
+        $this->db->where('username',$username);
+        $query = $this->db->get();
+        if(!empty($query->result_array())){
+            return "true";
+        }else{
+            return "false";
+        }
+    }
+
     public function generatePrimarykey(){
         $first = date('dy');
         $second = rand (1, 100);

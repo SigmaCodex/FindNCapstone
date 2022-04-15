@@ -101,6 +101,7 @@ $route['reports'] = 'main_controller/viewReports';
     //finders
     $route['submit-CompBooking-Request'] = 'logicalcontroller/FindersCompBookingRequest';      
     $route['registerfinder'] = 'logicalcontroller/registerFinder';
+    $route['checkuser/(:any)'] = 'logicalcontroller/checkUsername/$1';
     $route['generatePrimarykey'] = 'logicalcontroller/generatePrimarykey';
     $route['get-computershops'] = 'logicalcontroller/getListOfComputerShops';
     $route['updateFinderAccount/(:num)'] = 'logicalcontroller/updateFinderAccount/$1';
