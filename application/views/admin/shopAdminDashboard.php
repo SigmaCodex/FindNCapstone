@@ -36,7 +36,9 @@
 					<li>
 						<i class='bx bxs-calendar' ></i>
 						<span class="text">
-							<h3>59</h3>
+							<?php foreach ($totalBookings as $t_b){?>
+							<h3><?php echo $t_b->TotalBookings?></h3>
+							<?php }?>
 							<p style="margin:0">Total Bookings</p>
 							<p class="view-details text muted text-right" style="font-size: 8px; margin:0">Click to view more...</p>
 						</span>
@@ -44,7 +46,9 @@
 					<li>
 						<i class='bx bxs-wallet' ></i>
 						<span class="text">
-							<h3>₱150</h3>
+						    <?php foreach ($sales as $t_s){?>		
+							<h3>₱<?php echo $t_s->totalSales?></h3>
+							<?php }?>
 							<p style="margin:0">Total Sales</p>
 							<p class="view-details text muted text-right" style="font-size: 8px; margin:0">Click to view more...</p>
 						</span>
@@ -52,7 +56,9 @@
 					<li>
 						<i class='bx bxs-dollar-circle' ></i>
 						<span class="text">
-							<h3>₱45</h3>
+							<?php foreach ($sales as $t_s){?>
+							<h3>₱<?php $profit = ($t_s->totalSales*0.3); echo $profit?></h3>
+							<?php }?>
 							<div class="d-flex justify-content-center align-items-center">
 								<p style="margin:0">Total Profit</p>
 								<p class="view-details text muted" style="padding-left: 10px; font-size: 8px; margin:0; color:#FD7238">( 30% Profit Share )</p>
@@ -74,55 +80,64 @@
 							<thead>
 								<tr>
 									<th>Ranking</th>
-									<th>Finders Name</th>
+									<th>Finders</th>
 									<th>Total Bookings</th>
 									
 								</tr>
 							</thead>
 							<tbody>
+								<?php $count = 1;?>
+								<?php foreach ($topfinders as $finders){?>
 								<tr>
-									<td><span class="status process">1</span></td>
+									<td><span class="status <?php if($count == 1){echo"process";}elseif($count == 2){echo"pending";} elseif($count == 3){echo"completed";}?>"><?php echo $count;?></span></td>
+									<?php $count++;?>
 									<td class="profile">
-										<img class="table-profile" src="img/people.png">
-										<p>John Dave</p>
+										<img class="table-profile" src="assets/upload/finder/<?php echo $finders->profile_pic;?>" onerror="this.src='assets/images/default.png';">
+										<p><?php echo $finders->firstname?> <?php echo $finders->lastname?></p>
 									</td>
-									<td>30</td>
+									<td><?php echo $finders->Total?></td>
 									
 								</tr>
-								<tr>
-									<td><span class="status pending">2</span></td>
-									<td  class="profile">
-										<img src="img/people.png">
-										<p>John Dave</p>
-									</td>
-									<td>23</td>
-									
-								</tr>
-								<tr>
-									<td><span class="status completed">3</span></td>
-									<td  class="profile">
-										<img src="img/people.png">
-										<p>John Dave</p>
-									</td>
-									<td>12</td>
-									
-								</tr>
+								<?php }?>
 							</tbody>
 						</table>
 					</div>
 					<div class="rating">
 						<div class="rating-details">
 							<h5 class="rating-title">TNC RATINGS</h5>
-							<p class="over-rating">4.5/5.0 (15 Reviews)</p>
+							<?php foreach($ratings as $rate){?>
+							<p class="over-rating"><?php echo number_format($rate->avgRatings, 1);?>/5.0 (<?php echo $rate->countRating;?> Reviews)</p>
 						</div>
 						<div class="star-rating d-flex align-items-center justify-content-start">
+
+							<?php
+							$rate = number_format($rate->avgRatings, 1) ;
+						
+								for($i=1; $i<$rate-1; $i++){
+									echo "<i class='bx bxs-star' ></i>";
+							   	}
+								if($rate >= floor($rate)+0.5){
+									echo "<i class='bx bxs-star-half' ></i>";
+								}else{
+									echo "<i class='bx bxs-star' ></i>";
+								}
+								if($rate==0){
+									echo "<i class='bx bx-star' ></i>";
+								}
+								
+								
 							
+		
+
+							?>
+							<!-- <i class='bx bxs-star' ></i>
 							<i class='bx bxs-star' ></i>
 							<i class='bx bxs-star' ></i>
-							<i class='bx bxs-star' ></i>
-							<i class='bx bxs-star' ></i>
-							<i class='bx bxs-star-half' ></i>
+							<i class='bx bx-star' ></i>
+							<i class='bx bxs-star-half' ></i> -->
+
 						</div>
+						<?php }?>
 						<div class="view-rating d-flex justify-content-end align-items-center">
 							<p class="view-rating-text">View Ratings</p>
 							<i class='bx bxs-chevrons-right'></i>

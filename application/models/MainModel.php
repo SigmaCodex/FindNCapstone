@@ -1056,4 +1056,45 @@ class MainModel extends CI_Model{
         $query = $this->db->get();
         return $query->result();
     }
+
+    //shopAdmin Dashboard
+    public function selectTopFinders($shop_id){
+
+        $this->db->select('COUNT(transaction.user_id_fk) as Total,finders.firstname,finders.lastname,finders.profile_pic');
+        $this->db->from('transaction');
+        $this->db->join('user', 'user.user_id = transaction.user_id_fk');
+        $this->db->join('finders', 'user.user_id = finders.user_id', 'left');
+        $this->db->group_by('transaction.user_id_fk' );
+        $this->db->order_by('Total','desc');
+        $this->db->where('shop_id_fk',$shop_id);
+        $this->db->limit(3);
+        // $this->db->where('transaction_status',"accepted");
+        $query = $this->db->get();
+        return $query->result();
+    }
+    
+    public function ShopAdminTotalBookings($shop_id){
+        $this->db->select('COUNT(transaction_id) as TotalBookings');
+        $this->db->from('transaction');
+        $this->db->where('shop_id_fk',$shop_id);
+        //where accepted and success and paid or except cancelled and decline
+        $query = $this->db->get();
+        return $query->result();
+    }
+    public function ShopAdminSales($shop_id){
+        $this->db->select_sum('(transaction.service_fee)', 'totalSales');
+        $this->db->from('transaction');
+        $this->db->where('shop_id_fk = '.$shop_id.' AND (payment_status = "paid" OR transaction_status = "success")');
+        $query = $this->db->get();
+        return $query->result();
+    }
+    public function ShopAdminRatings($shop_id){
+        $this->db->select('COUNT(rating_id) as countRating');
+        $this->db->select_sum('(computer_rate)/5', 'avgRatings');
+        $this->db->from('computer_ratings');
+        $this->db->where('shop_id',$shop_id);
+        $query = $this->db->get();
+        return $query->result();
+    }
+
 }

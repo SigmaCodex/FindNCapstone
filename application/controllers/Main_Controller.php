@@ -275,7 +275,7 @@ class Main_Controller extends CI_Controller {
 		}
 	}
 
-	//junky-admin
+	//Shop Admin Pages
 	public function viewShopAdminBookings(){
 		
 		$shop_id = $this->session->userdata('admin_shop_id');
@@ -293,8 +293,19 @@ class Main_Controller extends CI_Controller {
 		$this->load->view('admin/shopAdminScanQR');
 	}
 	public function viewShopAdminDashboard(){
+		$shop_id = $this->session->userdata('admin_shop_id');
+		$this->load->model('MainModel');
+		//top finders
+		$result['topfinders'] = $this->MainModel->selectTopFinders($shop_id);
+		//total booking
+		$result['totalBookings'] = $this->MainModel->ShopAdminTotalBookings($shop_id);
+		//total sales
+		$result['sales'] = $this->MainModel->ShopAdminSales($shop_id);
+		//shop Ratings
+		$result['ratings'] = $this->MainModel->ShopAdminRatings($shop_id);
+		//shop details
 		$this->load->view('admin/template/adminHeader');
-		$this->load->view('admin/shopAdminDashboard');
+		$this->load->view('admin/shopAdminDashboard',$result);
    }
 
 	public function viewAdminHeader(){
