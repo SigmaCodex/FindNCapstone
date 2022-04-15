@@ -159,8 +159,9 @@ class LogicalController extends CI_Controller {
     //select FinderBooking Transaction
     public function select_finderBookingTransaction($transaction_id){
         
+        $shop_id = $this->session->userdata('admin_shop_id');
         $this->load->model('MainModel');
-        $result = $this->MainModel->select_finderdetailsBookingTransaction($transaction_id);
+        $result = $this->MainModel->select_finderdetailsBookingTransaction($transaction_id,$shop_id);
         if (empty($result)) {
             echo "no-data";
         }else{

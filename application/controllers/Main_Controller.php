@@ -292,9 +292,13 @@ class Main_Controller extends CI_Controller {
 		// echo json_encode($val);
 	}
 	public function viewShopAdminScanQR(){
-
-		 $this->load->view('admin/template/adminHeader');
-		$this->load->view('admin/shopAdminScanQR');
+		$shop_id = $this->session->userdata('admin_shop_id');
+		if(!$shop_id){
+			redirect(adminlogin);
+		}else{
+			$this->load->view('admin/template/adminHeader');
+			$this->load->view('admin/shopAdminScanQR');
+		}
 	}
 	public function viewShopAdminDashboard(){
 		$shop_id = $this->session->userdata('admin_shop_id');
