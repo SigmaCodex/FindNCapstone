@@ -31,13 +31,12 @@
                         <h6 class="m-0 p-1">BOOKING REQUEST(<span id="bookcount"></span>)</h6>
                     </div>
                     
-                    <div class="left-sidebar-padding">
+                    <div class="left-sidebar-padding" id="request-pending-section">
                         
                         <!-- Request Card -->
-                        <?php foreach ($bookingrequest as $br) {?>
                         <div class="request-card mt-3">
 
-                            <div class="card-head-color row p-3 ">
+                            <!-- <div class="card-head-color row p-3 ">
                             </div>
                             <div class="request-card-content">
                                 <div class="row mt-3">
@@ -104,10 +103,9 @@
                                         <button transac_id="<?php echo $br->transaction_id;?>" user_id="<?php echo $br->user_id_fk?>" class="btn btn-success p-2 acceptbtn">Accept</button>
                                     </div> 
                                 </div>
-                            </div>
+                            </div> -->
                             
                         </div>
-                        <?php }?> 
                         <!-- Request Card -->
 
                         <!-- <div class="request-card mt-3">
@@ -193,7 +191,7 @@
             </div>
             
             <!--Right side column-->
-            <div class="right-side col-md-8 col-sm-8 col-xs-8 my-3"> 
+            <div class="right-side col-md-8 col-sm-8 col-xs-8 my-3" id="waitinglistview"> 
                 
 
                 <!-- ONGOING BOOKINGS -->
@@ -240,20 +238,6 @@
                                       <td class="status-waiting">waiting</td>
                                     </tr>
                                     <?php }?>
-                                    <!-- <tr>
-                                      <td>103645</td>
-                                      <td>Helen Bennett</td>
-                                      <td class="status-accepted">Accepted</td>
-                                      <td class="status-paid">Paid</td>
-                                      <td><img class="gcash-logo" src="assets/images/gcash.png" alt=""></td>
-                                    </tr>
-                                    <tr>
-                                        <td>103645</td>
-                                        <td>Roland Mendel</td>
-                                        <td class="status-accepted">Accepted</td>
-                                        <td class="status-unpaid">Unpaid</td>
-                                        <td><b>Over-the-counter</b></td>
-                                    </tr> -->
                                 </table>
                             </div>
                             
@@ -374,7 +358,7 @@
                                 <!-- <p class="modal-caption-details-right-method"><img id="payment-method-logo" alt="" style=""></p>  -->
 
                                 <!-- If paid -->
-                                <p class="modal-caption-details-right-status badge badge-success" id="pay_status"></p> 
+                                <p class="modal-caption-details-right-status badge" id="pay_status"></p> 
                                 <!-- If unpaid -->
                                 <!-- <p class="modal-caption-details-right-status badge badge-danger">Unpaid</p>  -->
                                 
@@ -442,6 +426,14 @@ $(document).on("click",".table-row",function(){
                                 $("#message").text(result[x]['instruction']);
                                 $("#totalfee").text("₱"+result[x]['service_fee']);
                                 $("#pay_status").text(result[x]['payment_status']);
+                                if(result[x]['payment_status'] == "paid"){
+                                    $("#pay_status").removeClass("badge-danger");
+                                    $("#pay_status").addClass("badge-success");
+                                }
+                                else if(result[x]['payment_status'] == "unpaid"){
+                                    $("#pay_status").addClass("badge-danger");
+                                    $("#pay_status").removeClass("badge-success");
+                                }
                                     if(result[x]['payment_type'] == "gcash"){
                                         $("#payment-method-logo").removeAttr("src");
                                         $("#payment-method-logo").attr("src","assets/images/gcash.png");
@@ -499,7 +491,7 @@ $(document).on("click",".table-row",function(){
                         cache: false, 
                         success:function(data)
                         {
-                          if(data>0){
+                          if(data>=0){
                             $("#bookcount").text(data);   
                           }  
                         }
@@ -516,12 +508,8 @@ $(document).on("click",".table-row",function(){
             $.ajax({
             url:Base_URL+"accept-updateBookStatus/"+id+"/"+user_id,
                 type: "POST",
-                beforeSend : function()
-                {
-                },
                 success: function(data)
                 {
-                   
                     swal({
                             title: "Transaction has been moved to waiting list",
                             text: "",
@@ -531,7 +519,7 @@ $(document).on("click",".table-row",function(){
                             });   
                 }
             });
-			$(this).parent().parent().parent().parent().addClass('d-none');
+            $(this).parent().parent().parent().parent().addClass('d-none');
 		});
 </script>
 <script>
@@ -542,9 +530,6 @@ $(document).on("click",".table-row",function(){
             $.ajax({
             url:Base_URL+"decline-updateBookStatus/"+id+"/"+user_id,
                 type: "POST",
-                beforeSend : function()
-                {
-                },
                 success: function(data)
                 {  
                 }
@@ -552,3 +537,61 @@ $(document).on("click",".table-row",function(){
 			$(this).parent().parent().parent().parent().addClass('d-none');
 		});
 </script>
+<script>
+    setInterval(function(){
+$( document ).ready(function() {
+    var Base_URL = "<?php echo base_url();?>";
+    $("#request-pending-section").html("");
+    $.ajax({
+					url: Base_URL+"showpendinglist",
+					type: "GET",
+                    cache: false,
+                    async: false,
+					success: function(data){
+                           var result = JSON.parse(data);
+                            for(var x = 0 ; x < result.length ; x ++)
+                            {
+                                time = result[x]['arrival_time'];
+                                dateissued = dateformat(result[x]['date_issued']);   
+                                arrivaldate = dateformat(result[x]['arrival_date']);  
+                                arrival_time = new Date(''+arrivaldate+' '+time+'').toLocaleTimeString().replace(/([\d]+:[\d]{2})(:[\d]{2})(.*)/, "$1$3");
+                                $("#request-pending-section").  append("<div class='request-card mt-3'> <div class='card-head-color row p-3'></div> <div class='request-card-content'><div class='row mt-3'> <div class='col-3 d-flex justify-content-center align-items-center'> <img class='request-card-logo' src='assets/upload/finder/"+result[x]['profile_pic']+"' alt='' onerror='this.src="+'"assets/images/default.png"'+";'> </div> <div class='col-5 mt-1'> <p class='finder-name'></p>"+result[x]['firstname']+"<p class='finder-user text-muted'>"+result[x]['username']+"</p> </div> <div class='col-4 mt-1 d-flex flex-column justify-content-center align-items-center'> <p class='finder-date-trans text-muted'>"+dateissued+"</p> </div> </div> <div class='row mt-3'> <div class='col-5 d-flex flex-column justify-content-center align-items-center'> <p class='finder-details text-muted'>Service</p> <p class='finder-details-bold'>"+result[x]['servicetype']+"</p> </div> <div class='col-4 d-flex flex-column justify-content-center align-items-center'> <p class='finder-details text-muted'>Access Type</p> <p class='finder-details-bold'>"+result[x]['name']+"</p> </div> <div class='col-3 d-flex flex-column justify-content-center align-items-center'> <p class='finder-details text-muted'>Tickets</p> <p class='finder-details-bold'>"+result[x]['num_ticket']+"</p> </div> </div> <hr> <div class='row mt-3'> <div class='col-3 d-flex flex-column justify-content-center align-items-center'> <i class='book-icon fa-solid fa-calendar-alt'></i> </div> <div class='col-4 d-flex flex-column justify-content-center align-items-start'> <p class='finder-details-book text-muted'>Date:</p> <p class='finder-details-book text-muted'>Time:</p> </div> <div class='col-5 d-flex flex-column justify-content-center align-items-end'> <p class='finder-details-bold'>"+arrivaldate+"</p> <p class='finder-details-bold'>"+arrival_time+"</p> </div> </div> <div class='row mt-3 p-2'> <div class='col-4 d-flex flex-column justify-content-center align-items-start'> <p class='finder-details-book text-muted'>Message :</p> </div> <div class='col-8 d-flex flex-column justify-content-center align-items-end'> <p class='finder-details-bold'>"+result[x]['instruction']+"</p> </div> </div> <div class='row mt-3'> <div class='col-6 p-2 d-flex justify-content-center align-items-centers'> <button transac_id='"+result[x]['transaction_id']+"' user_id='"+result[x]['user_id_fk']+"' class='btn btn-danger p-2 declinebtn'>Decline</button> </div> <div class='col-6 p-2 d-flex justify-content-center align-items-center'> <button transac_id='"+result[x]['transaction_id']+"' user_id='"+result[x]['user_id_fk']+"' class='btn btn-success p-2 acceptbtn'>Accept</button> </div> </div> </div> </div>");
+                                
+                            }
+                            
+                    }
+
+    });
+    // end of ajax
+});
+},1000);
+// end of set interval
+function dateformat(arrival_date){
+            let date = new Date(arrival_date);
+            let d = date.getDate();
+            let months = [
+            "Jan",
+            "Feb",
+            "Mar",
+            "Apr",
+            "May",
+            "Jun",
+            "Jul",
+            "Aug",
+            "Sep",
+            "Oct",
+            "Nov",
+            "Dec",
+            ];
+            let m = months[date.getMonth()];
+            let y = date.getFullYear();
+            let days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+            let weekDay = days[date.getDay()];
+            date_format =`${m} ${d},${y} `;
+            return date_format;
+        } 
+                
+</script>
+<!-- <script>
+    $("#waitinglistview").append("<div class='right-sidebar my-3'> <div class='right-sidebar-title d-flex align-items-left justify-content-start p-2'> <i class='title-icon fa-solid fa-spinner fa-pulse d-flex align-items-center justify-content-center'></i> <h6 class='card-title-text m-0 p-2'>WAITING LIST</h6> </div> <div class='right-sidebar-padding'> <div class='table-card'> <div class='table-card-content'> <table class='ongoing-table-bookings'> <tr class='title-table-wait'> <th>Transaction ID</th> <th>Name</th> <th>Arrival Date & Time</th> <th>Payment Status</th> <th>Payment Method</th> <th>Status</th> </tr> <tr class='table-row' data-toggle='modal' data-target='#transaction-modal' id_data=''> <td id='wvtransactionid'></td> <td id='wvname'></td> <td id='wvarrivaldateandtime'></td> <td class='status-paid'></td>; <td class='wvpaymentstatus'><img class='gcash-logo' src='assets/images/gcash.png' alt=''> </td>; <td class='status-waiting'>waiting</td> </tr> </table> </div> </div> </div> </div>");
+</script> -->
