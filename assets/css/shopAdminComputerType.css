@@ -154,11 +154,11 @@ body {
 	align-items: center;
 	justify-content: center;
 	grid-gap: 12px;
-}
+} 
 #content main .table-data .order table tr .switch-toggle{
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: space-evenly;
   }
 #content main .table-data .order table tr .switch-toggle p{
     font-size: 13px;
@@ -166,6 +166,7 @@ body {
     font-weight: 500;
     color: #A79F9F;
     margin: 0;
+	margin-top: -7px
   }
 #content main .table-data .order table tr .profile p{
     text-align: center;
@@ -446,7 +447,11 @@ input[type=number] {
 	input{
 		width: auto;
 	}
-
+	#content main .table-data .order table tr .switch-toggle{
+		display: flex;
+		align-items: center;
+		justify-content: space-between
+	  }
 	/* Second Modal */
 	.modal-caption-details-left-input{
     font-size: 12px;
