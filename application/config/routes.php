@@ -145,7 +145,8 @@ $route['reports'] = 'main_controller/viewReports';
     $route['updateComment/(:num)'] = 'logicalcontroller/updateComments/$1';
     $route['deleteComment/(:num)'] = 'logicalcontroller/deleteComments/$1';
     $route['adminshowallbookrequest/(:num)'] = 'logicalcontroller/viewallShopAdminBookingRequests/$1';
-    $route['showpendinglist/(:num)'] = 'logicalcontroller/getallPendingRequest/$1';
+    // $route['showpendinglist/(:num)'] = 'logicalcontroller/getallPendingRequest/$1';
+    $route['showpendinglist'] = 'logicalcontroller/getallPendingRequest';
     $route['showacceptedlist/(:num)'] = 'logicalcontroller/getallAcceptedRequest/$1';
     $route['showcancelledlist/(:num)'] = 'logicalcontroller/getallCancelledRequest/$1';
     $route['viewTransaction/(:num)'] = 'logicalcontroller/viewTransaction/$1';
@@ -155,6 +156,7 @@ $route['reports'] = 'main_controller/viewReports';
     $route['addshopPost/(:num)'] = 'logicalcontroller/addshopPosts/$1';
     $route['deletePost/(:num)'] = 'logicalcontroller/deleteshopPosts/$1';
     $route['updateshopPost/(:num)'] = 'logicalcontroller/updateshopPosts/$1';
+   
     //api 
     $route['goto-gcash']                  = 'logicalcontroller/GotoGcash';
     $route['select-paymentmethod']        = 'main_controller/payment_exercise';

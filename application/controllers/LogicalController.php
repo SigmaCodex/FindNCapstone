@@ -319,9 +319,14 @@ class LogicalController extends CI_Controller {
         echo json_encode($result);
     }
 
-    public function getallPendingRequest($shop_id){
+    // public function getallPendingRequest($shop_id){
+    //     $this->load->model('MainModel');
+    //     $this->MainModel->getallPendingRequest($shop_id);
+    // }
+    public function getallPendingRequest(){
         $this->load->model('MainModel');
-        $this->MainModel->getallPendingRequest($shop_id);
+        $result = $this->MainModel->getallPendingRequest();
+        echo json_encode($result);
     }
     public function getallAcceptedRequest($shop_id){
         $this->load->model('MainModel');
@@ -344,7 +349,6 @@ class LogicalController extends CI_Controller {
         $message = "accepted";
         $title   = "Success";
         $this->MainModel->addFinderNotification($transac_id,$to_user_id,$message,$title);
-    
     }
     public function updateDeclineBookingTransacStatus($transac_id,$to_user_id){
         $status = 'declined';
