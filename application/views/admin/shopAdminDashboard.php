@@ -112,18 +112,21 @@
 
 							<?php
 							$rate = number_format($rate->avgRatings, 1) ;
-						
-								for($i=1; $i<$rate-1; $i++){
-									echo "<i class='bx bxs-star' ></i>";
-							   	}
-								if($rate >= floor($rate)+0.5){
-									echo "<i class='bx bxs-star-half' ></i>";
-								}else{
-									echo "<i class='bx bxs-star' ></i>";
-								}
 								if($rate==0){
 									echo "<i class='bx bx-star' ></i>";
-								}
+								}else{
+									for($i=1; $i<$rate-1; $i++){
+										echo "<i class='bx bxs-star' ></i>";
+									}
+									if($rate >= floor($rate)+0.5){
+										echo "<i class='bx bxs-star-half' ></i>";
+									}else{
+										echo "<i class='bx bxs-star' ></i>";
+									}
+								}	
+
+								
+							
 								
 								
 							

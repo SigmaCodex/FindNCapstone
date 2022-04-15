@@ -279,12 +279,16 @@ class Main_Controller extends CI_Controller {
 	public function viewShopAdminBookings(){
 		
 		$shop_id = $this->session->userdata('admin_shop_id');
-		$this->load->model('MainModel');
-		// $val['bookingrequest'] = $this->MainModel->getallPendingRequest($shop_id);
-		$val['acceptedrequest'] = $this->MainModel->getallAcceptedRequest($shop_id);
-		$val['alltransac'] = $this->MainModel->viewallShopAdminBookingRequests($shop_id);
-		$this->load->view('admin/template/adminHeader');
-		$this->load->view('admin/shopAdminBookings',$val);
+		if(!$shop_id){
+			redirect(adminlogin);
+		}else{
+			$this->load->model('MainModel');
+			// $val['bookingrequest'] = $this->MainModel->getallPendingRequest($shop_id);
+			$val['acceptedrequest'] = $this->MainModel->getallAcceptedRequest($shop_id);
+			$val['alltransac'] = $this->MainModel->viewallShopAdminBookingRequests($shop_id);
+			$this->load->view('admin/template/adminHeader');
+			$this->load->view('admin/shopAdminBookings',$val);
+		}
 		// echo json_encode($val);
 	}
 	public function viewShopAdminScanQR(){
@@ -294,18 +298,22 @@ class Main_Controller extends CI_Controller {
 	}
 	public function viewShopAdminDashboard(){
 		$shop_id = $this->session->userdata('admin_shop_id');
-		$this->load->model('MainModel');
-		//top finders
-		$result['topfinders'] = $this->MainModel->selectTopFinders($shop_id);
-		//total booking
-		$result['totalBookings'] = $this->MainModel->ShopAdminTotalBookings($shop_id);
-		//total sales
-		$result['sales'] = $this->MainModel->ShopAdminSales($shop_id);
-		//shop Ratings
-		$result['ratings'] = $this->MainModel->ShopAdminRatings($shop_id);
-		//shop details
-		$this->load->view('admin/template/adminHeader');
-		$this->load->view('admin/shopAdminDashboard',$result);
+		if(!$shop_id){
+			redirect(adminlogin);
+		}else{
+			$this->load->model('MainModel');
+			//top finders
+			$result['topfinders'] = $this->MainModel->selectTopFinders($shop_id);
+			//total booking
+			$result['totalBookings'] = $this->MainModel->ShopAdminTotalBookings($shop_id);
+			//total sales
+			$result['sales'] = $this->MainModel->ShopAdminSales($shop_id);
+			//shop Ratings
+			$result['ratings'] = $this->MainModel->ShopAdminRatings($shop_id);
+			//shop details
+			$this->load->view('admin/template/adminHeader');
+			$this->load->view('admin/shopAdminDashboard',$result);
+		}
    }
 
 	public function viewAdminHeader(){

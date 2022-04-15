@@ -25,7 +25,7 @@ $route['shopadmin-shopimages/(:num)'] = 'main_controller/shopimages/$1';
 $route['register'] = 'main_controller/viewRegister';
 
 
-//admin-junky
+//NEW ShopAdmin PAGES
 $route['adminHeader'] = 'main_controller/viewAdminHeader';
 $route['shopAdminBookings'] = 'main_controller/viewShopAdminBookings';
 $route['shopAdminScanQR'] = 'main_controller/viewShopAdminScanQR';
@@ -168,6 +168,7 @@ $route['reports'] = 'main_controller/viewReports';
 $route['shopAdmin-login']          = 'logicalcontroller/shopAdmin_login';
 $route['user-login']               = 'logicalcontroller/login_user';
 $route['user-logout']              = 'logicalcontroller/logout_user';
+$route['Adminlogout_user']         = 'logicalcontroller/Adminlogout_user';
 $route['index'] = 'main_controller/index';
 $route['default_controller'] = 'main_controller/index';
 $route['404_override'] = '';

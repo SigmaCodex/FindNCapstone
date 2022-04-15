@@ -92,9 +92,18 @@
                         </li>
                         <li class="sidebar-dropdown">
                            <div class="no-dropdown">
-                              <a href="#">
+                              <a href="shopAdminDashboard">
                                  <i class="fa fa-store"></i>
                                  <span>Dashboard</span>
+                                 <!-- <span class="badge badge-pill badge-warning">New</span> -->
+                                 </a>
+                           </div>
+                        </li>
+                        <li class="sidebar-dropdown">
+                           <div class="no-dropdown">
+                              <a href="shopAdminScanQR">
+                                 <i class="fa fa-qrcode"></i>
+                                 <span>Booking Scanner</span>
                                  <!-- <span class="badge badge-pill badge-warning">New</span> -->
                                  </a>
                            </div>
@@ -108,12 +117,10 @@
                            <div class="sidebar-submenu">
                               <ul>
                                  <li>
-                                    <a href="#">List of All Bookings
-                                    </a>
-                                 </li>
-                                 <li>
-                                    <a href="#">Requests
+                                    <a href="shopAdminBookings">Requests
                                        <span class="badge badge-pill badge-danger">3</span>
+                                    </a>
+                                    <a href="shopAdminBookings">List Of all Bookings
                                     </a>
                                     
                                  </li>
@@ -183,7 +190,7 @@
 
                         <li class="sidebar-dropdown">
                            <div class="no-dropdown">
-                              <a href="#">
+                              <a href="Adminlogout_user">
                                  <i class="fa fa-right-from-bracket"></i>
                                  <span>Logout</span>
                                  </a>

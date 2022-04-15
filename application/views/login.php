@@ -77,7 +77,7 @@
 								type: "POST",
 								data:{},
 								success: function(data){
-									 window.location = "shopadmin-dashboard";
+									 window.location = "shopAdminDashboard";
 								}
 							});
 							//end
