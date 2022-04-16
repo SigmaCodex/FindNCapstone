@@ -16,11 +16,11 @@
 
   </head>
   <body>
-
+  <?php foreach($shop_details as $data){?>
    <section class="header-top ">
       <div class="top">
          <a id="show-sidebar" href="#"><i class="fas fa-bars"></i></a>
-          <h4 class="shop_name">TNC CYBERCAFE ADMIN PANEL</h4>
+          <h4 class="shop_name"><?php echo $data->shop_name;?> CYBERCAFE ADMIN PANEL</h4>
           <div class="profile-img-name">
              <div class="notification-div d-flex">
                <i class="icon-notif fa-solid fa-bell"></i>
@@ -52,11 +52,13 @@
 
             <div class="sidebar-header">
                <div class="user-pic">
-                  <img class="logo-img" src="assets/images/Image1.png" alt="">
+                   <img class="logo-img" src="assets/upload/shop/<?php echo $data->shop_img_icon;?>" onerror="this.src='assets/upload/shop/defaultshopimg.png';" alt="">
+                  <!-- <img class="logo-img" src="assets/images/Image1.png" alt=""> -->
                </div>
                <div class="user-info">
-                  <span class="user-name">Dave Delgado</span>
-                  <span class="user-role">TNC Administrator</span>
+                  <span class="user-name"><?php echo $admin_name;?></span>
+                 
+                  <span class="user-role"><?php echo $data->shop_name;?> Administrator</span>
                   <div class="user-status d-flex align-items-center justify-content-start">
 
                      <!-- If Online -->
@@ -65,7 +67,8 @@
 
                      <!-- If Offline -->
                      <i class="stat-circ fa fa-circle"></i>
-                     <p class="user-status-update">Offline</p>  
+                     <p class="user-status-update"><?php echo $data->Shop_Status;?></p>  
+                     <?php }?>
                   </div>
                </div>
             </div>
@@ -171,8 +174,10 @@
                               <a href="#">
                                  <i class="fa fa-store-alt"></i>
                                  <span>Shop Status</span>
-                                 <label class="switch"><input id="offline" type="checkbox"><span class="slider round"></span>
-                                 </label>
+                                 <?php foreach($shop_details as $data){?>
+                                    <label class="switch"><input id="offline" type="checkbox" <?php if($data->Shop_Status == "Open"){echo "checked";}?>><span class="slider round"></span>
+                                    </label>
+                                 <?php }?>
                                  </a>
                            </div>
                         </li>
@@ -209,5 +214,30 @@
    </div>
 
     <script src="assets/js/adminHeader.js"></script>
+    <script>
+            $(document).on("change", '#offline', function() {      
+               var stat = "";
+               var Base_URL = "<?php echo base_url();?>";
+
+            if ($(this).is(':checked')) {
+               stat="Open";
+              // To verify
+               }
+            else {
+               stat="Close";
+               // To verify
+            }
+                  $.ajax({
+                     url: Base_URL+"updateShopStatus/"+stat,
+                     type: "POST",
+                     success: function(data)
+                     {
+                        alert("Status Updated!");
+                        location.reload();
+                     }
+                  });
+         });
+    </script>
+
   </body>
 </html>

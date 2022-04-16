@@ -75,9 +75,10 @@
 mapboxgl.accessToken = 'pk.eyJ1IjoiZG5rbzEzIiwiYSI6ImNrbWZxNWl5eDM3amcyeGp4cHRvN3pxdGgifQ.HM7QZISQcECRgm9aKAZysg';
 
 var map = new mapboxgl.Map({
-        style: 'mapbox://styles/mapbox/light-v10',
+        // style: 'mapbox://styles/mapbox/light-v10',
+        style: 'mapbox://styles/mapbox/streets-v10',
         center: [<?php echo "123.89631512119513";?>, 10.297400535503103],
-        zoom: 15.5,
+        zoom: 16,
         pitch: 45,
         bearing: -17.6,
         container: 'map',
@@ -110,7 +111,7 @@ var geojson = {
      },
       properties: {
         title: '".$s->shop_name."',
-        description: '<strong>GameCity</strong><p><a href= ".'"viewShop/'.$s->shop_id.'"'."        class=".'"btn btn-primary"'.">Click</a></p>'
+        description: '<strong>".$s->description."</strong><p><a href= ".'"viewShop/'.$s->shop_id.'"'."        class=".'"btn btn-primary"'.">View Shop</a></p>'
       }
      },";
 
