@@ -648,7 +648,7 @@ class MainModel extends CI_Model{
     }
     //viewFinderNotification View ALl FinderNotification
     public function viewFinderNotification($finder_id){
-        $this->db->select('finder_notification.*,computershop.shop_name');
+        $this->db->select('finder_notification.*,computershop.shop_name,computershop.shop_img_icon');
         $this->db->from('finder_notification');
         $this->db->join('transaction', 'transaction.transaction_id = finder_notification.transaction_id');
         $this->db->join('computershop', 'computershop.shop_id = transaction.shop_id_fk','left');

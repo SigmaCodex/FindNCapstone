@@ -54,7 +54,7 @@
                       <p class=" text-muted " style="font-size: 11px; font-weight: 400;"><b>Message from admin:</b> <?php echo $row->noti_body;?>  <b>-<?php echo $row->shop_name;?> Admin</b></p>
                     </div>
                     <div class="col-2 booking-list icon-left"> 
-                      <img src="assets/images/Image1.png" class="shop-image-icon">
+                      <img src="assets/upload/shop/<?php echo $row->shop_img_icon;?>"  onerror="this.src='assets/upload/shop/defaultshopimg.png';" class="shop-image-icon">
                     </div>
                     <div class="col-1 booking-list icon-close"> 
                       <i class="booking-icon fa-solid fa-xmark delete-notification" noti_id="<?php echo $row->finder_notif_id;?>" id="close" style="font-size: 15px;"></i>
@@ -75,7 +75,7 @@
                       <p class=" text-muted " style="font-size: 11px; font-weight: 400;"><b class="shop-name-card"><?php echo $row->shop_name;?> </b> booking request transaction <b style="color:green"><?php echo $row->noti_body;?></b> You can now proceed to the intended cafe you booked. Have Fun Finder!</p>
                     </div>
                     <div class="col-2 booking-list icon-left"> 
-                      <img src="assets/images/Image1.png" class="shop-image-icon">
+                    <img src="assets/upload/shop/<?php echo $row->shop_img_icon;?>"  onerror="this.src='assets/upload/shop/defaultshopimg.png';" class="shop-image-icon">
                     </div>
                     <div class="col-1 booking-list icon-close"> 
                       <i class="booking-icon fa-solid fa-xmark delete-notification" noti_id="<?php echo $row->finder_notif_id;?>" id="close" style="font-size: 15px;"></i>
@@ -96,7 +96,7 @@
                       <p class=" text-muted " style="font-size: 11px; font-weight: 400;"><b class="shop-name-card"><?php echo $row->shop_name;?></b> booking request transaction was <b style="color:green"><?php echo $row->noti_body;?></b> by the admin. Please proceed to <b style="color:blue">payment</b> options.</p>
                     </div>
                     <div class="col-2 booking-list icon-left"> 
-                      <img src="assets/images/Image1.png" class="shop-image-icon">
+                    <img src="assets/upload/shop/<?php echo $row->shop_img_icon;?>"  onerror="this.src='assets/upload/shop/defaultshopimg.png';" class="shop-image-icon">
                     </div>
                     <div class="col-1 booking-list icon-close"> 
                       <i class="booking-icon fa-solid fa-xmark delete-notification" noti_id="<?php echo $row->finder_notif_id;?>" id="close" style="font-size: 15px;"></i>
@@ -117,7 +117,7 @@
                       <p class=" text-muted " style="font-size: 11px; font-weight: 400;">Please wait for your <b class="shop-name-card"><?php echo $row->shop_name;?></b> <?php echo $row->noti_body;?>. Status <b style="color:#EDD94C;">pending </b>.</p>
                     </div>
                     <div class="col-2 booking-list icon-left"> 
-                      <img src="assets/images/Image3.jpg" class="shop-image-icon">
+                      <img src="assets/upload/shop/<?php echo $row->shop_img_icon;?>"  onerror="this.src='assets/upload/shop/defaultshopimg.png';" class="shop-image-icon">
                     </div>
                     <div class="col-1 booking-list icon-close"> 
                       <i class="booking-icon fa-solid fa-xmark delete-notification" noti_id="<?php echo $row->finder_notif_id;?>" id="close" style="font-size: 15px;"></i>
@@ -139,7 +139,7 @@
                       <p class=" text-muted " style="font-size: 11px; font-weight: 400;"><b class="shop-name-card"><?php echo $row->shop_name;?></b> booking request transaction were <b style="color:red">denied</b> by the admin.</p>
                     </div>
                     <div class="col-2 booking-list icon-left"> 
-                      <img src="assets/images/Image5.jpg" class="shop-image-icon">
+                      <img src="assets/upload/shop/<?php echo $row->shop_img_icon;?>"  onerror="this.src='assets/upload/shop/defaultshopimg.png';" class="shop-image-icon">
                     </div>
                     <div class="col-1 booking-list icon-close"> 
                       <i class="booking-icon fa-solid fa-xmark delete-notification" noti_id="<?php echo $row->finder_notif_id;?>" id="close" style="font-size: 15px;"></i>
@@ -172,7 +172,7 @@
                       <p class=" text-muted " style="font-size: 11px; font-weight: 400;"><b>Message from admin:</b> <?php echo $row->noti_body;?>  <b>-<?php echo $row->shop_name;?> Admin</b></p>
                     </div>
                     <div class="col-2 booking-list icon-left"> 
-                      <img src="assets/images/Image1.png" class="shop-image-icon">
+                      <img src="assets/upload/shop/<?php echo $row->shop_img_icon;?>"  onerror="this.src='assets/upload/shop/defaultshopimg.png';" class="shop-image-icon">
                     </div>
                     <div class="col-1 booking-list icon-close"> 
                       <i class="booking-icon fa-solid fa-xmark delete-notification" noti_id="<?php echo $row->finder_notif_id;?>" id="close" style="font-size: 15px;"></i>
@@ -193,7 +193,7 @@
                       <p class=" text-muted " style="font-size: 11px; font-weight: 400;"><b class="shop-name-card"><?php echo $row->shop_name;?> </b> booking request transaction <b style="color:green"><?php echo $row->noti_body;?></b> You can now proceed to the intended cafe you booked. Have Fun Finder!</p>
                     </div>
                     <div class="col-2 booking-list icon-left"> 
-                      <img src="assets/images/Image1.png" class="shop-image-icon">
+                      <img src="assets/upload/shop/<?php echo $row->shop_img_icon;?>"  onerror="this.src='assets/upload/shop/defaultshopimg.png';" class="shop-image-icon">
                     </div>
                     <div class="col-1 booking-list icon-close"> 
                       <i class="booking-icon fa-solid fa-xmark delete-notification" noti_id="<?php echo $row->finder_notif_id;?>" id="close" style="font-size: 15px;"></i>
@@ -214,7 +214,7 @@
                       <p class=" text-muted " style="font-size: 11px; font-weight: 400;"><b class="shop-name-card"><?php echo $row->shop_name;?></b> booking request transaction was <b style="color:green"><?php echo $row->noti_body;?></b> by the admin. Please proceed to <b style="color:blue">payment</b> options.</p>
                     </div>
                     <div class="col-2 booking-list icon-left"> 
-                      <img src="assets/images/Image1.png" class="shop-image-icon">
+                      <img src="assets/upload/shop/<?php echo $row->shop_img_icon;?>"  onerror="this.src='assets/upload/shop/defaultshopimg.png';" class="shop-image-icon">
                     </div>
                     <div class="col-1 booking-list icon-close"> 
                       <i class="booking-icon fa-solid fa-xmark delete-notification" noti_id="<?php echo $row->finder_notif_id;?>" id="close" style="font-size: 15px;"></i>
@@ -235,7 +235,7 @@
                       <p class=" text-muted " style="font-size: 11px; font-weight: 400;">Please wait for your <b class="shop-name-card"><?php echo $row->shop_name;?></b> <?php echo $row->noti_body;?>. Status <b style="color:#EDD94C;">pending </b>.</p>
                     </div>
                     <div class="col-2 booking-list icon-left"> 
-                      <img src="assets/images/Image3.jpg" class="shop-image-icon">
+                    <img src="assets/upload/shop/<?php echo $row->shop_img_icon;?>"  onerror="this.src='assets/upload/shop/defaultshopimg.png';" class="shop-image-icon"> 
                     </div>
                     <div class="col-1 booking-list icon-close"> 
                       <i class="booking-icon fa-solid fa-xmark delete-notification" noti_id="<?php echo $row->finder_notif_id;?>" id="close" style="font-size: 15px;"></i>
@@ -257,7 +257,7 @@
                       <p class=" text-muted " style="font-size: 11px; font-weight: 400;"><b class="shop-name-card"><?php echo $row->shop_name;?></b> booking request transaction were <b style="color:red">denied</b> by the admin.</p>
                     </div>
                     <div class="col-2 booking-list icon-left"> 
-                      <img src="assets/images/Image5.jpg" class="shop-image-icon">
+                      <img src="assets/upload/shop/<?php echo $row->shop_img_icon;?>"  onerror="this.src='assets/upload/shop/defaultshopimg.png';" class="shop-image-icon">
                     </div>
                     <div class="col-1 booking-list icon-close"> 
                      <i class="booking-icon fa-solid fa-xmark delete-notification" noti_id="<?php echo $row->finder_notif_id;?>" id="close" style="font-size: 15px;"></i>
