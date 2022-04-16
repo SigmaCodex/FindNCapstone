@@ -745,8 +745,7 @@ class MainModel extends CI_Model{
         $this->db->from('computer_type');
         $this->db->where('Ctype_id',$id);
         $query = $this->db->get();
-        $resultquery = $query->row_array();
-        return $resultquery;
+        return $query->result();
     }
  
     public function addRate($shop_id){
@@ -982,10 +981,11 @@ class MainModel extends CI_Model{
             'name'   => 	 $this->input->post('comp_name'),
             'total_units'   => 	 $this->input->post('comp_total'),
             'rate'   => 	 $this->input->post('comp_rate'),
-            'specs'   => 	 $this->input->post('comp_specs'),
+            'specs'   => 	 $this->input->post('comp_cpu').",".$this->input->post('comp_acc'),
             'service_fee'   => "10"
             );
-            echo "no image";
+            echo json_encode($data);
+            // echo "no image";
         }
         else if($status == "with-image"){
             $image_data = $this->upload->data();
@@ -995,15 +995,15 @@ class MainModel extends CI_Model{
                 'name'   => 	 $this->input->post('comp_name'),
                 'total_units'   => 	 $this->input->post('comp_total'),
                 'rate'   => 	 $this->input->post('comp_rate'),
-                'specs'   => 	 $this->input->post('comp_specs'),
+                'specs'   => 	 $this->input->post('comp_cpu').",".$this->input->post('comp_acc'),
                 'comp_type_img' =>  $image_data['file_name'],
                 'service_fee'   => "10"
             );
-            echo "with image";
+            // echo "with image";
+            echo json_encode($data);
         }
         $this->db->insert('computer_type',$data);
-        echo $id;
-        echo json_encode($data);
+
     }
     public function deleteComputerType($id){
         $this->db->where('Ctype_id',$id);
@@ -1015,8 +1015,9 @@ class MainModel extends CI_Model{
                 'name'   => 	 $this->input->post('comp_name'),
                 'total_units'   => 	 $this->input->post('comp_total'),
                 'rate'   => 	 $this->input->post('comp_rate'),
-                'specs'   => 	 $this->input->post('comp_specs'),
+                'specs'   => 	 $this->input->post('comp_cpu').",".$this->input->post('comp_acc')
             );
+            echo json_encode($data);
             echo "no-image";
         }
         else if($status == "with-image"){
@@ -1026,22 +1027,22 @@ class MainModel extends CI_Model{
                     'name'   => 	 $this->input->post('comp_name'),
                     'total_units'   => 	 $this->input->post('comp_total'),
                     'rate'   => 	 $this->input->post('comp_rate'),
-                    'specs'   => 	 $this->input->post('comp_specs'),
+                    'specs'   => 	 $this->input->post('comp_cpu').",".$this->input->post('comp_acc')
                 );
+                echo json_encode($data);
                 echo "with image";
             }
         $this->db->where('Ctype_id',$id);
         $this->db->update('computer_type',$data);
         echo json_encode($data);
-        echo "hello world";
     }
     public function updateComputerTypeStatus($id){
-        $datafinder = array(
+        $data = array(
             'status' => $this->input->post('status'),
         );
         $this->db->where('Ctype_id',$id);
-        $this->db->update('computer_type',$datafinder);
-        echo json_encode($datafinder);
+        $this->db->update('computer_type',$data);
+        echo json_encode($data);
     }
     //kani na api gamita for selecting computer type using shop id
     public function getListOfShop_ComputerTypes($shopid){

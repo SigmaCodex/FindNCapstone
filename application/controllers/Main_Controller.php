@@ -320,9 +320,11 @@ class Main_Controller extends CI_Controller {
 		}
    }
    public function viewShopAdminComputerType(){
-
+	$shop_id = $this->session->userdata('admin_shop_id');
+	$val['typelist'] = $this->MainModel->getListOfComputerTypes($shop_id);
 	$this->load->view('admin/template/adminHeader');
-   $this->load->view('admin/shopAdminComputerType');
+    $this->load->view('admin/shopAdminComputerType',$val);
+
 }
 	public function viewAdminHeader(){
 		$this->load->view('admin/template/adminHeader');
