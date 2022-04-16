@@ -157,7 +157,7 @@ $route['reports'] = 'main_controller/viewReports';
     $route['addshopPost/(:num)'] = 'logicalcontroller/addshopPosts/$1';
     $route['deletePost/(:num)'] = 'logicalcontroller/deleteshopPosts/$1';
     $route['updateshopPost/(:num)'] = 'logicalcontroller/updateshopPosts/$1';
-   
+    $route['updateShopStatus/(:any)'] = 'logicalcontroller/updateShopStatus/$1';
     //api 
     $route['goto-gcash']                  = 'logicalcontroller/GotoGcash';
     $route['select-paymentmethod']        = 'main_controller/payment_exercise';

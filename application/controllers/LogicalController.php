@@ -277,6 +277,11 @@ class LogicalController extends CI_Controller {
         $this->load->model('MainModel');
         $this->MainModel->updateShopDetails($id);
     }
+    public function updateShopStatus($status){
+        $shop_id = $this->session->userdata('admin_shop_id');
+        $this->load->model('MainModel');
+        $this->MainModel->updateShopStatus($shop_id,$status);
+    }
 
     public function updateSuperAdminPassword($id){
         $this->load->model('MainModel');

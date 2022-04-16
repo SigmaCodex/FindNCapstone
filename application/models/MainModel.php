@@ -148,7 +148,7 @@ class MainModel extends CI_Model{
             'contact_number'  => 	  $this->input->post('number'),
             'email_address'  => 	  $this->input->post('email_add'),
             'coordinates'  => 	   $this->input->post('coor'),
-            'Shop_Status'   => "Active",
+            'Shop_Status'   => "Open",
             );
 
         $this->db->insert('computershop',$data);
@@ -235,6 +235,14 @@ class MainModel extends CI_Model{
         $this->db->update('computershop',$datafinder);
         echo json_encode($datafinder);
     }
+    public function updateShopStatus($shopid,$status){
+        $data = array(
+            'Shop_Status'     => 	 $status
+        );
+        $this->db->where('shop_id',$shopid);
+        $this->db->update('computershop',$data);
+    }
+
     public function getListOfComputerShops(){
         $this->db->select('*');
         $this->db->from('computershop');
@@ -640,7 +648,7 @@ class MainModel extends CI_Model{
     }
     //viewFinderNotification View ALl FinderNotification
     public function viewFinderNotification($finder_id){
-        $this->db->select('finder_notification.*,computershop.shop_name');
+        $this->db->select('finder_notification.*,computershop.shop_name,computershop.shop_img_icon');
         $this->db->from('finder_notification');
         $this->db->join('transaction', 'transaction.transaction_id = finder_notification.transaction_id');
         $this->db->join('computershop', 'computershop.shop_id = transaction.shop_id_fk','left');
@@ -804,6 +812,7 @@ class MainModel extends CI_Model{
             $row = $query->row();
             $this->session->set_userdata('admin_shop_id', $row->shop_id_fk);
             $this->session->set_userdata('admin_shop_name', $row->shop_name);
+            $this->session->set_userdata('admin_name', $row->firstname." ".$row->lastname);
         }
     }
     // ShopAdmin Booking Request Management
