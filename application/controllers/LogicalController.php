@@ -158,7 +158,6 @@ class LogicalController extends CI_Controller {
     }
     //select FinderBooking Transaction
     public function qr_scanner_select_finderBookingTransaction($transaction_id){
-        
         $shop_id = $this->session->userdata('admin_shop_id');
         $this->load->model('MainModel');
         $result = $this->MainModel->select_qrScannerdetailsBookingTransaction($transaction_id,$shop_id);
@@ -167,8 +166,8 @@ class LogicalController extends CI_Controller {
         }else{
             echo json_encode($result);
          }
-    
     }
+
     //update overthecounter paymenttype and generate qr code
     public function updatePaymentType_overthecounter($transaction_id){
         $this->load->model('MainModel');

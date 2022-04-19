@@ -313,7 +313,7 @@ setInterval(function(){
 			if(transaction_id != ""){
                 //start of ajax
 				$.ajax({
-					url: BASE_URL+"select-FinderBookingTransaction/"+transaction_id,
+					url: BASE_URL+"select-QrScannerFinderBookingTransaction/"+transaction_id,
 					type: "GET",
                     cache: false,
                     async: false,

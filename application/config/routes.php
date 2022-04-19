@@ -110,7 +110,7 @@ $route['reports'] = 'main_controller/viewReports';
     $route['disableFinderAccountStatus'] ='logicalcontroller/disableFinderAccountStatus';
     $route['select-computershops/(:any)/(:num)'] = 'logicalcontroller/selectComputerShop/$1/$2';
     $route['view-FinderBookingTransaction/(:num)'] = 'logicalcontroller/view_finderBookingTransaction/$1';
-    $route['select-FinderBookingTransaction/(:num)'] = 'logicalcontroller/select_finderBookingTransaction/$1';
+    $route['select-QrScannerFinderBookingTransaction/(:num)'] = 'logicalcontroller/qr_scanner_select_finderBookingTransaction/$1';
     $route['change-finderpassword']                        = 'logicalcontroller/change_finderpassword';
    
     $route['addRate/(:num)'] = 'logicalcontroller/addRate/$1';
