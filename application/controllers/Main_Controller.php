@@ -286,15 +286,23 @@ class Main_Controller extends CI_Controller {
 			// $val['bookingrequest'] = $this->MainModel->getallPendingRequest($shop_id);
 			$val['acceptedrequest'] = $this->MainModel->getallAcceptedRequest($shop_id);
 			$val['alltransac'] = $this->MainModel->viewallShopAdminBookingRequests($shop_id);
-			$this->load->view('admin/template/adminHeader');
+			$result['shop_details'] = $this->MainModel->getShopDetails($shop_id);
+			$result['admin_name'] =  $this->session->userdata('admin_name');
+			$this->load->view('admin/template/adminHeader',$result);
 			$this->load->view('admin/shopAdminBookings',$val);
 		}
 		// echo json_encode($val);
 	}
 	public function viewShopAdminScanQR(){
-
-		 $this->load->view('admin/template/adminHeader');
-		$this->load->view('admin/shopAdminScanQR');
+		$shop_id = $this->session->userdata('admin_shop_id');
+		if(!$shop_id){
+			redirect(adminlogin);
+		}else{
+			$result['admin_name'] =  $this->session->userdata('admin_name');
+			$result['shop_details'] = $this->MainModel->getShopDetails($shop_id);
+			$this->load->view('admin/template/adminHeader',$result);
+			$this->load->view('admin/shopAdminScanQR');
+		}
 	}
 	public function viewShopAdminDashboard(){
 		$shop_id = $this->session->userdata('admin_shop_id');
@@ -310,16 +318,25 @@ class Main_Controller extends CI_Controller {
 			$result['sales'] = $this->MainModel->ShopAdminSales($shop_id);
 			//shop Ratings
 			$result['ratings'] = $this->MainModel->ShopAdminRatings($shop_id);
-			//shop details
-			$this->load->view('admin/template/adminHeader');
+			//shop details For Map
+			$result['shop_details'] = $this->MainModel->getShopDetails($shop_id);
+			$result['admin_name'] =  $this->session->userdata('admin_name');
+			$this->load->view('admin/template/adminHeader',$result);
 			$this->load->view('admin/shopAdminDashboard',$result);
 		}
    }
-   public function viewShopAdminComputerType(){
-
-	$this->load->view('admin/template/adminHeader');
-   $this->load->view('admin/shopAdminComputerType');
-}
+  public function viewShopAdminComputerType(){
+		$shop_id = $this->session->userdata('admin_shop_id');
+		if(!$shop_id){
+			redirect(adminlogin);
+		}else{
+			$result['admin_name'] =  $this->session->userdata('admin_name');
+			$result['shop_details'] = $this->MainModel->getShopDetails($shop_id);
+			$this->load->view('admin/template/adminHeader',$result);
+      $val['typelist'] = $this->MainModel->getListOfComputerTypes($shop_id);
+			$this->load->view('admin/shopAdminComputerType',$val);
+		}
+	}
 	public function viewAdminHeader(){
 		$this->load->view('admin/template/adminHeader');
 	}

@@ -35,13 +35,13 @@ jQuery(function ($) {
        }
     });
     
-    $('#offline').on('change',function(){
-           if(this.checked){
-              $(".user-status-update").text("Online");
-              $(".stat-circ").css('color', 'green');
-           }
-            else{
-               $(".user-status-update").text("Offline");
-               $(".stat-circ").css('color', 'red');
-            }
-    });
+   //  $('#offline').on('change',function(){
+   //         if(this.checked){
+   //            $(".user-status-update").text("Online");
+   //            $(".stat-circ").css('color', 'green');
+   //         }
+   //          else{
+   //             $(".user-status-update").text("Offline");
+   //             $(".stat-circ").css('color', 'red');
+   //          }
+   //  });
