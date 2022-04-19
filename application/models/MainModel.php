@@ -553,7 +553,20 @@ class MainModel extends CI_Model{
         return $query->result();
     }
     //finder select ComputerBookingTransaction and Finder Details
-    public function select_finderdetailsBookingTransaction($transaction_id,$shop_id){
+    public function select_finderdetailsBookingTransaction($transaction_id){
+        $this->db->select('computer_type.name,computershop.shop_name,transaction.*,comp_booking.num_ticket,finders.email,finders.phone_num,finders.gender,finders.firstname,finders.lastname,finders.vac_status');
+        $this->db->from('transaction');
+        $this->db->join('computershop', 'computershop.shop_id = transaction.shop_id_fk');
+        $this->db->join('comp_booking', 'comp_booking.transaction_id = transaction.transaction_id');
+        $this->db->join('computer_type', 'computer_type.Ctype_id = comp_booking.comp_type_id', 'left');
+        $this->db->join('user', 'user.user_id = transaction.user_id_fk');
+        $this->db->join('finders', 'finders.user_id = user.user_id','left');
+        $this->db->where('transaction.transaction_id',$transaction_id);
+        $query = $this->db->get();
+        return $query->result();
+    }
+    //findeer select Bookingtransaction for admiQR Scanner
+    public function select_qrScannerdetailsBookingTransaction($transaction_id,$shop_id){
         $this->db->select('computer_type.name,computershop.shop_name,transaction.*,comp_booking.num_ticket,finders.email,finders.phone_num,finders.gender,finders.firstname,finders.lastname,finders.vac_status');
         $this->db->from('transaction');
         $this->db->join('computershop', 'computershop.shop_id = transaction.shop_id_fk');
