@@ -3,28 +3,6 @@
 @import url('http://fonts.cdnfonts.com/css/uni-neue');
 @import url('//db.onlinewebfonts.com/c/80241b4ef777109d2625c9195e7ca852?family=NordiquePro-Bold');
                 
-/* Background */
-/* .custom-shape-divider-top-1647103383 {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    overflow: hidden;
-    line-height: 0;
-    z-index: -1;
-}
-
-.custom-shape-divider-top-1647103383 svg {
-    position: relative;
-    display: block;
-    width: calc(102% + 1.3px);
-    height: 365px;
-}
-
-.custom-shape-divider-top-1647103383 .shape-fill {
-    fill: #f78133;
-} */
-
 * {
     margin: 0;
     padding: 0;
@@ -33,7 +11,7 @@
 
 body {
     font-family: 'Poppins', sans-serif;
-    background-color: rgb(243, 228, 210) !important;
+    background-color: #eeeeee !important;
 }
 
 .wrapper {
@@ -51,7 +29,7 @@ body {
 .logo p{
     font-family: 'NordiquePro-Bold', sans-serif;
 }
-h4{
+h4 {
     letter-spacing: -1px;
     font-weight: 400;
     
@@ -128,9 +106,7 @@ select:focus {
     color: #0779e4;
     font-family: 'Poppins', sans-serif;
 }
-.btn .danger{
-    background-color: #757575;
-}
+
 .button:hover {
     background-color: #0779e4;
     color: #fff;
@@ -169,72 +145,91 @@ select:focus {
 .fa-check-circle{
     color: green;
 }
+/* radio button */
+
+
 /* Profile CSS */
 .avatar-upload {
-  position: relative;
-  max-width: 205px;
-  margin: 0px auto;
-}
-.avatar-upload .avatar-edit {
-  position: absolute;
-  right: 12px;
-  z-index: 1;
-}
-.avatar-upload .avatar-edit input {
-  display: none;
-}
-.avatar-upload .avatar-edit input + label {
-  display: inline-block;
-  width: 34px;
-  height: 34px;
-  margin-bottom: 0;
-  border-radius: 100%;
-  background: #FFFFFF;
-  border: 1px solid transparent;
-  box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.12);
-  cursor: pointer;
-  font-weight: normal;
-  transition: all 0.2s ease-in-out;
-}
-.avatar-upload .avatar-edit input + label:hover {
-  background: #f1f1f1;
-  border-color: #d6d6d6;
-}
-.avatar-upload .avatar-edit input + label:after {
-  content: "\f040";
-  font-family: 'FontAwesome';
-  background-image: linear-gradient(45deg, #f83f0b,#e09e1a);
-  background-size: 100%;
-  -webkit-background-clip: text;
-  -moz-background-clip: text;
-  -webkit-text-fill-color: transparent; 
-  -moz-text-fill-color: transparent;
-  text-decoration: none;
-  position: absolute;
-  top: 10px;
-  left: 0;
-  right: 0;
-  text-align: center;
-  margin: auto;
-}
-.avatar-upload .avatar-preview {
-  width: 192px;
-  height: 192px;
-  position: relative;
-  border-radius: 100%;
-  border: 6px solid #eea264;
-  box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.1);
-}
-.avatar-upload .avatar-preview > div {
-  width: 100%;
-  height: 100%;
-  border-radius: 100%;
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center;
-}
+    position: relative;
+    max-width: 205px;
+    margin: 0px auto;
+  }
+  .avatar-upload .avatar-edit {
+    position: absolute;
+    right: 12px;
+    z-index: 1;
+  }
+  .avatar-upload .avatar-edit input {
+    display: none;
+  }
+  .avatar-upload .avatar-edit input + label {
+    display: inline-block;
+    width: 34px;
+    height: 34px;
+    margin-bottom: 0;
+    border-radius: 100%;
+    background: #FFFFFF;
+    border: 1px solid transparent;
+    box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.12);
+    cursor: pointer;
+    font-weight: normal;
+    transition: all 0.2s ease-in-out;
+  }
+  .avatar-upload .avatar-edit input + label:hover {
+    background: #f1f1f1;
+    border-color: #d6d6d6;
+  }
+  .avatar-upload .avatar-edit input + label:after {
+    content: "\f040";
+    font-family: 'FontAwesome';
+    background-image: linear-gradient(45deg, #f83f0b,#e09e1a);
+    background-size: 100%;
+    -webkit-background-clip: text;
+    -moz-background-clip: text;
+    -webkit-text-fill-color: transparent; 
+    -moz-text-fill-color: transparent;
+    text-decoration: none;
+    position: absolute;
+    top: 10px;
+    left: 0;
+    right: 0;
+    text-align: center;
+    margin: auto;
+  }
+  .avatar-upload .avatar-preview {
+    width: 192px;
+    height: 192px;
+    position: relative;
+    border-radius: 100%;
+    border: 6px solid #eea264;
+    box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.1);
+  }
+  .avatar-upload .avatar-preview > div {
+    width: 100%;
+    height: 100%;
+    border-radius: 100%;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+  
+  
 
-/* Number no arrow */
+  /* For No blue outline */
+  textarea:focus, 
+textarea.form-control:focus, 
+input.form-control:focus, 
+input[type=text]:focus, 
+input[type=password]:focus, 
+input[type=email]:focus, 
+input[type=number]:focus, 
+[type=text].form-control:focus, 
+[type=password].form-control:focus, 
+[type=email].form-control:focus, 
+[type=tel].form-control:focus, 
+[contenteditable].form-control:focus {
+  box-shadow: inset 0 -1px 0 #ddd;
+}
 /* Chrome, Safari, Edge, Opera */
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
