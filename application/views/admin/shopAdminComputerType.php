@@ -50,7 +50,7 @@
 									<th>Access Type</th>
 									<th>Total Units</th>
 									<th>Price Rate</th>
-									<th>Activation Status</th>
+									<th>Status</th>
 									<th>Action</th>
 	
 								</tr>
@@ -72,7 +72,7 @@
 									</td>
 									<td class="profile">
 											<p class="view badge badge-success" id="viewbtn" vtypeid="<?php echo $td->Ctype_id;?>" data-toggle="modal" data-target="#view-description">View</p>
-											<p class="remove badge badge-danger" id="deletebtn" dtypeid="<?php echo $td->Ctype_id;?>">Remove</p>
+											<!-- <p class="remove badge badge-danger" id="deletebtn" dtypeid="<?php echo $td->Ctype_id;?>">Remove</p> -->
 									</td>
 										
 									</tr>
@@ -508,23 +508,23 @@
 	 }); 
 </script>
 <script>
-$(document).on("click", "#deletebtn", function () {
-    var BASE_URL = "<?php echo base_url();?>";
-    var type_id = $(this).attr("dtypeid"); 
-	$.ajax({
-						url: BASE_URL+"deleteComputerType/"+type_id,
-						method: "POST",
-						data: { Ctype_id: type_id},
-						success: function (data) {
-							swal("Computer Type has been deleted!", {
-    					  		icon: "success",
-    						}).then((value) => {
-						  		window.location = BASE_URL+"shopAdminComputerType";
-							});
+// $(document).on("click", "#deletebtn", function () {
+//     var BASE_URL = "<?php echo base_url();?>";
+//     var type_id = $(this).attr("dtypeid"); 
+// 	$.ajax({
+// 						url: BASE_URL+"deleteComputerType/"+type_id,
+// 						method: "POST",
+// 						data: { Ctype_id: type_id},
+// 						success: function (data) {
+// 							swal("Computer Type has been deleted!", {
+//     					  		icon: "success",
+//     						}).then((value) => {
+// 						  		window.location = BASE_URL+"shopAdminComputerType";
+// 							});
 
-						},
-					});	
- });
+// 						},
+// 					});	
+//  });
  </script>
 	<script>
 		$(document).ready(function(){
