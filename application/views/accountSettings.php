@@ -65,7 +65,7 @@
                         <div class="input-group-prepend">
                             <span class="input-group-text" id="basic-addon1">+63</span>
                         </div>
-                        <input type="number"  value="<?php echo $w->phone_num;?>" class="form-control bg-light form-control" id="phone-num" aria-label="Username" aria-describedby="basic-addon1">
+                        <input type="number" name="p_number" value="<?php echo $w->phone_num;?>" class="form-control bg-light form-control" id="phone-num" aria-label="Username" aria-describedby="basic-addon1">
                     </div>
                 </div>
             </div>
