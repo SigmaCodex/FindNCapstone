@@ -325,6 +325,9 @@ body {
 .modal-user-info{
     padding-top: 20px;
 }
+.modal-user-info .input-group .custom-file{
+    cursor: pointer;
+}
 .modal-caption-details-left
 {
     font-size: 15px;

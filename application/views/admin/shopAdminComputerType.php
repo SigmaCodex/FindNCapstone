@@ -128,12 +128,12 @@
 
 					<div class="modal-body">
 						<div class="modal-holder ">
+							
+		
 
-							<div class="d-flex align-items-center justify-content-end">
-								<a href="#" class="btn-download" data-toggle="modal" data-target="#edit-description">
-									<i class='fa fa-plus-circle'></i>
-									<span class="text">Edit Details</span>
-								</a>
+							<div class="modal-img-holder d-flex flex-column align-items-center justify-content-center">
+								<p class="modal-img-holder-caption text-muted">*Upload image for service type reference. Allowed extensions: (png, jpg jpeg)</p>
+								<img id="upload-preview" class="modal-image"src="assets/images/TNC-1.jpg" style="border-radius: 10px;">
 							</div>
 									<div class="modal-user-info">
 										<div class="row ">
@@ -172,9 +172,17 @@
 											</div>
 										</div>
 
-										<div class="close-but d-flex align-items-center justify-content-end">
-											<button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+										<div class="close-but d-flex align-items-center justify-content-between">
+											<a href="#" class="btn-download" data-toggle="modal" data-target="#edit-description">
+												<i class='fa fa-pen-to-square'></i>
+												<span class="text">Edit Details</span>
+											</a>
+											<button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>			
 										</div>
+										
+										
+										
+										
 										
 									</div>
 								
@@ -187,7 +195,6 @@
 					</div>
 				</div>
 			</div>
-
 
 			<!-- Modal Add -->
 			<div class="modal fade" id="add-description">
@@ -281,7 +288,8 @@
 					</div>
 				</div>
 			</div>
-	<!-- Modal Edit -->
+
+			<!-- Modal Edit -->
 			<div class="modal fade" id="edit-description">
 				<div class="modal-dialog modal-md modal-dialog-scrollable" role="document">
 					<div class="modal-content">
