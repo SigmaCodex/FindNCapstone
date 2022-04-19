@@ -186,7 +186,7 @@
                         <span class="acc-sett">Account</span>
                         <li class="sidebar-dropdown">
                            <div class="no-dropdown">
-                              <a href="#">
+                              <a href="shopAdminAccountSettings">
                                  <i class="fa fa-cog fa-spin"></i>
                                  <span>Account Settings</span>
                                  </a>

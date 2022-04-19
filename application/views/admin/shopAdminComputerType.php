@@ -146,7 +146,7 @@
 											</div>
 				
 											<div class="col-6 text-right">
-												<p class="modal-caption-details-right" id="type_name"></p> 
+												<p class="modal-caption-details-right" id="type_access"></p> 
 												<p class="modal-caption-details-right" id="type-id"></p> 
 												<p class="modal-caption-details-right" id="type_units"></p> 
 												<p class="modal-caption-details-right" id="type_rate"></p> 
@@ -210,7 +210,7 @@
 							<form method="post" id="upload_form" enctype="multipart/form-data">
 							<div class="modal-img-holder d-flex flex-column align-items-center justify-content-center">
 								<p class="modal-img-holder-caption text-muted">*Upload image for service type reference. Allowed extensions: (png, jpg jpeg)</p>
-								<img id="upload-preview" class="modal-image"src="assets/images/TNC-1.jpg" style="border-radius: 10px;">
+								<img id="upload-preview" class="modal-image"src="assets/images/upload_icon.png" style="border-radius: 10px;">
 							</div>
 									<div class="modal-user-info">
 										<div class="input-group mb-3">
@@ -433,6 +433,7 @@
                             {
                                 $("#type_name").text(result[x]['name']);
                                 $("#type-id").text(result[x]['Ctype_id']);
+								$("#type_access").text(result[x]['name']);
                                 $("#type_units").text(result[x]['total_units']);
                                 $("#type_rate").text("₱"+result[x]['rate']);
 								$("#type_status").text(result[x]['status']);
