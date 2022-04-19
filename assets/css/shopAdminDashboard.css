@@ -216,7 +216,7 @@ body {
 #content main .table-data .order table tr .profile {
 	display: flex;
 	align-items: center;
-	justify-content: center;
+	justify-content: start;
 	grid-gap: 12px;
 	padding-left: 6px;
 }
