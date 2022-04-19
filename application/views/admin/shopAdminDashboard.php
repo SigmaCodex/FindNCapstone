@@ -110,7 +110,7 @@
 							<thead>
 								<tr>
 									<th>Ranking</th>
-									<th>Finders</th>
+									<th class="text-left" style="padding-left:90px;">Finders</th>
 									<th>Total Bookings</th>
 									
 								</tr>

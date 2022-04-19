@@ -333,7 +333,7 @@ class Main_Controller extends CI_Controller {
 			$result['admin_name'] =  $this->session->userdata('admin_name');
 			$result['shop_details'] = $this->MainModel->getShopDetails($shop_id);
 			$this->load->view('admin/template/adminHeader',$result);
-      $val['typelist'] = $this->MainModel->getListOfComputerTypes($shop_id);
+      		$val['typelist'] = $this->MainModel->getListOfComputerTypes($shop_id);
 			$this->load->view('admin/shopAdminComputerType',$val);
 		}
 	}
@@ -368,8 +368,16 @@ class Main_Controller extends CI_Controller {
 	}
 	
 	public function viewShopAdminAccountSettings(){
-		// $this->load->view('admin/template/adminHeader');
-		$this->load->view('admin/shopAdminAccountSettings');
+		$shop_id = $this->session->userdata('admin_shop_id');
+		if(!$shop_id){
+			redirect(adminlogin);
+		}else{
+			$result['admin_name'] =  $this->session->userdata('admin_name');
+			$result['shop_details'] = $this->MainModel->getShopDetails($shop_id);
+			$this->load->view('admin/template/adminHeader',$result);
+			$this->load->view('admin/shopAdminAccountSettings');
+		}
+		
 	}
 	public function shopadmin_computerdetails($shopid){
 		$this->load->model('MainModel');
