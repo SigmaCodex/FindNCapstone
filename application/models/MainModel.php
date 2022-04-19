@@ -1128,8 +1128,9 @@ class MainModel extends CI_Model{
         return $query->result();
     }
     public function ShopAdminRatings($shop_id){
-        $this->db->select('COUNT(rating_id) as countRating');
-        $this->db->select_sum('(computer_rate)/5', 'avgRatings');
+        $this->db->select("COUNT(rating_id) as  countRating, FORMAT((SUM(computer_rate) / COUNT(rating_id)),1) as avgRatings");
+        // $this->db->select('COUNT(rating_id) as countRating');
+        // $this->db->select_sum('(computer_rate)/5', 'avgRatings');
         $this->db->from('computer_ratings');
         $this->db->where('shop_id',$shop_id);
         $query = $this->db->get();

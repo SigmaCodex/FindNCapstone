@@ -141,18 +141,43 @@
 						<div class="star-rating d-flex align-items-center justify-content-start">
 
 							<?php
-							$rate = number_format($rate->avgRatings, 1) ;
-								if($rate==0){
+							$rateConverted = number_format($rate->avgRatings, 0) ;
+								if($rateConverted==0){
 									echo "<i class='bx bx-star' ></i>";
 								}else{
-									for($i=1; $i<$rate-1; $i++){
-										echo "<i class='bx bxs-star' ></i>";
-									}
-									if($rate >= floor($rate)+0.5){
-										echo "<i class='bx bxs-star-half' ></i>";
-									}else{
-										echo "<i class='bx bxs-star' ></i>";
-									}
+
+
+
+									// for($i=1; $i<=$rate->avgRatings; $i++){
+									// 	echo "<i class='bx bxs-star' ></i>";
+									// }
+									// if($rate >= floor($rate)+0.5){
+									// 	echo "<i class='bx bxs-star-half' ></i>";
+									// }else if($rate <= floor($rate)+0.5){
+								
+									// }
+									for($i=1; $i<=5; $i++){
+									
+										if($i<=$rate->avgRatings){
+											echo "<i class='bx bxs-star' ></i>";
+										}else{
+											if(($i < floor($rateConverted)+0.5) && $rate->avgRatings <5){
+												echo "<i class='bx bxs-star-half'></i>";
+											}else{
+												echo "<i class='bx bx-star' ></i>";
+											}
+										}
+									}	
+
+
+										// if(($rate->avgRatings > $rateConverted && $rateConverted < floor($rateConverted)+0.5) &&  $rate->avgRatings <5){
+										// 	echo "<i class='bx bx-star' ></i>";
+										// }else if(($rateConverted < floor($rateConverted)+0.5) && $rate->avgRatings <5){
+										// 	echo "<i class='bx bxs-star-half'></i>";
+										// }else if($rateConverted != 5){
+										// 	echo "<i class='bx bx-star' ></i>";
+										// }
+									
 								}	
 
 								
