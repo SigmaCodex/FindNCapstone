@@ -1129,6 +1129,7 @@ class MainModel extends CI_Model{
         $this->db->select('COUNT(transaction_id) as TotalBookings');
         $this->db->from('transaction');
         $this->db->where('shop_id_fk',$shop_id);
+        $this->db->where('payment_status','paid');
         //where accepted and success and paid or except cancelled and decline
         $query = $this->db->get();
         return $query->result();
