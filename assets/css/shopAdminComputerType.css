@@ -176,8 +176,11 @@ body {
 #content main .table-data .order table tr .profile .view:hover{
     background-color: #10a705;
 }
+#content main .table-data .order table tr .profile .remove{
+    background-color: #b10606 !important;
+}
 #content main .table-data .order table tr .profile .remove:hover{
-    background-color: #e90a0a;
+    background-color: #e90a0a !important;
 }
 #content main .table-data .order table tr td p{
 	display: flex;
@@ -321,6 +324,9 @@ body {
 }
 .modal-user-info{
     padding-top: 20px;
+}
+.modal-user-info .input-group .custom-file{
+    cursor: pointer;
 }
 .modal-caption-details-left
 {
