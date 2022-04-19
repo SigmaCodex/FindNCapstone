@@ -58,7 +58,16 @@
              <div class="row py-2">
                 <div class="col-md-6"> <label for="username">Username</label> <input name="username" value="<?php if(isset($user_name)){ echo $user_name;}?>" type="text" class="bg-light form-control" disabled>  </div>
                 <div class="col-md-6 pt-md-0 pt-3"> <label for="email">Email</label> <input id="email" name="email" type="email" value="<?php echo $w->email;?>" class="bg-light form-control">  </div>
-                <div class="col-md-6"> <label for="phone">Phone Number</label> <input  name="p_number" value="<?php echo $w->phone_num;?>" type="text" class="bg-light form-control" placeholder="+63">  </div>
+                <div class="col-md-6"> 
+                    <label for="phone">Phone Number</label> 
+                
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="basic-addon1">+63</span>
+                        </div>
+                        <input type="number"  value="<?php echo $w->phone_num;?>" class="form-control bg-light form-control" id="phone-num" aria-label="Username" aria-describedby="basic-addon1">
+                    </div>
+                </div>
             </div>
             <div class="title-info">VACCINATION STATUS</div>
             <div class="row py-2">
@@ -399,14 +408,18 @@ $(document).on('click','#change_pass_btn',function(){
             // console.log("hello");
     }
 
-   
-
-
-
-
 });
     
  </script>
+
+    <script>
+        $("#phone-num").on("input", function() {
+            if (/^0/.test(this.value)) {
+                this.value = this.value.replace(/^0/, "")
+            }
+        })
+    </script>
+
 </html>
 
 

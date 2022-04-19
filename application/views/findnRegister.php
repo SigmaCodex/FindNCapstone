@@ -111,7 +111,7 @@
                      <div class="label">
                         Phone Number
                      </div>
-                     <input type="text"   name="pnum" id="pnum">
+                     <input type="number" placeholder="+63" name="pnum" id="pnum">
                   </div>
                   <label id="errornum"></label>
                   <div class="field btns">
@@ -247,7 +247,7 @@ $("#firstname").keyup(function(){
 $("#lastname").keyup(function(){ 
    var lname = $("#lastname").val();
    if (lname.length == 0) {
-		$("#errorlname").text("Please input your last name").css("color", "red");
+		// $("#errorlname").text("Please input your last name").css("color", "red");
 	}
    if (lname.length != 0) {
 		$("#errorlname").text("");
@@ -268,13 +268,15 @@ $("#email").keyup(function(){
 //--------------------------------------------------------------------
 $("#pnum").keyup(function(){ 
    var number = $("#pnum").val();
-   if (number.toString().length > 11 || number.toString().length < 11) {
+   if (number.toString().length > 10 || number.toString().length < 9) {
 		$("#errornum")
-			.text("Number must be 11 digits long along with first zero")
+			.text("Invalid Phone Number")
 			.css("color", "red");
+      $("#pnum").css("border", "1.5px solid red");
 	}
-   if (number.length == 11) {
+   if (number.length == 10) {
 		$("#errornum").text("");
+      $("#pnum").css("border", "1px solid lightgray");
 	}
 });
 
@@ -284,10 +286,12 @@ nextBtnFirst.addEventListener("click", function (event) {
 	var fname = $("#firstname").val();
    var lname = $("#lastname").val();
    if (fname.length == 0) {
-		$("#errorfname").text("Please input your first name").css("color", "red");
+		// $("#errorfname").text("Please input your first name").css("color", "red");
+      $("#firstname").css("border", "1.5px solid red");
 	}
    if (lname.length == 0) {
-		$("#errorlname").text("Please input your last name").css("color", "red");
+		// $("#errorlname").text("Please input your last name").css("color", "red");
+      $("#lastname").css("border", "1.5px solid red");
 	}
 	if (fname.length > 0 && lname.length > 0) {
 		$("#errorfname").text("");
@@ -298,6 +302,7 @@ nextBtnFirst.addEventListener("click", function (event) {
 		progressText[current - 1].classList.add("active");
 		current += 1;
 	}
+   // $("label").text("");
 });
 nextBtnSec.addEventListener("click", function (event) {
 	event.preventDefault();
@@ -311,7 +316,7 @@ nextBtnSec.addEventListener("click", function (event) {
    if(number.length == 0){
       $("#errornum").text("Please input a number").css("color", "red");
    }
-	if (regEmail.test(email) && number.toString().length == 11) {
+	if (regEmail.test(email) && number.toString().length == 10) {
 		$("#erroremail").text("");
 		$("#errornum").text("");
 		slidePage.style.marginLeft = "-50%";
@@ -350,6 +355,7 @@ nextBtnFourth.addEventListener("click", function (event) {
 	progressCheck[current - 1].classList.add("active");
 	progressText[current - 1].classList.add("active");
 	current += 1;
+   $("label").text("");
 });
 
 prevBtnSec.addEventListener("click", function (event) {
@@ -359,6 +365,7 @@ prevBtnSec.addEventListener("click", function (event) {
 	progressCheck[current - 2].classList.remove("active");
 	progressText[current - 2].classList.remove("active");
 	current -= 1;
+   $("label").text("");
 });
 prevBtnThird.addEventListener("click", function (event) {
 	event.preventDefault();
@@ -367,6 +374,7 @@ prevBtnThird.addEventListener("click", function (event) {
 	progressCheck[current - 2].classList.remove("active");
 	progressText[current - 2].classList.remove("active");
 	current -= 1;
+   $("label").text("");
 });
 prevBtnFourth.addEventListener("click", function (event) {
 	event.preventDefault();
@@ -375,6 +383,7 @@ prevBtnFourth.addEventListener("click", function (event) {
 	progressCheck[current - 2].classList.remove("active");
 	progressText[current - 2].classList.remove("active");
 	current -= 1;
+   $("label").text("");
 });
 prevBtnFifth.addEventListener("click", function (event) {
 	event.preventDefault();
@@ -383,13 +392,17 @@ prevBtnFifth.addEventListener("click", function (event) {
 	progressCheck[current - 2].classList.remove("active");
 	progressText[current - 2].classList.remove("active");
 	current -= 1;
+   $("label").text("");
 });
 
 var isUserTaken ="";
    $("#username").keyup(function(){  
       var BASE_URL = "<?php echo base_url();?>";
       var uname = $("#username").val();
-      $.ajax({
+
+      if(uname != ""){
+
+         $.ajax({
 			url: BASE_URL+"checkuser/"+uname,
 			type: "POST",
          success: function (data){
@@ -402,6 +415,12 @@ var isUserTaken ="";
             }
          }
          });
+      }
+      else {
+         $("#erroruser").text("");
+      }  
+
+      
    });
 
 submitBtn.addEventListener("click", function (event) {
@@ -427,26 +446,24 @@ submitBtn.addEventListener("click", function (event) {
 
 	var vacstatus = $('select[name="vacstatus"]').val();
 
-	if (username == "") {
+	if (uname == "") {
 		$("#erroruser").text("Please enter user name").css("color", "red");
 	}
-	if (username.toString().length < 8) {
+	if (uname.toString().length > 25 ) {
 		$("#erroruser")
-			.text("Username should not be shorter than 8 characters")
+			.text("Shorter than 25 characters")
 			.css("color", "red");
 	}
 	if (pass == "") {
 		$("#errorpass").text("Please enter your password").css("color", "red");
-	} else if (pass.toString().length < 8) {
+	} else if (pass.toString().length < 5  ) {
 		$("#errorpass")
-			.text("Password should be 8 or more characters long")
+			.text("Password is too weak.")
 			.css("color", "red");
 	}
 	if (pass != conpass) {
 		$("#errorconpass").text("Password is incorrect").css("color", "red");
 	}
-
-
 
 	if (pass.toString().length >= 8 && pass == conpass && isUserTaken == "false") {
 		$.ajax({
@@ -504,5 +521,14 @@ submitBtn.addEventListener("click", function (event) {
 	         color: #f7b733;
          }
       </style>
+
+   <script>
+        $("#pnum").on("input", function() {
+            if (/^0/.test(this.value)) {
+                this.value = this.value.replace(/^0/, "")
+            }
+        })
+    </script>
+
    </body>
 </html>

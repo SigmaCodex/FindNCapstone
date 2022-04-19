@@ -366,7 +366,11 @@ class Main_Controller extends CI_Controller {
 		$this->load->view('admin/Bookings');
 		$this->load->view('admin/template/footer');
 	}
-
+	
+	public function viewShopAdminAccountSettings(){
+		// $this->load->view('admin/template/adminHeader');
+		$this->load->view('admin/shopAdminAccountSettings');
+	}
 	public function shopadmin_computerdetails($shopid){
 		$this->load->model('MainModel');
 		$val['shop_details'] = $this->MainModel->getshopDetails($shopid);
