@@ -16,9 +16,10 @@
 
 <!-- Content Inside -->
 <div class="container my-2 ">
+<form method="post" id="updateAdminAccount" enctype="multipart/form-data"> 
     <div class="wrapper bg-white mt-sm-5">
         <h4 class="tit pb-4 border-bottom">Admin Account Settings</h4>
-
+        <?php foreach ($adminDetails as $w) {?> 
         <div class="d-flex align-items-start "> 
 
             <div class="pp title-info" id="img-section" >Profile Photo
@@ -33,7 +34,7 @@
                         <label for="imageUpload"></label>
                     </div>
                     <div class="avatar-preview">
-                        <div id="imagePreview"></div>
+                        <div id="imagePreview" style="background-image: url(assets/upload/shop/admin/<?php echo $w->profilepic;?>);" ></div>
                     </div>
                 </div>  
             </div>    
@@ -43,29 +44,29 @@
             <div class="title-info"> <b>USER INFORMATION</b>
             </div>
             <div class="row py-2">
-                <div class="col-md-6"> <label for="firstname">First Name</label> <input type="text" class="bg-light form-control"> </div>
-                <div class="col-md-6 pt-md-0 pt-3"> <label for="lastname">Last Name</label> <input type="text" class="bg-light form-control"> </div>
-                <div class="col-md-6 pt-md-0 pt-3"> <label for="lastname">Birthday</label> <input type="date" class="bg-light form-control"> </div>
+                <div class="col-md-6"> <label for="firstname">First Name</label> <input type="text" name="fname" value="<?php echo $w->firstname;?>" id="admin_firstname" class="bg-light form-control"> </div>
+                <div class="col-md-6 pt-md-0 pt-3"> <label for="lastname">Last Name</label> <input type="text" name="lname" value="<?php echo $w->lastname;?>" id="admin_lastname"class="bg-light form-control"> </div>
+                <div class="col-md-6 pt-md-0 pt-3"> <label for="lastname">Birthdate</label> <input type="date" name="bdate" value="<?php echo date( "Y-m-d", strtotime($w->birthdate));?>" class="bg-light form-control"> </div>
                 <div class="col-md-6 pt-md-0 pt-3"> <label for="gender">Gender</label>  
-                <select name="country" id="country" class="bg-light">
-                    <option value="select" selected>(Select)</option>
-                    <option value="male">Male</option>
-                    <option value="female">Female</option>
+                <select name="gender" id="gender" class="bg-light">
+                <option value="male" <?php if($w->gender == "Male"){echo "selected";}?>>Male</option>
+                    <option value="female" <?php if($w->gender == "Female"){echo "selected";}?>>Female</option>
+
                 </select>
                 </div>
             </div>
             <br>
             <div class="title-info"> <b>ACCOUNT INFORMATION</b>
              <div class="row py-2">
-                <div class="col-md-6"> <label for="username">Username</label> <input type="text" class="bg-light form-control"> </div>
-                <div class="col-md-6 pt-md-0 pt-3"> <label for="email">Email</label> <input type="email" class="bg-light form-control"> </div>
+                <div class="col-md-6"> <label for="username">Username</label> <input name="username" value="<?php echo $w->username;?>" type="text" id="admin_username" class="bg-light form-control"> </div>
+                <div class="col-md-6 pt-md-0 pt-3"> <label for="email">Email</label> <input name="email" type="email" value="<?php echo $w->email;?>" id="admin_email" class="bg-light form-control"> </div>
                 <div class="col-md-6"> 
                     <label for="phone">Phone Number</label>
                     <div class="input-group mb-3">
                         <div class="input-group-prepend">
                             <span class="input-group-text" id="basic-addon1">+63</span>
                         </div>
-                        <input type="number" class="form-control" id="phone-num" aria-label="Username" aria-describedby="basic-addon1">
+                        <input type="number" class="form-control" id="phone-num" value="<?php echo $w->contactaddress;?>" name="p_number"  aria-describedby="basic-addon1">
                     </div>
                 </div>
             </div>
@@ -74,18 +75,20 @@
                 <div class="title-info mx-3"> <b>CHANGE PASSWORD</b>
                     <p>Do not share your password to anyone.</p>   
                 </div>
-                <div class="ml-auto mx-1" > <button class="btn danger">Change</button> </div>
+                <div class="ml-auto mx-1" > <div class="btn danger">Change</div> </div>
             </div>
             <br>
             <br>
-            <div class="py-2 pb-4 mx-3 "> <button class="btn btn-primary mr-3">Save Changes</button> <button class="btn border button">Cancel</button> </div>
+            <div class="py-2 pb-4 "> <button class="btn btn-primary mr-3">Save Changes</button></div>
         </div>
     </div>
     
 </div>
-
-
+<?php }?> 
+</form>
 </body>
+
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script>
         function btn(){
@@ -106,6 +109,116 @@
             }
         })
     </script>
+            <!-- imgUpload and preview -->
+            <script>
+            function readURL(input) {
+                if (input.files && input.files[0]) {
+                    var reader = new FileReader();
+                    reader.onload = function(e) {
+                        $('#imagePreview').css('background-image', 'url('+e.target.result +')');
+                        $('#imagePreview').hide();
+                        $('#imagePreview').fadeIn(650);
+                    }
+                    reader.readAsDataURL(input.files[0]);
+                }
+            }
+            $("#imageUpload").change(function() {
+                readURL(this);
+            });
+        </script> 
+
+ <script>
+      $(document).ready(function(){  
+      $('#updateAdminAccount').on('submit', function(e){  
+           e.preventDefault();  
+            // alert("processing");
+
+            if(checkValidation()){
+                alert("checked");
+                $.ajax({  
+                     url:"updateAdminAccount",   
+                     method:"POST",  
+                     data:new FormData(this),  
+                     contentType: false,  
+                     cache: false,  
+                     processData:false,  
+                     success:function(data)  
+                     {  
+                        //  alert(data);
+                        swal({
+                            title: "Account Updated Successfully",
+                            text: "",
+                            icon: "success",
+                            button: "Continue",
+                            }).then((value) => {
+                                    location.reload();
+                            }); 
+                    }  
+                });  
+            }
+                
+
+             
+      });  
+ });  
+
+function checkValidation(){
+            email = $("#admin_email").val();
+            username = $("#admin_username").val();
+            firstname = $("#admin_firstname").val();
+            lname    = $("#admin_lastname").val();
+            phone_num = $("#phone-num").val();
+            if(IsEmail(email)){
+                $("#admin_email").css({"border-color": "#fd0033", 
+                "border-width":"1px", 
+                "border-style":"solid"});
+                return false;
+            }
+            if(username == ""){
+                $("#admin_username").css({"border-color": "#fd0033", 
+                "border-width":"1px", 
+                "border-style":"solid"});
+                return false;
+            }
+            if (checkName(firstname)){
+                $("#admin_firstname").css({"border-color": "#fd0033", 
+                 "border-width":"1px", 
+                "border-style":"solid"});
+                return false;
+
+            }
+            if (checkName(lname)){
+                $("#admin_lastname").css({"border-color": "#fd0033", 
+                 "border-width":"1px", 
+                "border-style":"solid"});
+                return false;
+            }
+            if(phone_num == "" || phone_num.length <10 || phone_num.length>10){
+                $("#phone-num").css({"border-color": "#fd0033", 
+                 "border-width":"1px", 
+                "border-style":"solid"});
+                return false;
+            }
+        return true;
+}
+
+function IsEmail(email) {
+  var regex = /^([a-zA-Z0-9_\.\-\+])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+  if(!regex.test(email)) {
+    return true;
+  }else{
+    return false;
+  }
+}
+function checkName(name)
+{
+    var regex = /^([^0-9]*)$/;
+    if(regex.test(name))
+    {
+        return false;
+    } else{return true;}
+}
+ </script>       
 </html>
 
 

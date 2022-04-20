@@ -132,11 +132,17 @@ class LogicalController extends CI_Controller {
     public function updateFinderAccount(){
         $this->load->helper(array('form', 'url')); 
         // $img = $this->input->post('profilepic');
+
+        $username = $this->session->userdata('username');
+        $id = $this->session->userdata('user_id');
+        $filename =  $id.",".$username;
+
         $config['upload_path']          = './assets/upload/finder';
-                $config['allowed_types']        = 'gif|jpg|png';
-                $config['max_size']             = 2500;
-                $config['max_width']            = 2540;
-                $config['max_height']           = 2568;
+        $config['allowed_types']        = 'gif|jpg|png';
+        $config['max_size']             = 2500;
+        $config['max_width']            = 2540;
+        $config['max_height']           = 2568;
+        $config['file_name'] = $filename;
         $this->load->library('upload', $config);
         $this->upload->initialize($config);
         if(! $this->upload->do_upload('imageUpload'))
@@ -145,6 +151,9 @@ class LogicalController extends CI_Controller {
             $this->load->model('MainModel');
             $this->MainModel->updateFinderAccount("no-image");
         }else{
+
+            $recent_profileimage = $this->session->userdata('profile_pic');
+            unlink("./assets/upload/finder/".$recent_profileimage); // delete the recent image
              //update useraccount with the profileimage
             $this->load->model('MainModel');
             $this->MainModel->updateFinderAccount("with-image");
@@ -526,6 +535,39 @@ class LogicalController extends CI_Controller {
         $this->load->model('MainModel');
         $this->MainModel->removeshopimage($image_id);
        
+    }
+    //shop admin account settings
+    public function updateAdminAccount(){
+        $this->load->model('MainModel');
+        $this->load->helper(array('form', 'url')); 
+
+    // delete the recent image 
+        // $img = $this->input->post('profilepic');
+        $username = $this->session->userdata('username');
+        $id = $this->session->userdata('user_id');
+        $filename =  $id.",".$username;
+  
+        $config['upload_path']          = './assets/upload/shop/admin';
+        $config['allowed_types']        = 'gif|jpg|png';
+        $config['max_size']             = 2500;
+        $config['max_width']            = 2540;
+        $config['max_height']           = 2568;
+        $config['file_name'] = $filename;
+
+        // overide the existing img 
+        $this->load->library('upload', $config);
+        $this->upload->initialize($config);
+        if(! $this->upload->do_upload('imageUpload'))
+        {
+            //echo $this->upload->display_errors();
+            //update useraccount without the profileimage   
+             $this->MainModel->updateAdminAccount("no-image");
+        }else{
+            $recent_profileimage = $this->session->userdata('profile_pic');
+            unlink("./assets/upload/shop/admin/".$recent_profileimage);
+             //update useraccount with the profileimage
+             $this->MainModel->updateAdminAccount("with-image");
+        }
     }
 
     // api 

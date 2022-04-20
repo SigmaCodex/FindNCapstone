@@ -35,7 +35,7 @@
                         <label for="imageUpload"></label>
                     </div>
                     <div class="avatar-preview">
-                        <div id="imagePreview" style="background-image: url(assets/upload/finder/<?php echo $w->profile_pic;?>);"></div>
+                        <div id="imagePreview" style="background-image: url(assets/upload/finder/<?php echo $w->profile_pic;?>);" ></div>
                     </div>
                 </div>  
             </div>    

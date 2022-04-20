@@ -926,6 +926,15 @@ class MainModel extends CI_Model{
 		// return $row;
         echo json_encode($row);
     }
+    //Select Admin Information
+    public function selectShopAdminInfo($admin_id){
+        $this->db->select("compmanager.*, user.username");
+        $this->db->from("compmanager");
+        $this->db->join('user', 'user.user_id = compmanager.user_id');
+        $this->db->where("compmanager.user_id",$admin_id);
+        $query = $this->db->get();
+        return $query->result();
+    }
 
     public function addshopPosts($id){
         $date_created = date('m/d/y');
@@ -1073,6 +1082,55 @@ class MainModel extends CI_Model{
         $this->db->where('shop_id_fk',$shopid);
         $query = $this->db->get();
         return $query->result();
+    }
+    //admin account settings
+    public function updateAdminAccount($status){
+
+
+        $user_id  = $this->session->userdata('user_id');
+        if($status == "no-image"){
+            $data = array(
+                'firstname'         =>  $this->input->post('fname'),
+                'lastname'           => 	$this->input->post('lname'),
+                'birthdate'           => 	$this->input->post('bdate'),
+                'gender'     => 	$this->input->post('gender'), 
+                'email'              =>   $this->input->post('email') ,
+                'contactaddress'              =>   $this->input->post('p_number') ,
+            );
+            $this->db->where('user_id',$user_id);
+            $this->db->update('compmanager',$data);
+            $data2 = array(
+                'username'              =>   $this->input->post('username') 
+            );
+            $this->db->where('user_id',$user_id);
+            $this->db->update('user',$data2);
+        
+            $this->session->set_userdata('admin_name',$this->input->post('fname')." ".$this->input->post('lname'));
+            
+        }else if($status == "with-image"){
+            $image_data = $this->upload->data();
+            $data = array(
+                'profilepic' =>     $image_data['file_name'], 
+                'firstname'         =>  $this->input->post('fname'),
+                'lastname'           => 	$this->input->post('lname'),
+                'birthdate'           => 	$this->input->post('bdate'),
+                'gender'     => 	$this->input->post('gender'), 
+                'email'              =>   $this->input->post('email') ,
+                'contactaddress'              =>   $this->input->post('p_number') ,
+            );
+            $this->db->where('user_id',$user_id);
+            $this->db->update('compmanager',$data);
+            $data2 = array(
+                'username'              =>   $this->input->post('username') 
+            );
+            $this->db->where('user_id',$user_id);
+            $this->db->update('user',$data2);
+          
+            $this->session->set_userdata('admin_name',$this->input->post('fname')." ".$this->input->post('lname'));
+            $this->session->set_userdata('profile_pic',$image_data['file_name']);
+        } 
+        
+
     }
     //shop images
     public function uploadshopimages($shop_id){
