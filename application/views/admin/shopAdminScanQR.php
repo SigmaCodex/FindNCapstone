@@ -513,7 +513,7 @@ setInterval(function(){
                 var d1 = new Date(date_arrival);
                 var d2 = new Date(current_date);
 
-                 if(d1.getTime() >= d2.getTime()){
+                 if(d1.getTime() >= d2.getTime()){//check if date of arrival is not overdue 
                     
                    time_arrivalMin = getTimeAsNumberOfMinutes(convertTime12to24(time_arrival));
                    current_timeMin = getTimeAsNumberOfMinutes(convertTime12to24(current_time));

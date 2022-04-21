@@ -79,7 +79,7 @@
             </div>
             <br>
             <br>
-            <div class="py-2 pb-4 "> <button class="btn btn-primary mr-3">Save Changes</button></div>
+            <div class="py-2 pb-4 "> <button class="btn btn-primary mr-3" id="updateAccount">Save Changes</button></div>
         </div>
     </div>
     
@@ -190,6 +190,40 @@
       });  
  });  
 
+//check if your username is taken
+var isUserTaken ="";
+$("#admin_username").keyup(function(){  
+      var BASE_URL = "<?php echo base_url();?>";
+      var uname = $("#admin_username").val();
+
+     
+
+         $.ajax({
+			url: BASE_URL+"checkuser/"+uname,
+			type: "POST",
+            success: function (data){
+            isUserTaken = data;
+            if(isUserTaken == "true"){
+                $("#admin_username").css({"border-color": "#fd0033", 
+                "border-width":"1px", 
+                "border-style":"solid"});
+                $("#updateAccount").prop("disabled", true);
+                $("#admin_username").parent().append("<label id='username_error' style='color:red;'>Username Is taken</label>")
+            }
+            if(isUserTaken == "false"){
+                $("#admin_username").css({"border-color": "lightgray", 
+                "border-width":"1px", 
+                "border-style":"solid"});
+                
+                $("#updateAccount").prop("disabled", false);
+                $("#username_error").html("");
+            }
+         }
+         });
+  
+      
+   });
+
 function checkValidation(){
             email = $("#admin_email").val();
             username = $("#admin_username").val();
@@ -227,8 +261,11 @@ function checkValidation(){
                 "border-style":"solid"});
                 return false;
             }
+            
         return true;
 }
+
+
 
 function IsEmail(email) {
   var regex = /^([a-zA-Z0-9_\.\-\+])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
@@ -284,7 +321,7 @@ function BDateValidator() {
  </script>
   
 <script>
-    $(document).on('click','#change_pass_btn',function(){ 
+$(document).on('click','#change_pass_btn',function(){ 
 
 c_pass = $("#current_password").val(); 
 new_password = $("#new_password").val(); 

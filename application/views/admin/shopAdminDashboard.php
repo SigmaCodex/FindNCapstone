@@ -69,7 +69,7 @@
 							<?php foreach ($totalBookings as $t_b){?>
 							<h3><?php echo $t_b->TotalBookings?></h3>
 							<?php }?>
-							<p style="margin:0">Total Bookings</p>
+							<p style="margin:0">Total Paid Bookings</p>
 							<p class="view-details text muted text-right" style="font-size: 8px; margin:0">Click to view more...</p>
 						</span>
 					</li>
