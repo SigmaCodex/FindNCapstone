@@ -198,9 +198,15 @@
                 
                 <div class="right-sidebar my-3"> 
                     
-                    <div class="right-sidebar-title d-flex align-items-left justify-content-start p-2">
-                        <i class="title-icon fa-solid fa-spinner fa-pulse d-flex align-items-center justify-content-center"></i>
-                        <h6 class="card-title-text m-0 p-2">WAITING LIST</h6>
+                    <div class="right-sidebar-title d-flex align-items-left justify-content-between p-2">
+                        <div class="d-flex">
+                            <i class="title-icon fa-solid fa-spinner fa-pulse d-flex align-items-center justify-content-center"></i>
+                            <h6 class="card-title-text m-0 p-2">WAITING LIST</h6>
+                        </div>
+                        <div class="d-flex align-items-center px-2 bg-white search_holder">
+                            <input class="search_field mr-2" type="text" />
+                            <i class="fas fa-search"></i>
+                        </div>
                     </div>
                     
                     <div class="right-sidebar-padding">
@@ -272,9 +278,15 @@
                 <!-- LIST OF BOOKINGS -->
                 <div class="right-sidebar my-3"> 
                     
-                    <div class="right-sidebar-title d-flex align-items-left justify-content-start p-2">
-                        <i class="title-icon fa-solid fa-clipboard-list d-flex align-items-center justify-content-center"></i>
-                        <h6 class="card-title-text m-0 p-1">LIST OF BOOKINGS</h6>
+                    <div class="right-sidebar-title d-flex align-items-left justify-content-between p-2">
+                        <div class="d-flex">
+                            <i class="title-icon fa-solid fa-clipboard-list d-flex align-items-center justify-content-center"></i>
+                            <h6 class="card-title-text m-0 p-2">LIST OF BOOKINGS</h6>
+                        </div>
+                        <div class="d-flex align-items-center px-2 bg-white search_holder">
+                            <input class="search_field mr-2" type="text" />
+                            <i class="fas fa-search"></i>
+                        </div>
                     </div>
                     
                     <div class="right-sidebar-padding">
