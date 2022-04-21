@@ -218,12 +218,23 @@
                                       <th>Status</th>
                                     </tr>
                                     <?php foreach ($acceptedrequest as $ar) {?>
+                                        <!-- date and time check if overdue  -->
+                                         <?php 
+                                                $currentdate = strtotime(date("Y-m-d"));
+                                                $arrival_date = strtotime($ar->arrival_date);
+                                      
+                                        ?>
                                     <tr class="table-row" data-toggle="modal" data-target="#transaction-modal" id_data="<?php echo $ar->transaction_id;?>">
                                       <td><?php echo $ar->transaction_id;?></td>
                                       <td><?php echo $ar->firstname;?> <?php echo $ar->lastname;?></td>
-                                      <td><?php echo date("M j, Y", strtotime($ar->arrival_date));?>
-                                      
-                                      <?php echo date("h:i A", strtotime($ar->arrival_time));?></td>
+
+                       
+                                      <td>
+                                            <?php echo date("M j, Y", strtotime($ar->arrival_date));?>
+                                            <?php echo date("h:i A", strtotime($ar->arrival_time));?>
+                                      </td>
+
+
                                       <td class="status-<?php if($ar->payment_status == "unpaid"){echo "unpaid";} else {echo "paid";} ?>"><?php echo $ar->payment_status;?></td>
                                       <?php if($ar->payment_type == "gcash"){
                                       echo '<td><img class="gcash-logo" src="assets/images/gcash.png" alt=""> </td>';
@@ -235,7 +246,17 @@
                                         echo '<td>-</td>';
                                       }
                                       ?>
-                                      <td class="status-waiting">waiting</td>
+                                     <?php if($currentdate>$arrival_date){?>
+
+                                      <td style="color:red; font-size:10px; font-weight:900">
+                                         Overdue
+                                      </td>
+                                      <?php }else{?>
+                                        <td class="status-waiting">
+                                          waiting
+                                      </td>
+                                      <?php }?>
+
                                     </tr>
                                     <?php }?>
                                 </table>
@@ -278,9 +299,12 @@
                                       <td><?php echo $at->transaction_id;?></td>
                                       <td><?php echo $at->firstname;?> <?php echo $at->lastname;?></td>
                                       <td class="text-center"><?php echo $at->name;?></td>
+                                      
+                             
                                       <td><?php echo date("M j, Y", strtotime($at->arrival_date));?>
 
                                       <?php echo date("h:i A", strtotime($at->arrival_time));?></td>
+
                                       <td class="status-<?php if($at->transaction_status == "declined"){echo "decline";} else {echo "accepted";}?>"><?php echo $at->transaction_status;?></td>
                                       <td class="status-<?php if($at->payment_status == "unpaid"){echo "unpaid";} else {echo "paid";} ?>"><?php echo $at->payment_status;?></td>
                                       <td><?php echo $at->num_ticket;?></td>
