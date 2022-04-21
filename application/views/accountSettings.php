@@ -43,9 +43,9 @@
             <div class="title-info"> USER INFORMATION
             </div>
             <div class="row py-2">
-                <div class="col-md-6"> <label for="firstname">First Name</label> <input type="text" name="f_name" value="<?php echo $w->firstname;?>" class="bg-light form-control"> </div>
-                <div class="col-md-6 pt-md-0 pt-3"> <label for="lastname">Last Name</label><input type="text" name="l_name" value="<?php echo $w->lastname;?>"  class="bg-light form-control"> </div>
-                <div class="col-md-6 pt-md-0 pt-3"> <label for="lastname">Birthday</label> <input type="date" name="b_date" value="<?php echo date( "Y-m-d", strtotime($w->birthdate));?>" class="bg-light form-control" > </div>
+                <div class="col-md-6"> <label for="firstname">First Name</label> <input id="fname" type="text" name="f_name" value="<?php echo $w->firstname;?>" class="bg-light form-control"> </div>
+                <div class="col-md-6 pt-md-0 pt-3"> <label for="lastname">Last Name</label><input id="lname" type="text" name="l_name" value="<?php echo $w->lastname;?>"  class="bg-light form-control"> </div>
+                <div class="col-md-6 pt-md-0 pt-3"> <label for="lastname">Birthday</label> <input id="bdate" type="date" name="b_date" value="<?php echo date( "Y-m-d", strtotime($w->birthdate));?>" class="bg-light form-control" > </div>
                 <div class="col-md-6 pt-md-0 pt-3"> <label for="gender">Gender</label>  
                 <select name="gender" id="gender" class="bg-light" value="<?php echo $w->gender;?>">
                     <option value="male" <?php if($w->gender == "male"){echo "selected";}?>>Male</option>
@@ -56,7 +56,7 @@
             <br>
             <div class="title-info"> ACCOUNT INFORMATION
              <div class="row py-2">
-                <div class="col-md-6"> <label for="username">Username</label> <input name="username" value="<?php if(isset($user_name)){ echo $user_name;}?>" type="text" class="bg-light form-control" disabled>  </div>
+                <div class="col-md-6"> <label for="username">Username</label> <input id="username" name="username" value="<?php if(isset($user_name)){ echo $user_name;}?>" type="text" class="bg-light form-control" disabled>  </div>
                 <div class="col-md-6 pt-md-0 pt-3"> <label for="email">Email</label> <input id="email" name="email" type="email" value="<?php echo $w->email;?>" class="bg-light form-control">  </div>
                 <div class="col-md-6"> 
                     <label for="phone">Phone Number</label> 
@@ -251,7 +251,8 @@
  $(document).ready(function(){  
       $('#upload_form').on('submit', function(e){  
            e.preventDefault();  
-            alert("processing");
+            // alert("processing");
+            if(checkValidation()&&BDateValidator()){
                 $.ajax({  
                      url:"updateFinderAccount/1",   
                      method:"POST",  
@@ -270,10 +271,106 @@
                                     location.reload();
                             }); 
                     }  
-                });  
+                });
+            }
              
       });  
- });  
+ });
+
+ 
+function checkValidation(){
+            email = $("#email").val();
+            username = $("#username").val();
+            firstname = $("#fname").val();
+            lname    = $("#lname").val();
+            phone_num = $("#phone-num").val();
+
+        
+            if(IsEmail(email)){
+                $("#email").css({"border-color": "#fd0033", 
+                "border-width":"1px", 
+                "border-style":"solid"});
+                return false;
+            }
+            if(username == ""){
+                $("#username").css({"border-color": "#fd0033", 
+                "border-width":"1px", 
+                "border-style":"solid"});
+                return false;
+            }
+            if (checkName(firstname)){
+                $("#fname").css({"border-color": "#fd0033", 
+                 "border-width":"1px", 
+                "border-style":"solid"});
+                return false;
+
+            }
+            if (checkName(lname)){
+                $("#lname").css({"border-color": "#fd0033", 
+                 "border-width":"1px", 
+                "border-style":"solid"});
+                return false;
+            }
+            if(phone_num == "" || phone_num.length <10 || phone_num.length>10){
+                $("#phone-num").css({"border-color": "#fd0033", 
+                 "border-width":"1px", 
+                "border-style":"solid"});
+                return false;
+            }
+        return true;
+}
+
+function IsEmail(email) {
+  var regex = /^([a-zA-Z0-9_\.\-\+])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+  if(!regex.test(email)) {
+    return true;
+  }else{
+    return false;
+  }
+}
+function checkName(name)
+{
+    var regex = /^([^0-9]*)$/;
+    if(regex.test(name))
+    {
+        return false;
+    } else{return true;}
+}
+
+function BDateValidator() {
+  var birthday = document.getElementById("bdate").value; // Don't get Date yet...
+  var regexVar = /^([0-9]{2})\/([0-9]{2})\/([0-9]{4})$/; // add anchors; use literal
+  var regexVarTest = regexVar.test(birthday); // pass the string, not the Date
+  var userBirthDate = new Date(birthday.replace(regexVar, "$3-$2-$1")); // Use YYYY-MM-DD format
+  var todayYear = (new Date()).getFullYear(); // Always use FullYear!!
+  var cutOff19 = new Date(); // should be a Date
+  cutOff19.setFullYear(todayYear - 16); // ...
+  var cutOff95 = new Date();
+  cutOff95.setFullYear(todayYear - 60);
+   if (isNaN(userBirthDate)) {
+    
+    swal( 'Invalid Birthdate','','error');
+    $("#bdate").css({"border-color": "#fd0033", 
+                 "border-width":"1px", 
+                "border-style":"solid"});
+    return false;
+  } else if (userBirthDate > cutOff19) {
+    // alert("you have to be older than 16");
+    swal( 'Invalid Birthdate','you have to be older than 16','error');
+    $("#bdate").css({"border-color": "#fd0033", 
+                 "border-width":"1px", 
+                "border-style":"solid"});
+    return false;
+  } else if (userBirthDate < cutOff95) {
+    // alert("you have to be younger than 95");
+    swal( 'Invalid Birthdate','you have to be younger than 60','error');
+    $("#bdate").css({"border-color": "#fd0033", 
+                 "border-width":"1px", 
+                "border-style":"solid"});
+    return false;
+  } 
+  return true; // Return the date instead of an undefined variable
+}  
  </script>  
  <!-- verify account -->
  <script>
@@ -381,7 +478,7 @@ $(document).on('click','#change_pass_btn',function(){
 		)
     }else{
             $.ajax({
-                    url:"change-finderpassword",
+                    url:"change-password",
                     method: "POST",
                     data: { newpassword:new_password,currentpassword:c_pass},
                     success: function (data) {

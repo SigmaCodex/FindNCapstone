@@ -46,7 +46,7 @@
             <div class="row py-2">
                 <div class="col-md-6"> <label for="firstname">First Name</label> <input type="text" name="fname" value="<?php echo $w->firstname;?>" id="admin_firstname" class="bg-light form-control"> </div>
                 <div class="col-md-6 pt-md-0 pt-3"> <label for="lastname">Last Name</label> <input type="text" name="lname" value="<?php echo $w->lastname;?>" id="admin_lastname"class="bg-light form-control"> </div>
-                <div class="col-md-6 pt-md-0 pt-3"> <label for="lastname">Birthdate</label> <input type="date" name="bdate" value="<?php echo date( "Y-m-d", strtotime($w->birthdate));?>" class="bg-light form-control"> </div>
+                <div class="col-md-6 pt-md-0 pt-3"> <label for="lastname">Birthdate</label> <input type="date" name="bdate" value="<?php echo date( "Y-m-d", strtotime($w->birthdate));?>" id="date" class="bg-light form-control"> </div>
                 <div class="col-md-6 pt-md-0 pt-3"> <label for="gender">Gender</label>  
                 <select name="gender" id="gender" class="bg-light">
                 <option value="male" <?php if($w->gender == "Male"){echo "selected";}?>>Male</option>
@@ -75,7 +75,7 @@
                 <div class="title-info mx-3"> <b>CHANGE PASSWORD</b>
                     <p>Do not share your password to anyone.</p>   
                 </div>
-                <div class="ml-auto mx-1" > <div class="btn danger">Change</div> </div>
+                <div class="ml-auto mx-1" > <div class="btn danger" data-toggle='modal' data-target='#changepassword'>Change</div> </div>
             </div>
             <br>
             <br>
@@ -88,8 +88,37 @@
 </form>
 </body>
 
+<!-- changepassword -->
+<div class="modal fade" id="changepassword" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Change Password</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body" style="justify-content: center;">
+        <div class="form-verification">
+            <div class="col-md-12"> <label >CurrentPassword:</label> <input type="password" id="current_password" name="currentpassword" value="" class="bg-light form-control"> </div>
+            <!-- <br> -->
+            <hr>
+            <div class="col-md-8"> <label>New Password:</label> <input type="password" id="new_password" name="newpassword" value="" class="bg-light form-control"> </div>
+            <div class="col-md-8"> <label>Repeat New Password:</label> <input type="password" id="check_new_password" value="" class="bg-light form-control"> </div>
+            <br>
+        <button id="change_pass_btn" class="w-100 btn btn-primary">Change password</button>
+        </div>
+      </div>
+      <div class="modal-footer">
+      </div>
+    </div>
+  </div>
+</div>
+
+
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"  ></script>
     <script>
         function btn(){
             let side_bar = document.getElementById("side_bar_show")
@@ -132,9 +161,8 @@
       $('#updateAdminAccount').on('submit', function(e){  
            e.preventDefault();  
             // alert("processing");
-
-            if(checkValidation()){
-                alert("checked");
+            // myValidator();
+            if(checkValidation()&&BDateValidator()){
                 $.ajax({  
                      url:"updateAdminAccount",   
                      method:"POST",  
@@ -218,8 +246,89 @@ function checkName(name)
         return false;
     } else{return true;}
 }
- </script>       
+
+function BDateValidator() {
+  var birthday = document.getElementById("date").value; // Don't get Date yet...
+  var regexVar = /^([0-9]{2})\/([0-9]{2})\/([0-9]{4})$/; // add anchors; use literal
+  var regexVarTest = regexVar.test(birthday); // pass the string, not the Date
+  var userBirthDate = new Date(birthday.replace(regexVar, "$3-$2-$1")); // Use YYYY-MM-DD format
+  var todayYear = (new Date()).getFullYear(); // Always use FullYear!!
+  var cutOff19 = new Date(); // should be a Date
+  cutOff19.setFullYear(todayYear - 16); // ...
+  var cutOff95 = new Date();
+  cutOff95.setFullYear(todayYear - 60);
+   if (isNaN(userBirthDate)) {
+    
+    swal( 'Invalid Birthdate','','error');
+    $("#date").css({"border-color": "#fd0033", 
+                 "border-width":"1px", 
+                "border-style":"solid"});
+    return false;
+  } else if (userBirthDate > cutOff19) {
+    // alert("you have to be older than 16");
+    swal( 'Invalid Birthdate','you have to be older than 16','error');
+    $("#date").css({"border-color": "#fd0033", 
+                 "border-width":"1px", 
+                "border-style":"solid"});
+    return false;
+  } else if (userBirthDate < cutOff95) {
+    // alert("you have to be younger than 95");
+    swal( 'Invalid Birthdate','you have to be younger than 60','error');
+    $("#date").css({"border-color": "#fd0033", 
+                 "border-width":"1px", 
+                "border-style":"solid"});
+    return false;
+  } 
+  return true; // Return the date instead of an undefined variable
+}
+ </script>
+  
+<script>
+    $(document).on('click','#change_pass_btn',function(){ 
+
+c_pass = $("#current_password").val(); 
+new_password = $("#new_password").val(); 
+repeat_password = $("#check_new_password").val(); 
+
+if(new_password != repeat_password){
+    swal(
+    'Password Not Match!',
+    'Please Match Your Password',
+    'error'
+    )
+}else{
+        $.ajax({
+                url:"change-password",
+                method: "POST",
+                data: { newpassword:new_password,currentpassword:c_pass},
+                success: function (data) {
+                    if(data == "invalid"){
+                        swal(
+                                'Current Password Not Match!',
+                                'Please Match Your CurrentPassword',
+                                'error'
+                                )
+                    }else{
+
+                        swal({
+                        title: "Password Changed Successfully",
+                        text: "",
+                        icon: "success",
+                        button: "Proceed",
+                        }).then((value) => {
+                                location.reload();
+                        }); 
+
+                    }
+                },
+        });
+        // console.log("hello");
+}
+
+});
+</script> 
 </html>
+
 
 
 

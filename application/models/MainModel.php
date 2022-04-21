@@ -93,7 +93,7 @@ class MainModel extends CI_Model{
         $this->db->update('user',$data);
         $this->session->sess_destroy();
     }
-    public function change_finderpassword(){
+    public function change_password(){
 
         $newpassword = $this->input->post('newpassword');
         $current_pass = $this->input->post('currentpassword');
