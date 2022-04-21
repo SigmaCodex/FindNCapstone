@@ -72,7 +72,7 @@
 									</td>
 									<td class="profile">
 											<p class="view badge badge-success" id="viewbtn" vtypeid="<?php echo $td->Ctype_id;?>" data-toggle="modal" data-target="#view-description">View</p>
-											<!-- <p class="remove badge badge-danger" id="deletebtn" dtypeid="<?php echo $td->Ctype_id;?>">Remove</p> -->
+											<p class="remove badge badge-danger" id="deletebtn" dtypeid="<?php echo $td->Ctype_id;?>">Remove</p>
 									</td>
 										
 									</tr>
@@ -223,12 +223,12 @@
 											<div class="col-6">
 												<div class="modal-input">
 													<p class="modal-caption-details-left-input">Access Type:</p> 
-													<input name="comp_name"type="text" class="form-control shadow-none" aria-label="Small" aria-describedby="inputGroup-sizing-sm" placeholder="ex. 'Regular'">
+													<input name="comp_name"type="text" id="add_type" class="form-control shadow-none" aria-label="Small" aria-describedby="inputGroup-sizing-sm" placeholder="ex. 'Regular'" required>
 												</div>
 												
 												<div class="modal-input">
 													<p class="modal-caption-details-left-input">Number of Units:</p> 
-													<input name="comp_total" type="number" class="form-control shadow-none" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
+													<input name="comp_total" type="number" id="add_units" class="form-control shadow-none" aria-label="Small" aria-describedby="inputGroup-sizing-sm" required>
 												</div>
 												
 											</div>
@@ -245,7 +245,7 @@
 														<div class="input-group-prepend">
 														  <span class="input-group-text" id="inputGroup-sizing-sm" style="font-size: 9px;">PHP</span>
 														</div>
-														<input name="comp_rate" type="number" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
+														<input name="comp_rate" type="number" id="add_price" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm" required>
 													</div>	
 												</div>
 												
@@ -316,12 +316,12 @@
 											<div class="col-6">
 												<div class="modal-input">
 													<p class="modal-caption-details-left-input">Access Type:</p> 
-													<input name="comp_name"type="text" id="edit_type_name" class="form-control shadow-none" aria-label="Small" aria-describedby="inputGroup-sizing-sm" placeholder="ex. 'Regular'">
+													<input name="comp_name"type="text" id="edit_type_name" class="form-control shadow-none" aria-label="Small" aria-describedby="inputGroup-sizing-sm" placeholder="ex. 'Regular'" required>
 												</div>
 												
 												<div class="modal-input">
 													<p class="modal-caption-details-left-input">Number of Units:</p> 
-													<input name="comp_total" type="number" id="edit_type_units" class="form-control shadow-none" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
+													<input name="comp_total" type="number" id="edit_type_units" class="form-control shadow-none" aria-label="Small" aria-describedby="inputGroup-sizing-sm" required>
 												</div>
 												
 											</div>
@@ -334,7 +334,7 @@
 														<div class="input-group-prepend">
 														  <span class="input-group-text" id="inputGroup-sizing-sm" style="font-size: 9px;">PHP</span>
 														</div>
-														<input name="comp_rate" id="edit_type_rate" type="number" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
+														<input name="comp_rate" id="edit_type_rate" type="number" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm" required>
 													</div>	
 												</div>
 												
@@ -384,7 +384,7 @@
 		
 	</body>
 </html>	
-	
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.js"></script>
 <!-- 
 <script src="assets/js/shopAdminComputerType.js"></script> -->
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
@@ -509,23 +509,23 @@
 	 }); 
 </script>
 <script>
-// $(document).on("click", "#deletebtn", function () {
-//     var BASE_URL = "<?php echo base_url();?>";
-//     var type_id = $(this).attr("dtypeid"); 
-// 	$.ajax({
-// 						url: BASE_URL+"deleteComputerType/"+type_id,
-// 						method: "POST",
-// 						data: { Ctype_id: type_id},
-// 						success: function (data) {
-// 							swal("Computer Type has been deleted!", {
-//     					  		icon: "success",
-//     						}).then((value) => {
-// 						  		window.location = BASE_URL+"shopAdminComputerType";
-// 							});
+$(document).on("click", "#deletebtn", function () {
+    var BASE_URL = "<?php echo base_url();?>";
+    var type_id = $(this).attr("dtypeid"); 
+	$.ajax({
+						url: BASE_URL+"deleteComputerType/"+type_id,
+						method: "POST",
+						data: { Ctype_id: type_id},
+						success: function (data) {
+							swal("Computer Type has been deleted!", {
+    					  		icon: "success",
+    						}).then((value) => {
+						  		window.location = BASE_URL+"shopAdminComputerType";
+							});
 
-// 						},
-// 					});	
-//  });
+						},
+					});	
+ });
  </script>
 	<script>
 		$(document).ready(function(){
@@ -543,7 +543,7 @@
 			});
 		});
 	</script>
-	<script>
+<script>
 		$(document).ready(function(){
 			var preview = $("#edit_upload-preview");
 
@@ -559,31 +559,32 @@
 			});
 		});
 	</script>
-	<script>  
- $(document).ready(function(){  
-      $('#upload_form').on('submit', function(e){  
-        var shopID = $('#shopid').text();
-        var BASE_URL = "<?php echo base_url();?>";
-           e.preventDefault();  
-                $.ajax({  
-                     url: BASE_URL+"addcomtype/"+shopID,   
-                     method:"POST",  
-                     data:new FormData(this),  
-                     contentType: false,  
-                     cache: false,  
-                     processData:false,  
-                     success:function(data)  
-                     {  
-                        swal("Computer Type is successfully added!", {
-    					  		icon: "success",
-    						}).then((value) => {
-						  		window.location = BASE_URL+"shopAdminComputerType";
-						}); 
-                     }  
-                });  
-             
-      });  
- });  
+<script>  
+	$(document).ready(function(){  
+		$('#upload_form').on('submit', function(e){  
+			var shopID = $('#shopid').text();
+			var BASE_URL = "<?php echo base_url();?>";
+
+			e.preventDefault();  
+					$.ajax({  
+						url: BASE_URL+"addcomtype/"+shopID,   
+						method:"POST",  
+						data:new FormData(this),  
+						contentType: false,  
+						cache: false,  
+						processData:false,  
+						success:function(data)  
+						{  
+							swal("Computer Type is successfully added!", {
+									icon: "success",
+								}).then((value) => {
+									window.location = BASE_URL+"shopAdminComputerType";
+							}); 
+						}  
+					});  
+				
+		});  
+	});  
  </script>
  <!-- <script>
     function readURL(input) {
@@ -619,4 +620,40 @@ $('.image-upload-wrap').bind('dragover', function () {
 		$('.image-upload-wrap').removeClass('image-dropping');
 });
 
+</script> -->
+<!-- <script>
+	function validateForm() {
+		let x = document.forms["upload_form"]["add_type"].value;
+
+			if (x == "") {
+			alert("Name must be filled out");
+			return false;
+			}
+			if(x!=""){
+				$(document).ready(function(){  
+      		$('#upload_form').on('submit', function(e){  
+        		var shopID = $('#shopid').text();
+        		var BASE_URL = "<?php echo base_url();?>";
+        		e.preventDefault();  
+                $.ajax({  
+                     url: BASE_URL+"addcomtype/"+shopID,   
+                     method:"POST",  
+                     data:new FormData(this),  
+                     contentType: false,  
+                     cache: false,  
+                     processData:false,  
+                     success:function(data)  
+                     {  
+                        swal("Computer Type is successfully added!", {
+    					  		icon: "success",
+    						}).then((value) => {
+						  		window.location = BASE_URL+"shopAdminComputerType";
+						}); 
+                     }  
+                });  
+             
+      });  
+ });  
+			}
+	}
 </script> -->
