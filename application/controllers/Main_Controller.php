@@ -370,7 +370,26 @@ class Main_Controller extends CI_Controller {
 		$this->load->view('admin/Bookings');
 		$this->load->view('admin/template/footer');
 	}
-	
+
+
+	public function viewShopAdminEditProfile(){
+		
+
+		$shop_id = $this->session->userdata('admin_shop_id');
+		if(!$shop_id){
+			redirect(adminlogin);
+		}else{
+			$result['profile_pic'] =  $this->session->userdata('profile_pic');
+			$result['admin_name'] =  $this->session->userdata('admin_name');
+			$result['shop_details'] = $this->MainModel->getShopDetails($shop_id);
+			$admin_id = $this->session->userdata('user_id');
+
+		$this->load->view('admin/template/adminHeader',$result);
+		$this->load->view('admin/shopAdminEditProfile');
+		}
+	}
+
+
 	public function viewShopAdminAccountSettings(){
 		$shop_id = $this->session->userdata('admin_shop_id');
 		if(!$shop_id){

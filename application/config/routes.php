@@ -32,7 +32,7 @@ $route['shopAdminScanQR'] = 'main_controller/viewShopAdminScanQR';
 $route['shopAdminDashboard'] = 'main_controller/viewShopAdminDashboard';
 $route['shopAdminComputerType'] = 'main_controller/viewShopAdminComputerType';
 $route['shopAdminAccountSettings'] = 'main_controller/viewShopAdminAccountSettings';
-
+$route['shopAdminEditProfile'] = 'main_controller/viewShopAdminEditProfile';
 
 
 //finders
