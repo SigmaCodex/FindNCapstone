@@ -421,8 +421,17 @@ $(document).on("click",".table-row",function(){
                             {
                                 $("#finder_name").text(result[x]['firstname']+","+result[x]['lastname']);
                                 $("#email").text(result[x]['email']);
-                                $("#gender").text(result[x]['gender']);
-                                $("#vac_status").text(result[x]['vac_status']);
+                                var upGend = result[x]['gender'];
+                                var gendtext = upGend.toUpperCase();
+                                $("#gender").text(gendtext);
+                                var first_vac = "1st Vaccination";
+                                var second_vac = "2nd Vaccination";
+                                if(result[x]['vac_status'] == "1stvac"){
+                                    $("#vac_status").text(first_vac); 
+                                }
+                                else if(result[x]['vac_status'] == "2ndvac"){
+                                    $("#vac_status").text(second_vac); 
+                                }
                                 $("#contact_num").text(result[x]['phone_num']);
                                 $("#finder_profile").removeAttr("src");
                                 $("#finder_profile").attr("src","assets/upload/finder/"+result[x]['profile_pic']);
