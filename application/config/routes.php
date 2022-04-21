@@ -114,7 +114,7 @@ $route['reports'] = 'main_controller/viewReports';
     $route['select-computershops/(:any)/(:num)'] = 'logicalcontroller/selectComputerShop/$1/$2';
     $route['view-FinderBookingTransaction/(:num)'] = 'logicalcontroller/view_finderBookingTransaction/$1';
     $route['select-QrScannerFinderBookingTransaction/(:num)'] = 'logicalcontroller/qr_scanner_select_finderBookingTransaction/$1';
-    $route['change-finderpassword']                        = 'logicalcontroller/change_finderpassword';
+    $route['change-password']                        = 'logicalcontroller/change_password';
    
     $route['addRate/(:num)'] = 'logicalcontroller/addRate/$1';
     $route['updateRate/(:num)'] = 'logicalcontroller/updateRate/$1';
@@ -161,6 +161,7 @@ $route['reports'] = 'main_controller/viewReports';
     $route['deletePost/(:num)'] = 'logicalcontroller/deleteshopPosts/$1';
     $route['updateshopPost/(:num)'] = 'logicalcontroller/updateshopPosts/$1';
     $route['updateShopStatus/(:any)'] = 'logicalcontroller/updateShopStatus/$1';
+    $route['updateAdminAccount']      = 'logicalcontroller/updateAdminAccount';
     //api 
     $route['goto-gcash']                  = 'logicalcontroller/GotoGcash';
     $route['select-paymentmethod']        = 'main_controller/payment_exercise';

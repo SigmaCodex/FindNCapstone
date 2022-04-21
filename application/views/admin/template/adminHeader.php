@@ -28,7 +28,7 @@
              </div>
             
                <span class="admin_name text-center" >Hello Admin</span>
-              <img class="profile-img" src="assets/images/Prof.png" alt="">
+              <img class="profile-img" src="assets/upload/shop/admin/<?php echo $profile_pic?>"  onerror="this.src='assets/images/default.png';" alt="">
               <i class="icon-dropdown fa-solid fa-caret-down"></i>
               
           </div>

@@ -288,6 +288,7 @@ class Main_Controller extends CI_Controller {
 			$val['alltransac'] = $this->MainModel->viewallShopAdminBookingRequests($shop_id);
 			$result['shop_details'] = $this->MainModel->getShopDetails($shop_id);
 			$result['admin_name'] =  $this->session->userdata('admin_name');
+			$result['profile_pic'] =  $this->session->userdata('profile_pic');
 			$this->load->view('admin/template/adminHeader',$result);
 			$this->load->view('admin/shopAdminBookings',$val);
 		}
@@ -300,6 +301,7 @@ class Main_Controller extends CI_Controller {
 		}else{
 			$result['admin_name'] =  $this->session->userdata('admin_name');
 			$result['shop_details'] = $this->MainModel->getShopDetails($shop_id);
+			$result['profile_pic'] =  $this->session->userdata('profile_pic');
 			$this->load->view('admin/template/adminHeader',$result);
 			$this->load->view('admin/shopAdminScanQR');
 		}
@@ -321,6 +323,7 @@ class Main_Controller extends CI_Controller {
 			//shop details For Map
 			$result['shop_details'] = $this->MainModel->getShopDetails($shop_id);
 			$result['admin_name'] =  $this->session->userdata('admin_name');
+			$result['profile_pic'] =  $this->session->userdata('profile_pic');
 			$this->load->view('admin/template/adminHeader',$result);
 			$this->load->view('admin/shopAdminDashboard',$result);
 		}
@@ -332,6 +335,7 @@ class Main_Controller extends CI_Controller {
 		}else{
 			$result['admin_name'] =  $this->session->userdata('admin_name');
 			$result['shop_details'] = $this->MainModel->getShopDetails($shop_id);
+			$result['profile_pic'] =  $this->session->userdata('profile_pic');
 			$this->load->view('admin/template/adminHeader',$result);
       		$val['typelist'] = $this->MainModel->getListOfComputerTypes($shop_id);
 			$this->load->view('admin/shopAdminComputerType',$val);
@@ -372,6 +376,7 @@ class Main_Controller extends CI_Controller {
 		if(!$shop_id){
 			redirect(adminlogin);
 		}else{
+			$result['profile_pic'] =  $this->session->userdata('profile_pic');
 			$result['admin_name'] =  $this->session->userdata('admin_name');
 			$result['shop_details'] = $this->MainModel->getShopDetails($shop_id);
 			$admin_id = $this->session->userdata('user_id');
