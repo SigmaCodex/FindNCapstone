@@ -239,18 +239,21 @@ String.prototype.toCap = function () {
 //--------------------------------------------------------------------
 $("#firstname").keyup(function(){ 
    var fname = $("#firstname").val();
+   if (fname.length == 0) {
+		$("#firstname").css("border", "1.5px solid red");
+	}
    if (fname.length != 0) {
-		$("#errorfname").text("");
+		$("#firstname").css("border", "1.5px solid green");
 	}
 });
 //--------------------------------------------------------------------
 $("#lastname").keyup(function(){ 
    var lname = $("#lastname").val();
    if (lname.length == 0) {
-		// $("#errorlname").text("Please input your last name").css("color", "red");
+		$("#lastname").css("border", "1.5px solid red");
 	}
    if (lname.length != 0) {
-		$("#errorlname").text("");
+		$("#lastname").css("border", "1.5px solid green");
 	}
 });
 //--------------------------------------------------------------------
@@ -260,9 +263,11 @@ $("#email").keyup(function(){
 	var email = $("#email").val();
    if (!regEmail.test(email)) {
 		$("#erroremail").text("Please input valid email").css("color", "red");
+      $("#email").css("border", "1.5px solid red");
 	}
    if (regEmail.test(email)) {
 		$("#erroremail").text("");
+      $("#email").css("border", "1.5px solid green");
 	}
 });
 //--------------------------------------------------------------------
@@ -276,10 +281,39 @@ $("#pnum").keyup(function(){
 	}
    if (number.length == 10) {
 		$("#errornum").text("");
-      $("#pnum").css("border", "1px solid lightgray");
+      $("#pnum").css("border", "1px solid green");
 	}
 });
-
+//--------------------------------------------------------------------var pass = $("#pass").val(); var conpass = $("#conpass").val();
+$("#pass").keyup(function(){ 
+   var pass = $("#pass").val();
+   var conpass = $("#conpass").val();
+   if (pass.length == 0) {
+		$("#pass").css("border", "1.5px solid red");
+	}
+   if (pass.length <= 7) {
+		$("#pass").css("border", "1.5px solid red");
+	}
+   if (pass.length > 7) {
+		$("#pass").css("border", "1.5px solid green");
+	}
+   if (pass != conpass) {
+      $("#conpass").css("border", "1.5px solid red");
+   }
+   if(pass == conpass){
+      $("#conpass").css("border", "1.5px solid green");
+   }
+});
+$("#conpass").keyup(function(){ 
+   var pass = $("#pass").val(); 
+   var conpass = $("#conpass").val();
+   if (pass != conpass) {
+		$("#conpass").css("border", "1.5px solid red");
+	}
+   else {
+      $("#conpass").css("border", "1.5px solid green");
+   }
+});
 
 nextBtnFirst.addEventListener("click", function (event) {
 	event.preventDefault();
@@ -294,8 +328,8 @@ nextBtnFirst.addEventListener("click", function (event) {
       $("#lastname").css("border", "1.5px solid red");
 	}
 	if (fname.length > 0 && lname.length > 0) {
-		$("#errorfname").text("");
-		$("#errorlname").text("");
+		$("#firstname").css("border", "1.5px solid green");
+		$("#lastname").css("border", "1.5px solid green");
 		slidePage.style.marginLeft = "-25%";
 		bullet[current - 1].classList.add("active");
 		progressCheck[current - 1].classList.add("active");
@@ -312,13 +346,17 @@ nextBtnSec.addEventListener("click", function (event) {
 		/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 	if(email == ""){
       $("#erroremail").text("Please input your email").css("color", "red");
+      $("#email").css("border", "1.5px solid red");
    }
    if(number.length == 0){
       $("#errornum").text("Please input a number").css("color", "red");
+      $("#email").css("border", "1.5px solid red");
    }
 	if (regEmail.test(email) && number.toString().length == 10) {
 		$("#erroremail").text("");
 		$("#errornum").text("");
+      $("#email").css("border", "1.5px solid green");
+      $("#pnum").css("border", "1.5px solid green");
 		slidePage.style.marginLeft = "-50%";
 		bullet[current - 1].classList.add("active");
 		progressCheck[current - 1].classList.add("active");
@@ -330,15 +368,20 @@ nextBtnThird.addEventListener("click", function (event) {
 	event.preventDefault();
 	var gender = $('select[name="gender"]').val();
 	var date = document.getElementById("date").value;
+   alert(date);
 	if (date == "") {
 		$("#errordate").text("Please input a date").css("color", "red");
+      $("#date").css("border", "1.5px solid red");
 	}
 	if (gender == "") {
 		$("#errorgender").text("Please select gender").css("color", "red");
+      $('select[name="gender"]').css("border", "1.5px solid red");
 	}
-	if (!(date == "") && !(gender == "")) {
+	if (!(date == "") && !(gender == "") && BDateValidator()) {
 		$("#errordate").text("");
 		$("#errorgender").text("");
+      $("#date").css("border", "1.5px solid green");
+      $('select[name="gender"]').css("border", "1.5px solid green");
 		slidePage.style.marginLeft = "-75%";
 		bullet[current - 1].classList.add("active");
 		progressCheck[current - 1].classList.add("active");
@@ -409,15 +452,18 @@ var isUserTaken ="";
             isUserTaken = data;
             if(isUserTaken == "true"){
                $("#erroruser").text("Username is already taken").css("color", "red");
+               $("#username").css("border", "1.5px solid red");
             }
             if(isUserTaken == "false"){
-               $("#erroruser").text("");
+                  $("#erroruser").text("");
+                  $("#username").css("border", "1.5px solid green");
             }
          }
          });
       }
       else {
-         $("#erroruser").text("");
+         $("#erroruser").text("Please input username").css("color", "red");
+         $("#username").css("border", "1.5px solid red");
       }  
 
       
@@ -511,9 +557,40 @@ submitBtn.addEventListener("click", function (event) {
 	}
 });
 
-// $(document).ready(function(){ 
-   
-// });
+function BDateValidator() {
+  var birthday = document.getElementById("date").value; // Don't get Date yet...
+  var regexVar = /^([0-9]{2})\/([0-9]{2})\/([0-9]{4})$/; // add anchors; use literal
+  var regexVarTest = regexVar.test(birthday); // pass the string, not the Date
+  var userBirthDate = new Date(birthday.replace(regexVar, "$3-$2-$1")); // Use YYYY-MM-DD format
+  var todayYear = (new Date()).getFullYear(); // Always use FullYear!!
+  var cutOff19 = new Date(); // should be a Date
+  cutOff19.setFullYear(todayYear - 16); // ...
+  var cutOff95 = new Date();
+  cutOff95.setFullYear(todayYear - 60);
+   if (isNaN(userBirthDate)) {
+    
+    swal( 'Invalid Birthdate','','error');
+    $("#date").css({"border-color": "#fd0033", 
+                 "border-width":"1px", 
+                "border-style":"solid"});
+    return false;
+  } else if (userBirthDate > cutOff19) {
+    // alert("you have to be older than 16");
+    swal( 'Invalid Birthdate','you have to be older than 16','error');
+    $("#date").css({"border-color": "#fd0033", 
+                 "border-width":"1px", 
+                "border-style":"solid"});
+    return false;
+  } else if (userBirthDate < cutOff95) {
+    // alert("you have to be younger than 95");
+    swal( 'Invalid Birthdate','you have to be younger than 60','error');
+    $("#date").css({"border-color": "#fd0033", 
+                 "border-width":"1px", 
+                "border-style":"solid"});
+    return false;
+  } 
+  return true; // Return the date instead of an undefined variable
+}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    
 
       </script>
       <style>
