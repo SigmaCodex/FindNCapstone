@@ -348,7 +348,7 @@
                                 <hr>
                                 <div class="d-flex align-items-center justify-content-center">
                                     <!-- <input type="checkbox"> -->
-                                    <p class="text-muted m-0 pl-4 justify-content-center" style="font-size: 15px;"><?php echo $data->operating_days?> </p>
+                                    <!-- <p class="text-muted m-0 pl-4 justify-content-center" style="font-size: 15px;"><?php echo $data->operating_days?> </p> -->
                                 </div>
 
                             </div>
@@ -372,7 +372,7 @@
                                 <hr>
                                 <div class="d-flex align-items-center justify-content-center">
                                     <!-- <input type="checkbox"> -->
-                                    <p class="text-muted m-0 pl-4" style="font-size: 15px;"><?php echo $data->operating_hours?></p>
+                                    <!-- <p class="text-muted m-0 pl-4" style="font-size: 15px;"><?php echo $data->operating_hours?></p> -->
                                 </div>  
                                 
                             </div>
