@@ -206,7 +206,7 @@
                                 <h6>Address</h6>
                                 <p><?php echo $data->address?></p>
                             </div>
-                            <div class="col-6 text-description text-left">
+                            <div class="col-6 text-description text-center">
                                 <h6>Email Address</h6>
                                 <p><?php echo $data->email_address?></p>
                             </div>

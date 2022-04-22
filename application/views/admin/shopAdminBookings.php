@@ -221,6 +221,7 @@
                                       <th>Payment Method</th>
                                       <th>Status</th>
                                     </tr>
+                                    <tbody class="waitingTableContent">
                                     <?php foreach ($acceptedrequest as $ar) {?>
                                         <!-- date and time check if overdue  -->
                                          <?php 
@@ -252,17 +253,18 @@
                                       ?>
                                      <?php if($currentdate>$arrival_date){?>
 
-                                      <td style="color:red; font-size:10px; font-weight:900">
-                                         Overdue
+                                      <td class="arrival_status" status="Overdue" style="color:red; font-size:10px; font-weight:900">
+                                        <p>Overdue</p>
                                       </td>
                                       <?php }else{?>
-                                        <td class="status-waiting">
-                                          waiting
+                                        <td class="status-waiting arrival_status" status="Waiting">
+                                          <p>waiting</p>
                                       </td>
                                       <?php }?>
 
                                     </tr>
                                     <?php }?>
+                                    </tbody>
                                 </table>
                             </div>
                             
@@ -634,6 +636,38 @@ function dateformat(arrival_date){
             return date_format;
         } 
                 
+</script>
+
+<!-- gol imoha nani -->
+<script>
+    $(document).on('click','.ongoing-table-bookings tr', function(){
+       status = $(this).find("td").find("p").text();
+       alert(status);
+    });
+</script>
+<script>
+    jQuery.expr[':'].contains = function(a, i, m) {
+            return jQuery(a).text().toUpperCase()
+                .indexOf(m[3].toUpperCase()) >= 0;
+    };
+    $(document).on('keyup','.search_field', function(){
+       filterdata = $(this).val();
+    //   $('.transaction-card').removeClass('d-none');
+      $('.waitingTableContent tr').removeClass('d-none');
+
+            var filter = $(this).val(); // get the value of the input, which we filter on
+            // alert(filter);
+            // $('.transcation-body').find('.transaction-card p:not(:contains("'+filter+'"))').parent().parent().addClass('d-none');
+            // $('.transaction-content').find('.content .transaction-card p:not(:contains("'+filter+'"))').parent().css({
+            //     "color": "green",
+            //     "border": "2px solid green"
+            // });
+        // $('.transaction-content').find('.ongoing-table-bookings tr td:not(:contains("'+filterdata+'"))').addClass('d-none');
+      
+        $('.ongoing-table-bookings').find('.waitingTableContent tr:not(:contains("'+filterdata+'"))').addClass('d-none');;
+        $('.ongoing-table-bookings').find('.waitingTableContent trcontains("'+filterdata+'")').removeClass('d-none');
+        
+    });
 </script>
 <!-- <script>
     $("#waitinglistview").append("<div class='right-sidebar my-3'> <div class='right-sidebar-title d-flex align-items-left justify-content-start p-2'> <i class='title-icon fa-solid fa-spinner fa-pulse d-flex align-items-center justify-content-center'></i> <h6 class='card-title-text m-0 p-2'>WAITING LIST</h6> </div> <div class='right-sidebar-padding'> <div class='table-card'> <div class='table-card-content'> <table class='ongoing-table-bookings'> <tr class='title-table-wait'> <th>Transaction ID</th> <th>Name</th> <th>Arrival Date & Time</th> <th>Payment Status</th> <th>Payment Method</th> <th>Status</th> </tr> <tr class='table-row' data-toggle='modal' data-target='#transaction-modal' id_data=''> <td id='wvtransactionid'></td> <td id='wvname'></td> <td id='wvarrivaldateandtime'></td> <td class='status-paid'></td>; <td class='wvpaymentstatus'><img class='gcash-logo' src='assets/images/gcash.png' alt=''> </td>; <td class='status-waiting'>waiting</td> </tr> </table> </div> </div> </div> </div>");
