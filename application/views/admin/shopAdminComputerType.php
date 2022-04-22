@@ -10,7 +10,6 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">    
 
 	<!-- Modal CDN -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>	
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" ></script>
 	<!-- My CSS -->
@@ -72,7 +71,7 @@
 									</td>
 									<td class="profile">
 											<p class="view badge badge-success" id="viewbtn" vtypeid="<?php echo $td->Ctype_id;?>" data-toggle="modal" data-target="#view-description">View</p>
-											<p class="remove badge badge-danger" id="deletebtn" dtypeid="<?php echo $td->Ctype_id;?>">Remove</p>
+											<!-- <p class="remove badge badge-danger" id="deletebtn" dtypeid="<?php echo $td->Ctype_id;?>">Remove</p> -->
 									</td>
 										
 									</tr>
@@ -132,8 +131,8 @@
 		
 
 							<div class="modal-img-holder d-flex flex-column align-items-center justify-content-center">
-								<p class="modal-img-holder-caption text-muted">*Upload image for service type reference. Allowed extensions: (png, jpg jpeg)</p>
-								<img id="view-upload-preview" class="modal-image"src="assets/images/TNC-1.jpg" style="border-radius: 10px;">
+								<p class="modal-img-holder-caption text-muted"></p>
+								<img id="view-upload-preview" class="modal-image"src="assets/images/default_computertype.png" style="border-radius: 10px;">
 							</div>
 									<div class="modal-user-info">
 										<div class="row ">
@@ -210,7 +209,7 @@
 							<form method="post" id="upload_form" enctype="multipart/form-data">
 							<div class="modal-img-holder d-flex flex-column align-items-center justify-content-center">
 								<p class="modal-img-holder-caption text-muted">*Upload image for service type reference. Allowed extensions: (png, jpg jpeg)</p>
-								<img id="upload-preview" class="modal-image"src="assets/images/upload_icon.png" style="border-radius: 10px;">
+								<img id="upload-preview" class="modal-image"src="assets/images/default_upload.png" style="border-radius: 10px;">
 							</div>
 									<div class="modal-user-info">
 										<div class="input-group mb-3">
@@ -303,7 +302,7 @@
 							<form method="post" id="edit_upload_form" enctype="multipart/form-data">
 							<div class="modal-img-holder d-flex flex-column align-items-center justify-content-center">
 								<p class="modal-img-holder-caption text-muted">*Upload image for service type reference. Allowed extensions: (png, jpg jpeg)</p>
-								<img id="edit_upload-preview" class="modal-image"src="assets/images/TNC-1.jpg" style="border-radius: 10px;">
+								<img id="edit_upload-preview" class="modal-image"src="assets/images/default_upload.png" style="border-radius: 10px;">
 							</div>
 									<div class="modal-user-info">
 										<div class="input-group mb-3">

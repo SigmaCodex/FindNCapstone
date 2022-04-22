@@ -15,8 +15,15 @@
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
+
   </head>
+
+    <!-- Bootstrap CDN -->
+   <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+   <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
   
+</head>
+
   <body>
   <?php foreach($shop_details as $data){?>
    <section class="header-top ">
@@ -24,17 +31,62 @@
          <a id="show-sidebar" href="#"><i class="fas fa-bars"></i></a>
           <h4 class="shop_name"><?php echo $data->shop_name;?> CYBERCAFE ADMIN PANEL</h4>
           <div class="profile-img-name">
-             <div class="notification-div d-flex">
-               <i class="icon-notif fa-solid fa-bell"></i>
-               <span class="notif-badge  badge-pill badge-danger">3</span>
-             </div>
-            
-               <span class="admin_name text-center" >Hello Admin</span>
-              <img class="profile-img" src="assets/upload/shop/admin/<?php echo $profile_pic?>"  onerror="this.src='assets/images/default.png';" alt="">
-              <i class="icon-dropdown fa-solid fa-caret-down"></i>
-              
-          </div>
-          
+            <div class="notification-div d-flex">
+               <i class="icon-notif fa-solid fa-bell btn" data-toggle="dropdown"></i>
+               <span class="notif-badge badge-pill badge-danger">3</span>
+               <div class="dropdown-menu dropdown-menu-right">
+                  <div class="dropdown-item d-flex align-items-center justify-content-between p-2 pl-3 pr-3">
+                     <i class="close-notif fa-solid fa-trash-alt"></i>
+                     <img class="profile-img-dropdown" src="assets/images/Prof.png">
+                     <div class="d-flex flex-column">
+                        <p class="dropdown-message" type="text" style="color:#fd7238">Requesting to Book</p>
+                        <p class="dropdown-name text-muted" type="text">John Ken Dublin</p>
+                     </div>
+                     
+                  </div>
+                  <div class="dropdown-item d-flex align-items-center justify-content-start p-2 pl-3 pr-3">
+                     <i class="close-notif fa-solid fa-trash-alt"></i>
+                     <img class="profile-img-dropdown" src="assets/images/Prof1.png">
+                     <div class="d-flex flex-column">
+                        <p class="dropdown-message" type="text" style="color:#28a745">Payment Successful</p>
+                        <p class="dropdown-name text-muted" type="text">John Dave Delgado</p>
+                     </div> 
+                  </div>
+
+                  <div class="dropdown-item d-flex align-items-center justify-content-start p-2 pl-3 pr-3">
+                     <i class="close-notif fa-solid fa-trash-alt"></i>
+                     <img class="profile-img-dropdown" src="assets/images/default.png">
+                     <div class="d-flex flex-column">
+                        <p class="dropdown-message" type="text" style="color:#e30f0f">Booking Cancelled</p>
+                        <p class="dropdown-name text-muted" type="text">Chris Dann Tanggol</p>
+                     </div>
+                  </div>
+                  
+               </div>
+
+            </div>
+                
+             <span class="admin_name text-center" >Hello Admin</span>
+               <img class="profile-img" src="assets/upload/shop/admin/<?php echo $profile_pic?>"  onerror="this.src='assets/images/default.png';" alt="">
+               
+               <div class="dropdown ">
+               <i class="icon-dropdown fa-solid fa-caret-down btn-sm"  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></i>
+                  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                     <div class="account-set d-flex align-items-center justify-content-center">
+                        <a class="dropdown-item" href="#"><i class="fa-solid fa-user"></i>Account Settings</a>
+                     </div>
+                     <div class="account-set d-flex align-items-center justify-content-center">
+                        <a class="dropdown-item" href="#"><i class="fa-solid fa-right-from-bracket"></i>Logout</a>
+                     </div>
+                  </div>
+               </div>
+
+               
+               
+               
+         
+            </div>
+         </div>
       </div>
 
    </section>
@@ -117,13 +169,13 @@
                            <a href="#">
                            <i class="fa fa-calendar"></i>
                            <span>Bookings</span>
-                           <span class="badge badge-pill badge-danger">3</span>
+                           <span class="badge badge-pill badge-danger" id="header_bookcount"></span>
                            </a>
                            <div class="sidebar-submenu">
                               <ul>
                                  <li>
                                     <a href="shopAdminBookings">Requests
-                                       <span class="badge badge-pill badge-danger">3</span>
+                                       <span class="badge badge-pill badge-danger" id="header2_bookcount"></span>
                                     </a>
                                     <a href="shopAdminBookings">List Of all Bookings
                                     </a>
@@ -246,6 +298,24 @@
                   });
          });
     </script>
-
+<script>
+   setInterval(function(){
+         BASE_URL = "<?php echo base_url();?>";
+            $.ajax({
+                        url:BASE_URL+"countPendingBook",
+                        method:"GET", 
+                        // data:{},
+                        cache: false, 
+                        success:function(data)
+                        {
+                          if(data>=0){
+                            $("#header_bookcount").text(data);
+                            $("#header2_bookcount").text(data);      
+                          }  
+                        }
+                      }); 
+   },100);
+            //ajax;
+    </script>
   </body>
 </html>

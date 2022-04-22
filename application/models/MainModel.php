@@ -1040,6 +1040,7 @@ class MainModel extends CI_Model{
     public function addComputerType($id, $status){
         if($status == "no-image"){
             $data = array(
+            'comp_type_img'   => "default_computertype.png",
             'shop_id_fk'  =>    $id,
             'status' => "Available",
             'name'   => 	 $this->input->post('comp_name'),
