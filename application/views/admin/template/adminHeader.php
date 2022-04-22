@@ -15,6 +15,12 @@
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
+    <!-- Bootstrap CDN -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+ 
+
   </head>
   <body>
   <?php foreach($shop_details as $data){?>
@@ -24,8 +30,37 @@
           <h4 class="shop_name"><?php echo $data->shop_name;?> CYBERCAFE ADMIN PANEL</h4>
           <div class="profile-img-name">
              <div class="notification-div d-flex">
-               <i class="icon-notif fa-solid fa-bell"></i>
-               <span class="notif-badge  badge-pill badge-danger">3</span>
+               <i class="icon-notif fa-solid fa-bell btn" data-toggle="dropdown"></i>
+               <span class="notif-badge badge-pill badge-danger">3</span>
+            <div class="dropdown-menu dropdown-menu-right">
+               <div class="dropdown-item d-flex align-items-center justify-content-between p-2 pl-3 pr-3">
+                  <img class="profile-img-dropdown" src="assets/images/Prof.png">
+                  
+                  <div class="d-flex flex-column">
+                     <p class="dropdown-message" type="text" style="color:#fd7238">Booking Request</p>
+                     <p class="dropdown-name" type="text">John Ken Dublin </p>
+                  </div>
+                  <i class="close-notif fa-solid fa-xmark"></i>
+               </div>
+               <div class="dropdown-item d-flex align-items-center justify-content-start p-2 pl-3 pr-3">
+                  <img class="profile-img-dropdown" src="assets/images/Prof1.png">
+                  <div class="d-flex flex-column">
+                     <p class="dropdown-message" type="text" style="color:#28a745">Payment Successful</p>
+                     <p class="dropdown-name" type="text">John Dave Delgado</p>
+                  </div>
+                  <i class="close-notif fa-solid fa-xmark"></i>
+               </div>
+               <div class="dropdown-item d-flex align-items-center justify-content-start p-2 pl-3 pr-3">
+                  <img class="profile-img-dropdown" src="assets/images/default.png">
+                  <div class="d-flex flex-column">
+                     <p class="dropdown-message" type="text" style="color:#e30f0f">Booking Cancelled</p>
+                     <p class="dropdown-name" type="text">Chris Dann Tanggol</p>
+                  </div>
+                  <i class="close-notif fa-solid fa-xmark"></i>
+               </div>
+               
+            </div>
+
              </div>
             
                <span class="admin_name text-center" >Hello Admin</span>
