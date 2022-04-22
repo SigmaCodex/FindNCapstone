@@ -165,13 +165,13 @@
                            <a href="#">
                            <i class="fa fa-calendar"></i>
                            <span>Bookings</span>
-                           <span class="badge badge-pill badge-danger">3</span>
+                           <span class="badge badge-pill badge-danger" id="header_bookcount"></span>
                            </a>
                            <div class="sidebar-submenu">
                               <ul>
                                  <li>
                                     <a href="shopAdminBookings">Requests
-                                       <span class="badge badge-pill badge-danger">3</span>
+                                       <span class="badge badge-pill badge-danger" id="header2_bookcount"></span>
                                     </a>
                                     <a href="shopAdminBookings">List Of all Bookings
                                     </a>
@@ -294,6 +294,22 @@
                   });
          });
     </script>
-
+<script>
+         BASE_URL = "<?php echo base_url();?>";
+            $.ajax({
+                        url:BASE_URL+"countPendingBook",
+                        method:"GET", 
+                        // data:{},
+                        cache: false, 
+                        success:function(data)
+                        {
+                          if(data>=0){
+                            $("#header_bookcount").text(data);
+                            $("#header2_bookcount").text(data);      
+                          }  
+                        }
+                      }); 
+            //ajax;
+    </script>
   </body>
 </html>
