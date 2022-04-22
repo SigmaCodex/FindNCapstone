@@ -295,6 +295,7 @@
          });
     </script>
 <script>
+   setInterval(function(){
          BASE_URL = "<?php echo base_url();?>";
             $.ajax({
                         url:BASE_URL+"countPendingBook",
@@ -309,6 +310,7 @@
                           }  
                         }
                       }); 
+   },100);
             //ajax;
     </script>
   </body>
