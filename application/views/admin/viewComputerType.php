@@ -15,7 +15,6 @@
 
 	 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 	<script src="../assets/admin/vendor/jquery/jquery.min.js"></script>
-	<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script> 
   	<script src="../assets/admin/vendor/bootstrap/js/bootstrap.min.js"></script>
   
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.js"></script>
