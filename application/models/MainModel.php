@@ -200,7 +200,7 @@ class MainModel extends CI_Model{
         $this->db->update('user',$datafinder);
         echo json_encode($datafinder);
     }
-
+    //getcomputertyepe service fee
     public function getComputerTypeServiceFee($id){
         $this->db->select('*');
         $this->db->from('computer_type');
@@ -989,20 +989,53 @@ class MainModel extends CI_Model{
         $this->db->update('comments',$data);
         echo json_encode($data);
     }
-    public function updateComputerDetails($id){
-        $datafinder = array(
-            'shop_name'   => 	 $this->input->post('cshop'),
-            'address'   => 	 $this->input->post('cshop_address'),
-            'coordinates'   => 	 $this->input->post('cshop_coordi'),
-            'operating_hours'   => 	 $this->input->post('cshop_ophours'),
-            'net_speed'   => 	 $this->input->post('cshop_netspeed'),
-            'description'   => 	 $this->input->post('cshop_description'),
-            'contact_number'   => 	 $this->input->post('cshop_contact'),
-            'email_address'   => 	 $this->input->post('cshop_emailadd')
+    //update computer shop details
+    public function updateComputerDetails($id,$status){
+        
+        $op_days = $this->input->post('day_start')."-".$this->input->post('day_end');
+        $time_start12format = new DateTime($this->input->post('time_start'));
+        $time_end12format  = new DateTime($this->input->post('time_end'));
+        $operating_hours = $time_start12format->format('h:iA')."-".$time_end12format->format('h:iA');
+        $coordinates =  $this->input->post('longtitude').",".$this->input->post('latitude'); 
+
+        if($status == "no-image"){
+            
+        $datashop = array(
+            'description'   => 	 $this->input->post('description'),
+            'operating_days'   => 	  $op_days  ,
+            'operating_hours'  =>  $operating_hours,
+            'net_speed'   => 	 $this->input->post('net_speed'),
+            'contact_number'  =>  $this->input->post('p_num'),
+            'tel_number'  =>  $this->input->post('tel_num'),
+            'email_address'  =>  $this->input->post('email'),
+            'address'  =>  $this->input->post('address'),
+            'coordinates'  =>  $coordinates,
         );
+        
         $this->db->where('shop_id',$id);
-        $this->db->update('computershop',$datafinder);
-        echo json_encode($datafinder);
+        $this->db->update('computershop', $datashop);
+         
+        }else if($status == "with-image"){
+            $image_data = $this->upload->data();
+            $datashop = array(
+                'shop_img_icon' =>  $image_data['file_name'],
+                'description'   => 	 $this->input->post('description'),
+                'operating_days'   => 	  $op_days  ,
+                'operating_hours'  =>  $operating_hours,
+                'net_speed'   => 	 $this->input->post('net_speed'),
+                'contact_number'  =>  $this->input->post('p_num'),
+                'tel_number'  =>  $this->input->post('tel_num'),
+                'email_address'  =>  $this->input->post('email'),
+                'address'  =>  $this->input->post('address'),
+                'coordinates'  =>  $coordinates,
+            );
+          
+            $this->db->where('shop_id',$id);
+            $this->db->update('computershop', $datashop );
+
+        }    
+
+        
     }
     public function addComputerType($id, $status){
         if($status == "no-image"){

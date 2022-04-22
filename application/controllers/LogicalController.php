@@ -433,9 +433,26 @@ class LogicalController extends CI_Controller {
         $this->load->model('MainModel');
         $this->MainModel->updateshopPosts($id);
     }
-    public function updateComputerDetails($id){
+    public function updateComputerDetails(){
+        $shop_id = $this->session->userdata('admin_shop_id');
         $this->load->model('MainModel');
-        $this->MainModel->updateComputerDetails($id);
+        $config['upload_path']          = './assets/upload/shop';
+        $config['allowed_types']        = 'gif|jpg|png|jpeg';
+        $config['max_size']             = 5000;
+        $config['max_width']            = 5024;
+        $config['max_height']           = 5268;
+
+        $this->load->library('upload', $config);
+        $this->upload->initialize($config);
+        //Upload image Icon
+        if(!$this->upload->do_upload('shop_iconimageUpload')){
+            $this->MainModel->updateComputerDetails( $shop_id ,"no-image");
+        }else{
+            $this->MainModel->updateComputerDetails( $shop_id ,"with-image");
+        }
+
+        // $this->load->model('MainModel');
+        // $this->MainModel->updateComputerDetails( $shop_id ,"no-image");
     }
       //Computer Type
     public function addComputerType($id){

@@ -382,10 +382,13 @@ class Main_Controller extends CI_Controller {
 			$result['profile_pic'] =  $this->session->userdata('profile_pic');
 			$result['admin_name'] =  $this->session->userdata('admin_name');
 			$result['shop_details'] = $this->MainModel->getShopDetails($shop_id);
-			$admin_id = $this->session->userdata('user_id');
+			$result2['shop_details'] = 	$result['shop_details'];
+			$result2['computer_details'] = $this->MainModel->getListOfShop_ComputerTypes($shop_id);
+			$result2['shopimages']      = $this->MainModel->listshopimages($shop_id);
+			
 
-		$this->load->view('admin/template/adminHeader',$result);
-		$this->load->view('admin/shopAdminEditProfile');
+			$this->load->view('admin/template/adminHeader',$result);
+			$this->load->view('admin/shopAdminEditProfile',$result2);
 		}
 	}
 

@@ -265,7 +265,7 @@ var geojson = {
      },
       properties: {
         title: '".$s->shop_name."',
-        description: '<strong>".$s->description."</strong><p><a href= ".'"viewShop/'.$s->shop_id.'"'."        class=".'"btn btn-primary"'.">View Shop Profile</a></p>'
+        description: '<strong>".$s->Shop_Status."</strong><p><a href= ".'"shopAdminEditProfile"'."        class=".'"btn btn-primary"'.">View Shop Profile</a></p>'
       }
      },";
 

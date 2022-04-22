@@ -16,6 +16,7 @@
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
   </head>
+  
   <body>
   <?php foreach($shop_details as $data){?>
    <section class="header-top ">
@@ -161,7 +162,7 @@
                            <div class="sidebar-submenu">
                               <ul>
                                  <li>
-                                    <a href="#">Edit Shop Details</a>
+                                    <a href="shopAdminEditProfile">Edit Shop Details</a>
                                  </li>
                                  <li>
                                     <a href="shopAdminComputerType">Computer Type</a>

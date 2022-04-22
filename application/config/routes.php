@@ -134,7 +134,7 @@ $route['reports'] = 'main_controller/viewReports';
     $route['finderNotif'] = 'logicalcontroller/createFinderNotif';
 
     //admin
-    $route['updateComputerDetails/(:num)'] = 'logicalcontroller/updateComputerDetails/$1';
+    $route['updateComputerDetails'] = 'logicalcontroller/updateComputerDetails';
     $route['addcomtype/(:num)'] = 'logicalcontroller/addComputerType/$1';
     $route['deleteComputerType/(:num)'] = 'logicalcontroller/deleteComputerType/$1';
     $route['updateCompType/(:num)'] = 'logicalcontroller/updateComputerType/$1';
