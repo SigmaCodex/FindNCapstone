@@ -563,6 +563,7 @@ input:checked + .slider:before {
     color: #6c7b88;
 }
 
+/* HEADER TOP */
 .header-top .top{
   position: fixed;
   top: 0;
@@ -597,27 +598,66 @@ input:checked + .slider:before {
   padding-right: 15px;
 }
 .icon-notif{
-  font-size: 20px;
+  font-size: 25px;
   color: #DBD2D2;
+  background-color: #f1f1f1;
   cursor: pointer;
 }
+.icon-notif:hover{
+  color: #f83f0b;
+}
 .notif-badge{
-    margin-left: -5px;
+    margin-left: -18px;
     background-color: #f83f0b !important;
     font-size: 8px;
     width: 14px;
     height: 12px;
     cursor: pointer;
 }
+.dropdown-item {
+  cursor: pointer;
+}
+.dropdown-item:active{
+  background-color: #615E5E;
+}
+.dropdown-menu .dropdown-message{
+  margin: 0;
+  cursor: pointer;
+  font-size: 15px;
+  padding-left: 10px;
+  font-weight: 500;
+}
+.dropdown-menu .dropdown-name{
+  margin: 0;
+  cursor: pointer;
+  font-size: 12px;
+  padding-left: 10px;
+}
+.profile-img-dropdown{
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  object-fit: cover;
+}
 .profile-img-name {
   display: flex;
   align-items: center;
   justify-content: center;
 }
+.close-notif{
+  padding-left: 20px;
+  margin-top: -18px;
+  color: #615E5E;
+  cursor: pointer;
+}
+.close-notif:hover{
+  color: #eb0606;
+}
 .profile-img{
   width: 40px;
   border-radius: 50%;
 }
+
 .admin_name {
   font-size: 12px;
   padding-right: 15px;
