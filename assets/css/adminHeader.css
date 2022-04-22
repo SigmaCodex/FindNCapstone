@@ -618,7 +618,7 @@ input:checked + .slider:before {
   cursor: pointer;
 }
 .dropdown-item:active{
-  background-color: #615E5E;
+  background-color: #e1e0e0 !important;
 }
 .dropdown-menu .dropdown-message{
   margin: 0;
@@ -645,19 +645,33 @@ input:checked + .slider:before {
   justify-content: center;
 }
 .close-notif{
-  padding-left: 20px;
-  margin-top: -18px;
-  color: #615E5E;
+  padding-right: 10px;
+  color: #cbc4c4;
   cursor: pointer;
+  font-size: 12px;
 }
 .close-notif:hover{
   color: #eb0606;
 }
+.account-set i{
+  padding-right: 10px;
+  color: #f83f0b;
+}
+.account-set a{
+  color: #525965;
+  font-weight: 500;
+}
+.account-set:hover a{
+  color: #f83f0b;
+}
+
 .profile-img{
   width: 40px;
   border-radius: 50%;
 }
-
+.admin-name-holder{
+  cursor: pointer;
+}
 .admin_name {
   font-size: 12px;
   padding-right: 15px;
