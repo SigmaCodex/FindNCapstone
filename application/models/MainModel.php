@@ -926,6 +926,14 @@ class MainModel extends CI_Model{
 		// return $row;
         echo json_encode($row);
     }
+    public function updateTransactionStatusToOverdue($transac_id){
+        $data = array(
+            'transaction_status'   => 	 "Overdue"
+        );
+        $this->db->where('transaction_id',$transac_id);
+        $this->db->update('transaction',$data);
+        echo json_encode($data);
+    }
     //Select Admin Information
     public function selectShopAdminInfo($admin_id){
         $this->db->select("compmanager.*, user.username");
