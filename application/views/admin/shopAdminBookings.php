@@ -202,7 +202,7 @@
                             <h6 class="card-title-text m-0 p-2">WAITING LIST</h6>
                         </div>
                         <div class="d-flex align-items-center px-2 bg-white search_holder">
-                            <input class="search_field mr-2" type="text" />
+                            <input id="search_field1" class="search_field mr-2" type="text" />
                             <i class="fas fa-search"></i>
                         </div>
                     </div>
@@ -284,7 +284,7 @@
                             <h6 class="card-title-text m-0 p-2">LIST OF BOOKINGS</h6>
                         </div>
                         <div class="d-flex align-items-center px-2 bg-white search_holder">
-                            <input class="search_field mr-2" type="text" />
+                            <input id="search_field2" class="search_field mr-2" type="text" />
                             <i class="fas fa-search"></i>
                         </div>
                     </div>
@@ -296,6 +296,7 @@
                             <div class="table-card-content">
 
                                 <table class="list-table-bookings">
+                                    <tbody class="list_of_bookings">
                                     <tr class="title-table-all">
                                       <th>Transaction ID</th>
                                       <th>Name</th>
@@ -323,6 +324,7 @@
                                       <td class="fee">₱<?php echo $at->service_fee;?></td>
                                     </tr>
                                     <?php }?>
+                                    </tbody>
                                 </table>  
                             </div>
                         </div>  
@@ -405,6 +407,7 @@
                                 </div>
 
                                 <p class="modal-caption-details-right-total" id="totalfee"><b></b> </p>
+                                <button id="od_btn" class="btn btn-danger">Dismiss</button>
                                 <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
                                 </div>
                             </div>
@@ -640,9 +643,24 @@ function dateformat(arrival_date){
 
 <!-- gol imoha nani -->
 <script>
-    $(document).on('click','.ongoing-table-bookings tr', function(){
+    $(document).on('click','.ongoing-table-bookings tr', function(){ 
+    var Base_URL = "<?php echo base_url();?>";
+    var id = $(this).attr("id_data");
+    $("#od_btn").hide();
        status = $(this).find("td").find("p").text();
-       alert(status);
+       if(status == "Overdue"){
+        $("#od_btn").show();
+       }
+       $(document).on('click','#od_btn', function(){
+            $.ajax({
+            url:Base_URL+"updateTransactionStatus/"+id,
+                type: "POST",
+                success: function(data)
+                {
+                    location.reload();  
+                }
+            });
+        });
     });
 </script>
 <script>
@@ -650,22 +668,32 @@ function dateformat(arrival_date){
             return jQuery(a).text().toUpperCase()
                 .indexOf(m[3].toUpperCase()) >= 0;
     };
-    $(document).on('keyup','.search_field', function(){
+    $(document).on('keyup','#search_field1', function(){
        filterdata = $(this).val();
     //   $('.transaction-card').removeClass('d-none');
       $('.waitingTableContent tr').removeClass('d-none');
 
             var filter = $(this).val(); // get the value of the input, which we filter on
-            // alert(filter);
-            // $('.transcation-body').find('.transaction-card p:not(:contains("'+filter+'"))').parent().parent().addClass('d-none');
-            // $('.transaction-content').find('.content .transaction-card p:not(:contains("'+filter+'"))').parent().css({
-            //     "color": "green",
-            //     "border": "2px solid green"
-            // });
-        // $('.transaction-content').find('.ongoing-table-bookings tr td:not(:contains("'+filterdata+'"))').addClass('d-none');
       
         $('.ongoing-table-bookings').find('.waitingTableContent tr:not(:contains("'+filterdata+'"))').addClass('d-none');;
         $('.ongoing-table-bookings').find('.waitingTableContent trcontains("'+filterdata+'")').removeClass('d-none');
+        
+    });
+</script>
+<script>
+    jQuery.expr[':'].contains = function(a, i, m) {
+            return jQuery(a).text().toUpperCase()
+                .indexOf(m[3].toUpperCase()) >= 0;
+    };
+    $(document).on('keyup','#search_field2', function(){
+       filterdata = $(this).val();
+    //   $('.transaction-card').removeClass('d-none');
+      $('.list_of_bookings tr').removeClass('d-none');
+
+            var filter = $(this).val(); // get the value of the input, which we filter on
+      
+        $('.list-table-bookings').find('.list_of_bookings tr:not(:contains("'+filterdata+'"))').addClass('d-none');;
+        $('.list-table-bookings').find('.list_of_bookings trcontains("'+filterdata+'")').removeClass('d-none');
         
     });
 </script>

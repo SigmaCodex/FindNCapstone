@@ -388,6 +388,10 @@ class LogicalController extends CI_Controller {
         $num = $this->MainModel->CountBookingRequest();
         echo $num;
     }
+    public function updateTransactionStatusToOverdue($transac_id){
+        $this->load->model('MainModel');
+        $this->MainModel->updateTransactionStatusToOverdue($transac_id);
+    }
     //ADMIN
 
     public function getUserDetails($id){
