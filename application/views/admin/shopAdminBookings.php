@@ -296,7 +296,6 @@
                             <div class="table-card-content">
 
                                 <table class="list-table-bookings">
-                                    <tbody class="list_of_bookings">
                                     <tr class="title-table-all">
                                       <th>Transaction ID</th>
                                       <th>Name</th>
@@ -307,6 +306,7 @@
                                       <th>Tickets</th>
                                       <th>Service Fee</th>
                                     </tr>
+                                    <tbody class="list_of_bookings">
                                     <?php foreach($alltransac as $at){?>
                                     <tr class="table-row" data-toggle="modal" data-target="#transaction-modal" id_data="<?php echo $at->transaction_id;?>">
                                       <td><?php echo $at->transaction_id;?></td>
@@ -318,7 +318,7 @@
 
                                       <?php echo date("h:i A", strtotime($at->arrival_time));?></td>
 
-                                      <td class="status-<?php if($at->transaction_status == "declined"){echo "decline";} else {echo "accepted";}?>"><?php echo $at->transaction_status;?></td>
+                                      <td class="status-<?php if($at->transaction_status == "declined"){echo "decline";}else if($at->transaction_status == "Overdue"){echo "decline";} else {echo "accepted";}?>"><?php echo $at->transaction_status;?></td>
                                       <td class="status-<?php if($at->payment_status == "unpaid"){echo "unpaid";} else {echo "paid";} ?>"><?php echo $at->payment_status;?></td>
                                       <td><?php echo $at->num_ticket;?></td>
                                       <td class="fee">₱<?php echo $at->service_fee;?></td>
