@@ -145,154 +145,21 @@
                 <p class="edit-desc py-4">The profile information section is the most essential aspect in the profile editing area. Don't overlook this section when adding shop information, and you should thoroughly fill out all relevant sections and adhere to the profile terms and conditions.</p>
 
                 <div class="choices d-flex align-items-center justify-content-start">
-                    <div class="overview active-menu" data-target-tab="#overview">
-                        <h6 style="color: #FF5D31; font-weight: 600;" >Overview</h6>
-                    </div>
-                    <div class="edit-profile d-flex align-items-center"  data-target-tab="#edit">
+                    <div class="edit-profile  active-menu d-flex align-items-center"  data-target-tab="#edit">
                         <i class='bx bx-edit-alt' style="padding-right: 5px; color: #FF5D31;"></i>
                         <h6 style="color: #FF5D31; font-weight: 600;">Edit Profile</h6>
                     </div>
+                    <div class="overview" data-target-tab="#overview">
+                        <h6 style="color: #FF5D31; font-weight: 600;" >Overview</h6>
+                    </div>
                 </div>
+
                 
-
-            <?php foreach($shop_details as $data){?>
-          
-                <div class="overview-title-img">
-                    <div class="profile-pic d-flex flex-column align-items-center justify-content-center" >
-                        <img class="profile-pic-img" src="assets/upload/shop/<?php echo $data->shop_img_icon?>" onerror="this.src='assets/upload/shop/defaultshopimg.png';" alt="" >
-                        <h5 class="profile-pic-name"><?php echo $data->shop_name?></h5>
-                    </div>
-                </div>
-
-
-                <div class="content-details active row py-4"  id="overview">
-                    <div class="col-lg-6 col-md-12">
-
-                        <div class="row">
-                            <div class="col-4 text-description text-left">
-                                <h6>Opening Days</h6>
-                                <p><?php echo $data->operating_days?></p>
-                            </div>
-                            <div class="col-4 text-description text-center">
-                                <h6>Opening Hours</h6>
-                                <p><?php echo $data->operating_hours?></p>
-                            </div>
-                            <div class="col-4 text-description text-center">
-                                <h6>Internet Speed</h6>
-                                <p><?php echo $data->net_speed?> mbps</p>
-                            </div>
-                        </div>
-
-                        <div class="row py-4">
-                            <div class="col-12 text-description">
-                                    <h5>Description:</h6>
-                                    <p class="desc-text"><?php echo $data->description?></p> 
-                            </div>
-                        </div>
-                        
-                        <div class="row py-2">
-                            <div class="col-6 text-description text-left">
-                                <h6>Phone Number</h6>
-                                <p>+63<?php echo $data->contact_number?></p>
-                            </div>
-                            <div class="col-6 text-description text-center">
-                                <h6>Telephone Number</h6>
-                                <p>(032) <?php echo $data->tel_number?></p>
-                            </div>
-                        </div>
-
-                        <div class="row py-2">
-                            <div class="col-6 text-description text-left">
-                                <h6>Address</h6>
-                                <p><?php echo $data->address?></p>
-                            </div>
-                            <div class="col-6 text-description text-center">
-                                <h6>Email Address</h6>
-                                <p><?php echo $data->email_address?></p>
-                            </div>
-                        </div>
-                    <?php }?>        
-                        
-
-                        <div class="row">
-                            <div class="col-12 text-description text-left">
-                                <h6>Computer Access Type</h6>
-
-                                <div class="boxes d-flex align-items-center justify-content-around">
-                                    
-                                    <?php foreach($computer_details as $data2){?>
-                                    <div class="boxes-card">
-                                        <h5><?php echo $data2->name?></h5>
-                                    </div>
-                                    <?php }?>
-                                </div>
-                                
-
-
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-6 col-md-12">
-                        
-                        <div class="shop-img-preview">
-                            <div class = "shop-imgs">
-                            
-                                <div class = "img-display">
-                                  <div class = "img-showcase">
-                                    <?php 
-                                    $numimages= 0;
-                                     foreach($shopimages as $images){ $numimages++;?>
-                                       
-                                        <img src = "assets/upload/shop/<?php echo $images->img_file?>">
-                                    <?php }?>
-                                  </div>
-                                </div>
-                                <div class = "img-select">
-                                        <?php 
-                                              $counter = 0;
-                                                if($numimages<1){  
-                                                    echo "
-                                                    <div class = 'img-item'>
-                                                        <a href = '#'>
-                                                        <img src = 'assets/upload/shop/defaultshopimg.png'>
-                                                        </a>
-                                                    </div>";
-                                                 }
-                                                foreach($shopimages as $images2){
-                                                $counter++;
-                                        ?>
-                                            <div class = "img-item">
-                                                <a href = "#" data-id = "<?php echo $counter;?>">
-                                                <img src = "assets/upload/shop/<?php echo $images2->img_file?>">
-                                                </a>
-                                            </div>
-
-                                         <?php }?>
-                                </div>
-                            
-                              
-                            </div>            
-                        </div>
-
-                        <div class="table-data">
-                            <div class="order">
-                                <div class="text-description text-left py-2">
-                                    <h6>Shop Location Coordinates:</h6>
-                                </div>
-                                <div class="map-location d-flex align-items-center justify-content-center">
-                                    <div id="map"></div>
-                                </div>
-                             </div>
-                        </div>
-
-                    </div>  
-                </div>
 <!-- ========================Update Section================================ -->
-    <?php foreach($shop_details as $data){?>
+<?php foreach($shop_details as $data){?>
         <form method="post" id="updateShop" enctype="multipart/form-data">    
                     <!--img logo update    -->
-                <div class="image-logo-update d-none">
+                <div class="image-logo-update">
                     <div class="profile-pic d-flex flex-column align-items-center justify-content-center" >
                         
                     <div class="avatar-upload col-md-6 pt-md-0 pt-3">
@@ -310,7 +177,7 @@
 
                 </div>
                 <!--end img logo update -->
-                <div class="content-details row py-4"  id="edit">
+                <div class="content-details active row py-4"  id="edit">
                     <div class="col-lg-6 col-md-12">
                     
                         <div class="row">
@@ -478,50 +345,40 @@
                             </div>
                         </div>
                     </div>
-        </form>            
-
+    </form>            
 
                     <div class="col-lg-6 col-md-12">
-                        
                         <div class="shop-img-preview">
                             <div class = "shop-imgs">
-
+                           
+                                <form method="post" id="upload_shop_image" enctype="multipart/form-data">  
+                                    <input type="file" name="shopImageUpload" id="shopImageUpload" class="d-none">
+                                <button  class="btn btn-success">Submit Image</button>
+                                </form>
+                                <br>
                                 <div class = "img-display">
-                                  <div class = "img-showcase">
-                                    <img src = "assets/images/upload.png" >
-                                    <img src = "assets/images/upload.png" >
-                                    <img src = "assets/images/upload.png" >
-                                    <img src = "assets/images/upload.png" >
+                                  <div class = "img-showcase" style="min-width: 10%;">
+                                        <img class="preview-image" src ="assets/images/upload.png">
                                   </div>
                                 </div>
 
+                                <br>
                                 <div class = "img-select">
-                                  <!-- <div class = "img-item">
-                                    <a href = "#" data-id = "1">
-                                      <img src = "assets/images/upload.png" class="wrap-image" id="imageDisplay1" onclick="chooseImages()" onchange="displayImage(this)">
-                                    </a>
-                                  </div> -->
+
+                                <?php foreach($shopimages as $images){?>
                                   <div class = "img-item">
-                                    <a href = "#" data-id = "2">
-                                      <img src = "assets/images/upload.png"  class="wrap-image" id="imageDisplay2" onclick="chooseImage()" onchange="displayImage(this)">
-                                    </a>
+                                      <img src = "assets/upload/shop/<?php echo $images->img_file?>" class="wrap-image image" id="imageDisplay1" >
+                                      <center><div class="btn btn-danger btn-sm btn-delete" image_id="<?php echo $images->image_id?>"><i class="fa fa-times"></i></div><center>
                                   </div>
-                                  <div class = "img-item">
-                                    <a href = "#" data-id = "3">
-                                      <img src = "assets/images/upload.png" class="wrap-image" id="imageDisplay3" onclick="chooseImage()" onchange="displayImage(this)">
-                                    </a>
-                                  </div>
-                                  <div class = "img-item">
-                                    <a href = "#" data-id = "4">
-                                      <img src = "assets/images/upload.png" class="wrap-image" id="imageDisplay4" onclick="chooseImage()" onchange="displayImage(this)">
-                                    </a>
-                                  </div>
+                                <?php }?>
+
                                 </div>
 
                             </div>
                              <br>
-                            <input type="file" name="uploadImage" id="uploadImage">
-                            <button class="btn btn-success">Upload Img</button>
+                             <br>
+
+                        
                         </div>
 
 
@@ -542,7 +399,146 @@
                     </div>  
 
                 </div>
-				
+<!-- =========================end of edit========================= -->
+
+
+
+
+<!-- ========================Start Of Overview================================ -->   
+            <?php foreach($shop_details as $data){?>
+                <div class="overview-title-img d-none">
+                    <div class="profile-pic d-flex flex-column align-items-center justify-content-center" >
+                        <img class="profile-pic-img" src="assets/upload/shop/<?php echo $data->shop_img_icon?>" onerror="this.src='assets/upload/shop/defaultshopimg.png';" alt="" >
+                        <h5 class="profile-pic-name"><?php echo $data->shop_name?></h5>
+                    </div>
+                </div>
+
+
+                <div class="content-details row py-4"  id="overview">
+                    <div class="col-lg-6 col-md-12">
+
+                        <div class="row">
+                            <div class="col-4 text-description text-left">
+                                <h6>Opening Days</h6>
+                                <p><?php echo $data->operating_days?></p>
+                            </div>
+                            <div class="col-4 text-description text-center">
+                                <h6>Opening Hours</h6>
+                                <p><?php echo $data->operating_hours?></p>
+                            </div>
+                            <div class="col-4 text-description text-center">
+                                <h6>Internet Speed</h6>
+                                <p><?php echo $data->net_speed?> mbps</p>
+                            </div>
+                        </div>
+
+                        <div class="row py-4">
+                            <div class="col-12 text-description">
+                                    <h5>Description:</h6>
+                                    <p class="desc-text"><?php echo $data->description?></p> 
+                            </div>
+                        </div>
+                        
+                        <div class="row py-2">
+                            <div class="col-6 text-description text-left">
+                                <h6>Phone Number</h6>
+                                <p>+63<?php echo $data->contact_number?></p>
+                            </div>
+                            <div class="col-6 text-description text-center">
+                                <h6>Telephone Number</h6>
+                                <p>(032) <?php echo $data->tel_number?></p>
+                            </div>
+                        </div>
+
+                        <div class="row py-2">
+                            <div class="col-6 text-description text-left">
+                                <h6>Address</h6>
+                                <p><?php echo $data->address?></p>
+                            </div>
+                            <div class="col-6 text-description text-center">
+                                <h6>Email Address</h6>
+                                <p><?php echo $data->email_address?></p>
+                            </div>
+                        </div>
+                    <?php }?>        
+                        
+
+                        <div class="row">
+                            <div class="col-12 text-description text-left">
+                                <h6>Computer Access Type</h6>
+
+                                <div class="boxes d-flex align-items-center justify-content-around">
+                                    
+                                    <?php foreach($computer_details as $data2){?>
+                                    <div class="boxes-card">
+                                        <h5><?php echo $data2->name?></h5>
+                                    </div>
+                                    <?php }?>
+                                </div>
+                                
+
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-6 col-md-12">
+                        
+                        <div class="shop-img-preview">
+                            <div class = "shop-imgs">
+                            
+                                <div class = "img-display">
+                                  <div class = "img-showcase">
+                                    <?php 
+                                    $numimages= 0;
+                                     foreach($shopimages as $images){ $numimages++;?>
+                                       
+                                        <img src ="assets/upload/shop/<?php echo $images->img_file?>">
+                                    <?php }?>
+                                  </div>
+                                </div>
+                                <div class = "img-select">
+                                        <?php 
+                                              $counter = 0;
+                                                if($numimages<1){  
+                                                    echo "
+                                                    <div class = 'img-item'>
+                                                        <a href = '#'>
+                                                        <img src = 'assets/upload/shop/defaultshopimg.png'>
+                                                        </a>
+                                                    </div>";
+                                                 }
+                                                foreach($shopimages as $images2){
+                                                $counter++;
+                                        ?>
+                                            <div class = "img-item">
+                                                <a href="#" data-id="<?php echo $counter;?>">
+                                                    <img src = "assets/upload/shop/<?php echo $images2->img_file?>">
+                                                </a>
+                                            </div>
+
+                                         <?php }?>
+                                </div>
+                            
+                              
+                            </div>            
+                        </div>
+
+                        <div class="table-data">
+                            <div class="order">
+                                <div class="text-description text-left py-2">
+                                    <h6>Shop Location Coordinates:</h6>
+                                </div>
+                                <div class="map-location d-flex align-items-center justify-content-center">
+                                    <div id="map"></div>
+                                </div>
+                             </div>
+                        </div>
+
+                    </div>  
+                </div>
+<!-- ========================end OverView================================ -->                
+
 			</main>
 			<!-- MAIN -->
 		</section>
@@ -561,6 +557,8 @@ $(document).on('click','.overview',function(){
     $(".edit-profile").removeClass('active-menu');
     $(".overview-title-img").show();
     $(".image-logo-update").addClass('d-none');
+    $(".overview-title-img").removeClass('d-none');
+ 
    
 });
 $(document).on('click','.edit-profile',function(){ 
@@ -568,6 +566,7 @@ $(document).on('click','.edit-profile',function(){
     $(".overview").removeClass('active-menu');
     $(".overview-title-img").hide();
     $(".image-logo-update").removeClass('d-none');
+    $(".overview-title-img").addClass('d-none');
 });
 
 </script>
@@ -601,6 +600,53 @@ $(document).on('click','.edit-profile',function(){
                 });  
             // }       
       }); 
+
+      //upload img
+      $('#upload_shop_image').on('submit', function(e){  
+           e.preventDefault();  
+
+           if($('#shopImageUpload').val() == ''){
+               alert("select and image");
+           }else{
+
+            $.ajax({  
+                     url:"uploadshopimage",   
+                     method:"POST",  
+                     data:new FormData(this),  
+                     contentType: false,  
+                     cache: false,  
+                     processData:false,  
+                     success:function(data)  
+                     {  
+                         if(data == "success"){
+                            location.reload(); 
+                         }else{
+                             alert(data);
+                         }
+                       
+                     }  
+                });
+           }
+      }); 
+
+      //delete image
+    $('.btn-delete').on('click', function(){  
+        image_id = $(this).attr('image_id'); 
+           var image_id = $(this).attr("image_id");
+           var BASE_URL = "<?php echo base_url();?>"; 
+            alert("processing");
+                $.ajax({  
+                     url: BASE_URL+"removeshopimage/"+image_id,   
+                     method:"POST",  
+                     contentType: false,  
+                     cache: false,  
+                     processData:false,  
+                     success:function(data)  
+                     {  
+                         location.reload(); 
+                     }  
+                }); 
+    }); 
 </script>
 
 
@@ -770,4 +816,36 @@ geojson.features.forEach(function(marker) {
         }
 
         document.getElementById('geocoder').appendChild(geocoder.onAdd(map));
+</script>
+
+<script>
+// $(function() {
+//     $('#picture').on('click', function() {
+//         $('#fileinput').trigger('click');
+//     });
+// });
+
+$(document).ready(function(){
+
+var preview1 =$(".preview-image");
+var preview;
+$('.preview-image').on('click', function(){
+     $('#shopImageUpload').trigger('click');
+     preview = $(this);
+});
+
+// uploadImage
+// img-item
+    // preview
+  $("#shopImageUpload").change(function(event){
+    var input = $(event.currentTarget);
+    var file = input[0].files[0];
+    var reader = new FileReader();
+    reader.onload = function(e){
+        image_base64 = e.target.result;
+        preview1.attr("src", image_base64);
+    };
+    reader.readAsDataURL(file);
+  });
+});
 </script>

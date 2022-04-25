@@ -451,8 +451,6 @@ class LogicalController extends CI_Controller {
             $this->MainModel->updateComputerDetails( $shop_id ,"with-image");
         }
 
-        // $this->load->model('MainModel');
-        // $this->MainModel->updateComputerDetails( $shop_id ,"no-image");
     }
       //Computer Type
     public function addComputerType($id){
@@ -526,7 +524,7 @@ class LogicalController extends CI_Controller {
         echo $num;
     }
 
-        //Shop Computer Details
+    //Shop Computer Details
     public function uploadshopimages($shop_id){
             $this->load->helper(array('form', 'url')); 
 
@@ -548,6 +546,31 @@ class LogicalController extends CI_Controller {
             
             }
     }
+
+    public function uploadshopimage(){
+        $this->load->helper(array('form', 'url')); 
+
+        $shop_id = $this->session->userdata('admin_shop_id');
+        $config['upload_path']          = './assets/upload/shop';
+        $config['allowed_types']        = 'gif|jpg|png|jpeg';
+        $config['max_size']             = 5000;
+        $config['max_width']            = 5024;
+        $config['max_height']           = 5268;
+        $this->load->library('upload', $config);
+        $this->upload->initialize($config);
+
+        if(! $this->upload->do_upload('shopImageUpload'))
+        {
+            echo $this->upload->display_errors();
+        }else{
+
+            $this->load->model('MainModel');
+            $this->MainModel->uploadshopimages($shop_id);
+            echo "success";
+        }
+    }
+
+
     public function removeshopimage($image_id){
         $this->load->model('MainModel');
         $this->MainModel->removeshopimage($image_id);

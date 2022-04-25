@@ -1168,6 +1168,8 @@ class MainModel extends CI_Model{
     }
     //shop images
     public function uploadshopimages($shop_id){
+        //to do: check if 4 images na siya if 4 na dli na pwedi
+
         $date = date('d-m-y');
         $image_data = $this->upload->data();
         $data = array(
@@ -1175,11 +1177,13 @@ class MainModel extends CI_Model{
             'img_file'  =>  $image_data['file_name'],
             'date'  =>  $date,
         );
-
-        echo json_encode($data);
         $this->db->insert('shop_image', $data);
     }
     public function removeshopimage($image_id){
+        $this->db->where('image_id',$image_id);
+        $query = $this->db->get('shop_image');
+        $result = $query->result_array();
+        unlink("./assets/upload/shop/".$result[0]['img_file']);
         $this->db->where('image_id',$image_id);
         $this->db->delete('shop_image');
     }

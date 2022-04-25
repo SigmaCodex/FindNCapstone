@@ -141,6 +141,7 @@ $route['reports'] = 'main_controller/viewReports';
     $route['updateCompTypeStat/(:num)'] = 'logicalcontroller/updateComputerTypeStatus/$1';
     $route['getCompTypeInfo/(:num)'] = 'logicalcontroller/getComputerTypeInfo/$1';
     $route['uploadshopimages/(:num)'] = 'logicalcontroller/uploadshopimages/$1';
+    $route['uploadshopimage'] = 'logicalcontroller/uploadshopimage';
     $route['removeshopimage/(:num)'] = 'logicalcontroller/removeshopimage/$1';
     $route['getpostComments/(:num)'] = 'logicalcontroller/getallPostComments/$1';
     $route['updateshopPosts/(:num)']  = 'logicalcontroller/updateshopPosts/$1';
