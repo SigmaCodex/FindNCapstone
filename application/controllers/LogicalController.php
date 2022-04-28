@@ -393,7 +393,20 @@ class LogicalController extends CI_Controller {
         $this->MainModel->updateTransactionStatusToOverdue($transac_id);
     }
     //ADMIN
-
+    public function viewNotificationsAdmin(){
+        $this->load->model('MainModel');
+        $result = $this->MainModel->shopNotificationDetails();
+        echo json_encode($result);
+    }
+    public function ($notif_id){
+        $this->load->model('MainModel');
+        $this->MainModel->deleteNotification($notif_id);
+    }
+    public function CountNotifications(){
+        $this->load->model('MainModel');
+        $num = $this->MainModel->CountNotifications();
+        echo $num;
+    }
     public function getUserDetails($id){
         $this->load->model('MainModel');
         $this->MainModel->getUserDetails($id);

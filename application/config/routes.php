@@ -35,6 +35,7 @@ $route['shopAdminAccountSettings'] = 'main_controller/viewShopAdminAccountSettin
 $route['shopAdminEditProfile'] = 'main_controller/viewShopAdminEditProfile';
 
 
+
 //finders
 $route['findnRegister'] = 'main_controller/viewFindnRegister';
 $route['findnlogin'] = 'main_controller/viewFindNLogin';
@@ -152,6 +153,9 @@ $route['reports'] = 'main_controller/viewReports';
     $route['adminshowallbookrequest/(:num)'] = 'logicalcontroller/viewallShopAdminBookingRequests/$1';
     // $route['showpendinglist/(:num)'] = 'logicalcontroller/getallPendingRequest/$1';
     $route['showpendinglist'] = 'logicalcontroller/getallPendingRequest';
+    $route['viewadminNotif'] = 'logicalcontroller/viewNotificationsAdmin';
+    $route['deleteNotif/(:num)'] = 'logicalcontroller/deleteNotification/$1';
+    $route['countNotifications'] = 'logicalcontroller/CountNotifications';
     $route['showacceptedlist/(:num)'] = 'logicalcontroller/getallAcceptedRequest/$1';
     $route['showcancelledlist/(:num)'] = 'logicalcontroller/getallCancelledRequest/$1';
     $route['viewTransaction/(:num)'] = 'logicalcontroller/viewTransaction/$1';

@@ -526,7 +526,6 @@ class MainModel extends CI_Model{
                 'noti_created'   => 	$date_issued,
             );
 
-  
              $this->db->insert('transaction',$transaction);
              $this->db->insert('comp_booking', $comp_booking);
              $this->db->insert('finder_notification', $finderNotification);
@@ -645,7 +644,7 @@ class MainModel extends CI_Model{
         $shopNotification = array(
             'transaction_id'     =>  $transaction_id,
             'status'         => 	"unseen",
-            'noti_body'      => 	"PaymentSuccess",
+            'noti_body'      => 	"Payment Success",
             'noti_created'   => 	$date_created,
         );
         
@@ -950,6 +949,28 @@ class MainModel extends CI_Model{
         $this->db->update('transaction',$data);
         echo json_encode($data);
     }
+    public function shopNotificationDetails(){
+        $shop_id = $this->session->userdata('admin_shop_id');
+        $this->db->select('compshop_notification.*, finders.profile_pic, finders.firstname, finders.lastname');
+        $this->db->from('compshop_notification');
+        $this->db->join('transaction', 'transaction.transaction_id = compshop_notification.transaction_id');
+        // $this->db->join('comp_booking', 'comp_booking.transaction_id = transaction.transaction_id');
+        $this->db->join('finders', 'finders.user_id = transaction.user_id_fk', 'left');
+        $this->db->where('transaction.shop_id_fk',$shop_id);
+        $query = $this->db->get();
+        return $query->result();
+    }
+    public function deleteNotification($notif_id){
+        $this->db->where('cp_noti_id',$notif_id);
+        $this->db->delete('compshop_notification');
+    }
+    public function CountNotifications(){
+        $query = $this->db->select('*')->from('compshop_notification')->get();
+		$row = $query->num_rows();
+		// return $row;
+        echo json_encode($row);
+    }
+
     //Select Admin Information
     public function selectShopAdminInfo($admin_id){
         $this->db->select("compmanager.*, user.username");

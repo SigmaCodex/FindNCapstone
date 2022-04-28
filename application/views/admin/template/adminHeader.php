@@ -33,9 +33,9 @@
           <div class="profile-img-name">
             <div class="notification-div d-flex">
                <i class="icon-notif fa-solid fa-bell btn" data-toggle="dropdown"></i>
-               <span class="notif-badge badge-pill badge-danger">3</span>
-               <div class="dropdown-menu dropdown-menu-right">
-                  <div class="dropdown-item d-flex align-items-center justify-content-between p-2 pl-3 pr-3">
+               <span class="notif-badge badge-pill badge-danger" id="count_notif"></span>
+               <div class="dropdown-menu dropdown-menu-right" id="notif_details">
+                  <!-- <div class="dropdown-item d-flex align-items-center justify-content-between p-2 pl-3 pr-3">
                      <i class="close-notif fa-solid fa-trash-alt"></i>
                      <img class="profile-img-dropdown" src="assets/images/Prof.png">
                      <div class="d-flex flex-column">
@@ -51,32 +51,30 @@
                         <p class="dropdown-message" type="text" style="color:#28a745">Payment Successful</p>
                         <p class="dropdown-name text-muted" type="text">John Dave Delgado</p>
                      </div> 
-                  </div>
-
-                  <div class="dropdown-item d-flex align-items-center justify-content-start p-2 pl-3 pr-3">
+                  </div> -->
+                  <!-- <div class="dropdown-item d-flex align-items-center justify-content-start p-2 pl-3 pr-3">
                      <i class="close-notif fa-solid fa-trash-alt"></i>
-                     <img class="profile-img-dropdown" src="assets/images/default.png">
+                     <img class="profile-img-dropdown" src="assets/images/">
                      <div class="d-flex flex-column">
-                        <p class="dropdown-message" type="text" style="color:#e30f0f">Booking Cancelled</p>
-                        <p class="dropdown-name text-muted" type="text">Chris Dann Tanggol,<br>Transaction ID:10023322 <br>4/28/2020</p>
+                        <p class="dropdown-message" type="text" style="color:<?php if($nd->noti_body=="Request"){echo "#fd7238";}else if($nd->noti_body=="PaymentSuccess"){echo "#28a745";}?>"><?php echo $nd->noti_body;?></p>
+                        <p class="dropdown-name text-muted" type="text"><?php echo $nd->firstname;?>,<?php echo $nd->lastname;?><br><?php echo $nd->transaction_id;?><br><?php echo $nd->noti_created;?></p>
                      </div>
-                  </div>
-                  
+                  </div> -->
                </div>
 
             </div>
                 
-             <span class="admin_name text-center" >Hello Admin</span>
+             <span class="admin_name text-center" >Hello, <?php echo $admin_name?></span>
                <img class="profile-img" src="assets/upload/shop/admin/<?php echo $profile_pic?>"  onerror="this.src='assets/images/default.png';" alt="">
                
                <div class="dropdown ">
                <i class="icon-dropdown fa-solid fa-caret-down btn-sm"  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></i>
                   <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                      <div class="account-set d-flex align-items-center justify-content-center">
-                        <a class="dropdown-item" href="#"><i class="fa-solid fa-user"></i>Account Settings</a>
+                        <a class="dropdown-item" href="shopAdminAccountSettings"><i class="fa-solid fa-user"></i>Account Settings</a>
                      </div>
                      <div class="account-set d-flex align-items-center justify-content-center">
-                        <a class="dropdown-item" href="#"><i class="fa-solid fa-right-from-bracket"></i>Logout</a>
+                        <a class="dropdown-item" href="adminlogin"><i class="fa-solid fa-right-from-bracket"></i>Logout</a>
                      </div>
                   </div>
                </div>
@@ -266,8 +264,7 @@
       </nav>
 
    </div>
-
-    <script src="assets/js/adminHeader.js"></script>
+<script src="assets/js/adminHeader.js"></script>
     <script>
             $(document).on("change", '#offline', function() {      
                var stat = "";
@@ -317,5 +314,63 @@
    },100);
             //ajax;
     </script>
+<script>
+   setInterval(function(){
+         BASE_URL = "<?php echo base_url();?>";
+            $.ajax({
+                        url:BASE_URL+"countNotifications",
+                        method:"GET", 
+                        // data:{},
+                        cache: false, 
+                        success:function(data)
+                        {
+                          if(data>=0){
+                            $("#count_notif").text(data);  
+                          }  
+                        }
+                      }); 
+            //ajax;
+   },100);
+</script>
+<script>
+setInterval(function(){
+$( document ).ready(function() {
+    var Base_URL = "<?php echo base_url();?>";
+    $("#notif_details").html("");
+    $.ajax({
+					url: Base_URL+"viewadminNotif",
+					type: "GET",
+               cache: false,
+               async: false,
+					success: function(data){
+                           var result = JSON.parse(data);
+                            for(var x = 0 ; x < result.length ; x ++)
+                            {
+                                 if(result[x]['noti_body'] == "Request"){
+                                 $('#noti-body').css('color','#28a745');
+                            }
+                                notif_created = dateformat(result[x]['noti_created']);   
+                                $("#notif_details").append("<div class='dropdown-item d-flex align-items-center justify-content-start p-2 pl-3 pr-3'> <i id='noti_id' class='close-notif fa-solid fa-trash-alt' notifid='"+result[x]['cp_noti_id']+"'></i> <img class='profile-img-dropdown' src='assets/upload/finder/"+result[x]['profile_pic']+"'> <div class='d-flex flex-column'> <p class='dropdown-message' id='noti-body' style='color: #fd7238;'>"+result[x]['noti_body']+"</p> <p class='dropdown-name text-muted' type='text'>"+result[x]['firstname']+" "+result[x]['lastname']+"<br>Transaction ID:"+result[x]['transaction_id']+"<br>"+notif_created+"</p> </div> </div>");
+                            }
+                    }
+    });
+    // end of ajax
+});
+},1000);
+</script>
+
+<script>
+   $(document).on("click",".close-notif",function(){
+      var Base_URL = "<?php echo base_url();?>";
+      var notif_id = $(this).attr("notifid");
+      $.ajax({
+            url:Base_URL+"deleteNotif/"+notif_id,
+                type: "POST",
+                success: function(data)
+                {  
+                }
+            });
+   });
+</script>
   </body>
 </html>
