@@ -517,11 +517,20 @@ class MainModel extends CI_Model{
                 'noti_body'      => 	"Booking Request To be accepted by the admin",
                 'noti_created'   => 	$date_issued,
 
-            );  
+            );
+
+            $shopNotification = array(
+                'transaction_id'     =>  $transaction_id,
+                'status'         => 	"unseen",
+                'noti_body'      => 	"Request",
+                'noti_created'   => 	$date_issued,
+            );
+
   
              $this->db->insert('transaction',$transaction);
              $this->db->insert('comp_booking', $comp_booking);
              $this->db->insert('finder_notification', $finderNotification);
+             $this->db->insert('compshop_notification',$shopNotification);
              echo $transaction_id; //return generated id to ajax
     }
 
@@ -632,10 +641,17 @@ class MainModel extends CI_Model{
             'noti_created'   => 	$date_created,
 
         );
-  
+
+        $shopNotification = array(
+            'transaction_id'     =>  $transaction_id,
+            'status'         => 	"unseen",
+            'noti_body'      => 	"PaymentSuccess",
+            'noti_created'   => 	$date_created,
+        );
+        
          $this->db->insert('gcash_payment_details',$data);
          $this->db->insert('finder_notification', $finderNotification);
-
+         $this->db->insert('compshop_notification',  $shopNotification);
     }
     //select GcashPaymentDetails
     public function select_GcashpaymentDetails($transaction_id){

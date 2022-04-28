@@ -58,7 +58,7 @@
                      <img class="profile-img-dropdown" src="assets/images/default.png">
                      <div class="d-flex flex-column">
                         <p class="dropdown-message" type="text" style="color:#e30f0f">Booking Cancelled</p>
-                        <p class="dropdown-name text-muted" type="text">Chris Dann Tanggol</p>
+                        <p class="dropdown-name text-muted" type="text">Chris Dann Tanggol,<br>Transaction ID:10023322 <br>4/28/2020</p>
                      </div>
                   </div>
                   

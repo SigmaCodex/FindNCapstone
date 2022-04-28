@@ -152,8 +152,8 @@ class LogicalController extends CI_Controller {
             $this->MainModel->updateFinderAccount("no-image");
         }else{
 
-            $recent_profileimage = $this->session->userdata('profile_pic');
-            unlink("./assets/upload/finder/".$recent_profileimage); // delete the recent image
+            // $recent_profileimage = $this->session->userdata('profile_pic');
+            // unlink("./assets/upload/finder/".$recent_profileimage); // delete the recent image
              //update useraccount with the profileimage
             $this->load->model('MainModel');
             $this->MainModel->updateFinderAccount("with-image");

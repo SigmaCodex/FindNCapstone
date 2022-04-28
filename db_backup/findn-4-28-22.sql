@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 26, 2022 at 06:35 PM
+-- Generation Time: Apr 28, 2022 at 08:19 AM
 -- Server version: 10.4.13-MariaDB
 -- PHP Version: 7.3.20
 
@@ -70,12 +70,21 @@ INSERT INTO `compmanager` (`user_id`, `shop_id_fk`, `firstname`, `lastname`, `ge
 
 CREATE TABLE `compshop_notification` (
   `cp_noti_id` int(11) NOT NULL,
-  `to_shop_id` int(11) NOT NULL,
-  `noti_title` varchar(70) NOT NULL,
+  `transaction_id` int(12) NOT NULL,
   `noti_body` longtext NOT NULL,
   `noti_created` varchar(20) NOT NULL,
   `status` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `compshop_notification`
+--
+
+INSERT INTO `compshop_notification` (`cp_noti_id`, `transaction_id`, `noti_body`, `noti_created`, `status`) VALUES
+(2, 2804726, 'Request', '04/28/22', 'unseen'),
+(3, 2804798, 'Request', '04/28/22', 'unseen'),
+(4, 2804776, 'Request', '04/28/22', 'unseen'),
+(5, 2804776, 'PaymentSuccess', '04/28/22', 'unseen');
 
 -- --------------------------------------------------------
 
@@ -183,11 +192,15 @@ CREATE TABLE `comp_booking` (
 
 INSERT INTO `comp_booking` (`transaction_id`, `comp_type_id`, `num_ticket`) VALUES
 (160473, 4, '5'),
+(280471, 4, '1'),
 (1604765, 4, '1'),
 (1604778, 4, '1'),
 (1604846, 14, '1'),
 (2004777, 4, '1'),
-(2204787, 5, '1');
+(2204787, 5, '1'),
+(2804726, 5, '1'),
+(2804776, 5, '1'),
+(2804798, 4, '1');
 
 -- --------------------------------------------------------
 
@@ -246,13 +259,22 @@ INSERT INTO `finder_notification` (`finder_notif_id`, `to_user_id`, `transaction
 (68, 1622163, 160473, 'Success', 'accepted', '04/16/22', 'unseen'),
 (69, 16228210, 1604765, 'Success', 'accepted', '04/16/22', 'unseen'),
 (70, 1622108, 1604778, 'Success', 'accepted', '04/16/22', 'seen'),
-(71, 1622108, 1604778, 'Booking_Successful', 'Sucess', '04/16/22', 'seen'),
 (72, 1622487, 1604846, 'Success', 'accepted', '04/16/22', 'unseen'),
 (73, 1622108, 2004777, 'Pending', 'Booking Request To be accepted by the admin', '04/20/22', 'seen'),
 (74, 1622108, 2004777, 'Success', 'accepted', '04/20/22', 'unseen'),
 (75, 1622108, 2004777, 'Booking_Successful', 'Sucess', '04/20/22', 'unseen'),
 (76, 1622108, 2204787, 'Pending', 'Booking Request To be accepted by the admin', '04/22/22', 'unseen'),
-(77, 1622108, 2204787, 'Success', 'accepted', '04/22/22', 'unseen');
+(77, 1622108, 2204787, 'Success', 'accepted', '04/22/22', 'unseen'),
+(78, 1622108, 280471, 'Pending', 'Booking Request To be accepted by the admin', '04/28/22', 'seen'),
+(79, 1622108, 2804726, 'Pending', 'Booking Request To be accepted by the admin', '04/28/22', 'unseen'),
+(80, 1622108, 280471, 'Success', 'accepted', '04/28/22', 'unseen'),
+(81, 1622108, 280471, 'Booking_Successful', 'Sucess', '04/28/22', 'unseen'),
+(82, 1622108, 2804798, 'Pending', 'Booking Request To be accepted by the admin', '04/28/22', 'unseen'),
+(83, 1622108, 2804798, 'Success', 'accepted', '04/28/22', 'unseen'),
+(84, 1622108, 2804798, 'Booking_Successful', 'Sucess', '04/28/22', 'unseen'),
+(85, 1622108, 2804776, 'Pending', 'Booking Request To be accepted by the admin', '04/28/22', 'unseen'),
+(86, 1622108, 2804776, 'Success', 'accepted', '04/28/22', 'unseen'),
+(87, 1622108, 2804776, 'Booking_Successful', 'Sucess', '04/28/22', 'unseen');
 
 -- --------------------------------------------------------
 
@@ -272,8 +294,11 @@ CREATE TABLE `gcash_payment_details` (
 --
 
 INSERT INTO `gcash_payment_details` (`transaction_id`, `reference_num`, `payment_date`, `receipt_image`) VALUES
+(280471, 123322, '04/28/22', '273196427_1353761728430473_6304824051604986128_n2.jpg'),
 (1604778, 1778233445, '04/16/22', '273196427_1353761728430473_6304824051604986128_n.jpg'),
-(2004777, 20002332, '04/20/22', '273196427_1353761728430473_6304824051604986128_n1.jpg');
+(2004777, 20002332, '04/20/22', '273196427_1353761728430473_6304824051604986128_n1.jpg'),
+(2804776, 1122, '04/28/22', '273196427_1353761728430473_6304824051604986128_n3.jpg'),
+(2804798, 11223, '04/28/22', '273196427_1353761728430473_6304824051604986128_n2.jpg');
 
 -- --------------------------------------------------------
 
@@ -389,12 +414,16 @@ CREATE TABLE `transaction` (
 --
 
 INSERT INTO `transaction` (`transaction_id`, `user_id_fk`, `shop_id_fk`, `servicetype`, `arrival_time`, `arrival_date`, `instruction`, `date_issued`, `transaction_status`, `arrival_status`, `service_fee`, `payment_status`, `payment_type`, `qr_code`) VALUES
-(160473, 1622163, 7, 'ComputerBooking', '16:08', '04/17/2022', 'Sulod sa Tournament Section', '04/16/22', 'accepted', 'waiting', 50, 'unpaid', 'not_selected', 'not_issued'),
-(1604765, 16228210, 7, 'ComputerBooking', '14:07', '04/17/2022', 'Dool sa Sa tournament Section', '04/16/22', 'accepted', 'waiting', 10, 'unpaid', 'not_selected', 'not_issued'),
+(160473, 1622163, 7, 'ComputerBooking', '16:08', '04/17/2022', 'Sulod sa Tournament Section', '04/16/22', 'Overdue', 'waiting', 50, 'unpaid', 'not_selected', 'not_issued'),
+(280471, 1622108, 7, 'ComputerBooking', '13:56', '04/28/2022', 'sdsd', '04/28/22', 'accepted', 'waiting', 10, 'paid', 'gcash', 'not_issued'),
+(1604765, 16228210, 7, 'ComputerBooking', '14:07', '04/17/2022', 'Dool sa Sa tournament Section', '04/16/22', 'Overdue', 'waiting', 10, 'unpaid', 'not_selected', 'not_issued'),
 (1604778, 1622108, 7, 'ComputerBooking', '14:06', '04/17/2022', 'Tapad Sa Cute Na Cashier<#3', '04/16/22', 'accepted', 'waiting', 10, 'paid', 'gcash', 'qrCode-04-16-22-02-16-37.png'),
 (1604846, 1622487, 8, 'ComputerBooking', '03:08', '04/16/2022', 'Dapit Aircon Lang kya!', '04/16/22', 'accepted', 'waiting', 10, 'unpaid', 'overthecounter', 'qrCode-04-16-22-02-22-56.png'),
 (2004777, 1622108, 7, 'ComputerBooking', '01:11', '04/21/2022', 'sada', '04/20/22', 'success', 'arrived', 10, 'paid', 'gcash', 'qrCode-04-20-22-01-06-55.png'),
-(2204787, 1622108, 7, 'ComputerBooking', '02:27', '04/24/2022', 'Tapad sa Cashier na CUTE<3', '04/22/22', 'accepted', 'waiting', 10, 'unpaid', 'not_selected', 'not_issued');
+(2204787, 1622108, 7, 'ComputerBooking', '02:27', '04/24/2022', 'Tapad sa Cashier na CUTE<3', '04/22/22', 'Overdue', 'waiting', 10, 'unpaid', 'not_selected', 'not_issued'),
+(2804726, 1622108, 7, 'ComputerBooking', '14:06', '04/29/2022', 'asddsa', '04/28/22', 'pending', 'waiting', 10, 'unpaid', 'not_selected', 'not_issued'),
+(2804776, 1622108, 7, 'ComputerBooking', '17:17', '04/28/2022', 'sadasd', '04/28/22', 'accepted', 'waiting', 10, 'paid', 'gcash', 'qrCode-04-28-22-02-15-54.png'),
+(2804798, 1622108, 7, 'ComputerBooking', '18:14', '04/28/2022', 'asdas', '04/28/22', 'accepted', 'waiting', 10, 'paid', 'gcash', 'qrCode-04-28-22-02-12-36.png');
 
 -- --------------------------------------------------------
 
@@ -446,7 +475,8 @@ ALTER TABLE `compmanager`
 -- Indexes for table `compshop_notification`
 --
 ALTER TABLE `compshop_notification`
-  ADD PRIMARY KEY (`cp_noti_id`);
+  ADD PRIMARY KEY (`cp_noti_id`),
+  ADD KEY `compshop_notification_ibfk_2` (`transaction_id`);
 
 --
 -- Indexes for table `computershop`
@@ -558,7 +588,7 @@ ALTER TABLE `comments`
 -- AUTO_INCREMENT for table `compshop_notification`
 --
 ALTER TABLE `compshop_notification`
-  MODIFY `cp_noti_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `cp_noti_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `computershop`
@@ -588,7 +618,7 @@ ALTER TABLE `comp_booking`
 -- AUTO_INCREMENT for table `finder_notification`
 --
 ALTER TABLE `finder_notification`
-  MODIFY `finder_notif_id` int(12) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=78;
+  MODIFY `finder_notif_id` int(12) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=88;
 
 --
 -- AUTO_INCREMENT for table `post_events`
@@ -637,6 +667,12 @@ ALTER TABLE `comments`
 ALTER TABLE `compmanager`
   ADD CONSTRAINT `compmanager_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `user` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `compmanager_ibfk_2` FOREIGN KEY (`shop_id_fk`) REFERENCES `computershop` (`shop_id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `compshop_notification`
+--
+ALTER TABLE `compshop_notification`
+  ADD CONSTRAINT `compshop_notification_ibfk_2` FOREIGN KEY (`transaction_id`) REFERENCES `transaction` (`transaction_id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
 -- Constraints for table `computer_ratings`
