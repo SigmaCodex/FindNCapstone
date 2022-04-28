@@ -74,14 +74,11 @@
                         <a class="dropdown-item" href="shopAdminAccountSettings"><i class="fa-solid fa-user"></i>Account Settings</a>
                      </div>
                      <div class="account-set d-flex align-items-center justify-content-center">
-                        <a class="dropdown-item" href="adminlogin"><i class="fa-solid fa-right-from-bracket"></i>Logout</a>
+                        <a class="dropdown-item" href="Adminlogout_user"><i class="fa-solid fa-right-from-bracket"></i>Logout</a>
                      </div>
                   </div>
                </div>
-
-               
-               
-               
+          
          
             </div>
          </div>
@@ -98,7 +95,7 @@
                <img src="assets/images/Official_Logo.png" alt="">
                <h5>FindN</h5>
                <div id="close-sidebar">
-                  <i class="fas fa-square-xmark" style="font-size: 25px;"></i>
+                  <i class="fas fa-caret-square-left" style="font-size: 25px;"></i>
                </div>
             </div>
 
@@ -216,6 +213,9 @@
                                  </li>
                                  <li>
                                     <a href="shopAdminComputerType">Computer Type</a>
+                                 </li>
+                                 <li>
+                                    <a href="shopAdminFeed">Shop Profile Feed</a>
                                  </li>
                               </ul>
                            </div>

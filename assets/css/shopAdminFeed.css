@@ -1,0 +1,412 @@
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;1,300&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins');
+@import url('http://fonts.cdnfonts.com/css/uni-neue');
+@import url('//db.onlinewebfonts.com/c/80241b4ef777109d2625c9195e7ca852?family=NordiquePro-Bold');
+            
+body{
+  font-family: 'Poppins', sans-serif;
+    background-color:#eeeeee;
+}
+.container{
+    margin-top: 100px;
+}
+.container .ratings {
+    padding: 20px;
+    
+}
+.container .posts {
+    /* margin-top: -50px; */
+    padding: 20px;
+    /* background-color: red; */
+}
+
+.head-title .left h1 {
+	font-size: 36px;
+	font-weight: 600;
+	color: #342E37;
+    /* border-bottom: 1px solid #F1F1F1; */
+    margin: 0;
+}
+
+.head-title p{
+        font-size: 15px;
+        color: #807B7B;
+        margin-top: -15px;
+}
+/* Reviews */
+
+.ratings h4 {
+    font-size: 25px;
+    padding-bottom: 10px;
+}
+.ratings .number{
+    font-size: 20px;
+    font-weight: 700;
+}
+.ratings .stars i{
+    font-size: 30px;
+    color: #F78516;
+}
+.ratings .count{
+    font-size: 12px;
+}
+.ratings-card{
+    box-shadow: 0 0 2px rgba(0, 0, 0, 0.1);
+    padding: 30px;
+    background-color: #f9f9f9;
+}
+.profile-review{
+    padding-top: 10px;
+    border-bottom: 1px solid #F1F1F1;
+}
+.profile-review .profile-img img{
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+.profile-review .profile-name h6{
+    font-size: 14px;
+    font-weight: 600;
+}
+.profile-review .user-rating i{
+    font-size: 15px;
+    color: #F78516;
+}
+.profile-review .user-rating p{
+    padding-left: 6px;
+    font-size: 13px;
+    font-weight: 600;
+}
+.profile-review .profile-elapsed p{
+    font-size: 10px;
+    text-align: right;
+}
+.profile-review .badges{
+    margin-top: -10px;
+}
+.profile-review .badge-warning{
+    color: #FFFFFF !important;
+    background-color: #F78516 !important;
+    padding: 10px !important;
+    font-weight: 400 !important;
+    border-radius: 20px;
+    font-size: 11px;
+    cursor: pointer;
+}
+.profile-review .badge-warning:hover{
+    color: #F78516 !important;
+    background-color: #f7f2ee !important;
+    font-weight: 600 !important;
+    border: 1px solid #F78516;
+}
+
+.profile-review .profile-comment p{
+    font-size: 13px;
+    text-align: justify;
+    padding-left: 64px;
+    margin-top: -15px;
+}
+.show-more{
+    padding-top: 10px;
+}
+.show-more button{
+    border: none;
+    outline: none;
+    cursor: pointer;
+    background-color: #f9f9f9;
+    color:#807B7B ;
+    font-size: 15px;
+}
+.show-more button:hover{
+    border: 1px solid #FF5D31;
+    color:#FF5D31 ;
+    border-radius: 10px;
+}
+#text{
+    display:none;
+  }
+
+
+/* CREATE POST */
+.create-post{
+    box-shadow: 0 0 2px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    background-color: #f9f9f9;
+}
+.create-post .profile-img img{
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+.create-post .create-title h6{
+    font-weight: 600;
+    text-align: left;
+    margin: 0;
+    margin-left: -35px;
+}
+.create-post .post-button button {
+    padding: 10px 30px 10px 30px;
+    background-color: #FF5D31;
+    border: none;
+    color: #FFFFFF;
+    font-size: 12px;
+    border-radius: 5px;
+    cursor: pointer;
+    outline: none;
+}
+.create-post .post-button button:hover {
+    background-color: #f63905;
+    color: #FFFFFF;
+}
+
+/* Post Card */
+.create-post-content{
+    box-shadow: 0 0 2px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    background-color: #f9f9f9;
+}
+.create-post-content .profile-img img{
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+.create-post-content .posts-profile-name{
+    margin-left: -35px;
+}
+.create-post-content .posts-profile-name h6{
+    font-size: 14px;
+    font-weight: 600;
+    margin: 0;
+}
+.create-post-content .posts-profile-name p{
+    font-size: 11px;
+    margin: 0;
+}
+.create-post-content .profile-elapsed p{
+    font-size: 12px;
+}
+.create-post-content .post-desc p{
+    font-size: 13px;
+    text-align: justify;
+    padding-left: 69px;
+    color: #807B7B;
+}
+.create-post-content .post-desc img{
+    margin-left:  69px;
+    width: 515px;
+    height: 200px;
+    object-fit: cover;
+    padding-bottom: 5px;
+}
+.create-post-content .like-comment {
+    padding-left: 69px;
+}
+.create-post-content .like-comment p{
+    font-size: 12px;
+    padding-right: 20px;
+    cursor: pointer;
+    color: #565151;
+}
+.create-post-content .like-comment p:hover{
+    color: #1b1a1a;
+    font-weight: 600;
+}
+.create-post-content .num-likes{
+    padding-left: 66px;
+    margin-top: -10px;
+}
+.create-post-content .num-likes i{
+
+    font-size: 12px;
+    padding-left: 5px;
+    color: #FF5D31;
+}
+.create-post-content .num-likes p{
+    font-size: 12px;
+    padding-left: 5px;
+    color: #FF5D31;
+}
+#liked {
+    display: none;
+}
+.create-post-content .comments .badge-secondary{
+    border-radius: 10px !important;
+    padding: 4px 6px 4px 6px;
+    font-size: 10px;
+    color: #eeeeee;
+}
+
+/* COMMENTS */
+.create-post-content .comments p{
+    padding-left: 3px;
+}
+.create-post-content .comments-section{
+    padding-left: 69px;
+}
+.create-post-content .comments-section h6{
+    font-size: 14px;
+}
+.create-post-content textarea{
+    margin-left: 69px;
+    outline: none;
+    resize: none;
+    border: 1px solid rgb(204, 197, 197);
+    font-size: 12px;
+    padding: 5px;
+    background-color: #F1F1F1;
+    border-radius: 5px;
+    color: #807B7B;
+}
+.comments .comments-card .profile-img img{
+    margin-left: -25px;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+.comments-card .comments-profile-name{
+    margin-left: -85px;
+}
+.comments-card .comments-profile-name h6{
+    font-size: 10px;
+    font-weight: 600;
+    margin: 0;
+}
+.comments-card .comments-profile-name p{
+    font-size: 8px;
+    margin-left: -222px;
+    margin: 0;
+}
+.comments-card .profile-elapsed p{
+    font-size: 8px;
+}
+.comments-card .posts-comment p{
+    margin-left:118px;
+    font-size: 10px ;
+}
+#comments{
+    display: none;
+}
+/* MODAL */
+.header-modal {
+    color: #565151;
+}
+.modal-title{
+    font-weight: 600;
+}
+.header-modal button:focus{
+    background-color: #da141e !important;
+}
+.header-modal button{
+    background-color: #da141e !important;
+    color: rgb(250, 249, 249);
+    padding: 10px;
+    font-size: 14px;
+    border-radius: 10px;
+    outline: none;
+}
+.header-modal button:hover{
+    background-color: #f5030f !important;
+    color: #F1F1F1 !important;
+}
+
+.modal-body textarea {
+    outline: none;
+    resize: none;
+    border: 1px solid rgb(204, 197, 197);
+    font-size: 12px;
+    padding: 8px;
+    background-color: #F1F1F1;
+    border-radius: 5px;
+    color: #A7A1A1;
+
+}
+.modal-body .img-holder-upload{
+    width: 420px;
+    height: 200px;
+    border: 1.3px dashed black;
+}
+.modal-body img{
+    width: 420px;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 5px;
+    padding: 10px;
+}
+.modal-body label{
+    font-size: 13px;
+    width: 150px;
+}
+.modal-content .btn-warning{
+    background-color: #FF5D31 !important;
+    color: #F1F1F1 !important;
+}
+.modal-content .btn-warning:hover{
+    background-color: #F53805!important;
+}
+@media (max-width: 400px) {
+    .profile-review .profile-elapsed p{
+        font-size: 6px;
+    }
+    .head-title p {
+        padding-top: 10px;
+        font-size: 12px;
+    }
+    .container .posts {
+        margin-top: -40px;
+        padding: 20px;
+    }
+    .create-post .create-title h6{
+        margin-left: 10px;
+    }
+    .ratings-card{
+        padding: 15px;
+    }
+    .create-post .post-button button {
+        font-size: 8px;
+    }
+    .create-post-content{
+        padding: 15px;
+    }
+    .create-post-content .posts-profile-name{
+        margin-left: 10px;
+    }
+    .create-post-content .posts-profile-name h6{
+        font-size: 12px;
+    }
+    .create-post-content .profile-elapsed p{
+        font-size: 8px;
+    }
+    .create-post-content .post-desc img{
+        width: 235px;
+        height: 200px;
+    }
+    .create-post-content textarea{
+        width: 240px;
+    }
+    .comments-card .comments-profile-name{
+        margin-left: 10px;
+    }
+    .comments-card .comments-profile-name h6{
+        font-size: 12px;
+        margin-left: -50px;
+    }
+    .comments-card .comments-profile-name p{
+        margin-left: -50px;
+    }
+    .comments-card .posts-comment p{
+        margin-left: 70px;
+    }
+}
+
+
+
+
+
+
+
+
