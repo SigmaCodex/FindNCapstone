@@ -289,6 +289,7 @@ class Main_Controller extends CI_Controller {
 			$result['shop_details'] = $this->MainModel->getShopDetails($shop_id);
 			$result['admin_name'] =  $this->session->userdata('admin_name');
 			$result['profile_pic'] =  $this->session->userdata('profile_pic');
+			// $result['notif_details'] = $this->MainModel->shopNotificationDetails($shop_id);
 			$this->load->view('admin/template/adminHeader',$result);
 			$this->load->view('admin/shopAdminBookings',$val);
 		}
@@ -370,7 +371,6 @@ class Main_Controller extends CI_Controller {
 		$this->load->view('admin/Bookings');
 		$this->load->view('admin/template/footer');
 	}
-
 
 	public function viewShopAdminEditProfile(){
 		
