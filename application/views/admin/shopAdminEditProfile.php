@@ -356,7 +356,7 @@
                                 <button  class="btn btn-success">Submit Image</button>
                                 </form>
                                 <br>
-                                <div class = "img-display">
+                                <div class = "img-display" style="cursor:pointer;">
                                   <div class = "img-showcase" style="min-width: 10%;">
                                         <img class="preview-image" src ="assets/images/upload.png">
                                   </div>
@@ -366,9 +366,9 @@
                                 <div class = "img-select">
 
                                 <?php foreach($shopimages as $images){?>
-                                  <div class = "img-item">
+                                  <div class = "img-item" >
                                       <img src = "assets/upload/shop/<?php echo $images->img_file?>" class="wrap-image image" id="imageDisplay1" >
-                                      <center><div class="btn btn-danger btn-sm btn-delete" image_id="<?php echo $images->image_id?>"><i class="fa fa-times"></i></div><center>
+                                      <center><div class="btn btn-danger btn-sm btn-delete" style="margin-top: -60px;padding: .10rem .5rem;"  image_id="<?php echo $images->image_id?>"><i class="fa fa-times"></i></div><center>
                                   </div>
                                 <?php }?>
 
