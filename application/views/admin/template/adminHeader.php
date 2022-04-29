@@ -212,6 +212,9 @@
                            <div class="sidebar-submenu">
                               <ul>
                                  <li>
+                                    <a href="shopAdminFeed">Shop Profile Feed</a>
+                                 </li>
+                                 <li>
                                     <a href="shopAdminEditProfile">Edit Shop Details</a>
                                  </li>
                                  <li>
