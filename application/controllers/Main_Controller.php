@@ -372,7 +372,6 @@ class Main_Controller extends CI_Controller {
 		$this->load->view('admin/template/footer');
 	}
 
-
 	public function viewShopAdminEditProfile(){
 		
 
@@ -410,23 +409,6 @@ class Main_Controller extends CI_Controller {
 		}
 		
 	}
-
-	// POSTS AND COMMENTS
-	public function viewShopAdminFeed(){
-		$shop_id = $this->session->userdata('admin_shop_id');
-		if(!$shop_id){
-			redirect(adminlogin);
-		}else{
-			$result['profile_pic'] =  $this->session->userdata('profile_pic');
-			$result['admin_name'] =  $this->session->userdata('admin_name');
-			$result['shop_details'] = $this->MainModel->getShopDetails($shop_id);
-			$admin_id = $this->session->userdata('user_id');
-
-			$this->load->view('admin/template/adminHeader',$result);
-			$this->load->view('admin/shopAdminFeed');
-		}
-	}	
-
 	public function shopadmin_computerdetails($shopid){
 		$this->load->model('MainModel');
 		$val['shop_details'] = $this->MainModel->getshopDetails($shopid);
