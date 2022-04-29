@@ -161,6 +161,7 @@ $route['reports'] = 'main_controller/viewReports';
     $route['viewTransaction/(:num)'] = 'logicalcontroller/viewTransaction/$1';
     $route['accept-updateBookStatus/(:num)/(:num)'] = 'logicalcontroller/updateAcceptBookingTransacStatus/$1/$2';
     $route['decline-updateBookStatus/(:num)/(:num)'] = 'logicalcontroller/updateDeclineBookingTransacStatus/$1/$2';
+    $route['messageFinder/(:num)/(:num)'] = 'logicalcontroller/shopAdminmessageFinder/$1/$2';
     $route['countPendingBook'] = 'logicalcontroller/CountBookingRequest';
     $route['updateTransactionStatus/(:num)'] = 'logicalcontroller/updateTransactionStatusToOverdue/$1';
     

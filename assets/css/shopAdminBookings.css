@@ -492,7 +492,7 @@
     padding: 20px;
 }
 .message-name{
-    margin-left: -15px;
+    /* margin-left: -15px; */
     padding-top: 10px;
 }
 .message-name p{
