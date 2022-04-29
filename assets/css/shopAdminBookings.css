@@ -305,7 +305,6 @@
 
 /* MODAL CSS */
 
-
 .modal-holder {
     padding: 10px;
     font-family: 'Poppins', sans-serif;
@@ -471,4 +470,47 @@
     }
 
 
+}
+
+
+/* MODAL */
+.modal-content{
+    border-radius: 10px;
+}
+.card-head-color{
+    background-image: linear-gradient(45deg, #f83f0b,#e09e1a);
+    border-radius: 10px;
+    padding: 20px;
+}
+.message-img img{
+    width: 55px;
+    height: 55px;
+    object-fit: cover;
+    border-radius: 50%;
+}
+.message-modal-holder{
+    padding: 20px;
+}
+.message-name{
+    margin-left: -15px;
+    padding-top: 10px;
+}
+.message-name p{
+font-size: 12px;
+}
+.input-message textarea{
+    margin-left: 20px;
+    outline: none;
+    resize: none;
+    border: 1px solid rgb(204, 197, 197);
+    font-size: 12px;
+    padding: 5px;
+    background-color: #F1F1F1;
+    border-radius: 5px;
+    color: #807B7B;
+}
+@media (max-width: 400px) {
+    .message-modal-content {
+        width: 80%;
+}
 }
