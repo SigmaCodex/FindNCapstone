@@ -970,7 +970,19 @@ class MainModel extends CI_Model{
 		// return $row;
         echo json_encode($row);
     }
-
+    public function shopAdminmessageFinder($user_id, $transac_id){
+        $date_created = date('m/d/y');
+        $data = array(
+            'to_user_id'   => 	 $user_id,
+            'transaction_id'   => 	 $transac_id,  
+            'noti_title' => "Message",
+            'noti_body' =>  $this->input->post('notification_body'),
+            'noti_created' => $date_created,
+            'status' => "unseen"
+        );
+        $this->db->insert('finder_notification',$data);
+        echo json_encode($data);
+    }
     //Select Admin Information
     public function selectShopAdminInfo($admin_id){
         $this->db->select("compmanager.*, user.username");

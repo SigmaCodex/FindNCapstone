@@ -364,11 +364,15 @@ class LogicalController extends CI_Controller {
     public function updateAcceptBookingTransacStatus($transac_id,$to_user_id){
         $status = 'accepted';
         $this->load->model('MainModel');
-         $this->MainModel->updateBookingTransacStatus($transac_id,$status);
+        $this->MainModel->updateBookingTransacStatus($transac_id,$status);
         //Create Accepted Notification
         $message = "accepted";
         $title   = "Success";
         $this->MainModel->addFinderNotification($transac_id,$to_user_id,$message,$title);
+    }
+    public function shopAdminmessageFinder($user_id, $transac_id){
+        $this->load->model('MainModel');
+        $this->MainModel->shopAdminmessageFinder($user_id, $transac_id);
     }
     public function updateDeclineBookingTransacStatus($transac_id,$to_user_id){
         $status = 'declined';

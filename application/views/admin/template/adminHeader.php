@@ -362,6 +362,30 @@ $( document ).ready(function() {
     // end of ajax
 });
 },1000);
+function dateformat(arrival_date){
+            let date = new Date(arrival_date);
+            let d = date.getDate();
+            let months = [
+            "Jan",
+            "Feb",
+            "Mar",
+            "Apr",
+            "May",
+            "Jun",
+            "Jul",
+            "Aug",
+            "Sep",
+            "Oct",
+            "Nov",
+            "Dec",
+            ];
+            let m = months[date.getMonth()];
+            let y = date.getFullYear();
+            let days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+            let weekDay = days[date.getDay()];
+            date_format =`${m} ${d},${y} `;
+            return date_format;
+        }   
 </script>
 
 <script>
