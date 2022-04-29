@@ -420,8 +420,13 @@ class Main_Controller extends CI_Controller {
 			$result['shop_details'] = $this->MainModel->getShopDetails($shop_id);
 			$admin_id = $this->session->userdata('user_id');
 
+			//shop Ratings
+			$result2['count_ratings'] = $this->MainModel->ShopAdminRatings($shop_id);
+			$result2['rating_heading']	= $this->MainModel->ShopRecentRatings($shop_id);
+
+			// echo json_encode($result2['rating_heading']);
 			$this->load->view('admin/template/adminHeader',$result);
-			$this->load->view('admin/shopAdminFeed');
+			$this->load->view('admin/shopAdminFeed',$result2);
 		}
 	}	
 

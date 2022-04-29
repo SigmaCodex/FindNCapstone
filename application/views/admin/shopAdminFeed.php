@@ -243,47 +243,85 @@
             <div class="ratings col-lg-5 col-md-6 col-sm-12 order-sm-1">
 
                 <div class="ratings-card  rounded">
+                    <!-- total reviews section -->
                     <h4 class="text-center">Reviews</h4>
-                    <p class="number text-center m-0">4.5</p>
+                    <?php foreach($count_ratings as $rate){?>
+                    <p class="number text-center m-0"><?php echo number_format($rate->avgRatings, 1);?></p>
 
                     <div class="stars d-flex align-items-center justify-content-center">
+
+                        <!-- <i class='bx bxs-star' ></i>
                         <i class='bx bxs-star' ></i>
                         <i class='bx bxs-star' ></i>
                         <i class='bx bxs-star' ></i>
-                        <i class='bx bxs-star' ></i>
-                        <i class='bx bx-star' ></i>
+                        <i class='bx bx-star' ></i> -->
+                        <?php
+							$rateConverted = number_format($rate->avgRatings, 0) ;
+								if($rateConverted==0){
+									echo "<i class='bx bx-star' ></i>";
+								}else{
+
+									for($i=1; $i<=5; $i++){
+									
+										if($i<=$rate->avgRatings){
+											echo "<i class='bx bxs-star' ></i>";
+										}else{
+											if(($i < floor($rateConverted)+0.5) && $rate->avgRatings <5){
+												echo "<i class='bx bxs-star-half'></i>";
+											}else{
+												echo "<i class='bx bx-star' ></i>";
+											}
+										}
+									}	
+
+								}	
+							?>
+
                     </div>
                     
-                    <p class="count text-center text-muted">4 reviews</p>
+                    <p class="count text-center text-muted"><?php echo $rate->countRating;?> reviews</p>
+                    <?php }?>
                     <hr>
-
+                    <!-- end of total reviews -->
+                
+        <?php
+            $count = 0; 
+            foreach($rating_heading as $user_ratings){
+            $count++; 
+            if($count<=2){
+        ?> 
+                   
                 <!-- User reviews 1-->
                 <div class="profile-review">
-
                     <div class="row">
                         <div class="col-2">
                             <div class="profile-img">
-                                <img src="assets/images/Prof.png" alt="">
+                                <img src="assets/upload/finder/<?php echo $user_ratings->profile_pic;?>"  onerror="this.src='assets/images/default.png';"  alt="">
                             </div>
                         </div>
                         <div class="col-7">
                             <div class="profile-name">
-                                <h6>John Ivan Dann Dublin</h6>
+                                <h6><?php echo $user_ratings->firstname;?> <?php echo $user_ratings->lastname;?></h6>
 
                                 <div class="user-rating d-flex">
-                                    <i class='bx bxs-star' ></i>
-                                    <i class='bx bxs-star' ></i>
-                                    <i class='bx bxs-star' ></i>
-                                    <i class='bx bxs-star' ></i>
-                                    <i class='bx bx-star' ></i> 
-                                    <p class="">4.0</p>   
+                                    <?php
+                                        for($i=1; $i<=5; $i++){               
+                                            if($i<=$user_ratings->computer_rate){
+                                                echo "<i class='bx bxs-star' ></i>";
+                                            }else{
+                                                echo "<i class='bx bx-star' ></i>";
+                                            }
+                                        }	                                    
+                                    ?>
+
+                                    <p class=""><?php echo number_format($user_ratings->computer_rate, 1);?></p>   
                                 </div>
                             </div>
                             
                         </div>
                         <div class="col-3">
                             <div class="profile-elapsed">
-                                <p class="text-muted">1 hour ago</p>
+                                <p class="text-muted"><?php echo date("M j, Y", strtotime($user_ratings->date));?></p>
                             </div>
                             
                         </div>
@@ -291,16 +329,15 @@
                     </div>    
 
                     <div class="profile-comment">
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
-                            sed do eiusmod tempor 
-
+                        <p>Very Good I love The Service and DEVELOPER  
                         </p>
                     </div>
-
                 </div>
+                <?php }}?>   
+                <!-- end User reviews 1-->
                 
                 <!-- User reviews 2-->
-                <div class="profile-review">
+                <!-- <div class="profile-review">
 
                     <div class="row">
                         <div class="col-2">
@@ -351,39 +388,48 @@
 
                         </p>
                     </div>
-
-                </div>
+                </div> -->
+                <!--end User reviews 2-->
 
                 <!-- SEE MORE -->
                 <span id="text" style="font-size: 10px;">
-
+                <?php
+                    $count = 0; 
+                    foreach($rating_heading as $user_ratings){
+                    $count++; 
+                    if($count>2){
+                ?> 
                     <!-- User reviews 3-->
                     <div class="profile-review">
-
                         <div class="row">
                             <div class="col-2">
                                 <div class="profile-img">
-                                    <img src="assets/images/Prof.png" alt="">
+                                    <img src="assets/upload/finder/<?php echo $user_ratings->profile_pic;?>"  onerror="this.src='assets/images/default.png';"  alt="">
                                 </div>
                             </div>
                             <div class="col-7">
                                 <div class="profile-name">
-                                    <h6>John Ivan Dann Dublin</h6>
+                                    <h6><?php echo $user_ratings->firstname;?> <?php echo $user_ratings->lastname;?></h6>
     
                                     <div class="user-rating d-flex">
-                                        <i class='bx bxs-star' ></i>
-                                        <i class='bx bxs-star' ></i>
-                                        <i class='bx bxs-star' ></i>
-                                        <i class='bx bxs-star' ></i>
-                                        <i class='bx bx-star' ></i> 
-                                        <p class="">4.0</p>   
+                                    <?php
+                                        for($i=1; $i<=5; $i++){               
+                                            if($i<=$user_ratings->computer_rate){
+                                                echo "<i class='bx bxs-star' ></i>";
+                                            }else{
+                                                echo "<i class='bx bx-star' ></i>";
+                                            }
+                                        }	                                    
+                                    ?>
+
+                                    <p class=""><?php echo number_format($user_ratings->computer_rate, 1);?></p> 
                                     </div>
                                 </div>
                                 
                             </div>
                             <div class="col-3">
                                 <div class="profile-elapsed">
-                                    <p class="text-muted">1 hour ago</p>
+                                    <p class="text-muted"><?php echo date("M j, Y", strtotime($user_ratings->date));?></p>
                                 </div>
                                 
                             </div>
@@ -398,6 +444,7 @@
                         </div>
     
                     </div>
+                    <?php }}?> 
 
                 </span>   
                     

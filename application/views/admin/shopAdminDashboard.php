@@ -145,17 +145,6 @@
 								if($rateConverted==0){
 									echo "<i class='bx bx-star' ></i>";
 								}else{
-
-
-
-									// for($i=1; $i<=$rate->avgRatings; $i++){
-									// 	echo "<i class='bx bxs-star' ></i>";
-									// }
-									// if($rate >= floor($rate)+0.5){
-									// 	echo "<i class='bx bxs-star-half' ></i>";
-									// }else if($rate <= floor($rate)+0.5){
-								
-									// }
 									for($i=1; $i<=5; $i++){
 									
 										if($i<=$rate->avgRatings){
@@ -168,25 +157,7 @@
 											}
 										}
 									}	
-
-
-										// if(($rate->avgRatings > $rateConverted && $rateConverted < floor($rateConverted)+0.5) &&  $rate->avgRatings <5){
-										// 	echo "<i class='bx bx-star' ></i>";
-										// }else if(($rateConverted < floor($rateConverted)+0.5) && $rate->avgRatings <5){
-										// 	echo "<i class='bx bxs-star-half'></i>";
-										// }else if($rateConverted != 5){
-										// 	echo "<i class='bx bx-star' ></i>";
-										// }
-									
 								}	
-
-								
-							
-								
-								
-							
-		
-
 							?>
 							<!-- <i class='bx bxs-star' ></i>
 							<i class='bx bxs-star' ></i>
@@ -197,7 +168,7 @@
 						</div>
 						<?php }?>
 						<div class="view-rating d-flex justify-content-end align-items-center">
-							<p class="view-rating-text">View Ratings</p>
+							<a href="shopAdminFeed"><p class="view-rating-text">View Ratings</p></a>
 							<i class='bx bxs-chevrons-right'></i>
 						</div>
 						

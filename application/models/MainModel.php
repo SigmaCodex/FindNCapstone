@@ -1291,5 +1291,18 @@ class MainModel extends CI_Model{
         $query = $this->db->get();
         return $query->result();
     }
+    //2 top recent rating by date
+    public function ShopRecentRatings($shop_id){
+        // $this->db->select("SELECT * FROM `computer_ratings` ORDER BY  date DESC,computer_rate DESC LIMIT 2");
+        $this->db->select("computer_ratings.*,finders.profile_pic,finders.lastname,finders.firstname");
+        $this->db->from('computer_ratings');
+        $this->db->join('finders', 'computer_ratings.user_id = finders.user_id','left');
+        $this->db->order_by("date", "desc");
+        $this->db->order_by("computer_rate", "desc");
+        $this->db->limit(10);
+        $this->db->where('shop_id',$shop_id);
+        $query = $this->db->get();
+        return $query->result();
+    }
 
 }
