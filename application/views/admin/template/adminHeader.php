@@ -192,13 +192,7 @@
                                     <a href="#">Total Bookings</a>
                                  </li>
                                  <li>
-                                    <a href="#">Successful Bookings</a>
-                                 </li>
-                                 <li>
-                                    <a href="#">Cancelled Bookings</a>
-                                 </li>
-                                 <li>
-                                    <a href="#">Total Revenue</a>
+                                    <a href="#">Financial Reports</a>
                                  </li>
                               </ul>
                            </div>
