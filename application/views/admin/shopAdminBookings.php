@@ -407,7 +407,7 @@
                                 </div>
 
                                 <p class="modal-caption-details-right-total" id="totalfee"><b></b> </p>
-                                <button id="od_btn" class="btn btn-danger">Dismiss</button>
+                                <button id="od_btn" class="btn btn-danger" style="display;none;">Dismiss</button>
                                 <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
                                 </div>
                             </div>
@@ -661,6 +661,11 @@ function dateformat(arrival_date){
                 }
             });
         });
+    });
+</script>
+<script>
+    $(document).on('click','.list-table-bookings tr', function(){ 
+        $("#od_btn").hide();
     });
 </script>
 <script>

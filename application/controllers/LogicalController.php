@@ -398,7 +398,7 @@ class LogicalController extends CI_Controller {
         $result = $this->MainModel->shopNotificationDetails();
         echo json_encode($result);
     }
-    public function ($notif_id){
+    public function deleteNotification($notif_id){
         $this->load->model('MainModel');
         $this->MainModel->deleteNotification($notif_id);
     }

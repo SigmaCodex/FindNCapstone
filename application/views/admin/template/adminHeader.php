@@ -17,7 +17,6 @@
 
 
   </head>
-
     <!-- Bootstrap CDN -->
    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
@@ -324,9 +323,12 @@
                         cache: false, 
                         success:function(data)
                         {
+                          if(data==0){
+                           $(".notif-badge").css('display','none');
+                          }
                           if(data>=0){
                             $("#count_notif").text(data);  
-                          }  
+                          }
                         }
                       }); 
             //ajax;
@@ -352,7 +354,7 @@ $( document ).ready(function() {
                                 notif_created = dateformat(result[x]['noti_created']);   
                                 $("#notif_details").append("<div class='dropdown-item d-flex align-items-center justify-content-start p-2 pl-3 pr-3'> <i id='noti_id' class='close-notif fa-solid fa-trash-alt' notifid='"+result[x]['cp_noti_id']+"'></i> <img class='profile-img-dropdown' src='assets/upload/finder/"+result[x]['profile_pic']+"'> <div class='d-flex flex-column'> <p class='dropdown-message' id='noti-body' style='color: #fd7238;'>"+result[x]['noti_body']+"</p> <p class='dropdown-name text-muted' type='text'>"+result[x]['firstname']+" "+result[x]['lastname']+"<br>Transaction ID:"+result[x]['transaction_id']+"<br>"+notif_created+"</p> </div> </div>");
                             }
-                    }
+               }
     });
     // end of ajax
 });
