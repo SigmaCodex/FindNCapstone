@@ -337,90 +337,87 @@
 
             <!-- Modal -->
             <div class="modal fade" id="transaction-modal">
-                <div class="modal-dialog modal-lg modal-dialog-scrollable" role="document">
-                    <div class="modal-content">
+            <div class="modal-dialog modal-lg modal-dialog-scrollable" role="document">
+                <div class="modal-content">
 
-                    <!-- Modal body -->
-                    <div class="modal-body">
-                        <div class="modal-holder ">
-                        <div class="row d-flex justify-content-between">
+                <!-- Modal body -->
+                <div class="modal-body">
+                    <div class="modal-holder ">
+                    <div class="row d-flex justify-content-between">
 
-                            <div class="col-6">
-                                <div class="modal-left-card-profile">
-                                    <div class="modal-user-information d-flex flex-column align-items-center justify-content-center">
-                                        <img id="finder_profile" onerror="this.src='assets/images/default.png';" alt="">
-                                        <h6 class="modal-user-name" id="finder_name"></h6>
-                                        <p class="modal-caption">Finder</p> 
+                        <div class="col-6">
+                            <div class="modal-left-card-profile">
+                                <div class="modal-user-information d-flex flex-column align-items-center justify-content-center">
+                                    <img id="finder_profile" onerror="this.src='assets/images/default.png';" alt="">
+                                    <h6 class="modal-user-name" id="finder_name"></h6>
+                                    <p class="modal-caption">Finder</p> 
 
-                                    <div class="modal-user-info d-flex flex-column align-items-center justify-content-center">
-                                        <h5 class="modal-user-info-title user">User Information</h5>
-                                        <p class="modal-caption-user" id="email"></p> 
-                                        <p class="modal-caption-user" id="contact_num"></p> 
-                                        <p class="modal-caption-user" id="vac_status"></p> 
-                                        <p class="modal-caption-user" id="gender"></p> 
-                                    </div>
-                                    </div>
+                                <div class="modal-user-info d-flex flex-column align-items-center justify-content-center">
+                                    <h5 class="modal-user-info-title user">User Information</h5>
+                                    <p class="modal-caption-user" id="email"></p> 
+                                    <p class="modal-caption-user" id="contact_num"></p> 
+                                    <p class="modal-caption-user" id="vac_status"></p> 
+                                    <p class="modal-caption-user" id="gender"></p> 
+                                </div>
                                 </div>
                             </div>
+                        </div>
 
-                            <div class="col-6">
-                            <div class="modal-right-card-profile">
-                                <div class="modal-user-info">
-                                <h5 class="modal-user-info-title">Booking Information</h5>
-                                <div class="row ">
-                                    <div class="col-6">
-                                    <!-- <p class="modal-caption-details-left">Computer Shop:</p>  -->
-                                    <p class="modal-caption-details-left">Service Type:</p> 
-                                    <p class="modal-caption-details-left">Access Type:</p> 
-                                    <p class="modal-caption-details-left">Arrival Date:</p> 
-                                    <p class="modal-caption-details-left">Arrival Time:</p> 
-                                    <p class="modal-caption-details-left">Payment Method:</p>
-                                    <p class="modal-caption-details-left">Payment Status:</p>
-                                    <p class="modal-caption-details-left"><b>Message:</b> </p>
+                        <div class="col-6">
+                        <div class="modal-right-card-profile">
+                            <div class="modal-user-info">
+                            <h5 class="modal-user-info-title">Booking Information</h5>
+                            <div class="row ">
+                                <div class="col-6">
+                                <!-- <p class="modal-caption-details-left">Computer Shop:</p>  -->
+                                <p class="modal-caption-details-left">Service Type:</p> 
+                                <p class="modal-caption-details-left">Access Type:</p> 
+                                <p class="modal-caption-details-left">Arrival Date:</p> 
+                                <p class="modal-caption-details-left">Arrival Time:</p> 
+                                <p class="modal-caption-details-left">Payment Method:</p>
+                                <p class="modal-caption-details-left">Payment Status:</p>
+                                <p class="modal-caption-details-left"><b>Message:</b> </p>
 
-                                    <div class="ticket-fee-total">
-                                        <p class="modal-caption-details-left"><b>Tickets:</b> </p>
-                                    </div>
-                                    <p class="modal-caption-details-left-total"><b>Total Service Fee:</b> </p>
-                                    </div>
-
-                                    <div class="col-6 modal-data-info-right">
-                                    <!-- <p class="modal-caption-details-right" id="compshop">sdaasdsa</p>  -->
-                                    <p class="modal-caption-details-right" id="servicetype"></p> 
-                                    <p class="modal-caption-details-right" id="accesstype"></p> 
-                                    <p class="modal-caption-details-right" id="date_arrival"></p> 
-                                    <p class="modal-caption-details-right" id="time_arrival"></p> 
-                                    <!-- If Gcash -->
-                                    <p class="modal-caption-details-right" id="payment-notselected"><img id="payment-method-logo" alt="" style="width:19px;"></p>  
-                                    <!-- If over-the-counter -->
-                                    <!-- <p class="modal-caption-details-right-method"><img id="payment-method-logo" alt="" style=""></p>  -->
-
-                                    <!-- If paid -->
-                                    <p class="modal-caption-details-right-status badge" id="pay_status"></p> 
-                                    <!-- If unpaid -->
-                                    <!-- <p class="modal-caption-details-right-status badge badge-danger">Unpaid</p>  -->
-                                    
-                                    <p class="modal-caption-details-right-message text-muted" id="message"></p> 
-
-                                    <div class="ticket-fee-total-right" style="border-bottom: 1px solid #C4C4C4; margin-top: 0;">
-                                        <p class="modal-caption-details-left" id="numticket"><b></b> </p>
-                                    </div>
-
-                                    <p class="modal-caption-details-right-total" id="totalfee"><b></b> </p>
-                                    <button id="od_btn" class="btn btn-danger">Dismiss</button>
-                                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-                                    </div>
+                                <div class="ticket-fee-total">
+                                    <p class="modal-caption-details-left"><b>Tickets:</b> </p>
                                 </div>
+                                <p class="modal-caption-details-left-total"><b>Total Service Fee:</b> </p>
+                                </div>
+
+                                <div class="col-6 modal-data-info-right">
+                                <!-- <p class="modal-caption-details-right" id="compshop">sdaasdsa</p>  -->
+                                <p class="modal-caption-details-right" id="servicetype"></p> 
+                                <p class="modal-caption-details-right" id="accesstype"></p> 
+                                <p class="modal-caption-details-right" id="date_arrival"></p> 
+                                <p class="modal-caption-details-right" id="time_arrival"></p> 
+                                <!-- If Gcash -->
+                                <p class="modal-caption-details-right" id="payment-notselected"><img id="payment-method-logo" alt="" style="width:19px;"></p>  
+                                <!-- If over-the-counter -->
+                                <!-- <p class="modal-caption-details-right-method"><img id="payment-method-logo" alt="" style=""></p>  -->
+
+                                <!-- If paid -->
+                                <p class="modal-caption-details-right-status badge" id="pay_status"></p> 
+                                <!-- If unpaid -->
+                                <!-- <p class="modal-caption-details-right-status badge badge-danger">Unpaid</p>  -->
                                 
+                                <p class="modal-caption-details-right-message text-muted" id="message"></p> 
+
+                                <div class="ticket-fee-total-right" style="border-bottom: 1px solid #C4C4C4; margin-top: 0;">
+                                    <p class="modal-caption-details-left" id="numticket"><b></b> </p>
+                                </div>
+
+                                <p class="modal-caption-details-right-total" id="totalfee"><b></b> </p>
+                                <button id="od_btn" class="btn btn-danger">Dismiss</button>
+                                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
                                 </div>
                             </div>
+                            
                             </div>
-
                         </div>
                         </div>
-                    </div>
 
                     </div>
+
                 </div>
             </div>
             
@@ -446,9 +443,14 @@
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                             <button type="button" class="btn btn-primary">Save changes</button>
                         </div>
+
                     </div>
                 </div>
+
                 </div>
+            </div>
+            </div>
+
         </div>
         
     </div>
