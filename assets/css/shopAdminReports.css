@@ -176,6 +176,17 @@ body {
 #content main #columnchart_material {
 	width: 400px;
 }
+.select-month-profit select{
+    font-size: 13px;
+	outline: none;
+	color:#F46B31;
+	font-weight: 500;
+	background-color: #f9f9f9;
+	text-align: center;
+	border-radius: 10px;
+	border: 1px dotted #F46B31;
+	padding: 3px;
+}
 .select-month {
 	padding-bottom: 10px;
 }

@@ -42,8 +42,14 @@
 				<div class="row">
 
 					<div class="col-lg-4 col-sm-12">
-						<div class="title">
+						<div class="title d-flex align-items-center justify-content-between mb-3">
 							<h6><b>Reports</b></h6>
+                            <div class="select-month-profit">
+								<select name="month" id="month">
+									<option clas="opt" value="Jan_May">January - May</option>
+									<option clas="opt" value="June_Dec">June - December</option>
+								  </select>
+							</div>
 						</div>
 						<ul class="box-info">
 							<li>
@@ -61,19 +67,20 @@
 								</span>
 							</li>
 							<li>
-								<i class='bx bxs-star'></i>
+                                <i class='bx bx-money'></i>
 								<span class="text">
 									<div class="d-flex justify-content-center align-items-center">
-										<p style="margin:0; color: #F46B31; font-weight: 800;">Overall Ratings</p>
+										<p style="margin:0; color: #F46B31; font-weight: 800;">Total Profit</p>
 									</div>
-									<h3 class="text-muted">4.5</h3>
+									<h3 class="text-muted">₱50</h3>
+                                    <p class="view-details text muted" style=" font-size: 8px; margin:0; color:#FD7238">( 30% Profit Share )</p>
 									
 								</span>
 							</li>
 						</ul>
 					</div>
 					<div class="col-lg-8 col-sm-12">
-						<div class="title">
+						<div class="title mb-4">
 							<h6><b>Monthly Sales</b> </h6>
 						</div>
 						<div class="line-graph d-flex flex-column align-items-center justify-content-center">

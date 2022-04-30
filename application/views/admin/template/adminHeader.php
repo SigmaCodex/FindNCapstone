@@ -181,20 +181,13 @@
                               </ul>
                            </div>
                         </li>
+         
                         <li class="sidebar-dropdown">
-                           <a href="shopAdminReports">
-                           <i class="fa fa-chart-line"></i>
-                           <span>Reports</span>
-                           </a>
-                           <div class="sidebar-submenu">
-                              <ul>
-                                 <li>
-                                    <a href="#">Total Bookings</a>
-                                 </li>
-                                 <li>
-                                    <a href="#">Financial Reports</a>
-                                 </li>
-                              </ul>
+                           <div class="no-dropdown">
+                              <a href="shopAdminReports">
+                              <i class="fa fa-chart-line"></i>
+                              <span>Reports</span>
+                              </a>
                            </div>
                         </li>
                         <li class="sidebar-dropdown">
