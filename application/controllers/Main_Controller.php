@@ -446,7 +446,7 @@ class Main_Controller extends CI_Controller {
 		 
 		//  echo json_encode($data['countSuccessBooking']);
 		$this->load->view('admin/template/adminHeader',$result);
-		$this->load->view('admin/shopAdminReportspratice',$data);
+		$this->load->view('admin/shopAdminReports',$data);
 	}	
 
 	public function shopadmin_computerdetails($shopid){
