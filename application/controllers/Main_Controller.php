@@ -432,11 +432,17 @@ class Main_Controller extends CI_Controller {
 
 	public function shopAdminReports(){
 		$shop_id = $this->session->userdata('admin_shop_id');
+
+		$result['profile_pic'] =  $this->session->userdata('profile_pic');
+		$result['admin_name'] =  $this->session->userdata('admin_name');
+		$result['shop_details'] = $this->MainModel->getShopDetails($shop_id);
+
 		 $data['sales']	= $this->MainModel->shopReportsSalesForGraph($shop_id);
 		 $data['countSuccessBooking']  = $this->MainModel->shopReportsBookingStatusCountSuccess($shop_id);
 		 $data['countFailBooking']  = $this->MainModel->shopReportsBookingStatusCountFail($shop_id);
 		 
 		//  echo json_encode($data['countSuccessBooking']);
+		$this->load->view('admin/template/adminHeader',$result);
 		$this->load->view('admin/shopAdminReportspratice',$data);
 	}	
 
