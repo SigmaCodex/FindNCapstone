@@ -415,17 +415,41 @@ class LogicalController extends CI_Controller {
         $this->load->model('MainModel');
         $this->MainModel->getUserDetails($id);
     }
-    public function addshopPosts($id){
+    public function getAllPostandComments($shop_id){
         $this->load->model('MainModel');
-        $this->MainModel->addshopPosts($id);
+        $this->MainModel->getAllPostandComments($shop_id);
+    }
+    public function addshopPosts($id){
+        $this->load->helper(array('form', 'url')); 
+            $config['upload_path']          = './assets/upload/shop/postandeventsImages';
+            $config['allowed_types']        = 'gif|jpg|png|jpeg';
+            $config['max_size']             = 5000;
+            $config['max_width']            = 5024;
+            $config['max_height']           = 5268;
+            $this->load->library('upload', $config);
+            $this->upload->initialize($config);
+            if(!$this->upload->do_upload('postimage'))
+            {
+                $this->load->model('MainModel');
+                $this->MainModel->addshopPosts($id, "no-image");
+            }else{
+                
+                $this->load->model('MainModel');
+                $this->MainModel->addshopPosts($id, "with-image");
+            }
+    }
+    public function countComments($post_id){
+        $this->load->model('MainModel');
+        $num = $this->MainModel->countComments($post_id);
+        echo $num;
     }
     public function deleteshopPosts($id){
         $this->load->model('MainModel');
         $this->MainModel->deleteshopPosts($id);
     }
-    public function selectforUpdatePostDetails($id){
+    public function getPostInfo($id){
         $this->load->model('MainModel');
-        $result = $this->MainModel->selectforUpdatePostDetails($id);
+        $result = $this->MainModel->getPostInfo($id);
         echo json_encode($result);
     }
     public function getallPostComments($shop_id){
@@ -451,8 +475,23 @@ class LogicalController extends CI_Controller {
         $result = $this->MainModel->updateComments($id);
     }
     public function updateshopPosts($id){
-        $this->load->model('MainModel');
-        $this->MainModel->updateshopPosts($id);
+        $this->load->helper(array('form', 'url')); 
+            $config['upload_path']          = './assets/upload/shop/postandeventsImages';
+            $config['allowed_types']        = 'gif|jpg|png|jpeg';
+            $config['max_size']             = 5000;
+            $config['max_width']            = 5024;
+            $config['max_height']           = 5268;
+            $this->load->library('upload', $config);
+            $this->upload->initialize($config);
+            if(!$this->upload->do_upload('edit_postimage'))
+            {
+                $this->load->model('MainModel');
+                $this->MainModel->updateshopPosts($id, "no-image");
+            }else{
+                
+                $this->load->model('MainModel');
+                $this->MainModel->updateshopPosts($id, "with-image");
+            }
     }
     public function updateComputerDetails(){
         $shop_id = $this->session->userdata('admin_shop_id');

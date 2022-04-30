@@ -148,11 +148,16 @@ $route['reports'] = 'main_controller/viewReports';
     $route['getpostComments/(:num)'] = 'logicalcontroller/getallPostComments/$1';
     $route['updateshopPosts/(:num)']  = 'logicalcontroller/updateshopPosts/$1';
     $route['addComment/(:num)'] = 'logicalcontroller/addComments/$1';
-    $route['getComment/(:num)'] = 'logicalcontroller/selectforUpdateComment/$1';
+    $route['getPostInfo/(:num)'] = 'logicalcontroller/getPostInfo/$1';
+    $route['addshopPost/(:num)'] = 'logicalcontroller/addshopPosts/$1';
+    $route['updateshopPost/(:num)'] = 'logicalcontroller/updateshopPosts/$1';
+    $route['deletePost/(:num)'] = 'logicalcontroller/deleteshopPosts/$1';
     $route['updateComment/(:num)'] = 'logicalcontroller/updateComments/$1';
     $route['deleteComment/(:num)'] = 'logicalcontroller/deleteComments/$1';
     $route['adminshowallbookrequest/(:num)'] = 'logicalcontroller/viewallShopAdminBookingRequests/$1';
     // $route['showpendinglist/(:num)'] = 'logicalcontroller/getallPendingRequest/$1';
+    $route['viewPostandComments/(:num)'] = 'logicalcontroller/getAllPostandComments/$1';
+    $route['getnumComments/(:num)'] = 'logicalcontroller/countComments/$1';
     $route['showpendinglist'] = 'logicalcontroller/getallPendingRequest';
     $route['viewadminNotif'] = 'logicalcontroller/viewNotificationsAdmin';
     $route['deleteNotif/(:num)'] = 'logicalcontroller/deleteNotification/$1';
@@ -165,10 +170,7 @@ $route['reports'] = 'main_controller/viewReports';
     $route['messageFinder/(:num)/(:num)'] = 'logicalcontroller/shopAdminmessageFinder/$1/$2';
     $route['countPendingBook'] = 'logicalcontroller/CountBookingRequest';
     $route['updateTransactionStatus/(:num)'] = 'logicalcontroller/updateTransactionStatusToOverdue/$1';
-    
-    $route['addshopPost/(:num)'] = 'logicalcontroller/addshopPosts/$1';
-    $route['deletePost/(:num)'] = 'logicalcontroller/deleteshopPosts/$1';
-    $route['updateshopPost/(:num)'] = 'logicalcontroller/updateshopPosts/$1';
+
     $route['updateShopStatus/(:any)'] = 'logicalcontroller/updateShopStatus/$1';
     $route['updateAdminAccount']      = 'logicalcontroller/updateAdminAccount';
     //api 
