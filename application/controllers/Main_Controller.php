@@ -423,7 +423,10 @@ class Main_Controller extends CI_Controller {
 			//shop Ratings
 			$result2['count_ratings'] = $this->MainModel->ShopAdminRatings($shop_id);
 			$result2['rating_heading']	= $this->MainModel->ShopRecentRatings($shop_id);
-
+			//post and comments
+			$result2['shop_details'] = $this->MainModel->getShopDetails($shop_id);
+			$result2['postDetails'] = $this->MainModel->getAllPosts($shop_id);
+			$result2['commentDetails'] = $this->MainModel->getAllComments();
 			// echo json_encode($result2['rating_heading']);
 			$this->load->view('admin/template/adminHeader',$result);
 			$this->load->view('admin/shopAdminFeed',$result2);

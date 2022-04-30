@@ -37,13 +37,15 @@
 
             <!-- Creating post section -->
             <div class="posts col-lg-7 col-md-7 col-sm-12 order-sm-12">
-
                 <!-- Create post Card row -->
                 <div class="create-post rounded mb-3">
                     <div class="row">
                         <div class="col-2">
                             <div class="profile-img">
-                                <img src="assets/images/Image1.png" alt="">
+                                <?php foreach($shop_details as $sd){?>
+                                <p id="shopid" style="display:none"><?php echo $sd->shop_id;?></p>
+                                <img src="assets/upload/shop/<?php echo $sd->shop_img_icon;?>" alt="">
+                                <?php } ?>
                             </div>
                         </div>
                         <div class="col-5 d-flex align-items-center justify-content-start">
@@ -76,21 +78,59 @@
                                     </div>
                                         
                                     <div class="modal-body d-flex flex-column">
-                                        <textarea name="" id="" cols="65" rows="6" placeholder="Any thoughts to share? "></textarea>
+                                        <form id="upload_post">
+                                        <label>"Post Title:</label><input type="text" name="title">
+                                        <textarea name="description" id="" cols="65" rows="6" placeholder="Any thoughts to share to finders?"></textarea>
                                         <div class="gap p-2"></div>
                                         <div class="img-holder-upload">
-                                            <img src="assets/images/post.jpg" alt="">
+                                        <img src="assets/images/post.jpg" id="upload-preview" alt="">
                                         </div>
                                         <div class="gap p-2"></div>
 
                                         <div class="d-flex justify-content-end">
                                             <label class="btn btn-primary">
-                                                <i class="fa fa-image"></i> Upload Image<input type="file" style="display: none;"  name="image">
+                                                <i class="fa fa-image"></i> Upload Image<input class="img_upload" type="file" style="display: none;"  name="postimage">
                                             </label>
                                         </div>
                                         
                                     </div>
-                                        <button type="button" class="btn btn-warning">Save changes</button>
+                                        <button type="submit" id="add_postfeed" class="btn btn-warning">Save changes</button>
+                                        </form>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Edit Button trigger modal -->
+                        
+                        <!-- Edit Modal -->
+                        <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="post_now_modal" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content p-4">
+                                    <div class="header-modal d-flex align-items-center justify-content-between">
+                                        <h5 class="modal-title" id="post_now_modal">Edit Post</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            Cancel
+                                        </button>
+                                    </div>
+                                        
+                                    <div class="modal-body d-flex flex-column">
+                                        <form id="edit_upload_post">
+                                        <label>"Post Title:</label><input id="cp_title" type="text" name="edit_title">
+                                        <textarea name="edit_description" id="cp_desc" cols="65" rows="6" placeholder="Any thoughts to share to finders?"></textarea>
+                                        <div class="gap p-2"></div>
+                                        <div class="img-holder-upload">
+                                        <img src="assets/images/post.jpg" id="edit_upload-preview" alt="">
+                                        </div>
+                                        <div class="gap p-2"></div>
+
+                                        <div class="d-flex justify-content-end">
+                                            <label class="btn btn-primary">
+                                                <i class="fa fa-image"></i> Upload Image<input id="cp_img" class="edit_img_upload" type="file" style="display: none;"  name="edit_postimage">
+                                            </label>
+                                        </div>
+                                        
+                                    </div>
+                                        <button type="submit" id="add_postfeed" class="btn btn-warning">Save changes</button>
+                                        </form>
                                 </div>
                             </div>
                         </div>
@@ -101,34 +141,39 @@
                 
 
                 <!-- POSTS CARD with picture -->
+                <?php foreach($postDetails as $pd){?>
                 <div class="create-post-content rounded mb-3">
-
                     <div class="row">
+                    <p id="postid" style="display:none"><?php echo $pd->post_id;?></p>
+                    <i class='close-notif fa-solid fa-trash-alt' id="delete_post" delete_id="<?php echo $pd->post_id;?>"></i>
+                    <i class='close-notif fa-solid fa-pen-alt' id="edit_post" edit_id="<?php echo $pd->post_id;?>"></i>
                         <div class="col-2">
                             <div class="profile-img">
-                                <img src="assets/images/Image1.png" alt="">
+                                <img src="assets/upload/shop/<?php echo $pd->shop_img_icon?>" alt="">
                             </div>
                         </div>
 
                         <div class="col-7 d-flex align-items-center justify-content-start">
                             <div class="posts-profile-name">
-                                <h6>TNC CYBERCAFE CEBU HQ</h6>
-                                <p class="text-muted">TNC_cebu (Admin1)</p>
+                                <h6><?php echo $pd->shop_name;?></h6>
+                                <p class="text-muted"><?php echo $pd->firstname;?> <?php echo $pd->lastname;?>(Admin)</p>
+                                <p class="text-muted">Subject : <?php echo $pd->post_title;?></p>
                             </div>
                             
                         </div>
 
                         <div class="col-3 d-flex align-items-center justify-content-end">
                             <div class="profile-elapsed">
-                                <p class="text-muted">1 hour ago</p>
+                                <p class="text-muted"><?php echo $pd->post_created;?></p>
                             </div>
                         </div>
                     </div>
 
                     <div class="post-desc">
-                        <img src="assets/images/post.png" alt="">
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum
-                        </p>
+                        <?php if($pd->post_img){?>
+                        <img src="assets/upload/shop/postandeventsImages/<?php echo $pd->post_img;?>" alt="">
+                    <?php }?>
+                        <p><?php echo $pd->post_description;?></p>
                     </div>
 
                     <span id="liked">
@@ -143,22 +188,26 @@
                         <p id="like" onclick="myFunctionLike()">Like</p>
 
                         <div class="comments d-flex align-items-center justify-content-center">
-                            <p class="badge badge-secondary">3</p>
-                            <p id="comment_text" onclick="myFunctionComment()">Comment</p>
+                            <p class="badge badge-secondary" id="cmnt_count"><?php $count=0; foreach($commentDetails as $cmtdet){if($pd->post_id == $cmtdet->post_id_fk){$count++;}} echo $count;?></p>
+                            <p class="comment_txt" id="comment_text">Comments</p>
                         </div>
                         
                     </div>
                     
                    
-                        <span id="comments">
+                        <span class="comments_section_area" id="comments">
                             <div class="comments">
                                 <div class="comments-section">
                                     <h6>Comments</h6>
                                 </div>
         
-                                <textarea name="" id="" cols="81" rows="4"></textarea>
-                                
+                                <textarea name="" id="cmnt_textx" cols="81" rows="4"></textarea>
+                                <button class="add-com badge badge-success p-2" id="add_cmnt" posts_id="<?php echo $pd->post_id;?>">ADD COMMENT</button>
                                 <!-- First Comment Card -->
+                                <?php foreach($commentDetails as $cd){
+                                if($pd->post_id == $cd->post_id_fk){
+                                
+                                ?>
                                 <div class="comments-card pt-2">
                                     <div class="row">
                                         <div class="col-2">
@@ -166,35 +215,32 @@
                                         </div>
                                         <div class="col-2">
                                             <div class="profile-img">
-                                                <img src="assets/images/Prof.png" alt="">
+                                                <img src="assets/upload/finder/<?php echo $cd->profile_pic;?>" onerror="this.src='assets/images/default.png'" alt="">
                                             </div>
                                         </div>
                 
                                         <div class="col-5 d-flex align-items-center justify-content-start">
                                             <div class="comments-profile-name">
-                                                <h6>Junky Dubs</h6>
-                                                <p class="text-muted">junky</p>
+                                                <h6><?php echo $cd->username;?></h6>
+                                                <p class="text-muted"><?php echo $cd->user_type;?></p>
                                             </div>
                                             
                                         </div>
                 
                                         <div class="col-3 d-flex align-items-center justify-content-end">
                                             <div class="profile-elapsed">
-                                                <p class="text-muted">1 hour ago</p>
+                                                <p class="text-muted"><?php echo $cd->date;?></p>
                                             </div>
                                         </div>
                                     </div>
 
                                     <div class="posts-comment">
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
-                                            sed do eiusmod tempor 
-                
-                                        </p>
+                                        <p><?php echo $cd->comment;?></p> 
                                     </div>
                                 </div>
-                                
+                                <?php }} ?>
                                 <!-- Second Comment Card -->
-                                <div class="comments-card pt-2">
+                                <!-- <div class="comments-card pt-2">
                                     <div class="row">
                                         <div class="col-2">
     
@@ -227,7 +273,7 @@
                 
                                         </p>
                                     </div>
-                                </div>
+                                </div> -->
                                 
                             </div>
                         </span>
@@ -235,10 +281,8 @@
                     
                     
                 </div>
-
-
+                <?php } ?>
             </div>
-
             <!-- Reviews & ratings section -->
             <div class="ratings col-lg-5 col-md-6 col-sm-12 order-sm-1">
 
@@ -464,6 +508,131 @@
 
 </body>
 </html>
+<script>  
+	$(document).ready(function(){  
+		$('#upload_post').on('submit', function(e){  
+			var shopID = $('#shopid').text();
+			var BASE_URL = "<?php echo base_url();?>";
+
+			e.preventDefault();  
+					$.ajax({  
+						url: BASE_URL+"addshopPost/"+shopID,   
+						method:"POST",  
+						data:new FormData(this),  
+						contentType: false,  
+						cache: false,  
+						processData:false,  
+						success:function(data)  
+						{  
+                            location.reload();
+						}  
+					});
+		});  
+	});   
+ </script>
+ <script>
+     $(document).on('click', '#add_cmnt',function(){
+        var BASE_URL = "<?php echo base_url();?>";
+         comm = $('#cmnt_text').val();
+         id = $(this).attr("posts_id");
+                    $.ajax({  
+						url: BASE_URL+"addComment/"+id,   
+						type:"POST",  
+						data:{comment_txt:comm},   
+						success:function(data)  
+						{  
+                            location.reload();  
+						}
+					});
+     });
+ </script>
+ <script>
+     $(document).on('click', '#delete_post',function(){
+        BASE_URL = "<?php echo base_url();?>";
+        postid = $(this).attr('delete_id');
+        $.ajax({  
+						url: BASE_URL+"deletePost/"+postid,   
+						type:"POST",  
+						data:{},   
+						success:function(data)  
+						{  
+                            location.reload();  
+						}
+					});
+     });
+ </script>
+ <script>
+    $(document).on('click', '#edit_post',function(){
+    postid = $(this).attr('edit_id');
+			BASE_URL = "<?php echo base_url();?>";
+            $.ajax({
+					url: BASE_URL+"getPostInfo/"+postid,
+					type: "GET",
+                    cache: false,
+                    async: false,
+					success: function(data){
+                           var result = JSON.parse(data);
+                            for(var x = 0 ; x < result.length ; x ++)
+                            {
+                                $("#cp_title").val(result[x]['post_title']);
+                                $("#cp_desc").val(result[x]['post_description']);
+								$("#edit_upload-preview").removeAttr("src");
+                                $("#edit_upload-preview").attr("src","assets/upload/shop/postandeventsImages/"+result[x]['post_img']);
+                            }
+                    }
+                });
+            $('#editModal').modal('show');  
+    $('#edit_upload_post').on('submit', function(e){  
+        BASE_URL = "<?php echo base_url();?>";
+           e.preventDefault();
+                $.ajax({  
+                     url: BASE_URL+"updateshopPost/"+postid,   
+                     method:"POST",  
+                     data:new FormData(this),  
+                     contentType: false,  
+                     cache: false,  
+                     processData:false,  
+                     success:function(data)  
+                     {
+                         location.reload(); 
+                     }  
+                });  
+             
+      });
+    });
+ </script>
+<script>
+		$(document).ready(function(){
+			var preview = $("#upload-preview");
+
+			$(".img_upload").change(function(event){
+			var input = $(event.currentTarget);
+			var file = input[0].files[0];
+			var reader = new FileReader();
+			reader.onload = function(e){
+				image_base64 = e.target.result;
+				preview.attr("src", image_base64);
+			};
+			reader.readAsDataURL(file);
+			});
+		});
+	</script>
+    <script>
+		$(document).ready(function(){
+			var preview = $("#edit_upload-preview");
+
+			$(".edit_img_upload").change(function(event){
+			var input = $(event.currentTarget);
+			var file = input[0].files[0];
+			var reader = new FileReader();
+			reader.onload = function(e){
+				image_base64 = e.target.result;
+				preview.attr("src", image_base64);
+			};
+			reader.readAsDataURL(file);
+			});
+		});
+	</script>
 
 
 

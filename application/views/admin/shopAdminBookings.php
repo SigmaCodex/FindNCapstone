@@ -449,7 +449,6 @@
                                                 <p class="text-muted">To: <span id="finder_msg_to"></span></p>
                                                 <p id="finder_id" style="display:none"></p>
                                                 <p id="finder_transid" style="display:none"></p>
-                                                <p id="upd_stat"></p>
                                             </div>
                                         </div>
                                     </div>
@@ -461,7 +460,7 @@
                                             <button class="not-now btn btn-danger p-2 " data-dismiss="modal" id="cancel_msg">Not Now</button>
                                         </div>
                                         <div class="col-7 p-2 d-flex justify-content-start align-items-center">
-                                            <button class="btn btn-success p-2" id="send_msg">Send Message</button>   
+                                            <button class="btn btn-success p-2 send_message" id="send_msg">Send Message</button>   
                                         </div> 
                                     </div>
                                 </div>
@@ -595,7 +594,13 @@ $(document).on("click",".table-row",function(){
         },100);
     </script>
 <script>
+    var stat = "";
+    var accept_stat = "";
 		$(document).on("click",".acceptbtn",function(){
+            stat = "true";
+            accept_stat = "true";
+            // $('#upd_stat').text("true");
+            alert(accept_stat);
 			var Base_URL = "<?php echo base_url();?>";
             $('#upd_stat').text("true");
 			var id = $(this).attr("transac_id");
@@ -604,33 +609,35 @@ $(document).on("click",".table-row",function(){
             $('#finder_id').text(user_id);
             var finder = $(this).attr("finder_name");
             $('#finder_msg_to').text(finder);
-            $.ajax({
-            url:Base_URL+"accept-updateBookStatus/"+id+"/"+user_id,
-                type: "POST",
-                success: function(data)
-                {
-                    // swal({
-                    //         title: "Transaction has been moved to waiting list",
-                    //         text: "",
-                    //         icon: "success",
-                    //         button: "Continue",
-                    //         }).then((value) => {
-                    // });
-                }
-            });
+            // $.ajax({
+            // url:Base_URL+"accept-updateBookStatus/"+id+"/"+user_id,
+            //     type: "POST",
+            //     success: function(data)
+            //     {
+            //         // swal({
+            //         //         title: "Transaction has been moved to waiting list",
+            //         //         text: "",
+            //         //         icon: "success",
+            //         //         button: "Continue",
+            //         //         }).then((value) => {
+            //         // });
+            //     }
+            // });
             $("#message-modal").modal('show');
             $(this).parent().parent().parent().parent().addClass('d-none');
 		});
-            $(document).on("click","#send_msg",function(){
+            $(document).on("click",".send_message",function(){
                 var Base_URL = "<?php echo base_url();?>";
                 var message = $('#book_msg').val();
                 var id = $('#finder_transid').text();
                 var user_id = $('#finder_id').text();
+                if(accept_stat == "true"){
                     $.ajax({
                             url:Base_URL+"messageFinder/"+user_id+"/"+id,
                             type: "POST",
                             data:{notification_body:message},
                             success: function(data){
+                                if(stat == "true"){
                                 swal({
                                     title: "Request Accepted!",
                                     text: "Your message has sent to finder",
@@ -638,27 +645,45 @@ $(document).on("click",".table-row",function(){
                                     button: "Continue",
                                     }).then((value) => {
                                     });
+                                }
                                 $('#book_msg').val("");
                             }
                         });
+                    }
                 $("#message-modal").modal('hide');
         });
-        // $(document).on("click","#cancel_msg",function(){
-        //     var b_stat = $('#upd_stat').text();
-        //     if(b_stat == "true"){
+        // $(document).on("click",".not-now",function(){
+        // if(stat == "true"){
         //     swal({
         //         title: "Transaction has been moved to waiting list",
         //         text: "",
         //         icon: "success",
         //         button: "Continue",
         //         }).then((value) => {
+        //             stat="";
+        //     });
+        // }
+        // else if(stat == "false"){
+        //     swal({
+        //         title: "Transaction has been accepted",
+        //         text: "",
+        //         icon: "error",
+        //         button: "Continue",
+        //         }).then((value) => {
+        //             stat="";
         //         });
         //     }
         // });
+
 </script>
 <script>
+    var stat = "";
+    var decline_stat ="";
 		$(document).on("click",".declinebtn",function(){
-            $('#upd_stat').text("false");
+            stat = "false";
+            decline_stat="false";
+            // $('#upd_stat').text("false");
+            alert(decline_stat);
 			var Base_URL = "<?php echo base_url();?>";
 			var id = $(this).attr("transac_id");
             $('#finder_transid').text(id);
@@ -666,26 +691,28 @@ $(document).on("click",".table-row",function(){
             $('#finder_id').text(user_id);
             var finder = $(this).attr("finder_name");
             $('#finder_msg_to').text(finder);
-            $.ajax({
-            url:Base_URL+"decline-updateBookStatus/"+id+"/"+user_id,
-                type: "POST",
-                success: function(data)
-                {  
-                }
-            });
+            // $.ajax({
+            // url:Base_URL+"decline-updateBookStatus/"+id+"/"+user_id,
+            //     type: "POST",
+            //     success: function(data)
+            //     {  
+            //     }
+            // });
             $("#message-modal").modal('show');
 			$(this).parent().parent().parent().parent().addClass('d-none');
 		});
-        $(document).on("click","#send_msg",function(){
+        $(document).on("click",".send_message",function(){
                 var Base_URL = "<?php echo base_url();?>";
                 var message = $('#book_msg').val();
                 var id = $('#finder_transid').text();
                 var user_id = $('#finder_id').text();
+                if(decline_stat == "false"){
                 $.ajax({
                         url:Base_URL+"messageFinder/"+user_id+"/"+id,
                         type: "POST",
                         data:{notification_body:message},
                         success: function(data){
+                            if(stat == "false"){
                             swal({
                                 title: "Request Decline!",
                                 text: "Your message has sent to finder",
@@ -693,20 +720,33 @@ $(document).on("click",".table-row",function(){
                                 button: "Continue",
                                 }).then((value) => {
                                 });
+                            }
                             $('#book_msg').val("");
                             }
                         });
+                }
                 $("#message-modal").modal('hide');
         });
-        // $(document).on("click","#cancel_msg",function(){
-        //     b_stat = $('#upd_stat').text();
-        //     if(b_stat == "false"){
+
+        // $(document).on("click",".not-now",function(){
+        // if(stat == "true"){
         //     swal({
-        //         title: "Transaction has been declined",
+        //         title: "Transaction has been moved to waiting list",
         //         text: "",
         //         icon: "success",
         //         button: "Continue",
         //         }).then((value) => {
+        //             stat="";
+        //     });
+        // }
+        // else if(stat == "false"){
+        //     swal({
+        //         title: "Transaction has been declined",
+        //         text: "",
+        //         icon: "error",
+        //         button: "Continue",
+        //         }).then((value) => {
+        //             stat="";
         //         });
         //     }
         // });
