@@ -92,7 +92,7 @@
 
           <!-- php code for total monthly sales -->
         <?php $monthFee = array(array("Jan",0), array("Feb",0), array("Mar",0), array("Apr",0), array("May",0), array("Jun",0), array("July",0), array("Aug",0), array("Sep",0), array("Oct",0), array("Nov",0), array("Dec",0));?>
-        <?php foreach ($monthly as $month) {?> 
+        <?php foreach ($sales as $month) {?> 
           <?php $curmonth = date("M", strtotime($month->date_issued)); ?>
             <?php for($x=0; $x<12; $x++){
               if($curmonth == $monthFee[$x][0]) {

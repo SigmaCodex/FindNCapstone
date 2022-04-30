@@ -182,7 +182,7 @@
                            </div>
                         </li>
                         <li class="sidebar-dropdown">
-                           <a href="#">
+                           <a href="shopAdminReports">
                            <i class="fa fa-chart-line"></i>
                            <span>Reports</span>
                            </a>

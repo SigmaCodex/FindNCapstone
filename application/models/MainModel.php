@@ -943,7 +943,8 @@ class MainModel extends CI_Model{
     }
     public function updateTransactionStatusToOverdue($transac_id){
         $data = array(
-            'transaction_status'   => 	 "Overdue"
+            'transaction_status'   => 	 "Overdue",
+            'arrival_status'   => 	 "Overdue"
         );
         $this->db->where('transaction_id',$transac_id);
         $this->db->update('transaction',$data);
@@ -1303,6 +1304,7 @@ class MainModel extends CI_Model{
         $query = $this->db->get();
         return $query->result();
     }
+
     //2 top recent rating by date
     public function ShopRecentRatings($shop_id){
         // $this->db->select("SELECT * FROM `computer_ratings` ORDER BY  date DESC,computer_rate DESC LIMIT 2");
@@ -1316,5 +1318,31 @@ class MainModel extends CI_Model{
         $query = $this->db->get();
         return $query->result();
     }
+
+    //shop admin reports
+    public function shopReportsSalesForGraph($shop_id){
+        $this->db->select("transaction_id,date_issued,service_fee");
+        $this->db->from('transaction');
+        $this->db->where('shop_id_fk',$shop_id);
+        $this->db->where('payment_status',"paid");
+        $query = $this->db->get();
+        return $query->result();
+    }
+    //count of success Transaction;
+    public function shopReportsBookingStatusCountSuccess($shop_id){
+        $this->db->select("COUNT(transaction_id) as count_success");
+        $this->db->from('transaction');
+        $this->db->where('shop_id_fk',$shop_id);
+        $this->db->where('transaction_status','success');
+        $query = $this->db->get();
+        return $query->result();
+    }
+    public function shopReportsBookingStatusCountFail($shop_id){
+        $this->db->select("COUNT(transaction_id) AS count_fail FROM `transaction` WHERE shop_id_fk = ".$shop_id." && (transaction_status = 'Overdue' || transaction_status = 'declined')");
+        $query = $this->db->get();
+        return $query->result();
+    }
+
+
 
 }
