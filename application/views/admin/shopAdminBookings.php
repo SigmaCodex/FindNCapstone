@@ -27,7 +27,6 @@
                     
                     <div class="left-sidebar-title d-flex align-items-center justify-content-center p-2">
                         <h6 class="m-0 p-1">BOOKING REQUEST(<span id="bookcount"></span>)</h6>
-                        <button data-toggle="modal" data-target="#message-modal" >YAWAAA</button>
                     </div>
                     
                     <div class="left-sidebar-padding" id="request-pending-section">
@@ -430,7 +429,7 @@
                   
                     <div class="modal-content">
                         <div class="card-head-color row p-3 "></div> 
-                        <!-- Modal body -->
+                        <!-- Message Modal body -->
                         <div class="modal-body">
                             <div class="modal-holder">
                                 <div class="row d-flex justify-content-center align-items-center">
@@ -443,20 +442,26 @@
 
                                         <div class="col-9">
                                             <div class="message-name">
-                                                <h6 class="m-0">TNC CYBERCAFE CEBU HQ</h6>
-                                                <p class="text-muted">Tnc Admin(1)</p>
+                                                <?php foreach($shop_details as $sd) {?>
+                                                <h6 class="m-0"><?php echo $sd->shop_name;?></h6>
+                                                <?php } ?>
+                                                <p class="text-muted">ADMIN: <?php echo $admin_name?></p>
+                                                <p class="text-muted">To: <span id="finder_msg_to"></span></p>
+                                                <p id="finder_id" style="display:none"></p>
+                                                <p id="finder_transid" style="display:none"></p>
+                                                <p id="upd_stat"></p>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="input-message pt-2">
-                                        <textarea name="" id="" cols="33" rows="6" placeholder="Any advice for finder John Dave? "></textarea>
+                                        <textarea name="" cols="33" rows="6" placeholder="Any advice for finder?" id="book_msg"></textarea>
                                     </div>
                                     <div class="row mt-2">
                                         <div class="col-5 p-2 d-flex justify-content-start align-items-center">
-                                            <button class="not-now btn btn-danger p-2 " data-dismiss="modal">Not Now</button>
+                                            <button class="not-now btn btn-danger p-2 " data-dismiss="modal" id="cancel_msg">Not Now</button>
                                         </div>
                                         <div class="col-7 p-2 d-flex justify-content-start align-items-center">
-                                            <button class="btn btn-success p-2">Send Message</button>
+                                            <button class="btn btn-success p-2" id="send_msg">Send Message</button>   
                                         </div> 
                                     </div>
                                 </div>
@@ -592,30 +597,75 @@ $(document).on("click",".table-row",function(){
 <script>
 		$(document).on("click",".acceptbtn",function(){
 			var Base_URL = "<?php echo base_url();?>";
+            $('#upd_stat').text("true");
 			var id = $(this).attr("transac_id");
+            $('#finder_transid').text(id);
             var user_id = $(this).attr("user_id");
+            $('#finder_id').text(user_id);
+            var finder = $(this).attr("finder_name");
+            $('#finder_msg_to').text(finder);
             $.ajax({
             url:Base_URL+"accept-updateBookStatus/"+id+"/"+user_id,
                 type: "POST",
                 success: function(data)
                 {
-                    swal({
-                            title: "Transaction has been moved to waiting list",
-                            text: "",
-                            icon: "success",
-                            button: "Continue",
-                            }).then((value) => {
-                            });   
+                    // swal({
+                    //         title: "Transaction has been moved to waiting list",
+                    //         text: "",
+                    //         icon: "success",
+                    //         button: "Continue",
+                    //         }).then((value) => {
+                    // });
                 }
             });
+            $("#message-modal").modal('show');
             $(this).parent().parent().parent().parent().addClass('d-none');
 		});
+            $(document).on("click","#send_msg",function(){
+                var Base_URL = "<?php echo base_url();?>";
+                var message = $('#book_msg').val();
+                var id = $('#finder_transid').text();
+                var user_id = $('#finder_id').text();
+                    $.ajax({
+                            url:Base_URL+"messageFinder/"+user_id+"/"+id,
+                            type: "POST",
+                            data:{notification_body:message},
+                            success: function(data){
+                                swal({
+                                    title: "Request Accepted!",
+                                    text: "Your message has sent to finder",
+                                    icon: "success",
+                                    button: "Continue",
+                                    }).then((value) => {
+                                    });
+                                $('#book_msg').val("");
+                            }
+                        });
+                $("#message-modal").modal('hide');
+        });
+        // $(document).on("click","#cancel_msg",function(){
+        //     var b_stat = $('#upd_stat').text();
+        //     if(b_stat == "true"){
+        //     swal({
+        //         title: "Transaction has been moved to waiting list",
+        //         text: "",
+        //         icon: "success",
+        //         button: "Continue",
+        //         }).then((value) => {
+        //         });
+        //     }
+        // });
 </script>
 <script>
 		$(document).on("click",".declinebtn",function(){
+            $('#upd_stat').text("false");
 			var Base_URL = "<?php echo base_url();?>";
 			var id = $(this).attr("transac_id");
+            $('#finder_transid').text(id);
             var user_id = $(this).attr("user_id");
+            $('#finder_id').text(user_id);
+            var finder = $(this).attr("finder_name");
+            $('#finder_msg_to').text(finder);
             $.ajax({
             url:Base_URL+"decline-updateBookStatus/"+id+"/"+user_id,
                 type: "POST",
@@ -623,8 +673,43 @@ $(document).on("click",".table-row",function(){
                 {  
                 }
             });
+            $("#message-modal").modal('show');
 			$(this).parent().parent().parent().parent().addClass('d-none');
 		});
+        $(document).on("click","#send_msg",function(){
+                var Base_URL = "<?php echo base_url();?>";
+                var message = $('#book_msg').val();
+                var id = $('#finder_transid').text();
+                var user_id = $('#finder_id').text();
+                $.ajax({
+                        url:Base_URL+"messageFinder/"+user_id+"/"+id,
+                        type: "POST",
+                        data:{notification_body:message},
+                        success: function(data){
+                            swal({
+                                title: "Request Decline!",
+                                text: "Your message has sent to finder",
+                                icon: "error",
+                                button: "Continue",
+                                }).then((value) => {
+                                });
+                            $('#book_msg').val("");
+                            }
+                        });
+                $("#message-modal").modal('hide');
+        });
+        // $(document).on("click","#cancel_msg",function(){
+        //     b_stat = $('#upd_stat').text();
+        //     if(b_stat == "false"){
+        //     swal({
+        //         title: "Transaction has been declined",
+        //         text: "",
+        //         icon: "success",
+        //         button: "Continue",
+        //         }).then((value) => {
+        //         });
+        //     }
+        // });
 </script>
 <script>
     setInterval(function(){
@@ -644,7 +729,7 @@ $( document ).ready(function() {
                                 dateissued = dateformat(result[x]['date_issued']);   
                                 arrivaldate = dateformat(result[x]['arrival_date']);  
                                 arrival_time = new Date(''+arrivaldate+' '+time+'').toLocaleTimeString().replace(/([\d]+:[\d]{2})(:[\d]{2})(.*)/, "$1$3");
-                                $("#request-pending-section").  append("<div class='request-card mt-3'> <div class='card-head-color row p-3'></div> <div class='request-card-content'><div class='row mt-3'> <div class='col-3 d-flex justify-content-center align-items-center'> <img class='request-card-logo' src='assets/upload/finder/"+result[x]['profile_pic']+"' alt='' onerror='this.src="+'"assets/images/default.png"'+";'> </div> <div class='col-5 mt-1'> <p class='finder-name'></p>"+result[x]['firstname']+"<p class='finder-user text-muted'>"+result[x]['username']+"</p> </div> <div class='col-4 mt-1 d-flex flex-column justify-content-center align-items-center'> <p class='finder-date-trans text-muted'>"+dateissued+"</p> </div> </div> <div class='row mt-3'> <div class='col-5 d-flex flex-column justify-content-center align-items-center'> <p class='finder-details text-muted'>Service</p> <p class='finder-details-bold'>"+result[x]['servicetype']+"</p> </div> <div class='col-4 d-flex flex-column justify-content-center align-items-center'> <p class='finder-details text-muted'>Access Type</p> <p class='finder-details-bold'>"+result[x]['name']+"</p> </div> <div class='col-3 d-flex flex-column justify-content-center align-items-center'> <p class='finder-details text-muted'>Tickets</p> <p class='finder-details-bold'>"+result[x]['num_ticket']+"</p> </div> </div> <hr> <div class='row mt-3'> <div class='col-3 d-flex flex-column justify-content-center align-items-center'> <i class='book-icon fa-solid fa-calendar-alt'></i> </div> <div class='col-4 d-flex flex-column justify-content-center align-items-start'> <p class='finder-details-book text-muted'>Date:</p> <p class='finder-details-book text-muted'>Time:</p> </div> <div class='col-5 d-flex flex-column justify-content-center align-items-end'> <p class='finder-details-bold'>"+arrivaldate+"</p> <p class='finder-details-bold'>"+arrival_time+"</p> </div> </div> <div class='row mt-3 p-2'> <div class='col-4 d-flex flex-column justify-content-center align-items-start'> <p class='finder-details-book text-muted'>Message :</p> </div> <div class='col-8 d-flex flex-column justify-content-center align-items-end'> <p class='finder-details-bold'>"+result[x]['instruction']+"</p> </div> </div> <div class='row mt-3'> <div class='col-6 p-2 d-flex justify-content-center align-items-centers'> <button transac_id='"+result[x]['transaction_id']+"' user_id='"+result[x]['user_id_fk']+"' class='btn btn-danger p-2 declinebtn'>Decline</button> </div> <div class='col-6 p-2 d-flex justify-content-center align-items-center'> <button transac_id='"+result[x]['transaction_id']+"' user_id='"+result[x]['user_id_fk']+"' class='btn btn-success p-2 acceptbtn'>Accept</button> </div> </div> </div> </div>");
+                                $("#request-pending-section").  append("<div class='request-card mt-3'> <div class='card-head-color row p-3'></div> <div class='request-card-content'><div class='row mt-3'> <div class='col-3 d-flex justify-content-center align-items-center'> <img class='request-card-logo' src='assets/upload/finder/"+result[x]['profile_pic']+"' alt='' onerror='this.src="+'"assets/images/default.png"'+";'> </div> <div class='col-5 mt-1'> <p class='finder-name'></p>"+result[x]['firstname']+"<p class='finder-user text-muted'>"+result[x]['username']+"</p> </div> <div class='col-4 mt-1 d-flex flex-column justify-content-center align-items-center'> <p class='finder-date-trans text-muted'>"+dateissued+"</p> </div> </div> <div class='row mt-3'> <div class='col-5 d-flex flex-column justify-content-center align-items-center'> <p class='finder-details text-muted'>Service</p> <p class='finder-details-bold'>"+result[x]['servicetype']+"</p> </div> <div class='col-4 d-flex flex-column justify-content-center align-items-center'> <p class='finder-details text-muted'>Access Type</p> <p class='finder-details-bold'>"+result[x]['name']+"</p> </div> <div class='col-3 d-flex flex-column justify-content-center align-items-center'> <p class='finder-details text-muted'>Tickets</p> <p class='finder-details-bold'>"+result[x]['num_ticket']+"</p> </div> </div> <hr> <div class='row mt-3'> <div class='col-3 d-flex flex-column justify-content-center align-items-center'> <i class='book-icon fa-solid fa-calendar-alt'></i> </div> <div class='col-4 d-flex flex-column justify-content-center align-items-start'> <p class='finder-details-book text-muted'>Date:</p> <p class='finder-details-book text-muted'>Time:</p> </div> <div class='col-5 d-flex flex-column justify-content-center align-items-end'> <p class='finder-details-bold'>"+arrivaldate+"</p> <p class='finder-details-bold'>"+arrival_time+"</p> </div> </div> <div class='row mt-3 p-2'> <div class='col-4 d-flex flex-column justify-content-center align-items-start'> <p class='finder-details-book text-muted'>Message :</p> </div> <div class='col-8 d-flex flex-column justify-content-center align-items-end'> <p class='finder-details-bold'>"+result[x]['instruction']+"</p> </div> </div> <div class='row mt-3'> <div class='col-6 p-2 d-flex justify-content-center align-items-centers'> <button transac_id='"+result[x]['transaction_id']+"' finder_name='"+result[x]['firstname']+"' user_id='"+result[x]['user_id_fk']+"' class='btn btn-danger p-2 declinebtn'>Decline</button> </div> <div class='col-6 p-2 d-flex justify-content-center align-items-center'> <button id='accept_button' transac_id='"+result[x]['transaction_id']+"' finder_name='"+result[x]['firstname']+"' user_id='"+result[x]['user_id_fk']+"' class='btn btn-success p-2 acceptbtn'>Accept</button> </div> </div> </div> </div>");
                                 
                             }
                             
