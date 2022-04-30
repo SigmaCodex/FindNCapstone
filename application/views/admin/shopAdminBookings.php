@@ -609,20 +609,20 @@ $(document).on("click",".table-row",function(){
             $('#finder_id').text(user_id);
             var finder = $(this).attr("finder_name");
             $('#finder_msg_to').text(finder);
-            // $.ajax({
-            // url:Base_URL+"accept-updateBookStatus/"+id+"/"+user_id,
-            //     type: "POST",
-            //     success: function(data)
-            //     {
-            //         // swal({
-            //         //         title: "Transaction has been moved to waiting list",
-            //         //         text: "",
-            //         //         icon: "success",
-            //         //         button: "Continue",
-            //         //         }).then((value) => {
-            //         // });
-            //     }
-            // });
+            $.ajax({
+            url:Base_URL+"accept-updateBookStatus/"+id+"/"+user_id,
+                type: "POST",
+                success: function(data)
+                {
+                    // swal({
+                    //         title: "Transaction has been moved to waiting list",
+                    //         text: "",
+                    //         icon: "success",
+                    //         button: "Continue",
+                    //         }).then((value) => {
+                    // });
+                }
+            });
             $("#message-modal").modal('show');
             $(this).parent().parent().parent().parent().addClass('d-none');
 		});
@@ -639,7 +639,7 @@ $(document).on("click",".table-row",function(){
                             success: function(data){
                                 if(stat == "true"){
                                 swal({
-                                    title: "Request Accepted!",
+                                    title: "Message Sent",
                                     text: "Your message has sent to finder",
                                     icon: "success",
                                     button: "Continue",
@@ -691,13 +691,14 @@ $(document).on("click",".table-row",function(){
             $('#finder_id').text(user_id);
             var finder = $(this).attr("finder_name");
             $('#finder_msg_to').text(finder);
-            // $.ajax({
-            // url:Base_URL+"decline-updateBookStatus/"+id+"/"+user_id,
-            //     type: "POST",
-            //     success: function(data)
-            //     {  
-            //     }
-            // });
+            $.ajax({
+            url:Base_URL+"decline-updateBookStatus/"+id+"/"+user_id,
+                type: "POST",
+                success: function(data)
+                {  
+
+                }
+            });
             $("#message-modal").modal('show');
 			$(this).parent().parent().parent().parent().addClass('d-none');
 		});

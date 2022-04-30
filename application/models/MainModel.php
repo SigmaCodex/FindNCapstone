@@ -735,6 +735,13 @@ class MainModel extends CI_Model{
         $query = $this->db->get();
         return $query->result();
     }
+    public function listofPosts($id){
+        $this->db->select('*');
+        $this->db->from('post_events');
+        $this->db->where('shop_id',$id);
+        $query = $this->db->get();
+        return $query->result();
+    }
     public function viewPosts($id){
         $this->db->select('*');
         $this->db->from('post_events');
@@ -751,6 +758,14 @@ class MainModel extends CI_Model{
         $query = $this->db->get();
         return $query->result();
         //echo json_encode($query->result());     
+    }
+    public function selectforUpdatePostDetails($id){
+        $this->db->select('*');
+        $this->db->from('post_events');
+        $this->db->where('post_id',$id);
+        $query = $this->db->get();
+        $resultquery = $query->row_array();
+        return $resultquery;
     }
     public function selectforUpdateComment($id){
         $this->db->select('*');
@@ -929,7 +944,7 @@ class MainModel extends CI_Model{
     public function updateTransactionStatusToOverdue($transac_id){
         $data = array(
             'transaction_status'   => 	 "Overdue",
-            'arrival_status'   => 	 "Overdue"
+            'arrival_status'      => 	 "Overdue"
         );
         $this->db->where('transaction_id',$transac_id);
         $this->db->update('transaction',$data);
@@ -978,89 +993,29 @@ class MainModel extends CI_Model{
         $query = $this->db->get();
         return $query->result();
     }
-    public function getAllPosts($shop_id){
-        // $shop_id = $this->session->userdata('admin_shop_id');
-        $this->db->select('post_events.*,computershop.shop_img_icon,compmanager.firstname,compmanager.lastname,computershop.shop_name');
-        $this->db->from('post_events');
-        $this->db->join('computershop', 'computershop.shop_id = post_events.shop_id', 'left');
-        $this->db->join('compmanager', 'compmanager.shop_id_fk = computershop.shop_id', 'left');
-        $this->db->where('post_events.shop_id',$shop_id);
-        $this->db->order_by('post_events.post_id','desc');
-        $query = $this->db->get();
-        return $query->result();
-        // echo json_encode($query->result());
-    }
-    public function getAllComments(){
-        $this->db->select('comments.*, finders.*, user.*');
-        $this->db->from('comments');
-        $this->db->join('user', 'user.user_id = comments.user_id', 'left');
-        $this->db->join('finders', 'finders.user_id = user.user_id', 'left');
-        // $this->db->where('comments',$shop_id);
-        $this->db->order_by('comments.comment_id','asc');
-        $query = $this->db->get();
-        return $query->result();
-    }
-    public function countComments($post_id){
-        $query = $this->db->select('*')->from('comments')->where('post_id_fk',$post_id)->get();
-		$row = $query->num_rows();
-		// return $row;
-        echo json_encode($row);
-    }
-    public function getPostInfo($id){
-        $this->db->select('*');
-        $this->db->from('post_events');
-        $this->db->where('post_id',$id);
-        $query = $this->db->get();
-        return $query->result();
-    }
-    public function addshopPosts($id,$status){
+
+    public function addshopPosts($id){
         $date_created = date('m/d/y');
-        if($status == "no-image"){
-            $data = array(
+        $data = array(
             'shop_id' => $id,
-            'post_description'   => 	 $this->input->post('description'),
-            'post_title'   => 	 $this->input->post('title'),  
-            'post_created' =>  $date_created,
+            'post_description'   => 	 $this->input->post('post_desc'),
+            'post_title'   => 	 $this->input->post('post_title'),  
+            'post_img' =>  $this->input->post('post_image'),
+            'post_created' =>  $date_created
         );
-            echo json_encode($data);
-        }
-        else if($status == "with-image"){
-            $image_data = $this->upload->data();
-            $data = array(
-                'shop_id' => $id,
-                'post_description'   => 	 $this->input->post('description'),
-                'post_title'   => 	 $this->input->post('title'),  
-                'post_created' =>  $date_created,
-                'post_img' =>  $image_data['file_name'],
-            );
-            // echo "with image";
-            echo json_encode($data);
-        }
         $this->db->insert('post_events',$data);
+        echo json_encode($data);
     }
-    public function updateshopPosts($id,$status){
-        $date_created = date('m/d/y');
-        if($status == "no-image"){
-            $data = array(
-            'post_description'   => 	 $this->input->post('edit_description'),
-            'post_title'   => 	 $this->input->post('edit_title'),  
-            'post_created' =>  $date_created,
+    public function updateshopPosts($id){
+        $date_updated = date('m/d/y');
+        $data = array(
+            'post_description'   => 	 $this->input->post('post_desc'),
+            'post_title'   => 	 $this->input->post('post_title'),  
+            'post_img' =>  $this->input->post('post_image'),
         );
-            echo json_encode($data);
-        }
-        else if($status == "with-image"){
-            $image_data = $this->upload->data();
-            $data = array(
-                'post_description'   => 	 $this->input->post('edit_description'),
-                'post_title'   => 	 $this->input->post('edit_title'),  
-                'post_created' =>  $date_created,
-                'post_img' =>  $image_data['file_name'],
-            );
-            // echo "with image";
-            echo json_encode($data);
-        }
         $this->db->where('post_id',$id);
         $this->db->update('post_events',$data);
+        echo json_encode($data);
     }
     public function deleteshopPosts($id){
         $this->db->where('post_id',$id);
@@ -1070,7 +1025,7 @@ class MainModel extends CI_Model{
         $comuser_id = $this->session->userdata('user_id');
         $date_created = date('m/d/y');
         $data = array(
-            'post_id_fk' => $id,
+            'post_id' => $id,
             'user_id' => $comuser_id,
             'comment'   => 	 $this->input->post('comment_txt'),
             'date' =>  $date_created
@@ -1315,6 +1270,7 @@ class MainModel extends CI_Model{
         $this->db->from('transaction');
         $this->db->join('user', 'user.user_id = transaction.user_id_fk');
         $this->db->join('finders', 'user.user_id = finders.user_id', 'left');
+
         $this->db->group_by('transaction.user_id_fk' );
         $this->db->order_by('Total','desc');
         $this->db->where('shop_id_fk',$shop_id);
@@ -1384,6 +1340,29 @@ class MainModel extends CI_Model{
     }
     public function shopReportsBookingStatusCountFail($shop_id){
         $this->db->select("COUNT(transaction_id) AS count_fail FROM `transaction` WHERE shop_id_fk = ".$shop_id." && (transaction_status = 'Overdue' || transaction_status = 'declined')");
+        $query = $this->db->get();
+        return $query->result();
+    }
+
+    public function shopReportPaidBookings($shop_id){
+        $this->db->select("transaction_id,date_issued");
+        $this->db->from('transaction');
+        $this->db->where('shop_id_fk',$shop_id);
+        $this->db->where('payment_status',"paid");
+        $query = $this->db->get();
+        return $query->result();
+    }
+
+    public function shopReportsBookings($shop_id){
+        $this->db->select("transaction.transaction_id,transaction.service_fee,transaction.date_issued,transaction.transaction_status,finders.firstname,finders.lastname,finders.profile_pic,comp_booking.num_ticket,computer_type.name");
+        $this->db->from('transaction');
+        $this->db->join('user', 'user.user_id = transaction.user_id_fk');
+        $this->db->join('finders', 'user.user_id = finders.user_id', 'left');
+        $this->db->join('comp_booking', 'transaction.transaction_id = comp_booking.transaction_id');
+        $this->db->join('computer_type', 'comp_booking.comp_type_id = computer_type.Ctype_id', 'left');
+        $this->db->where('transaction.shop_id_fk',$shop_id);
+        $this->db->where('transaction_status !=','accepted');
+        $this->db->order_by("transaction.date_issued", "desc");
         $query = $this->db->get();
         return $query->result();
     }

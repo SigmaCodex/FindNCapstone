@@ -443,8 +443,10 @@ class Main_Controller extends CI_Controller {
 		 $data['sales']	= $this->MainModel->shopReportsSalesForGraph($shop_id);
 		 $data['countSuccessBooking']  = $this->MainModel->shopReportsBookingStatusCountSuccess($shop_id);
 		 $data['countFailBooking']  = $this->MainModel->shopReportsBookingStatusCountFail($shop_id);
-		 
-		//  echo json_encode($data['countSuccessBooking']);
+		 $data['paidBookings']		= $this->MainModel->shopReportPaidBookings($shop_id);
+		 $data['listofbookings']   = $this->MainModel->shopReportsBookings($shop_id);
+
+		//  echo json_encode($data['listofbookings']);
 		$this->load->view('admin/template/adminHeader',$result);
 		$this->load->view('admin/shopAdminReports',$data);
 	}	

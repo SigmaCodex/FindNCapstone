@@ -342,7 +342,7 @@ $( document ).ready(function() {
                                  $('#noti-body').css('color','#28a745');
                             }
                                 notif_created = dateformat(result[x]['noti_created']);   
-                                $("#notif_details").append("<div class='dropdown-item d-flex align-items-center justify-content-start p-2 pl-3 pr-3'> <i id='noti_id' class='close-notif fa-solid fa-trash-alt' notifid='"+result[x]['cp_noti_id']+"'></i> <img class='profile-img-dropdown' src='assets/upload/finder/"+result[x]['profile_pic']+"'> <div class='d-flex flex-column'> <p class='dropdown-message' id='noti-body' style='color: #fd7238;'>"+result[x]['noti_body']+"</p> <p class='dropdown-name text-muted' type='text'>"+result[x]['firstname']+" "+result[x]['lastname']+"<br>Transaction ID:"+result[x]['transaction_id']+"<br>"+notif_created+"</p> </div> </div>");
+                                $("#notif_details").append("<div class='dropdown-item d-flex align-items-center justify-content-start p-2 pl-3 pr-3'> <i id='noti_id' class='close-notif fa-solid fa-trash-alt' notifid='"+result[x]['cp_noti_id']+"'></i> <i class='booking-icon fa-solid fa-user-clock' style='font-size: 35px; color: #EDD94C; padding-left: 5px;'></i> <div class='d-flex flex-column'> <p class='dropdown-message' id='' style='color: #212529;'>"+result[x]['noti_body']+"</p> <p class='dropdown-name text-muted' type='text'>"+result[x]['firstname']+" "+result[x]['lastname']+"<br>Transaction ID:"+result[x]['transaction_id']+"<br>"+notif_created+"</p> </div> </div>");
                             }
                }
     });
