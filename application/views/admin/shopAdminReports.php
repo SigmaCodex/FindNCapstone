@@ -3,10 +3,13 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
 <body>
 <canvas id="myChart" style="width:100%;max-width:600px"></canvas>
+<div id="donutchart" style="width: 900px; height: 500px;"></div>
+</body>
 
+<!-- //line chart -->
 <script>
-var xValues = ['Jan','Feb','Mar','Apr','May','Jun','July','Aug','Sept','Oct','Nov'];
-var yValues = [7,8,8,9,9,9,10,11,14,14,29];
+var xValues = ['Jan','Feb','Mar','Apr','May','Jun','July','Aug','Sept','Oct','Nov','Dec'];
+var yValues = [7,8,8,9,9,9,10,11,14,14,70];
 
 new Chart("myChart", {
   type: "line",
@@ -26,6 +29,7 @@ new Chart("myChart", {
 });
 </script>
 
+<!-- pie chart -->
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <script type="text/javascript">
       google.charts.load("current", {packages:["corechart"]});
@@ -33,12 +37,12 @@ new Chart("myChart", {
       function drawChart() {
         var data = google.visualization.arrayToDataTable([
           ['Task', 'Hours per Day'],
-          ['Total Sales',     50],
-          ['Total Profit',    12]
+          ['Successful Booking',     50],
+          ['Failed Booking',    12]
         ]);
 
         var options = {
-          title: 'My Daily Activities',
+          title: 'Successful - Failed Booking Ratio',
           pieHole: 0.4,
         };
 
@@ -46,9 +50,6 @@ new Chart("myChart", {
         chart.draw(data, options);
       }
     </script>
-
-    <div id="donutchart" style="width: 900px; height: 500px;"></div>
-</body>
 </html>
 
 

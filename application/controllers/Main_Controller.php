@@ -428,6 +428,10 @@ class Main_Controller extends CI_Controller {
 			$this->load->view('admin/template/adminHeader',$result);
 			$this->load->view('admin/shopAdminFeed',$result2);
 		}
+	}
+
+	public function shopAdminReports(){
+		$this->load->view('admin/shopAdminReports');
 	}	
 
 	public function shopadmin_computerdetails($shopid){
