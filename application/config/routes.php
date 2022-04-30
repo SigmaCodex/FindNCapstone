@@ -34,6 +34,8 @@ $route['shopAdminComputerType'] = 'main_controller/viewShopAdminComputerType';
 $route['shopAdminAccountSettings'] = 'main_controller/viewShopAdminAccountSettings';
 $route['shopAdminEditProfile'] = 'main_controller/viewShopAdminEditProfile';
 $route['shopAdminFeed'] = 'main_controller/viewShopAdminFeed';
+$route['shopAdminReports'] = 'main_controller/viewShopAdminReports';
+
 
 
 //finders
