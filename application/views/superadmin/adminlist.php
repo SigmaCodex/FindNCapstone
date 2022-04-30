@@ -35,6 +35,9 @@
         .geocoder {
             position:absolute;left: 550px; top:290px;
         }
+		.form-control:disabled {
+			background-color: white !important;
+}
 	</style>
 
 	</head>
@@ -77,7 +80,7 @@
 						</ul>
           				<div class="card-body">
 						  <div class="form-group mb-2">
-						  <button type="button" data-target="#updateComputerModal" data-toggle="modal" class="editbtn btn mb-2 mb-md-0 btn-primary btn-block">Edit Details</button>
+						  <button type="button" data-target="#updateComputerModal" data-toggle="modal" class="editbtn btn mb-2 mb-md-0 btn-primary btn-block">View Details</button>
 	              		  </div>
           				</div>
         			</div>
@@ -242,47 +245,47 @@
     <!-- Modal content-->
     <div class="modal-content">
       <div class="modal-header">
-	  <h3 class="text-center mb-3">Update Computer Shop</h3>
+	  <h3 class="text-center mb-3">Computer Shop Details</h3>
       </div>
       <div class="modal-body">
 	  	<form id="updatecompform" class="" name="updatecompform">
 					<div class="form-group mb-2">
 		      			<label for="name">ComputerShop Name</label>
-		      			<input name="compname" id="shopName" type="text" class="form-control">
+		      			<input name="compname" id="shopName" type="text" class="form-control" disabled="disabled">
 		      		</div>
 					<div class="form-group mb-2">
 		      			<label for="name">Contact Number</label>
-		      			<input  name="number" id="c_number" type="text" class="form-control">
+		      			<input  name="number" id="c_number" type="text" class="form-control" disabled="disabled">
 		      		</div> 
 					<div class="form-group mb-2">
 		      			<label for="name">Email Address</label>
-		      			<input name="emailadd" id="emailadd" type="text" class="form-control">
+		      			<input name="emailadd" id="emailadd" type="text" class="form-control" disabled="disabled">
 		      		</div>
 					<div class="form-group mb-2">
 		      			<label for="name">Address</label>
-		      			<input name="address" id="AddressIN" type="text" class="form-control">
+		      			<input name="address" id="AddressIN" type="text" class="form-control" disabled="disabled">
 		      		</div>
 					<div class="form-group mb-2">
 		      			<label for="name">Latitude</label>
-		      			<input  type="text" id="lat" name="lat" value=""  placeholder="Your lat.." class="form-control">
+		      			<input  type="text" id="lat" name="lat" value=""  placeholder="Your lat.." class="form-control" disabled="disabled">
 		      		</div>
 					<div class="form-group mb-2">
 		      			<label for="name">Longtitude</label>
-		      			<input type="text" id="lng" name="lng" placeholder="Your lng.." value="" class="form-control">
+		      			<input type="text" id="lng" name="lng" placeholder="Your lng.." value="" class="form-control" disabled="disabled">
 		      		</div>
 					<div>		
 		      </div>
 			    <div class="geocoder"><div id="geocoder" ></div></div>
 				<div id="map"></div>
 				<div class="modal-footer">
-                	<div class="form-group mb-2">
+                	<div class="form-group align-items-center mb-2">
 					 	<button type="button" id="close-adminbtn" class="close d-flex align-items-center justify-content-center" data-dismiss="modal">
-						 <input value="Cancel" class="form-control btn btn-primary rounded px-3"  readonly="readonly">
+						 <input value="Close" class="form-control btn btn-primary rounded px-3"  readonly="readonly">
 		        		</button>
 	              	</div>
-                	<div class="form-group mb-2">
+                	<!-- <div class="form-group mb-2">
 					  <input value="Update" class="form-control btn btn-primary rounded submit px-3" id="updatecomputershopbtn" readonly="readonly">
-	              	</div>
+	              	</div> -->
               	</div>
 			  </form>
       </div>
@@ -294,22 +297,22 @@
     <!-- Modal content-->
     <div class="modal-content">
       <div class="modal-header">
-	  <h3 class="text-center mb-3">Update Admin Details</h3>
+	  <h3 class="text-center mb-3">Admin Details</h3>
       </div>
       <div class="modal-body">
 	  	<form id="updateadminform" class="" name="updateadminform">
 		 			 <input id="useridid" hidden>	
 					<div class="form-group mb-2">
 		      			<label for="name">First Name</label>
-		      			<input name="updfirst" id="updfirst" type="text" class="form-control">
+		      			<input name="updfirst" id="updfirst" type="text" class="form-control" disabled="disabled">
 		      		</div>
 					<div class="form-group mb-2">
 		      			<label for="name">Last Name</label>
-		      			<input  name="updlast" id="updlast" type="text" class="form-control">
+		      			<input  name="updlast" id="updlast" type="text" class="form-control" disabled="disabled">
 		      		</div> 
 					  <div class="form-group mb-2">
                 		<label for="updgender">Gender</label>
-	              		<select name="updgender" class="form-control mb-2 form-select-lg mb-3 form-select" aria-label="Default select example">
+	              		<select name="updgender" class="form-control mb-2 form-select-lg mb-3 form-select" aria-label="Default select example" disabled="disabled">
 				  			<option value="">Choose. . .</option>
                   			<option value="Male">Male</option>
                   			<option value="Female">Female</option>
@@ -317,15 +320,15 @@
               		  </div>
 						<div class="form-group mb-2">
 		      			<label for="name">Birthdate</label>
-		      			<input name="upddate" id="upddate" type="date" class="form-control">
+		      			<input name="upddate" id="upddate" type="date" class="form-control" disabled="disabled">
 		      		 </div> 
 					<div class="form-group mb-2">
 		      			<label for="name">Email</label>
-		      			<input type="text" id="updemail" name="updemail" class="form-control">
+		      			<input type="text" id="updemail" name="updemail" class="form-control" disabled="disabled">
 		      		</div>
 					  <div class="form-group mb-2">
 		      			<label for="name">Contact Number</label>
-		      			<input type="text" id="updCNum" name="updCNum"  class="form-control">
+		      			<input type="text" id="updCNum" name="updCNum"  class="form-control" disabled="disabled">
 		      		</div>
 					<div>		
 		      </div>
@@ -334,12 +337,12 @@
 				<div class="modal-footer">
                 	<div class="form-group mb-2">
 					 	<button type="button" id="close-updatebtn" class="close d-flex align-items-center justify-content-center" data-dismiss="modal">
-						 <input value="Cancel" class="form-control btn btn-primary rounded px-3"  readonly="readonly">
+						 <input value="Close" class="form-control btn btn-primary rounded px-3"  readonly="readonly">
 		        		</button>
 	              	</div>
-                	<div class="form-group mb-2">
+                	<!-- <div class="form-group mb-2">
 					  <input value="Update" class="form-control btn btn-primary rounded submit px-3" id="updateadminbtn" readonly="readonly">
-	              	</div>
+	              	</div> -->
               	</div>
 			  </form>
       </div>
@@ -766,6 +769,7 @@ $(document).on("click", "#changepassbtn", function () {
 	}//end validate if
 	
 });
+
 $(document).on("click", ".view-admin", function () {
 	var id = $(this).attr("data");
 	// var CSPK = $("#CompShopPK").text();
@@ -1046,7 +1050,11 @@ $(document).on("click", "#updatecomputershopbtn", function () {
 });
 
 </script>
+
 <script>
+	var globallong="";
+	var globallat ="";
+
 $(document).ready(function() {
 	var CSPK = $("#CompShopPK").text();
 
@@ -1071,7 +1079,11 @@ $.ajax({
 
 		$("#lat").val(lat);
 		$("#lng").val(lng);
+		
+		globallong=lng;
+		globallat =lat;
 
+		mapCoordDisplay();
 	},
 });
 });
@@ -1085,15 +1097,23 @@ $.ajax({
 	//  var text =  document.getElementsByClassName('heading-section').textContent;
     //   alert(text);
 
-		var long = 123.89702509681695;
-		var lang =  10.297418655907592;
+	let timeout;
+
+	function mapCoordDisplay() {
+  		timeout = setTimeout(displayMap, 1000);
+	}
+
+	function displayMap() {
+		var long = document.getElementById("lng").value;
+		var lang = $("#lat").val();
+
          var user_location = [long, lang ];
         mapboxgl.accessToken = 'pk.eyJ1IjoiZG5rbzEzIiwiYSI6ImNrbWZxNWl5eDM3amcyeGp4cHRvN3pxdGgifQ.HM7QZISQcECRgm9aKAZysg';
         var map = new mapboxgl.Map({
             container: 'map',
             style: 'mapbox://styles/mapbox/streets-v10',
             center: user_location,
-            zoom: 12
+            zoom: 18
         });
         //  geocoder here
         var geocoder = new MapboxGeocoder({
@@ -1113,7 +1133,6 @@ $.ajax({
             // Listen for the `result` event from the MapboxGeocoder that is triggered when a user
             // makes a selection and add a symbol that matches the result.
             geocoder.on('result', function(ev) {
-                alert("aaaaa");
                 console.log(ev.result.center);
 
             });
@@ -1176,4 +1195,7 @@ $.ajax({
         //     });
         // });
         document.getElementById('geocoder').appendChild(geocoder.onAdd(map));
+	}
+
+		
     </script>
