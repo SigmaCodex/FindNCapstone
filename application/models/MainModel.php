@@ -993,26 +993,81 @@ class MainModel extends CI_Model{
         $query = $this->db->get();
         return $query->result();
     }
-
-    public function addshopPosts($id){
-        $date_created = date('m/d/y');
-        $data = array(
-            'shop_id' => $id,
-            'post_description'   => 	 $this->input->post('post_desc'),
-            'post_title'   => 	 $this->input->post('post_title'),  
-            'post_img' =>  $this->input->post('post_image'),
-            'post_created' =>  $date_created
-        );
-        $this->db->insert('post_events',$data);
-        echo json_encode($data);
+    public function getAllPosts($id){
+        $this->db->select('post_events.*, computershop.shop_name, computershop.shop_img_icon, compmanager.firstname, compmanager.lastname');
+        $this->db->from('post_events');
+        $this->db->join('computershop', 'computershop.shop_id = post_events.shop_id', 'left');
+        $this->db->join('compmanager', 'compmanager.shop_id_fk = computershop.shop_id', 'left');
+        $this->db->where("post_events.shop_id",$id);
+        $this->db->order_by('post_id','desc');
+        $query = $this->db->get();
+        return $query->result();
     }
-    public function updateshopPosts($id){
-        $date_updated = date('m/d/y');
-        $data = array(
-            'post_description'   => 	 $this->input->post('post_desc'),
-            'post_title'   => 	 $this->input->post('post_title'),  
-            'post_img' =>  $this->input->post('post_image'),
-        );
+    public function getAllComments(){
+        $this->db->select('comments.*, user.user_type, user.username, finders.*');
+        $this->db->from('comments');
+        $this->db->join('user', 'user.user_id = comments.user_id', 'left');
+        $this->db->join('finders', 'finders.user_id = user.user_id', 'left');
+        $this->db->order_by('comment_id','asc');
+        $query = $this->db->get();
+        return $query->result();
+    }
+
+    public function addshopPosts($id,$status){
+        $date_created = date('m/d/y');
+        if($status == "no-image"){
+            $data = array(
+            'shop_id'  =>    $id,
+            'post_title'   => 	 $this->input->post('title'),
+            'post_description'   => 	 $this->input->post('description'),
+            'post_created'   => 	$date_created,
+            );
+            echo json_encode($data);
+            // echo "no image";
+        }
+        else if($status == "with-image"){
+            $image_data = $this->upload->data();
+            $data = array(
+                'shop_id'  =>    $id,
+                'post_title'   => 	 $this->input->post('title'),
+                'post_description'   => 	 $this->input->post('description'),
+                'post_created'   => 	$date_created,
+                'post_img' =>  $image_data['file_name'],
+            );
+            // echo "with image";
+            echo json_encode($data);
+        }
+        $this->db->insert('post_events',$data);
+    }
+    public function getPostInfo($id){
+        $this->db->select('*');
+        $this->db->from('post_events');
+        $this->db->where('post_id',$id);
+        $query = $this->db->get();
+        return $query->result();
+    }
+    public function updateshopPosts($id,$status){
+        $date_created = date('m/d/y');
+        if($status == "no-image"){
+            $data = array(
+            'post_title'   => 	 $this->input->post('edit_title'),
+            'post_description'   => 	 $this->input->post('edit_description'),
+            'post_created'   => 	$date_created,
+            );
+            echo json_encode($data);
+            // echo "no image";
+        }
+        else if($status == "with-image"){
+            $image_data = $this->upload->data();
+            $data = array(
+                'post_title'   => 	 $this->input->post('edit_title'),
+                'post_description'   => 	 $this->input->post('edit_description'),
+                'post_created'   => 	$date_created,
+                'post_img' =>  $image_data['file_name'],
+            );
+            // echo "with image";
+            echo json_encode($data);
+        }
         $this->db->where('post_id',$id);
         $this->db->update('post_events',$data);
         echo json_encode($data);
@@ -1025,7 +1080,7 @@ class MainModel extends CI_Model{
         $comuser_id = $this->session->userdata('user_id');
         $date_created = date('m/d/y');
         $data = array(
-            'post_id' => $id,
+            'post_id_fk' => $id,
             'user_id' => $comuser_id,
             'comment'   => 	 $this->input->post('comment_txt'),
             'date' =>  $date_created
