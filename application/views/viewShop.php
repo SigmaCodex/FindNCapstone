@@ -22,7 +22,8 @@
         <!-- card left -->
         <div class = "shop-imgs col-lg-6 col-sm-12">
           <?php foreach($shopdetails as $row){?>
-          <h5 class = "shop-title mt-3">|  <?php echo $row->shop_name?> CyberCafe</h5>
+            <p id="shop_id" style="display:none"><?php echo $row->shop_id;?></p>
+          <h5 class = "shop-title mt-3">|  <?php echo $row->shop_name;?> CyberCafe</h5>
         
           <div class = "img-display">
             <div class = "img-showcase">
@@ -211,16 +212,17 @@
             </div>
               <div class="rate-star d-flex flex-column align-items-center justify-content-center mb-1">
                   <div class="rate">
-                    <input type="radio" id="star5" name="rate" value="5" />
+                    <input type="radio" id="star5" name="rate" class="star" value="5" />
                     <label for="star5" title="text">5 stars</label>
-                    <input type="radio" id="star4" name="rate" value="4" />
+                    <input type="radio" id="star4" name="rate" class="star" value="4" />
                     <label for="star4" title="text">4 stars</label>
-                    <input type="radio" id="star3" name="rate" value="3" />
+                    <input type="radio" id="star3" name="rate" class="star" value="3" />
                     <label for="star3" title="text">3 stars</label>
-                    <input type="radio" id="star2" name="rate" value="2" />
+                    <input type="radio" id="star2" name="rate" class="star" value="2" />
                     <label for="star2" title="text">2 stars</label>
-                    <input type="radio" id="star1" name="rate" value="1" />
+                    <input type="radio" id="star1" name="rate" class="star" value="1" />
                     <label for="star1" title="text">1 star</label>
+                    <!-- <input type="text" id="selected_val"> -->
                   </div>
                   
               </div>
@@ -234,7 +236,7 @@
                     </div>
 
                     <div class="text-card">
-                        <textarea name="" id="" cols="51" rows="5" placeholder="Type here..." ></textarea>
+                        <textarea name="" id="review" cols="51" rows="5" placeholder="Type here..." ></textarea>
                     </div>
                    
                   </div>
@@ -310,7 +312,7 @@
               </style>
 
                     <div class="button d-flex justify-content-center align-items-center">
-                      <button class="review-but">Submit Review</button>
+                      <button class="review-but" id="submit_review">Submit Review</button>
                     </div>
           </div>
       </div>
@@ -322,16 +324,49 @@
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
     <script src="../assets/js/viewShop.js"></script>
+ 
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
   </body>
 </html>
 
 <script>
-  $(document).ready(function(){  
+$(document).on('click','.star',function(){ 
+   var rating = $(this).val();
+   $("#submit_review").attr('rating',rating);
+
+});
+
+$(document).on('click','#submit_review',function(){ 
+   var shop_id = $('#shop_id').text();
+   var rating = $(this).attr('rating');
+   var review = $('#review').val();
+   var BASE_URL = "<?php echo base_url();?>";
+
+   $.ajax({
+			url: BASE_URL+"addRate/"+shop_id,
+			method: "POST",
+			data:{score: rating,rate_review:review},
+			success: function (data) {
+        // location.reload();
+
+          swal({
+            title: "Thank You",
+            text: "Your FeedBack Was Succesfully Submitted",
+            icon: "success",
+            button: "Continue",
+          }).then((value) => {
+                location.reload();
+          });
+
+
+			},
+		});
  
-    
-      
-  });  
+
+
+  
+});
 </script>
 

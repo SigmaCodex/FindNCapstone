@@ -798,15 +798,15 @@ class MainModel extends CI_Model{
  
     public function addRate($shop_id){
         $user_id_fk = $this->session->userdata('user_id');
-        $Primarycode = 0;
-        $Primarycode = $this->generatePrimarykey();
+        // $Primarycode = $this->generatePrimarykey();
+        $date_issued = date('m/d/Y');
 
         $datafinder = array(
-            'rating_id'         =>  $Primarycode,
             'shop_id'           => 	$shop_id,
             'user_id'           => 	$user_id_fk,
             'computer_rate'     => 	$this->input->post('score'), 
-            'date'              =>  "8/28/1999",
+            'review'            => 	$this->input->post('rate_review'),
+            'date'              =>  $date_issued,
         );
         $this->db->insert('computer_ratings',$datafinder);
         echo json_encode($datafinder);

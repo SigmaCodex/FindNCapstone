@@ -379,7 +379,8 @@
                     </div>    
 
                     <div class="profile-comment">
-                        <p>Very Good I love The Service and DEVELOPER  
+                        <p>
+                        <?php echo $user_ratings->review;?>
                         </p>
                     </div>
                 </div>
