@@ -51,8 +51,14 @@ body {
     font-size: 18px;
     color: #F53805;
     font-weight: 700;
-    padding-bottom: 20px;
-}.content-card-desc p{
+    padding-bottom: 5px;
+}
+.content-card-desc {
+    height: 95px;
+    overflow: auto;
+    cursor: pointer;
+}
+.content-card-desc p{
     font-size: 12px;
     text-align: justify;
     color: #807B7B;
@@ -175,3 +181,26 @@ input::-webkit-inner-spin-button {
 input[type=number] {
   -moz-appearance: textfield;
 }
+
+/* SCROLL */
+/* width */
+::-webkit-scrollbar {
+    width: 2px;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: #f1f1f1; 
+    border-radius: 5px;
+  }
+   
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: #e0dddd; 
+    border-radius: 5px;
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #555; 
+  }
