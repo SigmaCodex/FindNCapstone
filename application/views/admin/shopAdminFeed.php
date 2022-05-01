@@ -201,7 +201,7 @@
                                     <h6>Comments</h6>
                                 </div>
         
-                                <textarea name="" id="cmnt_textx" cols="81" rows="4"></textarea>
+                                <textarea name="" id="cmnt_text" cols="81" rows="4"></textarea>
                                 <button class="add-com badge badge-success p-2" id="add_cmnt" posts_id="<?php echo $pd->post_id;?>">ADD COMMENT</button>
                                 <!-- First Comment Card -->
                                 <?php foreach($commentDetails as $cd){
