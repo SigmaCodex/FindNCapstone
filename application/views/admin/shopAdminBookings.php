@@ -600,7 +600,7 @@ $(document).on("click",".table-row",function(){
             stat = "true";
             accept_stat = "true";
             // $('#upd_stat').text("true");
-            alert(accept_stat);
+            // alert(accept_stat);
 			var Base_URL = "<?php echo base_url();?>";
             $('#upd_stat').text("true");
 			var id = $(this).attr("transac_id");
@@ -683,7 +683,7 @@ $(document).on("click",".table-row",function(){
             stat = "false";
             decline_stat="false";
             // $('#upd_stat').text("false");
-            alert(decline_stat);
+            // alert(decline_stat);
 			var Base_URL = "<?php echo base_url();?>";
 			var id = $(this).attr("transac_id");
             $('#finder_transid').text(id);

@@ -136,7 +136,7 @@ $current_year  = date("Y");
 									?>
 									<p style="margin:0; color: #F46B31; font-weight: 800;">Total Bookings</p>
 									<h3 class="text-muted" id="total_bookings"><?php echo $totalBookings;?></h3>
-									<p class="view-details text muted" style=" font-size: 8px; margin:0; color:#FD7238">(Total Paid Bookings)</p>
+									<p class="view-details text muted" style=" font-size: 8px; margin:0; color:#FD7238">(Total Paid/Succesful Bookings)</p>
 								</span>
 							</li>
 							<li>
@@ -226,8 +226,10 @@ $current_year  = date("Y");
 						</div>
 						<div class="table-book">
 
-							<div class="table-book-header d-flex align-items-center justify-content-center mb-3">
+							<div class="table-book-header d-flex flex-column align-items-center justify-content-center mb-3">
 							<h6>Booking For Month Of: <?php echo $current_month?></h6>
+							<p class="view-details text muted" style=" font-size: 10px; margin:0; color:#FD7238">(Successful Bookings)</p>
+
 								<!-- <input type="text"> -->
 									<!-- <div class="select-month-table m-0">
 										<select name="month" id="month">
@@ -239,7 +241,10 @@ $current_year  = date("Y");
 
 							<div class="mt-5"></div>
 
-							<?php foreach($listofbookings as $list_Booking){?>			
+							<?php foreach($listofbookings as $list_Booking){
+								$lB_current_date = date("M", strtotime($list_Booking->date_issued));
+								if($current_month == $lB_current_date && $list_Booking->transaction_status == "success"){
+							?>				
 							<!-- Table card-->
 							<div class="table-card mb-3 rounded">
 								
@@ -262,7 +267,7 @@ $current_year  = date("Y");
 								</div>
 							</div>
 							<!-- end Table card-->
-							<?php }?>	
+							<?php }}?>	
 
 						</div>
 					</div>

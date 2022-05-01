@@ -202,7 +202,9 @@
                                 </div>
         
                                 <textarea name="" id="cmnt_text" cols="81" rows="4"></textarea>
-                                <button class="add-com badge badge-success p-2" id="add_cmnt" posts_id="<?php echo $pd->post_id;?>">ADD COMMENT</button>
+                                <div class="d-flex align-items-center justify-content-end pr-4 pb-3">
+                                    <button class="add-com badge badge-success p-2" id="add_cmnt" posts_id="<?php echo $pd->post_id;?>">ADD COMMENT</button>
+                                </div>
                                 <!-- First Comment Card -->
                                 <?php foreach($commentDetails as $cd){
                                 if($pd->post_id == $cd->post_id_fk){
@@ -619,7 +621,7 @@
          $(this).attr('stat', 'active');
          $(this).parent().parent().parent().parent().find('.posts-comment').find('p').hide();
          edit_comment_text = $(this).parent().parent().parent().parent().find('.posts-comment').find('p').text();
-         $(this).parent().parent().parent().parent().find('.posts-comment').append("<textarea class='comment_field_edit' cols='80' rows='3'>"+edit_comment_text+"</textarea><button class='edit_curr_comment' getid='"+id+"'>UPDATE</button>");
+         $(this).parent().parent().parent().parent().find('.posts-comment').append("<textarea class='comment_field_edit' cols='80' rows='3'>"+edit_comment_text+"</textarea><button class='edit_curr_comment add-com badge badge-success p-2' getid='"+id+"'>UPDATE</button>");
         }
      });
      $(document).on('click', '.edit_curr_comment',function(){

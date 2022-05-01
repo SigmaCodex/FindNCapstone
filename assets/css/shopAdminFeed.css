@@ -404,6 +404,11 @@ body{
 }
 .add-com {
     outline: none;
+    border: none;
+    cursor: pointer;
+}
+.add-com:hover{
+    background-color: #6eb34f;
 }
 
 
