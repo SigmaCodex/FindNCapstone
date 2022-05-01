@@ -42,11 +42,15 @@ $route['findnRegister'] = 'main_controller/viewFindnRegister';
 $route['findnlogin'] = 'main_controller/viewFindNLogin';
 $route['viewShop/(:num)']     = 'main_controller/viewShop/$1';
 $route['findershomepage'] = 'main_controller/viewFinders_HomePage';
+//newFindn
+$route['findersHome'] = 'main_controller/viewFindersHome';
+
 $route['accountSettings'] = 'main_controller/viewAccountSettings';
 $route['finderBookingList'] = 'main_controller/viewfinderBookingList';
 $route['findersNotification'] = 'main_controller/viewFindersNotification';
 $route['findersTransactionDetail/(:num)'] = 'main_controller/viewfindersTransactionDetail/$1';
 $route['findersGCashPayment/(:num)'] = 'main_controller/viewfindersGCashPayment/$1';
+
 
 
 

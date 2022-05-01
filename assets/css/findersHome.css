@@ -1,0 +1,177 @@
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;1,300&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins');
+@import url('http://fonts.cdnfonts.com/css/uni-neue');
+@import url('//db.onlinewebfonts.com/c/80241b4ef777109d2625c9195e7ca852?family=NordiquePro-Bold');
+                
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+}
+
+.content-card{
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 1.4rem 8rem rgba(0, 0, 0, 0.2);
+    border-radius: .8rem;
+}
+.content-card-img img{
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 10px;
+    margin-left: -40px;
+}
+.content-card-opening p{
+    font-size: 12px;
+    color: #08B64E;
+    padding-top: 10px;
+    margin: 0;
+}
+.address {
+    padding-top: 5px;
+    padding-bottom: 10px;    
+}
+.address i{
+    margin-left: -3px;
+    color:#807B7B ;
+}
+.addr {
+    font-size: 13px;
+    color: #807B7B;
+}
+.content-card-title{
+    font-size: 18px;
+    color: #F53805;
+    font-weight: 700;
+    padding-bottom: 20px;
+}.content-card-desc p{
+    font-size: 12px;
+    text-align: justify;
+    color: #807B7B;
+    padding-bottom: 10px;
+}
+.content-card-link a{
+    padding: 10px 10px 10px 10px;
+    border-radius: 5px;
+    color: #FFFFFF;
+    text-decoration: none;
+    background-color: #FF5D31;
+    font-size: 8px;
+    font-weight: 500;
+}
+.content-card-link a:hover{
+    background-color: #fb4816;
+}
+.opening-status{
+    margin-left: -20px;
+    margin-top: 15px;
+}
+.opening-status p {
+    font-size: 10px;
+    margin: 0;
+}
+.opening-status .stats {
+    font-size: 7px;
+    color: #08B64E;
+    font-weight: 700;
+ 
+}
+.range{
+    margin-left: -20px;
+    margin-top: -10px;
+}
+.range p{
+    font-size: 10px;
+    margin: 0;
+}
+.range .status {
+    font-size: 11px;
+    color: #08B64E;
+    font-weight: 700;
+    margin-top: -5px;
+}
+.ratings{
+    margin-left: -20px;
+    margin-top: 5px;
+}
+.ratings p{
+    font-size: 10px;
+    margin: 0;
+}
+.review i {
+    font-size: 8px ;
+    color: #F78516;
+}
+@media (max-width: 400px) {
+    .content-card-img img{
+        width: 250px;
+        height: 200px;
+        margin-left: 30px;
+        margin-top: -40px;
+    }
+    .content-card-opening span{
+        padding-top: 10px;
+    }
+}
+
+
+/* search bar */
+.has-search .form-control {
+    padding-left: 2.375rem;
+}
+
+.has-search .form-control-feedback {
+    position: absolute;
+    z-index: 2;
+    display: block;
+    width: 2.375rem;
+    height: 2.375rem;
+    line-height: 2.375rem;
+    text-align: center;
+    pointer-events: none;
+    color: #aaa;
+}
+.btn-secondary{
+    background-color: #FF5D31;
+    color: white;
+    outline: none;
+    border: none;
+}
+.btn-secondary:hover{
+    background-color: #f33c09;
+    color: white;
+}
+/* For No blue outline */
+textarea:focus, 
+textarea.form-control:focus, 
+input.form-control:focus, 
+input[type=text]:focus, 
+input[type=password]:focus, 
+input[type=email]:focus, 
+input[type=number]:focus, 
+[type=text].form-control:focus, 
+[type=password].form-control:focus, 
+[type=email].form-control:focus, 
+[type=tel].form-control:focus, 
+[contenteditable].form-control:focus {
+  box-shadow: inset 0 -1px 0 #ddd;
+}
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
