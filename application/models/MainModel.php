@@ -1004,7 +1004,7 @@ class MainModel extends CI_Model{
         return $query->result();
     }
     public function getAllComments(){
-        $this->db->select('comments.*, user.user_type, user.username, finders.*');
+        $this->db->select('comments.*, user.user_type, user.username,finders.firstname,finders.lastname,finders.profile_pic');
         $this->db->from('comments');
         $this->db->join('user', 'user.user_id = comments.user_id', 'left');
         $this->db->join('finders', 'finders.user_id = user.user_id', 'left');
@@ -1091,6 +1091,13 @@ class MainModel extends CI_Model{
     public function deleteComments($id){
         $this->db->where('comment_id',$id);
         $this->db->delete('comments');
+    }
+    public function getCommentInfo($id){
+        $this->db->select('*');
+        $this->db->from('comments');
+        $this->db->where('comment_id',$id);
+        $query = $this->db->get();
+        return $query->result();
     }
     public function updateComments($id){
         $date_created = date('m/d/y');

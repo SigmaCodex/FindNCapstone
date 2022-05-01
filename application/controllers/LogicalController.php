@@ -465,6 +465,11 @@ class LogicalController extends CI_Controller {
         $this->load->model('MainModel');
         $result = $this->MainModel->deleteComments($id);
     }
+    public function getCommentInfo($id){
+        $this->load->model('MainModel');
+        $result = $this->MainModel->getCommentInfo($id);
+        echo json_encode($result);
+    }
     public function selectforUpdateComment($id){
         $this->load->model('MainModel');
         $result = $this->MainModel->selectforUpdateComment($id);
