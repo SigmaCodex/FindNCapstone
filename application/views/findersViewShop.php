@@ -649,6 +649,6 @@
 	<!-- END CONTENT -->
 	
 
-	<script src="findersViewShop.js"></script>
+	<script src="assets/js/findersViewShop.js"></script>
 </body>
 </html>
