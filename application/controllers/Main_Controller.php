@@ -145,8 +145,11 @@ class Main_Controller extends CI_Controller {
 			redirect(findnlogin);
 		}else{
 
+			$result['listofshops'] = $this->MainModel->getAllComputershop();
+	
 			$this->load->view('finders/navbar',$session);
-			$this->load->view('findersHome');
+			$this->load->view('findersHome',$result);
+
 		}
 	}
 	public function view_ticket($transaction_id){

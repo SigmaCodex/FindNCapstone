@@ -19,14 +19,14 @@
     <header class="header" id="header ">
         <nav class="nav container-nav d-flex align-items-center">
 
-			<a href="findershomepage"><img src="assets/images/icon-logo.png" class="nav__logo" style="width: 100px; padding-left: 10px;"></a>
+			<a href="findersHome"><img src="assets/images/icon-logo.png" class="nav__logo" style="width: 100px; padding-left: 10px;"></a>
 
 
             <div class="nav__menu" id="nav-menu ">
                 <ul class="nav__list">
                     <!-- Home -->
                     <li class="nav__item">
-                        <a href="findershomepage" class="nav__link ">
+                        <a href="findersHome" class="nav__link ">
                             <i class='bx bx-home-alt nav__icon id="icon-logo-id'></i>
                             <span class="nav__name">Home</span>
                         </a>

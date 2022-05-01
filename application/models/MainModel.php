@@ -250,6 +250,18 @@ class MainModel extends CI_Model{
         $query = $this->db->get();
         return $query->result();
     }
+    //finderhomepage
+    public function getAllComputershop(){
+
+        //$this->db->select("computershop.*,COUNT(computer_ratings.rating_id) as  countRating, FORMAT((SUM(computer_ratings.computer_rate) / COUNT(computer_ratings.rating_id)),1) as avgRatings");
+        $this->db->select('*');
+        $this->db->from('computershop');
+        // $this->db->join('computer_ratings','computershop.shop_id = computer_ratings.shop_id');
+        $this->db->where('Shop_Status != "Inactive"');
+        $query = $this->db->get();
+        return $query->result();
+    }
+
     public function selectComputerShop($id){
 		$this->db->select('*');
         $this->db->from('computershop');

@@ -211,7 +211,7 @@
 				success: function(data){
 					//redirect to pages
 					if(data == "finder"){
-						window.location = "findershomepage";
+						window.location = "findersHome";
 					}else if(data == "disable"){
             swal(
               'Account Disabled!',

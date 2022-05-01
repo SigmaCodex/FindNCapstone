@@ -21,13 +21,13 @@
     <!-- HEADER -->
     <header class="header" id="header ">
         <nav class="nav container-nav ">
-        <a href="findershomepage"> <img src="../assets/images/icon-logo.png"  class="nav__logo" style="width: 100px; padding-left: 10px;"></a>
+        <a href="<?php echo base_url();?>findersHome"> <img src="../assets/images/icon-logo.png"  class="nav__logo" style="width: 100px; padding-left: 10px;"></a>
 
             <div class="nav__menu" id="nav-menu ">
                 <ul class="nav__list">
                     <!-- Home -->
                     <li class="nav__item">
-                        <a href="<?php echo base_url();?>findershomepage" class="nav__link">
+                        <a href="<?php echo base_url();?>findersHome" class="nav__link">
                             <i class='bx bx-home-alt nav__icon'></i>
                             <span class="nav__name">Home</span>
                         </a>

@@ -24,7 +24,7 @@
 
 
             <div class="input-group">
-                <input type="text" class="form-control" placeholder="Search Cafe">
+                <input type="text" class="form-control" placeholder="Search Cafe" id="search_field">
                 <div class="input-group-append">
                 <button class="btn btn-secondary" type="button">
                     <i class="fa fa-search"></i>
@@ -32,47 +32,46 @@
                 </div>
             </div>
 
-                <div class="row">
-                    <div class="col-lg-6 col-sm-6">
-
-
-                        <!-- TNC CARD -->
+                <div class="row listofshops">
+                    <?php foreach($listofshops as $data){?>
+                    <div class="col-lg-6 col-sm-6 shops">
+                        <!-- Shop CARD -->
                         <div class="content-card mt-5">
                             <div class="row">
 
                                 <div class="col-lg-4 col-sm-12 d-flex align-items-center">
                                     <div class="content-card-img">
-                                        <img src="assets/images/Image1.png" alt="">
+                                        <img src="assets/upload/shop/<?php echo $data->shop_img_icon?>" alt="">
                                     </div>
                                 </div>
 
                                 <div class="col-lg-8 col-sm-12">
                                     <div class="content-card-opening">
                                         <span class="d-flex align-items-center">
-                                            <p>Monday - Sunday</p> 
-                                            <p class="pl-5">24 hrs</p>
+                                            <p><?php echo $data->operating_days?></p> 
+                                            <p class="pl-5"><?php echo $data->operating_hours?></p>
                                         </span>
                                     </div>
                                     <div class="address d-flex align-items-center">
                                         <i class='addr-icon bx bxs-edit-location'></i>
-                                        <p class="addr m-0">II Pelaez St. Brgy. Kalubihan Cebu City</p>
+                                        <p class="addr m-0"><?php echo $data->address?></p>
                                     </div>
                                     
-                                    <h5 class="content-card-title">TNC CYBERCAFE CEBU HQ</h5>
+                                    <h5 class="content-card-title"><?php echo $data->shop_name?></h5>
                                     <div class="content-card-desc">
-                                        <p class="">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiit anim id est laborum</p>
+                                        <p class=""><?php echo $data->description?></p>
                                     </div>
                                     
                                     <div class="row">
                                         <div class="col-4">
                                             <div class="content-card-link">
-                                                <a href="#">View Shop</a>
+                                                <a href="viewShop/<?php echo $data->shop_id?>">View Shop</a>
                                             </div>
                                         </div>
                                         <div class="col-4 ">
                                             <div class="opening-status d-flex align-items-end justify-content-start">
                                                 <p  class="m-0">Status:</p>
-                                                <p class="stats pl-2 pt-1">Open for Booking</p>
+                                                <p class="stats pl-2 pt-1" <?php if($data->Shop_Status == "Close"){ echo "style='color:red'";}?>><?php echo $data->Shop_Status?> for Booking</p>
                                             </div>
                                         </div>
                                         <div class="col-4 ">
@@ -97,200 +96,8 @@
                                 </div>
                             </div>
                         </div>
-                        
-                        <!-- TNC CARD -->
-                        <div class="content-card mt-5">
-                            <div class="row">
-
-                                <div class="col-lg-4 col-sm-12 d-flex align-items-center">
-                                    <div class="content-card-img">
-                                        <img src="assets/images/Image1.png" alt="">
-                                    </div>
-                                </div>
-
-                                <div class="col-lg-8 col-sm-12">
-                                    <div class="content-card-opening">
-                                        <span class="d-flex align-items-center">
-                                            <p>Monday - Sunday</p> 
-                                            <p class="pl-5">24 hrs</p>
-                                        </span>
-                                    </div>
-                                    <div class="address d-flex align-items-center">
-                                        <i class='addr-icon bx bxs-edit-location'></i>
-                                        <p class="addr m-0">II Pelaez St. Brgy. Kalubihan Cebu City</p>
-                                    </div>
-                                    
-                                    <h5 class="content-card-title">TNC CYBERCAFE CEBU HQ</h5>
-                                    <div class="content-card-desc">
-                                        <p class="">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiit anim id est laborum</p>
-                                    </div>
-                                    
-                                    <div class="row">
-                                        <div class="col-4">
-                                            <div class="content-card-link">
-                                                <a href="#">View Shop</a>
-                                            </div>
-                                        </div>
-                                        <div class="col-4 ">
-                                            <div class="opening-status d-flex align-items-end justify-content-start">
-                                                <p  class="m-0">Status:</p>
-                                                <p class="stats pl-2 pt-1">Open for Booking</p>
-                                            </div>
-                                        </div>
-                                        <div class="col-4 ">
-                                            <div class="range d-flex align-items-start justify-content-start">
-                                                <p  class="m-0">Range:</p>
-                                                <p class="status pl-2 mb-1 pt-1">₱10 - ₱15</p>
-                                            </div>
-                                            <div class="ratings d-flex align-items-end justify-content-start">
-                                                <p class="m-0">Ratings:</p>
-                                                <div class="review pl-1 d-flex align-items-center justify-content-center">
-                                                    <i class='bx bxs-star'></i>
-                                                    <i class='bx bxs-star'></i>
-                                                    <i class='bx bxs-star'></i>
-                                                    <i class='bx bxs-star'></i>
-                                                    <i class='bx bxs-star-half' ></i>
-                                                    <p class="status pl-1">4.5</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    
-                                </div>
-                            </div>
-                        </div>
-
                     </div>
-                
-
-                    <div class="col-lg-6 col-sm-6">
-
-                        <!-- GAME CITY -->
-                        <div class="content-card mt-5">
-                            <div class="row">
-
-                                <div class="col-lg-4 col-sm-12 d-flex align-items-center">
-                                    <div class="content-card-img">
-                                        <img src="assets/images/Image2.png" alt="">
-                                    </div>
-                                </div>
-
-                                <div class="col-lg-8 col-sm-12">
-                                    <div class="content-card-opening">
-                                        <span class="d-flex align-items-center">
-                                            <p>Monday - Sunday</p> 
-                                            <p class="pl-5">24 hrs</p>
-                                        </span>
-                                    </div>
-                                    <div class="address d-flex align-items-center">
-                                        <i class='addr-icon bx bxs-edit-location'></i>
-                                        <p class="addr m-0">Arcenas, Colon St, Cebu City, 6000 Cebu</p>
-                                    </div>
-                                    
-                                    <h5 class="content-card-title">GAMECITY CEBU</h5>
-                                    <div class="content-card-desc">
-                                        <p class="">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiit anim id est laborum</p>
-                                    </div>
-                                    
-                                    <div class="row">
-                                        <div class="col-4">
-                                            <div class="content-card-link">
-                                                <a href="#">View Shop</a>
-                                            </div>
-                                        </div>
-                                        <div class="col-4 ">
-                                            <div class="opening-status d-flex align-items-end justify-content-start">
-                                                <p  class="m-0">Status:</p>
-                                                <p class="stats pl-2 pt-1">Open for Booking</p>
-                                            </div>
-                                        </div>
-                                        <div class="col-4 ">
-                                            <div class="range d-flex align-items-start justify-content-start">
-                                                <p  class="m-0">Range:</p>
-                                                <p class="status pl-2 mb-1 pt-1">₱10 - ₱15</p>
-                                            </div>
-                                            <div class="ratings d-flex align-items-end justify-content-start">
-                                                <p class="m-0">Ratings:</p>
-                                                <div class="review pl-1 d-flex align-items-center justify-content-center">
-                                                    <i class='bx bxs-star'></i>
-                                                    <i class='bx bxs-star'></i>
-                                                    <i class='bx bxs-star'></i>
-                                                    <i class='bx bxs-star-half' ></i>
-                                                    <i class='bx bx-star' ></i>
-                                                    <p class="status pl-1">3.5</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    
-                                </div>
-                            </div>
-                        </div>
-
-
-                        <!-- VOYAGER -->
-                        <div class="content-card mt-5">
-                            <div class="row">
-
-                                <div class="col-lg-4 col-sm-12 d-flex align-items-center">
-                                    <div class="content-card-img">
-                                        <img src="assets/images/Image3.jpg" alt="">
-                                    </div>
-                                </div>
-
-                                <div class="col-lg-8 col-sm-12">
-                                    <div class="content-card-opening">
-                                        <span class="d-flex align-items-center">
-                                            <p>Monday - Sunday</p> 
-                                            <p class="pl-5">24 hrs</p>
-                                        </span>
-                                    </div>
-                                    <div class="address d-flex align-items-center">
-                                        <i class='addr-icon bx bxs-edit-location'></i>
-                                        <p class="addr m-0">Sanciangko St, Cebu City, Cebu 6000</p>
-                                    </div>
-                                    
-                                    <h5 class="content-card-title">Voyager CyberCafe</h5>
-                                    <div class="content-card-desc">
-                                        <p class="">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiit anim id est laborum</p>
-                                    </div>
-                                    
-                                    <div class="row">
-                                        <div class="col-4">
-                                            <div class="content-card-link">
-                                                <a href="#">View Shop</a>
-                                            </div>
-                                        </div>
-                                        <div class="col-4 ">
-                                            <div class="opening-status d-flex align-items-end justify-content-start">
-                                                <p  class="m-0">Status:</p>
-                                                <p class="stats pl-2 pt-1">Open for Booking</p>
-                                            </div>
-                                        </div>
-                                        <div class="col-4 ">
-                                            <div class="range d-flex align-items-start justify-content-start">
-                                                <p  class="m-0">Range:</p>
-                                                <p class="status pl-2 mb-1 pt-1">₱10 - ₱15</p>
-                                            </div>
-                                            <div class="ratings d-flex align-items-end justify-content-start">
-                                                <p class="m-0">Ratings:</p>
-                                                <div class="review pl-1 d-flex align-items-center justify-content-center">
-                                                    <i class='bx bxs-star'></i>
-                                                    <i class='bx bxs-star'></i>
-                                                    <i class='bx bxs-star'></i>
-                                                    <i class='bx bx-star' ></i>
-                                                    <i class='bx bx-star' ></i>
-                                                    <p class="status pl-1">3</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
+                    <?php }?>
             </div>
             
         </div>
@@ -300,5 +107,18 @@
 	
 
 	<!-- <script src="assets/js/findersHome"></script> -->
+    <script>
+    jQuery.expr[':'].contains = function(a, i, m) {
+            return jQuery(a).text().toUpperCase()
+                .indexOf(m[3].toUpperCase()) >= 0;
+    };
+
+    $(document).on('keyup','#search_field', function(){
+       filterdata = $(this).val();
+       $('.shops').removeClass('d-none');
+       $('.shops').children().children().find('.content-card-title:not(:contains("'+filterdata+'"))').parent().parent().parent().parent().addClass('d-none');
+  
+    });
+</script>
 </body>
 </html>
