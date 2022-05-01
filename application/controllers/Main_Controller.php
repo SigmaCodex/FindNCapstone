@@ -136,6 +136,20 @@ class Main_Controller extends CI_Controller {
 			$this->load->view('findersHomePage');
 		}
 	}
+
+	public function viewFindersViewShop()
+	{
+		$session['profile_pic'] = $this->session->userdata('profile_pic');
+		$session['user_name'] = $this->session->userdata('username');
+
+		if(!$session['user_name']){
+			redirect(findnlogin);
+		}else{
+
+			$this->load->view('finders/navbar',$session);
+			$this->load->view('findersViewShop');
+		}
+	}
 	public function viewFindersHome()
 	{
 		$session['profile_pic'] = $this->session->userdata('profile_pic');

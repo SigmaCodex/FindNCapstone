@@ -487,8 +487,7 @@
                         </div>    
     
                         <div class="profile-comment">
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
-                                sed do eiusmod tempor 
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor 
     
                             </p>
                         </div>
