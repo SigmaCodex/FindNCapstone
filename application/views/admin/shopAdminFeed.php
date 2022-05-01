@@ -206,19 +206,18 @@
                                 <!-- First Comment Card -->
                                 <?php foreach($commentDetails as $cd){
                                 if($pd->post_id == $cd->post_id_fk){
-                                
                                 ?>
                                 <div class="comments-card pt-2">
                                     <div class="row">
                                         <div class="col-2">
-    
+                                        
                                         </div>
                                         <div class="col-2">
                                             <div class="profile-img">
+                                            <p style="display:none" id="comment_id_text"><?php echo $cd->comment_id?></p>
                                                 <img src="assets/upload/finder/<?php echo $cd->profile_pic;?>" onerror="this.src='assets/images/default.png'" alt="">
                                             </div>
                                         </div>
-                
                                         <div class="col-5 d-flex align-items-center justify-content-start">
                                             <div class="comments-profile-name">
                                                 <h6><?php echo $cd->username;?></h6>
@@ -230,12 +229,17 @@
                                         <div class="col-3 d-flex align-items-center justify-content-end">
                                             <div class="profile-elapsed">
                                                 <p class="text-muted"><?php echo $cd->date;?></p>
+                                                <?php
+                                            if($admin_id == $cd->user_id){
+											echo "<i class='close-notif fa-solid fa-pen-alt' id='edit_comment' edit_id='$cd->comment_id'></i>";
+									    }?>
+                                            <i class='close-notif fa-solid fa-trash-alt' id="delete_comment" delete_id="<?php echo $cd->comment_id;?>"></i>
                                             </div>
                                         </div>
                                     </div>
 
                                     <div class="posts-comment">
-                                        <p><?php echo $cd->comment;?></p> 
+                                        <p id="spec_comm"><?php echo $cd->comment;?></p> 
                                     </div>
                                 </div>
                                 <?php }} ?>
@@ -531,22 +535,6 @@
 	});   
  </script>
  <script>
-     $(document).on('click', '#add_cmnt',function(){
-        var BASE_URL = "<?php echo base_url();?>";
-         comm = $('#cmnt_text').val();
-         id = $(this).attr("posts_id");
-                    $.ajax({  
-						url: BASE_URL+"addComment/"+id,   
-						type:"POST",  
-						data:{comment_txt:comm},   
-						success:function(data)  
-						{  
-                            location.reload();  
-						}
-					});
-     });
- </script>
- <script>
      $(document).on('click', '#delete_post',function(){
         BASE_URL = "<?php echo base_url();?>";
         postid = $(this).attr('delete_id');
@@ -600,7 +588,76 @@
              
       });
     });
- </script>
+</script>
+<script>
+    $(document).on('click','#add_cmnt',function(){
+    BASE_URL = "<?php echo base_url();?>";
+    id = $(this).attr('posts_id');
+    comm = $('#cmnt_text').val();
+    $.ajax({
+          url:BASE_URL+"addComment/"+id,
+          type: "POST",
+          data:{comment_txt:comm},
+          success: function(data)
+          {
+            location.reload();    
+          }
+         });
+    });
+</script>
+<script>
+     $(document).on('click', '#edit_comment',function(){
+        BASE_URL = "<?php echo base_url();?>";
+        id = $(this).attr("edit_id");
+        status = $(this).attr('stat');
+        if(status == "active"){     
+         $(this).parent().parent().parent().parent().find('.posts-comment').find('textarea').remove();
+         $(this).parent().parent().parent().parent().find('.posts-comment').find('button').remove();
+         $(this).attr('stat', '');
+        }
+        else{
+         $(this).attr('stat', 'active');
+         $(this).parent().parent().parent().parent().find('.posts-comment').find('p').hide();
+         edit_comment_text = $(this).parent().parent().parent().parent().find('.posts-comment').find('p').text();
+         $(this).parent().parent().parent().parent().find('.posts-comment').append("<textarea class='comment_field_edit' cols='80' rows='3'>"+edit_comment_text+"</textarea><button class='edit_curr_comment' getid='"+id+"'>UPDATE</button>");
+        }
+     });
+     $(document).on('click', '.edit_curr_comment',function(){
+        // comm = $(this).parent().find('.comment_field_edit').css('background-color','red');
+        edited_comment = $(this).parent().parent().find('.posts-comment').find('textarea').val();
+        id = $(this).attr('getid');
+                $.ajax({  
+                     url: BASE_URL+"updateComment/"+id,   
+                     method:"POST",  
+                     data:{comment_txt:edited_comment},
+                     success:function(data)  
+                     {
+                     }  
+                });
+            $(this).parent().find('p').show();
+            $(this).parent().find('p').text(edited_comment);
+            $(this).parent().parent().find('.posts-comment').find('textarea').remove();
+            $(this).remove();
+     });
+</script>
+<script>
+    $(document).on('click', '#delete_comment',function(){
+        id = $(this).attr('delete_id');
+        count = $('#cmnt_count').text();
+        $.ajax({  
+				url: BASE_URL+"deleteComment/"+id,   
+				type:"POST",  
+				data:{},   
+				success:function(data)  
+				{   
+                    count = count - 1;
+                    $('#cmnt_count').text(count);
+				}
+		});
+        $(this).parent().parent().parent().parent().hide();
+
+    });
+</script>
 <script>
 		$(document).ready(function(){
 			var preview = $("#upload-preview");

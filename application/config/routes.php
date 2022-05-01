@@ -149,6 +149,7 @@ $route['reports'] = 'main_controller/viewReports';
     $route['updateshopPosts/(:num)']  = 'logicalcontroller/updateshopPosts/$1';
     $route['addComment/(:num)'] = 'logicalcontroller/addComments/$1';
     $route['getPostInfo/(:num)'] = 'logicalcontroller/getPostInfo/$1';
+    $route['getCommentInfo/(:num)'] = 'logicalcontroller/getCommentInfo/$1';
     $route['addshopPost/(:num)'] = 'logicalcontroller/addshopPosts/$1';
     $route['updateshopPost/(:num)'] = 'logicalcontroller/updateshopPosts/$1';
     $route['deletePost/(:num)'] = 'logicalcontroller/deleteshopPosts/$1';
