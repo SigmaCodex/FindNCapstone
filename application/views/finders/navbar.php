@@ -26,7 +26,7 @@
                 <ul class="nav__list">
                     <!-- Home -->
                     <li class="nav__item">
-                        <a href="findershomepage" class="nav__link ">
+                        <a href="findersHome" class="nav__link ">
                             <i class='bx bx-home-alt nav__icon id="icon-logo-id'></i>
                             <span class="nav__name">Home</span>
                         </a>

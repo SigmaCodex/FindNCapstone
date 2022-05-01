@@ -87,7 +87,11 @@
                 <button type = "button" class = "btn">	
                   View Map  
                 </button>
+                
               </div>
+              <button type="button" class = "btn btn-warning"  data-bs-toggle="modal" data-bs-target="#rate">
+                  Rate
+                </button>
           </div>
         </div>
       </div>
@@ -190,6 +194,126 @@
                <div class="text-center mb-3"> <button class="btn btn-primary w-50 rounded-pill b1" >Printing Service</button> </div> 
               </div>
          </div>
+    </div>
+
+
+    <div  class="modal fade" id="rate" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content py-md-5 px-md-4 p-sm-3 p-4">
+
+            <div class="header-title d-flex align-items-center justify-content-start">
+              <i class="fas fa-arrow-left pr-3"  data-bs-dismiss="modal"></i>
+              <h6 class="m-0">Feedback</h6>
+            </div>
+
+            <div class="title">
+              <h4 class="text-center mt-4 mb-1">Rate your Experience</h4>
+            </div>
+              <div class="rate-star d-flex flex-column align-items-center justify-content-center mb-1">
+                  <div class="rate">
+                    <input type="radio" id="star5" name="rate" value="5" />
+                    <label for="star5" title="text">5 stars</label>
+                    <input type="radio" id="star4" name="rate" value="4" />
+                    <label for="star4" title="text">4 stars</label>
+                    <input type="radio" id="star3" name="rate" value="3" />
+                    <label for="star3" title="text">3 stars</label>
+                    <input type="radio" id="star2" name="rate" value="2" />
+                    <label for="star2" title="text">2 stars</label>
+                    <input type="radio" id="star1" name="rate" value="1" />
+                    <label for="star1" title="text">1 star</label>
+                  </div>
+                  
+              </div>
+
+                  <div class="modal-details p-3">
+                    <div class="text-details text-center">
+                      <p class="text-muted">How satisfied are you with the service?</p>
+                    </div>
+                    <div class="text-details text-left" style="font-size: 12px;">
+                      <p>Tell us what we can Improved?</p>
+                    </div>
+
+                    <div class="text-card">
+                        <textarea name="" id="" cols="51" rows="5" placeholder="Type here..." ></textarea>
+                    </div>
+                   
+                  </div>
+
+              <!-- MODAL CSS INLINE -->
+              <style>
+                    .fa-arrow-left {
+                      cursor: pointer;
+                    }
+                    .rate {
+                        float: left;
+                        height: 46px;
+                        padding: 0 10px;
+                    }
+                    .rate:not(:checked) > input {
+                        position:absolute;
+                        top:-9999px;
+                    }
+                    .rate:not(:checked) > label {
+                        float:right;
+                        width:1em;
+                        overflow:hidden;
+                        white-space:nowrap;
+                        cursor:pointer;
+                        font-size:50px;
+                        color:#ccc;
+                    }
+                    .rate:not(:checked) > label:before {
+                        content: '✯ ';
+                    }
+                    .rate > input:checked ~ label {
+                        color: #F78516;    
+                    }
+                    .rate:not(:checked) > label:hover,
+                    .rate:not(:checked) > label:hover ~ label {
+                        color: #F78516;  
+                    }
+                    .rate > input:checked + label:hover,
+                    .rate > input:checked + label:hover ~ label,
+                    .rate > input:checked ~ label:hover,
+                    .rate > input:checked ~ label:hover ~ label,
+                    .rate > label:hover ~ input:checked ~ label {
+                        color: #F78516;
+                    }
+                    .text-card textarea{
+                      outline:none;
+                      resize:none;
+                      border-radius:10px;
+                      padding:10px;
+                      font-size:15px;
+                      border:1px solid #A7A1A1;
+                      background-color: #F1F1F1;
+                    }
+                    .review-but{
+                      background-color: #FF5D31;
+                      color: #FFFFFF;
+                      padding: 10px 100px 10px 100px;
+                      outline:none;
+                      border:none;
+                      border-radius: 5px;
+                    }
+                    .review-but:hover {
+                      background-color: #F53805;
+                    }
+                    @media (max-width: 400px) {
+                        .text-card textarea{
+                          width:280px;
+                        }
+                        .review-but{
+                            font-size:12px;
+                        }
+                    }
+              </style>
+
+                    <div class="button d-flex justify-content-center align-items-center">
+                      <button class="review-but">Submit Review</button>
+                    </div>
+          </div>
+      </div>
     </div>
 
     <?php }?><!-- end of foreach shopdetails -->
