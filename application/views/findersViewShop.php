@@ -16,7 +16,10 @@
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 	<script src="../assets/js/findersViewShop.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>    
+    <!-- <script src="../assets/js/clock.js"></script> -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>	
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" ></script>
 	<title>View Shop Admin</title>
 </head>
 <body>
@@ -26,11 +29,12 @@
          <div class="content mt-5 p-3">
                 
                 <!-- PROFILE DETAILS -->
+                <?php foreach($shopdetails as $sd) {?>
                 <div class="row">
 
                     <div class="col-lg-2 col-md-2 col-sm-2">
                         <div class="profile-img ">
-                            <img src="assets/images/Image1.png" alt="">
+                            <img src="../assets/upload/shop/<?php echo $sd->shop_img_icon;?>" alt="">
                         </div>
                     </div>  
 
@@ -38,7 +42,7 @@
 
                         <div class="profile-details">
                             <div class="profile-title">
-                                <h1>TNC CYBERCAFE CEBU HQ</h1>
+                                <h1><?php echo $sd->shop_name;?></h1>
                             </div>
 
                             <div class="profile-review d-flex align-items-center justify-content-start">
@@ -63,17 +67,17 @@
 
                                         <div class="contact d-flex align-items-center justify-content-start">
                                             <i class='bx bxs-phone'></i>
-                                            <p class="m-0">437-4432</p>
+                                            <p class="m-0"><?php echo $sd->tel_number;?> / <?php echo $sd->contact_number;?></p>
                                         </div>
 
                                         <div class="contact d-flex align-items-center justify-content-start">
                                             <i class='bx bx-envelope'></i>
-                                            <p class="m-0">abc@gmail.com</p>
+                                            <p class="m-0"><?php echo $sd->email_address;?></p>
                                         </div>
 
                                         <div class="contact d-flex align-items-center justify-content-start">
                                             <i class='bx bx-wifi' ></i>
-                                            <p class="m-0">1,000 mbps</p>
+                                            <p class="m-0"><?php echo $sd->net_speed;?> MBPS</p>
                                         </div>
 
                                         
@@ -82,12 +86,12 @@
                                     <div class="col-6">
                                         <div class="contact d-flex align-items-center justify-content-start">
                                             <i class='bx bx-calendar'></i>
-                                            <p class="m-0">Monday - Sunday</p>
+                                            <p class="m-0"><?php echo $sd->operating_days;?></p>
                                         </div>
 
                                         <div class="contact d-flex align-items-center justify-content-start">
                                             <i class='bx bxs-timer'></i>
-                                            <p class="m-0">abc@gmail.com</p>
+                                            <p class="m-0"><?php echo $sd->operating_hours;?></p>
                                         </div>
 
                                     </div>
@@ -97,7 +101,7 @@
                                     <div class="col-12">
                                         <div class="contact d-flex align-items-center justify-content-start">
                                             <i class='bx bx-current-location'></i>
-                                            <p class="m-0">II Pelaez St. Brgy. Kalubihan Cebu City</p>
+                                            <p class="m-0"><?php echo $sd->address;?></p>
                                         </div>
                                     </div>
                                 </div>
@@ -121,7 +125,7 @@
                                     <button class="btn btn-light">Rate</button>
                                 </div>
                                 <div class="p-2">
-                                    <button class="book">Book</button>
+                                    <button class="book" data-toggle="modal" data-target="#booknow_modal" style="outline:none;">Book</button>
                                 </div>
                                 
                             </div>
@@ -129,9 +133,86 @@
                     </div>
 
                 </div>
-
+                <!-- BOOK NOW MODAL -->
                 <hr>
+                <div class="modal" id="booknow_modal" tabindex="-1" role="dialog">
+                    <div class="modal-dialog" role="document">     
+                    <div class="modal-content py-md-5 px-md-4 p-sm-3 p-4">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button><br>
+                        <h6 class="text-center mb-5" style="font-size: 20px; font-weight: 600;">Select Service</h6>
+                        <i class="fa fa-computer"></i>
+                        <div class="text-center mb-4"><a href="<?php echo base_url();?>finder-ComputerBookingRequest/<?php echo $sd->shop_id;?>" class="btn btn-primary w-50 rounded-pill b1">Computer Bookings</a></div> 
+                        <div class="text-center mb-3"> <button class="btn btn-primary w-50 rounded-pill b1" >Printing Service</button> </div> 
+                    </div>
+                    </div>
+                </div>
+                <!-- SEE MORE COMPUTER TYPE MODAL -->
+                <div class="modal" id="view-description">
+				<div class="modal-dialog modal-md modal-dialog-scrollable" role="document">
+					<div class="modal-content">
 
+					<div class="modal-body">
+						<div class="modal-holder">
+							
+		
+
+							<div class="modal-img-holder d-flex flex-column align-items-center justify-content-center">
+								<p class="modal-img-holder-caption text-muted"></p>
+								<img id="view-upload-preview" class="modal-image"src="../assets/images/default_computertype.png" style="border-radius: 10px;">
+							</div>
+									<div class="modal-user-info">
+										<div class="row ">
+											<div class="col-6">
+												<p class="modal-caption-details-left">Access Type:</p> 
+												<p class="modal-caption-details-left">Service Number:</p> 
+												<p class="modal-caption-details-left">Number of Units:</p> 
+												<p class="modal-caption-details-left">Price Rate:</p>
+												<p class="modal-caption-details-left">Status:</p>
+											</div>
+				
+											<div class="col-6 text-right">
+												<p class="modal-caption-details-right" id="type_access"></p> 
+												<p class="modal-caption-details-right" id="type-id"></p> 
+												<p class="modal-caption-details-right" id="type_units"></p> 
+												<p class="modal-caption-details-right" id="type_rate"></p> 
+												<!-- <p class="modal-caption-details-right badge badge-danger" style="color: white;">Deactivated</p>  -->
+												<p class="modal-caption-details-right badge"  style="color: white;" id="type_status"></p> 
+											</div>
+										</div>
+
+										<div class="modal-spec">
+											<h5>Specifications</h5>
+										</div>
+										<hr>
+
+										<div class="row ">
+											<div class="col-4">
+												<p class="modal-caption-details-left-long">CPU:</p> 
+												<p class="modal-caption-details-left-long">Accessories:</p> 
+											</div>
+				
+											<div class="col-8 text-right">
+												<p class="modal-caption-details-right-long" id="type_cpu"></p> 
+												<p class="modal-caption-details-right-long" id="type_acc"></p> 
+											</div>
+										</div>
+
+										<div class="close-but d-flex align-items-center justify-content-between">
+											<button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>			
+										</div>
+										
+										
+										
+										
+										
+									</div>
+					
+						</div>
+					</div>
+		
+					</div>
+				</div>
+			</div>
                 <!-- IMAGES -->
                 <div class="row">
                     <div class="col-lg-6 col-md-12 col-sm-12">
@@ -142,15 +223,13 @@
                               <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
                             </ol>
                             <div class="carousel-inner">
-                              <div class="carousel-item active">
-                                <img class="d-block w-100" src="assets/images/tops.jpg" alt="First slide">
+                            <?php 
+                            $count=0; 
+                            foreach($shop_images as $si){ ?>
+                              <div class="carousel-item <?php if($count==0){echo "active";} else{echo "";}?>">
+                                <img class="d-block w-100" src="../assets/images/<?php echo $si->img_file;?>" alt="First slide">
                               </div>
-                              <div class="carousel-item">
-                                <img class="d-block w-100" src="assets/images/sugbo.jpg" alt="Second slide">
-                              </div>
-                              <div class="carousel-item">
-                                <img class="d-block w-100" src="assets/images/Image1.png" alt="Third slide">
-                              </div>
+                            <?php $count++;}?>
                             </div>
                             <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
                               <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -164,26 +243,25 @@
                     </div>
                     <div class="col-lg-6 col-md-12 col-sm-12">
                         <div class="profile-desc">
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum</p>
+                            <p><?php echo $sd->description;?></p>
                         </div>
                     </div>
                 </div>
-
+                <?php } ?>
                 <hr>
 
                 <div class="card-title text-left mb-5">
                     <h6>Computer Access Type</h6>
                 </div>
-
+                    
                     <div class="card-content d-flex align-items-center justify-content-between">
-
-                        <div class="access-type">
+                    <?php foreach($typedetails as $td){?>
+                        <div class="access-type" data=<?php echo $td->Ctype_id;?>>
                             <div class="access-type-title text-center">
-                                <h6>Regular Acccess</h6>
+                                <h6><?php echo $td->name;?> Acccess</h6>
                             </div>
-
                             <div class="access-type-img">
-                                <img src="assets/images/tops.jpg" alt="">
+                                <img src="../assets/upload/shop/computertype/<?php echo $td->comp_type_img;?>" alt="">
                             </div>
 
                             <div class="access-type-details flex-column">
@@ -191,149 +269,38 @@
                                 <div class="access-type-details-text d-flex align-items-center justify-content-start">
                                     <i class='bx bx-wallet'></i>
                                     <p class="m-0">Price Rate(hr) :</p>
-                                    <p class="m-0 data text-muted">₱10</p>
+                                    <p class="m-0 data text-muted"><?php echo $td->rate;?></p>
                                 </div>
                                 
                                 <div class="access-type-details-text d-flex align-items-center justify-content-start">
                                     <i class='bx bx-desktop'></i>
                                     <p class="m-0">Computer Slot :</p>
-                                    <p class="m-0 data text-muted">20</p>
+                                    <p class="m-0 data text-muted"><?php echo $td->total_units;?></p>
                                 </div>
 
                                 <div class="access-type-details-text d-flex align-items-center justify-content-start">
                                     <i class='bx bxs-keyboard'></i>
-                                    <p class="m-0 data-acc text-muted">Predator PC and Predator Accessories</p>
+                                    <p class="m-0 data-acc text-muted"><?php echo $td->specs;?></p>
                                 </div>
 
                             </div>
                             
 
-                            <div class="button-modal d-flex align-items-center justify-content-start">
-                                <h6>Show more</h6>
+                            <div class="button-modal d-flex align-items-center justify-content-start show_btn">
+                                <h6 id="show_btn">Show more</h6>
                                 <i class='bx bxs-chevrons-right'></i>
                             </div>
                         </div>
-
-                        <div class="access-type">
-                            <div class="access-type-title text-center">
-                                <h6>Regular Acccess</h6>
-                            </div>
-
-                            <div class="access-type-img">
-                                <img src="assets/images/tops.jpg" alt="">
-                            </div>
-
-                            <div class="access-type-details flex-column">
-                                
-                                <div class="access-type-details-text d-flex align-items-center justify-content-start">
-                                    <i class='bx bx-wallet'></i>
-                                    <p class="m-0">Price Rate(hr) :</p>
-                                    <p class="m-0 data text-muted">₱10</p>
-                                </div>
-                                
-                                <div class="access-type-details-text d-flex align-items-center justify-content-start">
-                                    <i class='bx bx-desktop'></i>
-                                    <p class="m-0">Computer Slot :</p>
-                                    <p class="m-0 data text-muted">20</p>
-                                </div>
-
-                                <div class="access-type-details-text d-flex align-items-center justify-content-start">
-                                    <i class='bx bxs-keyboard'></i>
-                                    <p class="m-0 data-acc text-muted">Predator PC and Predator Accessories</p>
-                                </div>
-
-                            </div>
-                            
-
-                            <div class="button-modal d-flex align-items-center justify-content-start">
-                                <h6>Show more</h6>
-                                <i class='bx bxs-chevrons-right'></i>
-                            </div>
-                        </div>
-
-                        <div class="access-type">
-                            <div class="access-type-title text-center">
-                                <h6>Regular Acccess</h6>
-                            </div>
-
-                            <div class="access-type-img">
-                                <img src="assets/images/tops.jpg" alt="">
-                            </div>
-
-                            <div class="access-type-details flex-column">
-                                
-                                <div class="access-type-details-text d-flex align-items-center justify-content-start">
-                                    <i class='bx bx-wallet'></i>
-                                    <p class="m-0">Price Rate(hr) :</p>
-                                    <p class="m-0 data text-muted">₱10</p>
-                                </div>
-                                
-                                <div class="access-type-details-text d-flex align-items-center justify-content-start">
-                                    <i class='bx bx-desktop'></i>
-                                    <p class="m-0">Computer Slot :</p>
-                                    <p class="m-0 data text-muted">20</p>
-                                </div>
-
-                                <div class="access-type-details-text d-flex align-items-center justify-content-start">
-                                    <i class='bx bxs-keyboard'></i>
-                                    <p class="m-0 data-acc text-muted">Predator PC and Predator Accessories</p>
-                                </div>
-
-                            </div>
-                            
-
-                            <div class="button-modal d-flex align-items-center justify-content-start">
-                                <h6>Show more</h6>
-                                <i class='bx bxs-chevrons-right'></i>
-                            </div>
-                        </div>
-
-                        <div class="access-type">
-                            <div class="access-type-title text-center">
-                                <h6>Regular Acccess</h6>
-                            </div>
-
-                            <div class="access-type-img">
-                                <img src="assets/images/tops.jpg" alt="">
-                            </div>
-
-                            <div class="access-type-details flex-column">
-                                
-                                <div class="access-type-details-text d-flex align-items-center justify-content-start">
-                                    <i class='bx bx-wallet'></i>
-                                    <p class="m-0">Price Rate(hr) :</p>
-                                    <p class="m-0 data text-muted">₱10</p>
-                                </div>
-                                
-                                <div class="access-type-details-text d-flex align-items-center justify-content-start">
-                                    <i class='bx bx-desktop'></i>
-                                    <p class="m-0">Computer Slot :</p>
-                                    <p class="m-0 data text-muted">20</p>
-                                </div>
-
-                                <div class="access-type-details-text d-flex align-items-center justify-content-start">
-                                    <i class='bx bxs-keyboard'></i>
-                                    <p class="m-0 data-acc text-muted">Predator PC and Predator Accessories</p>
-                                </div>
-
-                            </div>
-                            
-
-                            <div class="button-modal d-flex align-items-center justify-content-start">
-                                <h6>Show more</h6>
-                                <i class='bx bxs-chevrons-right'></i>
-                            </div>
-                        </div>
-
+                        <?php }?>
                     </div>
-                
+
                 <hr>
 
                 <div class="card-title text-left mb-3">
                     <h6>Posts</h6>
                 </div>
-                <div class="profile-info">
-                <?php foreach($postDetails as $pd){?>
+        <?php foreach($postDetails as $pd){?>
+            <div class="profile-info">
                     <p id="shop_id" style="display:none"><?php echo $pd->shop_id;?></p>
                     <div class="row mt-5">
                         <div class="col-1">
@@ -351,7 +318,7 @@
 
                         <div class="col-2">
                             <div class="profile-date-posted text-right">
-                                <p class="text-muted"><?php echo $pd->post_created;?></p>
+                                <p class="text-muted"><?php echo date("M j, Y", strtotime($pd->post_created));?></p>
                             </div>
                         </div>
                     </div>
@@ -369,7 +336,9 @@
                         <div class="col-1"></div>
                         <div class="col-11">
                             <div class="profile-post">
-                                <img src="../assets/images/<?php echo $pd->post_img;?>" alt="">
+                            <?php if($pd->post_img){?>
+                                <img src="../assets/upload/shop/postandeventsImages/<?php echo $pd->post_img;?>" alt="">
+                            <?php }?>
                             </div>
                         </div>
                     </div>
@@ -381,7 +350,7 @@
                                 <p class="m-0 desc"><?php echo $pd->post_description;?></p>
                             </div>
                             <div class="profile-post-comment pt-3 d-flex align-items-center justify-content-start">
-                                <p class=" m-0 badge badge-dark" id="cmnt_count"><?php $count=0; foreach($commentDetails as $cmtdet){if($pd->post_id == $cmtdet->post_id_fk){$count++;}} echo $count;?></p>
+                                <p class=" m-0 badge badge-dark mark_count" id="cmnt_count"><?php $count=0; foreach($commentDetails as $cmtdet){if($pd->post_id == $cmtdet->post_id_fk){$count++;}} echo $count;?></p>
                                 <p class="m-0 comment" id="comment_text">Comment</p>
 
                             </div>
@@ -398,7 +367,7 @@
                                         <h6>Comments</h6>
                                     </div>
             
-                                    <textarea id="cmnt_text" cols="140" rows="4"></textarea>
+                                    <textarea id="cmnt_text" class="comnt_text" cols="140" rows="4"></textarea>
                                     
                                     <div class="d-flex align-items-center justify-content-end">
                                         <button class="btn btn-success" id="add_cmnt" posts_id="<?php echo $pd->post_id;?>">Post Comment</button>
@@ -432,12 +401,11 @@
                                                     <?php }?>
                                                     <p class="text-muted m-0"><?php echo $cd->user_type;?></p>
                                                     <div class="profile-elapsed">
-                                                        <p class="text-muted"><?php echo $cd->date;?></p>
+                                                        <p class="text-muted"><?php echo date("M j, Y", strtotime($cd->date));?></p>
                                                     </div>
                                                     
                                                 </div>
                                             </div>
-                    
                                             <div class="col-3 col-md-3 col-sm-3 d-flex align-items-start justify-content-end">
                                                 <div class="edit-delete">
                                                     <?php if($finder_id == $cd->user_id){
@@ -461,11 +429,11 @@
                                     <?php }}?>
                                 </div>
                             </span>
-                            
                         </div>
                     </div>
                 </div>
                 <?php }?>
+
 
                 <hr>
 
@@ -668,7 +636,7 @@
     $(document).on('click','#add_cmnt',function(){
     BASE_URL = "<?php echo base_url();?>";
     id = $(this).attr('posts_id');
-    comm = $('#cmnt_text').val();
+    comm = $(this).parent().parent().find('.comnt_text').val();
     $.ajax({
           url:BASE_URL+"addComment/"+id,
           type: "POST",
@@ -688,13 +656,14 @@
         if(status == "active"){     
          $(this).parent().parent().parent().parent().find('.posts-comment').find('textarea').remove();
          $(this).parent().parent().parent().parent().find('.posts-comment').find('button').remove();
+         $(this).parent().parent().parent().parent().find('.posts-comment').find('p').show();
          $(this).attr('stat', '');
         }
         else{
          $(this).attr('stat', 'active');
          $(this).parent().parent().parent().parent().find('.posts-comment').find('p').hide();
          edit_comment_text = $(this).parent().parent().parent().parent().find('.posts-comment').find('p').text();
-         $(this).parent().parent().parent().parent().find('.posts-comment').append("<div><textarea class='comment_field_edit' cols='120' rows='3'>"+edit_comment_text+"</textarea><button class='edit_curr_comment add-com badge badge-success p-2' getid='"+id+"'>UPDATE</button></div>");
+         $(this).parent().parent().parent().parent().find('.posts-comment').append("<div><textarea class='comment_field_edit' cols='118' rows='3'>"+edit_comment_text+"</textarea><button class='edit_curr_comment add-com badge badge-success p-2' getid='"+id+"'>UPDATE</button></div>");
         }
 });
 $(document).on('click', '.edit_curr_comment',function(){
@@ -719,7 +688,8 @@ $(document).on('click', '.edit_curr_comment',function(){
 <script>
 $(document).on('click', '#del_comment', function(){
         id = $(this).attr('del_id');
-        count = $('#cmnt_count').text();
+        count = $(this).parent().parent().parent().parent().parent().parent().parent().parent().parent().find('.mark_count').text();
+        count_elem = $(this).parent().parent().parent().parent().parent().parent().parent().parent().parent().find('.mark_count');
         $.ajax({  
 				url: BASE_URL+"deleteComment/"+id,   
 				type:"POST",  
@@ -727,9 +697,48 @@ $(document).on('click', '#del_comment', function(){
 				success:function(data)  
 				{   
                     count = count - 1;
-                    $('#cmnt_count').text(count);
+                    count_elem.text(count);
 				}
 		});
         $(this).parent().parent().parent().parent().hide();
 });
+</script>
+<script>
+    $(document).on("click", ".access-type", function(){
+    $("#view-description").modal('show');
+    id = $(this).attr('data');
+    $.ajax({
+					url: BASE_URL+"getCompTypeInfo/"+id,
+					type: "GET",
+                    cache: false,
+                    async: false,
+					success: function(data){
+                           var result = JSON.parse(data);
+                            for(var x = 0 ; x < result.length ; x ++)
+                            {
+                                $("#type_name").text(result[x]['name']);
+                                $("#type-id").text(result[x]['Ctype_id']);
+								$("#type_access").text(result[x]['name']);
+                                $("#type_units").text(result[x]['total_units']);
+                                $("#type_rate").text("₱"+result[x]['rate']);
+								$("#type_status").text(result[x]['status']);
+								$("#view-upload-preview").attr("src","../assets/upload/shop/computertype/"+result[x]['comp_type_img']);
+								var specs_text = result[x]['specs'];
+								var specs_arr = specs_text.split(",");
+								$("#type_cpu").text(specs_arr[0]);
+								$("#type_acc").text(specs_arr[1]);
+                                if(result[x]['status'] == "Available"){
+                                    $("#type_status").removeClass("badge-danger");
+                                    $("#type_status").addClass("badge-success");
+                                }
+                                else if(result[x]['status'] == "Unavailable"){
+                                    $("#type_status").addClass("badge-danger");
+                                    $("#type_status").removeClass("badge-success");
+                                }
+                                $(".editdata_id").text(result[x]['Ctype_id']);
+                            }
+                    }
+        
+                });
+    });
 </script>

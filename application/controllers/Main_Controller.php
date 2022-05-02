@@ -146,7 +146,11 @@ class Main_Controller extends CI_Controller {
 		if(!$session['user_name']){
 			redirect(findnlogin);
 		}else{
-			$this->load->model('MainModel');
+			// shop details
+			$this->load->model('MainModel');			
+			$result['shopdetails']	 = $this->MainModel->getShopDetails($shop_id);
+			$result['typedetails']	 = $this->MainModel->getListOfComputerTypes($shop_id);
+			$result['shop_images']	 = $this->MainModel->viewShopimages($shop_id);
 			// post and comments
 			$result['postDetails'] = $this->MainModel->getAllPosts($shop_id);
 			$result['commentDetails'] = $this->MainModel->getAllComments();

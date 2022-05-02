@@ -617,6 +617,7 @@
         if(status == "active"){     
          $(this).parent().parent().parent().parent().find('.posts-comment').find('textarea').remove();
          $(this).parent().parent().parent().parent().find('.posts-comment').find('button').remove();
+         $(this).parent().parent().parent().parent().find('.posts-comment').find('p').show();
          $(this).attr('stat', '');
         }
         else{
