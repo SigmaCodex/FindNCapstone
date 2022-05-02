@@ -1011,7 +1011,7 @@ class MainModel extends CI_Model{
         $this->db->join('computershop', 'computershop.shop_id = post_events.shop_id', 'left');
         $this->db->join('compmanager', 'compmanager.shop_id_fk = computershop.shop_id', 'left');
         $this->db->where("post_events.shop_id",$id);
-        $this->db->order_by('post_id','desc');
+        $this->db->order_by('post_created','desc');
         $query = $this->db->get();
         return $query->result();
     }
@@ -1021,13 +1021,13 @@ class MainModel extends CI_Model{
         $this->db->join('user', 'user.user_id = comments.user_id', 'left');
         $this->db->join('finders', 'finders.user_id = user.user_id', 'left');
         $this->db->join('compmanager', 'compmanager.user_id = user.user_id', 'left');
-        $this->db->order_by('comment_id','asc');
+        $this->db->order_by('date','desc');
         $query = $this->db->get();
         return $query->result();
     }
 
     public function addshopPosts($id,$status){
-        $date_created = date('m/d/y');
+        $date_created = date('m/d/y H:i A');
         if($status == "no-image"){
             $data = array(
             'shop_id'  =>    $id,
@@ -1091,7 +1091,7 @@ class MainModel extends CI_Model{
     }
     public function addComments($id){
         $comuser_id = $this->session->userdata('user_id');
-        $date_created = date('m/d/y');
+        $date_created = date('m/d/y H:i A');
         $data = array(
             'post_id_fk' => $id,
             'user_id' => $comuser_id,
