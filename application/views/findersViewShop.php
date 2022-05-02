@@ -318,7 +318,7 @@
 
                         <div class="col-2">
                             <div class="profile-date-posted text-right">
-                                <p class="text-muted"><?php echo date("M j, Y", strtotime($pd->post_created));?></p>
+                                <p class="text-muted"><?php echo date("M j, Y H:i A", strtotime($pd->post_created));?></p>
                             </div>
                         </div>
                     </div>
@@ -401,7 +401,7 @@
                                                     <?php }?>
                                                     <p class="text-muted m-0"><?php echo $cd->user_type;?></p>
                                                     <div class="profile-elapsed">
-                                                        <p class="text-muted"><?php echo date("M j, Y", strtotime($cd->date));?></p>
+                                                        <p class="text-muted"><?php echo date("M j, Y H:i A", strtotime($cd->date));?></p>
                                                     </div>
                                                     
                                                 </div>
