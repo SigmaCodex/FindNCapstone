@@ -65,7 +65,7 @@
                                     <div class="row">
                                         <div class="col-4">
                                             <div class="content-card-link">
-                                                <a href="findersViewSwhop/<?php echo $data->shop_id?>">View Shop</a>
+                                                <a href="findersViewShop/<?php echo $data->shop_id?>">View Shop</a>
                                             </div>
                                         </div>
                                         <div class="col-4 ">
