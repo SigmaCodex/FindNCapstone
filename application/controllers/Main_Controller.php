@@ -137,17 +137,22 @@ class Main_Controller extends CI_Controller {
 		}
 	}
 
-	public function viewFindersViewShop()
+	public function viewFindersViewShop($shop_id)
 	{
 		$session['profile_pic'] = $this->session->userdata('profile_pic');
 		$session['user_name'] = $this->session->userdata('username');
-
+		$finder_id = $this->session->userdata('user_id');
+		
 		if(!$session['user_name']){
 			redirect(findnlogin);
 		}else{
-
-			$this->load->view('finders/navbar',$session);
-			$this->load->view('findersViewShop');
+			$this->load->model('MainModel');
+			// post and comments
+			$result['postDetails'] = $this->MainModel->getAllPosts($shop_id);
+			$result['commentDetails'] = $this->MainModel->getAllComments();
+			$result['finder_id'] = $finder_id; 
+			$this->load->view('finders/navbar-query',$session);
+			$this->load->view('findersViewShop',$result);
 		}
 	}
 	public function viewFindersHome()

@@ -44,7 +44,7 @@ $route['viewShop/(:num)']     = 'main_controller/viewShop/$1';
 $route['findershomepage'] = 'main_controller/viewFinders_HomePage';
 //newFindn
 $route['findersHome'] = 'main_controller/viewFindersHome';
-$route['findersViewShop'] = 'main_controller/viewFindersViewShop';
+$route['findersViewShop/(:num)'] = 'main_controller/viewFindersViewShop/$1';
 
 $route['accountSettings'] = 'main_controller/viewAccountSettings';
 $route['finderBookingList'] = 'main_controller/viewfinderBookingList';

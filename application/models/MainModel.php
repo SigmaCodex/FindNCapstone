@@ -1016,10 +1016,11 @@ class MainModel extends CI_Model{
         return $query->result();
     }
     public function getAllComments(){
-        $this->db->select('comments.*, user.user_type, user.username,finders.firstname,finders.lastname,finders.profile_pic');
+        $this->db->select('comments.*, user.user_type, user.username,finders.firstname,finders.lastname,compmanager.firstname as admin_firstname,compmanager.lastname as admin_lastname,finders.profile_pic, compmanager.profilepic');
         $this->db->from('comments');
         $this->db->join('user', 'user.user_id = comments.user_id', 'left');
         $this->db->join('finders', 'finders.user_id = user.user_id', 'left');
+        $this->db->join('compmanager', 'compmanager.user_id = user.user_id', 'left');
         $this->db->order_by('comment_id','asc');
         $query = $this->db->get();
         return $query->result();

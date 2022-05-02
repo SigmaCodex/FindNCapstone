@@ -9,13 +9,14 @@
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">    
 	<!-- My CSS -->
-	<link rel="stylesheet" href="assets/css/findersViewShop.css">
+	<link rel="stylesheet" href="../assets/css/findersViewShop.css">
 
     <!-- bootstrap CDN -->
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-    
+	<script src="../assets/js/findersViewShop.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>    
 	<title>View Shop Admin</title>
 </head>
 <body>
@@ -331,26 +332,26 @@
                 <div class="card-title text-left mb-3">
                     <h6>Posts</h6>
                 </div>
-                
                 <div class="profile-info">
-
-                    <div class="row">
+                <?php foreach($postDetails as $pd){?>
+                    <p id="shop_id" style="display:none"><?php echo $pd->shop_id;?></p>
+                    <div class="row mt-5">
                         <div class="col-1">
                             <div class="profile-info-img">
-                                <img src="assets/images/Image1.png" alt="">
+                                <img src="../assets/images/<?php echo $pd->shop_img_icon?>" alt="">
                             </div>
                         </div>
                         
                         <div class="col-9">
                             <div class="profile-name-title">
-                                <h5 class="m-0" >TNC CYBERCAFE CEBU HQ</h5>
-                                <p class="m-0">TNC_cebu (Admin1)</p>
+                                <h5 class="m-0" ><?php echo $pd->shop_name;?></h5>
+                                <p class="m-0"><?php echo $pd->firstname;?> <?php echo $pd->lastname;?>(ADMIN)</p>
                             </div>
                         </div>
 
                         <div class="col-2">
                             <div class="profile-date-posted text-right">
-                                <p class="text-muted">May 2, 2022</p>
+                                <p class="text-muted"><?php echo $pd->post_created;?></p>
                             </div>
                         </div>
                     </div>
@@ -359,7 +360,7 @@
                         <div class="col-1"></div>
                         <div class="col-11">
                             <div class="profile-post">
-                                <h5>NEW SUGBO MERKADO</h5>
+                                <h5><?php echo $pd->post_title;?></h5>
                             </div>
                         </div>
                     </div>
@@ -368,7 +369,7 @@
                         <div class="col-1"></div>
                         <div class="col-11">
                             <div class="profile-post">
-                                <img src="assets/images/sugbo.jpg" alt="">
+                                <img src="../assets/images/<?php echo $pd->post_img;?>" alt="">
                             </div>
                         </div>
                     </div>
@@ -377,11 +378,11 @@
                         <div class="col-1"></div>
                         <div class="col-11">
                             <div class="profile-post">
-                                <p class="m-0 desc">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum</p>
+                                <p class="m-0 desc"><?php echo $pd->post_description;?></p>
                             </div>
                             <div class="profile-post-comment pt-3 d-flex align-items-center justify-content-start">
-                                <p class=" m-0 badge badge-dark">1</p>
-                                <p class="m-0 comment" id="comment_text" onclick="myFunctionComment()">Comment</p>
+                                <p class=" m-0 badge badge-dark" id="cmnt_count"><?php $count=0; foreach($commentDetails as $cmtdet){if($pd->post_id == $cmtdet->post_id_fk){$count++;}} echo $count;?></p>
+                                <p class="m-0 comment" id="comment_text">Comment</p>
 
                             </div>
                         </div>
@@ -391,33 +392,47 @@
                         <div class="col-1"></div>
                         <div class="col-11">
 
-                            <span id="comments">
+                            <span class="comments-section-area mb-5" id="comments">
                                 <div class="comments">
                                     <div class="comments-section">
                                         <h6>Comments</h6>
                                     </div>
             
-                                    <textarea name="" id="" cols="140" rows="4"></textarea>
+                                    <textarea id="cmnt_text" cols="140" rows="4"></textarea>
                                     
                                     <div class="d-flex align-items-center justify-content-end">
-                                        <button class="btn btn-success">Post Comment</button>
+                                        <button class="btn btn-success" id="add_cmnt" posts_id="<?php echo $pd->post_id;?>">Post Comment</button>
                                     </div>
-
+                                    <?php foreach($commentDetails as $cd){
+                                    if($pd->post_id == $cd->post_id_fk){
+                                    ?>
                                     <!-- First Comment Card -->
                                     <div class="comments-card mt-4 pt-4">
                                         <div class="row">
                                             <div class="col-lg-1 col-md-1 col-sm-2">
+                                                <?php if($cd->user_type == "Admin"){?>
                                                 <div class="profile-img">
-                                                    <img src="assets/images/Image1.png" alt="">
+                                                <img src="../assets/upload/shop/admin/<?php echo $cd->profilepic;?>" alt="">
                                                 </div>
+                                                <?php }?> 
+                                                <?php if($cd->user_type == "finder"){?>
+                                                <div class="profile-img">
+                                                <img src="../assets/upload/finder/<?php echo $cd->profile_pic;?>" alt="">
+                                                </div>
+                                                 <?php }?>
                                             </div>
                     
                                             <div class="col-8 col-md-8 col-sm-7 d-flex align-items-center justify-content-start">
                                                 <div class="comments-profile-name">
-                                                    <h6 class="m-0">Junky Dubs</h6>
-                                                    <p class="text-muted m-0">junky</p>
+                                                    <?php if($cd->user_type == "Admin"){?>
+                                                    <h6 class="m-0"><?php echo $cd->admin_firstname;?> <?php echo $cd->admin_lastname;?></h6>
+                                                    <?php }?>
+                                                    <?php if($cd->user_type == "finder"){?>
+                                                    <h6 class="m-0"><?php echo $cd->firstname;?> <?php echo $cd->lastname;?></h6>
+                                                    <?php }?>
+                                                    <p class="text-muted m-0"><?php echo $cd->user_type;?></p>
                                                     <div class="profile-elapsed">
-                                                        <p class="text-muted">May 2, 2022</p>
+                                                        <p class="text-muted"><?php echo $cd->date;?></p>
                                                     </div>
                                                     
                                                 </div>
@@ -425,32 +440,32 @@
                     
                                             <div class="col-3 col-md-3 col-sm-3 d-flex align-items-start justify-content-end">
                                                 <div class="edit-delete">
-                                                    <i class='bx bxs-edit'></i>
-                                                    <i class='bx bx-trash'></i>
+                                                    <?php if($finder_id == $cd->user_id){
+                                                    echo "<i class='bx bxs-edit' id='edit_comment' edit_id='$cd->comment_id'></i>
+                                                    <i class='bx bx-trash' id='del_comment' del_id='$cd->comment_id'></i>";
+                                                    }?>
                                                 </div>
                                             </div>
-                                        </div>
+                                        </div> 
                                         
                                         <div class="row">
                                             <div class="col-1"></div>
                                             <div class="col-11">
                                                 <div class="posts-comment">
-                                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
-                                                        sed do eiusmod tempor 
+                                                    <p><?php echo $cd->comment;?> 
                                                     </p>
                                                 </div>
                                             </div>
                                         </div>
-                                        
                                     </div>
-                                    
+                                    <?php }}?>
                                 </div>
                             </span>
                             
                         </div>
                     </div>
-
                 </div>
+                <?php }?>
 
                 <hr>
 
@@ -647,8 +662,74 @@
        
 		
 	<!-- END CONTENT -->
-	
-
-	<script src="findersViewShop.js"></script>
 </body>
 </html>
+<script>
+    $(document).on('click','#add_cmnt',function(){
+    BASE_URL = "<?php echo base_url();?>";
+    id = $(this).attr('posts_id');
+    comm = $('#cmnt_text').val();
+    $.ajax({
+          url:BASE_URL+"addComment/"+id,
+          type: "POST",
+          data:{comment_txt:comm},
+          success: function(data)
+          {
+            location.reload();    
+          }
+         });
+    });
+</script>
+<script>
+     $(document).on('click', '#edit_comment',function(){
+        BASE_URL = "<?php echo base_url();?>";
+        id = $(this).attr("edit_id");
+        status = $(this).attr('stat');
+        if(status == "active"){     
+         $(this).parent().parent().parent().parent().find('.posts-comment').find('textarea').remove();
+         $(this).parent().parent().parent().parent().find('.posts-comment').find('button').remove();
+         $(this).attr('stat', '');
+        }
+        else{
+         $(this).attr('stat', 'active');
+         $(this).parent().parent().parent().parent().find('.posts-comment').find('p').hide();
+         edit_comment_text = $(this).parent().parent().parent().parent().find('.posts-comment').find('p').text();
+         $(this).parent().parent().parent().parent().find('.posts-comment').append("<div><textarea class='comment_field_edit' cols='120' rows='3'>"+edit_comment_text+"</textarea><button class='edit_curr_comment add-com badge badge-success p-2' getid='"+id+"'>UPDATE</button></div>");
+        }
+});
+$(document).on('click', '.edit_curr_comment',function(){
+        // comm = $(this).parent().find('.comment_field_edit').css('background-color','red');
+        edited_comment = $(this).parent().parent().parent().find('.posts-comment').find('textarea').val();
+        id = $(this).attr('getid');
+                $.ajax({  
+                     url: BASE_URL+"updateComment/"+id,   
+                     method:"POST",  
+                     data:{comment_txt:edited_comment},
+                     success:function(data)  
+                     {
+                     }  
+                });
+            $(this).parent().parent().parent().find('p').show();
+            $(this).parent().parent().parent().find('p').text(edited_comment);
+            $(this).parent().parent().parent().find('.posts-comment').find('textarea').remove();
+            $(this).remove();
+});
+</script>
+
+<script>
+$(document).on('click', '#del_comment', function(){
+        id = $(this).attr('del_id');
+        count = $('#cmnt_count').text();
+        $.ajax({  
+				url: BASE_URL+"deleteComment/"+id,   
+				type:"POST",  
+				data:{},   
+				success:function(data)  
+				{   
+                    count = count - 1;
+                    $('#cmnt_count').text(count);
+				}
+		});
+        $(this).parent().parent().parent().parent().hide();
+});
+</script>
