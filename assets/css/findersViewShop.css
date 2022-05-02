@@ -1,0 +1,481 @@
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;1,300&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins');
+@import url('http://fonts.cdnfonts.com/css/uni-neue');
+@import url('//db.onlinewebfonts.com/c/80241b4ef777109d2625c9195e7ca852?family=NordiquePro-Bold');
+                
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+}
+
+img{
+    width: 100%;
+}
+.profile-details{
+    padding-left: 60px;
+}
+.profile-img img{
+    width: 230px;
+    height: 230px;
+    object-fit: cover;
+    border-radius: 20%;
+}
+.profile-title h1{
+    font-size: 30px;
+    font-weight:700;
+}
+.reviews-star i{
+    color: #F78516;
+    font-size: 30px;
+}
+.reviews-num {
+  padding-left: 10px;  
+}
+.reviews-num h6{
+    font-size: 20px;
+    color: #565151; 
+    font-weight: 800;
+}
+.reviews-num p{
+    padding-left: 5px;  
+    font-size: 20px;
+    color: #565151; 
+    font-weight: 500;
+}
+.profile-brief-details{
+    padding-top: 10px;
+}
+.contact{
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+.contact i{
+    color: #F78516;
+    padding-right: 20px;
+    font-size: 20px;
+}
+.contact p{
+    color: #7B7575;
+    font-size: 12px;
+}
+.book-mark i{
+    font-size: 30px;
+    cursor: pointer;
+    color: #DBD2D2;
+}
+.book-mark i:hover{
+    color: #F78516;
+}
+.book{
+    padding: 10px 150px 10px 150px;
+    cursor: pointer;
+    outline: none;
+    border: none;
+    border-radius: 5px;
+    background-color: #FF5D31;
+    color: #FFFFFF;
+    font-weight: 700;
+}
+.book:hover{
+    background-color: #f84513;
+    color: #FFFFFF;
+}
+
+/* IMAGES */
+#carouselExampleIndicators {
+    /* width: 400px;
+    height: 400px; */
+}
+.carousel-item img{
+    width: 300px;
+    height: 250px;
+    object-fit: cover;
+}
+.profile-desc p{
+    font-size: 17px;
+    text-align: justify;
+}
+
+/* Cards */
+.card-title h6{
+    font-size: 25px;
+    color: #565151;
+    font-weight: 700;
+}
+.card-content {
+    width: 100%;
+    overflow-x: auto;
+}
+.card-content .access-type {
+    padding: 20px;
+    box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.3);
+    border-radius: 10px;
+    cursor: pointer;
+    margin: 10px;
+}
+.card-content .access-type:hover{
+    box-shadow: 0px 1px 6px rgba(0, 0, 0, 0.4);
+}
+.card-content .access-type .access-type-title h6{
+    font-size: 17px;
+    font-weight: 900;
+    color: #F78516;
+}
+.card-content .access-type-img img{
+    width: 300px;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 10px;
+}
+.access-type-details {
+    padding-top: 10px;
+}
+/* .access-type-details-text h6{
+    font-size: 22px;
+    padding-right: 10px;
+    color: #FF5D31;
+} */
+.access-type-details-text i{
+    font-size: 25px;
+    padding-right: 10px;
+    color: #FF5D31;
+}
+.access-type-details-text p{
+    font-size: 15px;
+    padding-right: 10px;
+    font-weight: 600;
+}
+.access-type-details-text .data-cpu{
+    font-size: 10px;
+    padding-left: 5px;
+}
+.access-type-details-text .data-acc{
+    font-size: 12px;
+}
+.access-type-details-text .data{
+    font-size: 15px;
+    padding-left: 5px;
+}
+.button-modal {
+    padding-top: 20px;
+}
+.button-modal h6{
+    font-size: 15px;
+    margin: 0;
+    font-weight: 400;
+    color: #ec6d4a;
+}
+.button-modal i{
+    font-size: 15px;
+    margin: 0;
+    font-weight: 400;
+    color: #ec6d4a;
+    padding-left: 5px;
+}
+
+.button-modal:hover h6,
+.button-modal:hover i{ 
+	font-weight: 600;
+    color: #f84513;
+}
+
+/* POSTS */
+.profile-info {
+    padding: 20px 50px 20px 50px;
+}
+.profile-info-img img {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+.profile-name-title{
+    padding-left: 10px;
+}
+.profile-name-title h5{
+    font-size: 25px;
+    font-weight: 600;
+}
+.profile-name-title p{
+    font-size: 15px;
+}
+.profile-date-posted p{
+    font-size: 12px;
+    padding-left: 10px;
+}
+.profile-post h5{
+    padding-left: 10px;
+    font-weight: 700;
+    color: #2e2b2b;
+}
+.profile-post img{
+    padding-left: 10px;
+    height: 400px;
+    object-fit: cover;
+}
+.profile-post .desc{
+    padding-top: 10px;
+    padding-left: 10px;
+    font-weight: 400;
+    color: #2e2b2b;
+    text-align: justify;
+}
+.profile-post-comment{
+    padding-left: 10px;
+}
+.profile-post-comment .num{
+    background-color: #565151;
+    border-radius: 50%;
+}
+.profile-post-comment .comment{
+    padding-left: 5px;
+    color: #595656;
+    cursor: pointer;
+}
+.profile-post-comment .comment:hover{
+    color: #2e2b2b;
+    font-weight: 600;
+}
+#comments{
+    display: none;
+}
+.comments{
+    padding-left: 15px;
+    padding-top: 20px;
+}
+.comments-section h6{
+    font-size: 25px;
+}
+.comments textarea{
+    outline: none;
+    resize: none;
+    border: 1px solid rgb(178, 174, 174);
+    color: #A7A1A1;
+    border-radius: 10px;
+    padding: 10px;
+    font-size: 13px;
+}
+.comments-card{
+    padding: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+    border-radius: 5px;
+}
+.comments-card .profile-img img{
+    width: 70px;
+    height: 70px;
+    object-fit: cover;
+    border-radius: 50%;
+}
+.comments-profile-name{
+    padding-left: 10px;
+}
+.comments-profile-name h6{
+    font-size: 20px;
+    font-weight: 600;
+}
+.profile-elapsed p{
+    font-size: 12px;
+}
+.posts-comment{
+    padding-top: 5px;
+    padding-left: 10px;
+}
+.edit-delete i{
+    cursor: pointer;
+    color: #a49999;
+    font-size: 20px;
+    padding: 10px;
+}
+.edit-delete .bxs-edit:hover{
+    cursor: pointer;
+    color: #0a9d14;
+    font-size: 20px;
+}
+.edit-delete .bx-trash:hover{
+    cursor: pointer;
+    color: #e20c0c;
+    font-size: 20px;
+}
+
+
+/* REVIEWS */
+.ratings-card-details{
+    box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.3);
+    padding: 10px;
+    margin: 10px;
+    width: 600px;
+}
+.ratings-img img{
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    border-radius: 50%;
+}
+.review-stars-ratings i{
+    color: #F78516;
+    font-size: 60px;
+}
+.ratings-name{
+    margin-left: -15px;
+}
+.ratings-name h6 {
+    font-size: 15px;
+    font-weight: 700;
+}
+.ratings-name p {
+    font-size: 13px;
+}
+.ratings-date p{
+    font-size:10px;
+}
+.ratings-card-star i {
+    color: #F78516;
+}
+.ratings-desc-details p{
+    font-size: 12px;
+    padding-left: 70px;
+}
+.ratings-data {
+    width: 100%;
+}
+
+/* Ratings */
+.carousel-control-prev-icon {
+    background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='black' viewBox='0 0 8 8'%3E%3Cpath d='M5.25 0l-4 4 4 4 1.5-1.5-2.5-2.5 2.5-2.5-1.5-1.5z'/%3E%3C/svg%3E"); 
+}
+.carousel-control-next-icon {
+    background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='black' viewBox='0 0 8 8'%3E%3Cpath d='M2.75 0l-1.5 1.5 2.5 2.5-2.5 2.5 1.5 1.5 4-4-4-4z'/%3E%3C/svg%3E");
+}
+
+@media (max-width: 400px) {
+    .profile-img img{
+        margin-left: 58px;
+    }
+    .profile-title h1{
+        padding-top: 20px;
+        font-size: 20px;
+    }
+    .profile-details{
+        padding-left: 0px;
+    }
+    .mb-auto .p-2 {
+        margin-top: -230px !important;
+    }
+    .book{
+        padding: 10px 50px 10px 50px;
+    }
+    .profile-info {
+        padding: 5px;
+    }
+    .profile-desc p {
+        padding-top: 10px;
+    }
+    .profile-info-img img {
+        width: 50px;
+        height: 50px;
+    }
+    .profile-name-title{
+        padding-left: 30px;
+    }
+    .profile-name-title h5{
+        font-size: 15px;
+    }
+    .profile-name-title p{
+        font-size: 15px;
+    }
+    .profile-date-posted p{
+        font-size: 6px;
+    }
+    .profile-post h5{
+        padding-left: 10px;
+        font-size: 17px;
+        padding-top: 20px;
+    }
+    .profile-post img{
+        padding-left: 0px;
+    }
+    .profile-post .desc{
+        padding-left: 0px;
+        text-align: justify;
+    }
+
+    /* asdasd */
+
+    .profile-post-comment{
+        padding-left: 0px;
+    }
+    .comments{
+        padding-left: 0px;
+    }
+    .comments-section h6{
+        font-size: 20px;
+    }
+    .comments textarea{
+        width: 310px;
+    }
+    .comments-card{
+        padding: 5px;
+    }
+    .comments-card .profile-img img{
+        width: 50px;
+        height: 50px;
+        margin-left: 10px;
+    }
+    .comments-profile-name{
+        padding-left: 80px;
+        margin-top: -50px;
+    }
+    .comments-profile-name h6{
+        font-size: 15px;
+    }
+    .profile-elapsed p{
+        font-size: 8px;
+    }
+    .edit-delete{
+        margin-left: -50px;
+        position: absolute;
+        top: -60px;
+        right: -20px;
+    }
+    .ratings-card-details{
+        width: 350px;
+    }
+    .ratings-name{
+        margin-left: 5px;
+    }
+}
+
+
+
+
+/* SCROLL */
+/* width */
+::-webkit-scrollbar {
+    height: 8px;
+    width: 10px;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: #f1f1f1; 
+    border-radius: 5px;
+  }
+   
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: #888; 
+    border-radius: 5px;
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #555; 
+  }

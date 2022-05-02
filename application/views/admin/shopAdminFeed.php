@@ -488,8 +488,10 @@
                         </div>    
     
                         <div class="profile-comment">
+
                             <p> 
                                        <?php echo $user_ratings->review?> 
+
                             </p>
                         </div>
     
