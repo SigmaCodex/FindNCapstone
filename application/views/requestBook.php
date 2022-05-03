@@ -92,6 +92,7 @@
                   <div class="multisteps-form__panel shadow p-4 rounded bg-white" data-animation="scaleIn">
                     <h3 class="multisteps-form__title">Access Type</h3>
                     <?php foreach ($shopdetails as $shop) {?>
+                      <p id="shop_id"><?php echo $shop->shop_id;?></p>
                     <h3 class="multisteps-form__title" ><?php echo $shop->shop_name;?></h3>
                     <?php }?>
                     <div id="shop_id"><?php if(isset($shop_id)){ echo $shop_id;}?></div>
@@ -356,10 +357,10 @@
   //number of person validation
   $(document).on('change','#num-person',function(){ 
     num_person = $(this).val();
-    if(num_person<1 || num_person >= 20){
+    if(num_person<1 || num_person > 10){
       swal(
 							'Invalid Number Of Person',
-							'Maximum Number Of person is 20 and Minimum of 1',
+							'Maximum Number Of person is 10 and Minimum of 1',
 							'error'
 						) 
             $(this).val(""); 
@@ -441,6 +442,46 @@
     return currentDate;
   }
 
+</script>
+
+
+<script>
+$(document).on('click','.star',function(){ 
+   var rating = $(this).val();
+   $("#submit_review").attr('rating',rating);
+
+});
+
+$(document).on('click','#submit_review',function(){ 
+   var shop_id = $('#shop_id').text();
+   var rating = $(this).attr('rating');
+   var review = $('#review').val();
+   var BASE_URL = "<?php echo base_url();?>";
+
+   $.ajax({
+			url: BASE_URL+"addRate/"+shop_id,
+			method: "POST",
+			data:{score: rating,rate_review:review},
+			success: function (data) {
+        // location.reload();
+
+          swal({
+            title: "Thank You",
+            text: "Your FeedBack Was Succesfully Submitted",
+            icon: "success",
+            button: "Continue",
+          }).then((value) => {
+                location.reload();
+          });
+
+
+			},
+		});
+ 
+
+
+  
+});
 </script>
 
 

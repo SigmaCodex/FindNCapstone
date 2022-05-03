@@ -197,7 +197,7 @@
          </div>
     </div>
 
-
+    <!-- start modal -->
     <div  class="modal fade" id="rate" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
       <div class="modal-dialog modal-dialog-centered" role="document">
           <div class="modal-content py-md-5 px-md-4 p-sm-3 p-4">
@@ -317,6 +317,7 @@
           </div>
       </div>
     </div>
+    <!-- end of modal -->
 
     <?php }?><!-- end of foreach shopdetails -->
 

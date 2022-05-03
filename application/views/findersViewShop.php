@@ -43,21 +43,42 @@
                         <div class="profile-details">
                             <div class="profile-title">
                                 <h1><?php echo $sd->shop_name;?></h1>
+                                <p id="shop_id" style="display:none"><?php echo $sd->shop_id;?></p>
                             </div>
-
+                            <?php foreach($count_ratings as $rate){?>
+                                
                             <div class="profile-review d-flex align-items-center justify-content-start">
                                 <div class="reviews-star d-flex align-items-center justify-content-start">
-                                    <i class='bx bxs-star'></i>
-                                    <i class='bx bxs-star'></i>
-                                    <i class='bx bxs-star'></i>
-                                    <i class='bx bxs-star'></i>
-                                    <i class='bx bx-star' ></i>
+
+                                <?php
+                                    $rateConverted = number_format($rate->avgRatings, 0) ;
+                                    if($rateConverted==0){
+                                        echo "<i class='bx bx-star' ></i>";
+                                    }else{
+
+                                        for($i=1; $i<=5; $i++){
+                                        
+                                            if($i<=$rate->avgRatings){
+                                                echo "<i class='bx bxs-star' ></i>";
+                                            }else{
+                                                if(($i < floor($rateConverted)+0.5) && $rate->avgRatings <5){
+                                                    echo "<i class='bx bxs-star-half'></i>";
+                                                }else{
+                                                    echo "<i class='bx bx-star' ></i>";
+                                                }
+                                            }
+                                        }	
+
+                                    }	
+							    ?>
+
                                 </div>
                                 <div class="reviews-num  d-flex align-items-center justify-content-start">
-                                    <h6 class="m-0">15</h6>
+                                    <h6 class="m-0"><?php echo number_format($rate->avgRatings, 1);?></h6>
                                     <p class="m-0">reviews</p>
                                 </div>
                             </div>
+                            <?php }?>
 
                             <div class="profile-brief-details">
                                 
@@ -122,10 +143,10 @@
 
                                 </div>
                                 <div class="p-2">
-                                    <button class="btn btn-light">Rate</button>
+                                    <button class="btn btn-warning"  data-toggle="modal" data-target="#rate">Rate <i class='bx bxs-star'></i></button>
                                 </div>
                                 <div class="p-2">
-                                    <button class="book" data-toggle="modal" data-target="#booknow_modal" style="outline:none;">Book</button>
+                                    <button class="book" data-toggle="modal" data-target="#booknow_modal" style="outline:none;" >Book</button>
                                 </div>
                                 
                             </div>
@@ -133,6 +154,7 @@
                     </div>
 
                 </div>
+                
                 <!-- BOOK NOW MODAL -->
                 <hr>
                 <div class="modal" id="booknow_modal" tabindex="-1" role="dialog">
@@ -440,173 +462,99 @@
                 <div class="card-title text-center mb-3">
                     <h6>Reviews</h6>
                 </div>
+                <?php foreach($count_ratings as $review){?>
                 <div class="card-title text-center mb-1">
-                    <h3> <b>4.0</b> </h2>
+                    <h3> <b><?php echo number_format($review->avgRatings, 1);?></b> </h2>
                 </div>
 
                 <div class="review-stars-ratings d-flex align-items-center justify-content-center">
-                    <i class='bx bxs-star'></i>
-                    <i class='bx bxs-star'></i>
-                    <i class='bx bxs-star'></i>
-                    <i class='bx bxs-star'></i>
-                    <i class='bx bx-star' ></i>
+                <?php
+                                    $rateConverted = number_format($review->avgRatings, 0) ;
+                                    if($rateConverted==0){
+                                        echo "<i class='bx bx-star' ></i>";
+                                    }else{
+
+                                        for($i=1; $i<=5; $i++){
+                                        
+                                            if($i<=$review->avgRatings){
+                                                echo "<i class='bx bxs-star' ></i>";
+                                            }else{
+                                                if(($i < floor($rateConverted)+0.5) && $review->avgRatings <5){
+                                                    echo "<i class='bx bxs-star-half'></i>";
+                                                }else{
+                                                    echo "<i class='bx bx-star' ></i>";
+                                                }
+                                            }
+                                        }	
+
+                                    }	
+							    ?>
                 </div>
                 
+                <?php }?>
                 <div class="card-title text-center mb-3 pt-1">
-                    <p class="text-muted fs-2">45 Reviews</p>
+                    <p class="text-muted fs-2"> <?php $count = 0; foreach($rating_heading as $user_ratings){ $count++;} echo $count;?> Reviews 
+                    </p>
                 </div>
 
                     <div class="ratings-data ">
-
                         <div class="d-flex justify-content-center align-items-center p-2">
     
                               <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
                                 <div class="carousel-inner">
 
-                                  <div class="carousel-item active">
-                                    <div class="ratings-card-details">
-    
-                                        <div class="row">
-                                            <div class="col-2">
-                                                <div class="ratings-img">
-                                                    <img src="assets/images/Image1.png" alt="">
-                                                </div>
-                                            </div>
-                                            <div class="col-7">
-                                                <div class="ratings-name">
-                                                    <h6 class="">Junky Dubs Dublin</h6>
-                                                    <div class="ratings-card-star d-flex align-items-center justify-content-start">
-                                                        <i class='bx bxs-star'></i>
-                                                        <i class='bx bxs-star'></i>
-                                                        <i class='bx bxs-star'></i>
-                                                        <i class='bx bxs-star'></i>
-                                                        <i class='bx bx-star' ></i>
+                                    <?php 
+                                    $count = 0;
+                                    foreach($rating_heading as $user_ratings){
+                                        $count++;
+                                    ?>
+                                   
+                                    <div class="carousel-item <?php if($count==1){echo "active";}?>">
+                                        <div class="ratings-card-details">
+        
+                                            <div class="row">
+                                                <div class="col-2">
+                                                    <div class="ratings-img">
+                                                    <img src="../assets/upload/finder/<?php echo $user_ratings->profile_pic;?>"  onerror="this.src='../assets/images/default.png';"  alt="">
                                                     </div>
-            
+                                                </div>
+                                                <div class="col-7">
+                                                    <div class="ratings-name">
+                                                        <h6 class=""><?php echo $user_ratings->firstname;?> <?php echo $user_ratings->lastname;?></h6>
+                                                        <div class="ratings-card-star d-flex align-items-center justify-content-start">
+
+                                                        <?php
+                                                            for($i=1; $i<=5; $i++){               
+                                                                if($i<=$user_ratings->computer_rate){
+                                                                    echo "<i class='bx bxs-star' ></i>";
+                                                                }else{
+                                                                    echo "<i class='bx bx-star' ></i>";
+                                                                }
+                                                            }	                                    
+                                                        ?>                                           
+
+                                                        </div>
+                
+                                                    </div>
+                                                </div>
+                                                <div class="col-3">
+                                                    <div class="ratings-date">
+                                                        <p class="text-muted m-0"><?php echo date("M j, Y", strtotime($user_ratings->date));?></p>
+                                                    </div>
                                                 </div>
                                             </div>
-                                            <div class="col-3">
-                                                <div class="ratings-date">
-                                                    <p class="text-muted m-0">May 22, 2022</p>
-                                                </div>
+                                            
+                                            <div class="ratings-desc-details">
+                                                <p>  <?php echo $user_ratings->review;?> </p>
                                             </div>
-                                        </div>
-                                        
-                                        <div class="ratings-desc-details">
-                                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, </p>
                                         </div>
                                     </div>
-                                  </div>
+                                    <?php }?>    
 
-                                  <div class="carousel-item">
-
-                                    <div class="ratings-card-details">
-    
-                                        <div class="row">
-                                            <div class="col-2">
-                                                <div class="ratings-img">
-                                                    <img src="assets/images/Image1.png" alt="">
-                                                </div>
-                                            </div>
-                                            <div class="col-7">
-                                                <div class="ratings-name">
-                                                    <h6 class="">Junky Dubs Dublin</h6>
-                                                    <div class="ratings-card-star d-flex align-items-center justify-content-start">
-                                                        <i class='bx bxs-star'></i>
-                                                        <i class='bx bxs-star'></i>
-                                                        <i class='bx bxs-star'></i>
-                                                        <i class='bx bxs-star'></i>
-                                                        <i class='bx bx-star' ></i>
-                                                    </div>
-            
-                                                </div>
-                                            </div>
-                                            <div class="col-3">
-                                                <div class="ratings-date">
-                                                    <p class="text-muted m-0">May 22, 2022</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        
-                                        <div class="ratings-desc-details">
-                                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, </p>
-                                        </div>
-                                    </div>
-
-                                  </div>
-                                  <div class="carousel-item">
-
-                                    <div class="ratings-card-details">
-    
-                                        <div class="row">
-                                            <div class="col-2">
-                                                <div class="ratings-img">
-                                                    <img src="assets/images/Image1.png" alt="">
-                                                </div>
-                                            </div>
-                                            <div class="col-7">
-                                                <div class="ratings-name">
-                                                    <h6 class="">Junky Dubs Dublin</h6>
-                                                    <div class="ratings-card-star d-flex align-items-center justify-content-start">
-                                                        <i class='bx bxs-star'></i>
-                                                        <i class='bx bxs-star'></i>
-                                                        <i class='bx bxs-star'></i>
-                                                        <i class='bx bxs-star'></i>
-                                                        <i class='bx bx-star' ></i>
-                                                    </div>
-            
-                                                </div>
-                                            </div>
-                                            <div class="col-3">
-                                                <div class="ratings-date">
-                                                    <p class="text-muted m-0">May 22, 2022</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        
-                                        <div class="ratings-desc-details">
-                                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, </p>
-                                        </div>
-                                    </div>
-
-                                  </div>
-                                  <div class="carousel-item">
-
-                                    <div class="ratings-card-details">
-    
-                                        <div class="row">
-                                            <div class="col-2">
-                                                <div class="ratings-img">
-                                                    <img src="assets/images/Image1.png" alt="">
-                                                </div>
-                                            </div>
-                                            <div class="col-7">
-                                                <div class="ratings-name">
-                                                    <h6 class="">Junky Dubs Dublin</h6>
-                                                    <div class="ratings-card-star d-flex align-items-center justify-content-start">
-                                                        <i class='bx bxs-star'></i>
-                                                        <i class='bx bxs-star'></i>
-                                                        <i class='bx bxs-star'></i>
-                                                        <i class='bx bxs-star'></i>
-                                                        <i class='bx bx-star' ></i>
-                                                    </div>
-            
-                                                </div>
-                                            </div>
-                                            <div class="col-3">
-                                                <div class="ratings-date">
-                                                    <p class="text-muted m-0">May 22, 2022</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        
-                                        <div class="ratings-desc-details">
-                                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, </p>
-                                        </div>
-                                    </div>
-
-                                  </div>
                                 </div>
+
+
+
                                 <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
                                   <span class="carousel-control-prev-icon" aria-hidden="true" style="color: red;"></span>
                                   <span class="sr-only">Previous</span>
@@ -627,9 +575,130 @@
                 
         </div>
     </div>
-       
-		
 	<!-- END CONTENT -->
+
+  <!-- start modal -->
+  <div  class="modal fade" id="rate"  data-bs-keyboard="false" tabindex="-1" class="modal" tabindex="-1" role="dialog">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content py-md-5 px-md-4 p-sm-3 p-4">
+
+            <div class="header-title d-flex align-items-center justify-content-start">
+              <i class="fas fa-arrow-left pr-3"  data-dismiss="modal"></i>
+              <h6 class="m-0">Feedback</h6>
+            </div>
+
+            <div class="title">
+              <h4 class="text-center mt-4 mb-1">Rate your Experience</h4>
+            </div>
+              <div class="rate-star d-flex flex-column align-items-center justify-content-center mb-1">
+                  <div class="rate">
+                    <input type="radio" id="star5" name="rate" class="star" value="5" />
+                    <label for="star5" title="text">5 stars</label>
+                    <input type="radio" id="star4" name="rate" class="star" value="4" />
+                    <label for="star4" title="text">4 stars</label>
+                    <input type="radio" id="star3" name="rate" class="star" value="3" />
+                    <label for="star3" title="text">3 stars</label>
+                    <input type="radio" id="star2" name="rate" class="star" value="2" />
+                    <label for="star2" title="text">2 stars</label>
+                    <input type="radio" id="star1" name="rate" class="star" value="1" />
+                    <label for="star1" title="text">1 star</label>
+                    <!-- <input type="text" id="selected_val"> -->
+                  </div>
+                  
+              </div>
+
+                  <div class="modal-details p-3">
+                    <div class="text-details text-center">
+                      <p class="text-muted">How satisfied are you with the service?</p>
+                    </div>
+                    <div class="text-details text-left" style="font-size: 12px;">
+                      <p>Tell us what we can Improved?</p>
+                    </div>
+
+                    <div class="text-card">
+                        <textarea name="" id="review" cols="51" rows="5" placeholder="Type here..." ></textarea>
+                    </div>
+                   
+                  </div>
+
+              <!-- MODAL CSS INLINE -->
+              <style>
+                    .fa-arrow-left {
+                      cursor: pointer;
+                    }
+                    .rate {
+                        float: left;
+                        height: 46px;
+                        padding: 0 10px;
+                    }
+                    .rate:not(:checked) > input {
+                        position:absolute;
+                        top:-9999px;
+                    }
+                    .rate:not(:checked) > label {
+                        float:right;
+                        width:1em;
+                        overflow:hidden;
+                        white-space:nowrap;
+                        cursor:pointer;
+                        font-size:50px;
+                        color:#ccc;
+                    }
+                    .rate:not(:checked) > label:before {
+                        content: '✯ ';
+                    }
+                    .rate > input:checked ~ label {
+                        color: #F78516;    
+                    }
+                    .rate:not(:checked) > label:hover,
+                    .rate:not(:checked) > label:hover ~ label {
+                        color: #F78516;  
+                    }
+                    .rate > input:checked + label:hover,
+                    .rate > input:checked + label:hover ~ label,
+                    .rate > input:checked ~ label:hover,
+                    .rate > input:checked ~ label:hover ~ label,
+                    .rate > label:hover ~ input:checked ~ label {
+                        color: #F78516;
+                    }
+                    .text-card textarea{
+                      outline:none;
+                      resize:none;
+                      border-radius:10px;
+                      padding:10px;
+                      font-size:15px;
+                      border:1px solid #A7A1A1;
+                      background-color: #F1F1F1;
+                    }
+                    .review-but{
+                      background-color: #FF5D31;
+                      color: #FFFFFF;
+                      padding: 10px 100px 10px 100px;
+                      outline:none;
+                      border:none;
+                      border-radius: 5px;
+                    }
+                    .review-but:hover {
+                      background-color: #F53805;
+                    }
+                    @media (max-width: 400px) {
+                        .text-card textarea{
+                          width:280px;
+                        }
+                        .review-but{
+                            font-size:12px;
+                        }
+                    }
+              </style>
+
+                    <div class="button d-flex justify-content-center align-items-center">
+                      <button class="review-but" id="submit_review">Submit Review</button>
+                    </div>
+          </div>
+      </div>
+    </div>
+    <!-- end of modal -->
+
 </body>
 </html>
 <script>
@@ -741,4 +810,45 @@ $(document).on('click', '#del_comment', function(){
         
                 });
     });
+</script>
+
+
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script>
+$(document).on('click','.star',function(){ 
+   var rating = $(this).val();
+   $("#submit_review").attr('rating',rating);
+
+});
+
+$(document).on('click','#submit_review',function(){ 
+   var shop_id = $('#shop_id').text();
+   var rating = $(this).attr('rating');
+   var review = $('#review').val();
+   var BASE_URL = "<?php echo base_url();?>";
+
+   $.ajax({
+			url: BASE_URL+"addRate/"+shop_id,
+			method: "POST",
+			data:{score: rating,rate_review:review},
+			success: function (data) {
+        // location.reload();
+
+          swal({
+            title: "Thank You",
+            text: "Your FeedBack Was Succesfully Submitted",
+            icon: "success",
+            button: "Continue",
+          }).then((value) => {
+                location.reload();
+          });
+
+
+			},
+		});
+ 
+
+
+  
+});
 </script>

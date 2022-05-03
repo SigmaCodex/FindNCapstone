@@ -155,6 +155,11 @@ class Main_Controller extends CI_Controller {
 			$result['postDetails'] = $this->MainModel->getAllPosts($shop_id);
 			$result['commentDetails'] = $this->MainModel->getAllComments();
 			$result['finder_id'] = $finder_id; 
+
+			//shop Ratings
+			$result['count_ratings'] = $this->MainModel->ShopAdminRatings($shop_id);
+			$result['rating_heading']	= $this->MainModel->ShopRecentRatings($shop_id);
+			
 			$this->load->view('finders/navbar-query',$session);
 			$this->load->view('findersViewShop',$result);
 		}
