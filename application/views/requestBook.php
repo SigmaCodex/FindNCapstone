@@ -188,7 +188,7 @@
   
                       <div class="form-row mt-4 d-flex justify-content-center">
                         <div class="col-8 col-sm-4 mt-4 mt-sm-0">
-                          <label for="person">Number of Person</label><input id="num-person" class="multisteps-form__input form-control text-center" type="number" value="1"/>
+                          <label for="person">Number of Person</label><input id="num-person" class="multisteps-form__input form-control text-center" type="number" value="1" min="1" max="10"/>
                         </div>
                         <div class="col-8 col-sm-4 mt-4 mt-sm-0">
                           <label for="date">Date of Booking</label><input class="multisteps-form__input form-control" type="date" id="date" />
@@ -273,7 +273,7 @@
 
          var BASE_URL = "<?php echo base_url();?>";
 
-         if(computer_type == "not_selected" || time_arrival == ""){
+         if(computer_type == "not_selected" || time_arrival == "" || date_arrival == "" || numperson == ""){
           swal(
               'Missing Information',
               'Please Check Your Booking Information',
@@ -305,6 +305,142 @@
         }
 
     });
+</script>
+
+<!-- time validation -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script> 
+<script>
+
+  $(document).on('change','#time',function(){ 
+    time = $(this).val();
+    time_selected = getTimeAsNumberOfMinutes(time);
+  
+    //To DO need to depend of the date selected value 
+
+    const convertTime12to24 = (time12h) => moment(time12h, 'hh:mm A').format('HH:mm');
+    current_time = showTime();//get the currenttime
+    current_timeMin = getTimeAsNumberOfMinutes(convertTime12to24(current_time));
+    
+    if(time_selected<=current_timeMin){
+
+      swal(
+							'Invalid Time',
+							'Your Time Must Be Correct',
+							'error'
+						) 
+      $(this).val("");      
+    }
+
+  });
+
+  //date validation
+  $(document).on('change','#date',function(){ 
+    date = $(this).val();
+    cur_date = showCurrentDate();
+    var date_selected = new Date(date);
+    var current_date = new Date(cur_date);
+
+   
+    if(date_selected.getTime()<current_date.getTime()){
+      swal(
+							'Invalid Date',
+							'Your Date Must Be Correct',
+							'error'
+						) 
+
+      $(this).val("");  
+      $('#time').val("");
+    }
+  });
+
+  //number of person validation
+  $(document).on('change','#num-person',function(){ 
+    num_person = $(this).val();
+    if(num_person<1 || num_person >= 20){
+      swal(
+							'Invalid Number Of Person',
+							'Maximum Number Of person is 20 and Minimum of 1',
+							'error'
+						) 
+            $(this).val(""); 
+    }
+  });
+
+
+
+
+
+  function getTimeAsNumberOfMinutes(time)
+  {
+    var timeParts = time.split(":");
+    // var timeInMinutes = (timeParts[0] * 60) + timeParts[1];
+    var timeInMinutes = timeParts[0]+ timeParts[1];
+    return timeInMinutes;
+  }
+
+  function showTime() {
+    let date = new Date();
+    let h = date.getHours();
+    let m = date.getMinutes();
+    let s = date.getSeconds();
+    let amPm = "AM";
+  
+    if (h === 0) {
+      h = 12;
+    }
+  
+    if (h > 12) {
+      h = h - 12;
+      amPm = "PM";
+    }
+  
+    if (h < 10) {
+      h = `0${h}`;
+    }
+  
+    if (m < 10) {
+      m = `0${m}`;
+    }
+  
+    if (s < 10) {
+      s = `0${s}`;
+    }
+  
+    // let clock = document.querySelector(".my-clock");
+  
+    // clock.innerHTML = `${h}:${m} ${amPm}`;
+    currenttime = `${h}:${m} ${amPm}`;
+    // setTimeout(showTime, 1000);
+    return currenttime;
+  }
+
+  function showCurrentDate() {
+    let date = new Date();
+    let d = date.getDate();
+    let months = [
+      "Jan",
+      "Feb",
+      "Mar",
+      "Apr",
+      "May",
+      "Jun",
+      "Jul",
+      "Aug",
+      "Sep",
+      "Oct",
+      "Nov",
+      "Dec",
+    ];
+    let m = months[date.getMonth()];
+    let y = date.getFullYear();
+    let days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+    let weekDay = days[date.getDay()];
+    // let currentDate = document.querySelector(".date");
+  
+     currentDate = `${m} ${d},${y}`;
+    return currentDate;
+  }
+
 </script>
 
 
