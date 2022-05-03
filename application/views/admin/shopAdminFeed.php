@@ -188,7 +188,7 @@
                         <p id="like" onclick="myFunctionLike()">Like</p>
 
                         <div class="comments d-flex align-items-center justify-content-center">
-                            <p class="badge badge-secondary" id="cmnt_count"><?php $count=0; foreach($commentDetails as $cmtdet){if($pd->post_id == $cmtdet->post_id_fk){$count++;}} echo $count;?></p>
+                            <p class="badge badge-secondary mark_count" id="cmnt_count"><?php $count=0; foreach($commentDetails as $cmtdet){if($pd->post_id == $cmtdet->post_id_fk){$count++;}} echo $count;?></p>
                             <p class="comment_txt" id="comment_text">Comments</p>
                         </div>
                         
@@ -245,47 +245,8 @@
                                     </div>
                                 </div>
                                 <?php }} ?>
-                                <!-- Second Comment Card -->
-                                <!-- <div class="comments-card pt-2">
-                                    <div class="row">
-                                        <div class="col-2">
-    
-                                        </div>
-                                        <div class="col-2">
-                                            <div class="profile-img">
-                                                <img src="assets/images/Prof1.png" alt="">
-                                            </div>
-                                        </div>
-                
-                                        <div class="col-5 d-flex align-items-center justify-content-start">
-                                            <div class="comments-profile-name">
-                                                <h6>Jan Daveee</h6>
-                                                <p class="text-muted">junky</p>
-                                            </div>
-                                            
-                                        </div>
-                
-                                        <div class="col-3 d-flex align-items-center justify-content-end">
-                                            <div class="profile-elapsed">
-                                                <p class="text-muted">1 hour ago</p>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="posts-comment">
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
-                                            sed do eiusmod tempor Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
-                                            sed do eiusmod tempor 
-                
-                                        </p>
-                                    </div>
-                                </div> -->
-                                
                             </div>
                         </span>
-                    
-                    
-                    
                 </div>
                 <?php } ?>
             </div>
@@ -648,7 +609,8 @@
 <script>
     $(document).on('click', '#delete_comment',function(){
         id = $(this).attr('delete_id');
-        count = $('#cmnt_count').text();
+        count = $(this).parent().parent().parent().parent().parent().parent().parent().find('.mark_count').text();
+        count_elem = $(this).parent().parent().parent().parent().parent().parent().parent().find('.mark_count');
         $.ajax({  
 				url: BASE_URL+"deleteComment/"+id,   
 				type:"POST",  
@@ -656,11 +618,10 @@
 				success:function(data)  
 				{   
                     count = count - 1;
-                    $('#cmnt_count').text(count);
+                    count_elem.text(count);
 				}
 		});
         $(this).parent().parent().parent().parent().hide();
-
     });
 </script>
 <script>
