@@ -289,6 +289,37 @@ $("#pnum").keyup(function(){
 	}
 });
 //--------------------------------------------------------------------
+$("#pass").keyup(function(){ 
+   var pass = $("#pass").val();
+   if (pass == "") {
+		$("#errorpass").text("Please enter your password").css("color", "red");
+      $("#pass").css("border", "1px solid red");
+	}  
+   if (pass.toString().length < 5  ) {
+		$("#errorpass")
+			.text("Password is too weak.")
+			.css("color", "red");
+      $("#pass").css("border", "1px solid red");
+	}
+   if(pass.toString().length >=5 ) {
+      $("#errorpass").text("");
+      $("#pass").css("border", "1px solid lightgray");
+   }
+});
+//--------------------------------------------------------------------
+$("#conpass").keyup(function(){ 
+   var pass = $("#pass").val();
+   var conpass = $("#conpass").val();
+
+   if(conpass!=pass){
+      $("#errorconpass").text("Incorrect Password").css("color", "red");
+      $("#conpass").css("border", "1px solid red");
+   } else {
+      $("#errorconpass").text("");
+      $("#conpass").css("border", "1px solid lightgray");
+   }
+});
+//--------------------------------------------------------------------
 
 nextBtnFirst.addEventListener("click", function (event) {
 	event.preventDefault();
@@ -420,15 +451,18 @@ var isUserTaken ="";
             isUserTaken = data;
             if(isUserTaken == "true"){
                $("#erroruser").text("Username is already taken").css("color", "red");
+               $("#username").css("border", "1.5px solid red");
             }
             if(isUserTaken == "false"){
                $("#erroruser").text("");
+               $("#username").css("border", "1.5px solid lightgray");
             }
          }
          });
       }
       else {
-         $("#erroruser").text("");
+         $("#erroruser").text("Please enter a username").css("color", "red");
+         $("#username").css("border", "1.5px solid red");
       }  
 
       
@@ -476,7 +510,7 @@ submitBtn.addEventListener("click", function (event) {
 		$("#errorconpass").text("Password is incorrect").css("color", "red");
 	}
 
-	if (pass.toString().length >= 8 && pass == conpass && isUserTaken == "false") {
+	if (pass.toString().length >= 8 && pass == conpass && isUserTaken == "false" && uname != "") {
 		$.ajax({
 			url: "registerfinder",
 			type: "POST",
