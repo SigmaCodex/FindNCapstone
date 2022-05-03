@@ -241,16 +241,23 @@ $("#firstname").keyup(function(){
    var fname = $("#firstname").val();
    if (fname.length != 0) {
 		$("#errorfname").text("");
+      $("#firstname").css("border", "1.5px solid lightgray");
+	}
+   if (fname.length == 0) {
+		$("#errorfname").text("Please input your first name").css("color", "red");
+      $("#firstname").css("border", "1.5px solid red");
 	}
 });
 //--------------------------------------------------------------------
 $("#lastname").keyup(function(){ 
    var lname = $("#lastname").val();
    if (lname.length == 0) {
-		// $("#errorlname").text("Please input your last name").css("color", "red");
+		$("#errorlname").text("Please input your last name").css("color", "red");
+      $("#lastname").css("border", "1.5px solid red");
 	}
    if (lname.length != 0) {
 		$("#errorlname").text("");
+      $("#lastname").css("border", "1.5px solid lightgray");
 	}
 });
 //--------------------------------------------------------------------
@@ -260,15 +267,17 @@ $("#email").keyup(function(){
 	var email = $("#email").val();
    if (!regEmail.test(email)) {
 		$("#erroremail").text("Please input valid email").css("color", "red");
+      $("#email").css("border", "1.5px solid red");
 	}
    if (regEmail.test(email)) {
 		$("#erroremail").text("");
+      $("#email").css("border", "1.5px solid lightgray");
 	}
 });
 //--------------------------------------------------------------------
 $("#pnum").keyup(function(){ 
    var number = $("#pnum").val();
-   if (number.toString().length > 10 || number.toString().length < 9) {
+   if (number.toString().length > 10 || number.toString().length < 10) {
 		$("#errornum")
 			.text("Invalid Phone Number")
 			.css("color", "red");
@@ -279,7 +288,7 @@ $("#pnum").keyup(function(){
       $("#pnum").css("border", "1px solid lightgray");
 	}
 });
-
+//--------------------------------------------------------------------
 
 nextBtnFirst.addEventListener("click", function (event) {
 	event.preventDefault();
@@ -336,9 +345,11 @@ nextBtnThird.addEventListener("click", function (event) {
 	if (gender == "") {
 		$("#errorgender").text("Please select gender").css("color", "red");
 	}
-	if (!(date == "") && !(gender == "")) {
+	if (!(date == "") && BDateValidator() && !(gender == "")) {
 		$("#errordate").text("");
+      $("#date").css("border", "1.5px solid lightgray");
 		$("#errorgender").text("");
+      $('select[name="gender"]').css("border", "1.5px solid lightgray");
 		slidePage.style.marginLeft = "-75%";
 		bullet[current - 1].classList.add("active");
 		progressCheck[current - 1].classList.add("active");
@@ -511,9 +522,40 @@ submitBtn.addEventListener("click", function (event) {
 	}
 });
 
-// $(document).ready(function(){ 
-   
-// });
+function BDateValidator() {
+  var birthday = document.getElementById("date").value; // Don't get Date yet...
+  var regexVar = /^([0-9]{2})\/([0-9]{2})\/([0-9]{4})$/; // add anchors; use literal
+  var regexVarTest = regexVar.test(birthday); // pass the string, not the Date
+  var userBirthDate = new Date(birthday.replace(regexVar, "$3-$2-$1")); // Use YYYY-MM-DD format
+  var todayYear = (new Date()).getFullYear(); // Always use FullYear!!
+  var cutOff19 = new Date(); // should be a Date
+  cutOff19.setFullYear(todayYear - 16); // ...
+  var cutOff95 = new Date();
+  cutOff95.setFullYear(todayYear - 60);
+   if (isNaN(userBirthDate)) {
+    
+    swal( 'Invalid Birthdate','','error');
+    $("#date").css({"border-color": "#fd0033", 
+                 "border-width":"1px", 
+                "border-style":"solid"});
+    return false;
+  } else if (userBirthDate > cutOff19) {
+    // alert("you have to be older than 16");
+    swal( 'Invalid Birthdate','you have to be older than 16','error');
+    $("#date").css({"border-color": "#fd0033", 
+                 "border-width":"1px", 
+                "border-style":"solid"});
+    return false;
+  } else if (userBirthDate < cutOff95) {
+    // alert("you have to be younger than 95");
+    swal( 'Invalid Birthdate','you have to be younger than 60','error');
+    $("#date").css({"border-color": "#fd0033", 
+                 "border-width":"1px", 
+                "border-style":"solid"});
+    return false;
+  } 
+  return true; // Return the date instead of an undefined variable
+}  
 
       </script>
       <style>
