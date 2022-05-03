@@ -133,6 +133,8 @@ $route['reports'] = 'main_controller/viewReports';
     $route['updatePaymentStatus/(:num)/(:any)']                    = 'logicalcontroller/updatePaymentStatus/$1/$2';
     $route['updateTranscationStatus/(:num)/(:any)']                    = 'logicalcontroller/updateTranscationStatus/$1/$2';
     $route['updateArrivalStatus/(:num)/(:any)']                    = 'logicalcontroller/updateArrivalStatus/$1/$2';
+
+    $route['CancelBooking/(:num)']   = 'logicalcontroller/CancelBooking/$1';
     //notification 
     $route['deleteNotification/(:num)'] = 'logicalcontroller/deleteFinderNotification/$1';
     $route['updateNotificationStatus/(:num)'] = 'logicalcontroller/updateNotificationStatus/$1';

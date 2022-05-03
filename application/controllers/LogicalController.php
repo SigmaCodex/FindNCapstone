@@ -114,6 +114,10 @@ class LogicalController extends CI_Controller {
         $this->MainModel->FindersCompBookingRequest();
     }
 
+    public function CancelBooking($transac_id){
+        $this->load->model('MainModel');
+        $this->MainModel->CancelBooking($transac_id);
+    }
     public function registerFinder(){
         $this->load->model('MainModel');
         $this->MainModel->registerFinder();

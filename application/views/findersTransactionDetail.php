@@ -33,6 +33,7 @@
                 foreach ($transaction_details as $row) {
                 ?> 
 
+                  <p id="shop_id" style="display:none;"><?php echo $row->shop_id;?></p> 
                   <div class="row d-flex align-items-center justify-content-between">
                     <div class="col-2">
                       <i class="booking-icon fa-solid fa-calendar-plus" style="font-size: 20px; color: rgb(30, 110, 21);"></i>
@@ -77,7 +78,7 @@
                     <div class="row">
                       <div class="col-6"><h4 class="info-text-left">Transaction Number:</h4> </div>
                       <div class="col-2"><p class="info-text-middle">:</p></div>
-                      <div class="col-4"><p class="info-text-right"><?php echo $row->transaction_id?></p></div>
+                      <div class="col-4"><p class="info-text-right" id="transaction_id"><?php echo $row->transaction_id?></p></div>
                     </div>
 
                     <div class="row">
@@ -96,7 +97,7 @@
                                 echo "<p class='legend legend2 legendText p-1'>".$row->transaction_status."</p>";
                           }else if($row->transaction_status == "pending"){
                             echo "<p class='legend legend3 legendText p-1'>".$row->transaction_status."</p>";
-                          }else if($row->transaction_status == "declined" || $row->transaction_status == "cancelled"){
+                          }else if($row->transaction_status == "declined" || $row->transaction_status == "cancelled" || $row->transaction_status == "Overdue"){
                             echo "<p class='legend legend5 legendText p-1'>".$row->transaction_status."</p>";
                           }
                           else if($row->transaction_status == "success"){
@@ -268,6 +269,23 @@
                                     <a href='".base_url()."view-ticket/".$row->transaction_id."' style='font-size:13px'> Ticket</a>";
                             }
 
+                            //successful transcation
+                                                        
+                            if($row->payment_status == "paid" && $row->transaction_status == "success"){
+
+                              echo "<br>
+                                    <button class='btn btn-warning'  data-toggle='modal' data-target='#rate'>Rate Service<i class='bx bxs-star'></i></button>
+                                    ";
+                            }
+
+                            //pending and not paid
+                            if($row->payment_status == "unpaid" && $row->transaction_status == "pending"){
+
+                              echo "<br>
+                                    <button class='btn btn-danger' id='cancel_booking'>Cancel Booking</button>
+                                    ";
+                            }
+
               
                           ?>
 
@@ -384,12 +402,139 @@
         </div>
       </div>
     
+      
+  <!-- start modal -->
+  <div  class="modal fade" id="rate"  data-bs-keyboard="false" tabindex="-1" class="modal" tabindex="-1" role="dialog">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content py-md-5 px-md-4 p-sm-3 p-4">
+
+            <div class="header-title d-flex align-items-center justify-content-start">
+              <i class="fas fa-arrow-left pr-3"  data-dismiss="modal"></i>
+              <h6 class="m-0">Feedback</h6>
+            </div>
+
+            <div class="title">
+              <h4 class="text-center mt-4 mb-1">Rate your Experience</h4>
+            </div>
+              <div class="rate-star d-flex flex-column align-items-center justify-content-center mb-1">
+                  <div class="rate">
+                    <input type="radio" id="star5" name="rate" class="star" value="5" />
+                    <label for="star5" title="text">5 stars</label>
+                    <input type="radio" id="star4" name="rate" class="star" value="4" />
+                    <label for="star4" title="text">4 stars</label>
+                    <input type="radio" id="star3" name="rate" class="star" value="3" />
+                    <label for="star3" title="text">3 stars</label>
+                    <input type="radio" id="star2" name="rate" class="star" value="2" />
+                    <label for="star2" title="text">2 stars</label>
+                    <input type="radio" id="star1" name="rate" class="star" value="1" />
+                    <label for="star1" title="text">1 star</label>
+                    <!-- <input type="text" id="selected_val"> -->
+                  </div>
+                  
+              </div>
+
+                  <div class="modal-details p-3">
+                    <div class="text-details text-center">
+                      <p class="text-muted">How satisfied are you with the service?</p>
+                    </div>
+                    <div class="text-details text-left" style="font-size: 12px;">
+                      <p>Tell us what we can Improved?</p>
+                    </div>
+
+                    <div class="text-card">
+                        <textarea name="" id="review" cols="51" rows="5" placeholder="Type here..." ></textarea>
+                    </div>
+                   
+                  </div>
+
+              <!-- MODAL CSS INLINE -->
+              <style>
+                    .fa-arrow-left {
+                      cursor: pointer;
+                    }
+                    .rate {
+                        float: left;
+                        height: 46px;
+                        padding: 0 10px;
+                    }
+                    .rate:not(:checked) > input {
+                        position:absolute;
+                        top:-9999px;
+                    }
+                    .rate:not(:checked) > label {
+                        float:right;
+                        width:1em;
+                        overflow:hidden;
+                        white-space:nowrap;
+                        cursor:pointer;
+                        font-size:50px;
+                        color:#ccc;
+                    }
+                    .rate:not(:checked) > label:before {
+                        content: '✯ ';
+                    }
+                    .rate > input:checked ~ label {
+                        color: #F78516;    
+                    }
+                    .rate:not(:checked) > label:hover,
+                    .rate:not(:checked) > label:hover ~ label {
+                        color: #F78516;  
+                    }
+                    .rate > input:checked + label:hover,
+                    .rate > input:checked + label:hover ~ label,
+                    .rate > input:checked ~ label:hover,
+                    .rate > input:checked ~ label:hover ~ label,
+                    .rate > label:hover ~ input:checked ~ label {
+                        color: #F78516;
+                    }
+                    .text-card textarea{
+                      outline:none;
+                      resize:none;
+                      border-radius:10px;
+                      padding:10px;
+                      font-size:15px;
+                      border:1px solid #A7A1A1;
+                      background-color: #F1F1F1;
+                    }
+                    .review-but{
+                      background-color: #FF5D31;
+                      color: #FFFFFF;
+                      padding: 10px 100px 10px 100px;
+                      outline:none;
+                      border:none;
+                      border-radius: 5px;
+                    }
+                    .review-but:hover {
+                      background-color: #F53805;
+                    }
+                    @media (max-width: 400px) {
+                        .text-card textarea{
+                          width:280px;
+                        }
+                        .review-but{
+                            font-size:12px;
+                        }
+                    }
+              </style>
+
+                    <div class="button d-flex justify-content-center align-items-center">
+                      <button class="review-but" id="submit_review">Submit Review</button>
+                    </div>
+          </div>
+      </div>
+    </div>
+    <!-- end of modal -->
+
+
+
       <?php }//end of for each?>
 
 
     <script src="../assets/js/findersBookings.js" defer></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>	
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" ></script>
     <!-- when card is clicked -->
   <!-- <script type="text/javascript">
   document.getElementById("red").onclick = function () {
@@ -447,6 +592,7 @@ $(document).on('click','#gcash',function(){
 
     var transaction_id = $(this).attr("transaction-id");
     var BASE_URL = "<?php echo base_url();?>";
+
     swal({
   				title: "You Selected Gcash Payment Type!",
   				icon: "info",
@@ -461,6 +607,87 @@ $(document).on('click','#gcash',function(){
 });
 </script>
 
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script>
+$(document).on('click','.star',function(){ 
+   var rating = $(this).val();
+   $("#submit_review").attr('rating',rating);
+
+});
+
+$(document).on('click','#submit_review',function(){ 
+   var shop_id = $('#shop_id').text();
+   var rating = $(this).attr('rating');
+   var review = $('#review').val();
+   var BASE_URL = "<?php echo base_url();?>";
+
+   $.ajax({
+			url: BASE_URL+"addRate/"+shop_id,
+			method: "POST",
+			data:{score: rating,rate_review:review},
+			success: function (data) {
+        // location.reload();
+
+          swal({
+            title: "Thank You",
+            text: "Your FeedBack Was Succesfully Submitted",
+            icon: "success",
+            button: "Continue",
+          }).then((value) => {
+                location.reload();
+          });
+
+
+			},
+		});
+ 
+
+  
+});
+</script>
+
+<script>
+  
+
+  $(document).on('click','#cancel_booking',function(){ 
+   var shop_id = $('#shop_id').text();
+   var transaction_id = $('#transaction_id').text();
+   var BASE_URL = "<?php echo base_url();?>";
+
+   swal({
+  				title: "Are you sure you want to cancel your booking?",
+  				icon: "warning",
+  				buttons: true,
+			}).then((willselect) => {
+  				if (willselect) {
+           
+            $.ajax({
+                url: BASE_URL+"CancelBooking/"+transaction_id,
+                method: "POST",
+                success: function (data) {
+                  // location.reload();
+                    swal({
+                      title: "Success",
+                      text: "Your booking request has been cancelled",
+                      icon: "success",
+                      button: "Continue",
+                    }).then((value) => {
+                      window.location = BASE_URL+"finderBookingList";
+                    });
+
+
+			        },
+		        });
+
+
+
+            
+  				}
+			});
+      // end of swetalert
+});
+
+</script>
 
 
   </body>

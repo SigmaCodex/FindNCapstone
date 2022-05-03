@@ -545,6 +545,13 @@ class MainModel extends CI_Model{
              echo $transaction_id; //return generated id to ajax
     }
 
+    public function CancelBooking($transaction_id){
+        //delete permanently pending booking request
+        $this->db->where("transaction_id",$transaction_id);
+		$this->db->delete("transaction");
+
+    }
+
     // finder select all Computerbookingtransactions
     public function view_finderBookingTransaction($user_id){
         $this->db->select('transaction.*,comp_booking.*,computershop.shop_name,computer_type.name,computer_type.rate');
@@ -563,7 +570,7 @@ class MainModel extends CI_Model{
     }
     // finder select ComputerBookingTransaction
     public function select_finderBookingTransaction($transaction_id){
-        $this->db->select('computershop.shop_name,transaction.*,comp_booking.*,computer_type.name,computer_type.rate');
+        $this->db->select('computershop.shop_name,computershop.shop_id,transaction.*,comp_booking.*,computer_type.name,computer_type.rate');
         $this->db->from('transaction');
         $this->db->join('computershop', 'computershop.shop_id = transaction.shop_id_fk');
         $this->db->join('comp_booking', 'comp_booking.transaction_id = transaction.transaction_id');
