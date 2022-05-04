@@ -793,7 +793,8 @@ class MainModel extends CI_Model{
         $this->db->from('computer_type');
         $this->db->where('Ctype_id',$id);
         $query = $this->db->get();
-        return $query->result();
+        $resultquery = $query->row_array();
+        return $resultquery;
     }
  
     public function addRate($shop_id){
