@@ -896,7 +896,7 @@ class MainModel extends CI_Model{
         //echo json_encode($query->result());
     }
     public function getallAcceptedRequest($shop_id){
-        $this->db->select('finders.firstname,finders.lastname,transaction.*');
+        $this->db->select('finders.user_id,finders.firstname,finders.lastname,transaction.*');
         $this->db->from('transaction');
         $this->db->join('user', 'user.user_id = transaction.user_id_fk');
         $this->db->join('finders', 'user.user_id = finders.user_id', 'left');
