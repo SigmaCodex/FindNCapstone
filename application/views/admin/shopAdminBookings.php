@@ -229,7 +229,7 @@
                                                 $arrival_date = strtotime($ar->arrival_date);
                                       
                                         ?>
-                                    <tr class="table-row" data-toggle="modal" data-target="#transaction-modal" id_data="<?php echo $ar->transaction_id;?>">
+                                    <tr class="table-row" data-toggle="modal" data-target="#transaction-modal" id_data="<?php echo $ar->transaction_id;?>" finder_id="<?php echo $ar->user_id;?>" finder_name=<?php echo $ar->firstname;?>>
                                       <td><?php echo $ar->transaction_id;?></td>
                                       <td><?php echo $ar->firstname;?> <?php echo $ar->lastname;?></td>
 
@@ -408,6 +408,7 @@
 
                                                 <p class="modal-caption-details-right-total" id="totalfee"><b></b> </p>
                                                 <button id="od_btn" class="btn btn-danger" style="display;none;">Dismiss</button>
+                                                <button id="message_btn" class="btn btn-info mess_btn">Message</button>
                                                 <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
                                                 </div>
                                             </div>
@@ -422,8 +423,53 @@
                     </div>
                 </div>                        
             </div>
-            
-            <!-- Message Modal -->
+            <!-- Waiting List Message Modal -->
+            <div class="modal fade" id="w_message-modal">
+                <div class="modal-dialog modal-sm modal-dialog-scrollable" role="document">
+                  
+                    <div class="modal-content">
+                        <div class="card-head-color row p-3 "></div> 
+                        <!-- Message Modal body -->
+                        <div class="modal-body">
+                            <div class="modal-holder">
+                                <div class="row d-flex justify-content-center align-items-center">
+                                    <div class="row">
+                                        <div class="col-3">
+                                            <div class="message-img">
+                                                <img src="assets/images/Image1.png" alt="">
+                                            </div>
+                                        </div>
+
+                                        <div class="col-9">
+                                            <div class="message-name">
+                                                <?php foreach($shop_details as $sd) {?>
+                                                <h6 class="m-0"><?php echo $sd->shop_name;?></h6>
+                                                <?php } ?>
+                                                <p class="text-muted">ADMIN: <?php echo $admin_name?></p>
+                                                <p class="text-muted">To: <span id="w_finder_msg_to"></span></p>
+                                                <p id="w_finder_id" style="display:none"></p>
+                                                <p id="w_finder_transid" style="display:none"></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="input-message pt-2">
+                                        <textarea name="" cols="33" rows="6" placeholder="Any advice for finder?" id="w_book_msg"></textarea>
+                                    </div>
+                                    <div class="row mt-2">
+                                        <div class="col-5 p-2 d-flex justify-content-start align-items-center">
+                                            <button class="not-now btn btn-danger p-2 " data-dismiss="modal" id="w_cancel_msg">Not Now</button>
+                                        </div>
+                                        <div class="col-7 p-2 d-flex justify-content-start align-items-center">
+                                            <button class="btn btn-success p-2 w_send_message" id="w_send_msg">Send Message</button>   
+                                        </div> 
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>                        
+            </div>
+            <!-- Booking Request Message Modal -->
             <div class="modal fade" id="message-modal">
                 <div class="modal-dialog modal-sm modal-dialog-scrollable" role="document">
                   
@@ -480,8 +526,14 @@
 <!-- list of all bookings table -->
 <script>
 $(document).on("click",".table-row",function(){
+    $(".mess_btn").hide();
     var Base_URL = "<?php echo base_url();?>";
     var id = $(this).attr("id_data");
+    $('#w_finder_transid').text(id);
+    var user_id = $(this).attr("finder_id");
+    $('#w_finder_id').text(user_id);
+    var finder = $(this).attr("finder_name");
+    $('#w_finder_msg_to').text(finder);
         $.ajax({
 					url: Base_URL+"viewTransaction/"+id,
 					type: "GET",
@@ -519,6 +571,10 @@ $(document).on("click",".table-row",function(){
                                 $("#message").text(result[x]['instruction']);
                                 $("#totalfee").text("₱"+result[x]['service_fee']);
                                 $("#pay_status").text(result[x]['payment_status']);
+                                transac_status = result[x]['transaction_status'];
+                                if(transac_status == "accepted"){
+                                    $(".mess_btn").show();
+                                }
                                 if(result[x]['payment_status'] == "paid"){
                                     $("#pay_status").removeClass("badge-danger");
                                     $("#pay_status").addClass("badge-success");
@@ -572,6 +628,38 @@ $(document).on("click",".table-row",function(){
             return date_format;
         } 
 });
+$(document).on('click', '#message_btn',function(){
+        $("#w_message-modal").modal('show');
+        var id = $(this).attr("transac_id");
+        var user_id = $(this).attr("user_id");
+        var finder = $(this).attr("finder_name");
+        $('#w_finder_transid').text(id);
+        $('#w_finder_id').text(user_id);
+        $('#w_finder_msg_to').text(finder);
+    });
+    $(document).on("click",".w_send_message",function(){
+                var Base_URL = "<?php echo base_url();?>";
+                var message = $('#w_book_msg').val();
+                var id = $('#w_finder_transid').text();
+                var user_id = $('#w_finder_id').text();
+                    $.ajax({
+                            url:Base_URL+"messageFinder/"+user_id+"/"+id,
+                            type: "POST",
+                            data:{notification_body:message},
+                            success: function(data){
+                                swal({
+                                    title: "Message Sent",
+                                    text: "Your message has sent to finder",
+                                    icon: "success",
+                                    button: "Continue",
+                                    }).then((value) => {
+                                    });
+                                $('#book_msg').val("");
+                            }
+                        });
+                $("#w_message-modal").modal('hide');
+                $("#transaction-modal").modal('hide');
+        });
 </script>
 <script>
         setInterval(function(){
@@ -869,6 +957,5 @@ function dateformat(arrival_date){
         
     });
 </script>
-<!-- <script>
-    $("#waitinglistview").append("<div class='right-sidebar my-3'> <div class='right-sidebar-title d-flex align-items-left justify-content-start p-2'> <i class='title-icon fa-solid fa-spinner fa-pulse d-flex align-items-center justify-content-center'></i> <h6 class='card-title-text m-0 p-2'>WAITING LIST</h6> </div> <div class='right-sidebar-padding'> <div class='table-card'> <div class='table-card-content'> <table class='ongoing-table-bookings'> <tr class='title-table-wait'> <th>Transaction ID</th> <th>Name</th> <th>Arrival Date & Time</th> <th>Payment Status</th> <th>Payment Method</th> <th>Status</th> </tr> <tr class='table-row' data-toggle='modal' data-target='#transaction-modal' id_data=''> <td id='wvtransactionid'></td> <td id='wvname'></td> <td id='wvarrivaldateandtime'></td> <td class='status-paid'></td>; <td class='wvpaymentstatus'><img class='gcash-logo' src='assets/images/gcash.png' alt=''> </td>; <td class='status-waiting'>waiting</td> </tr> </table> </div> </div> </div> </div>");
-</script> -->
+
+
