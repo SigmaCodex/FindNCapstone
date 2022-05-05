@@ -77,7 +77,7 @@
 						</ul>
           				<div class="card-body">
 						  <div class="form-group mb-2">
-						  <button type="button" data-target="#updateComputerModal" data-toggle="modal" class="editbtn btn mb-2 mb-md-0 btn-primary btn-block">Edit Details</button>
+						  <button type="button" data-target="#updateComputerModal" data-toggle="modal" class="editbtn btn mb-2 mb-md-0 btn-primary btn-block">View Details</button>
 	              		  </div>
           				</div>
         			</div>
@@ -181,15 +181,15 @@
 	  		<form id="changepassform" class="" name="changepassform">
 			  		<input id="currentpass" hidden>	
 					<div class="form-group mb-2">
-		      			<label for="servicefee">Current Password</label>
+		      			<label for="curpas">Current Password</label>
 		      			<input name="curpas" id="curpas" type="password" class="form-control">
 		      		</div>	
 					  <div class="form-group mb-2">
-		      			<label for="servicefee">New Password</label>
+		      			<label for="newpas">New Password</label>
 		      			<input name="newpas" id="newpas" type="password" class="form-control">
 		      		</div>
 					  <div class="form-group mb-2">
-		      			<label for="servicefee">Repeat New Password</label>
+		      			<label for="repnewpas">Repeat New Password</label>
 		      			<input name="repnewpas" id="repnewpas" type="password" class="form-control">
 		      		</div>
 			</form>
@@ -220,9 +220,9 @@
 			  		<input id="CompTypeID" hidden>	
 					<div class="form-group mb-2">
 		      			<label for="servicefee">Service Fee</label>
-		      			<input name="serviceFee" id="serviceFee" type="text" class="form-control">
+		      			<input name="serviceFee" id="serviceFees" type="text" class="form-control">
 		      		</div>	
-			</form>
+			
       	</div>
 		  	<div class="modal-footer">
                 	<div class="form-group mb-2">
@@ -233,6 +233,7 @@
                 	<div class="form-group mb-2">
 					  <input value="Update" class="form-control btn btn-primary rounded submit px-3" id="updatefeebtn" readonly="readonly">
 	              	</div>
+			</form>
             </div>
     </div>
   </div>
@@ -242,7 +243,7 @@
     <!-- Modal content-->
     <div class="modal-content">
       <div class="modal-header">
-	  <h3 class="text-center mb-3">Update Computer Shop</h3>
+	  <h3 class="text-center mb-3">Computer Shop Details</h3>
       </div>
       <div class="modal-body">
 	  	<form id="updatecompform" class="" name="updatecompform">
@@ -277,12 +278,12 @@
 				<div class="modal-footer">
                 	<div class="form-group mb-2">
 					 	<button type="button" id="close-adminbtn" class="close d-flex align-items-center justify-content-center" data-dismiss="modal">
-						 <input value="Cancel" class="form-control btn btn-primary rounded px-3"  readonly="readonly">
+						 <input value="Back" class="form-control btn btn-primary rounded px-3"  readonly="readonly">
 		        		</button>
 	              	</div>
-                	<div class="form-group mb-2">
+                	<!-- <div class="form-group mb-2">
 					  <input value="Update" class="form-control btn btn-primary rounded submit px-3" id="updatecomputershopbtn" readonly="readonly">
-	              	</div>
+	              	</div> -->
               	</div>
 			  </form>
       </div>
@@ -762,7 +763,19 @@ $(document).on("click", "#changepassbtn", function () {
 				});
 			},
 		});//end ajax
-		}else{alert("Wrong current password")}//end check pass
+		}else{
+			swal(
+			{
+				title: "Are you sure you are correct?",
+				text: "Incorrect Current Password!",
+				type: "warning",
+				showCancelButton: true,
+				confirmButtonColor: "#DD6B55",
+				confirmButtonText: "Yes, delete it!",
+				closeOnConfirm: false,
+				//closeOnCancel: false
+			}
+		);}//end check pass
 	}//end validate if
 	
 });
@@ -818,7 +831,7 @@ $(document).on("click", ".view-fee", function () {
 		data: { Ctype_id : id },
 		dataType: "json",
 		success: function (data) {
-			$("#serviceFee").val(data.service_fee);
+			$("#serviceFees").val(data.service_fee);
 			$("#CompTypeID").text(data.Ctype_id);
 
 			$("#updateFeeModal").modal('show');
@@ -831,7 +844,7 @@ $(document).on("click", "#updatefeebtn", function () {
 	if ($("#updatefeeform").valid()) {
 
 		var CTPK = $("#CompTypeID").text();
-		var servicefee = $("#serviceFee").val();
+		var servicefee = $("#serviceFees").val();
 
 		$.ajax({
 			url: BASE_URL+"updateFee/" + CTPK,
@@ -877,7 +890,7 @@ $(document).on("click", "#updateadminbtn", function () {
 		var CSPK = $("#useridid").text();
 		var first = $("#updfirst").val();
 		var last = $("#updlast").val();
-		var gender = $('select[name="gender"]').val();
+		var gender = $('select[name="updgender"]').val();
 		var email = $("#updemail").val();
 		var number = $("#updCNum").val();
 
