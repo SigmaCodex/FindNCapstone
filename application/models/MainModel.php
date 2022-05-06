@@ -800,7 +800,8 @@ class MainModel extends CI_Model{
         $this->db->from('computer_type');
         $this->db->where('Ctype_id',$id);
         $query = $this->db->get();
-        return $query->result();
+        $resultquery = $query->row_array();
+        return $resultquery;
     }
  
     public function addRate($shop_id){
@@ -895,7 +896,7 @@ class MainModel extends CI_Model{
         //echo json_encode($query->result());
     }
     public function getallAcceptedRequest($shop_id){
-        $this->db->select('finders.firstname,finders.lastname,transaction.*');
+        $this->db->select('finders.user_id,finders.firstname,finders.lastname,transaction.*');
         $this->db->from('transaction');
         $this->db->join('user', 'user.user_id = transaction.user_id_fk');
         $this->db->join('finders', 'user.user_id = finders.user_id', 'left');
