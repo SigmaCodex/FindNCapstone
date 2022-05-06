@@ -114,7 +114,10 @@
                                             <i class='bx bxs-timer'></i>
                                             <p class="m-0"><?php echo $sd->operating_hours;?></p>
                                         </div>
-
+                                        <div class="contact d-flex align-items-center justify-content-start">
+                                            <i class='bx bxs-door-open'></i>
+                                            <p class="m-0" <?php if($sd->Shop_Status == "Open"){echo "style='color:green; font-weight:700;'";} if($sd->Shop_Status == "Close"){echo "style='color:red; font-weight:700;'";} ?>><?php echo $sd->Shop_Status;?></p>
+                                        </div>
                                     </div>
                                 </div>
 
@@ -146,7 +149,8 @@
                                     <button class="btn btn-warning"  data-toggle="modal" data-target="#rate">Rate <i class='bx bxs-star'></i></button>
                                 </div>
                                 <div class="p-2">
-                                    <button class="book" data-toggle="modal" data-target="#booknow_modal" style="outline:none;" >Book</button>
+                                    
+                                    <button class="book" data-toggle="modal" data-target="#booknow_modal" style="outline:none;" <?php if($sd->Shop_Status == "Close"){echo "disabled";}?>>Book</button>
                                 </div>
                                 
                             </div>
@@ -157,7 +161,7 @@
                 
                 <!-- BOOK NOW MODAL -->
                 <hr>
-                <div class="modal" id="booknow_modal" tabindex="-1" role="dialog">
+                <div class="modal fade" id="booknow_modal" tabindex="-1" role="dialog">
                     <div class="modal-dialog" role="document">     
                     <div class="modal-content py-md-5 px-md-4 p-sm-3 p-4">
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button><br>
@@ -169,7 +173,7 @@
                     </div>
                 </div>
                 <!-- SEE MORE COMPUTER TYPE MODAL -->
-                <div class="modal" id="view-description">
+                <div class="modal fade" id="view-description">
 				<div class="modal-dialog modal-md modal-dialog-scrollable" role="document">
 					<div class="modal-content p-4">
 
