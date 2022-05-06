@@ -356,6 +356,12 @@ img{
 }
 
 @media (max-width: 400px) {
+    .card-content {
+        
+        /* overflow-x: auto; */
+        display: flex;
+        justify-content: space-between !important;
+    }
     .profile-img img{
         margin-left: 58px;
     }

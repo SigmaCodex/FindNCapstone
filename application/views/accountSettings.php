@@ -116,7 +116,7 @@
                             <div class='title-info'> Disable Account
                                 <p>You will Disabled your account</p>   
                             </div>
-                            <div class='btn danger' id='disable_account'> Click To Disable </div>
+                            <div class='btn danger' id='disable_account'> Disable </div>
                         </div>";
                     }
                 }    

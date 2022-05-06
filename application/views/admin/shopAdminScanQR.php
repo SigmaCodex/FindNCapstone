@@ -345,7 +345,7 @@ setInterval(function(){
                             var result = JSON.parse(data);
                             for(var x = 0 ; x < result.length ; x ++)
                             {
-                                $("#name").text(result[x]['firstname']+","+result[x]['lastname']);
+                                $("#name").text(result[x]['firstname']+" "+result[x]['lastname']);
                                 $("#gender").text(result[x]['gender']);
                                 $("#vac_status").text(result[x]['vac_status']);
                                 $("#contact_num").text(result[x]['phone_num']);

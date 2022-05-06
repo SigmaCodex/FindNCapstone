@@ -171,9 +171,9 @@
                 <!-- SEE MORE COMPUTER TYPE MODAL -->
                 <div class="modal" id="view-description">
 				<div class="modal-dialog modal-md modal-dialog-scrollable" role="document">
-					<div class="modal-content">
+					<div class="modal-content p-4">
 
-					<div class="modal-body">
+					<div class="modal-body ">
 						<div class="modal-holder">
 							
 		
@@ -276,7 +276,7 @@
                     <h6>Computer Access Type</h6>
                 </div>
                     
-                    <div class="card-content d-flex align-items-center justify-content-between">
+                    <div class="card-content d-flex align-items-center justify-content-around">
                     <?php foreach($typedetails as $td){?>
                         <div class="access-type" data=<?php echo $td->Ctype_id;?>>
                             <div class="access-type-title text-center">
