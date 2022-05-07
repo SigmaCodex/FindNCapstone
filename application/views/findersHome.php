@@ -77,17 +77,18 @@
                                         <div class="col-4 ">
                                             <div class="range d-flex align-items-start justify-content-start">
                                                 <p  class="m-0">Range:</p>
-                                                <p class="status pl-2 mb-1 pt-1">₱10 - ₱15</p>
+                                                <p class="status pl-2 mb-1 pt-1">₱<?php echo $data->minRate?> - ₱<?php echo $data->maxRate?> </p>
                                             </div>
                                             <div class="ratings d-flex align-items-end justify-content-start">
                                                 <p class="m-0">Ratings:</p>
                                                 <div class="review pl-1 d-flex align-items-center justify-content-center">
-                                                    <i class='bx bxs-star'></i>
-                                                    <i class='bx bxs-star'></i>
-                                                    <i class='bx bxs-star'></i>
-                                                    <i class='bx bxs-star'></i>
-                                                    <i class='bx bxs-star-half' ></i>
-                                                    <p class="status pl-1">4.5</p>
+                                                    <?php for($i=1; $i<=5 ;$i++){?>
+                                                        <?php if($i>$data->avgRatings){?>
+                                                        <i class='bx bx-star'></i>
+                                                        <?php }else{?>
+                                                        <i class='bx bxs-star' ></i>
+                                                    <?php }}?>
+                                                    <p class="status pl-1"><?php echo $data->avgRatings?> </p>
                                                 </div>
                                             </div>
                                         </div>

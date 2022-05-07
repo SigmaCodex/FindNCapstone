@@ -178,6 +178,7 @@ class Main_Controller extends CI_Controller {
 			$this->load->view('finders/navbar',$session);
 			$this->load->view('findersHome',$result);
 
+
 		}
 	}
 	public function view_ticket($transaction_id){
