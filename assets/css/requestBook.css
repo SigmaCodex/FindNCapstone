@@ -319,3 +319,9 @@ div.datedropper.my-style.picker-lkd .pick-submit {
   background-color: #fff;
   color: #4d4d4d;
 }
+select {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  text-indent: 1px;
+  text-overflow: '';
+}

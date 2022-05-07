@@ -53,8 +53,11 @@
                   <div class="multisteps-form__panel shadow p-4 rounded bg-white js-active" data-animation="scaleIn">
                     <h3 class="multisteps-form__title">Update Profile Information</h3>    
                     <label style="color: red; font-size: 12px;">* Note that you can edit profile information during booking. Double check if information reflects <strong style="color:green; font-size:13px;">finders name.</strong> </label>
+                    <div class="d-flex align-items-center justify-content-end pt-2">
+                      <div class="btn btn-info" id="edit-personal_info">Edit info<i class='bx bx-edit-alt' style="padding-left:5px;font-size:15px; cursor:pointer;"></i></div>
+                    </div>
+                  
                  
-                    <i class='bx bx-edit-alt' style="font-size:25px; cursor:pointer;" id="edit-personal_info"></i>
                 
                     <div class="multisteps-form__content">
                      <?php foreach ($findersPersonalDetails as $s) {?> <!--Populate user details-->
@@ -75,8 +78,8 @@
                           <label >Gender</label>
                           <!-- <input class="multisteps-form__input form-control" type="text" id="" placeholder="" value="<?php echo $s->gender;?>" disabled/> -->
                           <select class="multisteps-form__input form-control" name="" id="gender" disabled>
-                            <option value="male" <?php if($s->gender == "male"){echo "selected";}?>>male</option>
-                            <option value="female" <?php if($s->gender == "female"){echo "selected";}?>>female</option>
+                            <option value="male" <?php if($s->gender == "male"){echo "selected";}?>>Male</option>
+                            <option value="female" <?php if($s->gender == "female"){echo "selected";}?>>Female</option>
                           </select>
                         </div>
                         
@@ -99,17 +102,20 @@
   
                   <!-- Second Form -->
                   <div class="multisteps-form__panel shadow p-4 rounded bg-white" data-animation="scaleIn">
-                    <h3 class="multisteps-form__title">Access Type</h3>
+                   
                     <?php foreach ($shopdetails as $shop) {?>
                       <p id="shop_id" style="display:none;"><?php echo $shop->shop_id;?></p>
-                      <div class="d-flex">
+
+                      <div class="d-flex align-items-center jutify-content-start pb-2">
                         <img src="../assets/upload/shop/<?php echo $shop->shop_img_icon;?>" onerror="this.src='../assets/upload/shop/defaultshopimg.png';" style="width: 50px;border-radius: 50%;">  
-                        <h3 class="multisteps-form__title" ><?php echo $shop->shop_name;?></h3>
+                        <h3 class="multisteps-form__title pl-2" ><?php echo $shop->shop_name;?></h3>
                       </div>
+
                     <?php }?>
                     <!-- <div id="shop_id"><?php if(isset($shop_id)){ echo $shop_id;}?></div> -->
                     <label style="color: red; font-size: 12px;">* Choose your preferred access type. You only need to
                       <strong style="color:green; font-size:15px;">   pay our booking fee.</strong></label>
+                      <h3 class="multisteps-form__title text-center pt-2">Access Type</h3>
                   
                     <div class="multisteps-form__content">
   
@@ -505,8 +511,13 @@ if(status == "active"){
   location.reload();  
 }
 
-$(this).removeClass("bx-edit-alt");
-$(this).addClass("bx-x-circle");
+$(this).removeClass('btn-info');
+$(this).addClass('btn-danger');
+$(this).text('Cancel');
+$(this).append("<i class='bx bx-x-circle' style='padding-left:5px;font-size:15px; cursor:pointer;'></i>");
+// $(this).find("i").removeClass("bx-edit-alt");
+// $(this).find("i").addClass("bx-x-circle");
+
 $(this).attr("status","active");
 // $('#disabledCheckboxes').prop("disabled", true);
 $('#fname').removeAttr("disabled");
