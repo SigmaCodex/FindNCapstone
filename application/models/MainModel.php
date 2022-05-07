@@ -1014,7 +1014,7 @@ class MainModel extends CI_Model{
         return $query->result();
     }
     public function getAllPosts($id){
-        $this->db->select('post_events.*, computershop.shop_name, computershop.shop_img_icon, compmanager.firstname, compmanager.lastname');
+        $this->db->select('post_events.*,computershop.shop_name,computershop.shop_img_icon,compmanager.firstname,compmanager.lastname, compmanager.profilepic');
         $this->db->from('post_events');
         $this->db->join('computershop', 'computershop.shop_id = post_events.shop_id', 'left');
         $this->db->join('compmanager', 'compmanager.shop_id_fk = computershop.shop_id', 'left');
