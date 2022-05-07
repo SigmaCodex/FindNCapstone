@@ -147,6 +147,7 @@
                     <p id="postid" style="display:none"><?php echo $pd->post_id;?></p>
                     <i class='close-notif fa-solid fa-trash-alt' id="delete_post" delete_id="<?php echo $pd->post_id;?>"></i>
                     <i class='close-notif fa-solid fa-pen-alt' id="edit_post" edit_id="<?php echo $pd->post_id;?>"></i>
+                    <p id="admin_profile" style="display:none;"><?php echo $pd->profilepic;?></p>
                         <div class="col-2">
                             <div class="profile-img">
                                 <img src="assets/upload/shop/<?php echo $pd->shop_img_icon?>" alt="">
@@ -176,16 +177,15 @@
                         <p><?php echo $pd->post_description;?></p>
                     </div>
 
-                    <span id="liked">
+                    <!-- <span id="liked">
 
                         <div class="num-likes d-flex align-items-center  justify-content-evenly">
                             <i class="fa-solid fa-thumbs-up"></i>
                             <p class="m-0" >1</p>
                         </div>
-                    </span>
+                    </span> -->
                     
                     <div class="like-comment d-flex align-items-center  justify-content-evenly">
-                        <p id="like" onclick="myFunctionLike()">Like</p>
 
                         <div class="comments d-flex align-items-center justify-content-center">
                             <p class="badge badge-secondary mark_count" id="cmnt_count"><?php $count=0; foreach($commentDetails as $cmtdet){if($pd->post_id == $cmtdet->post_id_fk){$count++;}} echo $count;?></p>
@@ -201,8 +201,8 @@
                                     <h6>Comments</h6>
                                 </div>
         
-                                <textarea name="" id="cmnt_text" cols="81" rows="4"></textarea>
-                                <div class="d-flex align-items-center justify-content-end pr-4 pb-3">
+                                <textarea name="" class="cmnt_text" cols="81" rows="4"></textarea>
+                                <div class="d-flex align-items-center justify-content-end pr-4 pb-3" id="comm_apnd">
                                     <button class="add-com badge badge-success p-2" id="add_cmnt" posts_id="<?php echo $pd->post_id;?>">ADD COMMENT</button>
                                 </div>
                                 <!-- First Comment Card -->
@@ -222,7 +222,12 @@
                                         </div>
                                         <div class="col-5 d-flex align-items-center justify-content-start">
                                             <div class="comments-profile-name">
-                                                <h6><?php echo $cd->username;?></h6>
+                                            <?php if($cd->user_type == "Admin"){?>
+                                                <h6 class="m-0" id="admin_fullname"><?php echo $cd->admin_firstname;?> <?php echo $cd->admin_lastname;?></h6>
+                                            <?php }?>
+                                                <?php if($cd->user_type == "finder"){?>
+                                                <h6 class="m-0"><?php echo $cd->firstname;?> <?php echo $cd->lastname;?></h6>
+                                            <?php }?>
                                                 <p class="text-muted"><?php echo $cd->user_type;?></p>
                                             </div>
                                             
@@ -556,16 +561,57 @@
 </script>
 <script>
     $(document).on('click','#add_cmnt',function(){
+    today = new Date();
+    date = (today.getMonth()+1)+'/'+today.getDate()+'/'+today.getFullYear();
+    time = today.getHours() + ":" + today.getMinutes();
+    name = $('#admin_fullname').text();
+    admin_pic = $('#admin_profile').text();
+    comm = $(this).parent().parent().find('.cmnt_text').val();
+    alert(admin_pic);
+    comm_card = `<div class="comments-card pt-2">
+                    <div class="row">
+                    <div class="col-2">
+                    
+                    </div>
+                    <div class="col-2">
+                        <div class="profile-img">
+                        <p style="display:none" id="comment_id_text"></p>
+                            <img src="assets/upload/shop/admin/${admin_pic}" onerror="this.src='assets/images/default.png'" alt="">
+                        </div>
+                    </div>
+                    <div class="col-5 d-flex align-items-center justify-content-start">
+                        <div class="comments-profile-name">
+                            <h6>${name}</h6>
+                            <p class="text-muted">ADMIN</p>
+                        </div>
+                        
+                    </div>
+
+                    <div class="col-3 d-flex align-items-center justify-content-end">
+                        <div class="profile-elapsed">
+                            <p class="text-muted">${date}</p>
+                        <i class='close-notif fa-solid fa-pen-alt' id='edit_comment' edit_id='$cd->comment_id'></i>
+                        <i class='close-notif fa-solid fa-trash-alt' id="delete_comment" delete_id=""></i>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="posts-comment">
+                    <p id="spec_comm">${comm}</p> 
+                </div>
+            </div>
+        </div>`;
     BASE_URL = "<?php echo base_url();?>";
     id = $(this).attr('posts_id');
-    comm = $('#cmnt_text').val();
+    comm_apnd = $(this).parent().parent().parent().find('.comments');
+    // alert(comm);
     $.ajax({
           url:BASE_URL+"addComment/"+id,
           type: "POST",
           data:{comment_txt:comm},
           success: function(data)
           {
-            location.reload();    
+            comm_apnd.append(comm_card);    
           }
          });
     });
