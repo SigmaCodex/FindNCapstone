@@ -184,7 +184,7 @@
 
 							<div class="modal-img-holder d-flex flex-column align-items-center justify-content-center">
 								<p class="modal-img-holder-caption text-muted"></p>
-								<img id="view-upload-preview" class="modal-image"src="../assets/images/default_computertype.png" style="border-radius: 10px;">
+								<img id="view-upload-preview" class="modal-image" src="../assets/upload/shop/computertype/default_computertype.png" style="border-radius: 10px;">
 							</div>
 									<div class="modal-user-info">
 										<div class="row ">
@@ -253,7 +253,7 @@
                             $count=0; 
                             foreach($shop_images as $si){ ?>
                               <div class="carousel-item <?php if($count==0){echo "active";} else{echo "";}?>">
-                                <img class="d-block w-100" src="../assets/images/<?php echo $si->img_file;?>" alt="First slide">
+                                <img class="d-block w-100" src="../assets/images/<?php echo $si->img_file;?>" alt="First slide" onerror="this.src='../assets/upload/shop/defaultshopimg.png';">
                               </div>
                             <?php $count++;}?>
                             </div>

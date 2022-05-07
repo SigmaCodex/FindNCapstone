@@ -163,6 +163,11 @@ class LogicalController extends CI_Controller {
             $this->MainModel->updateFinderAccount("with-image");
         }
     }
+    public function updatefinderInfo(){
+        $this->load->model('MainModel');
+        $this->MainModel->updatefinderInfo();
+    }
+    
     //view all finderBooking Transaction
     public function view_finderBookingTransaction($user_id){
         $this->load->model('MainModel');

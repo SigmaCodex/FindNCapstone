@@ -122,6 +122,7 @@ $route['reports'] = 'main_controller/viewReports';
     $route['view-FinderBookingTransaction/(:num)'] = 'logicalcontroller/view_finderBookingTransaction/$1';
     $route['select-QrScannerFinderBookingTransaction/(:num)'] = 'logicalcontroller/qr_scanner_select_finderBookingTransaction/$1';
     $route['change-password']                        = 'logicalcontroller/change_password';
+    $route['updatefinderInfo']                       = 'logicalcontroller/updatefinderInfo';
    
     $route['addRate/(:num)'] = 'logicalcontroller/addRate/$1';
     $route['updateRate/(:num)'] = 'logicalcontroller/updateRate/$1';

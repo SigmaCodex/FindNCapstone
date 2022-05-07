@@ -51,39 +51,48 @@
   
                   <!-- First Form -->
                   <div class="multisteps-form__panel shadow p-4 rounded bg-white js-active" data-animation="scaleIn">
-                    <h3 class="multisteps-form__title">Update Profile Information</h3>
+                    <h3 class="multisteps-form__title">Update Profile Information</h3>    
                     <label style="color: red; font-size: 12px;">* Note that you can edit profile information during booking. Double check if information reflects <strong style="color:green; font-size:13px;">finders name.</strong> </label>
+                 
+                    <i class='bx bx-edit-alt' style="font-size:25px; cursor:pointer;" id="edit-personal_info"></i>
+                
                     <div class="multisteps-form__content">
                      <?php foreach ($findersPersonalDetails as $s) {?> <!--Populate user details-->
                       <div class="form-row mt-4">
                         <div class="col-md-6 pt-md-0 pt-3">
-                          <label >First Name</label><input class="multisteps-form__input form-control" type="text" placeholder="" value="<?php echo $s->firstname; ?>" disabled/>
+                          <label >First Name</label><input class="multisteps-form__input form-control" type="text" id="fname" placeholder="" value="<?php echo $s->firstname; ?>" disabled/>
                         </div>
                         <div class="col-md-6 pt-md-0 pt-3">
-                          <label>Last Name</label><input class="multisteps-form__input form-control" type="text" placeholder="" value="<?php echo $s->lastname; ?>" disabled/>
+                          <label>Last Name</label><input class="multisteps-form__input form-control" type="text" id="lname" placeholder="" value="<?php echo $s->lastname; ?>" disabled/>
                         </div>
                       </div>
                       <div class="form-row mt-4">
                         <div class="col-md-6 pt-md-0 pt-3">
-                          <label >Birthday</label><input class="multisteps-form__input form-control" type="text" placeholder="" value="<?php echo $s->birthdate;?>" disabled/>
+                          <label >Birthday</label><input class="multisteps-form__input form-control" type="date" id="bdate" placeholder="" value="<?php echo $s->birthdate;?>" disabled/>
                         </div>
                         <div class="col-md-6 pt-md-0 pt-3">
         
-                          <label >Gender</label><input class="multisteps-form__input form-control" type="text" placeholder="" value="<?php echo $s->gender;?>" disabled/>
+                          <label >Gender</label>
+                          <!-- <input class="multisteps-form__input form-control" type="text" id="" placeholder="" value="<?php echo $s->gender;?>" disabled/> -->
+                          <select class="multisteps-form__input form-control" name="" id="gender" disabled>
+                            <option value="male" <?php if($s->gender == "male"){echo "selected";}?>>male</option>
+                            <option value="female" <?php if($s->gender == "female"){echo "selected";}?>>female</option>
+                          </select>
                         </div>
                         
                       </div>
                       <div class="form-row mt-4">
                         <div class="col-md-6 pt-md-0 pt-3">
-                          <label >Email</label><input class="multisteps-form__input form-control" type="email" placeholder="" value="<?php echo $s->email;?>" disabled/>
+                          <label >Email</label><input class="multisteps-form__input form-control" type="email" placeholder="" id="email" value="<?php echo $s->email;?>" disabled/>
                         </div>
                         <div class="col-md-6 pt-md-0 pt-3">
-                          <label >Phone Number</label><input class="multisteps-form__input form-control" type="text" placeholder="" value="<?php echo $s->phone_num;?>" disabled/>
+                          <label >Phone Number</label><input class="multisteps-form__input form-control" type="text" placeholder="" id="pnum" value="<?php echo $s->phone_num;?>" disabled/>
                         </div>
                       </div>
                       <?php }?>    <!--end of populate user details-->
                       <div class="button-row d-flex mt-4">
-                        <button class="btn btn-warning ml-auto js-btn-next" style="color: aliceblue;" type="button" title="Next">Next</button>
+                        <button class="btn btn-warning ml-auto js-btn-next" style="color: aliceblue;" type="button" title="Next" id="p_info_nextBtn" >Next</button>
+                        <button class="btn btn-warning ml-auto d-none" style="color: aliceblue;" type="button" title="Next" id="update_personalInfoBtn" >Update</button>
                       </div>
                     </div>
                   </div>
@@ -92,10 +101,13 @@
                   <div class="multisteps-form__panel shadow p-4 rounded bg-white" data-animation="scaleIn">
                     <h3 class="multisteps-form__title">Access Type</h3>
                     <?php foreach ($shopdetails as $shop) {?>
-                      <p id="shop_id"><?php echo $shop->shop_id;?></p>
-                    <h3 class="multisteps-form__title" ><?php echo $shop->shop_name;?></h3>
+                      <p id="shop_id" style="display:none;"><?php echo $shop->shop_id;?></p>
+                      <div class="d-flex">
+                        <img src="../assets/upload/shop/<?php echo $shop->shop_img_icon;?>" onerror="this.src='../assets/upload/shop/defaultshopimg.png';" style="width: 50px;border-radius: 50%;">  
+                        <h3 class="multisteps-form__title" ><?php echo $shop->shop_name;?></h3>
+                      </div>
                     <?php }?>
-                    <div id="shop_id"><?php if(isset($shop_id)){ echo $shop_id;}?></div>
+                    <!-- <div id="shop_id"><?php if(isset($shop_id)){ echo $shop_id;}?></div> -->
                     <label style="color: red; font-size: 12px;">* Choose your preferred access type. You only need to
                       <strong style="color:green; font-size:15px;">   pay our booking fee.</strong></label>
                   
@@ -445,7 +457,7 @@
 </script>
 
 
-<script>
+<!-- <script>
 $(document).on('click','.star',function(){ 
    var rating = $(this).val();
    $("#submit_review").attr('rating',rating);
@@ -482,8 +494,202 @@ $(document).on('click','#submit_review',function(){
 
   
 });
+</script> -->
+
+<!-- edit personal information js -->
+<script>
+$(document).on('click','#edit-personal_info',function(){ 
+
+status = $(this).attr("status");
+if(status == "active"){
+  location.reload();  
+}
+
+$(this).removeClass("bx-edit-alt");
+$(this).addClass("bx-x-circle");
+$(this).attr("status","active");
+// $('#disabledCheckboxes').prop("disabled", true);
+$('#fname').removeAttr("disabled");
+$('#lname').removeAttr("disabled");
+$('#bdate').removeAttr("disabled");
+$('#gender').removeAttr("disabled");
+$('#email').removeAttr("disabled");
+$('#pnum').removeAttr("disabled");
+
+$('#p_info_nextBtn').addClass("d-none");
+$("#update_personalInfoBtn").removeClass('d-none');
+
+});
+
+
+// update personal information
+$(document).on('click','#update_personalInfoBtn',function(){ 
+  fname =  $('#fname').val();
+  lname =   $('#lname').val();
+  bdate =  $('#bdate').val();
+  gender =   $('#gender').val();
+  email =   $('#email').val();
+  pnum =  $('#pnum').val();
+
+  if(checkValidation()&&BDateValidator()&&checkInputIsEmpty()){
+
+    $.ajax({
+			url: BASE_URL+"updatefinderInfo",
+			method: "POST",
+			data:{firstname:fname,lastname:lname,b_date:bdate,gen:gender,email_add:email,p_number:pnum},
+			success: function (data) {
+   
+          swal({
+            title: "Personal Infomation Updated",
+            text: "",
+            icon: "success",
+            button: "Continue",
+          }).then((value) => {
+                location.reload();
+          });
+
+			},
+		});
+
+  }
+
+
+});
+
+
+//-----Input Validation for personal informatiom--
+function checkInputIsEmpty(){
+  fname =  $('#fname').val();
+  lname =   $('#lname').val();
+  bdate =  $('#bdate').val();
+  email =   $('#email').val();
+  pnum =  $('#pnum').val();
+
+  if(fname == ""){
+    $("#fname").css({"border-color": "#fd0033", 
+                "border-width":"1px", 
+                "border-style":"solid"});
+    return false;            
+  }
+  if(lname == ""){
+    $("#lname").css({"border-color": "#fd0033", 
+                "border-width":"1px", 
+                "border-style":"solid"});
+    return false;            
+  }
+  if(bdate == ""){
+    $("#bdate").css({"border-color": "#fd0033", 
+                "border-width":"1px", 
+                "border-style":"solid"});
+    return false;            
+  }
+  if(email == ""){
+    $("#email").css({"border-color": "#fd0033", 
+                "border-width":"1px", 
+                "border-style":"solid"});
+    return false;            
+  }
+  if(pnum == ""){
+    $("#pnum").css({"border-color": "#fd0033", 
+                "border-width":"1px", 
+                "border-style":"solid"});
+    return false;            
+  }
+
+  return true;
+}
+
+function checkValidation(){
+            email = $("#email").val();
+            firstname = $("#fname").val();
+            lname    = $("#lname").val();
+            phone_num = $("#pnum").val();
+
+        
+            if(IsEmail(email)){
+                $("#email").css({"border-color": "#fd0033", 
+                "border-width":"1px", 
+                "border-style":"solid"});
+                swal('Invalid Email Address','Check your Email Address','error');
+                return false;
+            }
+            if (checkName(firstname)){
+                $("#fname").css({"border-color": "#fd0033", 
+                 "border-width":"1px", 
+                "border-style":"solid"});
+                return false;
+
+            }
+            if (checkName(lname)){
+                $("#lname").css({"border-color": "#fd0033", 
+                 "border-width":"1px", 
+                "border-style":"solid"});
+                return false;
+            }
+            if(phone_num == "" || phone_num.length <10 || phone_num.length>10){
+                $("#pnum").css({"border-color": "#fd0033", 
+                 "border-width":"1px", 
+                "border-style":"solid"});
+                swal('Invalid Phone Number','Check your phone number correctly','error');
+                return false;
+            }
+        return true;
+}
+
+
+function IsEmail(email) {
+  var regex = /^([a-zA-Z0-9_\.\-\+])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+  if(!regex.test(email)) {
+    return true;
+  }else{
+    return false;
+  }
+}
+
+function checkName(name)
+{
+    var regex = /^([^0-9]*)$/;
+    if(regex.test(name))
+    {
+        return false;
+    } else{return true;}
+}
+
+function BDateValidator() {
+  var birthday = document.getElementById("bdate").value; // Don't get Date yet...
+  var regexVar = /^([0-9]{2})\/([0-9]{2})\/([0-9]{4})$/; // add anchors; use literal
+  var regexVarTest = regexVar.test(birthday); // pass the string, not the Date
+  var userBirthDate = new Date(birthday.replace(regexVar, "$3-$2-$1")); // Use YYYY-MM-DD format
+  var todayYear = (new Date()).getFullYear(); // Always use FullYear!!
+  var cutOff19 = new Date(); // should be a Date
+  cutOff19.setFullYear(todayYear - 16); // ...
+  var cutOff95 = new Date();
+  cutOff95.setFullYear(todayYear - 60);
+   if (isNaN(userBirthDate)) {
+    
+    swal( 'Invalid Birthdate','','error');
+    $("#bdate").css({"border-color": "#fd0033", 
+                 "border-width":"1px", 
+                "border-style":"solid"});
+    return false;
+  } else if (userBirthDate > cutOff19) {
+    // alert("you have to be older than 16");
+    swal( 'Invalid Birthdate','you have to be older than 16','error');
+    $("#bdate").css({"border-color": "#fd0033", 
+                 "border-width":"1px", 
+                "border-style":"solid"});
+    return false;
+  } else if (userBirthDate < cutOff95) {
+    // alert("you have to be younger than 95");
+    swal( 'Invalid Birthdate','you have to be younger than 60','error');
+    $("#bdate").css({"border-color": "#fd0033", 
+                 "border-width":"1px", 
+                "border-style":"solid"});
+    return false;
+  } 
+  return true; // Return the date instead of an undefined variable
+}  
+
 </script>
-
-
 
 </body>

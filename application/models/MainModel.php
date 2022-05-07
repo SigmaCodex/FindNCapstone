@@ -84,6 +84,19 @@ class MainModel extends CI_Model{
             $this->session->set_userdata('profile_pic',$image_data['file_name']);
         }
     }
+    public function updatefinderInfo(){
+        $user_id  = $this->session->userdata('user_id');
+        $findersdata = array(
+            'firstname'  => 	  $this->input->post('firstname'),
+            'lastname'  =>    $this->input->post('lastname'),
+            'gender'  =>    $this->input->post('gen'),
+            'birthdate'  =>    $this->input->post('b_date'),
+            'email'  =>    $this->input->post('email_add'),
+            'phone_num'  =>    $this->input->post('p_number'),
+        );
+        $this->db->where('user_id',$user_id);
+        $this->db->update('finders',$findersdata);
+    }
     public function disableFinderAccountStatus(){
         $user_id = $this->session->userdata('user_id');
         $data = array(
