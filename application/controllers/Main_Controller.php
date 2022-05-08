@@ -92,6 +92,24 @@ class Main_Controller extends CI_Controller {
 		}
 
 	}
+	public function printingBookingRequest($shopid){
+
+		$session['profile_pic'] = $this->session->userdata('profile_pic');
+		$session['user_name'] = $this->session->userdata('username');
+		if(!$session['user_name']){
+			redirect(findnlogin);
+		}else{
+			$this->load->model('MainModel');
+			$user_id = $this->session->userdata('user_id');
+			$val['shop_id']					 = $shopid;
+			$val['findersPersonalDetails']	 = $this->MainModel->selectFinderDetails($user_id);
+			$val['computertype_details']	 = $this->MainModel->getListOfComputerTypes($shopid);
+			$val['shopdetails']	 			 = $this->MainModel->getShopDetails($shopid);
+			$this->load->view('finders/navbar-query',$session);
+			$this->load->view('printingBookingRequest',$val);
+		}
+	}
+
 	public function viewRegister()
 	{
         $this->load->view('registerP');

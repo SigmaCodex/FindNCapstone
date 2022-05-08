@@ -56,7 +56,8 @@ $route['findersGCashPayment/(:num)'] = 'main_controller/viewfindersGCashPayment/
 
 
 $route['finder-ComputerBookingRequest/(:num)']   = 'main_controller/viewRequestBook/$1';
-$route['finder-Compbookingrequest/(:num)'] = 'main_controller/finder_BookingRequest/$1';
+$route['finder-PrintingBookingRequest/(:num)']  = 'main_controller/printingBookingRequest/$1';
+$route['finder-Compbookingrequest/(:num)'] = 'main_controller/finder_BookingRequest/$1';//practice ni sya 
 $route['computerbform'] = 'main_controller/viewcompbookForm';
 $route['viewMap']       = 'main_controller/viewMap';
 
@@ -111,7 +112,8 @@ $route['reports'] = 'main_controller/viewReports';
 
     
     //finders
-    $route['submit-CompBooking-Request'] = 'logicalcontroller/FindersCompBookingRequest';      
+    $route['submit-CompBooking-Request'] = 'logicalcontroller/FindersCompBookingRequest'; 
+    $route['submit-PrintingBooking-Request'] = 'logicalcontroller/FinderPrintBookingRequest';     
     $route['registerfinder'] = 'logicalcontroller/registerFinder';
     $route['checkuser/(:any)'] = 'logicalcontroller/checkUsername/$1';
     $route['generatePrimarykey'] = 'logicalcontroller/generatePrimarykey';

@@ -113,6 +113,24 @@ class LogicalController extends CI_Controller {
         $this->load->model('MainModel');
         $this->MainModel->FindersCompBookingRequest();
     }
+    public function FinderPrintBookingRequest(){
+
+        $this->load->helper(array('form', 'url')); 
+
+        $config['upload_path']          = './assets/upload/finder/file-printing';
+        $config['allowed_types']        = 'pdf|jpg|png|jpeg|docx';
+        $config['max_size']             = 5000;
+        $config['max_width']            = 5024;
+        $config['max_height']           = 5268;
+        $this->load->library('upload', $config);
+        $this->upload->initialize($config);
+        if(! $this->upload->do_upload('finder_file'))
+        {
+           echo "no-image";
+        }else{
+            echo "with file";
+        }
+    }
 
     public function CancelBooking($transac_id){
         $this->load->model('MainModel');
@@ -162,6 +180,8 @@ class LogicalController extends CI_Controller {
             $this->load->model('MainModel');
             $this->MainModel->updateFinderAccount("with-image");
         }
+
+
     }
     public function updatefinderInfo(){
         $this->load->model('MainModel');
