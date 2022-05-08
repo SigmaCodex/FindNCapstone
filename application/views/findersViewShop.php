@@ -168,7 +168,7 @@
                         <h6 class="text-center mb-5" style="font-size: 20px; font-weight: 600;">Select Service</h6>
                         <i class="fa fa-computer"></i>
                         <div class="text-center mb-4"><a href="<?php echo base_url();?>finder-ComputerBookingRequest/<?php echo $sd->shop_id;?>" class="btn btn-primary w-50 rounded-pill b1">Computer Bookings</a></div> 
-                        <div class="text-center mb-3"> <button class="btn btn-primary w-50 rounded-pill b1" >Printing Service</button> </div> 
+                        <div class="text-center mb-3"> <a href="<?php echo base_url();?>finder-PrintingBookingRequest/<?php echo $sd->shop_id;?>" class="btn btn-primary w-50 rounded-pill b1" >Printing Service</a> </div> 
                     </div>
                     </div>
                 </div>

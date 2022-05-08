@@ -105,7 +105,7 @@
                    
                     <?php foreach ($shopdetails as $shop) {?>
                       <p id="shop_id" style="display:none;"><?php echo $shop->shop_id;?></p>
-
+                      <input type="text" value="<?php echo $shop->shop_id;?>" name="s_id" style="display:none">
                       <div class="d-flex align-items-center jutify-content-start pb-2">
                         <img src="../assets/upload/shop/<?php echo $shop->shop_img_icon;?>" onerror="this.src='../assets/upload/shop/defaultshopimg.png';" style="width: 50px;border-radius: 50%;">  
                         <h3 class="multisteps-form__title pl-2" ><?php echo $shop->shop_name;?></h3>
@@ -121,7 +121,7 @@
   
                       <!-- First Row -->
                       <div class="row"></div>
-
+                        
                         <div class="form-row mt-4">
                             <div class="col-md-12 pt-md-0 pt-3">
                                 <label >Finder File</label><input class="multisteps-form__input form-control" type="file" id="file_upload" name="finder_file" placeholder=""/>
@@ -158,7 +158,7 @@
                             </div>
                             <div class="col-md-6 pt-md-0 pt-3">
                                     <label >Print type</label>
-                                    <select class="form-control" name="page_orientation" id="">
+                                    <select class="form-control" name="printing_type" id="">
                                         <option value="colored">Colored</option>
                                         <option value="black&white">Black & White</option>
                                     </select>
@@ -191,10 +191,10 @@
   
                       <div class="form-row mt-4 d-flex justify-content-center">
                         <div class="col-8 col-sm-4 mt-4 mt-sm-0">
-                          <label for="date">Date </label><input class="multisteps-form__input form-control" type="date" id="date" />
+                          <label for="date">Date </label><input class="multisteps-form__input form-control" type="date" id="date" name="arrival_date" />
                         </div>
                         <div class="col-8 col-sm-4 mt-4 mt-sm-0">
-                          <label for="time">Time </label><input class="multisteps-form__input form-control" type="time" id="time" />
+                          <label for="time">Time </label><input class="multisteps-form__input form-control" type="time" id="time" name="arrival_time"/>
                         </div>
                       </div>
                       <div class="button-row d-flex mt-4">
@@ -211,7 +211,7 @@
                   
                     <div class="multisteps-form__content">
                       <div class="form-row mt-4">
-                        <textarea id="message" rows="4" cols="50" class="multisteps-form__textarea form-control" placeholder="Additional Request or Questions for the computer cafe admin."></textarea>
+                        <textarea id="message" name="addtional_message" rows="4" cols="50" class="multisteps-form__textarea form-control" placeholder="Additional Request or Questions for the computer cafe admin."></textarea>
                       </div>
                       <div class="button-row d-flex mt-4">
                         <button class="btn btn-warning js-btn-prev" style="color: aliceblue;" type="button" title="Prev">Prev</button>
@@ -287,15 +287,25 @@
                      processData:false,  
                      success:function(data)  
                      {  
-                         alert(data);
-                        // swal({
-                        //     title: "Account Updated Successfully",
-                        //     text: "",
-                        //     icon: "success",
-                        //     button: "Continue",
-                        //     }).then((value) => {
-                        //             location.reload();
-                        //     }); 
+                         
+                         if(data == "no-file"){
+                          swal(
+                                'Invalid File',
+                                'Check Your File Or Upload New File',
+                                'error'
+                              ) 
+                         }else{
+                          swal({
+                                title: "Your Booking Request is send!",
+                                text: "Wait for the Respond",
+                                icon: "success",
+                                button: "Continue",
+                              }).then((value) => {
+                                // window.location = BASE_URL+"findersTransactionDetail/"+data;
+                                    
+                              }); 
+                         }
+
                     }  
                 });
             

@@ -560,6 +560,43 @@ class MainModel extends CI_Model{
              echo $transaction_id; //return generated id to ajax
     }
 
+    public function FinderPrintBookingRequest(){
+        $transaction_id = $this->generatePrimarykeyForTransaction($this->input->post('s_id'));
+        $user_id_fk = $this->session->userdata('user_id');
+        $date_issued = date('m/d/y');
+
+        $transaction = array(
+            'transaction_id'    =>  $transaction_id,
+            'user_id_fk'        =>  $user_id_fk,
+            'shop_id_fk'           =>  $this->input->post('s_id'),
+            'servicetype'       =>  "PrintingBooking",
+            'arrival_date'      => 	$this->input->post('arrival_date'),
+            'arrival_time'      => 	$this->input->post('arrival_time'),
+            'instruction'       => 	$this->input->post('addtional_message'),
+            'date_issued'              => 	$date_issued,
+            'transaction_status'       => 	"pending",
+            'service_fee'              => 	"0",
+            'payment_status	'          => 	"unpaid",
+            'arrival_status	'          => 	"waiting",
+            'payment_type'             => 	"not_selected",
+            'qr_code'                  => 	"not_issued",
+            );
+       
+
+        $image_data = $this->upload->data();
+        $printing_info = array(
+            'transaction_id'    =>  $transaction_id,
+            'file'        =>   $image_data['file_name'],
+            'orientation'           =>  $this->input->post('page_orientation'),
+            'size'       =>  $this->input->post('page_size'),
+            'number_of_copies'      => 	$this->input->post('num_copies'),
+            'printing_type'      => 	$this->input->post('printing_type'),
+            );
+
+            $this->db->insert('transaction',$transaction);
+            $this->db->insert('printing', $printing_info);
+    }
+
     public function CancelBooking($transaction_id){
         //delete permanently pending booking request
         $this->db->where("transaction_id",$transaction_id);

@@ -128,8 +128,11 @@ class LogicalController extends CI_Controller {
         {
            echo "no-image";
         }else{
-            echo "with file";
+            $this->load->model('MainModel');
+            $this->MainModel->FinderPrintBookingRequest();
         }
+   
+
     }
 
     public function CancelBooking($transac_id){
