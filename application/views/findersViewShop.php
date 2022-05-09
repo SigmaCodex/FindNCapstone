@@ -756,8 +756,8 @@
     
     if(!$.trim(comm)){
         swal({
-            title: "Unable to Comment",
-            text: "Please check your input",
+            title: "Comment cannot be blank",
+            text: "",
             icon: "error",
             button: "Continue",
             }).then((value) => {

@@ -248,9 +248,9 @@
                                         <div class="col-3 d-flex align-items-center justify-content-end">
                                         <?php
                                             if($admin_id == $cd->user_id){
-											echo "<i class='edit-icon fa-solid fa-pen-alt' id='edit_comment' edit_id='$cd->comment_id'></i>";
+											echo "<i class='edit-comment fa-solid fa-pen-alt' id='edit_comment' edit_id='$cd->comment_id'></i>";
 									    }?>
-                                        <i class='del-icon fa-solid fa-trash-alt' id="delete_comment" delete_id="<?php echo $cd->comment_id;?>"></i>
+                                        <i class='del-comment fa-solid fa-trash-alt' id="delete_comment" delete_id="<?php echo $cd->comment_id;?>"></i>
                                             <div class="profile-elapsed">
                                                 <p class="text-muted"><?php echo $cd->date;?></p>
                                             </div>
@@ -504,7 +504,7 @@
             if(!$.trim(description)){
                 e.preventDefault();  
                 swal({
-                title: "Please input the description!",
+                title: "Description cannot be blank!",
                 text: "",
                 icon: "error",
                 button: "Continue",
@@ -568,11 +568,11 @@
     $('#edit_upload_post').on('submit', function(e){  
         BASE_URL = "<?php echo base_url();?>";
         description = $('#cp_desc').val();
-            if(description = ""){
+            if(!$.trim(description)){
                 e.preventDefault();
                 swal({
-                title: "Post Updating Failed",
-                text: "Please input atleast the description!",
+                title: "Description cannot be blank!",
+                text: "",
                 icon: "error",
                 button: "Continue",
                 }).then((value) => {
@@ -623,8 +623,8 @@
                         
                     </div>
                     <div class="col-3 d-flex align-items-center justify-content-end">
-                    <i class='edit-icon fa-solid fa-pen-alt' id='edit_comment' edit_id='$cd->comment_id'></i>
-                    <i class='del-icon fa-solid fa-trash-alt' id="delete_comment" delete_id=""></i>
+                    <i class='edit-comment fa-solid fa-pen-alt' id='edit_comment' edit_id=""></i>
+                    <i class='del-comment fa-solid fa-trash-alt' id="delete_comment" delete_id=""></i>
                         <div class="profile-elapsed">
                             <p class="text-muted">${date} ${time}</p>
                         </div>
@@ -639,7 +639,16 @@
     BASE_URL = "<?php echo base_url();?>";
     id = $(this).attr('posts_id');
     comm_apnd = $(this).parent().parent().parent().find('.comments');
-    // alert(comm);
+    if(!$.trim(comm)){
+        swal({
+            title: "Comment cannot be blank",
+            text: "",
+            icon: "error",
+            button: "Continue",
+            }).then((value) => {
+            });
+        }
+    else{
     $.ajax({
           url:BASE_URL+"addComment/"+id,
           type: "POST",
@@ -649,30 +658,41 @@
             comm_apnd.append(comm_card);    
           }
          });
+    }
     });
 </script>
 <script>
-     $(document).on('click', '#edit_comment',function(){
+     $(document).on('click', '.edit-comment',function(){
         BASE_URL = "<?php echo base_url();?>";
         id = $(this).attr("edit_id");
         status = $(this).attr('stat');
         if(status == "active"){     
-         $(this).parent().parent().parent().parent().find('.posts-comment').find('textarea').remove();
-         $(this).parent().parent().parent().parent().find('.posts-comment').find('button').remove();
-         $(this).parent().parent().parent().parent().find('.posts-comment').find('p').show();
+         $(this).parent().parent().parent().find('.posts-comment').find('textarea').remove();
+         $(this).parent().parent().parent().find('.posts-comment').find('button').remove();
+         $(this).parent().parent().parent().find('.posts-comment').find('p').show();
          $(this).attr('stat', '');
         }
         else{
          $(this).attr('stat', 'active');
-         $(this).parent().parent().parent().parent().find('.posts-comment').find('p').hide();
-         edit_comment_text = $(this).parent().parent().parent().parent().find('.posts-comment').find('p').text();
-         $(this).parent().parent().parent().parent().find('.posts-comment').append("<textarea class='comment_field_edit' cols='80' rows='3'>"+edit_comment_text+"</textarea><button class='edit_curr_comment add-com badge badge-success p-2' getid='"+id+"'>UPDATE</button>");
+         $(this).parent().parent().parent().find('.posts-comment').find('p').hide();
+         edit_comment_text = $(this).parent().parent().parent().find('.posts-comment').find('p').text();
+         $(this).parent().parent().parent().find('.posts-comment').append("<textarea class='comment_field_edit' cols='80' rows='3'>"+edit_comment_text+"</textarea><button class='edit_curr_comment add-com badge badge-success p-2' getid='"+id+"'>UPDATE</button>");
         }
      });
      $(document).on('click', '.edit_curr_comment',function(){
         // comm = $(this).parent().find('.comment_field_edit').css('background-color','red');
         edited_comment = $(this).parent().parent().find('.posts-comment').find('textarea').val();
         id = $(this).attr('getid');
+        if(!$.trim(edited_comment)){
+        swal({
+            title: "Comment cannot be blank",
+            text: "",
+            icon: "error",
+            button: "Continue",
+            }).then((value) => {
+            });
+        }
+        else{
                 $.ajax({  
                      url: BASE_URL+"updateComment/"+id,   
                      method:"POST",  
@@ -685,6 +705,7 @@
             $(this).parent().find('p').text(edited_comment);
             $(this).parent().parent().find('.posts-comment').find('textarea').remove();
             $(this).remove();
+        }
      });
 </script>
 <script>
