@@ -382,7 +382,10 @@
                             </div>
                         </div>
                     </div>
-
+                    <?php foreach($finder_details as $fd){?>
+                    <p id="finder_full" style="display:none"><?php echo $fd->firstname;?> <?php echo $fd->lastname;?></p>
+                    <p id="finder_pic" style="display:none"><?php echo $fd->profile_pic;?></p>
+                    <?php }?>
                     <div class="row">
                         <div class="col-1"></div>
                         <div class="col-11">
@@ -427,7 +430,7 @@
                                                     <?php }?>
                                                     <p class="text-muted m-0"><?php echo $cd->user_type;?></p>
                                                     <div class="profile-elapsed">
-                                                        <p class="text-muted"><?php echo date("M j, Y H:i A", strtotime($cd->date));?></p>
+                                                        <p class="text-muted"><?php echo $cd->date;?></p>
                                                     </div>
                                                     
                                                 </div>
@@ -708,17 +711,69 @@
 <script>
     $(document).on('click','#add_cmnt',function(){
     BASE_URL = "<?php echo base_url();?>";
-    id = $(this).attr('posts_id');
+    today = new Date();
+    date = (today.getMonth()+1)+'/'+today.getDate()+'/'+today.getFullYear();
+    time = today.getHours() + ":" + today.getMinutes();
     comm = $(this).parent().parent().find('.comnt_text').val();
+    pic = $('#finder_pic').text();
+    name = $('#finder_full').text();
+    comm_card = `<div class="comments-card mt-4 pt-4">
+                                        <div class="row">
+                                            <div class="col-lg-1 col-md-1 col-sm-2">
+                                                <div class="profile-img">
+                                                <img src="../assets/upload/finder/${pic}" alt="">
+                                                </div>
+                                            </div>
+                    
+                                            <div class="col-8 col-md-8 col-sm-7 d-flex align-items-center justify-content-start">
+                                                <div class="comments-profile-name">
+                                                    <h6 class="m-0">${name}</h6>
+                                                    <p class="text-muted m-0">FINDER</p>
+                                                    <div class="profile-elapsed">
+                                                        <p class="text-muted">${date} ${time}</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-3 col-md-3 col-sm-3 d-flex align-items-start justify-content-end">
+                                                <div class="edit-delete">
+                                                    <i class='bx bxs-edit' id='edit_comment' edit_id='$cd->comment_id'></i>
+                                                    <i class='bx bx-trash' id='del_comment' del_id='$cd->comment_id'></i>;
+                                                </div>
+                                            </div>
+                                        </div> 
+                                        
+                                        <div class="row">
+                                            <div class="col-1"></div>
+                                            <div class="col-11">
+                                                <div class="posts-comment">
+                                                    <p>${comm}</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>`
+    id = $(this).attr('posts_id');
+    comm_apnd = $(this).parent().parent().parent().find('.comments');
+    
+    if(!$.trim(comm)){
+        swal({
+            title: "Unable to Comment",
+            text: "Please check your input",
+            icon: "error",
+            button: "Continue",
+            }).then((value) => {
+            });
+        }
+    else{
     $.ajax({
           url:BASE_URL+"addComment/"+id,
           type: "POST",
           data:{comment_txt:comm},
           success: function(data)
           {
-            location.reload();    
+             comm_apnd.append(comm_card);  
           }
          });
+    }
     });
 </script>
 <script>
@@ -743,6 +798,16 @@ $(document).on('click', '.edit_curr_comment',function(){
         // comm = $(this).parent().find('.comment_field_edit').css('background-color','red');
         edited_comment = $(this).parent().parent().parent().find('.posts-comment').find('textarea').val();
         id = $(this).attr('getid');
+        if(!$.trim(edited_comment)){
+        swal({
+            title: "Unable to Comment",
+            text: "Please check your input",
+            icon: "error",
+            button: "Continue",
+            }).then((value) => {
+            });
+        }
+        else{
                 $.ajax({  
                      url: BASE_URL+"updateComment/"+id,   
                      method:"POST",  
@@ -755,6 +820,7 @@ $(document).on('click', '.edit_curr_comment',function(){
             $(this).parent().parent().parent().find('p').text(edited_comment);
             $(this).parent().parent().parent().find('.posts-comment').find('textarea').remove();
             $(this).remove();
+        }
 });
 </script>
 
