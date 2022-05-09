@@ -1120,7 +1120,7 @@ class MainModel extends CI_Model{
         return $query->result();
     }
     public function updateshopPosts($id,$status){
-        $date_created = date('m/d/y');
+        $date_created = date('m/d/y H:i A');
         if($status == "no-image"){
             $data = array(
             'post_title'   => 	 $this->input->post('edit_title'),
