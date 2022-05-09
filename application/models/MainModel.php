@@ -1173,7 +1173,7 @@ class MainModel extends CI_Model{
         return $query->result();
     }
     public function updateComments($id){
-        $date_created = date('m/d/y');
+        $date_created = date('m/d/y H:i A');
         $data = array(
             'comment'   => 	 $this->input->post('comment_txt'),
             'date' =>  $date_created

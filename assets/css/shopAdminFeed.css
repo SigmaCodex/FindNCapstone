@@ -429,6 +429,24 @@ body{
 .del-icon:hover{
     color: #eb0606;
   }
+  .edit-comment{
+    padding-right: 10px;
+    color: #cbc4c4;
+    cursor: pointer;
+    font-size: 12px;
+  }
+.edit-comment:hover{
+    color: #1a9b3a;
+  }
+.del-comment{
+    padding-right: 10px;
+    color: #cbc4c4;
+    cursor: pointer;
+    font-size: 12px;
+  }
+.del-comment:hover{
+    color: #eb0606;
+  }
 
 
 
