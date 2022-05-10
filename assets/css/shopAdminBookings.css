@@ -66,9 +66,10 @@
     margin: 0;
 }
 #finder_profile{
-    width: 100px;
-    height: 100px;
+    width: 80px;
+    height: 80px;
     object-fit: cover;
+    border-radius: 50%;
 }
 .finder-date-trans{
     font-size: 10px;
@@ -512,5 +513,17 @@ font-size: 12px;
 @media (max-width: 400px) {
     .message-modal-content {
         width: 80%;
-}
+    }
+    .buttons-modal button{
+        font-size: 7px;
+    }
+    .user {
+        padding-top: 10px;
+    }
+    .modal-caption{
+        margin: 0;
+    }
+    .modal-left-card-profile {
+        height: 45vh;
+    }
 }

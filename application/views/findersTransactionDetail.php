@@ -246,7 +246,7 @@
                               <div class='row'>
                                 <div class='col-6'><h4 class='info-text-left'>Payment Method:</h4></div>
                                 <div class='col-2'><p class='info-text-middle'>:</p></div>
-                                <div class='col-4'><p class='info-text-right' style='padding-right:36px; font-weight: 700;'>Over the Counter</p></div>
+                                <div class='col-4'><p class='info-text-right' style='font-weight: 700;'>Over the Counter</p></div>
                               </div>
 
                               <h6 style='text-align:center; font-size: 10px; font-weight: 500; padding-top: 5px; color: rgb(55, 152, 10);'>Note: <b>Booking Fee</b> shall be paid over-the-counter before using the computer.</h6> 
@@ -257,7 +257,7 @@
                               <div class='row'>
                                 <div class='col-6'><h4 class='info-text-left'>Payment Method:</h4></div>
                                 <div class='col-2'><p class='info-text-middle'>:</p></div>
-                                <div class='col-4'><p class='info-text-right' style='padding-right:36px; font-weight: 700;'>Over the Counter</p></div>
+                                <div class='col-4'><p class='info-text-right' style='font-weight: 700;'>Over the Counter</p></div>
                               </div> 
                                 ";
                             }

@@ -407,13 +407,15 @@
                                                 </div>
 
                                                 <p class="modal-caption-details-right-total" id="totalfee"><b></b> </p>
-                                                <button id="od_btn" class="btn btn-danger" style="display;none;">Dismiss</button>
-                                                <button id="message_btn" class="btn btn-info mess_btn">Message</button>
-                                                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
                                                 </div>
                                             </div>
                                             
                                             </div>
+                                        </div>
+                                        <div class="buttons-modal d-flex align-items-center justify-content-between">
+                                            <button id="od_btn" class="btn btn-danger" style="display;none;">Dismiss</button>
+                                            <button id="message_btn" class="btn btn-info mess_btn">Message</button>
+                                            <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
                                         </div>
                                     </div>
 
@@ -543,7 +545,7 @@ $(document).on("click",".table-row",function(){
                            var result = JSON.parse(data);
                             for(var x = 0 ; x < result.length ; x ++)
                             {
-                                $("#finder_name").text(result[x]['firstname']+","+result[x]['lastname']);
+                                $("#finder_name").text(result[x]['firstname']+" "+result[x]['lastname']);
                                 $("#email").text(result[x]['email']);
                                 var upGend = result[x]['gender'];
                                 var gendtext = upGend.toUpperCase();

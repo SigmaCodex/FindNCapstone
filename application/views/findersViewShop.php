@@ -138,18 +138,12 @@
 
                     <div class="col-lg-3 col-md-3">
 
-                            <div class="book-buttons d-flex align-items-end flex-column d-sm-flex justify-content-sm-center" style="height: 250px;">
-                                <div class="mb-auto p-2">
-                                    <div class="book-mark">
-                                        <i class='bx bxs-bookmarks'></i>
-                                    </div>
+                            <div class="book-buttons d-flex  flex-column align-items-end justify-content-end ">
 
-                                </div>
-                                <div class="p-2">
+                                <div class="p-2 rate-but">
                                     <button class="btn btn-warning"  data-toggle="modal" data-target="#rate">Rate <i class='bx bxs-star'></i></button>
                                 </div>
-                                <div class="p-2">
-                                    
+                                <div class="p-2 book-book">
                                     <button class="book" data-toggle="modal" data-target="#booknow_modal" style="outline:none;" <?php if($sd->Shop_Status == "Close"){echo "disabled";}?>>Book</button>
                                 </div>
                                 
@@ -162,13 +156,18 @@
                 <!-- BOOK NOW MODAL -->
                 <hr>
                 <div class="modal fade" id="booknow_modal" tabindex="-1" role="dialog">
-                    <div class="modal-dialog" role="document">     
-                    <div class="modal-content py-md-5 px-md-4 p-sm-3 p-4">
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button><br>
-                        <h6 class="text-center mb-5" style="font-size: 20px; font-weight: 600;">Select Service</h6>
-                        <i class="fa fa-computer"></i>
-                        <div class="text-center mb-4"><a href="<?php echo base_url();?>finder-ComputerBookingRequest/<?php echo $sd->shop_id;?>" class="btn btn-primary w-50 rounded-pill b1">Computer Bookings</a></div> 
-                        <div class="text-center mb-3"> <a href="<?php echo base_url();?>finder-PrintingBookingRequest/<?php echo $sd->shop_id;?>" class="btn btn-primary w-50 rounded-pill b1" >Printing Service</a> </div> 
+                    <div class="modal-dialog modal-dialog-centered" role="document">     
+                    <div class="modal-content py-md-2 px-md-2 p-sm-3 p-2">
+                        <div class="d-flex align-items-center justify-content-start">
+                            <button type="button" class="close pl-3 pt-3" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button><br>
+                        </div>               
+                        <h6 class="text-center mb-2" style="font-size: 20px; font-weight: 600;">Select Services</h6>
+                        
+                        <div class="d-flex align-items-center justify-content-around">
+                            <div class="text-center mb-4 p-3"><a href="<?php echo base_url();?>finder-ComputerBookingRequest/<?php echo $sd->shop_id;?>" class="btn btn-success rounded-pill b1 p-2">Computer Bookings</a></div> 
+                            <div class="text-center mb-4 p-3"> <a href="<?php echo base_url();?>finder-PrintingBookingRequest/<?php echo $sd->shop_id;?>" class="btn btn-success rounded-pill b1 p-2" >Printing Service</a> </div> 
+                        </div>
+
                     </div>
                     </div>
                 </div>
@@ -335,14 +334,14 @@
                             </div>
                         </div>
                         
-                        <div class="col-9">
+                        <div class="col-7">
                             <div class="profile-name-title">
                                 <h5 class="m-0" ><?php echo $pd->shop_name;?></h5>
                                 <p class="m-0"><?php echo $pd->firstname;?> <?php echo $pd->lastname;?>(ADMIN)</p>
                             </div>
                         </div>
 
-                        <div class="col-2">
+                        <div class="col-4">
                             <div class="profile-date-posted text-right">
                                 <p class="text-muted"><?php echo date("M j, Y H:i A", strtotime($pd->post_created));?></p>
                             </div>
@@ -504,7 +503,7 @@
                     </p>
                 </div>
 
-                    <div class="ratings-data ">
+                    <div class="ratings-data mb-5">
                         <div class="d-flex justify-content-center align-items-center p-2">
     
                               <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
@@ -525,7 +524,7 @@
                                                     <img src="../assets/upload/finder/<?php echo $user_ratings->profile_pic;?>"  onerror="this.src='../assets/images/default.png';"  alt="">
                                                     </div>
                                                 </div>
-                                                <div class="col-7">
+                                                <div class="col-6">
                                                     <div class="ratings-name">
                                                         <h6 class=""><?php echo $user_ratings->firstname;?> <?php echo $user_ratings->lastname;?></h6>
                                                         <div class="ratings-card-star d-flex align-items-center justify-content-start">
@@ -544,7 +543,7 @@
                 
                                                     </div>
                                                 </div>
-                                                <div class="col-3">
+                                                <div class="col-4">
                                                     <div class="ratings-date">
                                                         <p class="text-muted m-0"><?php echo date("M j, Y", strtotime($user_ratings->date));?></p>
                                                     </div>

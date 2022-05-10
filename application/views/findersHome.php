@@ -36,7 +36,7 @@
                     <?php foreach($listofshops as $data){?>
                     <div class="col-lg-6 col-sm-6 shops">
                         <!-- Shop CARD -->
-                        <div class="content-card mt-5">
+                        <div class="content-card mt-5 mb-5">
                             <div class="row">
 
                                 <div class="col-lg-4 col-sm-12 d-flex align-items-center">

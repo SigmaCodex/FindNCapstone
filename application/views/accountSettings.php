@@ -199,13 +199,12 @@
       </div>
       <div class="modal-body" style="justify-content: center;">
         <div class="form-verification">
-            <div class="col-md-12"> <label >CurrentPassword:</label> <input type="password" id="current_password" name="currentpassword" value="" class="bg-light form-control"> </div>
+            <div class="col-md-12"> <label >Current Password:</label> <input type="password" id="current_password" name="currentpassword" value="" class="bg-light form-control"> </div>
             <!-- <br> -->
-            <hr>
-            <div class="col-md-8"> <label>New Password:</label> <input type="password" id="new_password" name="newpassword" value="" class="bg-light form-control"> </div>
-            <div class="col-md-8"> <label>Repeat New Password:</label> <input type="password" id="check_new_password" value="" class="bg-light form-control"> </div>
+            <div class="col-md-12"> <label>New Password:</label> <input type="password" id="new_password" name="newpassword" value="" class="bg-light form-control"> </div>
+            <div class="col-md-12"> <label>Repeat New Password:</label> <input type="password" id="check_new_password" value="" class="bg-light form-control"> </div>
             <br>
-        <button id="change_pass_btn" class="w-100 btn btn-primary">Change password</button>
+        <button id="change_pass_btn" class="w-100 btn btn-info">Change password</button>
         </div>
       </div>
       <div class="modal-footer">

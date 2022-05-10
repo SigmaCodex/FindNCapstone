@@ -326,9 +326,15 @@ body{
 
 }
 .modal-body .img-holder-upload{
+    width: 220px;
+    height: 200px;
+    /* border: 1.3px dashed black; */
+}
+.modal-body .img-holder-upload img{
     width: 420px;
     height: 200px;
-    border: 1.3px dashed black;
+    object-fit: cover;
+    /* border: 1.3px dashed black; */
 }
 .modal-body img{
     width: 420px;
@@ -400,6 +406,17 @@ body{
     }
     .comments-card .posts-comment p{
         margin-left: 70px;
+    }
+    .modal-body textarea{
+        width: 300px;
+    }
+    .upload_post input {
+        width: 100px;
+    }
+    .modal-body .img-holder-upload img{
+        width: 295px;
+        height: 200px;
+        /* border: 1.3px dashed black; */
     }
 }
 .add-com {
