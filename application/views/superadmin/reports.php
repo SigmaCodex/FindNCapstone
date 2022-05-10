@@ -92,7 +92,7 @@
 
           <!-- php code for total monthly sales -->
         <?php $monthFee = array(array("Jan",0), array("Feb",0), array("Mar",0), array("Apr",0), array("May",0), array("Jun",0), array("July",0), array("Aug",0), array("Sep",0), array("Oct",0), array("Nov",0), array("Dec",0));?>
-        <?php foreach ($sales as $month) {?> 
+        <?php foreach ($monthly as $month) {?> 
           <?php $curmonth = date("M", strtotime($month->date_issued)); ?>
             <?php for($x=0; $x<12; $x++){
               if($curmonth == $monthFee[$x][0]) {
@@ -120,7 +120,7 @@
       </div>
     </div>
   </div>
-  <div class='card col-md-4'>
+  <!-- <div class='card col-md-4'>
     <div class='card-title'>
       <h2>
         Printing Monthly Sale
@@ -156,7 +156,7 @@
         </div>
       </div>
     </div>
-  </div>
+  </div> -->
   <div class='card col-md-4'>
     <div class='card-title'>
       <h2>
@@ -276,6 +276,7 @@
 						      <th>Over the Counter</th>
 						      <th>Gcash</th>
 						      <th>Sales</th>
+                  <th>Revenue</th>
 						    </tr>
 						  </thead>
 						  <tbody>
@@ -285,7 +286,8 @@
 						    	<td ><?php echo $sS->shop_name;?></td>
 						    	<td ><?php echo $sS->overthecounter;?>	</td>
 						    	<td ><?php echo $sS->gcash;?>	</td>
-								  <td ><?php echo $sS->sumofservicefee;?></td>
+                  <td ><?php echo $sS->sumofservicefee;?></td>
+								  <td ><?php echo $sS->sumofservicefee * 0.7;?></td>
 						    </tr>
 						    <?php }?>  	
 						  </tbody>
