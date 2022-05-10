@@ -96,7 +96,7 @@
           <?php $curmonth = date("M", strtotime($month->date_issued)); ?>
             <?php for($x=0; $x<12; $x++){
               if($curmonth == $monthFee[$x][0]) {
-                $monthFee[$x][1]= $monthFee[$x][1] + $month->service_fee;
+                $monthFee[$x][1]= $monthFee[$x][1] + ($month->service_fee * $month->num_ticket);
               } 
           }?>
             
@@ -107,7 +107,7 @@
           <?php if($monthFee[$y][1]!=0) { ?>
             <li>
             <?php echo $monthFee[$y][0]; ?>
-             <span>P<?php echo $monthFee[$y][1]; ?></span>
+             <span>₱<?php echo $monthFee[$y][1]; ?></span>
           </li>
         <?php } } ?>
         
@@ -160,23 +160,23 @@
   <div class='card col-md-4'>
     <div class='card-title'>
       <h2>
-        Payment Type Books
+      Monthly Payment Type
       </h2>
     </div>
     <div class='card-flap flap1'>
       <div class='card-description'>
         <ul class='task-list'>
 
-        <?php $monthSales = array(array("Jan",0,0,0), array("Feb",0,0,0), array("Mar",0,0,0), array("Apr",0,0,0), array("May",0,0,0), array("Jun",0,0,0), array("July",0,0,0), array("Aug",0,0,0), array("Sep",0,0,0), array("Oct",0,0,0), array("Nov",0,0,0), array("Dec",0,0,0));
+        <?php $monthSales = array(array("Jan",0,0,0,0), array("Feb",0,0,0,0), array("Mar",0,0,0,0), array("Apr",0,0,0,0), array("May",0,0,0,0), array("Jun",0,0,0,0), array("July",0,0,0,0), array("Aug",0,0,0,0), array("Sep",0,0,0,0), array("Oct",0,0,0,0), array("Nov",0,0,0,0), array("Dec",0,0,0,0));
         foreach ($MonthlyPT as $MPT) {
           $curmonth = date("M", strtotime($MPT->date_issued));
             for($x=0; $x<12; $x++){
               if($curmonth == $monthSales[$x][0] && $MPT->payment_type == "overthecounter") {
-                $monthSales[$x][1] = $monthSales[$x][1] + $MPT->service_fee;
+                $monthSales[$x][1] = $monthSales[$x][1] + ($MPT->service_fee * $MPT->num_ticket);
                 $monthSales[$x][2] = $monthSales[$x][2] + 1;
               }
               if($curmonth == $monthSales[$x][0] && $MPT->payment_type == "gcash") {
-                $monthSales[$x][1] = $monthSales[$x][1] + $MPT->service_fee;
+                $monthSales[$x][4] = $monthSales[$x][4] + ($MPT->service_fee * $MPT->num_ticket);
                 $monthSales[$x][3] = $monthSales[$x][3] + 1;
               } 
             } 
@@ -187,7 +187,7 @@
           <?php if($monthSales[$y][1]!=0) { ?>
             <li>
               <?php echo $monthSales[$y][0]; ?>
-             <span>OTC <?php echo $monthSales[$y][2]; ?> GCash <?php echo $monthSales[$y][3]; ?></span>
+             <span>OTC ₱<?php echo $monthSales[$y][1]; ?> GCash ₱<?php echo $monthSales[$y][4]; ?></span>
           </li>
         <?php } } ?>
         </ul>
@@ -213,22 +213,21 @@
         foreach ($MonthlyPT as $MPT) {
           $curmonth = date("M", strtotime($MPT->date_issued));
               if($MPT->payment_type == "overthecounter") {
-                $totalAmount = $MPT->service_fee;
+                $totalAmount = $MPT->service_fee * $MPT->num_ticket;
                 $PaymentTypeSales[0] = $PaymentTypeSales[0] + $totalAmount;
               }
               if($MPT->payment_type == "gcash") {
-                $totalAmount = $MPT->service_fee;
+                $totalAmount = $MPT->service_fee * $MPT->num_ticket;
                 $PaymentTypeSales[1] = $PaymentTypeSales[1] + $totalAmount;
               } 
         }?>
 
             <!-- php loop for displaying -->
-            <li>
-                  Over the counter
-             <span> <?php echo $PaymentTypeSales[0]; ?></span>
+          <li>Over the counter
+             <span> ₱<?php echo $PaymentTypeSales[0]; ?></span>
           </li>
           <li>GCash
-             <span> <?php echo $PaymentTypeSales[1]; ?></span>
+             <span> ₱<?php echo $PaymentTypeSales[1]; ?></span>
           </li>
         </ul>
       </div>
@@ -242,18 +241,32 @@
   <div class='card col-md-4'>
     <div class='card-title'>
       <h2>
-        Total Sales
+        Total
       </h2>
     </div>
     <div class='card-flap flap1'>
       <div class='card-description'>
         <ul class='task-list'>
-        <?php foreach ($totalSalesAndBooks as $tS) {?> 
-        <li>
-            Total Sales
-            <span><?php echo $tS->totalSales;?></span>
+        <?php $PaymentTypeSales = array(0,0);
+        foreach ($MonthlyPT as $MPT) {
+          $curmonth = date("M", strtotime($MPT->date_issued));
+              if($MPT->payment_type == "overthecounter") {
+                $totalAmount = $MPT->service_fee * $MPT->num_ticket;
+                $PaymentTypeSales[0] = $PaymentTypeSales[0] + $totalAmount;
+              }
+              if($MPT->payment_type == "gcash") {
+                $totalAmount = $MPT->service_fee * $MPT->num_ticket;
+                $PaymentTypeSales[1] = $PaymentTypeSales[1] + $totalAmount;
+              } 
+        }?> 
+          <li>
+            Sales
+            <span>₱<?php echo $PaymentTypeSales[0] + $PaymentTypeSales[1];?></span>
           </li>
-        <?php } ?>
+          <li>
+            Revenue
+            <span>₱<?php echo ($PaymentTypeSales[0] + $PaymentTypeSales[1]) * 0.7;?></span>
+          </li>
         </ul>
       </div>
       <div class='card-flap flap2'>
@@ -284,10 +297,10 @@
 						  <?php foreach ($salesShop as $sS) {?>  
 						    <tr class="alert" role="alert">
 						    	<td ><?php echo $sS->shop_name;?></td>
-						    	<td ><?php echo $sS->overthecounter;?>	</td>
-						    	<td ><?php echo $sS->gcash;?>	</td>
-                  <td ><?php echo $sS->sumofservicefee;?></td>
-								  <td ><?php echo $sS->sumofservicefee * 0.7;?></td>
+						    	<td >₱<?php echo $sS->overthecounter * $sS->service_fee;?>	</td>
+						    	<td >₱<?php echo $sS->gcash * $sS->service_fee;?>	</td>
+                  <td >₱<?php echo ($sS->overthecounter * $sS->service_fee)+($sS->gcash * $sS->service_fee);?></td>
+								  <td >₱<?php echo $sS->sumofservicefee * 0.7;?></td>
 						    </tr>
 						    <?php }?>  	
 						  </tbody>
