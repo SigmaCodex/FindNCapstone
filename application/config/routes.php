@@ -74,7 +74,7 @@ $route['admin-list/(:num)'] = 'main_controller/adminlist/$1';
 $route['comptypefee/(:num)'] = 'main_controller/shopadmin_comptypeInfo/$1';
 
 $route['superAdminDashBoard'] = 'main_controller/viewSuperAdminDashBoard';
-
+$route['superAdminViewMap']  = 'main_controller/superAdminViewMap';
 
 //REPORTS HERE
 $route['reports'] = 'main_controller/viewReports';

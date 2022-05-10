@@ -40,9 +40,10 @@
 		<nav>
         <ul class="menu">
 			<!-- <li class="logo"><a href="" id="Back">Back</a></li> -->
-            <li class="logo"><a href="#">FindN</a></li>
+            <li class="logo"><a href="listofcomputershop">FindN</a></li>
 			<li class="logo"><a href=""></a>FindN Super Admin</li>
-			<li class="item button secondary"><a href="" class="changepassmodal" data-target="#changePassword" data-toggle="modal">Change password</a></li>
+			<li class="item button secondary"><a href="reports">Reports</a></li>
+			<li class="item button secondary"><a href="superAdminViewMap">View Map</a></li>
 			<li class="item button secondary"><a href="user-logout">Log out</a></li>
             <li class="toggle"><span class="bars"></span></li>
         </ul>

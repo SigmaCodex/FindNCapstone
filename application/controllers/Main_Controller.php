@@ -333,6 +333,16 @@ class Main_Controller extends CI_Controller {
 			$this->load->view('superadmin/listofcomputershop',$val);
 		}
 	}
+	public function superAdminViewMap(){
+		$session = $this->session->userdata('username');
+		if(!$session){
+			redirect(findnlogin);
+		}else{
+			$val['listofshops']	 = $this->MainModel->getListOfComputerShops();
+			$this->load->view('superadmin/viewmap',$val);
+		}
+	}
+	
 	public function adminList($id){
 		$session = $this->session->userdata('username');
 		if(!$session){

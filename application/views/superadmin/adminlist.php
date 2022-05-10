@@ -44,7 +44,8 @@
         <ul class="menu">
 			<li class="logo"><a href="<?php echo base_url();?>listofcomputershop">Back</a></li>
             <li class="logo"><a href=""></a>FindN Super Admin</li>
-			<li class="item button secondary"><a href="" class="changepassmodal" data-target="#changePassword" data-toggle="modal">Change password</a></li>
+			<li class="item button secondary"><a href="<?php echo base_url();?>reports">Reports</a></li>
+			<li class="item button secondary"><a href="<?php echo base_url();?>superAdminViewMap">View Map</a></li>
 			<li class="item button secondary"><a href="<?php echo base_url();?>user-logout">Log out</a></li>
 
             <li class="toggle"><span class="bars"></span></li>
