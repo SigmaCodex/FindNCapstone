@@ -773,6 +773,7 @@
              comm_apnd.append(comm_card);  
           }
          });
+         $(this).parent().parent().find('.comnt_text').val("");
     }
     });
 </script>
