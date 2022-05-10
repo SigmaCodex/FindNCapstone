@@ -308,10 +308,11 @@ class MainModel extends CI_Model{
 		}
 		else
 		{
+            $enc_password = md5($this->input->post('pass'));
             $datauser = array(
                 'user_id'   =>    $Primarycode,
                 'username'  => 	  $this->input->post('username'),
-                'password'  =>    $this->input->post('pass'),
+                'password'  =>    $enc_password,
                 'user_type' =>    "Admin",
                 'status'    =>    "Active"
             );
