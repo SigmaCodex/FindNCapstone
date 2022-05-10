@@ -288,7 +288,10 @@ class Main_Controller extends CI_Controller {
 
 	//super admin
 
-
+	public function viewSuperAdminDashBoard()
+	{
+        $this->load->view('superadmin/superAdminDashBoard');
+    }
 	//REPORTS ------------------------------------------------
 	public function viewReports()
 	{
