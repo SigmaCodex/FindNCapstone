@@ -1518,6 +1518,15 @@ class MainModel extends CI_Model{
         return $query->result();
     }
 
+    public function getAllTransaction(){
+        $this->db->select("computershop.shop_name,transaction.date_issued,transaction.service_fee,transaction.payment_type");
+        $this->db->from('transaction');
+        $this->db->join('computershop','transaction.shop_id_fk = computershop.shop_id');
+        $this->db->where('payment_status','paid');
+        $query = $this->db->get();
+        return $query->result();
+    }
+
 
 
 }

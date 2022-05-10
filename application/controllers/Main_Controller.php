@@ -290,8 +290,12 @@ class Main_Controller extends CI_Controller {
 
 	public function viewSuperAdminDashBoard()
 	{
-        $this->load->view('superadmin/superAdminDashBoard');
+		$result['shoplist'] = $this->MainModel-> getListOfComputerShops();
+		$result['AllTransaction'] = $this->MainModel->getAllTransaction();
+		//  echo json_encode($result['AllTransaction']);
+         $this->load->view('superadmin/superAdminDashBoard',$result);
     }
+
 	//REPORTS ------------------------------------------------
 	public function viewReports()
 	{
