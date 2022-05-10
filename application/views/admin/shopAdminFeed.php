@@ -79,23 +79,23 @@
                                         
                                     <div class="modal-body d-flex flex-column">
                                         <form id="upload_post">
-                                        <label>Post Title:</label><input type="text" id="post_title" name="title">
-                                        <label>Description</label>
-                                        <textarea name="description" id="post_description" cols="65" rows="6" placeholder="Any thoughts to share to finders?"></textarea>
-                                        <div class="gap p-2"></div>
-                                        <div class="img-holder-upload">
-                                        <img src="assets/images/post.jpg" id="upload-preview" alt="">
-                                        </div>
-                                        <div class="gap p-2"></div>
+                                                <label>Post Title:</label><input type="text" id="post_title" name="title">
+                                                <label>Description</label>
+                                                <textarea name="description" id="post_description" cols="65" rows="6" placeholder="Any thoughts to share to finders?"></textarea>
+                                                <div class="gap p-2"></div>
+                                                <div class="img-holder-upload">
+                                                    <img src="assets/images/default_upload.png" id="upload-preview" alt="">
+                                                </div>
+                                                <div class="gap p-2"></div>
 
-                                        <div class="d-flex justify-content-end">
-                                            <label class="btn btn-primary">
-                                                <i class="fa fa-image"></i> Upload Image<input class="img_upload" type="file" style="display: none;"  name="postimage">
-                                            </label>
-                                        </div>
-                                        
-                                    </div>
-                                        <button type="submit" id="add_postfeed" class="btn btn-warning">Save changes</button>
+                                                <div class="d-flex justify-content-end">
+                                                    <label class="btn btn-primary">
+                                                        <i class="fa fa-image"></i> Upload Image<input class="img_upload" type="file" style="display: none;"  name="postimage">
+                                                    </label>
+                                                </div>
+                                                
+                                            </div>
+                                                <button type="submit" id="add_postfeed" class="btn btn-warning">Save changes</button>
                                         </form>
                                 </div>
                             </div>

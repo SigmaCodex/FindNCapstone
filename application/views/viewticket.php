@@ -112,16 +112,25 @@ body {
   font-weight:300;
 }
 .ticket-system .receipts .receipt .left-title .finder {
-  font-size: 15px;
+  font-size: 10px;
   color: #7B7575;
   padding: 3px;
 }
+
 .ticket-system .receipts .receipt .right-title p {
   font-size: 15px;
   color: #7B7575;
   padding: 3px;
   margin:0;
   font-weight:500;
+  text-align: right;
+}
+.ticket-system .receipts .receipt .right-title .finder {
+  font-size: 11px;
+  color: #7B7575;
+  padding: 3px;
+  margin:0;
+  font-weight:700;
   text-align: right;
 }
 .ticket-system .receipts .receipt .right-title .time {
