@@ -216,7 +216,8 @@ $tbl .= '
 			<th>Shop Name</th>
 			<th>OvertheCounter</th>
 			<th>GCash</th>
-			<th>Total Sale</th>
+			<th>Sales</th>
+			<th>Revenue</th>
 		</tr>
 	</thead>';
 foreach ($salesShop as $sS) {
@@ -228,6 +229,7 @@ foreach ($salesShop as $sS) {
 						<td>'. $sS->overthecounter .'</td>
 						<td>'. $sS->gcash .'</td>
 						<td>'. $sS->sumofservicefee .'</td>
+						<td>'. $sS->sumofservicefee * 0.7.'</td>
 					 </tr>';
 	}
 	$tbl .='
