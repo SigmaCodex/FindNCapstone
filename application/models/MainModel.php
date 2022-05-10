@@ -16,32 +16,35 @@ class MainModel extends CI_Model{
       $pass = $this->input->post('password');
 
       $this->db->where('username',$user);
-      $this->db->where('password',$pass);
+    //   $this->db->where('password',$pass);
       $query = $this->db->get('user');
       if(!empty($query->result_array()))
       {
+        $row = $query->row();
+        if($row->password == md5($pass)){
+            
+            $datasession  = array(
+                'user_id' => $row->user_id,
+                'username'  => $row->username,
+                'user_type' => $row->user_type,
+                'status' => $row->status,                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    
+            );
+            $this->session->set_userdata($datasession);
+        
 
-          $row = $query->row();
-          $datasession  = array(
-              'user_id' => $row->user_id,
-              'username'  => $row->username,
-              'user_type' => $row->user_type,
-              'status' => $row->status,                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    
-          );
-          $this->session->set_userdata($datasession);
-      
-
-          //if usertype is finder get the profile pic
-          if($row->user_type == "finder"){
+            //if usertype is finder get the profile pic
+            if($row->user_type == "finder"){
             $this->db->select("profile_pic");
             $this->db->where('user_id',$row->user_id);
             $query2 = $this->db->get('finders');
             $query2->result_array();
             $row2 = $query2->row();
             $this->session->set_userdata('profile_pic',$row2->profile_pic);
-          }
-
-          return true;
+            }
+            return true;
+        }else{
+            return false;
+        }
 
       }else{
         return false;
@@ -112,20 +115,28 @@ class MainModel extends CI_Model{
         $current_pass = $this->input->post('currentpassword');
         $user_id = $this->session->userdata('user_id');
 
-        $this->db->where('user_id',$user_id );
-        $this->db->where('password',$current_pass);
+    
+
+
+        $this->db->where('user_id',$user_id);
+        // $this->db->where('password',$current_pass);
         $query = $this->db->get('user');
         if(!empty($query->result_array()))
         {
-            
-            $data = array(
-                'password'  =>  $newpassword,
-            );
-            $this->db->where('user_id',$user_id);
-            $this->db->update('user',$data);
+            $row = $query->row();
+            if($row->password == md5($current_pass)){
 
-         
-            
+                $enyc_newPassword = md5($newpassword);
+                $data = array(
+                    'password'  =>  $enyc_newPassword,
+                );
+                $this->db->where('user_id',$user_id);
+                $this->db->update('user',$data);               
+
+            }else{
+                echo "invalid";
+            }
+
         }else{
           echo "invalid";
         }
@@ -445,6 +456,10 @@ class MainModel extends CI_Model{
         //check if the primary key is taken;
         $this->db->where('user_id',$Primarycode);
         $query = $this->db->get('user');
+
+        // $enc_password = password_hash($this->input->post('conpass'), PASSWORD_DEFAULT);
+        $enc_password = md5($this->input->post('conpass'));
+
         if(!empty($query->result_array()))
 		{ 
             $this->registerFinder();
@@ -454,7 +469,7 @@ class MainModel extends CI_Model{
             $datauser = array(
                 'user_id'   =>    $Primarycode,
                 'username'  => 	  $this->input->post('username'),
-                'password'  =>    $this->input->post('conpass'),
+                'password'  =>    $enc_password,
                 'user_type' =>    "finder",
                 'status'    =>    "Active"
             );
