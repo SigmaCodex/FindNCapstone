@@ -245,7 +245,7 @@
                                             
                                         </div>
                 
-                                        <div class="col-3 d-flex align-items-center justify-content-end">
+                                        <div class="col-3 d-flex align-items-start justify-content-end">
                                         <?php
                                             if($admin_id == $cd->user_id){
 											echo "<i class='edit-comment fa-solid fa-pen-alt' id='edit_comment' edit_id='$cd->comment_id'></i>";
@@ -658,6 +658,7 @@
             comm_apnd.append(comm_card);    
           }
          });
+         $(this).parent().parent().find('.cmnt_text').val("");
     }
     });
 </script>
