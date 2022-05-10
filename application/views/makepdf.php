@@ -119,11 +119,11 @@ $monthSales = array(array("Jan",0,0,0), array("Feb",0,0,0), array("Mar",0,0,0), 
         foreach ($MonthlyPT as $MPT) {
           $curmonth = date("M", strtotime($MPT->date_issued));
             for($x=0; $x<12; $x++){
-              if($curmonth == $monthSales[$x][0] && $MPT->payment_type == "OverTheCounter") {
+              if($curmonth == $monthSales[$x][0] && $MPT->payment_type == "overthecounter") {
                 $monthSales[$x][1] = $monthSales[$x][1] + $MPT->service_fee;
                 $monthSales[$x][2] = $monthSales[$x][2] + 1;
               }
-              if($curmonth == $monthSales[$x][0] && $MPT->payment_type == "GCash") {
+              if($curmonth == $monthSales[$x][0] && $MPT->payment_type == "gcash") {
                 $monthSales[$x][1] = $monthSales[$x][1] + $MPT->service_fee;
                 $monthSales[$x][3] = $monthSales[$x][3] + 1;
               } 
@@ -158,11 +158,11 @@ $tbl .='
 $PaymentTypeSales = array(0,0);
         foreach ($MonthlyPT as $MPT) {
           $curmonth = date("M", strtotime($MPT->date_issued));
-              if($MPT->payment_type == "OverTheCounter") {
+              if($MPT->payment_type == "overthecounter") {
                 $totalAmount = $MPT->service_fee * $MPT->num_ticket;
                 $PaymentTypeSales[0] = $PaymentTypeSales[0] + $totalAmount;
               }
-              if($MPT->payment_type == "GCash") {
+              if($MPT->payment_type == "gcash") {
                 $totalAmount = $MPT->service_fee * $MPT->num_ticket;
                 $PaymentTypeSales[1] = $PaymentTypeSales[1] + $totalAmount;
               } 
