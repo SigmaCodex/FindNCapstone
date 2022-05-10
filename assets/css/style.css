@@ -2129,7 +2129,6 @@ pre code {
 	color: #6c757d;
 	opacity: 1;
 }
-.form-control:disabled,
 .form-control[readonly] {
 	background-color: #ef7f4d;
 }
