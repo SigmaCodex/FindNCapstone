@@ -126,7 +126,7 @@ class LogicalController extends CI_Controller {
         $this->upload->initialize($config);
         if(! $this->upload->do_upload('finder_file'))
         {
-           echo "no-image";
+           echo "no-file";
         }else{
             $this->load->model('MainModel');
             $this->MainModel->FinderPrintBookingRequest();
