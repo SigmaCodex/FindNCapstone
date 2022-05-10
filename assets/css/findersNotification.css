@@ -78,6 +78,8 @@ a:hover {
   font-size: 1.25rem;
   padding-top: 5px;
   background-color: rgb(255, 255, 255);
+  height: 100vh;
+  overflow: auto;
 }
 .menu {
   padding: 20px 30px 20px 30px;
@@ -238,4 +240,25 @@ responsive design
   padding-right: 5px;
   cursor: pointer;
   color: blue;
+}
+/* width */
+::-webkit-scrollbar {
+  width: 1px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1; 
+  border-radius: 5px;
+}
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: rgb(220, 220, 220); 
+  border-radius: 5px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: rgb(223, 222, 222); 
 }

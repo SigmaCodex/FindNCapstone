@@ -17,7 +17,7 @@
 		<div class="login-content">
 			<div class="form">
 				<img src="assets/images/login-image.jpg" style="height:200px;">
-				<h2 class="title">Shop Admin</h2>
+				<h2 class="title">Admin Login</h2>
            		<div class="input-div one">
            		   <div class="i">
            		   		<i class="fas fa-user"></i>
