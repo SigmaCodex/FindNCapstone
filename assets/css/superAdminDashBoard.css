@@ -1,0 +1,260 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Poppins:wght@400;500;600;700&display=swap');
+@import url('//db.onlinewebfonts.com/c/80241b4ef777109d2625c9195e7ca852?family=NordiquePro-Bold');
+
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+a {
+	text-decoration: none;
+}
+
+li {
+	list-style: none;
+}
+
+:root {
+	--poppins: 'Poppins', sans-serif;
+	--lato: 'Lato', sans-serif;
+
+	--light: #F9F9F9;
+	--blue: #3C91E6;
+	--light-blue: #CFE8FF;
+	--grey: #eee;
+	--dark-grey: #AAAAAA;
+	--dark: #342E37;
+	--red: #DB504A;
+	--yellow: #FFCE26;
+	--light-yellow: #FFF2C6;
+	--orange: #FD7238;
+	--light-orange: #f1ecea;
+}
+
+html {
+	overflow-x: hidden;
+}
+
+body.dark {
+	--light: #0C0C1E;
+	--grey: #060714;
+	--dark: #FBFBFB;
+}
+
+body {
+	background: var(--grey);
+	overflow-x: hidden;
+	font-family: 'Poppins', sans-serif;
+
+	
+}
+.header{
+	background-color: #E27429;
+	font-family: 'Poppins', sans-serif;
+	height: 34vh;
+}
+.header .logo-findn img{
+	width: 80px;
+	height: 35px;
+	object-fit: cover;
+}
+.header .logo-findn h6{
+	margin: 0;
+}
+
+.header .month-drop {
+	padding-left: 10px;
+	width: 140px;
+}
+.header .month-drop select{
+	background-color: #E27429;
+	border: none;
+	color: #eee;
+	font-size: 17px;
+	font-weight: 700;
+}
+.header .month-drop select option{
+	background-color: #eee;
+	color: black;
+}
+.header .report-title{
+	padding-left: 20px;
+}
+.header .report-title h2{
+	color: #eee;
+	font-size: 40px;
+	font-weight: 600;
+}
+.content-details {
+    display: none;
+  }
+  
+.content-details.active {
+    display: flex;
+  }
+.reports-tab:hover, .analytics-tab:hover{
+	background-color: #eeeeee;
+}
+.reports-tab{
+	cursor: pointer;
+	padding: 15px;
+	border-top-left-radius: 10px;
+	border-top-right-radius: 10px;
+	position: absolute;
+	top: 165px;
+}
+.reports-tab h5, .analytics-tab h5{
+	font-size: 12px;
+}
+.analytics-tab{
+	cursor: pointer;
+	padding: 15px;
+	border-top-left-radius: 10px;
+	border-top-right-radius: 10px;
+	position: absolute;
+	top: 165px;
+	left: 200px;
+}
+
+#content main .head-title .btn-download {
+	height: 36px;
+	padding: 0 16px;
+	border-radius: 36px;
+	background: var(--blue);
+	color: var(--light);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	grid-gap: 10px;
+	font-weight: 500;
+}
+
+#content main .head-title .btn-download span{
+	text-decoration: none;
+}
+
+.card-holder-total {
+	padding: 20px;
+	background-color:  #f9f9f9;
+	border-radius: 10px;
+}
+.card-holder-total h5{
+	font-weight: 700;
+	background-image: linear-gradient(45deg, #f83f0b,#e09e1a);
+	background-size: 100%;
+	-webkit-background-clip: text;
+	-moz-background-clip: text;
+	-webkit-text-fill-color: transparent; 
+	-moz-text-fill-color: transparent;
+}
+
+.findn-shares{
+	padding: 20px;
+	box-shadow:  0 1px 3px rgba(0, 0, 0, 0.3);
+	border-radius: 10px;
+	cursor: pointer;
+}
+.findn-shares:hover{
+	box-shadow:  0 1px 4px rgba(0, 0, 0, 0.8);
+}
+.findn-shares img{
+	width: 60px;
+	height: 60px;
+	object-fit: cover;
+}
+.findn-shares i{
+	font-size: 40px;
+	padding: 10px;
+	background-color: #f46b31;
+	border-radius: 10px;
+	color: #eee;
+	font-weight: 200;
+}
+.findn-shares h5{
+	font-weight: 650;
+}
+.month-drop select, .select select{
+	border: none;
+	font-size: 17px;
+	background-color: #f9f9f9;
+	/* border-bottom: 1px solid rgb(209, 207, 207) ; */
+	box-shadow:  0 1px 1px rgba(0, 0, 0, 0.1);
+	text-align: right;
+}
+.form-control-sm option{
+	text-align: left;
+}
+.shop-lists{
+	padding: 20px;
+	background-color: #f9f9f9;
+	border-radius: 10px;
+	box-shadow:  0 0 2px rgba(0, 0, 0, 0.2);
+	height: 67vh;
+	overflow: auto;
+}
+.shop-lists-header {
+	border-bottom: 1px solid rgb(196, 194, 194);
+	border-radius: 2px;
+	padding: 5px;
+}
+.shop-lists-header h6{
+	margin: 0;
+}
+.shop-lists-header p {
+	margin: 0;
+	font-size: 10px;
+	text-align: center;
+	color: #E27429;
+	font-weight: 500;
+}
+.shop-lists-data {
+	padding: 10px;
+	border-radius: 5px;
+}
+.shop-lists-data:hover{
+	background-color: #e3dddd;
+	cursor: pointer;
+	
+}
+.shop-lists-data img {
+	width: 40px;
+	height: 40px;
+	border-radius: 50%;
+	object-fit: cover;
+}
+.percent p{
+	margin: 0;
+	font-weight: 600;
+	padding-top: 10px;
+}
+@media screen and (max-width: 768px) {
+
+}
+
+@media screen and (max-width: 576px) {
+	
+}
+
+
+/* For No blue outline */
+textarea:focus, 
+textarea.form-control:focus, 
+input.form-control:focus, 
+input[type=text]:focus, 
+input[type=password]:focus, 
+input[type=email]:focus, 
+input[type=number]:focus, 
+[type=text].form-control:focus, 
+[type=password].form-control:focus, 
+[type=email].form-control:focus, 
+[type=tel].form-control:focus, 
+[contenteditable].form-control:focus {
+  box-shadow: inset 0 -1px 0 #ddd;
+}
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
