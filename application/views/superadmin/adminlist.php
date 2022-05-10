@@ -249,27 +249,27 @@
 	  	<form id="updatecompform" class="" name="updatecompform">
 					<div class="form-group mb-2">
 		      			<label for="name">ComputerShop Name</label>
-		      			<input name="compname" id="shopName" type="text" class="form-control">
+		      			<input name="compname" id="shopName" type="text" class="form-control" disabled="disabled">
 		      		</div>
 					<div class="form-group mb-2">
 		      			<label for="name">Contact Number</label>
-		      			<input  name="number" id="c_number" type="text" class="form-control">
+		      			<input  name="number" id="c_number" type="text" class="form-control" disabled="disabled">
 		      		</div> 
 					<div class="form-group mb-2">
 		      			<label for="name">Email Address</label>
-		      			<input name="emailadd" id="emailadd" type="text" class="form-control">
+		      			<input name="emailadd" id="emailadd" type="text" class="form-control" disabled="disabled">
 		      		</div>
 					<div class="form-group mb-2">
 		      			<label for="name">Address</label>
-		      			<input name="address" id="AddressIN" type="text" class="form-control">
+		      			<input name="address" id="AddressIN" type="text" class="form-control" disabled="disabled">
 		      		</div>
 					<div class="form-group mb-2">
 		      			<label for="name">Latitude</label>
-		      			<input  type="text" id="lat" name="lat" value=""  placeholder="Your lat.." class="form-control">
+		      			<input  type="text" id="lat" name="lat" value=""  placeholder="Your lat.." class="form-control" disabled="disabled">
 		      		</div>
 					<div class="form-group mb-2">
 		      			<label for="name">Longtitude</label>
-		      			<input type="text" id="lng" name="lng" placeholder="Your lng.." value="" class="form-control">
+		      			<input type="text" id="lng" name="lng" placeholder="Your lng.." value="" class="form-control" disabled="disabled">
 		      		</div>
 					<div>		
 		      </div>
@@ -302,15 +302,15 @@
 		 			 <input id="useridid" hidden>	
 					<div class="form-group mb-2">
 		      			<label for="name">First Name</label>
-		      			<input name="updfirst" id="updfirst" type="text" class="form-control">
+		      			<input name="updfirst" id="updfirst" type="text" class="form-control" disabled="disabled">
 		      		</div>
 					<div class="form-group mb-2">
 		      			<label for="name">Last Name</label>
-		      			<input  name="updlast" id="updlast" type="text" class="form-control">
+		      			<input  name="updlast" id="updlast" type="text" class="form-control" disabled="disabled">
 		      		</div> 
 					  <div class="form-group mb-2">
                 		<label for="updgender">Gender</label>
-	              		<select name="updgender" class="form-control mb-2 form-select-lg mb-3 form-select" aria-label="Default select example">
+	              		<select name="updgender" class="form-control mb-2 form-select-lg mb-3 form-select" aria-label="Default select example" disabled="disabled">
 				  			<option value="">Choose. . .</option>
                   			<option value="Male">Male</option>
                   			<option value="Female">Female</option>
@@ -318,15 +318,15 @@
               		  </div>
 						<div class="form-group mb-2">
 		      			<label for="name">Birthdate</label>
-		      			<input name="upddate" id="upddate" type="date" class="form-control">
+		      			<input name="upddate" id="upddate" type="text" class="form-control" disabled="disabled">
 		      		 </div> 
 					<div class="form-group mb-2">
 		      			<label for="name">Email</label>
-		      			<input type="text" id="updemail" name="updemail" class="form-control">
+		      			<input type="text" id="updemail" name="updemail" class="form-control" disabled="disabled">
 		      		</div>
 					  <div class="form-group mb-2">
 		      			<label for="name">Contact Number</label>
-		      			<input type="text" id="updCNum" name="updCNum"  class="form-control">
+		      			<input type="text" id="updCNum" name="updCNum"  class="form-control" disabled="disabled">
 		      		</div>
 					<div>		
 		      </div>
@@ -338,9 +338,9 @@
 						 <input value="Cancel" class="form-control btn btn-primary rounded px-3"  readonly="readonly">
 		        		</button>
 	              	</div>
-                	<div class="form-group mb-2">
+                	<!-- <div class="form-group mb-2">
 					  <input value="Update" class="form-control btn btn-primary rounded submit px-3" id="updateadminbtn" readonly="readonly">
-	              	</div>
+	              	</div> -->
               	</div>
 			  </form>
       </div>
@@ -796,25 +796,29 @@ $(document).on("click", ".view-admin", function () {
 			$("#updCNum").val(data.contactaddress);
 			$("#useridid").text(data.user_id);
 
-
 			
 			let text = data.birthdate;
 			const myArray = text.split("/");
 			var dd = myArray[0];
 			var mm = myArray[1];
 			var yy = myArray[2];
-			if(mm.length > 1){
-				var actbdate = [yy, mm, dd].join("-");
-			}
-			else{
-				var actbdate = [yy, "0"+mm, dd].join("-");
-			}
 
+			var actbdate = [yy, mm, dd].join("-");
+			// if(mm.length > 1){
+			// 	var actbdate = [yy, mm, dd].join("-");
+			// }
+			// else if{
+			// 	var actbdate = [yy, "0"+mm, dd].join("-");
+			// }
+			// else{
+			// 	var actbdate = [yy, mm, dd].join("-");
+			// }
+			// alert(actbdate);
 			// if(mm.length == 0){
 
 			// }
 			
-
+			
 			$("#upddate").val(actbdate);
 
 			$("#updateAdminModal").modal('show');
@@ -947,7 +951,7 @@ $(document).on("click", ".remove-admin", function () {
 		var id = $(this).attr("data");
 
 			swal({
-  				title: "Are you sure to delete this computer type?",
+  				title: "Are you sure to delete this computer Admin?",
   				icon: "warning",
   				buttons: true,
   				dangerMode: true,
@@ -958,7 +962,7 @@ $(document).on("click", ".remove-admin", function () {
 						method: "POST",
 						data: { user_id: id },
 						success: function (data){
-							swal("Computer Type has been deleted!", {
+							swal("Computer Admin has been deleted!", {
     					  		icon: "success",
     						}).then((value) => {
 								location.reload(); 

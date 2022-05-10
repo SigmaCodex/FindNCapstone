@@ -86,7 +86,7 @@ foreach ($monthly as $month) {
 	$curmonth = date("M", strtotime($month->date_issued));
 	for($x=0; $x<12; $x++){	
 		if($curmonth == $monthFee[$x][0]) {
-		  $monthFee[$x][1]= $monthFee[$x][1] + $month->service_fee;
+		  $monthFee[$x][1]= $monthFee[$x][1] + ($month->service_fee * $month->num_ticket);
 		} 
 	}
 }
@@ -115,21 +115,21 @@ $tbl .='
 
 //---------------------------------------
 
-$monthSales = array(array("Jan",0,0,0), array("Feb",0,0,0), array("Mar",0,0,0), array("Apr",0,0,0), array("May",0,0,0), array("Jun",0,0,0), array("July",0,0,0), array("Aug",0,0,0), array("Sep",0,0,0), array("Oct",0,0,0), array("Nov",0,0,0), array("Dec",0,0,0));
+$monthSales = array(array("Jan",0,0,0,0), array("Feb",0,0,0,0), array("Mar",0,0,0,0), array("Apr",0,0,0,0), array("May",0,0,0,0), array("Jun",0,0,0,0), array("July",0,0,0,0), array("Aug",0,0,0,0), array("Sep",0,0,0,0), array("Oct",0,0,0,0), array("Nov",0,0,0,0), array("Dec",0,0,0,0));
         foreach ($MonthlyPT as $MPT) {
           $curmonth = date("M", strtotime($MPT->date_issued));
             for($x=0; $x<12; $x++){
-              if($curmonth == $monthSales[$x][0] && $MPT->payment_type == "OverTheCounter") {
-                $monthSales[$x][1] = $monthSales[$x][1] + $MPT->service_fee;
+              if($curmonth == $monthSales[$x][0] && $MPT->payment_type == "overthecounter") {
+                $monthSales[$x][1] = $monthSales[$x][1] + ($MPT->service_fee * $MPT->num_ticket);
                 $monthSales[$x][2] = $monthSales[$x][2] + 1;
               }
-              if($curmonth == $monthSales[$x][0] && $MPT->payment_type == "GCash") {
-                $monthSales[$x][1] = $monthSales[$x][1] + $MPT->service_fee;
+              if($curmonth == $monthSales[$x][0] && $MPT->payment_type == "gcash") {
+                $monthSales[$x][4] = $monthSales[$x][4] + ($MPT->service_fee * $MPT->num_ticket);
                 $monthSales[$x][3] = $monthSales[$x][3] + 1;
               } 
             } 
         }
-$tbl .= '<h1>Payment Type Books</h1>';
+$tbl .= '<h1>Monthly Sales</h1>';
 $tbl .= '
 <table class="table table-bordered" id="example">
 	<thead>
@@ -144,8 +144,8 @@ $tbl .= '
 		if($monthSales[$y][1]!=0) {
 		$tbl .= '<tr>
 					<td>'. $monthSales[$y][0] .'</td>
-					<td>'. $monthSales[$y][2] . '</td>
-					<td>'. $monthSales[$y][3] .'</td>
+					<td>P'. $monthSales[$y][1] . '</td>
+					<td>P'. $monthSales[$y][4] .'</td>
 				 </tr>';
 		}
 	}
@@ -158,11 +158,11 @@ $tbl .='
 $PaymentTypeSales = array(0,0);
         foreach ($MonthlyPT as $MPT) {
           $curmonth = date("M", strtotime($MPT->date_issued));
-              if($MPT->payment_type == "OverTheCounter") {
+              if($MPT->payment_type == "overthecounter") {
                 $totalAmount = $MPT->service_fee * $MPT->num_ticket;
                 $PaymentTypeSales[0] = $PaymentTypeSales[0] + $totalAmount;
               }
-              if($MPT->payment_type == "GCash") {
+              if($MPT->payment_type == "gcash") {
                 $totalAmount = $MPT->service_fee * $MPT->num_ticket;
                 $PaymentTypeSales[1] = $PaymentTypeSales[1] + $totalAmount;
               } 
@@ -188,21 +188,35 @@ $tbl .='
 </table>';
 
 //-----------------------------------------
-
-foreach ($totalSalesAndBooks as $tS) {
-$tbl .= '<h1>Total Sales</h1>';
+$PaymentTypeSales = array(0,0);
+        foreach ($MonthlyPT as $MPT) {
+          $curmonth = date("M", strtotime($MPT->date_issued));
+              if($MPT->payment_type == "overthecounter") {
+                $totalAmount = $MPT->service_fee * $MPT->num_ticket;
+                $PaymentTypeSales[0] = $PaymentTypeSales[0] + $totalAmount;
+              }
+              if($MPT->payment_type == "gcash") {
+                $totalAmount = $MPT->service_fee * $MPT->num_ticket;
+                $PaymentTypeSales[1] = $PaymentTypeSales[1] + $totalAmount;
+              } 
+        }
+		$totalsales = $PaymentTypeSales[0] + $PaymentTypeSales[1];
+		$totalrevenue = ($PaymentTypeSales[0] + $PaymentTypeSales[1]) * 0.7;
+$tbl .= '<h1>Total</h1>';
 $tbl .= '
 <table class="table table-bordered" id="example">
 	<thead>
 		<tr>
 			<th>Sales</th>
+			<th>Revenue</th>
 		</tr>
 	</thead>
 	<tbody>
 				<tr>
-					<td>P'. $tS->totalSales .'</td>
+					<td>P'. $totalsales .'</td>
+					<td>P'. $totalrevenue .'</td>
 				 </tr>';
-}
+
 $tbl .='
 	</tbody>
 </table>';
@@ -216,18 +230,19 @@ $tbl .= '
 			<th>Shop Name</th>
 			<th>OvertheCounter</th>
 			<th>GCash</th>
-			<th>Total Sale</th>
+			<th>Sales</th>
+			<th>Revenue</th>
 		</tr>
 	</thead>';
 foreach ($salesShop as $sS) {
-
-
+	$result = ($sS->overthecounter * $sS->service_fee) + ($sS->gcash * $sS->service_fee);
 	$tbl .= '	<tbody>
 					<tr>
 						<td>'. $sS->shop_name .'</td>
-						<td>'. $sS->overthecounter .'</td>
-						<td>'. $sS->gcash .'</td>
-						<td>'. $sS->sumofservicefee .'</td>
+						<td>P'. $sS->overthecounter * $sS->service_fee .'</td>
+						<td>P'. $sS->gcash * $sS->service_fee.'</td>
+						<td>P'. $result .'</td>
+						<td>P'. $sS->sumofservicefee * 0.7.'</td>
 					 </tr>';
 	}
 	$tbl .='

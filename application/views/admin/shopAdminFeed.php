@@ -79,8 +79,9 @@
                                         
                                     <div class="modal-body d-flex flex-column">
                                         <form id="upload_post">
-                                        <label>"Post Title:</label><input type="text" name="title">
-                                        <textarea name="description" id="" cols="65" rows="6" placeholder="Any thoughts to share to finders?"></textarea>
+                                        <label>Post Title:</label><input type="text" id="post_title" name="title">
+                                        <label>Description</label>
+                                        <textarea name="description" id="post_description" cols="65" rows="6" placeholder="Any thoughts to share to finders?"></textarea>
                                         <div class="gap p-2"></div>
                                         <div class="img-holder-upload">
                                         <img src="assets/images/post.jpg" id="upload-preview" alt="">
@@ -145,8 +146,6 @@
                 <div class="create-post-content rounded mb-3">
                     <div class="row">
                     <p id="postid" style="display:none"><?php echo $pd->post_id;?></p>
-                    <i class='close-notif fa-solid fa-trash-alt' id="delete_post" delete_id="<?php echo $pd->post_id;?>"></i>
-                    <i class='close-notif fa-solid fa-pen-alt' id="edit_post" edit_id="<?php echo $pd->post_id;?>"></i>
                     <p id="admin_profile" style="display:none;"><?php echo $pd->profilepic;?></p>
                         <div class="col-2">
                             <div class="profile-img">
@@ -157,8 +156,10 @@
                         <div class="col-7 d-flex align-items-center justify-content-start">
                             <div class="posts-profile-name">
                                 <h6><?php echo $pd->shop_name;?></h6>
-                                <p class="text-muted"><?php echo $pd->firstname;?> <?php echo $pd->lastname;?>(Admin)</p>
-                                <p class="text-muted">Subject : <?php echo $pd->post_title;?></p>
+                                <p class="text-muted" id="admin_fullname"><?php echo $pd->firstname;?> <?php echo $pd->lastname;?>(Admin)</p>
+                                <?php if($pd->post_title){ ?>
+                                <p class="text-muted">Subject : <?php echo $pd->post_title;?></p>                                   
+                                <?php } ?> 
                             </div>
                             
                         </div>
@@ -166,6 +167,8 @@
                         <div class="col-3 d-flex align-items-center justify-content-end">
                             <div class="profile-elapsed">
                                 <p class="text-muted"><?php echo $pd->post_created;?></p>
+                                <i class='del-icon fa-solid fa-trash-alt' id="delete_post" delete_id="<?php echo $pd->post_id;?>"></i>
+                                <i class='edit-icon fa-solid fa-pen-alt' id="edit_post" edit_id="<?php echo $pd->post_id;?>"></i>
                             </div>
                         </div>
                     </div>
@@ -217,13 +220,22 @@
                                         <div class="col-2">
                                             <div class="profile-img">
                                             <p style="display:none" id="comment_id_text"><?php echo $cd->comment_id?></p>
-                                                <img src="assets/upload/finder/<?php echo $cd->profile_pic;?>" onerror="this.src='assets/images/default.png'" alt="">
+                                            <?php if($cd->user_type == "Admin"){?>
+                                                <div class="profile-img">
+                                                <img src="assets/upload/shop/admin/<?php echo $cd->profilepic;?>" alt="">
+                                                </div>
+                                                <?php }?> 
+                                                <?php if($cd->user_type == "finder"){?>
+                                                <div class="profile-img">
+                                                <img src="assets/upload/finder/<?php echo $cd->profile_pic;?>" alt="">
+                                                </div>
+                                             <?php }?>
                                             </div>
                                         </div>
                                         <div class="col-5 d-flex align-items-center justify-content-start">
                                             <div class="comments-profile-name">
                                             <?php if($cd->user_type == "Admin"){?>
-                                                <h6 class="m-0" id="admin_fullname"><?php echo $cd->admin_firstname;?> <?php echo $cd->admin_lastname;?></h6>
+                                                <h6 class="m-0"><?php echo $cd->admin_firstname;?> <?php echo $cd->admin_lastname;?></h6>
                                             <?php }?>
                                                 <?php if($cd->user_type == "finder"){?>
                                                 <h6 class="m-0"><?php echo $cd->firstname;?> <?php echo $cd->lastname;?></h6>
@@ -234,13 +246,13 @@
                                         </div>
                 
                                         <div class="col-3 d-flex align-items-center justify-content-end">
+                                        <?php
+                                            if($admin_id == $cd->user_id){
+											echo "<i class='edit-comment fa-solid fa-pen-alt' id='edit_comment' edit_id='$cd->comment_id'></i>";
+									    }?>
+                                        <i class='del-comment fa-solid fa-trash-alt' id="delete_comment" delete_id="<?php echo $cd->comment_id;?>"></i>
                                             <div class="profile-elapsed">
                                                 <p class="text-muted"><?php echo $cd->date;?></p>
-                                                <?php
-                                            if($admin_id == $cd->user_id){
-											echo "<i class='close-notif fa-solid fa-pen-alt' id='edit_comment' edit_id='$cd->comment_id'></i>";
-									    }?>
-                                            <i class='close-notif fa-solid fa-trash-alt' id="delete_comment" delete_id="<?php echo $cd->comment_id;?>"></i>
                                             </div>
                                         </div>
                                     </div>
@@ -487,8 +499,20 @@
 		$('#upload_post').on('submit', function(e){  
 			var shopID = $('#shopid').text();
 			var BASE_URL = "<?php echo base_url();?>";
-
-			e.preventDefault();  
+            description = $('#post_description').val();
+            title = $('#post_title').val();
+            if(!$.trim(description)){
+                e.preventDefault();  
+                swal({
+                title: "Description cannot be blank!",
+                text: "",
+                icon: "error",
+                button: "Continue",
+                }).then((value) => {
+                });
+            }
+            else{
+                e.preventDefault();
 					$.ajax({  
 						url: BASE_URL+"addshopPost/"+shopID,   
 						method:"POST",  
@@ -501,6 +525,7 @@
                             location.reload();
 						}  
 					});
+            }
 		});  
 	});   
  </script>
@@ -542,7 +567,19 @@
             $('#editModal').modal('show');  
     $('#edit_upload_post').on('submit', function(e){  
         BASE_URL = "<?php echo base_url();?>";
-           e.preventDefault();
+        description = $('#cp_desc').val();
+            if(!$.trim(description)){
+                e.preventDefault();
+                swal({
+                title: "Description cannot be blank!",
+                text: "",
+                icon: "error",
+                button: "Continue",
+                }).then((value) => {
+                });
+            }
+            else{
+                e.preventDefault();
                 $.ajax({  
                      url: BASE_URL+"updateshopPost/"+postid,   
                      method:"POST",  
@@ -554,8 +591,8 @@
                      {
                          location.reload(); 
                      }  
-                });  
-             
+                });
+            }         
       });
     });
 </script>
@@ -567,11 +604,10 @@
     name = $('#admin_fullname').text();
     admin_pic = $('#admin_profile').text();
     comm = $(this).parent().parent().find('.cmnt_text').val();
-    alert(admin_pic);
     comm_card = `<div class="comments-card pt-2">
                     <div class="row">
                     <div class="col-2">
-                    
+
                     </div>
                     <div class="col-2">
                         <div class="profile-img">
@@ -586,12 +622,11 @@
                         </div>
                         
                     </div>
-
                     <div class="col-3 d-flex align-items-center justify-content-end">
+                    <i class='edit-comment fa-solid fa-pen-alt' id='edit_comment' edit_id=""></i>
+                    <i class='del-comment fa-solid fa-trash-alt' id="delete_comment" delete_id=""></i>
                         <div class="profile-elapsed">
-                            <p class="text-muted">${date}</p>
-                        <i class='close-notif fa-solid fa-pen-alt' id='edit_comment' edit_id='$cd->comment_id'></i>
-                        <i class='close-notif fa-solid fa-trash-alt' id="delete_comment" delete_id=""></i>
+                            <p class="text-muted">${date} ${time}</p>
                         </div>
                     </div>
                 </div>
@@ -604,7 +639,16 @@
     BASE_URL = "<?php echo base_url();?>";
     id = $(this).attr('posts_id');
     comm_apnd = $(this).parent().parent().parent().find('.comments');
-    // alert(comm);
+    if(!$.trim(comm)){
+        swal({
+            title: "Comment cannot be blank",
+            text: "",
+            icon: "error",
+            button: "Continue",
+            }).then((value) => {
+            });
+        }
+    else{
     $.ajax({
           url:BASE_URL+"addComment/"+id,
           type: "POST",
@@ -614,30 +658,41 @@
             comm_apnd.append(comm_card);    
           }
          });
+    }
     });
 </script>
 <script>
-     $(document).on('click', '#edit_comment',function(){
+     $(document).on('click', '.edit-comment',function(){
         BASE_URL = "<?php echo base_url();?>";
         id = $(this).attr("edit_id");
         status = $(this).attr('stat');
         if(status == "active"){     
-         $(this).parent().parent().parent().parent().find('.posts-comment').find('textarea').remove();
-         $(this).parent().parent().parent().parent().find('.posts-comment').find('button').remove();
-         $(this).parent().parent().parent().parent().find('.posts-comment').find('p').show();
+         $(this).parent().parent().parent().find('.posts-comment').find('textarea').remove();
+         $(this).parent().parent().parent().find('.posts-comment').find('button').remove();
+         $(this).parent().parent().parent().find('.posts-comment').find('p').show();
          $(this).attr('stat', '');
         }
         else{
          $(this).attr('stat', 'active');
-         $(this).parent().parent().parent().parent().find('.posts-comment').find('p').hide();
-         edit_comment_text = $(this).parent().parent().parent().parent().find('.posts-comment').find('p').text();
-         $(this).parent().parent().parent().parent().find('.posts-comment').append("<textarea class='comment_field_edit' cols='80' rows='3'>"+edit_comment_text+"</textarea><button class='edit_curr_comment add-com badge badge-success p-2' getid='"+id+"'>UPDATE</button>");
+         $(this).parent().parent().parent().find('.posts-comment').find('p').hide();
+         edit_comment_text = $(this).parent().parent().parent().find('.posts-comment').find('p').text();
+         $(this).parent().parent().parent().find('.posts-comment').append("<textarea class='comment_field_edit' cols='80' rows='3'>"+edit_comment_text+"</textarea><button class='edit_curr_comment add-com badge badge-success p-2' getid='"+id+"'>UPDATE</button>");
         }
      });
      $(document).on('click', '.edit_curr_comment',function(){
         // comm = $(this).parent().find('.comment_field_edit').css('background-color','red');
         edited_comment = $(this).parent().parent().find('.posts-comment').find('textarea').val();
         id = $(this).attr('getid');
+        if(!$.trim(edited_comment)){
+        swal({
+            title: "Comment cannot be blank",
+            text: "",
+            icon: "error",
+            button: "Continue",
+            }).then((value) => {
+            });
+        }
+        else{
                 $.ajax({  
                      url: BASE_URL+"updateComment/"+id,   
                      method:"POST",  
@@ -650,13 +705,16 @@
             $(this).parent().find('p').text(edited_comment);
             $(this).parent().parent().find('.posts-comment').find('textarea').remove();
             $(this).remove();
+        }
      });
 </script>
 <script>
     $(document).on('click', '#delete_comment',function(){
+        BASE_URL = "<?php echo base_url();?>";
         id = $(this).attr('delete_id');
-        count = $(this).parent().parent().parent().parent().parent().parent().parent().find('.mark_count').text();
-        count_elem = $(this).parent().parent().parent().parent().parent().parent().parent().find('.mark_count');
+        count = $(this).parent().parent().parent().parent().parent().parent().find('.mark_count').text();
+        count_elem = $(this).parent().parent().parent().parent().parent().parent().find('.mark_count');
+
         $.ajax({  
 				url: BASE_URL+"deleteComment/"+id,   
 				type:"POST",  
@@ -667,7 +725,7 @@
                     count_elem.text(count);
 				}
 		});
-        $(this).parent().parent().parent().parent().hide();
+        $(this).parent().parent().parent().hide();
     });
 </script>
 <script>

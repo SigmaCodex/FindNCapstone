@@ -360,7 +360,7 @@ class MainModel extends CI_Model{
         $this->db->select_sum('comp_booking.num_ticket', 'totalBooks');
         $this->db->from('transaction');
         $this->db->join('comp_booking', 'comp_booking.transaction_id = transaction.transaction_id',);
-        $this->db->where('transaction_status', 'accepted');
+        $this->db->where('transaction_status', 'success');
         $this->db->where('payment_status', 'paid');
         $query = $this->db->get();
         // return $query->result();
@@ -372,7 +372,7 @@ class MainModel extends CI_Model{
         $this->db->select_sum('comp_booking.num_ticket', 'GcashBooks');
         $this->db->from('transaction');
         $this->db->join('comp_booking', 'comp_booking.transaction_id = transaction.transaction_id',);
-        $this->db->where('transaction_status', 'accepted');
+        $this->db->where('transaction_status', 'success');
         $this->db->where('payment_status', 'paid');
         $this->db->where('payment_type', 'gcash');
         $query = $this->db->get();
@@ -384,7 +384,7 @@ class MainModel extends CI_Model{
         $this->db->select_sum('comp_booking.num_ticket', 'OTCbooks');
         $this->db->from('transaction');
         $this->db->join('comp_booking', 'comp_booking.transaction_id = transaction.transaction_id',);
-        $this->db->where('transaction_status', 'accepted');
+        $this->db->where('transaction_status', 'success');
         $this->db->where('payment_status', 'paid');
         $this->db->where('payment_type', 'overthecounter');
         $query = $this->db->get();
@@ -396,7 +396,7 @@ class MainModel extends CI_Model{
         $this->db->select('transaction.payment_type,transaction.service_fee, transaction.date_issued,comp_booking.num_ticket');
         $this->db->from('transaction');
         $this->db->join('comp_booking', 'comp_booking.transaction_id = transaction.transaction_id',);
-        $this->db->where('transaction_status', 'accepted');
+        $this->db->where('transaction_status', 'success');
         $this->db->where('payment_status', 'paid');
         $query = $this->db->get();
         // return $query->result();
@@ -408,7 +408,7 @@ class MainModel extends CI_Model{
         $this->db->from('transaction');
         $this->db->join('comp_booking', 'comp_booking.transaction_id = transaction.transaction_id',);
         $this->db->join('computershop', 'computershop.shop_id = transaction.shop_id_fk',);
-        $this->db->where('transaction_status', 'accepted');
+        $this->db->where('transaction_status', 'success');
         $this->db->where('payment_status', 'paid');
         // $this->db->where('shop_id', '7');
         $this->db->order_by('transaction.date_issued', 'ASC');
@@ -429,7 +429,7 @@ class MainModel extends CI_Model{
         $this->db->from('transaction');
         $this->db->join('comp_booking', 'comp_booking.transaction_id = transaction.transaction_id',);
         $this->db->join('computershop', 'computershop.shop_id = transaction.shop_id_fk',);
-        $this->db->where('transaction_status', 'accepted');
+        $this->db->where('transaction_status', 'success');
         $this->db->where('payment_status', 'paid');
         $this->db->group_by('computershop.shop_name');
         $query = $this->db->get();
@@ -1120,7 +1120,7 @@ class MainModel extends CI_Model{
         return $query->result();
     }
     public function updateshopPosts($id,$status){
-        $date_created = date('m/d/y');
+        $date_created = date('m/d/y H:i A');
         if($status == "no-image"){
             $data = array(
             'post_title'   => 	 $this->input->post('edit_title'),
@@ -1173,7 +1173,7 @@ class MainModel extends CI_Model{
         return $query->result();
     }
     public function updateComments($id){
-        $date_created = date('m/d/y');
+        $date_created = date('m/d/y H:i A');
         $data = array(
             'comment'   => 	 $this->input->post('comment_txt'),
             'date' =>  $date_created
