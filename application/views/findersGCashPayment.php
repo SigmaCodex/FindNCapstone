@@ -337,10 +337,23 @@
     $(document).on('click','#p_num_ChangeBtn',function(){ 
 
       var new_phoneNum = $("#phone-number").val();
-    
-      $("#phone_number").text(new_phoneNum);
-      // alert(new_phoneNum );
-      $('#ChangePhoneNumberModal').modal('hide')
+
+          if(new_phoneNum == "" || new_phoneNum.length <10 || new_phoneNum.length>10){
+              $("#phone-number").css({"border-color": "#fd0033", 
+              "border-width":"1px", 
+              "border-style":"solid"});
+                
+          }else{
+
+            $("#phone_number").text(new_phoneNum+" ");
+            $("#phone_number").append(" <i class='edit-icon fa-solid fa-edit'  data-toggle='modal' data-target='#ChangePhoneNumberModal'></i></p>");
+            // alert(new_phoneNum );
+            $('#ChangePhoneNumberModal').modal('hide');
+
+          }
+
+
+
     });
     </script>
 
@@ -442,5 +455,13 @@ $('.image-upload-wrap').bind('dragover', function () {
 });
 
 </script>
+<script>
+        $("#phone-number").on("input", function() {
+            if (/^0/.test(this.value)) {
+                this.value = this.value.replace(/^0/, "")
+            }
+        })
+</script>
+
   </body>
 </html>
