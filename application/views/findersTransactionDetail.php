@@ -9,6 +9,16 @@
     
     <link rel="stylesheet" href="../assets/css/findersBookings.css" />
     <title>Booking History</title>
+    <style>
+      #gcash-receipt{
+        height:200px;
+        transition: transform .2s; /* Animation */
+      }
+      #gcash-receipt:hover {
+      
+        transform: scale(1.8); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
+      }
+    </style>
   </head>
   <body class="d-flex justify-content-center p-0">
 
@@ -233,7 +243,7 @@
                                   <div class='row'>
                                     <div class='col-6'><h4 class='info-text-left'>GCASH Receipt Screenshot</h4></div>
                                     <div class='col-2'><p class='info-text-middle'>:</p></div>
-                                    <div class='col-4'><img src='../assets/upload/finder/gcash-receipt/".$payment->receipt_image."' style='max-width: 100px;'>      
+                                    <div class='col-4'><img src='../assets/upload/finder/gcash-receipt/".$payment->receipt_image."' id='gcash-receipt' style='max-width: 100px;'>      
                                   </div>
 
                                   </div>
