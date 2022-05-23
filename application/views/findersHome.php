@@ -76,7 +76,7 @@
                                         </div>
                                         <div class="col-4 ">
                                             <div class="range d-flex align-items-start justify-content-start">
-                                                <p  class="m-0">Range:</p>
+                                                <p  class="m-0">Rate(hr):</p>
                                                 <p class="status pl-2 mb-1 pt-1">₱<?php echo $data->minRate?> - ₱<?php echo $data->maxRate?> </p>
                                             </div>
                                             <div class="ratings d-flex align-items-end justify-content-start">
